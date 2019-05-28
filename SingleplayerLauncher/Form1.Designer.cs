@@ -30,6 +30,7 @@
         {
             this.btnLaunch = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbHero = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnLaunch
@@ -49,12 +50,23 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(191, 21);
             this.comboBox1.TabIndex = 1;
+            this.comboBox1.Text = "Map";
+            // 
+            // cmbHero
+            // 
+            this.cmbHero.FormattingEnabled = true;
+            this.cmbHero.Location = new System.Drawing.Point(12, 39);
+            this.cmbHero.Name = "cmbHero";
+            this.cmbHero.Size = new System.Drawing.Size(191, 21);
+            this.cmbHero.TabIndex = 2;
+            this.cmbHero.Text = "Hero";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(215, 155);
+            this.Controls.Add(this.cmbHero);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnLaunch);
             this.Name = "Form1";
@@ -68,6 +80,7 @@
 
         private System.Windows.Forms.Button btnLaunch;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbHero;
     }
 }
 

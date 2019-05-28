@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using IniParser;
+using IniParser.Model;
 namespace SingleplayerLauncher
 {
     public partial class Form1 : Form
@@ -17,6 +19,8 @@ namespace SingleplayerLauncher
             InitializeComponent();
         }
         Dictionary<string, string> maps = new Dictionary<string, string>();
+        Dictionary<string, string> heroes = new Dictionary<string, string>();
+        string CharacterDataIni = "..//SpitfireGame//Config//DefaultCharacterData.ini";
         private void Form1_Load(object sender, EventArgs e)
         {
             maps.Add("Academy Sewers", "PvE_Sewers.umap");
@@ -62,13 +66,56 @@ namespace SingleplayerLauncher
             foreach (string m in maps.Keys)
                 comboBox1.Items.Add(m);
             comboBox1.SelectedIndex = 0;
-        }
+            heroes.Add("Blackpaw", "PawnWeapon_Blackpaw.Pawn_Blackpaw");
+            heroes.Add("Bloodspike", "PawnWeapon_Bloodspike.Pawn_Bloodspike");
+            heroes.Add("Brass", "PawnWeapon_Brass.Pawn_Brass");
+            heroes.Add("Cygnus", "PawnWeapon_Cygnus.Pawn_Cygnus");
+            heroes.Add("Deadeye", "PawnWeapon_Deadeye.Pawn_Deadeye");
+            heroes.Add("Dobbin", "PawnWeapon_Dobbin.Pawn_Dobbin");
+            heroes.Add("Gabriella", "PawnWeapon_Sorceress.Pawn_Sorceress");
+            heroes.Add("Hogarth", "PawnWeapon_Hogarth.Pawn_Hogarth");
+            heroes.Add("Ivy", "PawnWeapon_Ivy.Pawn_Ivy");
+            heroes.Add("Maximillian", "PawnWeapon_Warmage.Pawn_Warmage");
+            heroes.Add("Midnight", "PawnWeapon_Midnight.Pawn_Midnight");
+            heroes.Add("Oziel", "PawnWeapon_Oziel.Pawn_Oziel");
+            heroes.Add("Smolder", "PawnWeapon_Smolder.Pawn_Smolder");
+            heroes.Add("Stinkeye", "PawnWeapon_Stinkeye.Pawn_Stinkeye");
+            heroes.Add("Temper", "PawnWeapon_Temper.Pawn_Temper");
+            heroes.Add("Tundra", "PawnWeapon_Tundra.Pawn_Tundra");
+            heroes.Add("Yi-Lin", "PawnWeapon_hooksword.hooksword");
+            heroes.Add("Zoey", "PawnWeapon_Zoey.Pawn_Zoey");
 
+            foreach (string h in heroes.Keys)
+                cmbHero.Items.Add(h);
+            cmbHero.SelectedIndex = 0;
+        }
         private void btnLaunch_Click(object sender, EventArgs e)
         {
+            string ini = File.ReadAllText(CharacterDataIni);
+            List<string> lines = ini.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();//Split on new lines
+            lines.RemoveAll(_ => _.StartsWith("//"));//Remove the comments at end of file because they crash IniParser
+            File.WriteAllLines(CharacterDataIni, lines.ToArray());//Save the file with no comments
+            var parser = new FileIniDataParser();
+            IniData data = parser.ReadFile(CharacterDataIni);//Load the ini
+            data["RCharacterData_0 RCharacterData"]["PawnTemplateName"] = heroes[cmbHero.Text];//Set hero in the ini
+            parser.WriteFile(CharacterDataIni, data);//Write the modified ini
+
+            ini = File.ReadAllText(CharacterDataIni);
+            lines = ini.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();
+            //IniParser adds spaces to the ini and it causes game to crash so we need to remove them
+            for (int i = 0; i < lines.Count(); i++)
+            {
+                if (!lines[i].StartsWith("["))//Don't remove spaces on the lines that start with [ because they are required
+                {
+                    lines[i] = lines[i].Replace(" ", "");
+                }
+            }
+            File.WriteAllLines(CharacterDataIni, lines.ToArray());//Write the changes
+
+
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
-            p.StartInfo.Arguments = $"{maps[comboBox1.Text]}?Team=1&AutoTests=1?AutoClientPerfTest=1 -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
+            p.StartInfo.Arguments = $"{maps[comboBox1.Text]}?Team=1&AutoTests=1?AutoClientPerfTest=1 -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
             p.Start();
         }
     }
