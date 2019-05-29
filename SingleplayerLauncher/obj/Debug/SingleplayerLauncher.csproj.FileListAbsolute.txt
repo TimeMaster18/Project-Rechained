@@ -1,0 +1,11 @@
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\bin\Debug\SingleplayerLauncher.exe
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\bin\Debug\SingleplayerLauncher.pdb
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\bin\Debug\INIFileParser.dll
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\bin\Debug\INIFileParser.xml
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.Form1.resources
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.Properties.Resources.resources
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.csproj.GenerateResource.cache
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.csproj.CoreCompileInputs.cache
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.csproj.CopyComplete
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.exe
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.pdb

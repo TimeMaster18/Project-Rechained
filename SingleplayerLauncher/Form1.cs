@@ -91,31 +91,27 @@ namespace SingleplayerLauncher
         }
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            string ini = File.ReadAllText(CharacterDataIni);
-            List<string> lines = ini.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();//Split on new lines
-            lines.RemoveAll(_ => _.StartsWith("//"));//Remove the comments at end of file because they crash IniParser
-            File.WriteAllLines(CharacterDataIni, lines.ToArray());//Save the file with no comments
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile(CharacterDataIni);//Load the ini
-            data["RCharacterData_0 RCharacterData"]["PawnTemplateName"] = heroes[cmbHero.Text];//Set hero in the ini
-            parser.WriteFile(CharacterDataIni, data);//Write the modified ini
+            FileIniDataParser parser = new FileIniDataParser();
 
-            ini = File.ReadAllText(CharacterDataIni);
-            lines = ini.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();
-            //IniParser adds spaces to the ini and it causes game to crash so we need to remove them
-            for (int i = 0; i < lines.Count(); i++)
-            {
-                if (!lines[i].StartsWith("["))//Don't remove spaces on the lines that start with [ because they are required
-                {
-                    lines[i] = lines[i].Replace(" ", "");
-                }
-            }
-            File.WriteAllLines(CharacterDataIni, lines.ToArray());//Write the changes
+            IniData data = new IniData();
+            data.Configuration.AssigmentSpacer = "";
 
+            //Add a new section and some keys
+            string RCharacterDataSection = "RCharacterData_0 RCharacterData";
 
+            data.Sections.AddSection(RCharacterDataSection);
+            data[RCharacterDataSection].AddKey("PlayerName", "Savitar");
+            data[RCharacterDataSection].AddKey("PawnTemplateName", heroes[cmbHero.Text]);
+            data[RCharacterDataSection].AddKey("Team", "1");
+            data[RCharacterDataSection].AddKey("UseDefaultData", "false");
+            data[RCharacterDataSection].AddKey("XP", "5000");
+            data[RCharacterDataSection].AddKey("GodMode", "true");
+            data[RCharacterDataSection].AddKey("EquippableInventory[0]", "(ItemTemplateName=swingingmace.swingingmace,ItemUseCount=1,ItemLevel=1,Strength=1)");
+            parser.WriteFile(CharacterDataIni, data);
+            File.WriteAllText(CharacterDataIni,File.ReadAllText(CharacterDataIni));
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
-            p.StartInfo.Arguments = $"{maps[comboBox1.Text]}?Team=1&AutoTests=1?AutoClientPerfTest=1 -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
+            p.StartInfo.Arguments = $"{maps[comboBox1.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
             p.Start();
         }
     }
