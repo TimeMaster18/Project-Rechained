@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IniParser;
 using IniParser.Model;
@@ -78,7 +73,7 @@ namespace SingleplayerLauncher
             heroes.Add("Gabriella", "PawnWeapon_Sorceress.Pawn_Sorceress");
             heroes.Add("Hogarth", "PawnWeapon_Hogarth.Pawn_Hogarth");
             heroes.Add("Ivy", "PawnWeapon_Ivy.Pawn_Ivy");
-            heroes.Add("Maximillian", "PawnWeapon_Warmage.Pawn_Warmage");
+            heroes.Add("Maximilian", "PawnWeapon_Warmage.Pawn_Warmage");
             heroes.Add("Midnight", "PawnWeapon_Midnight.Pawn_Midnight");
             heroes.Add("Oziel", "PawnWeapon_Oziel.Pawn_Oziel");
             heroes.Add("Smolder", "PawnWeapon_Smolder.Pawn_Smolder");
@@ -92,29 +87,43 @@ namespace SingleplayerLauncher
                 comBoxHero.Items.Add(h);
 
             comBoxHero.SelectedItem = "Maximillian"; // Default selected "Maximillian" Main Hero of the OrcsMustDie! Saga
+
+            chkGodMode.Enabled = false;
         }
         private void btnLaunch_Click(object sender, EventArgs e)
-        {
-            FileIniDataParser parser = new FileIniDataParser();
+        {           
 
-            IniData data = new IniData();
-            data.Configuration.AssigmentSpacer = "";
+            if (!chkCustomIni.Checked)
+            {
+                FileIniDataParser parser = new FileIniDataParser();
 
-            //Add a new section and some keys
-            string RCharacterDataSection = "RCharacterData_0 RCharacterData";
+                IniData data = new IniData();
+                data.Configuration.AssigmentSpacer = "";
 
-            data.Sections.AddSection(RCharacterDataSection);
-            data[RCharacterDataSection].AddKey("PlayerName", "Savitar");
-            data[RCharacterDataSection].AddKey("PawnTemplateName", heroes[comBoxHero.Text]);
-            data[RCharacterDataSection].AddKey("Team", "1");
-            
-            parser.WriteFile(CharacterDataIni, data);
-            File.WriteAllText(CharacterDataIni, File.ReadAllText(CharacterDataIni));
+                //Add a new section and some keys
+                string RCharacterDataSection = "RCharacterData_0 RCharacterData";
+
+                data.Sections.AddSection(RCharacterDataSection);
+                data[RCharacterDataSection].AddKey("PlayerName", "Savitar");
+                data[RCharacterDataSection].AddKey("GuildTag", "~(^-^)~");
+                data[RCharacterDataSection].AddKey("GuildName", "");
+                data[RCharacterDataSection].AddKey("PawnTemplateName", heroes[comBoxHero.Text]);
+                data[RCharacterDataSection].AddKey("Team", "1");
+
+                parser.WriteFile(CharacterDataIni, data);
+                File.WriteAllText(CharacterDataIni, File.ReadAllText(CharacterDataIni));
+
+                if (chkGodMode.Checked)
+                {
+                    data[RCharacterDataSection].AddKey("GodMode", "TRUE");
+                }
+            }            
 
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
             p.StartInfo.Arguments = $"{maps[comBoxMap.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
             p.Start();
         }
+
     }
 }
