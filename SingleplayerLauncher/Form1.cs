@@ -63,9 +63,12 @@ namespace SingleplayerLauncher
             //maps.Add("SpitfireFrontEndMap", "SpitfireFrontEndMap.umap"); 
             maps.Add("Survival Tutorial", "TutorialSurvival.umap");
             maps.Add("Basics Tutorial", "NewbieTutorial.umap");
+
             foreach (string m in maps.Keys)
-                comboBox1.Items.Add(m);
-            comboBox1.SelectedIndex = 0;
+                comBoxMap.Items.Add(m);
+
+            comBoxMap.SelectedItem = "The Baths"; // Default Selected "The Baths" because it's well optimised and Iconic Level
+
             heroes.Add("Blackpaw", "PawnWeapon_Blackpaw.Pawn_Blackpaw");
             heroes.Add("Bloodspike", "PawnWeapon_Bloodspike.Pawn_Bloodspike");
             heroes.Add("Brass", "PawnWeapon_Brass.Pawn_Brass");
@@ -86,36 +89,31 @@ namespace SingleplayerLauncher
             heroes.Add("Zoey", "PawnWeapon_Zoey.Pawn_Zoey");
 
             foreach (string h in heroes.Keys)
-                cmbHero.Items.Add(h);
-            cmbHero.SelectedIndex = 0;
+                comBoxHero.Items.Add(h);
+
+            comBoxHero.SelectedItem = "Maximillian"; // Default selected "Maximillian" Main Hero of the OrcsMustDie! Saga
         }
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            string ini = File.ReadAllText(CharacterDataIni);
-            List<string> lines = ini.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();//Split on new lines
-            lines.RemoveAll(_ => _.StartsWith("//"));//Remove the comments at end of file because they crash IniParser
-            File.WriteAllLines(CharacterDataIni, lines.ToArray());//Save the file with no comments
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile(CharacterDataIni);//Load the ini
-            data["RCharacterData_0 RCharacterData"]["PawnTemplateName"] = heroes[cmbHero.Text];//Set hero in the ini
-            parser.WriteFile(CharacterDataIni, data);//Write the modified ini
+            FileIniDataParser parser = new FileIniDataParser();
 
-            ini = File.ReadAllText(CharacterDataIni);
-            lines = ini.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();
-            //IniParser adds spaces to the ini and it causes game to crash so we need to remove them
-            for (int i = 0; i < lines.Count(); i++)
-            {
-                if (!lines[i].StartsWith("["))//Don't remove spaces on the lines that start with [ because they are required
-                {
-                    lines[i] = lines[i].Replace(" ", "");
-                }
-            }
-            File.WriteAllLines(CharacterDataIni, lines.ToArray());//Write the changes
+            IniData data = new IniData();
+            data.Configuration.AssigmentSpacer = "";
 
+            //Add a new section and some keys
+            string RCharacterDataSection = "RCharacterData_0 RCharacterData";
+
+            data.Sections.AddSection(RCharacterDataSection);
+            data[RCharacterDataSection].AddKey("PlayerName", "Savitar");
+            data[RCharacterDataSection].AddKey("PawnTemplateName", heroes[comBoxHero.Text]);
+            data[RCharacterDataSection].AddKey("Team", "1");
+            
+            parser.WriteFile(CharacterDataIni, data);
+            File.WriteAllText(CharacterDataIni, File.ReadAllText(CharacterDataIni));
 
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
-            p.StartInfo.Arguments = $"{maps[comboBox1.Text]}?Team=1&AutoTests=1?AutoClientPerfTest=1 -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
+            p.StartInfo.Arguments = $"{maps[comBoxMap.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
             p.Start();
         }
     }

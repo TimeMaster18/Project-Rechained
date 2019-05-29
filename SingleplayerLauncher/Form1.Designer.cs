@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.btnLaunch = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.cmbHero = new System.Windows.Forms.ComboBox();
+            this.comBoxMap = new System.Windows.Forms.ComboBox();
+            this.comBoxHero = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnLaunch
@@ -43,31 +43,30 @@
             this.btnLaunch.UseVisualStyleBackColor = true;
             this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
             // 
-            // comboBox1
+            // comBoxMap
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(191, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.Text = "Map";
+            this.comBoxMap.FormattingEnabled = true;
+            this.comBoxMap.Location = new System.Drawing.Point(12, 12);
+            this.comBoxMap.Name = "comboBox1";
+            this.comBoxMap.Size = new System.Drawing.Size(191, 21);
+            this.comBoxMap.TabIndex = 1;
+            this.comBoxMap.Text = "Map";
             // 
-            // cmbHero
+            // comBoxHero
             // 
-            this.cmbHero.FormattingEnabled = true;
-            this.cmbHero.Location = new System.Drawing.Point(12, 39);
-            this.cmbHero.Name = "cmbHero";
-            this.cmbHero.Size = new System.Drawing.Size(191, 21);
-            this.cmbHero.TabIndex = 2;
-            this.cmbHero.Text = "Hero";
-            // 
-            // Form1
+            this.comBoxHero.FormattingEnabled = true;
+            this.comBoxHero.Location = new System.Drawing.Point(12, 39);
+            this.comBoxHero.Name = "cmbHero";
+            this.comBoxHero.Size = new System.Drawing.Size(191, 21);
+            this.comBoxHero.TabIndex = 2;
+            this.comBoxHero.Text = "Hero";
+            // comBoxHero            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(215, 155);
-            this.Controls.Add(this.cmbHero);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comBoxHero);
+            this.Controls.Add(this.comBoxMap);
             this.Controls.Add(this.btnLaunch);
             this.Name = "Form1";
             this.Text = "OMDU Launcher";
@@ -79,8 +78,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnLaunch;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox cmbHero;
+        private System.Windows.Forms.ComboBox comBoxMap;
+        private System.Windows.Forms.ComboBox comBoxHero;
     }
 }
 
