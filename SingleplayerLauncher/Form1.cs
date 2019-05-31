@@ -15,7 +15,9 @@ namespace SingleplayerLauncher
         }
         Dictionary<string, string> maps = new Dictionary<string, string>();
         Dictionary<string, string> heroes = new Dictionary<string, string>();
-        string CharacterDataIni = "..//SpitfireGame//Config//DefaultCharacterData.ini";
+        Dictionary<string, string> dyes = new Dictionary<string, string>();
+        string characterDataIni = "..//SpitfireGame//Config//DefaultCharacterData.ini";
+        string loggingArgument = " -log -ABSLOG=log.txt";
         private void Form1_Load(object sender, EventArgs e)
         {
             maps.Add("Academy Sewers", "PvE_Sewers.umap");
@@ -86,7 +88,18 @@ namespace SingleplayerLauncher
             foreach (string h in heroes.Keys)
                 comBoxHero.Items.Add(h);
 
-            comBoxHero.SelectedItem = "Maximillian"; // Default selected "Maximillian" Main Hero of the OrcsMustDie! Saga
+            comBoxHero.SelectedItem = "Maximilian"; // Default selected "Maximillian" Main Hero of the OrcsMustDie! Saga
+
+
+            dyes.Add("Normal", "0");
+            dyes.Add("Heroic", "1");
+            dyes.Add("Legendary", "2");
+
+            foreach (string h in dyes.Keys)
+                comBoxDye.Items.Add(h);
+
+            comBoxDye.SelectedItem = "Normal"; // Default selected Normal dye
+
 
             chkGodMode.Enabled = false;
         }
@@ -120,13 +133,17 @@ namespace SingleplayerLauncher
                 data[RCharacterDataSection].AddKey("PawnTemplateName", heroes[comBoxHero.Text]);
                 data[RCharacterDataSection].AddKey("Team", "1");
 
-                parser.WriteFile(CharacterDataIni, data);
-                File.WriteAllText(CharacterDataIni, File.ReadAllText(CharacterDataIni));
+                data[RCharacterDataSection].AddKey("HeroicDyeIdx", dyes[comBoxDye.Text]);
 
                 if (chkGodMode.Checked)
                 {
                     data[RCharacterDataSection].AddKey("GodMode", "TRUE");
                 }
+
+                parser.WriteFile(characterDataIni, data);
+                File.WriteAllText(characterDataIni, File.ReadAllText(characterDataIni));
+
+                
             }            
 >>>>>>> a47706007bb6e413c71644336f3b1a143b124bc2
 
@@ -143,12 +160,39 @@ namespace SingleplayerLauncher
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
 <<<<<<< HEAD
+<<<<<<< HEAD
             p.StartInfo.Arguments = $"{maps[comboBox1.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
 =======
             p.StartInfo.Arguments = $"{maps[comBoxMap.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
 >>>>>>> a47706007bb6e413c71644336f3b1a143b124bc2
+=======
+            p.StartInfo.Arguments = $"{maps[comBoxMap.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
+
+            if (chkLog.Checked)
+            {
+                p.StartInfo.Arguments += loggingArgument;
+            }
+
+>>>>>>> ef7ada15d16f791c58d7bc2f0523f7a99245e920
             p.Start();
         }
 
+        private void chkCustomIni_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCustomIni.Checked)
+            {
+                comBoxHero.Enabled = false;
+                chkGodMode.Enabled = false;
+                comBoxDye.Enabled = false;
+
+                chkGodMode.Checked = false;
+            }
+            else
+            {
+                comBoxHero.Enabled = true;
+                chkGodMode.Enabled = true;
+                comBoxDye.Enabled = true;
+            }
+        }
     }
 }
