@@ -41,12 +41,13 @@
             this.chkCustomIni = new System.Windows.Forms.CheckBox();
             this.chkGodMode = new System.Windows.Forms.CheckBox();
             this.chkLog = new System.Windows.Forms.CheckBox();
+            this.btnLoadoutEditor = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLaunch
             // 
-            this.btnLaunch.Location = new System.Drawing.Point(84, 127);
+            this.btnLaunch.Location = new System.Drawing.Point(77, 127);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(191, 75);
             this.btnLaunch.TabIndex = 0;
@@ -175,11 +176,22 @@
             this.chkLog.Text = "Log";
             this.chkLog.UseVisualStyleBackColor = true;
             // 
+            // btnLoadoutEditor
+            // 
+            this.btnLoadoutEditor.Location = new System.Drawing.Point(280, 127);
+            this.btnLoadoutEditor.Name = "btnLoadoutEditor";
+            this.btnLoadoutEditor.Size = new System.Drawing.Size(74, 75);
+            this.btnLoadoutEditor.TabIndex = 7;
+            this.btnLoadoutEditor.Text = "Loadout editor";
+            this.btnLoadoutEditor.UseVisualStyleBackColor = true;
+            this.btnLoadoutEditor.Click += new System.EventHandler(this.btnLoadoutEditor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 208);
+            this.Controls.Add(this.btnLoadoutEditor);
             this.Controls.Add(this.chkLog);
             this.Controls.Add(this.chkGodMode);
             this.Controls.Add(this.chkCustomIni);
@@ -210,6 +222,7 @@
         private System.Windows.Forms.ComboBox comBoxSkin;
         private System.Windows.Forms.Label labelDye;
         private System.Windows.Forms.ComboBox comBoxDye;
+        private System.Windows.Forms.Button btnLoadoutEditor;
     }
 }
 

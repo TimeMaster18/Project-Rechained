@@ -9,3 +9,5 @@ C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\
 C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.csproj.CopyComplete
 C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.exe
 C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.pdb
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.LoadoutEditor.resources
+C:\Users\ryanm\Documents\GitHub\OMDUSinglePlayer\SingleplayerLauncher\obj\Debug\SingleplayerLauncher.csprojAssemblyReference.cache

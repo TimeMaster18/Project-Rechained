@@ -14,7 +14,7 @@ namespace SingleplayerLauncher
             InitializeComponent();
         }
         Dictionary<string, string> maps = new Dictionary<string, string>();
-        Dictionary<string, string> heroes = new Dictionary<string, string>();
+        public static Dictionary<string, string> heroes = new Dictionary<string, string>();
         Dictionary<string, string> dyes = new Dictionary<string, string>();
         string characterDataIni = "..//SpitfireGame//Config//DefaultCharacterData.ini";
         string loggingArgument = " -log -ABSLOG=log.txt";
@@ -104,19 +104,8 @@ namespace SingleplayerLauncher
             chkGodMode.Enabled = false;
         }
         private void btnLaunch_Click(object sender, EventArgs e)
-<<<<<<< HEAD
         {
-            FileIniDataParser parser = new FileIniDataParser();
-
-            IniData data = new IniData();
-            data.Configuration.AssigmentSpacer = "";
-
-            //Add a new section and some keys
-            string RCharacterDataSection = "RCharacterData_0 RCharacterData";
-=======
-        {           
-
-            if (!chkCustomIni.Checked)
+            if (chkCustomIni.Checked)
             {
                 FileIniDataParser parser = new FileIniDataParser();
 
@@ -143,29 +132,10 @@ namespace SingleplayerLauncher
                 parser.WriteFile(characterDataIni, data);
                 File.WriteAllText(characterDataIni, File.ReadAllText(characterDataIni));
 
-                
-            }            
->>>>>>> a47706007bb6e413c71644336f3b1a143b124bc2
 
-            data.Sections.AddSection(RCharacterDataSection);
-            data[RCharacterDataSection].AddKey("PlayerName", "Savitar");
-            data[RCharacterDataSection].AddKey("PawnTemplateName", heroes[cmbHero.Text]);
-            data[RCharacterDataSection].AddKey("Team", "1");
-            data[RCharacterDataSection].AddKey("UseDefaultData", "false");
-            data[RCharacterDataSection].AddKey("XP", "5000");
-            data[RCharacterDataSection].AddKey("GodMode", "true");
-            data[RCharacterDataSection].AddKey("EquippableInventory[0]", "(ItemTemplateName=swingingmace.swingingmace,ItemUseCount=1,ItemLevel=1,Strength=1)");
-            parser.WriteFile(CharacterDataIni, data);
-            File.WriteAllText(CharacterDataIni,File.ReadAllText(CharacterDataIni));
+            }
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
-<<<<<<< HEAD
-<<<<<<< HEAD
-            p.StartInfo.Arguments = $"{maps[comboBox1.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
-=======
-            p.StartInfo.Arguments = $"{maps[comBoxMap.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us -log";
->>>>>>> a47706007bb6e413c71644336f3b1a143b124bc2
-=======
             p.StartInfo.Arguments = $"{maps[comBoxMap.Text]} -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
 
             if (chkLog.Checked)
@@ -173,13 +143,12 @@ namespace SingleplayerLauncher
                 p.StartInfo.Arguments += loggingArgument;
             }
 
->>>>>>> ef7ada15d16f791c58d7bc2f0523f7a99245e920
             p.Start();
         }
 
         private void chkCustomIni_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkCustomIni.Checked)
+            if (!chkCustomIni.Checked)
             {
                 comBoxHero.Enabled = false;
                 chkGodMode.Enabled = false;
@@ -193,6 +162,12 @@ namespace SingleplayerLauncher
                 chkGodMode.Enabled = true;
                 comBoxDye.Enabled = true;
             }
+        }
+
+        private void btnLoadoutEditor_Click(object sender, EventArgs e)
+        {
+            LoadoutEditor ld = new LoadoutEditor();
+            ld.Show();
         }
     }
 }
