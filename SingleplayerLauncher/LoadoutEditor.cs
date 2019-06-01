@@ -54,10 +54,10 @@ namespace SingleplayerLauncher
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Saving your loadout. Please wait.");
             FileInfo info = new FileInfo(Hero.SpitfireGameUPK);
             if (info.Length == 100225213)
             {
-                MessageBox.Show("Decompressing your file");
                 if(!File.Exists(@".//UE Extractor//SpitfireGame.upk"))
                 File.Copy(Hero.SpitfireGameUPK, @".//UE Extractor//SpitfireGame.upk");
                 ProcessStartInfo psi = new ProcessStartInfo();
@@ -86,6 +86,7 @@ namespace SingleplayerLauncher
             {
                 smolder.SetTraps(new List<byte[]>() { trap1, trap2, trap3, trap4, trap5, trap6, trap7, trap8, trap9 });
             }
+            MessageBox.Show("Finished!.");
         }
     }
 }

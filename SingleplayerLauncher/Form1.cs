@@ -102,7 +102,7 @@ namespace SingleplayerLauncher
             comBoxDye.SelectedItem = "Normal"; // Default selected Normal dye
 
             chkCustomIni.Checked = true;
-            chkGodMode.Enabled = false;
+            chkGodMode.Enabled = true;
         }
         private void btnLaunch_Click(object sender, EventArgs e)
         {
