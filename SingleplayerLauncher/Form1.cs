@@ -66,6 +66,7 @@ namespace SingleplayerLauncher
 
             comBoxMap.SelectedItem = "The Baths"; // Default Selected "The Baths" because it's well optimised and Iconic Level
 
+            heroes.Add("Bionka", "PawnWeapon_Bionka.Pawn_Bionka");
             heroes.Add("Blackpaw", "PawnWeapon_Blackpaw.Pawn_Blackpaw");
             heroes.Add("Bloodspike", "PawnWeapon_Bloodspike.Pawn_Bloodspike");
             heroes.Add("Brass", "PawnWeapon_Brass.Pawn_Brass");
