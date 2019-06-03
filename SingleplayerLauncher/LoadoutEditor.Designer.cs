@@ -1,4 +1,5 @@
-﻿namespace SingleplayerLauncher
+﻿
+namespace SingleplayerLauncher
 {
     partial class LoadoutEditor
     {
@@ -28,90 +29,99 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbTrap1 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap2 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap3 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap4 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap5 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap6 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap7 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap8 = new System.Windows.Forms.ComboBox();
-            this.cmbTrap9 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot1 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot2 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot3 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot4 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot5 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot6 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot7 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot8 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadoutSlot9 = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.cmbHero = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // cmbTrap1
+            // comBoxLoadoutSlot1
             // 
-            this.cmbTrap1.FormattingEnabled = true;
-            this.cmbTrap1.Location = new System.Drawing.Point(12, 37);
-            this.cmbTrap1.Name = "cmbTrap1";
-            this.cmbTrap1.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap1.TabIndex = 0;
+            this.comBoxLoadoutSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot1.FormattingEnabled = true;
+            this.comBoxLoadoutSlot1.Location = new System.Drawing.Point(12, 37);
+            this.comBoxLoadoutSlot1.Name = "comBoxLoadoutSlot1";
+            this.comBoxLoadoutSlot1.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot1.TabIndex = 0;
             // 
-            // cmbTrap2
+            // comBoxLoadoutSlot2
             // 
-            this.cmbTrap2.FormattingEnabled = true;
-            this.cmbTrap2.Location = new System.Drawing.Point(12, 64);
-            this.cmbTrap2.Name = "cmbTrap2";
-            this.cmbTrap2.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap2.TabIndex = 1;
+            this.comBoxLoadoutSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot2.FormattingEnabled = true;
+            this.comBoxLoadoutSlot2.Location = new System.Drawing.Point(12, 64);
+            this.comBoxLoadoutSlot2.Name = "comBoxLoadoutSlot2";
+            this.comBoxLoadoutSlot2.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot2.TabIndex = 1;
             // 
-            // cmbTrap3
+            // comBoxLoadoutSlot3
             // 
-            this.cmbTrap3.FormattingEnabled = true;
-            this.cmbTrap3.Location = new System.Drawing.Point(12, 91);
-            this.cmbTrap3.Name = "cmbTrap3";
-            this.cmbTrap3.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap3.TabIndex = 2;
+            this.comBoxLoadoutSlot3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot3.FormattingEnabled = true;
+            this.comBoxLoadoutSlot3.Location = new System.Drawing.Point(12, 91);
+            this.comBoxLoadoutSlot3.Name = "comBoxLoadoutSlot3";
+            this.comBoxLoadoutSlot3.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot3.TabIndex = 2;
             // 
-            // cmbTrap4
+            // comBoxLoadoutSlot4
             // 
-            this.cmbTrap4.FormattingEnabled = true;
-            this.cmbTrap4.Location = new System.Drawing.Point(12, 118);
-            this.cmbTrap4.Name = "cmbTrap4";
-            this.cmbTrap4.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap4.TabIndex = 3;
+            this.comBoxLoadoutSlot4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot4.FormattingEnabled = true;
+            this.comBoxLoadoutSlot4.Location = new System.Drawing.Point(12, 118);
+            this.comBoxLoadoutSlot4.Name = "comBoxLoadoutSlot4";
+            this.comBoxLoadoutSlot4.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot4.TabIndex = 3;
             // 
-            // cmbTrap5
+            // comBoxLoadoutSlot5
             // 
-            this.cmbTrap5.FormattingEnabled = true;
-            this.cmbTrap5.Location = new System.Drawing.Point(12, 145);
-            this.cmbTrap5.Name = "cmbTrap5";
-            this.cmbTrap5.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap5.TabIndex = 4;
+            this.comBoxLoadoutSlot5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot5.FormattingEnabled = true;
+            this.comBoxLoadoutSlot5.Location = new System.Drawing.Point(12, 145);
+            this.comBoxLoadoutSlot5.Name = "comBoxLoadoutSlot5";
+            this.comBoxLoadoutSlot5.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot5.TabIndex = 4;
             // 
-            // cmbTrap6
+            // comBoxLoadoutSlot6
             // 
-            this.cmbTrap6.FormattingEnabled = true;
-            this.cmbTrap6.Location = new System.Drawing.Point(12, 172);
-            this.cmbTrap6.Name = "cmbTrap6";
-            this.cmbTrap6.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap6.TabIndex = 5;
+            this.comBoxLoadoutSlot6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot6.FormattingEnabled = true;
+            this.comBoxLoadoutSlot6.Location = new System.Drawing.Point(12, 172);
+            this.comBoxLoadoutSlot6.Name = "comBoxLoadoutSlot6";
+            this.comBoxLoadoutSlot6.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot6.TabIndex = 5;
             // 
-            // cmbTrap7
+            // comBoxLoadoutSlot7
             // 
-            this.cmbTrap7.FormattingEnabled = true;
-            this.cmbTrap7.Location = new System.Drawing.Point(12, 199);
-            this.cmbTrap7.Name = "cmbTrap7";
-            this.cmbTrap7.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap7.TabIndex = 6;
+            this.comBoxLoadoutSlot7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot7.FormattingEnabled = true;
+            this.comBoxLoadoutSlot7.Location = new System.Drawing.Point(12, 199);
+            this.comBoxLoadoutSlot7.Name = "comBoxLoadoutSlot7";
+            this.comBoxLoadoutSlot7.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot7.TabIndex = 6;
             // 
-            // cmbTrap8
+            // comBoxLoadoutSlot8
             // 
-            this.cmbTrap8.FormattingEnabled = true;
-            this.cmbTrap8.Location = new System.Drawing.Point(12, 226);
-            this.cmbTrap8.Name = "cmbTrap8";
-            this.cmbTrap8.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap8.TabIndex = 7;
+            this.comBoxLoadoutSlot8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot8.FormattingEnabled = true;
+            this.comBoxLoadoutSlot8.Location = new System.Drawing.Point(12, 226);
+            this.comBoxLoadoutSlot8.Name = "comBoxLoadoutSlot8";
+            this.comBoxLoadoutSlot8.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot8.TabIndex = 7;
             // 
-            // cmbTrap9
+            // comBoxLoadoutSlot9
             // 
-            this.cmbTrap9.FormattingEnabled = true;
-            this.cmbTrap9.Location = new System.Drawing.Point(12, 253);
-            this.cmbTrap9.Name = "cmbTrap9";
-            this.cmbTrap9.Size = new System.Drawing.Size(216, 21);
-            this.cmbTrap9.TabIndex = 8;
+            this.comBoxLoadoutSlot9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadoutSlot9.FormattingEnabled = true;
+            this.comBoxLoadoutSlot9.Location = new System.Drawing.Point(12, 253);
+            this.comBoxLoadoutSlot9.Name = "comBoxLoadoutSlot9";
+            this.comBoxLoadoutSlot9.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot9.TabIndex = 8;
             // 
             // btnSave
             // 
@@ -125,6 +135,7 @@
             // 
             // cmbHero
             // 
+            this.cmbHero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHero.FormattingEnabled = true;
             this.cmbHero.Location = new System.Drawing.Point(12, 12);
             this.cmbHero.Name = "cmbHero";
@@ -138,15 +149,15 @@
             this.ClientSize = new System.Drawing.Size(240, 315);
             this.Controls.Add(this.cmbHero);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.cmbTrap9);
-            this.Controls.Add(this.cmbTrap8);
-            this.Controls.Add(this.cmbTrap7);
-            this.Controls.Add(this.cmbTrap6);
-            this.Controls.Add(this.cmbTrap5);
-            this.Controls.Add(this.cmbTrap4);
-            this.Controls.Add(this.cmbTrap3);
-            this.Controls.Add(this.cmbTrap2);
-            this.Controls.Add(this.cmbTrap1);
+            this.Controls.Add(this.comBoxLoadoutSlot9);
+            this.Controls.Add(this.comBoxLoadoutSlot8);
+            this.Controls.Add(this.comBoxLoadoutSlot7);
+            this.Controls.Add(this.comBoxLoadoutSlot6);
+            this.Controls.Add(this.comBoxLoadoutSlot5);
+            this.Controls.Add(this.comBoxLoadoutSlot4);
+            this.Controls.Add(this.comBoxLoadoutSlot3);
+            this.Controls.Add(this.comBoxLoadoutSlot2);
+            this.Controls.Add(this.comBoxLoadoutSlot1);
             this.Name = "LoadoutEditor";
             this.Text = "Loadout Editor";
             this.Load += new System.EventHandler(this.LoadoutEditor_Load);
@@ -156,15 +167,15 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbTrap1;
-        private System.Windows.Forms.ComboBox cmbTrap2;
-        private System.Windows.Forms.ComboBox cmbTrap3;
-        private System.Windows.Forms.ComboBox cmbTrap4;
-        private System.Windows.Forms.ComboBox cmbTrap5;
-        private System.Windows.Forms.ComboBox cmbTrap6;
-        private System.Windows.Forms.ComboBox cmbTrap7;
-        private System.Windows.Forms.ComboBox cmbTrap8;
-        private System.Windows.Forms.ComboBox cmbTrap9;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot1;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot2;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot3;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot4;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot5;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot6;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot7;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot8;
+        private System.Windows.Forms.ComboBox comBoxLoadoutSlot9;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbHero;
     }

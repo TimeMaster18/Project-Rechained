@@ -57,21 +57,21 @@
             // 
             // comBoxMap
             // 
+            this.comBoxMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxMap.FormattingEnabled = true;
             this.comBoxMap.Location = new System.Drawing.Point(40, 24);
             this.comBoxMap.Name = "comBoxMap";
             this.comBoxMap.Size = new System.Drawing.Size(216, 21);
             this.comBoxMap.TabIndex = 1;
-            this.comBoxMap.Text = "Map";
             // 
             // comBoxHero
             // 
+            this.comBoxHero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxHero.FormattingEnabled = true;
             this.comBoxHero.Location = new System.Drawing.Point(40, 52);
             this.comBoxHero.Name = "comBoxHero";
             this.comBoxHero.Size = new System.Drawing.Size(216, 21);
             this.comBoxHero.TabIndex = 2;
-            this.comBoxHero.Text = "Hero";
             // 
             // groupBox1
             // 
@@ -92,12 +92,12 @@
             // 
             // comBoxDye
             // 
+            this.comBoxDye.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxDye.FormattingEnabled = true;
             this.comBoxDye.Location = new System.Drawing.Point(181, 79);
             this.comBoxDye.Name = "comBoxDye";
             this.comBoxDye.Size = new System.Drawing.Size(75, 21);
             this.comBoxDye.TabIndex = 6;
-            this.comBoxDye.Text = "Normal";
             // 
             // labelDye
             // 
@@ -119,13 +119,13 @@
             // 
             // comBoxSkin
             // 
+            this.comBoxSkin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSkin.Enabled = false;
             this.comBoxSkin.FormattingEnabled = true;
             this.comBoxSkin.Location = new System.Drawing.Point(40, 79);
             this.comBoxSkin.Name = "comBoxSkin";
             this.comBoxSkin.Size = new System.Drawing.Size(111, 21);
             this.comBoxSkin.TabIndex = 4;
-            this.comBoxSkin.Text = "Default";
             // 
             // labelHero
             // 

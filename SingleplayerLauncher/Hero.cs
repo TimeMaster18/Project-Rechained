@@ -13,7 +13,7 @@ namespace SingleplayerLauncher
     {
         protected int fileLength = 0;
         public abstract void SetTraps(List<byte[]> traps);
-        public abstract Dictionary<byte[], string> GetTraps();
+        //public abstract Dictionary<byte[], string> GetTraps();
         public static string SpitfireGameUPK = "..//SpitfireGame//CookedPCConsole//SpitfireGame.upk";
         protected static int FindBytes(byte[] haystack, byte[] needle)
         {
@@ -75,7 +75,7 @@ namespace SingleplayerLauncher
         {
             trapHeader = new byte[] { 0xC6, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC5, 0x07, 0x00, 0x00 };
         }
-        //Next update we will use this in the loadout editor to default the comboboxes to the traps the player is using
+        /*Next update we will use this in the loadout editor to default the comboboxes to the traps the player is using
         public override Dictionary<byte[], string> GetTraps()
         {
             Dictionary<byte[], string> Dic = new Dictionary<byte[], string>();
@@ -85,11 +85,11 @@ namespace SingleplayerLauncher
                 byte[] trap = Bytes.ToList().GetRange(index + 28 + (i * 4), 4).ToArray();
                 if (trap[0] == 0xF3)
                     break;
-                var t = Traps.AllTraps[trap];
+                var t = Resources.traps[trap];
                 Dic.Add(trap,t);
             }
             return Dic;
-        }
+        }*/
 
         public override void SetTraps(List<byte[]> traps)
         {
@@ -143,21 +143,6 @@ namespace SingleplayerLauncher
             inventoryArchType = new byte[] { 0xC5, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC5, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0xB8, 0x37, 0x02, 0x00 };
 
             trapHeader = new byte[] { 0xC6, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC5, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)(10 * 4), 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)9, 0x00, 0x00, 0x00 };
-        }
-
-        public override Dictionary<byte[], string> GetTraps()
-        {
-            Dictionary<byte[], string> Dic = new Dictionary<byte[], string>();
-            int index = FindBytes(Bytes, inventoryArchType);
-            for (int i = 0; i < 9; i++)
-            {
-                byte[] trap = Bytes.ToList().GetRange(index + 28 + (i * 4), 4).ToArray();
-                if (trap[0] == 0xF3)
-                    break;
-                var t = Traps.AllTraps[trap];
-                Dic.Add(trap, t);
-            }
-            return Dic;
         }
 
         public override void SetTraps(List<byte[]> traps)

@@ -15,35 +15,48 @@ namespace SingleplayerLauncher
     public partial class LoadoutEditor : Form
     {
         public LoadoutEditor()
-        {
+        {        
             InitializeComponent();
         }
 
         Max max = new Max();
         Smolder smolder = new Smolder();
+        List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
+
+
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            foreach(var trap in Traps.AllTraps)
+            comBoxLoadoutSlots = new List<System.Windows.Forms.ComboBox>()
+            {   comBoxLoadoutSlot1, comBoxLoadoutSlot2, comBoxLoadoutSlot3,
+                comBoxLoadoutSlot4, comBoxLoadoutSlot5, comBoxLoadoutSlot6,
+                comBoxLoadoutSlot7, comBoxLoadoutSlot8, comBoxLoadoutSlot9
+            };
+
+            foreach (var comBoxLoadoutSlot in comBoxLoadoutSlots)
             {
-                cmbTrap1.Items.Add(trap.Value);
-                cmbTrap2.Items.Add(trap.Value);
-                cmbTrap3.Items.Add(trap.Value);
-                cmbTrap4.Items.Add(trap.Value);
-                cmbTrap5.Items.Add(trap.Value);
-                cmbTrap6.Items.Add(trap.Value);
-                cmbTrap7.Items.Add(trap.Value);
-                cmbTrap8.Items.Add(trap.Value);
-                cmbTrap9.Items.Add(trap.Value);
+                foreach (var trap in Resources.traps)
+                {
+                    comBoxLoadoutSlot.Items.Add(trap.Key);
+                }
+                foreach (var gear in Resources.gear)
+                {
+                    comBoxLoadoutSlot.Items.Add(gear.Key);
+                }
             }
-            cmbTrap1.SelectedIndex = 0;
-            cmbTrap2.SelectedIndex = 1;
-            cmbTrap3.SelectedIndex = 2;
-            cmbTrap4.SelectedIndex = 3;
-            cmbTrap5.SelectedIndex = 4;
-            cmbTrap6.SelectedIndex = 5;
-            cmbTrap7.SelectedIndex = 6;
-            cmbTrap8.SelectedIndex = 7;
-            cmbTrap9.SelectedIndex = 8;
+
+            // TODO implement a way of loading previous loadout used
+            // Placeholder -> Default loadout
+            comBoxLoadoutSlot1.SelectedItem = "Mending Root";
+            comBoxLoadoutSlot2.SelectedItem = "Mage's Clover";
+            comBoxLoadoutSlot3.SelectedItem = "Barricade";
+            comBoxLoadoutSlot4.SelectedItem = "Viscous Tar";
+            comBoxLoadoutSlot5.SelectedItem = "Flip Trap";
+            comBoxLoadoutSlot6.SelectedItem = "Wall Blades";
+            comBoxLoadoutSlot7.SelectedItem = "Arrow Wall";
+            comBoxLoadoutSlot8.SelectedItem = "Concussive Pounder";
+            comBoxLoadoutSlot9.SelectedItem = "Ceiling Ballista";
+
+            //TODO implement other heroes
             //foreach (string h in Form1.heroes.Keys)
             //    cmbHero.Items.Add(h);
             cmbHero.Items.Add("Maximilian");
@@ -58,35 +71,47 @@ namespace SingleplayerLauncher
             FileInfo info = new FileInfo(Hero.SpitfireGameUPK);
             if (info.Length == 100225213)
             {
-                if(!File.Exists(@".//UE Extractor//SpitfireGame.upk"))
-                File.Copy(Hero.SpitfireGameUPK, @".//UE Extractor//SpitfireGame.upk");
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.FileName = Path.GetFileName(".//UE Extractor//decompress.exe");
-                psi.WorkingDirectory = Path.GetDirectoryName(".//UE Extractor//decompress.exe");
-                psi.Arguments = "\"" + Path.GetFileName(@".//UE Extractor//SpitfireGame.upk")+"\"";
-                Process process = Process.Start(psi);
-                process.WaitForExit();
-                File.Delete(Hero.SpitfireGameUPK);
-                File.Move(".//UE Extractor//unpacked//SpitfireGame.upk", Hero.SpitfireGameUPK);
+                if (!File.Exists(@".//UE Extractor//SpitfireGame.upk"))
+                {
+                    File.Copy(Hero.SpitfireGameUPK, @".//UE Extractor//SpitfireGame.upk");
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.FileName = Path.GetFileName(".//UE Extractor//decompress.exe");
+                    psi.WorkingDirectory = Path.GetDirectoryName(".//UE Extractor//decompress.exe");
+                    psi.Arguments = "\"" + Path.GetFileName(@".//UE Extractor//SpitfireGame.upk") + "\"";
+                    Process process = Process.Start(psi);
+                    process.WaitForExit();
+                    File.Delete(Hero.SpitfireGameUPK);
+                    File.Move(".//UE Extractor//unpacked//SpitfireGame.upk", Hero.SpitfireGameUPK);
+                }
             }
-            var trap1 = Traps.AllTraps.Where(_ => _.Value == cmbTrap1.Text).First().Key;
-            var trap2 = Traps.AllTraps.Where(_ => _.Value == cmbTrap2.Text).First().Key;
-            var trap3 = Traps.AllTraps.Where(_ => _.Value == cmbTrap3.Text).First().Key;
-            var trap4 = Traps.AllTraps.Where(_ => _.Value == cmbTrap4.Text).First().Key;
-            var trap5 = Traps.AllTraps.Where(_ => _.Value == cmbTrap5.Text).First().Key;
-            var trap6 = Traps.AllTraps.Where(_ => _.Value == cmbTrap6.Text).First().Key;
-            var trap7 = Traps.AllTraps.Where(_ => _.Value == cmbTrap7.Text).First().Key;
-            var trap8 = Traps.AllTraps.Where(_ => _.Value == cmbTrap8.Text).First().Key;
-            var trap9 = Traps.AllTraps.Where(_ => _.Value == cmbTrap9.Text).First().Key;
-            if (cmbHero.Text == "Maximilian")
-            {
-                max.SetTraps(new List<byte[]>() { trap1, trap2, trap3, trap4, trap5, trap6, trap7, trap8, trap9 });
-            }
-            else if (cmbHero.Text == "Smolder")
-            {
-                smolder.SetTraps(new List<byte[]>() { trap1, trap2, trap3, trap4, trap5, trap6, trap7, trap8, trap9 });
-            }
+
+            saveLoadout("Maximilian");
+            
             MessageBox.Show("Finished!.");
+        }
+
+        private void saveLoadout(string hero)
+        {
+            List<byte[]> loadoutSlotsBytes = new List<byte[]>();
+
+            foreach (var loadoutSlot in comBoxLoadoutSlots)
+            {
+                var selected = loadoutSlot.Text;
+                if (Resources.traps.ContainsKey(selected))
+                {
+                    loadoutSlotsBytes.Add(Resources.traps[selected]);
+                }
+                else
+                {
+                    loadoutSlotsBytes.Add(Resources.gear[selected]);
+                }
+                
+            }
+
+            max.SetTraps(loadoutSlotsBytes);
+
+            // TODO other heroes
+
         }
     }
 }
