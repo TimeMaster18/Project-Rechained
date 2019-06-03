@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SingleplayerLauncher
 {
@@ -174,9 +170,111 @@ namespace SingleplayerLauncher
         };
 
 
-
-
-
-
+        // Skins
+        public static Dictionary<string, Dictionary<string, byte[]>> skins = new Dictionary<string, Dictionary<string, byte[]>>
+        {
+            { "Maximilian", new Dictionary<string, byte[]>
+                {
+                    { "Lucky Tunic" , new byte[] { 0x4A, 0xE0, 0x00, 0x00 } },
+                    { "Enchanted Armor" , new byte[] { 0x4C, 0xE0, 0x00, 0x00 } },
+                    { "Knight's Watch" , new byte[] { 0x4E, 0xE0, 0x00, 0x00 } },
+                    { "Default" , new byte[] { 0x50, 0xE0, 0x00, 0x00 } },
+                    { "Orc Slayer" , new byte[] { 0x52, 0xE0, 0x00, 0x00 } },
+                    { "Cardboard Samurai" , new byte[] { 0x54, 0xE0, 0x00, 0x00 } },
+                    { "Scared-Crow" , new byte[] { 0x56, 0xE0, 0x00, 0x00 } },
+                    { "Lion Heart" , new byte[] { 0x58, 0xE0, 0x00, 0x00 } },
+                    { "Robin Hood" , new byte[] { 0x5A, 0xE0, 0x00, 0x00 } },
+                    { "Paximillian" , new byte[] { 0x5C, 0xE0, 0x00, 0x00 } },
+                    { "Legendary (default)" , new byte[] { 0x5E, 0xE0, 0x00, 0x00 } },
+                    { "Champion of the Order" , new byte[] { 0x60, 0xE0, 0x00, 0x00 } },
+                    { "Jamez Ripher" , new byte[] { 0x62, 0xE0, 0x00, 0x00 } },
+                    { "Winter Warrior" , new byte[] { 0x64, 0xE0, 0x00, 0x00 } },
+                    { "Boomstick" , new byte[] { 0x66, 0xE0, 0x00, 0x00 } },
+                    { "Backdraft" , new byte[] { 0x68, 0xE0, 0x00, 0x00 } },
+                    { "Dragon Slayer" , new byte[] { 0x6A, 0xE0, 0x00, 0x00 } },
+                    { "Summer of Stunning" , new byte[] { 0x6C, 0xE0, 0x00, 0x00 } },
+                    { "Red Scarf (China Ad)" , new byte[] { 0x6E, 0xE0, 0x00, 0x00 } },
+                    { "Yellow Scarf (China Ad)" , new byte[] { 0x70, 0xE0, 0x00, 0x00 } },
+                    { "Blue Scarf (China Ad)" , new byte[] { 0x72, 0xE0, 0x00, 0x00 } }
+                }
+            },
+            { "Bionka", new Dictionary<string, byte[]>
+                {
+                    { "Default", new byte[] { 0x54, 0xDF, 0x00, 0x00 } },
+                    { "Lizard Queen", new byte[] { 0x56, 0xDF, 0x00, 0x00 } },
+                    { "Fluffalump", new byte[] { 0x58, 0xDF, 0x00, 0x00 } },
+                    { "Bionka Bunny", new byte[] { 0x5A, 0xDF, 0x00, 0x00 } }
+                }
+            },
+            { "Brass", new Dictionary<string, byte[]>
+                {
+                    { "Default", new byte[] { 0x7A, 0xDF, 0x00, 0x00 } },
+                    { "Guns, Gears, 'n Lace", new byte[] { 0x7C, 0xDF, 0x00, 0x00 } },
+                    { "Bombshell Battalion", new byte[] { 0x7E, 0xDF, 0x00, 0x00 } }
+                }
+            },
+            { "Hogarth", new Dictionary<string, byte[]>
+                {
+                    { "Enchanted Armor", new byte[] { 0x8C, 0xDF, 0x00, 0x00 } },
+                    { "God of Plunder", new byte[] { 0x8E, 0xDF, 0x00, 0x00 } },
+                    { "Default", new byte[] { 0x90, 0xDF, 0x00, 0x00 } },
+                    { "Lumbering Jack", new byte[] { 0x92, 0xDF, 0x00, 0x00 } },
+                    { "Default (with some gold)", new byte[] { 0x94, 0xDF, 0x00, 0x00 } },
+                    { "Ice Armor", new byte[] { 0x96, 0xDF, 0x00, 0x00 } },
+                    { "Imperial Golden Warrior", new byte[] { 0x98, 0xDF, 0x00, 0x00 } },
+                    { "Beached Bod", new byte[] { 0x9A, 0xDF, 0x00, 0x00 } },
+                    { "*crashed*", new byte[] { 0x9C, 0xDF, 0x00, 0x00 } },
+                    { "Black Thane", new byte[] { 0x9E, 0xDF, 0x00, 0x00 } },
+                    { "The Schling", new byte[] { 0xA0, 0xDF, 0x00, 0x00 } },
+                    { "Dragon Ward", new byte[] { 0xA2, 0xDF, 0x00, 0x00 } }
+                }
+            },
+            { "Ivy", new Dictionary<string, byte[]>
+                {
+                    { "Enchanted Armor", new byte[] { 0xDA, 0xDF, 0x00, 0x00 } },
+                    { "Valkyrie", new byte[] { 0xDC, 0xDF, 0x00, 0x00 } },
+                    { "Default", new byte[] { 0xDE, 0xDF, 0x00, 0x00 } },
+                    { "Flower Friend", new byte[] { 0xE0, 0xDF, 0x00, 0x00 } },
+                    { "Default (with some gold)", new byte[] { 0xE2, 0xDF, 0x00, 0x00 } },
+                    { "Imperial Ruby Archer", new byte[] { 0xE4, 0xDF, 0x00, 0x00 } },
+                    { "*crashed*", new byte[] { 0xE6, 0xDF, 0x00, 0x00 } },
+                    { "Wicked Warden", new byte[] { 0xE8, 0xDF, 0x00, 0x00 } },
+                    { "Grovewatch", new byte[] { 0xEA, 0xDF, 0x00, 0x00 } },
+                    { "Dragon Tamer", new byte[] { 0xEC, 0xDF, 0x00, 0x00 } }
+                }
+            },
+            { "Smolder", new Dictionary<string, byte[]>
+                {
+                    { "Default", new byte[] { 0xF2, 0xDF, 0x00, 0x00 } },
+                    { "Helter Swelter", new byte[] { 0xF4, 0xDF, 0x00, 0x00 } },
+                    { "Default (White hair)", new byte[] { 0xF6, 0xDF, 0x00, 0x00 } },
+                    { "Elite", new byte[] { 0xF8, 0xDF, 0x00, 0x00 } },
+                    { "Kill-auea", new byte[] { 0xFA, 0xDF, 0x00, 0x00 } },
+                    { "Fire-Alarm Femme", new byte[] { 0xFC, 0xDF, 0x00, 0x00 } },
+                    { "Firestarter", new byte[] { 0xFE, 0xDF, 0x00, 0x00 } },
+                    { "Wu Xing Dragon Mage", new byte[] { 0x00, 0xE0, 0x00, 0x00 } }
+                }
+            },
+            { "Gabriella", new Dictionary<string, byte[]>
+                {
+                    { "Violent Vintage", new byte[] { 0x02, 0xE0, 0x00, 0x00 } },
+                    { "Enchanted Armor", new byte[] { 0x04, 0xE0, 0x00, 0x00 } },
+                    { "Blood Queen", new byte[] { 0x06, 0xE0, 0x00, 0x00 } },
+                    { "Default", new byte[] { 0x08, 0xE0, 0x00, 0x00 } },
+                    { "Frightfully Delightful", new byte[] { 0x0A, 0xE0, 0x00, 0x00 } },
+                    { "Default (Red)", new byte[] { 0x0C, 0xE0, 0x00, 0x00 } },
+                    { "Life In Plastic", new byte[] { 0x0E, 0xE0, 0x00, 0x00 } },
+                    { "Archmage of the Order", new byte[] { 0x10, 0xE0, 0x00, 0x00 } },
+                    { "Mistress of Illusion", new byte[] { 0x12, 0xE0, 0x00, 0x00 } },
+                    { "Promising Prodigy", new byte[] { 0x14, 0xE0, 0x00, 0x00 } },
+                    { "I Dream of Gabby", new byte[] { 0x16, 0xE0, 0x00, 0x00 } },
+                    { "Miracle Worker", new byte[] { 0x18, 0xE0, 0x00, 0x00 } },
+                    { "Winter Witch", new byte[] { 0x1A, 0xE0, 0x00, 0x00 } },
+                    { "Skull Ninja", new byte[] { 0x1C, 0xE0, 0x00, 0x00 } },
+                    { "Evil Ways", new byte[] { 0x1E, 0xE0, 0x00, 0x00 } },
+                    { "Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } }
+                }
+            }
+        };
     }
 }

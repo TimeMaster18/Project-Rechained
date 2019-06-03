@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using IniParser;
 using IniParser.Model;
+
 namespace SingleplayerLauncher
 {
     public partial class Form1 : Form
