@@ -5,7 +5,7 @@ namespace SingleplayerLauncher
 
     internal static class Resources
     {
-        //Initialize Dictionaries that maps name to hex values (hex offset within SpitfireGame.upk)
+        //Initialize Dictionaries 
 
         //Traps (Name, Hex)
         public static Dictionary<string, byte[]> traps = new Dictionary<string, byte[]>
@@ -137,7 +137,7 @@ namespace SingleplayerLauncher
             { "Orcatraz", "PvE_Orcatraz.umap" },
             { "Orcri-La", "PvE_OrcVil_Temple.umap" },
             { "Restricted Section", "PvE_RestrictedSection.umap" },
-            { "Riftmaker's Temple (Snow Temple Graveyard Prologue)", "PvE_AcademyTemple.umap" },
+            { "Riftmaker's Temple", "PvE_AcademyTemple.umap" },
             { "Shark Island", "PvE_SharkIsle.umap" },
             { "Stables at Eventide", "PvE_SUR_JungleTribe.umap" },
             { "Storm Drain", "PvE_Flushed.umap" },
@@ -155,11 +155,109 @@ namespace SingleplayerLauncher
             { "Prologue 3 (Dungeon)", "NPE_3.umap" },
             { "Prologue 4 (Canals)", "NPE_4.umap" },
             { "Prologue 5 (Riftmaker's Temple)", "NPE_5.umap" },
-            { "SpitfireFrontEndMap", "SpitfireFrontEndMap.umap" },
+            //{ "SpitfireFrontEndMap", "SpitfireFrontEndMap.umap" },
             { "Survival Tutorial", "TutorialSurvival.umap" },
             { "Basics Tutorial", "NewbieTutorial.umap" }
         };
 
+        // GameModes { Name, DefaultOfflineDifficulty } (DefaultGame.ini)
+        public static Dictionary<string, string> gameModes = new Dictionary<string, string>
+        {
+            { "Survival", "1" },
+            { "Endless", "5" }
+            //{ "Weekly Challenge", "" }
+            //{ "Chaos Trials", "" }
+        };
+
+        // Maps { Name, umap }
+        public static Dictionary<string, HashSet<string>> mapSurvivalDifficulties = new Dictionary<string, HashSet<string>>
+        {
+            { "Academy Sewers", new HashSet<string> { "Rift Lord" } },
+            { "Archmage Library", new HashSet<string> {"Apprentice" } },
+            { "Avalanche", new HashSet<string> { "Master", "Rift Lord" } },
+            { "Banquet Hall", new HashSet<string> { "Apprentice", "War Mage", "Rift Lord" } },
+            { "Castle Gates", new HashSet<string> { "Master", "Rift Lord" } },
+            { "Cliffside Clash", new HashSet<string> { "Apprentice", "Master" } },
+            { "Confluence", new HashSet<string> { "Rift Lord" } },
+            { "Crogon Keep", new HashSet<string> { "War Mage", "Master", "Rift Lord" } },
+            { "Docks at Eventide", new HashSet<string> { "Master" } },
+            { "Eventide Fortress", new HashSet<string> { "Rift Lord" } },
+            { "Eventide Ramparts", new HashSet<string> {"Apprentice", "War Mage" } },
+            { "Frostbite", new HashSet<string> { "Master", "Rift Lord" } },
+            { "Gates of Thuricvod", new HashSet<string> { "War Mage", "Rift Lord" } },
+            { "Highlands", new HashSet<string> { "Apprentice", "War Mage", "Rift Lord" } },
+            { "Maximum Security", new HashSet<string> { "Rift Lord" } },
+            { "Midnight Market", new HashSet<string> { "War Mage", "Rift Lord" } },
+            { "Orcatraz", new HashSet<string> { "Master" } },
+            { "Orcri-La", new HashSet<string> { "Master" } },
+            { "Restricted Section", new HashSet<string> { "War Mage", "Rift Lord" } },
+            { "Riftmaker's Temple", new HashSet<string> { "Apprentice" } },
+            { "Shark Island", new HashSet<string> { "War Mage", "Master" } },
+            { "Stables at Eventide", new HashSet<string> { "War Mage", "Master" } },
+            { "Storm Drain", new HashSet<string> { "Master" } },
+            { "Temple Graveyard", new HashSet<string> { "War Mage", "Rift Lord" } },
+            { "The Baths", new HashSet<string> { "Apprentice", "Rift Lord" } },
+            { "The Falling Folly", new HashSet<string> { "Master" } },
+            { "The Wall", new HashSet<string> { "War Mage", "Master" } },
+            { "Throne Room", new HashSet<string> { "Apprentice", "War Mage", "Rift Lord" } },
+            { "Thuricvod Village", new HashSet<string> { "War Mage" } },
+            { "Training Grounds", new HashSet<string> { "Apprentice", "War Mage", "Master" } },
+            { "Unchained Fortress", new HashSet<string> { "Apprentice", "Master" } },
+            { "Water Garden", new HashSet<string> { "Apprentice", "Master" } }
+        };
+
+        // Difficulty { Name, DefaultOfflineDifficulty } (DefaultGame.ini)
+        public static Dictionary<string, string> survivalDifficulties = new Dictionary<string, string>
+        {
+            { "Apprentice", "1" },
+            { "War Mage", "11" },
+            { "Master", "26" },
+            { "Rift Lord", "46" }
+        };
+
+        // Endless Difficulty { Name, DefaultOfflineDifficulty } (DefaultGame.ini)
+        public static Dictionary<string, string> endlessDifficulties = new Dictionary<string, string>
+        {
+            { "Endless+", "20" },
+            { "Endless++", "40" },
+            { "Endless+3", "60" },
+            { "Endless+4", "80" },
+            { "Endless+5", "100" },
+            { "Endless+6", "120" },
+            { "Endless+7", "140" },
+            { "Endless+8", "160" },
+            { "Endless+9", "180" },
+            { "Endless+10", "200" }
+        };
+
+        // Survival Difficulty { Name, {DefaultOfflinePlayerLevel, DefaultOfflineDifficulty } (DefaultGame.ini)
+        public static Dictionary<string, Dictionary<string, int[]>> survivalExtraDifficulties = new Dictionary<string, Dictionary<string, int[]>>
+        {
+            { "Apprentice", new Dictionary<string, int[]>
+                {
+                    { "Apprentice+" , new int[] { 1, 10 } }                   
+                }
+            },
+            { "War Mage", new Dictionary<string, int[]>
+                {
+                    { "War Mage+" , new int[] { 1, 25 } }
+                }
+            },
+            { "Master", new Dictionary<string, int[]>
+                {
+                    { "Master+" , new int[] { 6, 26 } },
+                    { "Master++" , new int[] { 1, 45 } }
+                }
+            },
+            { "Rift Lord", new Dictionary<string, int[]>
+                {
+                    { "Rift Lord+" , new int[] { 26, 46 } },
+                    { "Rift Lord++" , new int[] { 6, 46 } },
+                    { "Rift Lord+3" , new int[] { 1, 61 } },
+                    { "Rift Lord+4" , new int[] { 1, 75 } }
+                }
+            }
+        };
 
         // Dyes (Name, IdxDye)
         public static Dictionary<string, string> dyes = new Dictionary<string, string>

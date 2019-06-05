@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using IniParser;
 using IniParser.Model;
@@ -15,28 +16,31 @@ namespace SingleplayerLauncher
         }
 
         private static string characterDataIni = "..//SpitfireGame//Config//DefaultCharacterData.ini";
+        private static string defaultGameIni = "..//SpitfireGame//Config//DefaultGame.ini";
         private static string loggingArgument = " -log -ABSLOG=log.txt";
         private static string defaultArguments = " -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
 
         private void Form1_Load(object sender, EventArgs e)
         {            
             foreach (string m in Resources.maps.Keys)
-                comBoxMap.Items.Add(m);
-
-            comBoxMap.SelectedItem = "The Baths"; // Default Selected "The Baths" because it's well optimised and Iconic Level          
-                        
+                comBoxMap.Items.Add(m); 
 
             foreach (string h in Resources.heroes.Keys)
                 comBoxHero.Items.Add(h);
 
+            foreach (string d in Resources.dyes.Keys)
+                comBoxDye.Items.Add(d);
+
+            foreach (string gm in Resources.gameModes.Keys)
+                comBoxGameMode.Items.Add(gm);
+
+
             comBoxHero.SelectedItem = "Maximilian"; // Default selected "Maximillian" Main Hero of the OrcsMustDie! Saga
-                                    
-
-            foreach (string h in Resources.dyes.Keys)
-                comBoxDye.Items.Add(h);
-
             comBoxDye.SelectedItem = "Normal"; // Default selected Normal dye
 
+            comBoxMap.SelectedItem = "The Baths"; // Default Selected "The Baths" because it's well optimised and Iconic Level 
+            comBoxGameMode.SelectedItem = "Survival"; // Default selected Game Mode "Survival"
+                       
             chkCustomIni.Checked = true;
             chkGodMode.Enabled = true;
         }
@@ -45,7 +49,8 @@ namespace SingleplayerLauncher
         {
             if (chkCustomIni.Checked)
             {
-                createCustomIni(); 
+                createCharacterDataIni();
+                modifyDefaultGameIni();
             }
 
             Process p = new Process();
@@ -55,7 +60,7 @@ namespace SingleplayerLauncher
             p.Start();
         }
                 
-        private void createCustomIni()
+        private void createCharacterDataIni()
         {
             FileIniDataParser parser = new FileIniDataParser();
 
@@ -81,6 +86,57 @@ namespace SingleplayerLauncher
 
             parser.WriteFile(characterDataIni, data);
             File.WriteAllText(characterDataIni, File.ReadAllText(characterDataIni));
+        }
+
+        private void modifyDefaultGameIni()
+        {
+            var parser = new FileIniDataParser();
+            IniData data = parser.ReadFile(defaultGameIni);
+
+            parser.Parser.Configuration.AssigmentSpacer = "";
+            data.Configuration.AssigmentSpacer = "";
+
+            string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";
+
+            string selectedGameMode = comBoxGameMode.SelectedItem.ToString();
+            string selectedExtraDifficulty = comBoxExtraDifficulty.SelectedItem.ToString();
+
+            data[RGameReplicationInfoSection]["DefaultOfflineDifficulty"] = Resources.gameModes[selectedGameMode];
+            data[RGameReplicationInfoSection]["PlayerCountOverride"] = "1";
+
+            if (selectedGameMode.Equals("Survival"))
+            {
+                string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
+
+                if (selectedExtraDifficulty.Equals("No"))
+                {
+                    data[RGameReplicationInfoSection]["DefaultOfflineSuggestedLevel"] = Resources.survivalDifficulties[selectedDifficulty];
+                    data[RGameReplicationInfoSection]["DefaultOfflinePlayerLevel"] = Resources.survivalDifficulties[selectedDifficulty];
+                }
+                else
+                {               
+                    data[RGameReplicationInfoSection]["DefaultOfflinePlayerLevel"] = Resources.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][0].ToString();
+                    data[RGameReplicationInfoSection]["DefaultOfflineSuggestedLevel"] = Resources.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][1].ToString();
+                    data[RGameReplicationInfoSection]["PlayerCountOverride"] = "3";
+                }
+            }
+            else
+            {
+
+                data[RGameReplicationInfoSection]["DefaultOfflinePlayerLevel"] = "1";
+
+                if (selectedExtraDifficulty.Equals("No"))
+                {
+                    data[RGameReplicationInfoSection]["DefaultOfflineSuggestedLevel"] = "1";
+                }
+                else
+                {
+                    data[RGameReplicationInfoSection]["DefaultOfflineSuggestedLevel"] = Resources.endlessDifficulties[selectedExtraDifficulty];
+                    data[RGameReplicationInfoSection]["PlayerCountOverride"] = "3";
+                }
+            }
+
+            parser.WriteFile(defaultGameIni, data);      
         }
 
         private string createExeArguments()
@@ -121,6 +177,79 @@ namespace SingleplayerLauncher
         {
             LoadoutEditor ld = new LoadoutEditor();
             ld.Show();
+        }
+
+        private void comBoxGameMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comBoxDifficulty.Items.Clear();
+
+            comBoxExtraDifficulty.Items.Clear();
+            comBoxExtraDifficulty.Items.Add("No");
+            comBoxExtraDifficulty.SelectedItem = "No";
+
+            switch (comBoxGameMode.SelectedItem)
+            {
+                case "Endless":
+                    comBoxDifficulty.Enabled = false;
+
+                    foreach (string ed in Resources.endlessDifficulties.Keys)
+                        comBoxExtraDifficulty.Items.Add(ed);
+
+                    break;
+
+                case "Survival":
+                    comBoxDifficulty.Enabled = true;
+
+                    string selectedMap = comBoxMap.SelectedItem.ToString();
+
+                    foreach (string md in Resources.mapSurvivalDifficulties[selectedMap])
+                        comBoxDifficulty.Items.Add(md);
+
+                    comBoxDifficulty.SelectedIndex = 0;
+
+                    break;
+
+                default:
+                    break;                
+            }
+
+        }
+
+        private void comBoxMap_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedMap = comBoxMap.SelectedItem.ToString();
+            if (selectedMap.Contains("Tutorial" ) || selectedMap.Contains("Prologue"))
+            {
+                comBoxGameMode.Enabled = false;
+                comBoxDifficulty.Enabled = false;
+                comBoxExtraDifficulty.Enabled = false;
+            }
+            else
+            {
+                comBoxGameMode.Enabled = true;
+                comBoxDifficulty.Enabled = true;
+                comBoxExtraDifficulty.Enabled = true;
+
+                // Manual refresh of possible difficulties
+                var modeSelected = comBoxGameMode.SelectedItem;
+                comBoxGameMode.SelectedIndex = -1;
+                comBoxGameMode.SelectedItem = modeSelected;
+            }            
+        }
+
+        
+        private void comBoxDifficulty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comBoxExtraDifficulty.Items.Clear();
+            comBoxExtraDifficulty.Items.Add("No");
+            comBoxExtraDifficulty.SelectedItem = "No";
+
+            string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
+
+            foreach (string ef in Resources.survivalExtraDifficulties[selectedDifficulty].Keys)
+            {
+                comBoxExtraDifficulty.Items.Add(ef);
+            }
         }
     }
 }
