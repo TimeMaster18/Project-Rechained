@@ -81,6 +81,7 @@
             this.comBoxHero.Name = "comBoxHero";
             this.comBoxHero.Size = new System.Drawing.Size(216, 21);
             this.comBoxHero.TabIndex = 2;
+            this.comBoxHero.SelectedIndexChanged += new System.EventHandler(this.comBoxHero_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -127,7 +128,6 @@
             // comBoxSkin
             // 
             this.comBoxSkin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxSkin.Enabled = false;
             this.comBoxSkin.FormattingEnabled = true;
             this.comBoxSkin.Location = new System.Drawing.Point(40, 48);
             this.comBoxSkin.Name = "comBoxSkin";

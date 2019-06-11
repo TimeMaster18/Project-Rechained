@@ -10,6 +10,7 @@ namespace SingleplayerLauncher
 {
     public partial class Form1 : Form
     {
+        public static Max Max;
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +34,8 @@ namespace SingleplayerLauncher
 
             foreach (string gm in Resources.gameModes.Keys)
                 comBoxGameMode.Items.Add(gm);
-
+            foreach (string s in Resources.skins["Maximilian"].Keys)
+                comBoxSkin.Items.Add(s);
 
             comBoxHero.SelectedItem = "Maximilian"; // Default selected "Maximillian" Main Hero of the OrcsMustDie! Saga
             comBoxDye.SelectedItem = "Normal"; // Default selected Normal dye
@@ -52,7 +54,15 @@ namespace SingleplayerLauncher
                 createCharacterDataIni();
                 modifyDefaultGameIni();
             }
+            if (Max == null && !comBoxSkin.SelectedItem.ToString().Equals(""))
+                Max = new Max();
+            if (Max != null)
+            {
+                if (!comBoxSkin.SelectedItem.ToString().Equals(""))
+                    Max.SetSkin(Resources.skins["Maximilian"][comBoxSkin.SelectedItem.ToString()]);
 
+                Max.SaveHero();
+            }
             Process p = new Process();
             p.StartInfo.FileName = "SpitfireGame.exe";
             p.StartInfo.Arguments = createExeArguments();
@@ -249,6 +259,19 @@ namespace SingleplayerLauncher
             foreach (string ef in Resources.survivalExtraDifficulties[selectedDifficulty].Keys)
             {
                 comBoxExtraDifficulty.Items.Add(ef);
+            }
+        }
+
+        private void comBoxHero_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comBoxHero.SelectedItem.Equals("Maximilian"))
+            {
+                comBoxSkin.Enabled = true;
+            }
+            else
+            {
+                comBoxSkin.Enabled = false;
+                comBoxSkin.SelectedIndex = -1;
             }
         }
     }

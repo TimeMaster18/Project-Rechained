@@ -14,7 +14,6 @@ namespace SingleplayerLauncher
         }
 
         Max max = new Max();
-        Smolder smolder = new Smolder();
         List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
 
 
@@ -54,34 +53,15 @@ namespace SingleplayerLauncher
             //foreach (string h in Form1.heroes.Keys)
             //    cmbHero.Items.Add(h);
             cmbHero.Items.Add("Maximilian");
-            //cmbHero.Items.Add("Smolder");//Smolder editor is broken, do not select her it will crash game
             cmbHero.SelectedItem = "Maximilian";
             //cmbHero.Enabled = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Saving your loadout. Please wait.");
-            FileInfo info = new FileInfo(Hero.SpitfireGameUPK);
-            if (info.Length == 100225213)
-            {
-                if (!File.Exists(@".//UE Extractor//SpitfireGame.upk"))
-                {
-                    File.Copy(Hero.SpitfireGameUPK, @".//UE Extractor//SpitfireGame.upk");
-                    ProcessStartInfo psi = new ProcessStartInfo();
-                    psi.FileName = Path.GetFileName(".//UE Extractor//decompress.exe");
-                    psi.WorkingDirectory = Path.GetDirectoryName(".//UE Extractor//decompress.exe");
-                    psi.Arguments = "\"" + Path.GetFileName(@".//UE Extractor//SpitfireGame.upk") + "\"";
-                    Process process = Process.Start(psi);
-                    process.WaitForExit();
-                    File.Delete(Hero.SpitfireGameUPK);
-                    File.Move(".//UE Extractor//unpacked//SpitfireGame.upk", Hero.SpitfireGameUPK);
-                }
-            }
-
-            saveLoadout("Maximilian");
             
-            MessageBox.Show("Finished!.");
+            saveLoadout("Maximilian");
+            Form1.Max = max;
         }
 
         private void saveLoadout(string hero)
