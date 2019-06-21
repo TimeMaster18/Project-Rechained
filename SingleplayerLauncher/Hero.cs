@@ -16,9 +16,9 @@ namespace SingleplayerLauncher
         public abstract void SaveHero();
         //public abstract Dictionary<byte[], string> GetTraps();
         public const string SpitfireGameUPK = "..//SpitfireGame//CookedPCConsole//SpitfireGame.upk";
-        protected int FindBytes(byte[] haystack, byte[] needle)
+        protected int FindBytes(byte[] haystack, byte[] needle, int start = 0)
         {
-            for (int i = 0; i <= haystack.Length - needle.Length; i++)
+            for (int i = start; i <= haystack.Length - needle.Length; i++)
             {
                 if (match(haystack, needle, i))
                 {
@@ -92,6 +92,7 @@ namespace SingleplayerLauncher
     {
         byte[] trapHeader;
         byte[] skinPattern;
+        int startPosition = 0x28AB495;
         public Max()
         {
             trapHeader = new byte[] { 0xC6, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC5, 0x07, 0x00, 0x00 };
@@ -104,7 +105,7 @@ namespace SingleplayerLauncher
             {
                 //Find a icon for one of the unused gamemodes and delete it's code to make room for the extra traps
                 byte[] b = new byte[] { 0x30, 0x6E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6B, 0x66, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x41, 0xCC, 0x02, 0x00 };
-                int removeIdx = FindBytes(Bytes, b);
+                int removeIdx = FindBytes(Bytes, b, startPosition);
                 if (removeIdx > -1)
                 {
                     var tmpBytes = new List<byte>(Bytes);
@@ -132,7 +133,7 @@ namespace SingleplayerLauncher
                     break;
             }*/
 
-            int index = FindBytes(Bytes, skinPattern) - 4;
+            int index = FindBytes(Bytes, skinPattern, startPosition) - 4;
             if (index == -1)
                 throw new Exception("Can't find skin address");
             //MessageBox.Show(index.ToString());
@@ -164,7 +165,7 @@ public override Dictionary<byte[], string> GetTraps()
             if (traps.Count() != 9)
                 throw new Exception("9 traps/gear must be used");
             
-            int index = FindBytes(Bytes, trapHeader);
+            int index = FindBytes(Bytes, trapHeader, startPosition);
             //Size of bytes the array will hold
             Bytes[index + 16] = (byte)((traps.Count() + 1) * 4);
             //number of items in array

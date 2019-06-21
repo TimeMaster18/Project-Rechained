@@ -15,7 +15,7 @@ namespace SingleplayerLauncher
 
         Max max = new Max();
         List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
-
+        public static List<byte[]> bytes = new List<byte[]>();
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
@@ -59,13 +59,6 @@ namespace SingleplayerLauncher
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            saveLoadout("Maximilian");
-            Form1.Max = max;
-        }
-
-        private void saveLoadout(string hero)
-        {
             List<byte[]> loadoutSlotsBytes = new List<byte[]>();
 
             foreach (var loadoutSlot in comBoxLoadoutSlots)
@@ -79,13 +72,10 @@ namespace SingleplayerLauncher
                 {
                     loadoutSlotsBytes.Add(Resources.gear[selected]);
                 }
-                
+
             }
-
-            max.SetTraps(loadoutSlotsBytes);
-
-            // TODO other heroes
-
+            bytes = loadoutSlotsBytes;
         }
+        
     }
 }

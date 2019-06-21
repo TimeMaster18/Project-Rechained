@@ -54,10 +54,11 @@ namespace SingleplayerLauncher
                 createCharacterDataIni();
                 modifyDefaultGameIni();
             }
-            if (Max == null && !comBoxSkin.SelectedItem.ToString().Equals(""))
-                Max = new Max();
-            if (Max != null)
+            if (!comBoxSkin.SelectedItem.ToString().Equals("") || LoadoutEditor.bytes.Count > 0)
             {
+                Max = new Max();
+                if (LoadoutEditor.bytes.Count > 0)
+                    Max.SetTraps(LoadoutEditor.bytes);
                 if (!comBoxSkin.SelectedItem.ToString().Equals(""))
                     Max.SetSkin(Resources.skins["Maximilian"][comBoxSkin.SelectedItem.ToString()]);
 
