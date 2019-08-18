@@ -8,7 +8,7 @@ namespace SingleplayerLauncher
     {
         List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
         public static List<byte[]> bytes = new List<byte[]>();
-        Hero hero = Hero.Instance;
+        private Hero hero = Hero.Instance;
 
         private const int loadoutSize = 9;
 

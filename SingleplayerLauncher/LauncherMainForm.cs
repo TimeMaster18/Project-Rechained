@@ -78,7 +78,9 @@ namespace SingleplayerLauncher
         };
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
+        
 
+        private Hero hero = Hero.Instance;
 
         public LauncherMainForm()
         {
@@ -181,6 +183,9 @@ namespace SingleplayerLauncher
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
+            UPKFile upk = new UPKFile(spitfireGameUPKPath);
+            hero.UPKFile = upk;
+
             if (chkCustomIni.Checked)
             {
                 updateCharacterDataIni();
@@ -188,21 +193,14 @@ namespace SingleplayerLauncher
             }
             if (!comBoxSkin.SelectedItem.ToString().Equals("") || LoadoutEditorForm.bytes.Count > 0)
             {
-
-                UPKFile upk = new UPKFile(spitfireGameUPKPath);
-
-                // Here is missing the creation of the singleton Hero class and pass it the upkFile
-                /*
-                Max = new Max();
-                if (LoadoutEditorForm.bytes.Count > 0)
-                    Max.SetTraps(LoadoutEditorForm.bytes);
-                if (!comBoxSkin.SelectedItem.ToString().Equals(""))
-                    Max.SetSkin(Resources.skins["Maximilian"][comBoxSkin.SelectedItem.ToString()]);
-
-                Max.SaveHero();
-                */
-
+                hero.skin = comBoxSkin.SelectedItem.ToString();
             }
+
+            hero.ApplyLoadoutChanges();
+
+            MessageBox.Show("Saving your changes. Please wait.");
+            upk.Save();
+            MessageBox.Show("Finished");
 
             startGame();
         }

@@ -33,7 +33,7 @@ namespace SingleplayerLauncher
         }
 
 
-        private byte[] CreateZeroedByteArray(int length)
+        public byte[] CreateZeroedByteArray(int length)
         {
             byte[] arr = new byte[length];
             for (int i = 0; i < arr.Length; i++)
@@ -44,23 +44,7 @@ namespace SingleplayerLauncher
         }
 
         public void Save()
-        {
-            if (fileLength != Bytes.Length)
-            {
-                //Find a icon for one of the unused gamemodes and delete it's code to make room for the extra traps
-                byte[] b = new byte[] { 0x30, 0x6E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6B, 0x66, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x41, 0xCC, 0x02, 0x00 };
-                int removeIdx = FindBytes(b, startPosition);
-                if (removeIdx > -1)
-                {
-                    var tmpBytes = new List<byte>(Bytes);
-                    tmpBytes.RemoveRange(removeIdx, b.Count());
-
-                    //insert 0 bytes so it doesn't crash from having less bytes than game expects
-                    tmpBytes.InsertRange(removeIdx, CreateZeroedByteArray(20));
-                    Bytes = tmpBytes.ToArray();
-                }
-            }
-
+        {           
             File.WriteAllBytes(filePath, Bytes);
         }
 

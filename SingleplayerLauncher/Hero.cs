@@ -26,13 +26,13 @@ namespace SingleplayerLauncher
         }
 
         public string name { get; set; }
-        private int objectOffset;
-        private ConfigFile UPKFile;
+        private int objectOffset { get; set; }
+        private UPKFile UPKFile { get; set; }
         private byte[] skinPattern;
         public string skin { get; set; }
 
-        public string[] Loadout { get; set; } // Could be it's own class if we get Guardians and Traits to work.
-        private byte[] LoadoutHeader;
+        public string[] loadout { get; set; } // Could be it's own class if we get Guardians and Traits to work.
+        private byte[] loadoutHeader;
 
         private const int LoadoutSlotByteSize = 4;
         private const int LoadoutSlotsNumber = 9; 
@@ -72,90 +72,28 @@ namespace SingleplayerLauncher
                                                                                 };
         private static readonly byte[] StartHeaderAfterGuardiansMaximillian = new byte[] { };
 
-        public override void SaveLoadout(t)
+        private void ApplySkin()
         {
-            // I think this method isn't needed anymore
-
-            foreach (var loadoutSlot in comBoxLoadoutSlots)
-            {
-                var selected = loadoutSlot.Text;
-                if (Resources.traps.ContainsKey(selected))
-                {
-                    loadoutSlotsBytes.Add(Resources.traps[selected]);
-                }
-                else
-                {
-                    loadoutSlotsBytes.Add(Resources.gear[selected]);
-                }
-
-            }
-            bytes = loadoutSlotsBytes;
-
-            MessageBox.Show("Saving your changes. Please wait.");
-            UPKFile.Save(SpitfireGameUPK, Bytes);
-
-            MessageBox.Show("Finished");
+            UPKFile.FindAndOverrideBytes(Resources.skins[NameMaximilian][skin], SkinPatternMaximilian, HeroObjectOffsetMaximilian);
         }
 
-        private void SetSkin(byte[] skin)
+        public void ApplyLoadoutChanges()
         {
-            /*int index = -1;
-            foreach(byte[] b in Resources.skins["Maximilian"].Values)
-            {
-                var tmp = skinHeader.ToList();
-                tmp.AddRange(b);
-                index = FindBytes(Bytes, tmp.ToArray());
-                if (index != -1)
-                    break;
-            }*/
-
-            int index = FindBytes(Bytes, skinPattern, startPosition) - 4;
-            if (index == -1)
-                throw new Exception("Can't find skin address");
-            //MessageBox.Show(index.ToString());
-            //Size of bytes the array will hold
-            for (int i = 0; i < skin.Length; i++)
-            {
-                Bytes[index + i] = skin[i];
-            }
-
-            FindAndOverrideBytes();
-        }
-
-        /*Next update we will use this in the loadout editor to default the comboboxes to the traps the player is using
-public override Dictionary<byte[], string> GetTraps()
-{
-   Dictionary<byte[], string> Dic = new Dictionary<byte[], string>();
-   int index = FindBytes(Bytes, trapHeader);
-   for (int i = 0; i < 9; i++)
-   {
-       byte[] trap = Bytes.ToList().GetRange(index + 28 + (i * 4), 4).ToArray();
-       if (trap[0] == 0xF3)
-           break;
-       var t = Resources.traps[trap];
-       Dic.Add(trap,t);
-   }
-   return Dic;
-}*/
-
-        public void ApplyLoadout(UPKFile UPKFile)
-        {
-
-            ApplyTrapsGear(UPKFile);
+            ApplyTrapsGear();
             //ApplyGuardians();
             //ApplyTraits();
             ApplySkin();
         }
 
-        private void ApplyTrapsGear(UPKFile upkFile)
+        private void ApplyTrapsGear()
         {
-            if (Loadout == null || Loadout.Length != 9)
+            if (loadout == null || loadout.Length != 9)
                 throw new Exception("9 traps/gear must be used");
 
-            int startIndex = upkFile.FindBytes(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian);
-            int endIndex = upkFile.FindBytes(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian) - StartHeaderAfterLoadoutMaximilian.Length;
+            int startIndex = UPKFile.FindBytes(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian);
+            int endIndex = UPKFile.FindBytes(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian) - StartHeaderAfterLoadoutMaximilian.Length;
 
-            byte[] loadoutBytes = ConvertLoadoutToBytes(Loadout);
+            // Where the actuall array of the loadout starts is + 12 bytes from the loadout header.
             // Array Size in bytes // Array (start?) index // Array number of elements
             // 4 + 4 + 4
             int arrayOffset = 12;
@@ -163,42 +101,24 @@ public override Dictionary<byte[], string> GetTraps()
             // Less than 9 slots are setup so we set them up to 9 and insert+remove bytes
             if (endIndex - startIndex < 12 * 4)
             {
-                upkFile.OverrideSingleByte((byte)(LoadoutSlotsNumber + 1) * LoadoutSlotByteSize, startIndex); // Array Size
-                upkFile.OverrideSingleByte((byte)LoadoutSlotsNumber, startIndex + 8); // Array Element Count
+                UPKFile.OverrideSingleByte((byte)(LoadoutSlotsNumber + 1) * LoadoutSlotByteSize, startIndex); // Array Size
+                UPKFile.OverrideSingleByte((byte)LoadoutSlotsNumber, startIndex + 8); // Array Element Count ( the 4 bytes inbetween are "index 0")
 
-                int removeIndex = upkFile.FindBytes(IconToRemoveFromFileBytes, HeroObjectOffsetMaximilian);
-                int nBytesRemove = IconToRemoveFromFileBytes.Length;
-                upkFile.RemoveBytes(removeIndex, nBytesRemove);
+                // Add new slots (2 slots)
+                UPKFile.InsertZeroedBytes(startIndex + arrayOffset, 2 * LoadoutSlotByteSize);
 
-                upkFile.InsertZeroedBytes();
+                // Remove 8 bytes to make space for 2 slots
+                int removeIndex = UPKFile.FindBytes(IconToRemoveFromFileBytes, HeroObjectOffsetMaximilian) - IconToRemoveFromFileBytes.Length;
+                int nBytesRemove = 2 * LoadoutSlotByteSize;
+                UPKFile.RemoveBytes(removeIndex, nBytesRemove);
+
+                // set to 0 the icon field (20 bytes remaining, we removed 8)
+                UPKFile.OverrideBytes(UPKFile.CreateZeroedByteArray(IconToRemoveFromFileBytes.Length - nBytesRemove), removeIndex);
             }
 
-
-            
-
-            upkFile.OverrideBytes(loadoutBytes, startIndex + arrayOffset);
-
-
-            int c = 0;
-            foreach (var bs in traps)
-            {
-                //0xF3 is the beginning of the next code so if we hit it we need to insert new bytes instead of replacing old bytes
-                if (Bytes[index + 28 + c] == 0xF3)
-                {
-                    var tmpBytes = new List<byte>(Bytes);
-                    tmpBytes.InsertRange(index + 28 + c, bs);
-                    Bytes = tmpBytes.ToArray();
-                }
-                else
-                {
-                    //insert the bytes
-                    for (int i = 0; i < bs.Length; i++)
-                    {
-                        Bytes[index + 28 + i + c] = bs[i];
-                    }
-                }
-                c += 4;
-            }
+            // Convert and apply Loadout
+            byte[] loadoutBytes = ConvertLoadoutToBytes(loadout);
+            UPKFile.OverrideBytes(loadoutBytes, startIndex + arrayOffset);           
         }
 
         private byte[] ConvertLoadoutToBytes(string[] loadout)
