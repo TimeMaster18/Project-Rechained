@@ -90,7 +90,7 @@ namespace SingleplayerLauncher
             if (loadout == null || loadout.Length != 9)
                 throw new Exception("9 traps/gear must be used");
 
-            int startIndex = UPKFile.FindBytes(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian);
+            int startIndex = UPKFile.FindBytes(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian) + LoadoutHeaderMaximilian.Length;
             int endIndex = UPKFile.FindBytes(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian);
 
             // Where the actuall array of the loadout starts is + 12 bytes from the loadout header.
@@ -106,6 +106,7 @@ namespace SingleplayerLauncher
 
                 // Add new slots (2 slots)
                 UPKFile.InsertZeroedBytes(startIndex + arrayOffset, 2 * LoadoutSlotByteSize);
+                startIndex -= 2 * LoadoutSlotByteSize;
 
                 // Remove 8 bytes to make space for 2 slots
                 int removeIndex = UPKFile.FindBytes(IconToRemoveFromFileBytes, HeroObjectOffsetMaximilian);
