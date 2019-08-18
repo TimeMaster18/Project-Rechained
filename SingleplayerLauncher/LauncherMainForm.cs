@@ -252,19 +252,19 @@ namespace SingleplayerLauncher
 
                 if (extraDifficulty)
                 {
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalDifficulties[selectedDifficulty];
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalDifficulties[selectedDifficulty];
-                }
-                else
-                {
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][0].ToString();
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][1].ToString();
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = "3";
                 }
+                else
+                {
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalDifficulties[selectedDifficulty];
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalDifficulties[selectedDifficulty];
+                }
             }            
             else if (selectedGameMode.Equals(gameModeEndless))
             {
-                if (!extraDifficulty)
+                if (extraDifficulty)
                 {
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.endlessDifficulties[selectedExtraDifficulty];
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = "3";
