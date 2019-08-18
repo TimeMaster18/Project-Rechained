@@ -56,7 +56,7 @@ namespace SingleplayerLauncher
         }
 
         /// <summary>
-        /// Overrides the bytes with the ones given starting in the next position of the bytes to find. 
+        /// Overrides the bytes with the ones given starting in the first of the bytes to find. 
         /// </summary>
         public void FindAndOverrideBytes(byte[] bytesToWrite, byte[] bytesToFind, int startSearchPosition)
         {
@@ -110,7 +110,7 @@ namespace SingleplayerLauncher
         /// <summary>
         /// Finds the position of the given array in the UPK file. 
         /// <para/>
-        /// Returns the index of the first position after the array.
+        /// Returns the index of the first position of the array occurrence.
         /// </summary>
         public int FindBytes(byte[] needle, int start = 0)
         {
