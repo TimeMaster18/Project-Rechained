@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SingleplayerLauncher
 {
-    class UPKFile
+    public class UPKFile
     {
         private byte[] bytes;
         private string filePath;

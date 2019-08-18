@@ -27,7 +27,7 @@ namespace SingleplayerLauncher
 
         public string name { get; set; }
         private int objectOffset { get; set; }
-        private UPKFile UPKFile { get; set; }
+        public UPKFile UPKFile { get; set; }
         private byte[] skinPattern;
         public string skin { get; set; }
 
