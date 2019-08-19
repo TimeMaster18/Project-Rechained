@@ -54,13 +54,12 @@ namespace SingleplayerLauncher
         private static readonly byte[] WavesHeaderMaximillian = new byte[] {    0xF3, 0x2c, 0x00, 0x00,
                                                                                 0x00, 0x00, 0x00, 0x00
                                                                                 };
-        private static readonly byte[] SkinPatternMaximilian = new byte[] { 0x5F, 0x0D, 0x00, 0x00,
+        private static readonly byte[] SkinPatternMaximilian = new byte[] { 0x52, 0x1E, 0x00, 0x00,
                                                                             0x00, 0x00, 0x00, 0x00,
                                                                             0x6B, 0x66, 0x00, 0x00,
                                                                             0x00, 0x00, 0x00, 0x00,
                                                                             0x04, 0x00, 0x00, 0x00,
-                                                                            0x00, 0x00, 0x00, 0x00,
-                                                                            0xDC, 0x56
+                                                                            0x00, 0x00, 0x00, 0x00
                                                                             };
         private static readonly byte[] IconToRemoveFromFileBytes = new byte[] { 0x30, 0x6E, 0x00, 0x00,
                                                                                 0x00, 0x00, 0x00, 0x00,
