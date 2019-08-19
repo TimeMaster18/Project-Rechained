@@ -72,9 +72,9 @@ namespace SingleplayerLauncher
         {
             int length = bytesToWrite.Length;
 
-            for (int i = startPosition; i<length; i++)
+            for(int i = 0; i < length; i++)
             {
-                Bytes[i] = bytesToWrite[i];
+                Bytes[startPosition + i] = bytesToWrite[i];
             }
         }
 
