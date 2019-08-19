@@ -74,7 +74,8 @@ namespace SingleplayerLauncher
 
         private void ApplySkin()
         {
-            UPKFile.FindAndOverrideBytes(Resources.skins[NameMaximilian][skin], SkinPatternMaximilian, HeroObjectOffsetMaximilian);
+            int skinIndex = UPKFile.FindBytes(SkinPatternMaximilian, HeroObjectOffsetMaximilian) + SkinPatternMaximilian.Length;
+            UPKFile.OverrideBytes(Resources.skins[NameMaximilian][skin], skinIndex);
         }
 
         public void ApplyLoadoutChanges()
@@ -93,6 +94,9 @@ namespace SingleplayerLauncher
             int startIndex = UPKFile.FindBytes(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian) + LoadoutHeaderMaximilian.Length;
             int endIndex = UPKFile.FindBytes(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian);
 
+
+            //throw new Exception(" " + startIndex); Right before the 20 00 00 00   00 00 00 00
+
             // Where the actuall array of the loadout starts is + 12 bytes from the loadout header.
             // Array Size in bytes // Array (start?) index // Array number of elements
             // 4 + 4 + 4
@@ -105,8 +109,7 @@ namespace SingleplayerLauncher
                 UPKFile.OverrideSingleByte((byte)LoadoutSlotsNumber, startIndex + 8); // Array Element Count ( the 4 bytes inbetween are "index 0")
 
                 // Add new slots (2 slots)
-                UPKFile.InsertZeroedBytes(startIndex + arrayOffset, 2 * LoadoutSlotByteSize);
-                startIndex -= 2 * LoadoutSlotByteSize;
+                UPKFile.InsertZeroedBytes(startIndex + arrayOffset + 8, 2 * LoadoutSlotByteSize);
 
                 // Remove 8 bytes to make space for 2 slots
                 int removeIndex = UPKFile.FindBytes(IconToRemoveFromFileBytes, HeroObjectOffsetMaximilian);
@@ -126,7 +129,7 @@ namespace SingleplayerLauncher
         {
             byte[] loadoutBytes = new byte[LoadoutSlotsNumber * LoadoutSlotByteSize];
 
-            for (int i = 0; i < loadout.Length; i+=LoadoutSlotByteSize)
+            for (int i = 0; i < loadout.Length; i++)
             {
                 byte[] slotBytes = new byte[LoadoutSlotByteSize];
 
@@ -139,9 +142,9 @@ namespace SingleplayerLauncher
                     slotBytes = Resources.gear[loadout[i]];
                 }
 
-                for (int j = i; j < LoadoutSlotByteSize; j++)
+                for (int j = 0; j < LoadoutSlotByteSize; j++)
                 {
-                    loadoutBytes[j] = slotBytes[j];
+                    loadoutBytes[i * LoadoutSlotByteSize + j] = slotBytes[j];
                 }
             }
 
