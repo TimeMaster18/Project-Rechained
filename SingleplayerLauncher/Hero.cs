@@ -73,7 +73,7 @@ namespace SingleplayerLauncher
 
         private void ApplySkin()
         {
-            int skinIndex = UPKFile.FindBytes(SkinPatternMaximilian, HeroObjectOffsetMaximilian) + SkinPatternMaximilian.Length;
+            int skinIndex = UPKFile.FindBytesKMP(SkinPatternMaximilian, HeroObjectOffsetMaximilian) + SkinPatternMaximilian.Length;
             UPKFile.OverrideBytes(Resources.skins[NameMaximilian][skin], skinIndex);
         }
 
@@ -90,8 +90,8 @@ namespace SingleplayerLauncher
             if (loadout == null || loadout.Length != 9)
                 throw new Exception("9 traps/gear must be used");
 
-            int startIndex = UPKFile.FindBytes(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian) + LoadoutHeaderMaximilian.Length;
-            int endIndex = UPKFile.FindBytes(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian);
+            int startIndex = UPKFile.FindBytesKMP(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian) + LoadoutHeaderMaximilian.Length;
+            int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian);
 
 
             //throw new Exception(" " + startIndex); Right before the 20 00 00 00   00 00 00 00
@@ -111,7 +111,7 @@ namespace SingleplayerLauncher
                 UPKFile.InsertZeroedBytes(startIndex + arrayOffset + 8, 2 * LoadoutSlotByteSize);
 
                 // Remove 8 bytes to make space for 2 slots
-                int removeIndex = UPKFile.FindBytes(IconToRemoveFromFileBytes, HeroObjectOffsetMaximilian);
+                int removeIndex = UPKFile.FindBytesKMP(IconToRemoveFromFileBytes, HeroObjectOffsetMaximilian);
                 int nBytesRemove = 2 * LoadoutSlotByteSize;
                 UPKFile.RemoveBytes(removeIndex, nBytesRemove);
 

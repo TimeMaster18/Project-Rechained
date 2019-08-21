@@ -60,7 +60,7 @@ namespace SingleplayerLauncher
         /// </summary>
         public void FindAndOverrideBytes(byte[] bytesToWrite, byte[] bytesToFind, int startSearchPosition)
         {
-            int startPosition = FindBytes(bytesToFind, startSearchPosition);
+            int startPosition = FindBytesKMP(bytesToFind, startSearchPosition);
 
             OverrideBytes(bytesToWrite, startPosition);
         }
@@ -112,7 +112,7 @@ namespace SingleplayerLauncher
         /// <para/>
         /// Returns the index of the first position of the array occurrence.
         /// </summary>
-        public int FindBytes(byte[] needle, int start = 0)
+        public int FindBytesNaive(byte[] needle, int start = 0)
         {
             byte[] haystack = bytes;
 
@@ -157,6 +157,86 @@ namespace SingleplayerLauncher
             }
             fileLength = buffer.Length;
             return buffer;
+        }
+
+        public int FindBytesKMP(byte[] pat, int start = 0)
+        {
+            int M = pat.Length;
+            int N = bytes.Length;
+
+            // create lps[] that will hold the longest 
+            // prefix suffix values for pattern 
+            int[] lps = new int[M];
+            int j = 0; // index for pat[] 
+
+            // Preprocess the pattern (calculate lps[] 
+            // array) 
+            computeLPSArray(pat, M, lps);
+
+            int i = start; // index for txt[] 
+            while (i < N)
+            {
+                if (pat[j] == bytes[i])
+                {
+                    j++;
+                    i++;
+                }
+                if (j == M)
+                {
+                    return i - j;
+                    j = lps[j - 1];
+                }
+
+                // mismatch after j matches 
+                else if (i < N && pat[j] != bytes[i])
+                {
+                    // Do not match lps[0..lps[j-1]] characters, 
+                    // they will match anyway 
+                    if (j != 0)
+                        j = lps[j - 1];
+                    else
+                        i = i + 1;
+                }
+            }
+
+            return -1;
+        }
+
+        private void computeLPSArray(byte[] pat, int M, int[] lps)
+        {
+            // length of the previous longest prefix suffix 
+            int len = 0;
+            int i = 1;
+            lps[0] = 0; // lps[0] is always 0 
+
+            // the loop calculates lps[i] for i = 1 to M-1 
+            while (i < M)
+            {
+                if (pat[i] == pat[len])
+                {
+                    len++;
+                    lps[i] = len;
+                    i++;
+                }
+                else // (pat[i] != pat[len]) 
+                {
+                    // This is tricky. Consider the example. 
+                    // AAACAAAA and i = 7. The idea is similar 
+                    // to search step. 
+                    if (len != 0)
+                    {
+                        len = lps[len - 1];
+
+                        // Also, note that we do not increment 
+                        // i here 
+                    }
+                    else // if (len == 0) 
+                    {
+                        lps[i] = len;
+                        i++;
+                    }
+                }
+            }
         }
     }
 }

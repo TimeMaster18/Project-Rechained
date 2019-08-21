@@ -49,6 +49,7 @@
             this.labelDifficulty = new System.Windows.Forms.Label();
             this.comBoxGameMode = new System.Windows.Forms.ComboBox();
             this.labelGameMode = new System.Windows.Forms.Label();
+            this.btnResetConfig = new System.Windows.Forms.Button();
             this.characterSettingsGroupBox.SuspendLayout();
             this.mapSettingsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -269,11 +270,22 @@
             this.labelGameMode.TabIndex = 2;
             this.labelGameMode.Text = "Mode";
             // 
+            // btnResetConfig
+            // 
+            this.btnResetConfig.Location = new System.Drawing.Point(259, 286);
+            this.btnResetConfig.Name = "btnResetConfig";
+            this.btnResetConfig.Size = new System.Drawing.Size(89, 24);
+            this.btnResetConfig.TabIndex = 9;
+            this.btnResetConfig.Text = "Reset Configs";
+            this.btnResetConfig.UseVisualStyleBackColor = true;
+            this.btnResetConfig.Click += new System.EventHandler(this.button1_Click);
+            // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 286);
+            this.ClientSize = new System.Drawing.Size(366, 315);
+            this.Controls.Add(this.btnResetConfig);
             this.Controls.Add(this.mapSettingsGroupBox);
             this.Controls.Add(this.btnLoadoutEditor);
             this.Controls.Add(this.chkLog);
@@ -316,6 +328,7 @@
         private System.Windows.Forms.Label labelGameMode;
         private System.Windows.Forms.ComboBox comBoxExtraDifficulty;
         private System.Windows.Forms.Label labelExtraDifficulty;
+        private System.Windows.Forms.Button btnResetConfig;
     }
 }
 
