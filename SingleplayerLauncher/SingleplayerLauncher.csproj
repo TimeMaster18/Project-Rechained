@@ -63,6 +63,7 @@
     <Compile Include="LoadoutEditorForm.Designer.cs">
       <DependentUpon>LoadoutEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mods\Mod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
