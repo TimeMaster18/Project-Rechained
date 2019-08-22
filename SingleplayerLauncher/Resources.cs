@@ -110,7 +110,7 @@ namespace SingleplayerLauncher
             { "Stinkeye", "PawnWeapon_Stinkeye.Pawn_Stinkeye" },
             { "Temper", "PawnWeapon_Temper.Pawn_Temper" },
             { "Tundra", "PawnWeapon_Tundra.Pawn_Tundra" },
-            { "Yi-Lin", "PawnWeapon_hooksword.hooksword" },
+            { "Yi-Lin", "PawnWeapon_hooksword.Pawn_hooksword" },
             { "Zoey", "PawnWeapon_Zoey.Pawn_Zoey" }
         };
 

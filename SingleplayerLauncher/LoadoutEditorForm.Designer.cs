@@ -1,7 +1,7 @@
 ﻿
 namespace SingleplayerLauncher
 {
-    partial class LoadoutEditor
+    partial class LoadoutEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -136,13 +136,14 @@ namespace SingleplayerLauncher
             // cmbHero
             // 
             this.cmbHero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHero.Enabled = false;
             this.cmbHero.FormattingEnabled = true;
             this.cmbHero.Location = new System.Drawing.Point(12, 12);
             this.cmbHero.Name = "cmbHero";
             this.cmbHero.Size = new System.Drawing.Size(216, 21);
             this.cmbHero.TabIndex = 10;
             // 
-            // LoadoutEditor
+            // LoadoutEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,7 +159,7 @@ namespace SingleplayerLauncher
             this.Controls.Add(this.comBoxLoadoutSlot3);
             this.Controls.Add(this.comBoxLoadoutSlot2);
             this.Controls.Add(this.comBoxLoadoutSlot1);
-            this.Name = "LoadoutEditor";
+            this.Name = "LoadoutEditorForm";
             this.Text = "Loadout Editor";
             this.Load += new System.EventHandler(this.LoadoutEditor_Load);
             this.ResumeLayout(false);

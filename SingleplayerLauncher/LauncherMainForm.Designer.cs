@@ -1,6 +1,6 @@
 ﻿namespace SingleplayerLauncher
 {
-    partial class Form1
+    partial class LauncherMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.btnLaunch = new System.Windows.Forms.Button();
             this.comBoxMap = new System.Windows.Forms.ComboBox();
             this.comBoxHero = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.characterSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.comBoxDye = new System.Windows.Forms.ComboBox();
             this.labelDye = new System.Windows.Forms.Label();
             this.labelSkin = new System.Windows.Forms.Label();
@@ -42,15 +42,16 @@
             this.chkGodMode = new System.Windows.Forms.CheckBox();
             this.chkLog = new System.Windows.Forms.CheckBox();
             this.btnLoadoutEditor = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.mapSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.comBoxExtraDifficulty = new System.Windows.Forms.ComboBox();
             this.labelExtraDifficulty = new System.Windows.Forms.Label();
             this.comBoxDifficulty = new System.Windows.Forms.ComboBox();
             this.labelDifficulty = new System.Windows.Forms.Label();
             this.comBoxGameMode = new System.Windows.Forms.ComboBox();
             this.labelGameMode = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.btnResetConfig = new System.Windows.Forms.Button();
+            this.characterSettingsGroupBox.SuspendLayout();
+            this.mapSettingsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLaunch
@@ -83,20 +84,20 @@
             this.comBoxHero.TabIndex = 2;
             this.comBoxHero.SelectedIndexChanged += new System.EventHandler(this.comBoxHero_SelectedIndexChanged);
             // 
-            // groupBox1
+            // characterSettingsGroupBox
             // 
-            this.groupBox1.Controls.Add(this.comBoxDye);
-            this.groupBox1.Controls.Add(this.labelDye);
-            this.groupBox1.Controls.Add(this.labelSkin);
-            this.groupBox1.Controls.Add(this.comBoxSkin);
-            this.groupBox1.Controls.Add(this.labelHero);
-            this.groupBox1.Controls.Add(this.comBoxHero);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 78);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Character Settings";
+            this.characterSettingsGroupBox.Controls.Add(this.comBoxDye);
+            this.characterSettingsGroupBox.Controls.Add(this.labelDye);
+            this.characterSettingsGroupBox.Controls.Add(this.labelSkin);
+            this.characterSettingsGroupBox.Controls.Add(this.comBoxSkin);
+            this.characterSettingsGroupBox.Controls.Add(this.labelHero);
+            this.characterSettingsGroupBox.Controls.Add(this.comBoxHero);
+            this.characterSettingsGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.characterSettingsGroupBox.Name = "characterSettingsGroupBox";
+            this.characterSettingsGroupBox.Size = new System.Drawing.Size(262, 78);
+            this.characterSettingsGroupBox.TabIndex = 3;
+            this.characterSettingsGroupBox.TabStop = false;
+            this.characterSettingsGroupBox.Text = "Character Settings";
             // 
             // comBoxDye
             // 
@@ -193,22 +194,22 @@
             this.btnLoadoutEditor.UseVisualStyleBackColor = true;
             this.btnLoadoutEditor.Click += new System.EventHandler(this.btnLoadoutEditor_Click);
             // 
-            // groupBox2
+            // mapSettingsGroupBox
             // 
-            this.groupBox2.Controls.Add(this.comBoxExtraDifficulty);
-            this.groupBox2.Controls.Add(this.labelExtraDifficulty);
-            this.groupBox2.Controls.Add(this.comBoxDifficulty);
-            this.groupBox2.Controls.Add(this.labelDifficulty);
-            this.groupBox2.Controls.Add(this.comBoxGameMode);
-            this.groupBox2.Controls.Add(this.labelGameMode);
-            this.groupBox2.Controls.Add(this.comBoxMap);
-            this.groupBox2.Controls.Add(this.labelMap);
-            this.groupBox2.Location = new System.Drawing.Point(13, 96);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(341, 103);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Map Settings";
+            this.mapSettingsGroupBox.Controls.Add(this.comBoxExtraDifficulty);
+            this.mapSettingsGroupBox.Controls.Add(this.labelExtraDifficulty);
+            this.mapSettingsGroupBox.Controls.Add(this.comBoxDifficulty);
+            this.mapSettingsGroupBox.Controls.Add(this.labelDifficulty);
+            this.mapSettingsGroupBox.Controls.Add(this.comBoxGameMode);
+            this.mapSettingsGroupBox.Controls.Add(this.labelGameMode);
+            this.mapSettingsGroupBox.Controls.Add(this.comBoxMap);
+            this.mapSettingsGroupBox.Controls.Add(this.labelMap);
+            this.mapSettingsGroupBox.Location = new System.Drawing.Point(13, 96);
+            this.mapSettingsGroupBox.Name = "mapSettingsGroupBox";
+            this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 103);
+            this.mapSettingsGroupBox.TabIndex = 8;
+            this.mapSettingsGroupBox.TabStop = false;
+            this.mapSettingsGroupBox.Text = "Map Settings";
             // 
             // comBoxExtraDifficulty
             // 
@@ -269,25 +270,36 @@
             this.labelGameMode.TabIndex = 2;
             this.labelGameMode.Text = "Mode";
             // 
-            // Form1
+            // btnResetConfig
+            // 
+            this.btnResetConfig.Location = new System.Drawing.Point(259, 286);
+            this.btnResetConfig.Name = "btnResetConfig";
+            this.btnResetConfig.Size = new System.Drawing.Size(89, 24);
+            this.btnResetConfig.TabIndex = 9;
+            this.btnResetConfig.Text = "Reset Configs";
+            this.btnResetConfig.UseVisualStyleBackColor = true;
+            this.btnResetConfig.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 286);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(366, 315);
+            this.Controls.Add(this.btnResetConfig);
+            this.Controls.Add(this.mapSettingsGroupBox);
             this.Controls.Add(this.btnLoadoutEditor);
             this.Controls.Add(this.chkLog);
             this.Controls.Add(this.chkGodMode);
             this.Controls.Add(this.chkCustomIni);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.characterSettingsGroupBox);
             this.Controls.Add(this.btnLaunch);
-            this.Name = "Form1";
-            this.Text = "OMDU Launcher";
+            this.Name = "LauncherMainForm";
+            this.Text = "OMDU Offline Launcher";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.characterSettingsGroupBox.ResumeLayout(false);
+            this.characterSettingsGroupBox.PerformLayout();
+            this.mapSettingsGroupBox.ResumeLayout(false);
+            this.mapSettingsGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,7 +310,7 @@
         private System.Windows.Forms.Button btnLaunch;
         private System.Windows.Forms.ComboBox comBoxMap;
         private System.Windows.Forms.ComboBox comBoxHero;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox characterSettingsGroupBox;
         private System.Windows.Forms.Label labelHero;
         private System.Windows.Forms.Label labelMap;
         private System.Windows.Forms.CheckBox chkCustomIni;
@@ -309,13 +321,14 @@
         private System.Windows.Forms.Label labelDye;
         private System.Windows.Forms.ComboBox comBoxDye;
         private System.Windows.Forms.Button btnLoadoutEditor;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox mapSettingsGroupBox;
         private System.Windows.Forms.ComboBox comBoxDifficulty;
         private System.Windows.Forms.Label labelDifficulty;
         private System.Windows.Forms.ComboBox comBoxGameMode;
         private System.Windows.Forms.Label labelGameMode;
         private System.Windows.Forms.ComboBox comBoxExtraDifficulty;
         private System.Windows.Forms.Label labelExtraDifficulty;
+        private System.Windows.Forms.Button btnResetConfig;
     }
 }
 
