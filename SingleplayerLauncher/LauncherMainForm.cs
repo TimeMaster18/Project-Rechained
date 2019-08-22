@@ -139,8 +139,9 @@ namespace SingleplayerLauncher
                 File.Move(spitfireGameUPKDecompressedPath, spitfireGameUPKPath); //TODO I think decompress.exe can get output folder as parameter 
             }
 
-            Settings.Default.FirstRun = false;
-            Settings.Default.Save();
+
+            Settings.Instance["FirstRun"] = false;
+            Settings.Save();
         }
 
         private void CreateBackup(string fileName, string path)
@@ -407,7 +408,7 @@ namespace SingleplayerLauncher
         }
         private static bool IsFirstRun()
         {
-            return Settings.Default.FirstRun;           
+            return !Settings.Instance.ContainsKey("FirstRun");
         }
 
         private void button1_Click(object sender, EventArgs e)
