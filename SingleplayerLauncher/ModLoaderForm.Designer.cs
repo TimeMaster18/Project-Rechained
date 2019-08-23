@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.chkGodMode = new System.Windows.Forms.CheckBox();
+            this.chkNoTrapCap = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkGodMode
@@ -42,11 +43,23 @@
             this.chkGodMode.UseVisualStyleBackColor = true;
             this.chkGodMode.CheckedChanged += new System.EventHandler(this.chkGodMode_CheckedChanged);
             // 
+            // chkNoTrapCap
+            // 
+            this.chkNoTrapCap.AutoSize = true;
+            this.chkNoTrapCap.Location = new System.Drawing.Point(12, 35);
+            this.chkNoTrapCap.Name = "chkNoTrapCap";
+            this.chkNoTrapCap.Size = new System.Drawing.Size(87, 17);
+            this.chkNoTrapCap.TabIndex = 1;
+            this.chkNoTrapCap.Text = "No Trap Cap";
+            this.chkNoTrapCap.UseVisualStyleBackColor = true;
+            this.chkNoTrapCap.CheckedChanged += new System.EventHandler(this.chkNoTrapCap_CheckedChanged);
+            // 
             // ModLoaderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(233, 460);
+            this.Controls.Add(this.chkNoTrapCap);
             this.Controls.Add(this.chkGodMode);
             this.Name = "ModLoaderForm";
             this.Text = "ModLoaderForm";
@@ -59,5 +72,6 @@
         #endregion
 
         private System.Windows.Forms.CheckBox chkGodMode;
+        private System.Windows.Forms.CheckBox chkNoTrapCap;
     }
 }

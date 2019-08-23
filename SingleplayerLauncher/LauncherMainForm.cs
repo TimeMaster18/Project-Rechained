@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingleplayerLauncher.Mods;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -197,7 +198,15 @@ namespace SingleplayerLauncher
             }
 
             hero.ApplyLoadoutChanges();
-
+            NoTrapCap ntp = new NoTrapCap(upk);
+            if (Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"])
+            {
+                ntp.InstallMod();
+            }
+            else
+            {
+                ntp.UninstallMod();
+            }
             MessageBox.Show("Saving your changes. Please wait.");
             upk.Save();
             MessageBox.Show("Finished");
