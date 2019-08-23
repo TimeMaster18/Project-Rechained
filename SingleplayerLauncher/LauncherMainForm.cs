@@ -222,7 +222,7 @@ namespace SingleplayerLauncher
             data[RCharacterDataSection][characterDataKeyHero] = Resources.heroes[comBoxHero.Text];
             data[RCharacterDataSection][characterDataKeyDye] = Resources.dyes[comBoxDye.Text];
 
-            if (chkGodMode.Checked)
+            if ((bool)Settings.Instance["GodMode"])
                 data[RCharacterDataSection][characterDataKeyGodMode] = valueTrue;
 
             characterData.Write(data);
@@ -295,18 +295,14 @@ namespace SingleplayerLauncher
             if (!chkCustomIni.Checked)
             {
                 comBoxHero.Enabled = false;
-                chkGodMode.Enabled = false;
                 comBoxDye.Enabled = false;
                 comBoxDifficulty.Enabled = false;
                 comBoxExtraDifficulty.Enabled = false;
                 comBoxGameMode.Enabled = false;
-
-                chkGodMode.Checked = false;
             }
             else
             {
                 comBoxHero.Enabled = true;
-                chkGodMode.Enabled = true;
                 comBoxDye.Enabled = true;
                 comBoxDifficulty.Enabled = true;
                 comBoxExtraDifficulty.Enabled = true;
@@ -413,6 +409,12 @@ namespace SingleplayerLauncher
         private void button1_Click(object sender, EventArgs e)
         {
             FirstRunInitialization();
+        }
+
+        private void btnMods_Click(object sender, EventArgs e)
+        {
+            ModLoaderForm mlf = new ModLoaderForm();
+            mlf.Show();
         }
     }
 }
