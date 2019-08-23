@@ -21,6 +21,7 @@ namespace SingleplayerLauncher
         {
             chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode")? (bool)Settings.Instance["GodMode"] : false;
             chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") ? (bool)Settings.Instance["NoTrapCap"] : false;
+            chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") ? (bool)Settings.Instance["TrapsInTraps"] : false;
         }
         private void chkGodMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -46,6 +47,20 @@ namespace SingleplayerLauncher
             else
             {
                 Settings.Instance["NoTrapCap"] = false;
+                Settings.Save();
+            }
+        }
+
+        private void chkTrapsInTraps_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTrapsInTraps.Checked)
+            {
+                Settings.Instance["TrapsInTraps"] = true;
+                Settings.Save();
+            }
+            else
+            {
+                Settings.Instance["TrapsInTraps"] = false;
                 Settings.Save();
             }
         }

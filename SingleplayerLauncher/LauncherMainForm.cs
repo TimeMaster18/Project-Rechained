@@ -207,6 +207,15 @@ namespace SingleplayerLauncher
             {
                 ntp.UninstallMod();
             }
+            TrapsInTraps tit = new TrapsInTraps(upk);
+            if (Settings.Instance["TrapsInTraps"] != null && (bool)Settings.Instance["TrapsInTraps"])
+            {
+                tit.InstallMod();
+            }
+            else
+            {
+                tit.UninstallMod();
+            }
             MessageBox.Show("Saving your changes. Please wait.");
             upk.Save();
             MessageBox.Show("Finished");
