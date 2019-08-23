@@ -30,6 +30,7 @@
         {
             this.chkGodMode = new System.Windows.Forms.CheckBox();
             this.chkNoTrapCap = new System.Windows.Forms.CheckBox();
+            this.chkTrapsInTraps = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkGodMode
@@ -54,11 +55,23 @@
             this.chkNoTrapCap.UseVisualStyleBackColor = true;
             this.chkNoTrapCap.CheckedChanged += new System.EventHandler(this.chkNoTrapCap_CheckedChanged);
             // 
+            // chkTrapsInTraps
+            // 
+            this.chkTrapsInTraps.AutoSize = true;
+            this.chkTrapsInTraps.Location = new System.Drawing.Point(12, 58);
+            this.chkTrapsInTraps.Name = "chkTrapsInTraps";
+            this.chkTrapsInTraps.Size = new System.Drawing.Size(90, 17);
+            this.chkTrapsInTraps.TabIndex = 2;
+            this.chkTrapsInTraps.Text = "Traps in traps";
+            this.chkTrapsInTraps.UseVisualStyleBackColor = true;
+            this.chkTrapsInTraps.CheckedChanged += new System.EventHandler(this.chkTrapsInTraps_CheckedChanged);
+            // 
             // ModLoaderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(233, 460);
+            this.Controls.Add(this.chkTrapsInTraps);
             this.Controls.Add(this.chkNoTrapCap);
             this.Controls.Add(this.chkGodMode);
             this.Name = "ModLoaderForm";
@@ -73,5 +86,6 @@
 
         private System.Windows.Forms.CheckBox chkGodMode;
         private System.Windows.Forms.CheckBox chkNoTrapCap;
+        private System.Windows.Forms.CheckBox chkTrapsInTraps;
     }
 }
