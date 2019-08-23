@@ -63,6 +63,12 @@
     <Compile Include="LoadoutEditorForm.Designer.cs">
       <DependentUpon>LoadoutEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModLoaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModLoaderForm.Designer.cs">
+      <DependentUpon>ModLoaderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mods\Mod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoadoutEditorForm.resx">
       <DependentUpon>LoadoutEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModLoaderForm.resx">
+      <DependentUpon>ModLoaderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
