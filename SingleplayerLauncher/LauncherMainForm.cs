@@ -222,7 +222,7 @@ namespace SingleplayerLauncher
             data[RCharacterDataSection][characterDataKeyHero] = Resources.heroes[comBoxHero.Text];
             data[RCharacterDataSection][characterDataKeyDye] = Resources.dyes[comBoxDye.Text];
 
-            if ((bool)Settings.Instance["GodMode"])
+            if (Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"])
                 data[RCharacterDataSection][characterDataKeyGodMode] = valueTrue;
 
             characterData.Write(data);
