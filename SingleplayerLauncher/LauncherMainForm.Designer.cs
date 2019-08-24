@@ -268,7 +268,7 @@
             this.btnResetConfig.TabIndex = 9;
             this.btnResetConfig.Text = "Reset Configs";
             this.btnResetConfig.UseVisualStyleBackColor = true;
-            this.btnResetConfig.Click += new System.EventHandler(this.button1_Click);
+            this.btnResetConfig.Click += new System.EventHandler(this.btnResetConfig_Click);
             // 
             // btnMods
             // 

@@ -39,14 +39,13 @@ namespace SingleplayerLauncher
         private const bool defaultCustomIniSetting = true;
 
         private const string valueTrue = "TRUE";
-        private const string valueFalse = "FALSE";
         private const string RCharacterDataSection = "RCharacterData_0 RCharacterData";
 
         private const string characterDataKeyGodMode = "GodMode";
         private const string characterDataKeyHero = "PawnTemplateName";
         private const string characterDataKeyDye = "HeroicDyeIdx";
 
-        private Dictionary<string, string> defaultCharacterDataSection = new Dictionary<string, string>
+        private readonly Dictionary<string, string> defaultCharacterDataSection = new Dictionary<string, string>
         {
             { "PlayerName",         "Savitar"                           },
             { "GuildTag",           "~(^-^)~"                           },
@@ -68,7 +67,7 @@ namespace SingleplayerLauncher
         private const string gameModeEndless = "Endless";
         private const string noExtraDifficulty = "No";
 
-        private Dictionary<string, string> defaultGameReplicationInfoSection = new Dictionary<string, string>
+        private readonly Dictionary<string, string> defaultGameReplicationInfoSection = new Dictionary<string, string>
         {
             { "DefaultOfflineDifficulty",                       "1"         },
             { "PlayerCountOverride",                            "1"         },
@@ -80,7 +79,7 @@ namespace SingleplayerLauncher
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         
 
-        private Hero hero = Hero.Instance;
+        private readonly Hero hero = Hero.Instance;
 
         public LauncherMainForm()
         {
@@ -184,13 +183,13 @@ namespace SingleplayerLauncher
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            UPKFile upk = new UPKFile(spitfireGameUPKPath);
-            hero.UPKFile = upk;
+            UPKFile spitfireGameUPKFile = new UPKFile(spitfireGameUPKPath);
+            hero.UPKFile = spitfireGameUPKFile;
 
             if (chkCustomIni.Checked)
             {
-                updateCharacterDataIni();
-                updateDefaultGameIni();
+                UpdateCharacterDataIni();
+                UpdateDefaultGameIni();
             }
             if (!comBoxSkin.SelectedItem.ToString().Equals("") || LoadoutEditorForm.bytes.Count > 0)
             {
@@ -198,7 +197,19 @@ namespace SingleplayerLauncher
             }
 
             hero.ApplyLoadoutChanges();
-            NoTrapCap ntp = new NoTrapCap(upk);
+
+            ApplyMods(spitfireGameUPKFile);
+
+            MessageBox.Show("Saving your changes. Please wait.");
+            spitfireGameUPKFile.Save();
+            MessageBox.Show("Finished");
+
+            StartGame();
+        }
+
+        private static void ApplyMods(UPKFile spitfireGameUPKFile)
+        {
+            NoTrapCap ntp = new NoTrapCap(spitfireGameUPKFile);
             if (Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"])
             {
                 ntp.InstallMod();
@@ -207,8 +218,8 @@ namespace SingleplayerLauncher
             {
                 ntp.UninstallMod();
             }
-            TrapsInTraps tit = new TrapsInTraps(upk);
             if (Settings.Instance["TrapsInTraps"] != null && (bool)Settings.Instance["TrapsInTraps"])
+            TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
             {
                 tit.InstallMod();
             }
@@ -216,23 +227,18 @@ namespace SingleplayerLauncher
             {
                 tit.UninstallMod();
             }
-            MessageBox.Show("Saving your changes. Please wait.");
-            upk.Save();
-            MessageBox.Show("Finished");
-
-            startGame();
         }
 
-        private void startGame()
+        private void StartGame()
         {
             Process p = new Process();
             p.StartInfo.FileName = spitfireGameEXEFileName;
-            p.StartInfo.Arguments = createExeArguments();
+            p.StartInfo.Arguments = CreateExeArguments();
 
             p.Start();
         }
 
-        private void updateCharacterDataIni()
+        private void UpdateCharacterDataIni()
         {
             ConfigFile characterData = new ConfigFile(characterDataIniPath);
             var data = characterData.data;
@@ -246,7 +252,7 @@ namespace SingleplayerLauncher
             characterData.Write(data);
         }
 
-        private void updateDefaultGameIni()
+        private void UpdateDefaultGameIni()
         {
             ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
             var data = defaultGame.data;
@@ -292,7 +298,7 @@ namespace SingleplayerLauncher
             defaultGame.Write(data);
         }
 
-        private string createExeArguments()
+        private string CreateExeArguments()
         {
             string arguments = "";
 
@@ -424,7 +430,7 @@ namespace SingleplayerLauncher
             return !Settings.Instance.ContainsKey("FirstRun");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnResetConfig_Click(object sender, EventArgs e)
         {
             FirstRunInitialization();
         }

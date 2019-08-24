@@ -118,7 +118,7 @@ namespace SingleplayerLauncher
 
             for (int i = start; i <= haystack.Length - needle.Length; i++)
             {
-                if (match( needle, i))
+                if (Match( needle, i))
                 {
                     return i;
                 }
@@ -126,7 +126,7 @@ namespace SingleplayerLauncher
             return -1;
         }
 
-        protected bool match(byte[] needle, int start)
+        protected bool Match(byte[] needle, int start)
         {
             byte[] haystack = bytes;
 
@@ -171,7 +171,7 @@ namespace SingleplayerLauncher
 
             // Preprocess the pattern (calculate lps[] 
             // array) 
-            computeLPSArray(pat, M, lps);
+            ComputeLPSArray(pat, M, lps);
 
             int i = start; // index for txt[] 
             while (i < N)
@@ -184,7 +184,6 @@ namespace SingleplayerLauncher
                 if (j == M)
                 {
                     return i - j;
-                    j = lps[j - 1];
                 }
 
                 // mismatch after j matches 
@@ -195,14 +194,14 @@ namespace SingleplayerLauncher
                     if (j != 0)
                         j = lps[j - 1];
                     else
-                        i = i + 1;
+                        i++;
                 }
             }
 
             return -1;
         }
 
-        private void computeLPSArray(byte[] pat, int M, int[] lps)
+        private void ComputeLPSArray(byte[] pat, int M, int[] lps)
         {
             // length of the previous longest prefix suffix 
             int len = 0;
