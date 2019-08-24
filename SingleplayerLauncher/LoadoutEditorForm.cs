@@ -6,9 +6,9 @@ namespace SingleplayerLauncher
 {
     public partial class LoadoutEditorForm : Form
     {
-        List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
+        readonly List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
         public static List<byte[]> bytes = new List<byte[]>();
-        private Hero hero = Hero.Instance;
+        private readonly Hero hero = Hero.Instance;
 
         private const int loadoutSize = 9;
 
@@ -31,21 +31,21 @@ namespace SingleplayerLauncher
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            populateTrapsGearSlots();
+            PopulateTrapsGearSlots();
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            setDefaultLoadout();
+            SetDefaultLoadout();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            hero.loadout = createLoadout();
+            hero.loadout = CreateLoadout();
 
             this.Close();
         }
 
-        private void setDefaultLoadout()
+        private void SetDefaultLoadout()
         {
 
             for (int i = 0; i < 9; i++)
@@ -54,7 +54,7 @@ namespace SingleplayerLauncher
             }
         }
 
-        private void populateTrapsGearSlots()
+        private void PopulateTrapsGearSlots()
         {
             foreach (var comBoxLoadoutSlot in comBoxLoadoutSlots)
             {
@@ -69,7 +69,7 @@ namespace SingleplayerLauncher
             }
         }
 
-        private string[] createLoadout()
+        private string[] CreateLoadout()
         {
             string[] loadout = new string[loadoutSize];
 

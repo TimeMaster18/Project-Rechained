@@ -14,27 +14,26 @@ namespace SingleplayerLauncher
         public ModLoaderForm()
         {
             InitializeComponent();
-        }
-        
+        }        
 
         private void ModLoaderForm_Load(object sender, EventArgs e)
         {
-            chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode")? (bool)Settings.Instance["GodMode"] : false;
+            chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode") ? (bool)Settings.Instance["GodMode"] : false;
             chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") ? (bool)Settings.Instance["NoTrapCap"] : false;
             chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") ? (bool)Settings.Instance["TrapsInTraps"] : false;
         }
+
         private void chkGodMode_CheckedChanged(object sender, EventArgs e)
         {
             if (chkGodMode.Checked)
             {
                 Settings.Instance["GodMode"] = true;
-                Settings.Save();
             }
             else
             {
                 Settings.Instance["GodMode"] = false;
-                Settings.Save();
             }
+            Settings.Save();
         }
 
         private void chkNoTrapCap_CheckedChanged(object sender, EventArgs e)
@@ -42,13 +41,12 @@ namespace SingleplayerLauncher
             if (chkNoTrapCap.Checked)
             {
                 Settings.Instance["NoTrapCap"] = true;
-                Settings.Save();
             }
             else
             {
                 Settings.Instance["NoTrapCap"] = false;
-                Settings.Save();
             }
+            Settings.Save();
         }
 
         private void chkTrapsInTraps_CheckedChanged(object sender, EventArgs e)
@@ -56,13 +54,12 @@ namespace SingleplayerLauncher
             if (chkTrapsInTraps.Checked)
             {
                 Settings.Instance["TrapsInTraps"] = true;
-                Settings.Save();
             }
             else
             {
                 Settings.Instance["TrapsInTraps"] = false;
-                Settings.Save();
             }
+            Settings.Save();
         }
     }
 }
