@@ -39,7 +39,6 @@
             this.labelHero = new System.Windows.Forms.Label();
             this.labelMap = new System.Windows.Forms.Label();
             this.chkCustomIni = new System.Windows.Forms.CheckBox();
-            this.chkGodMode = new System.Windows.Forms.CheckBox();
             this.chkLog = new System.Windows.Forms.CheckBox();
             this.btnLoadoutEditor = new System.Windows.Forms.Button();
             this.mapSettingsGroupBox = new System.Windows.Forms.GroupBox();
@@ -50,6 +49,7 @@
             this.comBoxGameMode = new System.Windows.Forms.ComboBox();
             this.labelGameMode = new System.Windows.Forms.Label();
             this.btnResetConfig = new System.Windows.Forms.Button();
+            this.btnMods = new System.Windows.Forms.Button();
             this.characterSettingsGroupBox.SuspendLayout();
             this.mapSettingsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -164,20 +164,10 @@
             this.chkCustomIni.UseVisualStyleBackColor = true;
             this.chkCustomIni.CheckedChanged += new System.EventHandler(this.chkCustomIni_CheckedChanged);
             // 
-            // chkGodMode
-            // 
-            this.chkGodMode.AutoSize = true;
-            this.chkGodMode.Location = new System.Drawing.Point(13, 228);
-            this.chkGodMode.Name = "chkGodMode";
-            this.chkGodMode.Size = new System.Drawing.Size(76, 17);
-            this.chkGodMode.TabIndex = 5;
-            this.chkGodMode.Text = "God Mode";
-            this.chkGodMode.UseVisualStyleBackColor = true;
-            // 
             // chkLog
             // 
             this.chkLog.AutoSize = true;
-            this.chkLog.Location = new System.Drawing.Point(13, 251);
+            this.chkLog.Location = new System.Drawing.Point(12, 228);
             this.chkLog.Name = "chkLog";
             this.chkLog.Size = new System.Drawing.Size(44, 17);
             this.chkLog.TabIndex = 6;
@@ -278,18 +268,28 @@
             this.btnResetConfig.TabIndex = 9;
             this.btnResetConfig.Text = "Reset Configs";
             this.btnResetConfig.UseVisualStyleBackColor = true;
-            this.btnResetConfig.Click += new System.EventHandler(this.button1_Click);
+            this.btnResetConfig.Click += new System.EventHandler(this.btnResetConfig_Click);
+            // 
+            // btnMods
+            // 
+            this.btnMods.Location = new System.Drawing.Point(6, 263);
+            this.btnMods.Name = "btnMods";
+            this.btnMods.Size = new System.Drawing.Size(90, 85);
+            this.btnMods.TabIndex = 10;
+            this.btnMods.Text = "Mods";
+            this.btnMods.UseVisualStyleBackColor = true;
+            this.btnMods.Click += new System.EventHandler(this.btnMods_Click);
             // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 315);
+            this.ClientSize = new System.Drawing.Size(366, 376);
+            this.Controls.Add(this.btnMods);
             this.Controls.Add(this.btnResetConfig);
             this.Controls.Add(this.mapSettingsGroupBox);
             this.Controls.Add(this.btnLoadoutEditor);
             this.Controls.Add(this.chkLog);
-            this.Controls.Add(this.chkGodMode);
             this.Controls.Add(this.chkCustomIni);
             this.Controls.Add(this.characterSettingsGroupBox);
             this.Controls.Add(this.btnLaunch);
@@ -314,7 +314,6 @@
         private System.Windows.Forms.Label labelHero;
         private System.Windows.Forms.Label labelMap;
         private System.Windows.Forms.CheckBox chkCustomIni;
-        private System.Windows.Forms.CheckBox chkGodMode;
         private System.Windows.Forms.CheckBox chkLog;
         private System.Windows.Forms.Label labelSkin;
         private System.Windows.Forms.ComboBox comBoxSkin;
@@ -329,6 +328,7 @@
         private System.Windows.Forms.ComboBox comBoxExtraDifficulty;
         private System.Windows.Forms.Label labelExtraDifficulty;
         private System.Windows.Forms.Button btnResetConfig;
+        private System.Windows.Forms.Button btnMods;
     }
 }
 

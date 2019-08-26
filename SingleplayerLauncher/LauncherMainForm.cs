@@ -1,4 +1,4 @@
-﻿using SingleplayerLauncher.Properties;
+﻿using SingleplayerLauncher.Mods;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,14 +39,14 @@ namespace SingleplayerLauncher
         private const bool defaultCustomIniSetting = true;
 
         private const string valueTrue = "TRUE";
-        private const string valueFalse = "FALSE";
         private const string RCharacterDataSection = "RCharacterData_0 RCharacterData";
 
         private const string characterDataKeyGodMode = "GodMode";
         private const string characterDataKeyHero = "PawnTemplateName";
         private const string characterDataKeyDye = "HeroicDyeIdx";
+        private const string characterDataKeyBonusStartingCoin = "BonusStartingCoin";
 
-        private Dictionary<string, string> defaultCharacterDataSection = new Dictionary<string, string>
+        private readonly Dictionary<string, string> defaultCharacterDataSection = new Dictionary<string, string>
         {
             { "PlayerName",         "Savitar"                           },
             { "GuildTag",           "~(^-^)~"                           },
@@ -68,7 +68,7 @@ namespace SingleplayerLauncher
         private const string gameModeEndless = "Endless";
         private const string noExtraDifficulty = "No";
 
-        private Dictionary<string, string> defaultGameReplicationInfoSection = new Dictionary<string, string>
+        private readonly Dictionary<string, string> defaultGameReplicationInfoSection = new Dictionary<string, string>
         {
             { "DefaultOfflineDifficulty",                       "1"         },
             { "PlayerCountOverride",                            "1"         },
@@ -80,7 +80,7 @@ namespace SingleplayerLauncher
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         
 
-        private Hero hero = Hero.Instance;
+        private readonly Hero hero = Hero.Instance;
 
         public LauncherMainForm()
         {
@@ -139,8 +139,9 @@ namespace SingleplayerLauncher
                 File.Move(spitfireGameUPKDecompressedPath, spitfireGameUPKPath); //TODO I think decompress.exe can get output folder as parameter 
             }
 
-            Settings.Default.FirstRun = false;
-            Settings.Default.Save();
+
+            Settings.Instance["FirstRun"] = false;
+            Settings.Save();
         }
 
         private void CreateBackup(string fileName, string path)
@@ -179,17 +180,19 @@ namespace SingleplayerLauncher
             comBoxGameMode.SelectedItem = defaultSelectedGameMode;
 
             chkCustomIni.Checked = defaultCustomIniSetting;
+
+            hero.loadout = Resources.defaultLoadout;
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            UPKFile upk = new UPKFile(spitfireGameUPKPath);
-            hero.UPKFile = upk;
+            UPKFile spitfireGameUPKFile = new UPKFile(spitfireGameUPKPath);
+            hero.UPKFile = spitfireGameUPKFile;
 
             if (chkCustomIni.Checked)
             {
-                updateCharacterDataIni();
-                updateDefaultGameIni();
+                UpdateCharacterDataIni();
+                UpdateDefaultGameIni();
             }
             if (!comBoxSkin.SelectedItem.ToString().Equals("") || LoadoutEditorForm.bytes.Count > 0)
             {
@@ -198,23 +201,48 @@ namespace SingleplayerLauncher
 
             hero.ApplyLoadoutChanges();
 
+            ApplyMods(spitfireGameUPKFile);
+
             MessageBox.Show("Saving your changes. Please wait.");
-            upk.Save();
+            spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
 
-            startGame();
+            StartGame();
         }
 
-        private void startGame()
+        private static void ApplyMods(UPKFile spitfireGameUPKFile)
+        {
+            NoTrapCap ntp = new NoTrapCap(spitfireGameUPKFile);
+            if (Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"])
+            {
+                ntp.InstallMod();
+            }
+            else
+            {
+                ntp.UninstallMod();
+            }
+            
+            TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
+            if (Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"])
+            {
+                tit.InstallMod();
+            }
+            else
+            {
+                tit.UninstallMod();
+            }
+        }
+
+        private void StartGame()
         {
             Process p = new Process();
             p.StartInfo.FileName = spitfireGameEXEFileName;
-            p.StartInfo.Arguments = createExeArguments();
+            p.StartInfo.Arguments = CreateExeArguments();
 
             p.Start();
         }
 
-        private void updateCharacterDataIni()
+        private void UpdateCharacterDataIni()
         {
             ConfigFile characterData = new ConfigFile(characterDataIniPath);
             var data = characterData.data;
@@ -222,13 +250,46 @@ namespace SingleplayerLauncher
             data[RCharacterDataSection][characterDataKeyHero] = Resources.heroes[comBoxHero.Text];
             data[RCharacterDataSection][characterDataKeyDye] = Resources.dyes[comBoxDye.Text];
 
-            if (chkGodMode.Checked)
+            if (Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"])
                 data[RCharacterDataSection][characterDataKeyGodMode] = valueTrue;
+
+            if (Settings.Instance.ContainsKey("StartingCoin"))
+                data[RCharacterDataSection][characterDataKeyBonusStartingCoin] = calculateMultiplierStartingCoin(comBoxMap.Text, Int32.Parse((string)Settings.Instance["StartingCoin"]));
 
             characterData.Write(data);
         }
 
-        private void updateDefaultGameIni()
+        private string calculateMultiplierStartingCoin(string mapName, int startingCoin)
+        {
+            if (mapName.Contains("Tutorial") || mapName.Contains("Prologue"))
+                return "0";
+
+            if (startingCoin == -1)
+            {
+                return "0";
+            }
+            else if (startingCoin == 0)
+            {
+                return "-1";
+            }
+            else
+            {
+                int baseStartingCoins = 9000;
+                if (Resources.startingCoin6000Maps.Contains(mapName))
+                {
+                    baseStartingCoins = 6000;
+                }
+
+                double startingCoinsMultiplier = (double) startingCoin / baseStartingCoins;
+                // it's a multiplier, so it needs an offset of -1
+                startingCoinsMultiplier--;
+
+                return startingCoinsMultiplier.ToString();
+            }
+
+        }
+
+        private void UpdateDefaultGameIni()
         {
             ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
             var data = defaultGame.data;
@@ -274,7 +335,7 @@ namespace SingleplayerLauncher
             defaultGame.Write(data);
         }
 
-        private string createExeArguments()
+        private string CreateExeArguments()
         {
             string arguments = "";
 
@@ -295,18 +356,14 @@ namespace SingleplayerLauncher
             if (!chkCustomIni.Checked)
             {
                 comBoxHero.Enabled = false;
-                chkGodMode.Enabled = false;
                 comBoxDye.Enabled = false;
                 comBoxDifficulty.Enabled = false;
                 comBoxExtraDifficulty.Enabled = false;
                 comBoxGameMode.Enabled = false;
-
-                chkGodMode.Checked = false;
             }
             else
             {
                 comBoxHero.Enabled = true;
-                chkGodMode.Enabled = true;
                 comBoxDye.Enabled = true;
                 comBoxDifficulty.Enabled = true;
                 comBoxExtraDifficulty.Enabled = true;
@@ -374,6 +431,12 @@ namespace SingleplayerLauncher
                 var modeSelected = comBoxGameMode.SelectedItem;
                 comBoxGameMode.SelectedIndex = -1;
                 comBoxGameMode.SelectedItem = modeSelected;
+
+                if (Resources.startingCoin6000Maps.Contains(selectedMap))
+                    Settings.Instance["StartingCoin"] = "6000";
+                else
+                    Settings.Instance["StartingCoin"] = "9000";
+                Settings.Save();
             }
         }
 
@@ -407,12 +470,18 @@ namespace SingleplayerLauncher
         }
         private static bool IsFirstRun()
         {
-            return Settings.Default.FirstRun;           
+            return !Settings.Instance.ContainsKey("FirstRun");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnResetConfig_Click(object sender, EventArgs e)
         {
             FirstRunInitialization();
+        }
+
+        private void btnMods_Click(object sender, EventArgs e)
+        {
+            ModLoaderForm mlf = new ModLoaderForm();
+            mlf.Show();
         }
     }
 }

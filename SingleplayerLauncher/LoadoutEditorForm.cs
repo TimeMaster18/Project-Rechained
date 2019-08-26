@@ -6,17 +6,11 @@ namespace SingleplayerLauncher
 {
     public partial class LoadoutEditorForm : Form
     {
-        List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
+        readonly List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
         public static List<byte[]> bytes = new List<byte[]>();
-        private Hero hero = Hero.Instance;
+        private readonly Hero hero = Hero.Instance;
 
         private const int loadoutSize = 9;
-
-        private static readonly string[] defaultLoadout =
-        {   "Mending Root",     "Mage's Clover",        "Barricade",
-            "Viscous Tar",      "Flip Trap",            "Wall Blades",
-            "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
-        };
 
         public LoadoutEditorForm()
         {        
@@ -31,30 +25,30 @@ namespace SingleplayerLauncher
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            populateTrapsGearSlots();
+            PopulateTrapsGearSlots();
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            setDefaultLoadout();
+            SetDefaultLoadoutInForm();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            hero.loadout = createLoadout();
+            hero.loadout = CreateLoadout();
 
             this.Close();
         }
 
-        private void setDefaultLoadout()
+        private void SetDefaultLoadoutInForm()
         {
 
             for (int i = 0; i < 9; i++)
             {
-                comBoxLoadoutSlots[i].SelectedItem = defaultLoadout[i];
+                comBoxLoadoutSlots[i].SelectedItem = Resources.defaultLoadout[i];
             }
         }
 
-        private void populateTrapsGearSlots()
+        private void PopulateTrapsGearSlots()
         {
             foreach (var comBoxLoadoutSlot in comBoxLoadoutSlots)
             {
@@ -69,7 +63,7 @@ namespace SingleplayerLauncher
             }
         }
 
-        private string[] createLoadout()
+        private string[] CreateLoadout()
         {
             string[] loadout = new string[loadoutSize];
 
