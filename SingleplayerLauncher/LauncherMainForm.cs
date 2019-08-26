@@ -219,7 +219,7 @@ namespace SingleplayerLauncher
                 ntp.UninstallMod();
             }
             
-            TrapsInTraps tit = new TrapsInTraps(upk);
+            TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
             if (Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"])
             {
                 tit.InstallMod();
