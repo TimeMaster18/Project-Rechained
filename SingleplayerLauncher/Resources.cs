@@ -374,5 +374,11 @@ namespace SingleplayerLauncher
                 }
             }
         };
+
+        public static string[] defaultLoadout =
+        {   "Mending Root",     "Mage's Clover",        "Barricade",
+            "Viscous Tar",      "Flip Trap",            "Wall Blades",
+            "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
+        };
     }
 }

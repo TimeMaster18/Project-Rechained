@@ -12,12 +12,6 @@ namespace SingleplayerLauncher
 
         private const int loadoutSize = 9;
 
-        private static readonly string[] defaultLoadout =
-        {   "Mending Root",     "Mage's Clover",        "Barricade",
-            "Viscous Tar",      "Flip Trap",            "Wall Blades",
-            "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
-        };
-
         public LoadoutEditorForm()
         {        
             InitializeComponent();
@@ -35,7 +29,7 @@ namespace SingleplayerLauncher
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            SetDefaultLoadout();
+            SetDefaultLoadoutInForm();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -45,12 +39,12 @@ namespace SingleplayerLauncher
             this.Close();
         }
 
-        private void SetDefaultLoadout()
+        private void SetDefaultLoadoutInForm()
         {
 
             for (int i = 0; i < 9; i++)
             {
-                comBoxLoadoutSlots[i].SelectedItem = defaultLoadout[i];
+                comBoxLoadoutSlots[i].SelectedItem = Resources.defaultLoadout[i];
             }
         }
 
