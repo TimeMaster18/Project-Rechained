@@ -376,9 +376,50 @@ namespace SingleplayerLauncher
         };
 
         public static string[] defaultLoadout =
-        {   "Mending Root",     "Mage's Clover",        "Barricade",
+        {   
+            "Mending Root",     "Mage's Clover",        "Barricade",
             "Viscous Tar",      "Flip Trap",            "Wall Blades",
             "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
+        };
+      
+        public static HashSet<string> startingCoin9000Maps = new HashSet<string> 
+        {
+            "Academy Sewers",
+            "Archmage Library",
+            "Avalanche",
+            "Banquet Hall",
+            "Cliffside Clash",
+            "Confluence",
+            "Crogon Keep",
+            "Docks at Eventide",
+            "Eventide Fortress",
+            "Eventide Ramparts",
+            "Frostbite",
+            "Gates of Thuricvod",
+            "Highlands",
+            "Maximum Security",
+            "Orcatraz",
+            "Orcri-La",
+            "Restricted Section",
+            "Shark Island",
+            "Stables at Eventide",
+            "Storm Drain",
+            "Temple Graveyard",
+            "The Falling Folly",
+            "The Wall",
+            "Throne Room",
+            "Thuricvod Village",
+            "Training Grounds",
+            "Unchained Fortress",
+        };
+
+        public static HashSet<string> startingCoin6000Maps = new HashSet<string> 
+        {            
+            "Castle Gates",
+            "Midnight Market",
+            "Riftmaker's Temple",
+            "The Baths",
+            "Water Garden"
         };
     }
 }

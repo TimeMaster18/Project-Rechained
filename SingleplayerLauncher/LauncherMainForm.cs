@@ -44,6 +44,7 @@ namespace SingleplayerLauncher
         private const string characterDataKeyGodMode = "GodMode";
         private const string characterDataKeyHero = "PawnTemplateName";
         private const string characterDataKeyDye = "HeroicDyeIdx";
+        private const string characterDataKeyBonusStartingCoin = "BonusStartingCoin";
 
         private readonly Dictionary<string, string> defaultCharacterDataSection = new Dictionary<string, string>
         {
@@ -252,7 +253,40 @@ namespace SingleplayerLauncher
             if (Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"])
                 data[RCharacterDataSection][characterDataKeyGodMode] = valueTrue;
 
+            if (Settings.Instance.ContainsKey("StartingCoin"))
+                data[RCharacterDataSection][characterDataKeyBonusStartingCoin] = calculateMultiplierStartingCoin(comBoxMap.Text, Int32.Parse((string)Settings.Instance["StartingCoin"]));
+
             characterData.Write(data);
+        }
+
+        private string calculateMultiplierStartingCoin(string mapName, int startingCoin)
+        {
+            if (mapName.Contains("Tutorial") || mapName.Contains("Prologue"))
+                return "0";
+
+            if (startingCoin == -1)
+            {
+                return "0";
+            }
+            else if (startingCoin == 0)
+            {
+                return "-1";
+            }
+            else
+            {
+                int baseStartingCoins = 9000;
+                if (Resources.startingCoin6000Maps.Contains(mapName))
+                {
+                    baseStartingCoins = 6000;
+                }
+
+                double startingCoinsMultiplier = (double) startingCoin / baseStartingCoins;
+                // it's a multiplier, so it needs an offset of -1
+                startingCoinsMultiplier--;
+
+                return startingCoinsMultiplier.ToString();
+            }
+
         }
 
         private void UpdateDefaultGameIni()
@@ -397,6 +431,12 @@ namespace SingleplayerLauncher
                 var modeSelected = comBoxGameMode.SelectedItem;
                 comBoxGameMode.SelectedIndex = -1;
                 comBoxGameMode.SelectedItem = modeSelected;
+
+                if (Resources.startingCoin6000Maps.Contains(selectedMap))
+                    Settings.Instance["StartingCoin"] = "6000";
+                else
+                    Settings.Instance["StartingCoin"] = "9000";
+                Settings.Save();
             }
         }
 
