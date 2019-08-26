@@ -180,6 +180,8 @@ namespace SingleplayerLauncher
             comBoxGameMode.SelectedItem = defaultSelectedGameMode;
 
             chkCustomIni.Checked = defaultCustomIniSetting;
+
+            hero.loadout = Resources.defaultLoadout;
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)

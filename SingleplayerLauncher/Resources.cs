@@ -375,7 +375,15 @@ namespace SingleplayerLauncher
             }
         };
 
-        public static HashSet<string> startingCoin9000Maps = new HashSet<string> {
+        public static string[] defaultLoadout =
+        {   
+            "Mending Root",     "Mage's Clover",        "Barricade",
+            "Viscous Tar",      "Flip Trap",            "Wall Blades",
+            "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
+        };
+      
+        public static HashSet<string> startingCoin9000Maps = new HashSet<string> 
+        {
             "Academy Sewers",
             "Archmage Library",
             "Avalanche",
@@ -405,7 +413,8 @@ namespace SingleplayerLauncher
             "Unchained Fortress",
         };
 
-        public static HashSet<string> startingCoin6000Maps = new HashSet<string> {            
+        public static HashSet<string> startingCoin6000Maps = new HashSet<string> 
+        {            
             "Castle Gates",
             "Midnight Market",
             "Riftmaker's Temple",
