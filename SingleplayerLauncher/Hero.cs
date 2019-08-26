@@ -88,10 +88,7 @@ namespace SingleplayerLauncher
             int startIndex = UPKFile.FindBytesKMP(LoadoutHeaderMaximilian, HeroObjectOffsetMaximilian) + LoadoutHeaderMaximilian.Length;
             int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterLoadoutMaximilian, HeroObjectOffsetMaximilian);
 
-
-            //throw new Exception(" " + startIndex); Right before the 20 00 00 00   00 00 00 00
-
-            // Where the actuall array of the loadout starts is + 12 bytes from the loadout header.
+            // Where the actual array of the loadout starts is + 12 bytes from the loadout header.
             // Array Size in bytes // Array (start?) index // Array number of elements
             // 4 + 4 + 4
             int arrayOffset = 12;
