@@ -259,6 +259,9 @@ namespace SingleplayerLauncher
 
         private string calculateMultiplierStartingCoin(string mapName, int startingCoin)
         {
+            if (mapName.Contains("Tutorial") || mapName.Contains("Prologue"))
+                return "0";
+
             if (startingCoin == -1)
             {
                 return "0";
