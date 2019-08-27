@@ -66,7 +66,7 @@ namespace SingleplayerLauncher
                                                                                 };
         private static readonly byte[] StartHeaderAfterGuardiansMaximillian = new byte[] { };
 
-        private void ApplySkin()
+        public void ApplySkin()
         {
             int skinIndex = UPKFile.FindBytesKMP(SkinPatternMaximilian, HeroObjectOffsetMaximilian) + SkinPatternMaximilian.Length;
             UPKFile.OverrideBytes(Resources.skins[NameMaximilian][skin], skinIndex);
@@ -77,7 +77,7 @@ namespace SingleplayerLauncher
             ApplyTrapsGear();
             //ApplyGuardians();
             //ApplyTraits();
-            ApplySkin();
+            //ApplySkin();
         }
 
         private void ApplyTrapsGear()
