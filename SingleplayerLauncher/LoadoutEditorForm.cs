@@ -21,6 +21,13 @@ namespace SingleplayerLauncher
                 comBoxLoadoutSlot4, comBoxLoadoutSlot5, comBoxLoadoutSlot6,
                 comBoxLoadoutSlot7, comBoxLoadoutSlot8, comBoxLoadoutSlot9
             };
+            if (Settings.Instance.ContainsKey("loadout"))
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    comBoxLoadoutSlots[i].SelectedItem = Settings.Instance["loadout"];
+                }
+            }
         }        
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
@@ -35,7 +42,7 @@ namespace SingleplayerLauncher
         private void btnSave_Click(object sender, EventArgs e)
         {
             hero.loadout = CreateLoadout();
-
+            Settings.Instance.Add("loadout", hero.loadout);
             this.Close();
         }
 
