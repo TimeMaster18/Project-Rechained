@@ -182,6 +182,24 @@ namespace SingleplayerLauncher
             chkCustomIni.Checked = defaultCustomIniSetting;
 
             hero.loadout = Resources.defaultLoadout;
+            if (Settings.Instance.ContainsKey("hero"))
+                comBoxHero.SelectedItem = Settings.Instance["hero"];
+            if (Settings.Instance.ContainsKey("skin"))
+                comBoxSkin.SelectedItem = Settings.Instance["skin"];
+            if (Settings.Instance.ContainsKey("dye"))
+                comBoxDye.SelectedItem = Settings.Instance["dye"];
+            if (Settings.Instance.ContainsKey("map"))
+                comBoxMap.SelectedItem = Settings.Instance["map"];
+            if (Settings.Instance.ContainsKey("gameMode"))
+                comBoxGameMode.SelectedItem = Settings.Instance["gameMode"];
+            if (Settings.Instance.ContainsKey("difficulty"))
+                comBoxDifficulty.SelectedItem = Settings.Instance["difficulty"];
+            if (Settings.Instance.ContainsKey("extraDifficulty"))
+                comBoxExtraDifficulty.SelectedItem = Settings.Instance["extraDifficulty"];
+            if (Settings.Instance.ContainsKey("customIni"))
+                chkCustomIni.Checked = (bool)Settings.Instance["customIni"];
+            if (Settings.Instance.ContainsKey("log"))
+                chkLog.Checked = (bool)Settings.Instance["log"];
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
