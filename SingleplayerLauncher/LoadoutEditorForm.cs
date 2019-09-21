@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,7 +8,6 @@ namespace SingleplayerLauncher
     public partial class LoadoutEditorForm : Form
     {
         readonly List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
-        public static List<byte[]> bytes = new List<byte[]>();
         private readonly Hero hero = Hero.Instance;
 
         private const int loadoutSize = 9;
@@ -21,6 +21,7 @@ namespace SingleplayerLauncher
                 comBoxLoadoutSlot4, comBoxLoadoutSlot5, comBoxLoadoutSlot6,
                 comBoxLoadoutSlot7, comBoxLoadoutSlot8, comBoxLoadoutSlot9
             };
+            
         }        
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
@@ -30,12 +31,21 @@ namespace SingleplayerLauncher
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
             SetDefaultLoadoutInForm();
+            if (Settings.Instance.ContainsKey("loadout"))
+            {
+                var savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
+                for (int i = 0; i < 9; i++)
+                {
+                    comBoxLoadoutSlots[i].SelectedItem = savedLoadOut[i];
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             hero.loadout = CreateLoadout();
-
+            Settings.Instance["loadout"] =  hero.loadout;
+            Settings.Save();
             this.Close();
         }
 
