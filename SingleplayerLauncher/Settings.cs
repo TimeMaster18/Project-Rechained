@@ -34,6 +34,7 @@ namespace SingleplayerLauncher
         public static void Save()
         {
             File.WriteAllText(SettingsFile, JsonConvert.SerializeObject(Instance));
+            Load();
         }
     }
 }
