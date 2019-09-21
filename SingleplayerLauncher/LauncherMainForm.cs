@@ -194,9 +194,10 @@ namespace SingleplayerLauncher
                 UpdateCharacterDataIni();
                 UpdateDefaultGameIni();
             }
-            if (!comBoxSkin.SelectedItem.ToString().Equals("") || LoadoutEditorForm.bytes.Count > 0)
+            if (comBoxSkin.SelectedItem != null || LoadoutEditorForm.bytes.Count > 0)
             {
                 hero.skin = comBoxSkin.SelectedItem.ToString();
+                hero.ApplySkin();
             }
 
             hero.ApplyLoadoutChanges();

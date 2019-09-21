@@ -14,7 +14,15 @@ This project is still in its early stages, much more will hopefully come soon :)
 
 ### Features:
 - Launch the game in offline mode, single player.
-- Play any map
-- Play with any hero
-- Choose your skin dye
+- Play any map, survival or endless modes
+- Play with Max
+- Choose traps and gear
+- Choose your skin and your dye
+- New extra difficulties for every map
+- New Mods:
+- - Remove Trap Cap
+- - Edit the starting coin
+- - God Mode
+- Automatic file backups
+- Reset configuration button
 - More coming soon 
