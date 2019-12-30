@@ -12,11 +12,18 @@ namespace SingleplayerLauncher
         private string filePath;
         private int fileLength = 0;
 
+        /// <summary>
+        ///   <para>
+        ///  Initializes a new instance of the <see cref="UPKFile"/> class.
+        /// </para>
+        /// </summary>
+        /// <param name="path">The file path.</param>
         public UPKFile(string path)
         {
             filePath = path;
             bytes = ReadAllBytes(path);
-        }
+            updateFileLength();
+        }        
 
         protected byte[] Bytes
         {
@@ -32,7 +39,22 @@ namespace SingleplayerLauncher
             }
         }
 
+        private byte[] ReadAllBytes(string fileName)
+        {
+            byte[] buffer = null;
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                buffer = new byte[fs.Length];
+                fs.Read(buffer, 0, (int)fs.Length);
+            }
+            fileLength = buffer.Length;
+            return buffer;
+        }
 
+
+        /// <summary>Creates a zeroed byte array. (00x0 value)</summary>
+        /// <param name="length">The length of the array to create.</param>
+        /// <returns>Created Array with bytes of value 0x00.</returns>
         public byte[] CreateZeroedByteArray(int length)
         {
             byte[] arr = new byte[length];
@@ -43,30 +65,16 @@ namespace SingleplayerLauncher
             return arr;
         }
 
+        /// <summary>
+        /// Saves the file to disk.
+        /// </summary>
         public void Save()
         {           
             File.WriteAllBytes(filePath, Bytes);
-        }
-
-        public void RemoveBytes(int startPosition, int length)
-        {
-            var tmpBytes = new List<byte>(Bytes);
-            tmpBytes.RemoveRange(startPosition, length);
-            Bytes = tmpBytes.ToArray();
-        }
+        }    
 
         /// <summary>
-        /// Overrides the bytes with the ones given starting in the first of the bytes to find. 
-        /// </summary>
-        public void FindAndOverrideBytes(byte[] bytesToWrite, byte[] bytesToFind, int startSearchPosition)
-        {
-            int startPosition = FindBytesKMP(bytesToFind, startSearchPosition);
-
-            OverrideBytes(bytesToWrite, startPosition);
-        }
-
-        /// <summary>
-        /// Overrides the bytes with the ones given starting in given position (included). 
+        /// Overrides the bytes with the ones given starting in the given position (included). 
         /// </summary>
         public void OverrideBytes(byte[] bytesToWrite, int startPosition)
         {
@@ -79,11 +87,48 @@ namespace SingleplayerLauncher
         }
 
         /// <summary>
-        /// Overrides the byte with the one given at the given position. 
+        /// Overrides the byte with the one given at the given index. 
         /// </summary>
-        public void OverrideSingleByte(byte b, int position)
+        /// <param name="b"> Byte to set.</param>
+        /// <param name="index"> Index of the byte to override.</param>
+        public void OverrideSingleByte(byte b, int index)
         {
-            Bytes[position] = b;
+            Bytes[index] = b;
+        }
+
+        /// <summary>
+        /// Overrides the bytes with the ones given starting in the first index of the bytes to find. 
+        /// </summary>
+        public void FindAndOverrideBytes(byte[] bytesToWrite, byte[] bytesToFind, int startSearchPosition)
+        {
+            int startPosition = FindBytesKMP(bytesToFind, startSearchPosition);
+
+            OverrideBytes(bytesToWrite, startPosition);
+        }
+
+        /// <summary>
+        /// Removes the bytes in the given index. 
+        /// </summary>
+        /// <param name="index"> Index to where start removing.</param>
+        /// <param name="numberBytes"> Number of bytes to remove.</param>
+        public void RemoveBytes(int index, int numberBytes)
+        {
+            var tmpBytes = new List<byte>(Bytes);
+            tmpBytes.RemoveRange(index, numberBytes);
+            Bytes = tmpBytes.ToArray();
+            updateFileLength();
+        }
+
+        /// <summary>
+        /// Inserts a number of 0x00 bytes at the given index. 
+        /// </summary>
+        /// <param name="index"> Index to where start inserting.</param>
+        /// <param name="numberBytes"> Number of 00x0 bytes to insert.</param>
+        public void InsertZeroedBytes(int index, int numberBytes)
+        {
+            byte[] zeroedBytes = CreateZeroedByteArray(numberBytes);
+
+            InsertBytes(zeroedBytes, index);
         }
 
         // TODO use a better way to "insert" bytes (like shifting positions)
@@ -95,23 +140,27 @@ namespace SingleplayerLauncher
             var tmpBytes = new List<byte>(Bytes);
             tmpBytes.InsertRange(position, bytesToInsert);
             Bytes = tmpBytes.ToArray();
+            updateFileLength();
         }
 
         /// <summary>
-        /// Inserts a number of 0x00 bytes at the given position. 
+        ///   <para>
+        ///  Updates the length of the file by checking the size of the byte array.
+        /// </para>
         /// </summary>
-        public void InsertZeroedBytes(int position, int numberBytes)
+        private void updateFileLength()
         {
-            byte[] zeroedBytes = CreateZeroedByteArray(numberBytes);
-
-            InsertBytes(zeroedBytes, position);
+            fileLength = bytes.Length;
         }
 
         /// <summary>
-        /// Finds the position of the given array in the UPK file. 
-        /// <para/>
+        /// Finds the position of the given array in the UPK file. Uses Naive method. <para />
+        /// <returns>
         /// Returns the index of the first position of the array occurrence.
+        /// </returns>
         /// </summary>
+        /// <param name="needle"> Array of bytes to find.</param>
+        /// <param name="start"> Offset index of where to start the search.</param>
         public int FindBytesNaive(byte[] needle, int start = 0)
         {
             byte[] haystack = bytes;
@@ -147,21 +196,15 @@ namespace SingleplayerLauncher
             }
         }
 
-        private byte[] ReadAllBytes(string fileName)
+        /// <summary>
+        /// Finds the position of the given array in the UPK file. Uses Naive method. 
+        /// <returns> Returns the index of the first position of the array occurrence or -1 if not found. </returns>
+        /// </summary>
+        /// <param name="pattern"> Array of bytes to find.</param>
+        /// <param name="start"> Offset index of where to start the search.</param>
+        public int FindBytesKMP(byte[] pattern, int start = 0)
         {
-            byte[] buffer = null;
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            {
-                buffer = new byte[fs.Length];
-                fs.Read(buffer, 0, (int)fs.Length);
-            }
-            fileLength = buffer.Length;
-            return buffer;
-        }
-
-        public int FindBytesKMP(byte[] pat, int start = 0)
-        {
-            int M = pat.Length;
+            int M = pattern.Length;
             int N = bytes.Length;
 
             // create lps[] that will hold the longest 
@@ -171,12 +214,12 @@ namespace SingleplayerLauncher
 
             // Preprocess the pattern (calculate lps[] 
             // array) 
-            ComputeLPSArray(pat, M, lps);
+            ComputeLPSArray(pattern, M, lps);
 
             int i = start; // index for txt[] 
             while (i < N)
             {
-                if (pat[j] == bytes[i])
+                if (pattern[j] == bytes[i])
                 {
                     j++;
                     i++;
@@ -186,8 +229,8 @@ namespace SingleplayerLauncher
                     return i - j;
                 }
 
-                // mismatch after j matches 
-                else if (i < N && pat[j] != bytes[i])
+                // missmatch after j matches 
+                else if (i < N && pattern[j] != bytes[i])
                 {
                     // Do not match lps[0..lps[j-1]] characters, 
                     // they will match anyway 
