@@ -197,7 +197,7 @@ namespace SingleplayerLauncher
         }
 
         /// <summary>
-        /// Finds the position of the given array in the UPK file. Uses Naive method. 
+        /// Finds the position of the given array in the UPK file. Uses Knuth-Morris Patt (KMP) method. 
         /// <returns> Returns the index of the first position of the array occurrence or -1 if not found. </returns>
         /// </summary>
         /// <param name="pattern"> Array of bytes to find.</param>
