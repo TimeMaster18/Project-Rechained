@@ -4,7 +4,7 @@ using System.IO;
 
 namespace SingleplayerLauncher
 {
-    class ConfigFile
+    internal class ConfigFile
     {
         private readonly FileIniDataParser parser;
         private readonly string path; // (filename too)

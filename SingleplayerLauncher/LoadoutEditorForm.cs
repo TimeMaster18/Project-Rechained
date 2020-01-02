@@ -7,8 +7,8 @@ namespace SingleplayerLauncher
 {
     public partial class LoadoutEditorForm : Form
     {
-        readonly List<ComboBox> comBoxLoadoutSlots;
-        readonly List<ComboBox> comBoxGuardianSlots;
+        private readonly List<ComboBox> comBoxLoadoutSlots;
+        private readonly List<ComboBox> comBoxGuardianSlots;
         public static List<byte[]> bytes = new List<byte[]>();
         private readonly Hero hero = Hero.Instance;
 
@@ -16,14 +16,13 @@ namespace SingleplayerLauncher
         private const int nGuardianSlots = 2;
 
         //TODO move defaults to a resource file
-        readonly string[] defaultLoadout =
+        private readonly string[] defaultLoadout =
         {
             "Mending Root",     "Mage's Clover",        "Barricade",
             "Viscous Tar",      "Flip Trap",            "Wall Blades",
             "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
         };
-
-        readonly string[] defaultGuardians =
+        private readonly string[] defaultGuardians =
         {
             "Dragon Guardian",     "Serpent Guardian"
         };

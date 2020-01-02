@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 namespace SingleplayerLauncher
 {
-    class Settings
+    internal class Settings
     {
         private static readonly string SettingsFile = "settings.txt";
         public static Dictionary<string, object> Instance = new Dictionary<string, object>();
