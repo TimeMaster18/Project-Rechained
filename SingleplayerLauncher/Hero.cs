@@ -13,13 +13,7 @@ namespace SingleplayerLauncher
         static Hero() { }
         private Hero() { }
 
-        public static Hero Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static Hero Instance => instance;
 
         public UPKFile UPKFile { get; set; }
 

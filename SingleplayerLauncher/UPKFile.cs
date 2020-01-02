@@ -30,10 +30,7 @@ namespace SingleplayerLauncher
                     bytes = ReadAllBytes(filePath);
                 return bytes;
             }
-            set
-            {
-                bytes = value;
-            }
+            set => bytes = value;
         }
 
         private byte[] ReadAllBytes(string fileName)
@@ -115,7 +112,7 @@ namespace SingleplayerLauncher
         /// <param name="numberBytes"> Number of bytes to remove.</param>
         public void RemoveBytes(int index, int numberBytes)
         {
-            var tmpBytes = new List<byte>(Bytes);
+            List<byte> tmpBytes = new List<byte>(Bytes);
             tmpBytes.RemoveRange(index, numberBytes);
             Bytes = tmpBytes.ToArray();
 
@@ -146,7 +143,7 @@ namespace SingleplayerLauncher
         /// </summary>
         public void InsertBytes(byte[] bytesToInsert, int position)
         {
-            var tmpBytes = new List<byte>(Bytes);
+            List<byte> tmpBytes = new List<byte>(Bytes);
             tmpBytes.InsertRange(position, bytesToInsert);
             Bytes = tmpBytes.ToArray();
 
