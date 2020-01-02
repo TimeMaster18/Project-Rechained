@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace SingleplayerLauncher
 {
     public class UPKFile
     {
         private byte[] bytes;
-        private string filePath;
+        private readonly string filePath;
         private int fileLength = 0;
         public int nBytesRemoved = 0;
 
@@ -23,7 +20,7 @@ namespace SingleplayerLauncher
         {
             filePath = path;
             bytes = ReadAllBytes(path);
-        }        
+        }
 
         protected byte[] Bytes
         {
@@ -33,10 +30,7 @@ namespace SingleplayerLauncher
                     bytes = ReadAllBytes(filePath);
                 return bytes;
             }
-            set
-            {
-                bytes = value;
-            }
+            set => bytes = value;
         }
 
         private byte[] ReadAllBytes(string fileName)
@@ -69,9 +63,9 @@ namespace SingleplayerLauncher
         /// Saves the file to disk.
         /// </summary>
         public void Save()
-        {           
+        {
             File.WriteAllBytes(filePath, Bytes);
-        }    
+        }
 
         public byte getByte(int index)
         {
@@ -85,7 +79,7 @@ namespace SingleplayerLauncher
         {
             int length = bytesToWrite.Length;
 
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 Bytes[startPosition + i] = bytesToWrite[i];
             }
@@ -118,7 +112,7 @@ namespace SingleplayerLauncher
         /// <param name="numberBytes"> Number of bytes to remove.</param>
         public void RemoveBytes(int index, int numberBytes)
         {
-            var tmpBytes = new List<byte>(Bytes);
+            List<byte> tmpBytes = new List<byte>(Bytes);
             tmpBytes.RemoveRange(index, numberBytes);
             Bytes = tmpBytes.ToArray();
 
@@ -137,7 +131,7 @@ namespace SingleplayerLauncher
             {
                 numberBytes = nBytesRemoved;
             }
-            
+
             byte[] zeroedBytes = CreateZeroedByteArray(numberBytes);
 
             InsertBytes(zeroedBytes, index);
@@ -149,7 +143,7 @@ namespace SingleplayerLauncher
         /// </summary>
         public void InsertBytes(byte[] bytesToInsert, int position)
         {
-            var tmpBytes = new List<byte>(Bytes);
+            List<byte> tmpBytes = new List<byte>(Bytes);
             tmpBytes.InsertRange(position, bytesToInsert);
             Bytes = tmpBytes.ToArray();
 
@@ -170,7 +164,7 @@ namespace SingleplayerLauncher
 
             for (int i = start; i <= haystack.Length - needle.Length; i++)
             {
-                if (Match( needle, i))
+                if (Match(needle, i))
                 {
                     return i;
                 }

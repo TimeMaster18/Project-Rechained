@@ -1,13 +1,13 @@
-﻿using System.IO;
-using IniParser;
+﻿using IniParser;
 using IniParser.Model;
+using System.IO;
 
 namespace SingleplayerLauncher
 {
-    class ConfigFile
+    internal class ConfigFile
     {
-        private FileIniDataParser parser;
-        private string path; // (filename too)
+        private readonly FileIniDataParser parser;
+        private readonly string path; // (filename too)
         public IniData data;
         //public Dictionary<string, Dictionary<string, string>> configDict;
 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Mods;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace SingleplayerLauncher
         };
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
-        
+
 
         private readonly Hero hero = Hero.Instance;
 
@@ -89,7 +90,7 @@ namespace SingleplayerLauncher
             {
                 FirstRunInitialization();
             }
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void FirstRunInitialization()
@@ -98,7 +99,7 @@ namespace SingleplayerLauncher
             CreateBackup(characterDataIniFileName, characterDataIniPath);
 
             ConfigFile characterDataConfigFile = new ConfigFile(characterDataIniPath, true);
-            var characterData = characterDataConfigFile.data;
+            IniData characterData = characterDataConfigFile.data;
 
             characterData.Sections.AddSection(RCharacterDataSection);
 
@@ -109,12 +110,12 @@ namespace SingleplayerLauncher
 
             // DefaultGame.ini Initialization
             CreateBackup(defaultGameIniFileName, defaultGameIniPath);
-            
+
             ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
-            var defaultGameData = defaultGame.data;
+            IniData defaultGameData = defaultGame.data;
 
             foreach (KeyValuePair<string, string> entry in defaultGameReplicationInfoSection)
-                defaultGameData[RGameReplicationInfoSection][entry.Key] =  entry.Value;
+                defaultGameData[RGameReplicationInfoSection][entry.Key] = entry.Value;
 
             defaultGameData.Sections.RemoveSection(RDisplayColorInfoSection);
 
@@ -130,10 +131,12 @@ namespace SingleplayerLauncher
                     File.Copy(spitfireGameUPKPath, spitfireGameUPKDecompressPath);
 
                 // Decompress
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.FileName = Path.GetFileName(decompressorPath);
-                psi.WorkingDirectory = Path.GetDirectoryName(decompressorPath);
-                psi.Arguments = "\"" + Path.GetFileName(spitfireGameUPKDecompressPath) + "\""; 
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = Path.GetFileName(decompressorPath),
+                    WorkingDirectory = Path.GetDirectoryName(decompressorPath),
+                    Arguments = "\"" + Path.GetFileName(spitfireGameUPKDecompressPath) + "\""
+                };
                 Process process = Process.Start(psi);
                 process.WaitForExit();
                 File.Delete(spitfireGameUPKPath);
@@ -203,7 +206,7 @@ namespace SingleplayerLauncher
                 chkLog.Checked = (bool)Settings.Instance["log"];
             if (Settings.Instance.ContainsKey("loadout"))
             {
-                var savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
+                string[] savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
                 hero.Loadout = savedLoadOut;
             }
         }
@@ -222,7 +225,7 @@ namespace SingleplayerLauncher
             {
                 hero.Skin = comBoxSkin.SelectedItem.ToString();
             }
-            
+
             MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
 
@@ -258,7 +261,7 @@ namespace SingleplayerLauncher
             {
                 ntp.UninstallMod();
             }
-            
+
             TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
             if (Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"])
             {
@@ -282,7 +285,7 @@ namespace SingleplayerLauncher
         private void UpdateCharacterDataIni()
         {
             ConfigFile characterData = new ConfigFile(characterDataIniPath);
-            var data = characterData.data;
+            IniData data = characterData.data;
 
             data[RCharacterDataSection][characterDataKeyHero] = Resources.heroes[comBoxHero.Text];
             data[RCharacterDataSection][characterDataKeyDye] = Resources.dyes[comBoxDye.Text];
@@ -317,7 +320,7 @@ namespace SingleplayerLauncher
                     baseStartingCoins = 6000;
                 }
 
-                double startingCoinsMultiplier = (double) startingCoin / baseStartingCoins;
+                double startingCoinsMultiplier = (double)startingCoin / baseStartingCoins;
                 // it's a multiplier, so it needs an offset of -1
                 startingCoinsMultiplier--;
 
@@ -329,7 +332,7 @@ namespace SingleplayerLauncher
         private void UpdateDefaultGameIni()
         {
             ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
-            var data = defaultGame.data;
+            IniData data = defaultGame.data;
 
             string selectedGameMode = comBoxGameMode.SelectedItem.ToString();
             string selectedExtraDifficulty = comBoxExtraDifficulty.SelectedItem.ToString();
@@ -359,7 +362,7 @@ namespace SingleplayerLauncher
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalDifficulties[selectedDifficulty];
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalDifficulties[selectedDifficulty];
                 }
-            }            
+            }
             else if (selectedGameMode.Equals(gameModeEndless))
             {
                 if (extraDifficulty)
@@ -465,7 +468,7 @@ namespace SingleplayerLauncher
                 comBoxExtraDifficulty.Enabled = true;
 
                 // Manual refresh of possible difficulties
-                var modeSelected = comBoxGameMode.SelectedItem;
+                object modeSelected = comBoxGameMode.SelectedItem;
                 comBoxGameMode.SelectedIndex = -1;
                 comBoxGameMode.SelectedItem = modeSelected;
 
@@ -527,4 +530,3 @@ namespace SingleplayerLauncher
     }
 }
 
-    

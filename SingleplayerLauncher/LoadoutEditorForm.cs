@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,8 +7,8 @@ namespace SingleplayerLauncher
 {
     public partial class LoadoutEditorForm : Form
     {
-        readonly List<ComboBox> comBoxLoadoutSlots;
-        readonly List<ComboBox> comBoxGuardianSlots;
+        private readonly List<ComboBox> comBoxLoadoutSlots;
+        private readonly List<ComboBox> comBoxGuardianSlots;
         public static List<byte[]> bytes = new List<byte[]>();
         private readonly Hero hero = Hero.Instance;
 
@@ -17,20 +16,19 @@ namespace SingleplayerLauncher
         private const int nGuardianSlots = 2;
 
         //TODO move defaults to a resource file
-        readonly string[] defaultLoadout =
+        private readonly string[] defaultLoadout =
         {
             "Mending Root",     "Mage's Clover",        "Barricade",
             "Viscous Tar",      "Flip Trap",            "Wall Blades",
             "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
         };
-
-        readonly string[] defaultGuardians =
+        private readonly string[] defaultGuardians =
         {
             "Dragon Guardian",     "Serpent Guardian"
         };
 
         public LoadoutEditorForm()
-        {        
+        {
             InitializeComponent();
 
             comBoxLoadoutSlots = new List<ComboBox>()
@@ -44,34 +42,34 @@ namespace SingleplayerLauncher
             {
                 comBoxGuardianSlot1, comBoxGuardianSlot2
             };
-        }        
+        }
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            PopulateSlots(this.comBoxLoadoutSlots, Resources.traps.Keys.ToList());
-            PopulateSlots(this.comBoxLoadoutSlots, Resources.gear.Keys.ToList());
-            PopulateSlots(this.comBoxGuardianSlots, Resources.guardians.Keys.ToList());
+            PopulateSlots(comBoxLoadoutSlots, Resources.traps.Keys.ToList());
+            PopulateSlots(comBoxLoadoutSlots, Resources.gear.Keys.ToList());
+            PopulateSlots(comBoxGuardianSlots, Resources.guardians.Keys.ToList());
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            SetDefaultSlots(this.comBoxLoadoutSlots, this.defaultLoadout);
-            SetDefaultSlots(this.comBoxGuardianSlots, this.defaultGuardians);
+            SetDefaultSlots(comBoxLoadoutSlots, defaultLoadout);
+            SetDefaultSlots(comBoxGuardianSlots, defaultGuardians);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             SetDefaultLoadoutInForm();
-            Settings.Instance["loadout"] =  hero.Loadout;
+            Settings.Instance["loadout"] = hero.Loadout;
             Settings.Save();
-            this.Close();
+            Close();
         }
 
         private void SetDefaultLoadoutInForm()
-        { 
+        {
             hero.Loadout = SaveLoadout();
             hero.Guardians = SaveGuardians();
 
-            this.Close();
+            Close();
         }
 
         private void PopulateSlots(List<ComboBox> comBoxSlotList, List<String> entryList)
