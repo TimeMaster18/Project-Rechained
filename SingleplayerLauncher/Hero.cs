@@ -120,8 +120,8 @@ namespace SingleplayerLauncher
             // There aren't 9 slots set up so we create them and insert necessary bytes
             if (UPKFile.getByte(arrayElementCountIndex) != 9)
             {
-                UPKFile.OverrideSingleByte((byte)(LoadoutSlotsNumber + 1) * LoadoutSlotByteSize, arraySizeIndex); // Array Size
-                UPKFile.OverrideSingleByte((byte)LoadoutSlotsNumber, arrayElementCountIndex); // Array Element Count ( the 4 bytes inbetween are "index 0")
+                UPKFile.OverrideSingleByte((LoadoutSlotsNumber + 1) * LoadoutSlotByteSize, arraySizeIndex); // Array Size
+                UPKFile.OverrideSingleByte(LoadoutSlotsNumber, arrayElementCountIndex); // Array Element Count ( the 4 bytes inbetween are "index 0")
 
                 // Add new slots (2 slots)
                 UPKFile.InsertZeroedBytes(startIndex + LoadoutOffsetFromHeader + 8, 2 * LoadoutSlotByteSize);

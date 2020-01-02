@@ -6,7 +6,7 @@ namespace SingleplayerLauncher
     public class UPKFile
     {
         private byte[] bytes;
-        private string filePath;
+        private readonly string filePath;
         private int fileLength = 0;
         public int nBytesRemoved = 0;
 

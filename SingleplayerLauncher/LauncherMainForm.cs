@@ -91,7 +91,7 @@ namespace SingleplayerLauncher
             }
             InitializeComponent();
         }
-        
+
         private void FirstRunInitialization()
         {
             // CharacterData.ini Initialization

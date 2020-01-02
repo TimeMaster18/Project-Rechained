@@ -6,8 +6,8 @@ namespace SingleplayerLauncher
 {
     class ConfigFile
     {
-        private FileIniDataParser parser;
-        private string path; // (filename too)
+        private readonly FileIniDataParser parser;
+        private readonly string path; // (filename too)
         public IniData data;
         //public Dictionary<string, Dictionary<string, string>> configDict;
 

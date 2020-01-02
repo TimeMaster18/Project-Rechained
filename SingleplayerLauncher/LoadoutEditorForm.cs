@@ -47,14 +47,14 @@ namespace SingleplayerLauncher
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            PopulateSlots(this.comBoxLoadoutSlots, Resources.traps.Keys.ToList());
-            PopulateSlots(this.comBoxLoadoutSlots, Resources.gear.Keys.ToList());
-            PopulateSlots(this.comBoxGuardianSlots, Resources.guardians.Keys.ToList());
+            PopulateSlots(comBoxLoadoutSlots, Resources.traps.Keys.ToList());
+            PopulateSlots(comBoxLoadoutSlots, Resources.gear.Keys.ToList());
+            PopulateSlots(comBoxGuardianSlots, Resources.guardians.Keys.ToList());
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            SetDefaultSlots(this.comBoxLoadoutSlots, this.defaultLoadout);
-            SetDefaultSlots(this.comBoxGuardianSlots, this.defaultGuardians);
+            SetDefaultSlots(comBoxLoadoutSlots, defaultLoadout);
+            SetDefaultSlots(comBoxGuardianSlots, defaultGuardians);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace SingleplayerLauncher
             SetDefaultLoadoutInForm();
             Settings.Instance["loadout"] = hero.Loadout;
             Settings.Save();
-            this.Close();
+            Close();
         }
 
         private void SetDefaultLoadoutInForm()
@@ -70,7 +70,7 @@ namespace SingleplayerLauncher
             hero.Loadout = SaveLoadout();
             hero.Guardians = SaveGuardians();
 
-            this.Close();
+            Close();
         }
 
         private void PopulateSlots(List<ComboBox> comBoxSlotList, List<String> entryList)
