@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace SingleplayerLauncher
 {
@@ -23,7 +20,7 @@ namespace SingleplayerLauncher
         {
             filePath = path;
             bytes = ReadAllBytes(path);
-        }        
+        }
 
         protected byte[] Bytes
         {
@@ -69,9 +66,9 @@ namespace SingleplayerLauncher
         /// Saves the file to disk.
         /// </summary>
         public void Save()
-        {           
+        {
             File.WriteAllBytes(filePath, Bytes);
-        }    
+        }
 
         public byte getByte(int index)
         {
@@ -85,7 +82,7 @@ namespace SingleplayerLauncher
         {
             int length = bytesToWrite.Length;
 
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 Bytes[startPosition + i] = bytesToWrite[i];
             }
@@ -137,7 +134,7 @@ namespace SingleplayerLauncher
             {
                 numberBytes = nBytesRemoved;
             }
-            
+
             byte[] zeroedBytes = CreateZeroedByteArray(numberBytes);
 
             InsertBytes(zeroedBytes, index);
@@ -170,7 +167,7 @@ namespace SingleplayerLauncher
 
             for (int i = start; i <= haystack.Length - needle.Length; i++)
             {
-                if (Match( needle, i))
+                if (Match(needle, i))
                 {
                     return i;
                 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace SingleplayerLauncher
 {
@@ -11,8 +10,8 @@ namespace SingleplayerLauncher
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit /Singleton
-        static Hero() {}
-        private Hero() {}
+        static Hero() { }
+        private Hero() { }
 
         public static Hero Instance
         {
@@ -83,20 +82,11 @@ namespace SingleplayerLauncher
                                                                             0x04, 0x00, 0x00, 0x00,
                                                                             0x00, 0x00, 0x00, 0x00
                                                                             };
-        private static readonly byte[] IconToRemoveFromFileBytes = new byte[] { 0x30, 0x6E, 0x00, 0x00,
-                                                                                0x00, 0x00, 0x00, 0x00,
-                                                                                0x6B, 0x66, 0x00, 0x00,
-                                                                                0x00, 0x00, 0x00, 0x00,
-                                                                                0x04, 0x00, 0x00, 0x00,
-                                                                                0x05, 0x00, 0x00, 0x00,
-                                                                                0x41, 0xCC, 0x02, 0x00
-                                                                                };
-        
         private static readonly byte[] WeaverTreeDefaultHeaderMaximillian = new byte[] { 0x00, 0xB4, 0x00, 0x00,
                                                                                         0x00, 0x00, 0x00, 0x00
         };
         private static readonly byte[] StartHeaderAfterGuardiansMaximillian = WeaverTreeDefaultHeaderMaximillian;
-        
+
         public void ApplyLoadoutChanges()
         {
             RemoveByteSection(DefaultWaveClassesHeaderMaximillian, DefaultWaveClassesSectionLength);
@@ -139,7 +129,7 @@ namespace SingleplayerLauncher
 
             // Convert and apply Loadout
             byte[] loadoutBytes = ConvertLoadoutToBytes(Loadout);
-            UPKFile.OverrideBytes(loadoutBytes, startIndex + LoadoutOffsetFromHeader);           
+            UPKFile.OverrideBytes(loadoutBytes, startIndex + LoadoutOffsetFromHeader);
         }
 
         private void ApplyGuardians()
@@ -150,14 +140,14 @@ namespace SingleplayerLauncher
             int startIndex = UPKFile.FindBytesKMP(GuardiansHeaderMaximillian, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian) + GuardiansHeaderMaximillian.Length;
             int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximillian, startIndex + GuardiansOffsetFromHeader, HeroObjectSizeMaximillian);
             int totalSize = endIndex - startIndex; // Everything after header
-            
+
             byte[] firstGuardian = Resources.guardians[Guardians[0]].First; // Extra space after each guardian is already included
             byte[] secondGuardian = Resources.guardians[Guardians[1]].First;
 
-            byte[] sizeFirstGuardian = new byte[] {Resources.guardians[Guardians[0]].Second, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
+            byte[] sizeFirstGuardian = new byte[] { Resources.guardians[Guardians[0]].Second, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
 
             int secondGuardianOffset = firstGuardian.Length + sizeFirstGuardian.Length + GuardiansOffsetFromHeader + 4; // 4 from second guardian size itself
-            byte[] sizeSecondGuardian = new byte[] {(byte) (totalSize - secondGuardianOffset), 0x00, 0x00, 0x00 }; // Counting extra space
+            byte[] sizeSecondGuardian = new byte[] { (byte)(totalSize - secondGuardianOffset), 0x00, 0x00, 0x00 }; // Counting extra space
 
             int emptySpaceOffset = secondGuardianOffset + Resources.guardians[Guardians[1]].Second;
             byte[] emptySpace = Enumerable.Repeat((byte)0x00, totalSize - emptySpaceOffset).ToArray();
@@ -167,11 +157,11 @@ namespace SingleplayerLauncher
 
             UPKFile.OverrideBytes(guardiansBytes, startIndex + GuardiansOffsetFromHeader);
 
-            UPKFile.OverrideSingleByte((byte) (totalSize - 8), startIndex); // Size (counts array element count and both guardians and their sizes but not itself or index so -8)
+            UPKFile.OverrideSingleByte((byte)(totalSize - 8), startIndex); // Size (counts array element count and both guardians and their sizes but not itself or index so -8)
             //TODO check single byte and avoid override?
             UPKFile.OverrideSingleByte(GuardianSlotsNumber, startIndex + 8); // Array Element Count 
         }
-        
+
         private void ApplySkin()
         {
             int skinIndex = UPKFile.FindBytesKMP(SkinPatternMaximilian, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian) + SkinPatternMaximilian.Length;
@@ -189,7 +179,7 @@ namespace SingleplayerLauncher
         }
 
         private void FillRemovedBytes(int insertIndex)
-        { 
+        {
             UPKFile.InsertZeroedBytes(insertIndex, 0);
         }
 
@@ -218,6 +208,6 @@ namespace SingleplayerLauncher
 
             return loadoutBytes;
         }
-        
+
     }
 }

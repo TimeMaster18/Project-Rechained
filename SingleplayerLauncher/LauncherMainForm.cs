@@ -79,7 +79,7 @@ namespace SingleplayerLauncher
         };
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
-        
+
 
         private readonly Hero hero = Hero.Instance;
 
@@ -89,9 +89,9 @@ namespace SingleplayerLauncher
             {
                 FirstRunInitialization();
             }
-            InitializeComponent();            
+            InitializeComponent();
         }
-
+        
         private void FirstRunInitialization()
         {
             // CharacterData.ini Initialization
@@ -109,12 +109,12 @@ namespace SingleplayerLauncher
 
             // DefaultGame.ini Initialization
             CreateBackup(defaultGameIniFileName, defaultGameIniPath);
-            
+
             ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
             var defaultGameData = defaultGame.data;
 
             foreach (KeyValuePair<string, string> entry in defaultGameReplicationInfoSection)
-                defaultGameData[RGameReplicationInfoSection][entry.Key] =  entry.Value;
+                defaultGameData[RGameReplicationInfoSection][entry.Key] = entry.Value;
 
             defaultGameData.Sections.RemoveSection(RDisplayColorInfoSection);
 
@@ -133,7 +133,7 @@ namespace SingleplayerLauncher
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = Path.GetFileName(decompressorPath);
                 psi.WorkingDirectory = Path.GetDirectoryName(decompressorPath);
-                psi.Arguments = "\"" + Path.GetFileName(spitfireGameUPKDecompressPath) + "\""; 
+                psi.Arguments = "\"" + Path.GetFileName(spitfireGameUPKDecompressPath) + "\"";
                 Process process = Process.Start(psi);
                 process.WaitForExit();
                 File.Delete(spitfireGameUPKPath);
@@ -222,7 +222,7 @@ namespace SingleplayerLauncher
             {
                 hero.Skin = comBoxSkin.SelectedItem.ToString();
             }
-            
+
             MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
 
@@ -258,7 +258,7 @@ namespace SingleplayerLauncher
             {
                 ntp.UninstallMod();
             }
-            
+
             TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
             if (Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"])
             {
@@ -317,7 +317,7 @@ namespace SingleplayerLauncher
                     baseStartingCoins = 6000;
                 }
 
-                double startingCoinsMultiplier = (double) startingCoin / baseStartingCoins;
+                double startingCoinsMultiplier = (double)startingCoin / baseStartingCoins;
                 // it's a multiplier, so it needs an offset of -1
                 startingCoinsMultiplier--;
 
@@ -359,7 +359,7 @@ namespace SingleplayerLauncher
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalDifficulties[selectedDifficulty];
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalDifficulties[selectedDifficulty];
                 }
-            }            
+            }
             else if (selectedGameMode.Equals(gameModeEndless))
             {
                 if (extraDifficulty)
@@ -527,4 +527,3 @@ namespace SingleplayerLauncher
     }
 }
 
-    

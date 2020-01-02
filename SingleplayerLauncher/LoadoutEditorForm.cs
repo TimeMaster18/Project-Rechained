@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -30,7 +29,7 @@ namespace SingleplayerLauncher
         };
 
         public LoadoutEditorForm()
-        {        
+        {
             InitializeComponent();
 
             comBoxLoadoutSlots = new List<ComboBox>()
@@ -44,7 +43,7 @@ namespace SingleplayerLauncher
             {
                 comBoxGuardianSlot1, comBoxGuardianSlot2
             };
-        }        
+        }
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
@@ -61,13 +60,13 @@ namespace SingleplayerLauncher
         private void btnSave_Click(object sender, EventArgs e)
         {
             SetDefaultLoadoutInForm();
-            Settings.Instance["loadout"] =  hero.Loadout;
+            Settings.Instance["loadout"] = hero.Loadout;
             Settings.Save();
             this.Close();
         }
 
         private void SetDefaultLoadoutInForm()
-        { 
+        {
             hero.Loadout = SaveLoadout();
             hero.Guardians = SaveGuardians();
 

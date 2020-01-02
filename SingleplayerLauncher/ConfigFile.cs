@@ -1,6 +1,6 @@
-﻿using System.IO;
-using IniParser;
+﻿using IniParser;
 using IniParser.Model;
+using System.IO;
 
 namespace SingleplayerLauncher
 {
