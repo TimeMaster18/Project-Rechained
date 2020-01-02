@@ -11,6 +11,7 @@ namespace SingleplayerLauncher
         private byte[] bytes;
         private string filePath;
         private int fileLength = 0;
+        public int nBytesRemoved = 0;
 
         /// <summary>
         ///   <para>
@@ -22,7 +23,6 @@ namespace SingleplayerLauncher
         {
             filePath = path;
             bytes = ReadAllBytes(path);
-            updateFileLength();
         }        
 
         protected byte[] Bytes
@@ -52,7 +52,7 @@ namespace SingleplayerLauncher
         }
 
 
-        /// <summary>Creates a zeroed byte array. (00x0 value)</summary>
+        /// <summary>Creates a zeroed byte array. (0x00 value)</summary>
         /// <param name="length">The length of the array to create.</param>
         /// <returns>Created Array with bytes of value 0x00.</returns>
         public byte[] CreateZeroedByteArray(int length)
@@ -72,6 +72,11 @@ namespace SingleplayerLauncher
         {           
             File.WriteAllBytes(filePath, Bytes);
         }    
+
+        public byte getByte(int index)
+        {
+            return Bytes[index];
+        }
 
         /// <summary>
         /// Overrides the bytes with the ones given starting in the given position (included). 
@@ -116,16 +121,23 @@ namespace SingleplayerLauncher
             var tmpBytes = new List<byte>(Bytes);
             tmpBytes.RemoveRange(index, numberBytes);
             Bytes = tmpBytes.ToArray();
-            updateFileLength();
+
+            nBytesRemoved += numberBytes;
         }
 
         /// <summary>
         /// Inserts a number of 0x00 bytes at the given index. 
         /// </summary>
         /// <param name="index"> Index to where start inserting.</param>
-        /// <param name="numberBytes"> Number of 00x0 bytes to insert.</param>
+        /// <param name="numberBytes"> Number of 00x0 bytes to insert. 
+        /// (Optional) Default value is the number of bytes removed, the difference in size from the original version </param>
         public void InsertZeroedBytes(int index, int numberBytes)
         {
+            if (numberBytes <= 0)
+            {
+                numberBytes = nBytesRemoved;
+            }
+            
             byte[] zeroedBytes = CreateZeroedByteArray(numberBytes);
 
             InsertBytes(zeroedBytes, index);
@@ -140,17 +152,8 @@ namespace SingleplayerLauncher
             var tmpBytes = new List<byte>(Bytes);
             tmpBytes.InsertRange(position, bytesToInsert);
             Bytes = tmpBytes.ToArray();
-            updateFileLength();
-        }
 
-        /// <summary>
-        ///   <para>
-        ///  Updates the length of the file by checking the size of the byte array.
-        /// </para>
-        /// </summary>
-        private void updateFileLength()
-        {
-            fileLength = bytes.Length;
+            nBytesRemoved -= bytesToInsert.Length;
         }
 
         /// <summary>
@@ -202,10 +205,16 @@ namespace SingleplayerLauncher
         /// </summary>
         /// <param name="pattern"> Array of bytes to find.</param>
         /// <param name="start"> Offset index of where to start the search.</param>
-        public int FindBytesKMP(byte[] pattern, int start = 0)
+        /// <param name="length"> Number of bytes to search from the start index.</param>
+        public int FindBytesKMP(byte[] pattern, int start = 0, int length = 0)
         {
             int M = pattern.Length;
             int N = bytes.Length;
+
+            if (length > 0)
+            {
+                N = length + start;
+            }
 
             // create lps[] that will hold the longest 
             // prefix suffix values for pattern 

@@ -193,14 +193,14 @@ namespace SingleplayerLauncher
             }
             if (!comBoxSkin.SelectedItem.ToString().Equals("") || LoadoutEditorForm.bytes.Count > 0)
             {
-                hero.skin = comBoxSkin.SelectedItem.ToString();
+                hero.Skin = comBoxSkin.SelectedItem.ToString();
             }
-
+            
+            MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
 
             ApplyMods(spitfireGameUPKFile);
 
-            MessageBox.Show("Saving your changes. Please wait.");
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
 
@@ -220,7 +220,7 @@ namespace SingleplayerLauncher
             }
 
             TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
-            if (Settings.Instance["TrapsInTraps"] != null && (bool)Settings.Instance["TrapsInTraps"])
+            if (Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"])
             {
                 tit.InstallMod();
             }
