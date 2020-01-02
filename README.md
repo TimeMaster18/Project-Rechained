@@ -18,11 +18,21 @@ This project is still in its early stages, much more will hopefully come soon :)
 - Play with Max
 - Choose traps and gear
 - Choose your skin and your dye
+- Choose Guardians
 - New extra difficulties for every map
 - New Mods:
 - - Remove Trap Cap
 - - Edit the starting coin
 - - God Mode
 - Automatic file backups
-- Reset configuration button
-- More coming soon 
+- Reset configuration button and config saves
+
+### Coming Next
+- Trap Tiers
+- Play with other starter heroes like Gabriella and Smolder
+- Save multiple loadouts
+
+### Known Problems
+- Hero HP doesn't scale as expected
+- UI of the launcher is lacking
+
