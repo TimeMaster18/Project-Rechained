@@ -220,15 +220,14 @@ namespace SingleplayerLauncher
             }
             if (comBoxSkin.SelectedItem != null)
             {
-                hero.skin = comBoxSkin.SelectedItem.ToString();
-                hero.ApplySkin();
+                hero.Skin = comBoxSkin.SelectedItem.ToString();
             }
-
+            
+            MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
 
             ApplyMods(spitfireGameUPKFile);
 
-            MessageBox.Show("Saving your changes. Please wait.");
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
             SaveSettings();
