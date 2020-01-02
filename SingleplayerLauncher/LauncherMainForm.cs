@@ -182,7 +182,7 @@ namespace SingleplayerLauncher
 
             chkCustomIni.Checked = defaultCustomIniSetting;
 
-            hero.loadout = Resources.defaultLoadout;
+            hero.Loadout = Resources.defaultLoadout;
             if (Settings.Instance.ContainsKey("hero"))
                 comBoxHero.SelectedItem = Settings.Instance["hero"];
             if (Settings.Instance.ContainsKey("skin"))
@@ -204,7 +204,7 @@ namespace SingleplayerLauncher
             if (Settings.Instance.ContainsKey("loadout"))
             {
                 var savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
-                hero.loadout = savedLoadOut;
+                hero.Loadout = savedLoadOut;
             }
         }
 

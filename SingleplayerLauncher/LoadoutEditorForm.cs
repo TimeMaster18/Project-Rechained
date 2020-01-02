@@ -1,88 +1,123 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
 {
     public partial class LoadoutEditorForm : Form
     {
-        readonly List<System.Windows.Forms.ComboBox> comBoxLoadoutSlots;
+        readonly List<ComboBox> comBoxLoadoutSlots;
+        readonly List<ComboBox> comBoxGuardianSlots;
+        public static List<byte[]> bytes = new List<byte[]>();
         private readonly Hero hero = Hero.Instance;
 
-        private const int loadoutSize = 9;
+        private const int nLoadoutSlots = 9;
+        private const int nGuardianSlots = 2;
+
+        //TODO move defaults to a resource file
+        readonly string[] defaultLoadout =
+        {
+            "Mending Root",     "Mage's Clover",        "Barricade",
+            "Viscous Tar",      "Flip Trap",            "Wall Blades",
+            "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
+        };
+
+        readonly string[] defaultGuardians =
+        {
+            "Dragon Guardian",     "Serpent Guardian"
+        };
 
         public LoadoutEditorForm()
         {        
             InitializeComponent();
 
-            comBoxLoadoutSlots = new List<System.Windows.Forms.ComboBox>()
-            {   comBoxLoadoutSlot1, comBoxLoadoutSlot2, comBoxLoadoutSlot3,
+            comBoxLoadoutSlots = new List<ComboBox>()
+            {
+                comBoxLoadoutSlot1, comBoxLoadoutSlot2, comBoxLoadoutSlot3,
                 comBoxLoadoutSlot4, comBoxLoadoutSlot5, comBoxLoadoutSlot6,
                 comBoxLoadoutSlot7, comBoxLoadoutSlot8, comBoxLoadoutSlot9
             };
-            
+
+            comBoxGuardianSlots = new List<ComboBox>()
+            {
+                comBoxGuardianSlot1, comBoxGuardianSlot2
+            };
         }        
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            PopulateTrapsGearSlots();
+            PopulateSlots(this.comBoxLoadoutSlots, Resources.traps.Keys.ToList());
+            PopulateSlots(this.comBoxLoadoutSlots, Resources.gear.Keys.ToList());
+            PopulateSlots(this.comBoxGuardianSlots, Resources.guardians.Keys.ToList());
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            SetDefaultLoadoutInForm();
-            if (Settings.Instance.ContainsKey("loadout"))
-            {
-                var savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
-                for (int i = 0; i < 9; i++)
-                {
-                    comBoxLoadoutSlots[i].SelectedItem = savedLoadOut[i];
-                }
-            }
+            SetDefaultSlots(this.comBoxLoadoutSlots, this.defaultLoadout);
+            SetDefaultSlots(this.comBoxGuardianSlots, this.defaultGuardians);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            hero.loadout = CreateLoadout();
-            Settings.Instance["loadout"] =  hero.loadout;
+            SetDefaultLoadoutInForm();
+            Settings.Instance["loadout"] =  hero.Loadout;
             Settings.Save();
             this.Close();
         }
 
         private void SetDefaultLoadoutInForm()
-        {
+        { 
+            hero.Loadout = SaveLoadout();
+            hero.Guardians = SaveGuardians();
 
-            for (int i = 0; i < 9; i++)
-            {
-                comBoxLoadoutSlots[i].SelectedItem = Resources.defaultLoadout[i];
-            }
+            this.Close();
         }
 
-        private void PopulateTrapsGearSlots()
+        private void PopulateSlots(List<ComboBox> comBoxSlotList, List<String> entryList)
         {
-            foreach (var comBoxLoadoutSlot in comBoxLoadoutSlots)
+            foreach (ComboBox comBoxSlot in comBoxSlotList)
             {
-                foreach (var trap in Resources.traps)
+                foreach (string entry in entryList)
                 {
-                    comBoxLoadoutSlot.Items.Add(trap.Key);
-                }
-                foreach (var gear in Resources.gear)
-                {
-                    comBoxLoadoutSlot.Items.Add(gear.Key);
+                    comBoxSlot.Items.Add(entry);
                 }
             }
         }
 
-        private string[] CreateLoadout()
+        private void SetDefaultSlots(List<ComboBox> comBoxSlotList, string[] defaultEntryList)
         {
-            string[] loadout = new string[loadoutSize];
+            int i = 0;
+            foreach (ComboBox comBoxSlot in comBoxSlotList)
+            {
+                comBoxSlot.SelectedItem = defaultEntryList[i];
+                i++;
+            }
+        }
 
-            for (int i = 0; i < 9; i++)
+        private string[] SaveLoadout()
+        {
+            string[] loadout = new string[nLoadoutSlots];
+
+            for (int i = 0; i < nLoadoutSlots; i++)
             {
                 loadout[i] = comBoxLoadoutSlots[i].Text;
             }
 
             return loadout;
         }
+
+        private string[] SaveGuardians()
+        {
+            string[] guardians = new string[nGuardianSlots];
+
+            for (int i = 0; i < nGuardianSlots; i++)
+            {
+                guardians[i] = comBoxGuardianSlots[i].Text;
+            }
+
+            return guardians;
+        }
     }
+
 }
