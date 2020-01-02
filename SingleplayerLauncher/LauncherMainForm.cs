@@ -1,4 +1,5 @@
-﻿using SingleplayerLauncher.Mods;
+﻿using Newtonsoft.Json.Linq;
+using SingleplayerLauncher.Mods;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -181,7 +182,30 @@ namespace SingleplayerLauncher
 
             chkCustomIni.Checked = defaultCustomIniSetting;
 
-            hero.loadout = Resources.defaultLoadout;
+            hero.Loadout = Resources.defaultLoadout;
+            if (Settings.Instance.ContainsKey("hero"))
+                comBoxHero.SelectedItem = Settings.Instance["hero"];
+            if (Settings.Instance.ContainsKey("skin"))
+                comBoxSkin.SelectedItem = Settings.Instance["skin"];
+            if (Settings.Instance.ContainsKey("dye"))
+                comBoxDye.SelectedItem = Settings.Instance["dye"];
+            if (Settings.Instance.ContainsKey("map"))
+                comBoxMap.SelectedItem = Settings.Instance["map"];
+            if (Settings.Instance.ContainsKey("gameMode"))
+                comBoxGameMode.SelectedItem = Settings.Instance["gameMode"];
+            if (Settings.Instance.ContainsKey("difficulty"))
+                comBoxDifficulty.SelectedItem = Settings.Instance["difficulty"];
+            if (Settings.Instance.ContainsKey("extraDifficulty"))
+                comBoxExtraDifficulty.SelectedItem = Settings.Instance["extraDifficulty"];
+            if (Settings.Instance.ContainsKey("customIni"))
+                chkCustomIni.Checked = (bool)Settings.Instance["customIni"];
+            if (Settings.Instance.ContainsKey("log"))
+                chkLog.Checked = (bool)Settings.Instance["log"];
+            if (Settings.Instance.ContainsKey("loadout"))
+            {
+                var savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
+                hero.Loadout = savedLoadOut;
+            }
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -194,23 +218,35 @@ namespace SingleplayerLauncher
                 UpdateCharacterDataIni();
                 UpdateDefaultGameIni();
             }
-            if (comBoxSkin.SelectedItem != null || LoadoutEditorForm.bytes.Count > 0)
+            if (comBoxSkin.SelectedItem != null)
             {
-                hero.skin = comBoxSkin.SelectedItem.ToString();
-                hero.ApplySkin();
+                hero.Skin = comBoxSkin.SelectedItem.ToString();
             }
-
+            
+            MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
 
             ApplyMods(spitfireGameUPKFile);
 
-            MessageBox.Show("Saving your changes. Please wait.");
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
-
+            SaveSettings();
             StartGame();
         }
+        public void SaveSettings()
+        {
 
+            Settings.Instance["hero"] = comBoxHero.SelectedItem;
+            Settings.Instance["skin"] = comBoxSkin.SelectedItem;
+            Settings.Instance["dye"] = comBoxDye.SelectedItem;
+            Settings.Instance["map"] = comBoxMap.SelectedItem;
+            Settings.Instance["gameMode"] = comBoxGameMode.SelectedItem;
+            Settings.Instance["difficulty"] = comBoxDifficulty.SelectedItem;
+            Settings.Instance["extraDifficulty"] = comBoxExtraDifficulty.SelectedItem;
+            Settings.Instance["customIni"] = chkCustomIni.Checked;
+            Settings.Instance["log"] = chkLog.Checked;
+            Settings.Save();
+        }
         private static void ApplyMods(UPKFile spitfireGameUPKFile)
         {
             NoTrapCap ntp = new NoTrapCap(spitfireGameUPKFile);
@@ -483,6 +519,10 @@ namespace SingleplayerLauncher
         {
             ModLoaderForm mlf = new ModLoaderForm();
             mlf.Show();
+        }
+
+        private void ChkLog_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }
