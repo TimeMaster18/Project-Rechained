@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingleplayerLauncher.Resources;
+using System;
 using System.Linq;
 
 namespace SingleplayerLauncher
@@ -20,6 +21,7 @@ namespace SingleplayerLauncher
         public string Skin { get; set; }
         public string[] Loadout { get; set; } // Could be it's own class if we get Guardians and Traits to work.
         public string[] Guardians { get; set; }
+        public string Name = "Maximilian";
 
         private const int LoadoutSlotByteSize = 4;
         private const int LoadoutSlotsNumber = 9;
@@ -32,61 +34,15 @@ namespace SingleplayerLauncher
         // Array Size in bytes + Array (start?) index + Array number of elements (4 + 4 + 4 )
         private const int GuardiansOffsetFromHeader = 12;
 
-        // TODO Add resource file with the rest of heroes and remove this (and use above ones only, the rest to resource files)
-        private const string NameMaximilian = "Maximilian";
-        private const int HeroObjectOffsetMaximillian = 0x28AB495; // Within the file offset where it starts (Maximillian currently default)
-        private const int HeroObjectSizeMaximillian = 1542;
-        // private const string SpitfireGameUPKMaximilian = "..//SpitfireGame//CookedPCConsole//SpitfireGame.upk";
-        private static readonly byte[] LoadoutHeaderMaximilian = new byte[] {   0xC6, 0x2C, 0x00, 0x00,
-                                                                                0x00, 0x00, 0x00, 0x00,
-                                                                                0xC5, 0x07, 0x00, 0x00,
-                                                                                0x00, 0x00, 0x00, 0x00
-                                                                                };
-        private static readonly byte[] GuardiansHeaderMaximillian = new byte[] { 0xBA, 0x2C, 0x00, 0x00,
-                                                                                 0x00, 0x00, 0x00, 0x00,
-                                                                                 0xC5, 0x07, 0x00, 0x00,
-                                                                                 0x00, 0x00, 0x00, 0x00
-                                                                                };
-        private static readonly int DefaultWaveClassesSectionLength = 64;
-        private static readonly byte[] DefaultWaveClassesHeaderMaximillian = new byte[] {
-                                                                                    0xF3, 0x2c, 0x00, 0x00,
-                                                                                    0x00, 0x00, 0x00, 0x00
-                                                                                };
-        private static readonly int HeroDamageTypeSectionLength = 40;
-        private static readonly byte[] HeroDamageTypeHeaderMaximillian = new byte[] {
-                                                                                    0x0E, 0x46, 0x00, 0x00,
-                                                                                    0x00, 0x00, 0x00, 0x00
-                                                                                };
-        private static readonly int StrategicRoleSectionLength = 40;
-        private static readonly byte[] StrategicRoleHeaderMaximillian = new byte[] {
-                                                                                    0x74, 0xA3, 0x00, 0x00,
-                                                                                    0x00, 0x00, 0x00, 0x00
-                                                                                };
-        private static readonly int DefaultRoleClassSectionLength = 28;
-        private static readonly byte[] DefaultRoleClassHeaderMaximillian = new byte[] {
-                                                                                    0xE4, 0x2C, 0x00, 0x00,
-                                                                                    0x00, 0x00, 0x00, 0x00
-                                                                                };
-
-
-        private static readonly byte[] SkinPatternMaximilian = new byte[] { 0x52, 0x1E, 0x00, 0x00,
-                                                                            0x00, 0x00, 0x00, 0x00,
-                                                                            0x6B, 0x66, 0x00, 0x00,
-                                                                            0x00, 0x00, 0x00, 0x00,
-                                                                            0x04, 0x00, 0x00, 0x00,
-                                                                            0x00, 0x00, 0x00, 0x00
-                                                                            };
-        private static readonly byte[] WeaverTreeDefaultHeaderMaximillian = new byte[] { 0x00, 0xB4, 0x00, 0x00,
-                                                                                        0x00, 0x00, 0x00, 0x00
-        };
-        private static readonly byte[] StartHeaderAfterGuardiansMaximillian = WeaverTreeDefaultHeaderMaximillian;
+        
+        private static readonly byte[] StartHeaderAfterGuardiansMaximilian = SpitfireGameUPK.HeroObjectWeaverTreeDefaultHeader;
 
         public void ApplyLoadoutChanges()
         {
-            RemoveByteSection(DefaultWaveClassesHeaderMaximillian, DefaultWaveClassesSectionLength);
-            RemoveByteSection(HeroDamageTypeHeaderMaximillian, HeroDamageTypeSectionLength);
-            RemoveByteSection(StrategicRoleHeaderMaximillian, StrategicRoleSectionLength);
-            RemoveByteSection(DefaultRoleClassHeaderMaximillian, DefaultRoleClassSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectDefaultWaveClassesHeader, SpitfireGameUPK.HeroObjectDefaultWaveClassesSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectHeroDamageTypeHeader, SpitfireGameUPK.HeroObjectHeroDamageTypeSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectStrategicRoleHeader, SpitfireGameUPK.HeroObjectStrategicRoleSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectDefaultRoleClassHeader, SpitfireGameUPK.HeroObjectDefaultRoleClassSectionLength);
 
             ApplyTrapsGear();
             //ApplyTraits();
@@ -95,7 +51,7 @@ namespace SingleplayerLauncher
             // FillRemovedBytes should be run after all the removing
             if (UPKFile.nBytesRemoved > 0)
             {
-                int positionToFillRemovedBytesWithZeros = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximillian, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian);
+                int positionToFillRemovedBytesWithZeros = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximilian, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
                 FillRemovedBytes(positionToFillRemovedBytesWithZeros);
             }
 
@@ -107,7 +63,7 @@ namespace SingleplayerLauncher
             if (Loadout == null || Loadout.Length != 9)
                 throw new Exception("9 traps/gear must be used");
 
-            int startIndex = UPKFile.FindBytesKMP(LoadoutHeaderMaximilian, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian) + LoadoutHeaderMaximilian.Length;
+            int startIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectLoadoutHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectLoadoutHeader.Length;
             int arrayElementCountIndex = startIndex + 8;
             int arraySizeIndex = startIndex;
 
@@ -131,19 +87,19 @@ namespace SingleplayerLauncher
             if (Guardians == null || Guardians.Length != 2)
                 throw new Exception("2 guardians must be used");
 
-            int startIndex = UPKFile.FindBytesKMP(GuardiansHeaderMaximillian, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian) + GuardiansHeaderMaximillian.Length;
-            int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximillian, startIndex + GuardiansOffsetFromHeader, HeroObjectSizeMaximillian);
+            int startIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectGuardiansHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectGuardiansHeader.Length;
+            int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximilian, startIndex + GuardiansOffsetFromHeader, SpitfireGameUPK.HeroObjects[Name].Size);
             int totalSize = endIndex - startIndex; // Everything after header
 
-            byte[] firstGuardian = Resources.guardians[Guardians[0]].First; // Extra space after each guardian is already included
-            byte[] secondGuardian = Resources.guardians[Guardians[1]].First;
+            byte[] firstGuardian = Resources.Loadout.Guardians[Guardians[0]].First; // Extra space after each guardian is already included
+            byte[] secondGuardian = Resources.Loadout.Guardians[Guardians[1]].First;
 
-            byte[] sizeFirstGuardian = new byte[] { Resources.guardians[Guardians[0]].Second, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
+            byte[] sizeFirstGuardian = new byte[] { Resources.Loadout.Guardians[Guardians[0]].Second, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
 
             int secondGuardianOffset = firstGuardian.Length + sizeFirstGuardian.Length + GuardiansOffsetFromHeader + 4; // 4 from second guardian size itself
             byte[] sizeSecondGuardian = new byte[] { (byte)(totalSize - secondGuardianOffset), 0x00, 0x00, 0x00 }; // Counting extra space
 
-            int emptySpaceOffset = secondGuardianOffset + Resources.guardians[Guardians[1]].Second;
+            int emptySpaceOffset = secondGuardianOffset + Resources.Loadout.Guardians[Guardians[1]].Second;
             byte[] emptySpace = Enumerable.Repeat((byte)0x00, totalSize - emptySpaceOffset).ToArray();
 
             // Combining arrays to SizeGuardian1 + Guardian1 + SizeGuardian2 + Guardian2 + emptySpace
@@ -158,13 +114,13 @@ namespace SingleplayerLauncher
 
         private void ApplySkin()
         {
-            int skinIndex = UPKFile.FindBytesKMP(SkinPatternMaximilian, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian) + SkinPatternMaximilian.Length;
-            UPKFile.OverrideBytes(Resources.skins[NameMaximilian][Skin], skinIndex);
+            int skinIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectSkinPattern, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectSkinPattern.Length;
+            UPKFile.OverrideBytes(GameInfo.Heroes[Name].GetSkinHex(Skin), skinIndex);
         }
 
         private void RemoveByteSection(byte[] sectionHeaderByteArray, int length)
         {
-            int removeIndex = UPKFile.FindBytesKMP(sectionHeaderByteArray, HeroObjectOffsetMaximillian, HeroObjectSizeMaximillian);
+            int removeIndex = UPKFile.FindBytesKMP(sectionHeaderByteArray, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
 
             if (removeIndex != -1)
             {
@@ -185,13 +141,13 @@ namespace SingleplayerLauncher
             {
                 byte[] slotBytes;
 
-                if (Resources.traps.ContainsKey(loadout[i]))
+                if (Resources.Loadout.Traps.ContainsKey(loadout[i]))
                 {
-                    slotBytes = Resources.traps[loadout[i]];
+                    slotBytes = Resources.Loadout.Traps[loadout[i]];
                 }
                 else
                 {
-                    slotBytes = Resources.gear[loadout[i]];
+                    slotBytes = Resources.Loadout.Gear[loadout[i]];
                 }
 
                 for (int j = 0; j < LoadoutSlotByteSize; j++)
