@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingleplayerLauncher.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -14,18 +15,6 @@ namespace SingleplayerLauncher
 
         private const int nLoadoutSlots = 9;
         private const int nGuardianSlots = 2;
-
-        //TODO move defaults to a resource file
-        private readonly string[] defaultLoadout =
-        {
-            "Mending Root",     "Mage's Clover",        "Barricade",
-            "Viscous Tar",      "Flip Trap",            "Wall Blades",
-            "Arrow Wall",       "Concussive Pounder",   "Ceiling Ballista"
-        };
-        private readonly string[] defaultGuardians =
-        {
-            "Dragon Guardian",     "Serpent Guardian"
-        };
 
         public LoadoutEditorForm()
         {
@@ -46,14 +35,14 @@ namespace SingleplayerLauncher
 
         private void LoadoutEditor_Load(object sender, EventArgs e)
         {
-            PopulateSlots(comBoxLoadoutSlots, Resources.traps.Keys.ToList());
-            PopulateSlots(comBoxLoadoutSlots, Resources.gear.Keys.ToList());
-            PopulateSlots(comBoxGuardianSlots, Resources.guardians.Keys.ToList());
+            PopulateSlots(comBoxLoadoutSlots, Resources.Loadout.Traps.Keys.ToList());
+            PopulateSlots(comBoxLoadoutSlots, Resources.Loadout.Gear.Keys.ToList());
+            PopulateSlots(comBoxGuardianSlots, Resources.Loadout.Guardians.Keys.ToList());
 
             // TODO implement a way of loading previous loadout used
             // Placeholder -> Default loadout
-            SetDefaultSlots(comBoxLoadoutSlots, defaultLoadout);
-            SetDefaultSlots(comBoxGuardianSlots, defaultGuardians);
+            SetDefaultSlots(comBoxLoadoutSlots, DefaultValues.Loadout);
+            SetDefaultSlots(comBoxGuardianSlots, DefaultValues.Guardians);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
