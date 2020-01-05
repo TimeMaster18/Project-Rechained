@@ -1,6 +1,6 @@
 ﻿namespace SingleplayerLauncher.Mods
 {
-    public class NoTrapCap:Mod
+    public class NoTrapCap : Mod
     {
         public NoTrapCap(UPKFile UPKFile) : base(UPKFile)
         {

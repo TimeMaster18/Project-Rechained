@@ -15,7 +15,7 @@ This project is still in its early stages, much more will hopefully come soon :)
 ### Features:
 - Launch the game in offline mode, single player.
 - Play any map, survival or endless modes
-- Play with Max
+- Play with Maximilian, Gabriella, Smolder, Ivy, Hogarth and Bionka
 - Choose traps and gear
 - Choose your skin and your dye
 - Choose Guardians
@@ -35,4 +35,3 @@ This project is still in its early stages, much more will hopefully come soon :)
 ### Known Problems
 - Hero HP doesn't scale as expected
 - UI of the launcher is lacking
-

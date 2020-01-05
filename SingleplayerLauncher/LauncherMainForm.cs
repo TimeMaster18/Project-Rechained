@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using IniParser.Model;
+using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Mods;
+using SingleplayerLauncher.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,16 +30,7 @@ namespace SingleplayerLauncher
         private const string spitfireGameUPKDecompressedPath = ".//UE Extractor//unpacked//SpitfireGame.upk";
 
         private const string loggingArgument = " -log -ABSLOG=log.txt";
-        private const string defaultArguments = " -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
 
-        private const string defaultSelectedHero = "Maximilian"; // Default selected Hero "Maximillian" Main Hero of the OrcsMustDie! Saga
-        private const string defaultSelectedSkin = "Default";  // Default selected skin
-        private const string defaultSelectedDye = "Normal";  // Default selected Normal dye
-
-        private const string defaultSelectedMap = "The Baths"; // Default Selected "The Baths" because it's well optimised and Iconic Level 
-        private const string defaultSelectedGameMode = "Survival"; // Default selected Game Mode "Survival"
-
-        private const bool defaultCustomIniSetting = true;
 
         private const string valueTrue = "TRUE";
         private const string RCharacterDataSection = "RCharacterData_0 RCharacterData";
@@ -47,16 +40,6 @@ namespace SingleplayerLauncher
         private const string characterDataKeyDye = "HeroicDyeIdx";
         private const string characterDataKeyBonusStartingCoin = "BonusStartingCoin";
 
-        private readonly Dictionary<string, string> defaultCharacterDataSection = new Dictionary<string, string>
-        {
-            { "PlayerName",         "Savitar"                           },
-            { "GuildTag",           "~(^-^)~"                           },
-            { "GuildName",          "ComboCalypse"                      },
-            { "PawnTemplateName",   "PawnWeapon_Warmage.Pawn_Warmage"   },
-            { "Team" ,              "1"                                 },
-            { "HeroicDyeIdx",       "Normal"                            },
-            { "GodMode",            "FALSE"                             }
-        };
 
         private const string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";
 
@@ -69,17 +52,9 @@ namespace SingleplayerLauncher
         private const string gameModeEndless = "Endless";
         private const string noExtraDifficulty = "No";
 
-        private readonly Dictionary<string, string> defaultGameReplicationInfoSection = new Dictionary<string, string>
-        {
-            { "DefaultOfflineDifficulty",                       "1"         },
-            { "PlayerCountOverride",                            "1"         },
-            { "DefaultOfflineSuggestedLevel",                   "1"         },
-            { "DefaultOfflinePlayerLevel",                      "1"         },
-            { "DefaultOfflinePauseTimerDurationInSeconds",      "999999"    }   // Can be applied only once
-        };
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
-        
+
 
         private readonly Hero hero = Hero.Instance;
 
@@ -89,7 +64,7 @@ namespace SingleplayerLauncher
             {
                 FirstRunInitialization();
             }
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void FirstRunInitialization()
@@ -98,23 +73,23 @@ namespace SingleplayerLauncher
             CreateBackup(characterDataIniFileName, characterDataIniPath);
 
             ConfigFile characterDataConfigFile = new ConfigFile(characterDataIniPath, true);
-            var characterData = characterDataConfigFile.data;
+            IniData characterData = characterDataConfigFile.data;
 
             characterData.Sections.AddSection(RCharacterDataSection);
 
-            foreach (KeyValuePair<string, string> entry in defaultCharacterDataSection)
+            foreach (KeyValuePair<string, string> entry in DefaultValues.CharacterDataSection)
                 characterData[RCharacterDataSection].AddKey(entry.Key, entry.Value);
 
             characterDataConfigFile.Write(characterData);
 
             // DefaultGame.ini Initialization
             CreateBackup(defaultGameIniFileName, defaultGameIniPath);
-            
-            ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
-            var defaultGameData = defaultGame.data;
 
-            foreach (KeyValuePair<string, string> entry in defaultGameReplicationInfoSection)
-                defaultGameData[RGameReplicationInfoSection][entry.Key] =  entry.Value;
+            ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
+            IniData defaultGameData = defaultGame.data;
+
+            foreach (KeyValuePair<string, string> entry in DefaultValues.GameReplicationInfoSection)
+                defaultGameData[RGameReplicationInfoSection][entry.Key] = entry.Value;
 
             defaultGameData.Sections.RemoveSection(RDisplayColorInfoSection);
 
@@ -130,10 +105,12 @@ namespace SingleplayerLauncher
                     File.Copy(spitfireGameUPKPath, spitfireGameUPKDecompressPath);
 
                 // Decompress
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.FileName = Path.GetFileName(decompressorPath);
-                psi.WorkingDirectory = Path.GetDirectoryName(decompressorPath);
-                psi.Arguments = "\"" + Path.GetFileName(spitfireGameUPKDecompressPath) + "\""; 
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = Path.GetFileName(decompressorPath),
+                    WorkingDirectory = Path.GetDirectoryName(decompressorPath),
+                    Arguments = "\"" + Path.GetFileName(spitfireGameUPKDecompressPath) + "\""
+                };
                 Process process = Process.Start(psi);
                 process.WaitForExit();
                 File.Delete(spitfireGameUPKPath);
@@ -158,31 +135,31 @@ namespace SingleplayerLauncher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            foreach (string m in Resources.maps.Keys)
+            foreach (string m in GameInfo.Maps.Keys)
                 comBoxMap.Items.Add(m);
 
-            foreach (string h in Resources.heroes.Keys)
+            foreach (string h in GameInfo.Heroes.Keys)
                 comBoxHero.Items.Add(h);
 
-            foreach (string d in Resources.dyes.Keys)
+            foreach (string d in IniConfig.Dyes.Keys)
                 comBoxDye.Items.Add(d);
 
-            foreach (string gm in Resources.gameModes.Keys)
+            foreach (string gm in IniConfig.GameModes.Keys)
                 comBoxGameMode.Items.Add(gm);
 
-            foreach (string s in Resources.skins[defaultSelectedHero].Keys)
+            foreach (string s in GameInfo.Heroes[DefaultValues.SelectedHero].Skins.Keys)
                 comBoxSkin.Items.Add(s);
 
-            comBoxHero.SelectedItem = defaultSelectedHero;
-            comBoxSkin.SelectedItem = defaultSelectedSkin;
-            comBoxDye.SelectedItem = defaultSelectedDye;
+            comBoxHero.SelectedItem = DefaultValues.SelectedHero;
+            comBoxSkin.SelectedItem = DefaultValues.SelectedSkin;
+            comBoxDye.SelectedItem = DefaultValues.SelectedDye;
 
-            comBoxMap.SelectedItem = defaultSelectedMap;
-            comBoxGameMode.SelectedItem = defaultSelectedGameMode;
+            comBoxMap.SelectedItem = DefaultValues.SelectedMap;
+            comBoxGameMode.SelectedItem = DefaultValues.SelectedGameMode;
 
-            chkCustomIni.Checked = defaultCustomIniSetting;
+            chkCustomIni.Checked = DefaultValues.CustomIniSetting;
 
-            hero.Loadout = Resources.defaultLoadout;
+            hero.Loadout = DefaultValues.Loadout;
             if (Settings.Instance.ContainsKey("hero"))
                 comBoxHero.SelectedItem = Settings.Instance["hero"];
             if (Settings.Instance.ContainsKey("skin"))
@@ -203,7 +180,7 @@ namespace SingleplayerLauncher
                 chkLog.Checked = (bool)Settings.Instance["log"];
             if (Settings.Instance.ContainsKey("loadout"))
             {
-                var savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
+                string[] savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
                 hero.Loadout = savedLoadOut;
             }
         }
@@ -218,24 +195,25 @@ namespace SingleplayerLauncher
                 UpdateCharacterDataIni();
                 UpdateDefaultGameIni();
             }
+
             if (comBoxSkin.SelectedItem != null)
-            {
                 hero.Skin = comBoxSkin.SelectedItem.ToString();
-            }
-            
+
+
+            if (comBoxHero.SelectedItem != null)
+                hero.Name = comBoxHero.SelectedItem.ToString();
+
             MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
-
             ApplyMods(spitfireGameUPKFile);
-
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
+
             SaveSettings();
             StartGame();
         }
         public void SaveSettings()
         {
-
             Settings.Instance["hero"] = comBoxHero.SelectedItem;
             Settings.Instance["skin"] = comBoxSkin.SelectedItem;
             Settings.Instance["dye"] = comBoxDye.SelectedItem;
@@ -258,7 +236,7 @@ namespace SingleplayerLauncher
             {
                 ntp.UninstallMod();
             }
-            
+
             TrapsInTraps tit = new TrapsInTraps(spitfireGameUPKFile);
             if (Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"])
             {
@@ -282,10 +260,10 @@ namespace SingleplayerLauncher
         private void UpdateCharacterDataIni()
         {
             ConfigFile characterData = new ConfigFile(characterDataIniPath);
-            var data = characterData.data;
+            IniData data = characterData.data;
 
-            data[RCharacterDataSection][characterDataKeyHero] = Resources.heroes[comBoxHero.Text];
-            data[RCharacterDataSection][characterDataKeyDye] = Resources.dyes[comBoxDye.Text];
+            data[RCharacterDataSection][characterDataKeyHero] = IniConfig.Heroes[comBoxHero.Text];
+            data[RCharacterDataSection][characterDataKeyDye] = IniConfig.Dyes[comBoxDye.Text];
 
             if (Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"])
                 data[RCharacterDataSection][characterDataKeyGodMode] = valueTrue;
@@ -312,12 +290,12 @@ namespace SingleplayerLauncher
             else
             {
                 int baseStartingCoins = 9000;
-                if (Resources.startingCoin6000Maps.Contains(mapName))
+                if (GameInfo.startingCoin6000Maps.Contains(mapName))
                 {
                     baseStartingCoins = 6000;
                 }
 
-                double startingCoinsMultiplier = (double) startingCoin / baseStartingCoins;
+                double startingCoinsMultiplier = (double)startingCoin / baseStartingCoins;
                 // it's a multiplier, so it needs an offset of -1
                 startingCoinsMultiplier--;
 
@@ -329,20 +307,17 @@ namespace SingleplayerLauncher
         private void UpdateDefaultGameIni()
         {
             ConfigFile defaultGame = new ConfigFile(defaultGameIniPath);
-            var data = defaultGame.data;
+            IniData data = defaultGame.data;
 
             string selectedGameMode = comBoxGameMode.SelectedItem.ToString();
             string selectedExtraDifficulty = comBoxExtraDifficulty.SelectedItem.ToString();
 
-            foreach (KeyValuePair<string, string> entry in defaultGameReplicationInfoSection) // TODO improve default/set handling to prevent rewriting same key
+            foreach (KeyValuePair<string, string> entry in Resources.DefaultValues.GameReplicationInfoSection) // TODO improve default/set handling to prevent rewriting same key
                 data[RGameReplicationInfoSection][entry.Key] = entry.Value;
 
-            data[RGameReplicationInfoSection][GameReplicationInfoKeyGameMode] = Resources.gameModes[selectedGameMode];
+            data[RGameReplicationInfoSection][GameReplicationInfoKeyGameMode] = IniConfig.GameModes[selectedGameMode];
 
-            bool extraDifficulty = false;
-            if (!selectedExtraDifficulty.Equals(noExtraDifficulty))
-                extraDifficulty = true;
-
+            bool extraDifficulty = !selectedExtraDifficulty.Equals(noExtraDifficulty);
 
             if (selectedGameMode.Equals(gameModeSurvival))
             {
@@ -350,21 +325,21 @@ namespace SingleplayerLauncher
 
                 if (extraDifficulty)
                 {
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][0].ToString();
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][1].ToString();
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = IniConfig.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][1].ToString();
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = IniConfig.survivalExtraDifficulties[selectedDifficulty][selectedExtraDifficulty][0].ToString();
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = "3";
                 }
                 else
                 {
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.survivalDifficulties[selectedDifficulty];
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = Resources.survivalDifficulties[selectedDifficulty];
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = IniConfig.survivalDifficulties[selectedDifficulty];
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = IniConfig.survivalDifficulties[selectedDifficulty];
                 }
-            }            
+            }
             else if (selectedGameMode.Equals(gameModeEndless))
             {
                 if (extraDifficulty)
                 {
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = Resources.endlessDifficulties[selectedExtraDifficulty];
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = IniConfig.endlessDifficulties[selectedExtraDifficulty];
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = "3";
                 }
             }
@@ -376,8 +351,8 @@ namespace SingleplayerLauncher
         {
             string arguments = "";
 
-            string map = Resources.maps[comBoxMap.Text];
-            string defaultArgs = defaultArguments;
+            string map = IniConfig.Maps[comBoxMap.Text];
+            string defaultArgs = DefaultValues.ExeArguments;
 
             arguments += map;
             arguments += defaultArgs;
@@ -427,7 +402,7 @@ namespace SingleplayerLauncher
                 case gameModeEndless:
                     comBoxDifficulty.Enabled = false;
 
-                    foreach (string ed in Resources.endlessDifficulties.Keys)
+                    foreach (string ed in IniConfig.endlessDifficulties.Keys)
                         comBoxExtraDifficulty.Items.Add(ed);
 
                     break;
@@ -437,7 +412,7 @@ namespace SingleplayerLauncher
 
                     string selectedMap = comBoxMap.SelectedItem.ToString();
 
-                    foreach (string md in Resources.mapSurvivalDifficulties[selectedMap])
+                    foreach (string md in GameInfo.Maps[selectedMap].SurvivalDifficulties)
                         comBoxDifficulty.Items.Add(md);
 
                     comBoxDifficulty.SelectedIndex = 0;
@@ -465,11 +440,11 @@ namespace SingleplayerLauncher
                 comBoxExtraDifficulty.Enabled = true;
 
                 // Manual refresh of possible difficulties
-                var modeSelected = comBoxGameMode.SelectedItem;
+                object modeSelected = comBoxGameMode.SelectedItem;
                 comBoxGameMode.SelectedIndex = -1;
                 comBoxGameMode.SelectedItem = modeSelected;
 
-                if (Resources.startingCoin6000Maps.Contains(selectedMap))
+                if (GameInfo.startingCoin6000Maps.Contains(selectedMap))
                     Settings.Instance["StartingCoin"] = "6000";
                 else
                     Settings.Instance["StartingCoin"] = "9000";
@@ -486,7 +461,7 @@ namespace SingleplayerLauncher
 
             string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
 
-            foreach (string ef in Resources.survivalExtraDifficulties[selectedDifficulty].Keys)
+            foreach (string ef in IniConfig.survivalExtraDifficulties[selectedDifficulty].Keys)
             {
                 comBoxExtraDifficulty.Items.Add(ef);
             }
@@ -495,9 +470,16 @@ namespace SingleplayerLauncher
         // TODO to change when more heroes are playable
         private void comBoxHero_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comBoxHero.SelectedItem.Equals(defaultSelectedHero))
+            comBoxSkin.Items.Clear();
+            string selectedHero = comBoxHero.SelectedItem.ToString();
+            if (GameInfo.Heroes[selectedHero].Skins != null)
             {
                 comBoxSkin.Enabled = true;
+
+                foreach (string s in GameInfo.Heroes[selectedHero].Skins.Keys)
+                    comBoxSkin.Items.Add(s);
+
+                comBoxSkin.SelectedItem = DefaultValues.SelectedSkin;
             }
             else
             {
@@ -520,11 +502,6 @@ namespace SingleplayerLauncher
             ModLoaderForm mlf = new ModLoaderForm();
             mlf.Show();
         }
-
-        private void ChkLog_CheckedChanged(object sender, EventArgs e)
-        {
-        }
     }
 }
 
-    

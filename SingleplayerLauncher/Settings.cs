@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 namespace SingleplayerLauncher
 {
-    class Settings
+    internal class Settings
     {
         private static readonly string SettingsFile = "settings.txt";
         public static Dictionary<string, object> Instance = new Dictionary<string, object>();
@@ -15,7 +15,7 @@ namespace SingleplayerLauncher
             {
                 Load();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }

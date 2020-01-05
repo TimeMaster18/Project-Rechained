@@ -173,7 +173,6 @@
             this.chkLog.TabIndex = 6;
             this.chkLog.Text = "Log";
             this.chkLog.UseVisualStyleBackColor = true;
-            this.chkLog.CheckedChanged += new System.EventHandler(this.ChkLog_CheckedChanged);
             // 
             // btnLoadoutEditor
             // 
