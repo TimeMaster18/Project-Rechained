@@ -69,6 +69,66 @@ namespace SingleplayerLauncher.Resources
 
         public static Dictionary<string, Hero> Heroes = new Dictionary<string, Hero>
         {
+            { "Bionka", new Hero( "Bionka", new Dictionary<string, Skin> {
+                                                        { "Default", new Skin("Default", new byte[] { 0x54, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Lizard Queen", new Skin("Lizard Queen", new byte[] { 0x56, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Fluffalump", new Skin("Fluffalump", new byte[] { 0x58, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Bionka Bunny", new Skin("Bionka Bunny", new byte[] { 0x5A, 0xDF, 0x00, 0x00 } ) }
+                                                     })
+            },
+            { "Blackpaw", new Hero("Blackpaw", null) },
+            { "Bloodspike", new Hero("Bloodspike", null) },
+            { "Brass", new Hero("Brass", null) },
+            { "Cygnus", new Hero("Cygnus", null) },
+            { "Deadeye", new Hero("Deadeye", null) },
+            { "Dobbin", new Hero("Dobbin", null) },
+            { "Gabriella", new Hero( "Gabriella", new Dictionary<string, Skin> {
+                                                        { "Violent Vintage", new Skin("Violent Vintage", new byte[] { 0x02, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x04, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Blood Queen", new Skin("Blood Queen", new byte[] { 0x06, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Default", new Skin("Default", new byte[] { 0x08, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Frightfully Delightful", new Skin("Frightfully Delightful", new byte[] { 0x0A, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Default (Red)", new Skin("Default (Red)", new byte[] { 0x0C, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Life In Plastic", new Skin("Life In Plastic", new byte[] { 0x0E, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Archmage of the Order", new Skin("Archmage of the Order", new byte[] { 0x10, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Mistress of Illusion", new Skin("Mistress of Illusion", new byte[] { 0x12, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Promising Prodigy", new Skin("Promising Prodigy", new byte[] { 0x14, 0xE0, 0x00, 0x00 } ) },
+                                                        { "I Dream of Gabby", new Skin("I Dream of Gabby", new byte[] { 0x16, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Miracle Worker", new Skin("Miracle Worker", new byte[] { 0x18, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Winter Witch", new Skin("Winter Witch", new byte[] { 0x1A, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Skull Ninja", new Skin("Skull Ninja", new byte[] { 0x1C, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Evil Ways", new Skin("Evil Ways", new byte[] { 0x1E, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Dragon Charmer", new Skin("Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } ) }
+                                                    })
+            },
+            { "Hogarth", new Hero( "Hogarth", new Dictionary<string, Skin> {
+                                                        { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x8C, 0xDF, 0x00, 0x00 } ) },
+                                                        { "God of Plunder", new Skin("God of Plunder", new byte[] { 0x8E, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Default", new Skin("Default", new byte[] { 0x90, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Lumbering Jack", new Skin("Lumbering Jack", new byte[] { 0x92, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Default (with some gold)", new Skin("Default (with some gold)", new byte[] { 0x94, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Ice Armor", new Skin("Ice Armor", new byte[] { 0x96, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Imperial Golden Warrior", new Skin("Imperial Golden Warrior", new byte[] { 0x98, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Beached Bod", new Skin("Beached Bod", new byte[] { 0x9A, 0xDF, 0x00, 0x00 } ) },
+                                                        //{ "*crashed*", new Skin("*crashed*", new byte[] { 0x9C, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Black Thane", new Skin("Black Thane", new byte[] { 0x9E, 0xDF, 0x00, 0x00 } ) },
+                                                        { "The Schling", new Skin("The Schling", new byte[] { 0xA0, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Dragon Ward", new Skin("Dragon Ward", new byte[] { 0xA2, 0xDF, 0x00, 0x00 } ) }
+                                                    })
+            },
+            { "Ivy", new Hero( "Ivy", new Dictionary<string, Skin> {
+                                                        { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0xDA, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Valkyrie", new Skin("Valkyrie", new byte[] { 0xDC, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Default", new Skin("Default", new byte[] { 0xDE, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Flower Friend", new Skin("Flower Friend", new byte[] { 0xE0, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Default (with some gold)", new Skin("Default (with some gold)", new byte[] { 0xE2, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Imperial Ruby Archer", new Skin("Imperial Ruby Archer", new byte[] { 0xE4, 0xDF, 0x00, 0x00 } ) },
+                                                        //{ "*crashed*", new Skin("*crashed*", new byte[] { 0xE6, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Wicked Warden", new Skin("Wicked Warden", new byte[] { 0xE8, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Grovewatch", new Skin("Grovewatch", new byte[] { 0xEA, 0xDF, 0x00, 0x00 } ) },
+                                                        { "Dragon Tamer", new Skin("Dragon Tamer", new byte[] { 0xEC, 0xDF, 0x00, 0x00 } ) }
+                                                    })
+            },
             { "Maximilian", new Hero("Maximilian", new Dictionary<string, Skin> {
                                                         { "Lucky Tunic" , new Skin("Lucky Tunic" , new byte[] { 0x4A, 0xE0, 0x00, 0x00 } ) },
                                                         { "Enchanted Armor" , new Skin("Enchanted Armor" , new byte[] { 0x4C, 0xE0, 0x00, 0x00 } ) },
@@ -93,41 +153,8 @@ namespace SingleplayerLauncher.Resources
                                                         { "Blue Scarf (China Ad)" , new Skin("Blue Scarf (China Ad)" , new byte[] { 0x72, 0xE0, 0x00, 0x00 } ) }
                                                      })
             },
-            { "Bionka", new Hero( "Bionka", new Dictionary<string, Skin> {
-                                                        { "Default", new Skin("Default", new byte[] { 0x54, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Lizard Queen", new Skin("Lizard Queen", new byte[] { 0x56, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Fluffalump", new Skin("Fluffalump", new byte[] { 0x58, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Bionka Bunny", new Skin("Bionka Bunny", new byte[] { 0x5A, 0xDF, 0x00, 0x00 } ) }
-                                                     })
-            },
-            { "Hogarth", new Hero( "Hogarth", new Dictionary<string, Skin> {
-                                                        { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x8C, 0xDF, 0x00, 0x00 } ) },
-                                                        { "God of Plunder", new Skin("God of Plunder", new byte[] { 0x8E, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Default", new Skin("Default", new byte[] { 0x90, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Lumbering Jack", new Skin("Lumbering Jack", new byte[] { 0x92, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Default (with some gold)", new Skin("Default (with some gold)", new byte[] { 0x94, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Ice Armor", new Skin("Ice Armor", new byte[] { 0x96, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Imperial Golden Warrior", new Skin("Imperial Golden Warrior", new byte[] { 0x98, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Beached Bod", new Skin("Beached Bod", new byte[] { 0x9A, 0xDF, 0x00, 0x00 } ) },
-                                                        { "*crashed*", new Skin("*crashed*", new byte[] { 0x9C, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Black Thane", new Skin("Black Thane", new byte[] { 0x9E, 0xDF, 0x00, 0x00 } ) },
-                                                        { "The Schling", new Skin("The Schling", new byte[] { 0xA0, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Dragon Ward", new Skin("Dragon Ward", new byte[] { 0xA2, 0xDF, 0x00, 0x00 } ) }
-                                                    })
-            },
-            { "Ivy", new Hero( "Ivy", new Dictionary<string, Skin> {
-                                                        { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0xDA, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Valkyrie", new Skin("Valkyrie", new byte[] { 0xDC, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Default", new Skin("Default", new byte[] { 0xDE, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Flower Friend", new Skin("Flower Friend", new byte[] { 0xE0, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Default (with some gold)", new Skin("Default (with some gold)", new byte[] { 0xE2, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Imperial Ruby Archer", new Skin("Imperial Ruby Archer", new byte[] { 0xE4, 0xDF, 0x00, 0x00 } ) },
-                                                        { "*crashed*", new Skin("*crashed*", new byte[] { 0xE6, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Wicked Warden", new Skin("Wicked Warden", new byte[] { 0xE8, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Grovewatch", new Skin("Grovewatch", new byte[] { 0xEA, 0xDF, 0x00, 0x00 } ) },
-                                                        { "Dragon Tamer", new Skin("Dragon Tamer", new byte[] { 0xEC, 0xDF, 0x00, 0x00 } ) }
-                                                    })
-            },
+            { "Midnight", new Hero("Midnight", null) },
+            { "Oziel", new Hero("Oziel", null) },
             { "Smolder", new Hero( "Smolder", new Dictionary<string, Skin> {
                                                         { "Default", new Skin("Default", new byte[] { 0xF2, 0xDF, 0x00, 0x00 } ) },
                                                         { "Helter Swelter", new Skin("Helter Swelter", new byte[] { 0xF4, 0xDF, 0x00, 0x00 } ) },
@@ -139,25 +166,11 @@ namespace SingleplayerLauncher.Resources
                                                         { "Wu Xing Dragon Mage", new Skin("Wu Xing Dragon Mage", new byte[] { 0x00, 0xE0, 0x00, 0x00 } ) }
                                                     })
             },
-            { "Gabriella", new Hero( "Gabriella", new Dictionary<string, Skin> {
-                                                        { "Violent Vintage", new Skin("Violent Vintage", new byte[] { 0x02, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x04, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Blood Queen", new Skin("Blood Queen", new byte[] { 0x06, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Default", new Skin("Default", new byte[] { 0x08, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Frightfully Delightful", new Skin("Frightfully Delightful", new byte[] { 0x0A, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Default (Red)", new Skin("Default (Red)", new byte[] { 0x0C, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Life In Plastic", new Skin("Life In Plastic", new byte[] { 0x0E, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Archmage of the Order", new Skin("Archmage of the Order", new byte[] { 0x10, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Mistress of Illusion", new Skin("Mistress of Illusion", new byte[] { 0x12, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Promising Prodigy", new Skin("Promising Prodigy", new byte[] { 0x14, 0xE0, 0x00, 0x00 } ) },
-                                                        { "I Dream of Gabby", new Skin("I Dream of Gabby", new byte[] { 0x16, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Miracle Worker", new Skin("Miracle Worker", new byte[] { 0x18, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Winter Witch", new Skin("Winter Witch", new byte[] { 0x1A, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Skull Ninja", new Skin("Skull Ninja", new byte[] { 0x1C, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Evil Ways", new Skin("Evil Ways", new byte[] { 0x1E, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Dragon Charmer", new Skin("Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } ) }
-                                                    })
-            }
+            { "Stinkeye", new Hero("Stinkeye", null) },
+            { "Temper", new Hero("Temper", null) },
+            { "Tundra", new Hero("Tundra", null) },
+            { "Yi-Lin", new Hero("Yi-Lin", null) },
+            { "Zoey", new Hero("Zoey", null) }
         };
 
         // Maps { Name, umap }
