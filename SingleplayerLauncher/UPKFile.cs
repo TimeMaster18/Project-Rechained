@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SingleplayerLauncher
 {
@@ -67,7 +69,7 @@ namespace SingleplayerLauncher
             File.WriteAllBytes(filePath, Bytes);
         }
 
-        public byte getByte(int index)
+        public byte GetByte(int index)
         {
             return Bytes[index];
         }
@@ -282,6 +284,19 @@ namespace SingleplayerLauncher
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// For Debugging purposes.
+        /// Prints in a Mesage Box the indicated range, from stated index. 
+        /// </summary>
+        /// <param name="offset"> Offset index of where to start the print.</param>
+        /// <param name="size"> Number of bytes to print from the start index.</param>
+        internal void PrintBytes(int offset, int size)
+        {
+            byte[] arrToPrint = new byte[size];
+            Array.Copy(Bytes, offset, arrToPrint, 0, size);
+            MessageBox.Show(BitConverter.ToString(arrToPrint));
         }
     }
 }

@@ -21,37 +21,55 @@ namespace SingleplayerLauncher
         public string Skin { get; set; }
         public string[] Loadout { get; set; } // Could be it's own class if we get Guardians and Traits to work.
         public string[] Guardians { get; set; }
-        public string Name = "Maximilian";
+        public string Name { get; set; }
 
         private const int LoadoutSlotByteSize = 4;
         private const int LoadoutSlotsNumber = 9;
-        // Where the actual array of the loadout starts is + 12 bytes from the loadout header.
-        // Array Size in bytes + Array (start?) index + Array number of elements (4 + 4 + 4 )
-        private const int LoadoutOffsetFromHeader = 12;
+        // Where the actual array of the loadout starts is + 28 bytes from the start of the loadout header.
+        // Header + Field Type + Field Size in bytes + Array (start?) index + Array number of elements (8 + 8 + 4 + 4 + 4)
+        private const int LoadoutArraySizeOffset = 16;
+        private const int LoadoutArrayElementCountOffset = 24;
+        private const int LoadoutSlotsOffset = 28;
+        private const int LoadoutSectionLength = LoadoutSlotsOffset + 4 * LoadoutSlotsNumber;
 
         private const int GuardianSlotsNumber = 2;
-        // Where the actual array of the guardians starts is + 12 bytes from the loadout header.
-        // Array Size in bytes + Array (start?) index + Array number of elements (4 + 4 + 4 )
-        private const int GuardiansOffsetFromHeader = 12;
+        // Where the actual array of the guardians starts is + 28 bytes from the start of the guardians header.
+        // Header + Field type + Field Size in bytes + Array (start?) index + Array number of elements (8 + 8 + 4 + 4 + 4)
+        private const int GuardiansArraySizeOffset = 16;
+        private const int GuardiansArrayElementCountOffset = 24;
+        private const int GuardiansOffset = 28;
 
-        
-        private static readonly byte[] StartHeaderAfterGuardiansMaximilian = SpitfireGameUPK.HeroObjectWeaverTreeDefaultHeader;
+
+        // Header + Field type + Size in bytes + (start?) index  (8 + 8 + 4 + 4)
+        private const int SkinOffsetFromHeader = 24;
+
+        private const string nameMaximilian = "Maximilian";
+
+
+        private static readonly byte[] StartHeaderAfterGuardians = SpitfireGameUPK.HeroObjectWeaverTreeDefaultHeader;
 
         public void ApplyLoadoutChanges()
         {
-            RemoveByteSection(SpitfireGameUPK.HeroObjectDefaultWaveClassesHeader, SpitfireGameUPK.HeroObjectDefaultWaveClassesSectionLength);
-            RemoveByteSection(SpitfireGameUPK.HeroObjectHeroDamageTypeHeader, SpitfireGameUPK.HeroObjectHeroDamageTypeSectionLength);
-            RemoveByteSection(SpitfireGameUPK.HeroObjectStrategicRoleHeader, SpitfireGameUPK.HeroObjectStrategicRoleSectionLength);
             RemoveByteSection(SpitfireGameUPK.HeroObjectDefaultRoleClassHeader, SpitfireGameUPK.HeroObjectDefaultRoleClassSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectStrategicRoleHeader, SpitfireGameUPK.HeroObjectStrategicRoleSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectmAIResponsiveBehaviorsHeader, SpitfireGameUPK.HeroObjectmAIResponsiveBehaviorsSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectActionManagerHeader, SpitfireGameUPK.HeroObjectActionManagerSectionLength);
+            RemoveByteSection(SpitfireGameUPK.HeroObjectNetRelComponentHeader, SpitfireGameUPK.HeroObjectNetRelComponentSectionLength);
+
+            if (!Name.Equals(nameMaximilian)) // Maximilian has already part of the bytes we have to insert for the rest. Extra bytes would need to code the size of extra space going past 255, using more than 1 byte for size of guardians.
+            {
+                RemoveByteSection(SpitfireGameUPK.HeroObjectBeginStealthClientSegmentHeader, SpitfireGameUPK.HeroObjectBeginStealthClientSegmentSectionLength);
+                RemoveByteSection(SpitfireGameUPK.HeroObjectEndStealthClientSegmentHeader, SpitfireGameUPK.HeroObjectEndStealthClientSegmentSectionLength);
+                RemoveByteSection(SpitfireGameUPK.HeroObjectTeamStealthSegmentHeader, SpitfireGameUPK.HeroObjectTeamStealthSegmentSectionLength);
+            }
 
             ApplyTrapsGear();
             //ApplyTraits();
             ApplySkin();
 
-            // FillRemovedBytes should be run after all the removing
             if (UPKFile.nBytesRemoved > 0)
             {
-                int positionToFillRemovedBytesWithZeros = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximilian, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+                int positionToFillRemovedBytesWithZeros = UPKFile.FindBytesKMP(StartHeaderAfterGuardians, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
                 FillRemovedBytes(positionToFillRemovedBytesWithZeros);
             }
 
@@ -60,26 +78,42 @@ namespace SingleplayerLauncher
 
         private void ApplyTrapsGear()
         {
-            if (Loadout == null || Loadout.Length != 9)
+            if (Loadout == null || Loadout.Length != LoadoutSlotsNumber)
                 throw new Exception("9 traps/gear must be used");
 
-            int startIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectLoadoutHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectLoadoutHeader.Length;
-            int arrayElementCountIndex = startIndex + 8;
-            int arraySizeIndex = startIndex;
+            int startIndexLoadout = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectLoadoutHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size - UPKFile.nBytesRemoved);
 
-            // There aren't 9 slots set up so we create them and insert necessary bytes
-            if (UPKFile.getByte(arrayElementCountIndex) != 9)
+            if (startIndexLoadout == -1)
             {
-                UPKFile.OverrideSingleByte((LoadoutSlotsNumber + 1) * LoadoutSlotByteSize, arraySizeIndex); // Array Size
+                // Get position after Archetype and Add Header and Field Type
+                startIndexLoadout = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectDefaultInventoryArchetypesHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectDefaultInventoryArchetypesSectionLength;
+
+                UPKFile.InsertZeroedBytes(startIndexLoadout, LoadoutSectionLength);
+
+                UPKFile.OverrideBytes(SpitfireGameUPK.HeroObjectLoadoutHeader, startIndexLoadout);
+                UPKFile.OverrideBytes(SpitfireGameUPK.HeroObjectLoadoutFieldType, startIndexLoadout + SpitfireGameUPK.HeroObjectLoadoutHeader.Length);
+            }
+
+            int arraySizeIndex = startIndexLoadout + LoadoutArraySizeOffset;
+            int arrayElementCountIndex = startIndexLoadout + LoadoutArrayElementCountOffset;
+            int loadoutSlotsIndex = startIndexLoadout + LoadoutSlotsOffset;
+
+            // IF there aren't 9 slots set up we create them and insert necessary bytes
+            int loadoutSlotsUsed = UPKFile.GetByte(arrayElementCountIndex);
+            if (loadoutSlotsUsed != LoadoutSlotsNumber)
+            {
+                UPKFile.OverrideSingleByte((LoadoutSlotsNumber + 1) * LoadoutSlotByteSize, arraySizeIndex); // Array Size (+1 to count the size field itself too)
                 UPKFile.OverrideSingleByte(LoadoutSlotsNumber, arrayElementCountIndex); // Array Element Count ( the 4 bytes inbetween are "index 0")
 
-                // Add new slots (2 slots)
-                UPKFile.InsertZeroedBytes(startIndex + LoadoutOffsetFromHeader + 8, 2 * LoadoutSlotByteSize);
+                // Add new slots (as many as missing)
+                int indexAfterUsedSlots = loadoutSlotsIndex + (loadoutSlotsUsed * LoadoutSlotByteSize);
+
+                UPKFile.InsertZeroedBytes(indexAfterUsedSlots, (LoadoutSlotsNumber - loadoutSlotsUsed) * LoadoutSlotByteSize);
             }
 
             // Convert and apply Loadout
             byte[] loadoutBytes = ConvertLoadoutToBytes(Loadout);
-            UPKFile.OverrideBytes(loadoutBytes, startIndex + LoadoutOffsetFromHeader);
+            UPKFile.OverrideBytes(loadoutBytes, loadoutSlotsIndex);
         }
 
         private void ApplyGuardians()
@@ -87,35 +121,49 @@ namespace SingleplayerLauncher
             if (Guardians == null || Guardians.Length != 2)
                 throw new Exception("2 guardians must be used");
 
-            int startIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectGuardiansHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectGuardiansHeader.Length;
-            int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterGuardiansMaximilian, startIndex + GuardiansOffsetFromHeader, SpitfireGameUPK.HeroObjects[Name].Size);
-            int totalSize = endIndex - startIndex; // Everything after header
+            int startIndexGuardians = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectGuardiansHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+
+            if (startIndexGuardians == -1)
+            {
+                // Get position after Loadout and Add Header and Field Type
+                startIndexGuardians = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectLoadoutHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + LoadoutSectionLength;
+
+                UPKFile.OverrideBytes(SpitfireGameUPK.HeroObjectGuardiansHeader, startIndexGuardians);
+                UPKFile.OverrideBytes(SpitfireGameUPK.HeroObjectGuardiansFieldType, startIndexGuardians + SpitfireGameUPK.HeroObjectGuardiansHeader.Length);
+            }
+
+            int endIndex = UPKFile.FindBytesKMP(StartHeaderAfterGuardians, startIndexGuardians + GuardiansOffset, SpitfireGameUPK.HeroObjects[Name].Size);
+            int totalSize = endIndex - (startIndexGuardians + GuardiansArrayElementCountOffset); // Everything after header
+
+            int guardiansArraySizeIndex = startIndexGuardians + GuardiansArraySizeOffset;
+            int guardiansArrayElementCountIndex = startIndexGuardians + GuardiansArrayElementCountOffset;
+            int guardiansIndex = startIndexGuardians + GuardiansOffset;
 
             byte[] firstGuardian = Resources.Loadout.Guardians[Guardians[0]].First; // Extra space after each guardian is already included
             byte[] secondGuardian = Resources.Loadout.Guardians[Guardians[1]].First;
 
             byte[] sizeFirstGuardian = new byte[] { Resources.Loadout.Guardians[Guardians[0]].Second, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
 
-            int secondGuardianOffset = firstGuardian.Length + sizeFirstGuardian.Length + GuardiansOffsetFromHeader + 4; // 4 from second guardian size itself
+            int secondGuardianOffset = firstGuardian.Length + sizeFirstGuardian.Length + GuardiansOffset + 4; // 4 from second guardian size itself
             byte[] sizeSecondGuardian = new byte[] { (byte)(totalSize - secondGuardianOffset), 0x00, 0x00, 0x00 }; // Counting extra space
 
             int emptySpaceOffset = secondGuardianOffset + Resources.Loadout.Guardians[Guardians[1]].Second;
-            byte[] emptySpace = Enumerable.Repeat((byte)0x00, totalSize - emptySpaceOffset).ToArray();
 
+            byte[] emptySpace = Enumerable.Repeat((byte)0x00, totalSize - emptySpaceOffset).ToArray();
             // Combining arrays to SizeGuardian1 + Guardian1 + SizeGuardian2 + Guardian2 + emptySpace
             byte[] guardiansBytes = sizeFirstGuardian.Concat(firstGuardian).Concat(sizeSecondGuardian).Concat(secondGuardian).Concat(emptySpace).ToArray();
 
-            UPKFile.OverrideBytes(guardiansBytes, startIndex + GuardiansOffsetFromHeader);
+            UPKFile.OverrideBytes(guardiansBytes, guardiansIndex);
 
-            UPKFile.OverrideSingleByte((byte)(totalSize - 8), startIndex); // Size (counts array element count and both guardians and their sizes but not itself or index so -8)
+            UPKFile.OverrideSingleByte((byte)totalSize, guardiansArraySizeIndex); // Size (counts array element count and both guardians and their sizes but not itself or index so -8)
             //TODO check single byte and avoid override?
-            UPKFile.OverrideSingleByte(GuardianSlotsNumber, startIndex + 8); // Array Element Count 
+            UPKFile.OverrideSingleByte(GuardianSlotsNumber, guardiansArrayElementCountIndex); // Array Element Count 
         }
 
         private void ApplySkin()
         {
-            int skinIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectSkinPattern, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) + SpitfireGameUPK.HeroObjectSkinPattern.Length;
-            UPKFile.OverrideBytes(GameInfo.Heroes[Name].GetSkinHex(Skin), skinIndex);
+            int startIndexSkin = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectCurrentSkinClassHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+            UPKFile.OverrideBytes(GameInfo.Heroes[Name].GetSkinHex(Skin), startIndexSkin + SkinOffsetFromHeader);
         }
 
         private void RemoveByteSection(byte[] sectionHeaderByteArray, int length)

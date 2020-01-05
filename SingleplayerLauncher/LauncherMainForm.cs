@@ -147,7 +147,6 @@ namespace SingleplayerLauncher
             foreach (string gm in IniConfig.GameModes.Keys)
                 comBoxGameMode.Items.Add(gm);
 
-            // TODO use actual selected hero
             foreach (string s in GameInfo.Heroes[DefaultValues.SelectedHero].Skins.Keys)
                 comBoxSkin.Items.Add(s);
 
@@ -199,7 +198,11 @@ namespace SingleplayerLauncher
 
             if (comBoxSkin.SelectedItem != null)
                 hero.Skin = comBoxSkin.SelectedItem.ToString();
-            
+
+
+            if (comBoxHero.SelectedItem != null)
+                hero.Name = comBoxHero.SelectedItem.ToString();
+
             MessageBox.Show("Saving your changes. Please wait.");
             hero.ApplyLoadoutChanges();
             ApplyMods(spitfireGameUPKFile);
@@ -467,9 +470,16 @@ namespace SingleplayerLauncher
         // TODO to change when more heroes are playable
         private void comBoxHero_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comBoxHero.SelectedItem.Equals(DefaultValues.SelectedHero))
+            comBoxSkin.Items.Clear();
+            string selectedHero = comBoxHero.SelectedItem.ToString();
+            if (GameInfo.Heroes[selectedHero].Skins != null)
             {
                 comBoxSkin.Enabled = true;
+
+                foreach (string s in GameInfo.Heroes[selectedHero].Skins.Keys)
+                    comBoxSkin.Items.Add(s);
+
+                comBoxSkin.SelectedItem = DefaultValues.SelectedSkin;
             }
             else
             {
