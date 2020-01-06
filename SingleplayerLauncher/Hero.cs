@@ -1,6 +1,7 @@
 ﻿using SingleplayerLauncher.Resources;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SingleplayerLauncher
 {
@@ -72,6 +73,51 @@ namespace SingleplayerLauncher
                 int positionToFillRemovedBytesWithZeros = UPKFile.FindBytesKMP(StartHeaderAfterGuardians, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
                 FillRemovedBytes(positionToFillRemovedBytesWithZeros);
             }
+
+
+            // TESTING WEIRD STUFF
+            int startIndex = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectDefaultInventoryArchetypesHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+            int insertIndex = startIndex + SpitfireGameUPK.HeroObjectDefaultInventoryArchetypesSectionLength;
+
+            int removeIndex = UPKFile.FindBytesKMP(StartHeaderAfterGuardians, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size) ;
+
+            byte[] archetypesExtraSlotsBytes = { 0xB5, 0x37, 0x02, 0x00, // Bionka
+                                                0xB6, 0x37, 0x02, 0x00, // Hogarth
+                                                0xB7, 0x37, 0x02, 0x00, // Ivy
+                                                0xB8, 0x37, 0x02, 0x00, // Smolder
+                                                0xB9, 0x37, 0x02, 0x00,  // Gabriella
+                                                0xB4, 0x37, 0x02, 0x00, // Bionka
+                                                0xB3, 0x37, 0x02, 0x00, // Bionka
+                                                0xBB, 0x37, 0x02, 0x00, // Bionka
+                                                0xBC, 0x37, 0x02, 0x00 // Bionka
+            };
+
+            int nArchetypes = (archetypesExtraSlotsBytes.Length / 4) + 1;
+            int sizeArchetypeSlot = 4;
+            int totalSizeArchetypesSlots = nArchetypes * sizeArchetypeSlot;
+
+            int curNumberArchetypes = UPKFile.GetByte(startIndex + 24);
+
+            MessageBox.Show(" " + curNumberArchetypes + " " + nArchetypes);
+            if (curNumberArchetypes < nArchetypes)
+            {
+                int extraArchetypesSize = (nArchetypes - curNumberArchetypes) * sizeArchetypeSlot;
+
+
+                MessageBox.Show(" " + insertIndex + " " + startIndex);
+                UPKFile.InsertZeroedBytes(insertIndex, extraArchetypesSize);
+                UPKFile.RemoveBytes(removeIndex - extraArchetypesSize, extraArchetypesSize);
+            }
+
+            UPKFile.OverrideBytes(archetypesExtraSlotsBytes, insertIndex);
+
+            UPKFile.OverrideSingleByte((byte)nArchetypes, startIndex + 24);
+            UPKFile.OverrideSingleByte((byte)(totalSizeArchetypesSlots + 4), startIndex + 16);
+
+            UPKFile.PrintBytes(SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+            // ---------------------
+
+
 
             ApplyGuardians(); // Should go after everything else since it's where we are inserting the extra bytes and needs to know the size
         }
