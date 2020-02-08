@@ -44,10 +44,12 @@ namespace SingleplayerLauncher.Resources
         {
             public string Name;
             public Dictionary<string, Skin> Skins;
-            public Hero(string name, Dictionary<string, Skin> skins)
+            public int BaseHealth;
+            public Hero(string name, Dictionary<string, Skin> skins, int baseHealth)
             {
                 Name = name;
                 Skins = skins;
+                BaseHealth = baseHealth;
             }
 
             public byte[] GetSkinHex(string skinName)
@@ -74,14 +76,15 @@ namespace SingleplayerLauncher.Resources
                                                         { "Lizard Queen", new Skin("Lizard Queen", new byte[] { 0x56, 0xDF, 0x00, 0x00 } ) },
                                                         { "Fluffalump", new Skin("Fluffalump", new byte[] { 0x58, 0xDF, 0x00, 0x00 } ) },
                                                         { "Bionka Bunny", new Skin("Bionka Bunny", new byte[] { 0x5A, 0xDF, 0x00, 0x00 } ) }
-                                                     })
+                                                     },
+                625)
             },
-            { "Blackpaw", new Hero("Blackpaw", null) },
-            { "Bloodspike", new Hero("Bloodspike", null) },
-            { "Brass", new Hero("Brass", null) },
-            { "Cygnus", new Hero("Cygnus", null) },
-            { "Deadeye", new Hero("Deadeye", null) },
-            { "Dobbin", new Hero("Dobbin", null) },
+            { "Blackpaw", new Hero("Blackpaw", null, 341) },
+            { "Bloodspike", new Hero("Bloodspike", null, 600) },
+            { "Brass", new Hero("Brass", null, 350) },
+            { "Cygnus", new Hero("Cygnus", null, 215) },
+            { "Deadeye", new Hero("Deadeye", null, 219) },
+            { "Dobbin", new Hero("Dobbin", null, 500) },
             { "Gabriella", new Hero( "Gabriella", new Dictionary<string, Skin> {
                                                         { "Violent Vintage", new Skin("Violent Vintage", new byte[] { 0x02, 0xE0, 0x00, 0x00 } ) },
                                                         { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x04, 0xE0, 0x00, 0x00 } ) },
@@ -99,7 +102,8 @@ namespace SingleplayerLauncher.Resources
                                                         { "Skull Ninja", new Skin("Skull Ninja", new byte[] { 0x1C, 0xE0, 0x00, 0x00 } ) },
                                                         { "Evil Ways", new Skin("Evil Ways", new byte[] { 0x1E, 0xE0, 0x00, 0x00 } ) },
                                                         { "Dragon Charmer", new Skin("Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } ) }
-                                                    })
+                                                    },
+                215)
             },
             { "Hogarth", new Hero( "Hogarth", new Dictionary<string, Skin> {
                                                         { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x8C, 0xDF, 0x00, 0x00 } ) },
@@ -114,7 +118,8 @@ namespace SingleplayerLauncher.Resources
                                                         { "Black Thane", new Skin("Black Thane", new byte[] { 0x9E, 0xDF, 0x00, 0x00 } ) },
                                                         { "The Schling", new Skin("The Schling", new byte[] { 0xA0, 0xDF, 0x00, 0x00 } ) },
                                                         { "Dragon Ward", new Skin("Dragon Ward", new byte[] { 0xA2, 0xDF, 0x00, 0x00 } ) }
-                                                    })
+                                                    },
+                950)
             },
             { "Ivy", new Hero( "Ivy", new Dictionary<string, Skin> {
                                                         { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0xDA, 0xDF, 0x00, 0x00 } ) },
@@ -127,7 +132,8 @@ namespace SingleplayerLauncher.Resources
                                                         { "Wicked Warden", new Skin("Wicked Warden", new byte[] { 0xE8, 0xDF, 0x00, 0x00 } ) },
                                                         { "Grovewatch", new Skin("Grovewatch", new byte[] { 0xEA, 0xDF, 0x00, 0x00 } ) },
                                                         { "Dragon Tamer", new Skin("Dragon Tamer", new byte[] { 0xEC, 0xDF, 0x00, 0x00 } ) }
-                                                    })
+                                                    },
+                162)
             },
             { "Maximilian", new Hero("Maximilian", new Dictionary<string, Skin> {
                                                         { "Lucky Tunic" , new Skin("Lucky Tunic" , new byte[] { 0x4A, 0xE0, 0x00, 0x00 } ) },
@@ -151,10 +157,11 @@ namespace SingleplayerLauncher.Resources
                                                         { "Red Scarf (China Ad)" , new Skin("Red Scarf (China Ad)" , new byte[] { 0x6E, 0xE0, 0x00, 0x00 } ) },
                                                         { "Yellow Scarf (China Ad)" , new Skin("Yellow Scarf (China Ad)" , new byte[] { 0x70, 0xE0, 0x00, 0x00 } ) },
                                                         { "Blue Scarf (China Ad)" , new Skin("Blue Scarf (China Ad)" , new byte[] { 0x72, 0xE0, 0x00, 0x00 } ) }
-                                                     })
+                                                     },
+                206)
             },
-            { "Midnight", new Hero("Midnight", null) },
-            { "Oziel", new Hero("Oziel", null) },
+            { "Midnight", new Hero("Midnight", null, 220) },
+            { "Oziel", new Hero("Oziel", null, 200) },
             { "Smolder", new Hero( "Smolder", new Dictionary<string, Skin> {
                                                         { "Default", new Skin("Default", new byte[] { 0xF2, 0xDF, 0x00, 0x00 } ) },
                                                         { "Helter Swelter", new Skin("Helter Swelter", new byte[] { 0xF4, 0xDF, 0x00, 0x00 } ) },
@@ -164,13 +171,14 @@ namespace SingleplayerLauncher.Resources
                                                         { "Fire-Alarm Femme", new Skin("Fire-Alarm Femme", new byte[] { 0xFC, 0xDF, 0x00, 0x00 } ) },
                                                         { "Firestarter", new Skin("Firestarter", new byte[] { 0xFE, 0xDF, 0x00, 0x00 } ) },
                                                         { "Wu Xing Dragon Mage", new Skin("Wu Xing Dragon Mage", new byte[] { 0x00, 0xE0, 0x00, 0x00 } ) }
-                                                    })
+                                                    },
+                313)
             },
-            { "Stinkeye", new Hero("Stinkeye", null) },
-            { "Temper", new Hero("Temper", null) },
-            { "Tundra", new Hero("Tundra", null) },
-            { "Yi-Lin", new Hero("Yi-Lin", null) },
-            { "Zoey", new Hero("Zoey", null) }
+            { "Stinkeye", new Hero("Stinkeye", null, 356) },
+            { "Temper", new Hero("Temper", null, 500) },
+            { "Tundra", new Hero("Tundra", null, 625) },
+            { "Yi-Lin", new Hero("Yi-Lin", null, 300 /* TODO figure this number out, we don't have it*/) },
+            { "Zoey", new Hero("Zoey", null, 275) }
         };
 
         // Maps { Name, umap }
