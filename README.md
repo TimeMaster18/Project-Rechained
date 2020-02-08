@@ -33,5 +33,4 @@ This project is still in its early stages, much more will hopefully come soon :)
 - Save multiple loadouts
 
 ### Known Problems
-- Hero HP doesn't scale as expected
 - UI of the launcher is lacking
