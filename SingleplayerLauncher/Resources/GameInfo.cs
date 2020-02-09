@@ -177,7 +177,7 @@ namespace SingleplayerLauncher.Resources
             { "Stinkeye", new Hero("Stinkeye", null, 356) },
             { "Temper", new Hero("Temper", null, 500) },
             { "Tundra", new Hero("Tundra", null, 625) },
-            { "Yi-Lin", new Hero("Yi-Lin", null, 300 /* TODO figure this number out, we don't have it*/) },
+            { "Yi-Lin", new Hero("Yi-Lin", null, 250) },
             { "Zoey", new Hero("Zoey", null, 275) }
         };
 
