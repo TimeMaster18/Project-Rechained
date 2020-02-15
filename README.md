@@ -29,7 +29,6 @@ This project is still in its early stages, much more will hopefully come soon :)
 
 ### Coming Next
 - Trap Tiers
-- Play with other starter heroes like Gabriella and Smolder
 - Save multiple loadouts
 
 ### Known Problems
