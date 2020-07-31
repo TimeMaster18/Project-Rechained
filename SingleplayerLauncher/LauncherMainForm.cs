@@ -344,6 +344,8 @@ namespace SingleplayerLauncher
                 }
             }
 
+            hero.AccountLevel = Int32.Parse(data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel]);
+
             defaultGame.Write(data);
         }
 

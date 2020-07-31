@@ -22,6 +22,7 @@ namespace SingleplayerLauncher
         public string[] Loadout { get; set; } // Could be it's own class if we get Guardians and Traits to work.
         public string[] Guardians { get; set; }
         public string Name { get; set; }
+        public int AccountLevel { get; set; }
 
         private const int LoadoutSlotByteSize = 4;
         private const int LoadoutSlotsNumber = 9;
@@ -43,6 +44,10 @@ namespace SingleplayerLauncher
         // Header + Field type + Size in bytes + (start?) index  (8 + 8 + 4 + 4)
         private const int SkinOffsetFromHeader = 24;
 
+        // Header + Field type + Size in bytes + (start?) index  (8 + 8 + 4 + 4)
+        private const int HealthOffsetFromHeader = 24;
+        private const int HealthMaxOffsetFromHeader = 24;
+
         private const string nameMaximilian = "Maximilian";
 
 
@@ -63,9 +68,8 @@ namespace SingleplayerLauncher
                 RemoveByteSection(SpitfireGameUPK.HeroObjectTeamStealthSegmentHeader, SpitfireGameUPK.HeroObjectTeamStealthSegmentSectionLength);
             }
 
-            ApplyTrapsGear();
+            ApplyTrapsGear(); // May insert bytes
             //ApplyTraits();
-            ApplySkin();
 
             if (UPKFile.nBytesRemoved > 0)
             {
@@ -74,7 +78,12 @@ namespace SingleplayerLauncher
             }
 
             ApplyGuardians(); // Should go after everything else since it's where we are inserting the extra bytes and needs to know the size
+
+            // from here, only edits bytes
+            ApplyHealthFix();
+            ApplySkin();
         }
+
 
         private void ApplyTrapsGear()
         {
@@ -164,6 +173,21 @@ namespace SingleplayerLauncher
         {
             int startIndexSkin = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectCurrentSkinClassHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
             UPKFile.OverrideBytes(GameInfo.Heroes[Name].GetSkinHex(Skin), startIndexSkin + SkinOffsetFromHeader);
+        }
+
+        private void ApplyHealthFix()
+        {
+            int startIndexHealth = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectHealthHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+            int startIndexHealthMax = UPKFile.FindBytesKMP(SpitfireGameUPK.HeroObjectHealthMaxHeader, SpitfireGameUPK.HeroObjects[Name].Offset, SpitfireGameUPK.HeroObjects[Name].Size);
+            // Original Game Formula. Past lvl 100 it has diminishing returns (first operand of the sum stops incrementing and the second one starts doing so at a much lower rate)
+            double healthMultiplier = Math.Pow(1.00763, (Math.Min(this.AccountLevel, 100) - 1)) + (0.00033 * Math.Max((this.AccountLevel - 100), 0));
+            int baseHealth = GameInfo.Heroes[Name].BaseHealth;
+
+            double health = baseHealth * healthMultiplier;
+
+            byte[] healthAsByteArray = BitConverter.GetBytes((float)health);
+            UPKFile.OverrideBytes(healthAsByteArray, startIndexHealth + HealthOffsetFromHeader);
+            UPKFile.OverrideBytes(healthAsByteArray, startIndexHealthMax + HealthMaxOffsetFromHeader);
         }
 
         private void RemoveByteSection(byte[] sectionHeaderByteArray, int length)
