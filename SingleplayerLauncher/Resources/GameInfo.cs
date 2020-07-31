@@ -103,7 +103,7 @@ namespace SingleplayerLauncher.Resources
                                                         { "Evil Ways", new Skin("Evil Ways", new byte[] { 0x1E, 0xE0, 0x00, 0x00 } ) },
                                                         { "Dragon Charmer", new Skin("Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } ) }
                                                     },
-                215)
+                200)
             },
             { "Hogarth", new Hero( "Hogarth", new Dictionary<string, Skin> {
                                                         { "Enchanted Armor", new Skin("Enchanted Armor", new byte[] { 0x8C, 0xDF, 0x00, 0x00 } ) },
