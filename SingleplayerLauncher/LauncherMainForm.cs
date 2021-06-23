@@ -204,7 +204,10 @@ namespace SingleplayerLauncher
                 hero.Name = comBoxHero.SelectedItem.ToString();
 
             MessageBox.Show("Saving your changes. Please wait.");
-            hero.ApplyLoadoutChanges();
+            if (SpitfireGameUPK.HeroObjects.ContainsKey(hero.Name))
+            {
+                hero.ApplyLoadoutChanges();
+            }
             ApplyMods(spitfireGameUPKFile);
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
