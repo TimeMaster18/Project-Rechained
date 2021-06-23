@@ -20,7 +20,7 @@ namespace SingleplayerLauncher
 
         public string Skin { get; set; }
         public string[] Loadout { get; set; } // Could be it's own class if we get Guardians and Traits to work.
-        public string[] Guardians { get; set; }
+        public string[] Guardians { get; set; } = DefaultValues.Guardians;
         public string Name { get; set; }
         public int AccountLevel { get; set; }
 
