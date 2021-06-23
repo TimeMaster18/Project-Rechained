@@ -56,9 +56,9 @@
             // 
             // btnLaunch
             // 
-            this.btnLaunch.Location = new System.Drawing.Point(157, 205);
+            this.btnLaunch.Location = new System.Drawing.Point(101, 205);
             this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(191, 75);
+            this.btnLaunch.Size = new System.Drawing.Size(247, 75);
             this.btnLaunch.TabIndex = 0;
             this.btnLaunch.Text = "Launch";
             this.btnLaunch.UseVisualStyleBackColor = true;
@@ -156,7 +156,7 @@
             // chkCustomIni
             // 
             this.chkCustomIni.AutoSize = true;
-            this.chkCustomIni.Location = new System.Drawing.Point(13, 205);
+            this.chkCustomIni.Location = new System.Drawing.Point(13, 286);
             this.chkCustomIni.Name = "chkCustomIni";
             this.chkCustomIni.Size = new System.Drawing.Size(77, 17);
             this.chkCustomIni.TabIndex = 4;
@@ -167,7 +167,7 @@
             // chkLog
             // 
             this.chkLog.AutoSize = true;
-            this.chkLog.Location = new System.Drawing.Point(12, 228);
+            this.chkLog.Location = new System.Drawing.Point(215, 286);
             this.chkLog.Name = "chkLog";
             this.chkLog.Size = new System.Drawing.Size(44, 17);
             this.chkLog.TabIndex = 6;
@@ -262,9 +262,9 @@
             // 
             // btnResetConfig
             // 
-            this.btnResetConfig.Location = new System.Drawing.Point(259, 286);
+            this.btnResetConfig.Location = new System.Drawing.Point(265, 282);
             this.btnResetConfig.Name = "btnResetConfig";
-            this.btnResetConfig.Size = new System.Drawing.Size(89, 24);
+            this.btnResetConfig.Size = new System.Drawing.Size(83, 22);
             this.btnResetConfig.TabIndex = 9;
             this.btnResetConfig.Text = "Reset Configs";
             this.btnResetConfig.UseVisualStyleBackColor = true;
@@ -272,9 +272,9 @@
             // 
             // btnMods
             // 
-            this.btnMods.Location = new System.Drawing.Point(6, 263);
+            this.btnMods.Location = new System.Drawing.Point(12, 205);
             this.btnMods.Name = "btnMods";
-            this.btnMods.Size = new System.Drawing.Size(90, 85);
+            this.btnMods.Size = new System.Drawing.Size(83, 75);
             this.btnMods.TabIndex = 10;
             this.btnMods.Text = "Mods";
             this.btnMods.UseVisualStyleBackColor = true;
@@ -284,7 +284,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 376);
+            this.ClientSize = new System.Drawing.Size(366, 316);
             this.Controls.Add(this.btnMods);
             this.Controls.Add(this.btnResetConfig);
             this.Controls.Add(this.mapSettingsGroupBox);
