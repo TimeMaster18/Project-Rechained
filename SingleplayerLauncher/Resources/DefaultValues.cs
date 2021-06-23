@@ -47,7 +47,7 @@ namespace SingleplayerLauncher.Resources
         };
 
         public static readonly string[] Guardians =
- {
+        {
             "Dragon Guardian",     "Serpent Guardian"
         };
     }

@@ -55,6 +55,16 @@ namespace SingleplayerLauncher.Resources
         public static readonly byte[] HeroObjectCurrentSkinClassHeader = new byte[] {   0x52, 0x1E, 0x00, 0x00,
                                                                                         0x00, 0x00, 0x00, 0x00
                                                                                 };
+        // Hero Health
+        public static readonly int HeroObjectHealthSectionLength = 28;
+        public static readonly byte[] HeroObjectHealthHeader = new byte[] {   0x8D, 0x45, 0x00, 0x00,
+                                                                                        0x00, 0x00, 0x00, 0x00
+                                                                                };
+        // Hero HealthMax
+        public static readonly int HeroObjectHealthMaxSectionLength = 28;
+        public static readonly byte[] HeroObjectHealthMaxHeader = new byte[] {   0x9E, 0x45, 0x00, 0x00,
+                                                                                        0x00, 0x00, 0x00, 0x00
+                                                                                };
 
         // Hero weaver tree (is after Inventory/Guardians)
         public static readonly int HeroObjectWeaverTreeDefaultSectionLength = 28;
