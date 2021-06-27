@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
@@ -209,6 +210,7 @@ namespace SingleplayerLauncher
                 hero.ApplyLoadoutChanges();
             }
             ApplyMods(spitfireGameUPKFile);
+            ApplyTrapTiers(spitfireGameUPKFile, Resources.GameInfo.DifficultyTrapTierMap[comBoxDifficulty.SelectedItem.ToString()]);
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
 
@@ -248,6 +250,40 @@ namespace SingleplayerLauncher
             else
             {
                 tit.UninstallMod();
+            }
+        }
+
+
+        const int MAX_TRAP_TIER = 7;
+        private const string TRAP_TIER_STRING = "src.TrapStrength";
+
+        private void ApplyTrapTiers(UPKFile spitfireGameUPKFile, int trapTier)
+        {
+            if (trapTier < 1)
+                throw new Exception("Trap Tier should be greater than 1 but it was: " + trapTier);
+            if (spitfireGameUPKFile == null)
+                throw new Exception("Null spitfireGameUPKFile");
+
+            foreach (Resources.Loadout.Trap trap in Resources.Loadout.Traps.Values)
+            {
+                if (trap == null) continue;
+
+                if (trap.StatModifierExpressions != null)
+                {
+                    foreach (Resources.Loadout.Trap.StatModifierExpression expression in trap.StatModifierExpressions)
+                    {
+                        spitfireGameUPKFile.OverrideBytes(Encoding.ASCII.GetBytes(expression.Expression.Replace(TRAP_TIER_STRING, new String(' ', TRAP_TIER_STRING.Length - 1) + (trapTier - 1))), expression.Offset);
+                    }
+                }
+                else // TripWire and TempleAlarmGong
+                {
+                    spitfireGameUPKFile.OverrideBytes(BitConverter.GetBytes((int)Math.Round(trap.CoinCost * (1 - trap.IncreasePerTier * (trapTier - 1)))), trap.CoinCostOffset);
+                }
+
+                spitfireGameUPKFile.OverrideBytes(Resources.Loadout.TrapTextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], trap.TextureOffset);
+
+                if (trap.IconIds != null)
+                    spitfireGameUPKFile.OverrideBytes(trap.IconIds[Math.Min(trapTier, MAX_TRAP_TIER) / 2 % 4], trap.IconOffset);
             }
         }
 

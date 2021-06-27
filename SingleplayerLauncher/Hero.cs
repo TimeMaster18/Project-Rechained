@@ -167,7 +167,7 @@ namespace SingleplayerLauncher
             UPKFile.OverrideSingleByte((byte)totalSize, guardiansArraySizeIndex); // Size (counts array element count and both guardians and their sizes but not itself or index so -8)
             //TODO check single byte and avoid override?
             UPKFile.OverrideSingleByte(GuardianSlotsNumber, guardiansArrayElementCountIndex); // Array Element Count 
-        }
+        }        
 
         private void ApplySkin()
         {
@@ -215,7 +215,7 @@ namespace SingleplayerLauncher
 
                 if (Resources.Loadout.Traps.ContainsKey(loadout[i]))
                 {
-                    slotBytes = Resources.Loadout.Traps[loadout[i]];
+                    slotBytes = Resources.Loadout.Traps[loadout[i]].Id;
                 }
                 else
                 {
