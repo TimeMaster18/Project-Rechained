@@ -73,6 +73,7 @@ namespace SingleplayerLauncher
 
 
         private const string valueTrue = "TRUE";
+        private const string valueFalse = "FALSE";
         private const string RCharacterDataSection = "RCharacterData_0 RCharacterData";
 
         private const string characterDataKeyGodMode = "GodMode";
@@ -354,8 +355,8 @@ namespace SingleplayerLauncher
             data[RCharacterDataSection][characterDataKeyHero] = IniConfig.Heroes[comBoxHero.Text];
             data[RCharacterDataSection][characterDataKeyDye] = IniConfig.Dyes[comBoxDye.Text];
 
-            if (Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"])
-                data[RCharacterDataSection][characterDataKeyGodMode] = valueTrue;
+            if (Settings.Instance.ContainsKey("GodMode"))
+                data[RCharacterDataSection][characterDataKeyGodMode] = (bool)Settings.Instance["GodMode"] ? valueTrue : valueFalse;
 
             if (Settings.Instance.ContainsKey("StartingCoin"))
                 data[RCharacterDataSection][characterDataKeyBonusStartingCoin] = calculateMultiplierStartingCoin(comBoxMap.Text, Int32.Parse((string)Settings.Instance["StartingCoin"]));
