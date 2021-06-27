@@ -257,5 +257,13 @@ namespace SingleplayerLauncher.Resources
             "The Baths",
             "Water Garden"
         };
+
+        public static Dictionary<string, int> DifficultyTrapTierMap = new Dictionary<string, int>
+        {
+            { "Apprentice", 1 },
+            { "War Mage", 2 },
+            { "Master", 4 },
+            { "Rift Lord", 6 }
+        };
     }
 }
