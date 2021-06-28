@@ -97,16 +97,16 @@ namespace SingleplayerLauncher.Resources
         // Endless Difficulty { Name, DefaultOfflineDifficulty } (DefaultGame.ini)
         public static Dictionary<string, string> endlessDifficulties = new Dictionary<string, string>
         {
-            { "Endless+", "20" },
-            { "Endless++", "40" },
-            { "Endless+3", "60" },
-            { "Endless+4", "80" },
-            { "Endless+5", "100" },
-            { "Endless+6", "120" },
-            { "Endless+7", "140" },
-            { "Endless+8", "160" },
-            { "Endless+9", "180" },
-            { "Endless+10", "200" }
+            { "Endless+", "100" },
+            { "Endless++", "125" },
+            { "Endless+3", "150" },
+            { "Endless+4", "175" },
+            { "Endless+5", "200" },
+            { "Endless+6", "225" },
+            { "Endless+7", "250" },
+            { "Endless+8", "275" },
+            { "Endless+9", "300" },
+            { "Endless+10", "400" }
         };
 
         // Survival Difficulty { Name, {DefaultOfflinePlayerLevel, DefaultOfflineDifficulty } (DefaultGame.ini)
