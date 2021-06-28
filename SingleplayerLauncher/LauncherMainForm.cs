@@ -255,13 +255,17 @@ namespace SingleplayerLauncher
             if (comBoxHero.SelectedItem != null)
                 hero.Name = comBoxHero.SelectedItem.ToString();
 
+            int trapTier = 7;
+            if (comBoxDifficulty.SelectedItem != null)
+                trapTier = Resources.GameInfo.DifficultyTrapTierMap[comBoxDifficulty.SelectedItem.ToString()];
+
             MessageBox.Show("Saving your changes. Please wait.");
             if (SpitfireGameUPK.HeroObjects.ContainsKey(hero.Name))
             {
                 hero.ApplyLoadoutChanges();
             }
             ApplyMods(spitfireGameUPKFile);
-            ApplyTrapTiers(spitfireGameUPKFile, Resources.GameInfo.DifficultyTrapTierMap[comBoxDifficulty.SelectedItem.ToString()]);
+            ApplyTrapTiers(spitfireGameUPKFile, trapTier);
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
 
@@ -431,6 +435,11 @@ namespace SingleplayerLauncher
                 {
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = IniConfig.endlessDifficulties[selectedExtraDifficulty];
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = "3";
+                }
+                else
+                {
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = "75";
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = "75";
                 }
             }
 
