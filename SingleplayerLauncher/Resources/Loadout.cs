@@ -98,7 +98,7 @@ namespace SingleplayerLauncher.Resources
 			{
 				Name = "BGH Ceiling Ballista",
 				Id = new byte[] { 0x6E, 0xC4, 0x00, 0x00 },
-				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2985, "38 * (src.IncreasePerTier ^ src.TrapStrength)") },
+				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F29A3, "38 * (src.IncreasePerTier ^ src.TrapStrength)") },
 				TextureOffset = 0x1844A3E,
 				IconOffset = 0x271665F,
 				IconIds = new List<byte[]>() { new byte[] { 0x2A }, new byte[] { 0x2B }, new byte[] { 0x2C }, new byte[] { 0x2D } }
