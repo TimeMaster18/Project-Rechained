@@ -20,13 +20,13 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 ### Features:
 - Launch the game in **offline mode, single player**
-- Play **any map**, **Survival** or **endless** modes
+- Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes**
 - Customize the **Loadout** and hero (only for Maximilian, Gabriella, Ivy, Hogarth, Bionka and Smolder)
   - Choose Traps and Gear
   - Choose your skin and your dye
   - Choose Guardians
-- Hero, Guardian and Trap levels are matched with enemy/map level
+- Hero, Guardian and **Trap Tiers** are matched with enemy/map level
 - New extra difficulties for every map
 - New Mods:
   - Remove Trap Cap
@@ -36,8 +36,12 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 
 ### Coming Next
-- Save multiple loadouts
 - Fix Health scaling to the other heroes
+- Skins and Dyes for the other heroes
+- Guardian loadouts for the other heroes
+- Customizable loadouts for the other heroes
+- Save multiple loadouts with names
+- Share loadouts with other players
 - Improve UX
 
 ### Known Problems
