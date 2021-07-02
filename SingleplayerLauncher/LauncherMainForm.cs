@@ -1,4 +1,4 @@
-using IniParser.Model;
+﻿using IniParser.Model;
 using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Mods;
 using SingleplayerLauncher.Resources;
@@ -437,6 +437,7 @@ namespace SingleplayerLauncher
             }
             else if (selectedGameMode.Equals(gameModeEndless))
             {
+                data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = "75";
                 if (extraDifficulty)
                 {
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = IniConfig.endlessDifficulties[selectedExtraDifficulty];
@@ -445,7 +446,6 @@ namespace SingleplayerLauncher
                 else
                 {
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = "75";
-                    data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = "75";
                 }
             }
 
