@@ -1,4 +1,4 @@
-﻿using IniParser.Model;
+using IniParser.Model;
 using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Mods;
 using SingleplayerLauncher.Resources;
@@ -335,7 +335,13 @@ namespace SingleplayerLauncher
                     spitfireGameUPKFile.OverrideBytes(BitConverter.GetBytes((int)Math.Round(trap.CoinCost * (1 - trap.IncreasePerTier * (trapTier - 1)))), trap.CoinCostOffset);
                 }
 
-                spitfireGameUPKFile.OverrideBytes(Resources.Loadout.TrapTextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], trap.TextureOffset);
+                foreach (int offset in trap.TextureOffsets)
+                {
+                    if (trap.TextureIds == null)
+                        spitfireGameUPKFile.OverrideBytes(Resources.Loadout.TrapTextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], offset);
+                    else // assumes that traps with unique TextureIds (WebSpinner) only have 1 texture to replace
+                        spitfireGameUPKFile.OverrideBytes(trap.TextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], offset);
+                }
 
                 if (trap.IconIds != null)
                     spitfireGameUPKFile.OverrideBytes(trap.IconIds[Math.Min(trapTier, MAX_TRAP_TIER) / 2 % 4], trap.IconOffset);
