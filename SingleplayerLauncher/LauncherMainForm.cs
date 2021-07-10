@@ -258,6 +258,8 @@ namespace SingleplayerLauncher
             int trapTier = 7;
             if (comBoxDifficulty.SelectedItem != null)
                 trapTier = Resources.GameInfo.DifficultyTrapTierMap[comBoxDifficulty.SelectedItem.ToString()];
+            if (comBoxExtraDifficulty.SelectedItem != null)
+                trapTier = Math.Max(1, trapTier - comBoxExtraDifficulty.SelectedIndex);
 
             MessageBox.Show("Saving your changes. Please wait.");
             if (SpitfireGameUPK.HeroObjects.ContainsKey(hero.Name))
