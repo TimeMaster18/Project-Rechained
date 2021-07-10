@@ -255,13 +255,17 @@ namespace SingleplayerLauncher
             if (comBoxHero.SelectedItem != null)
                 hero.Name = comBoxHero.SelectedItem.ToString();
 
+            int trapTier = 7;
+            if (comBoxDifficulty.SelectedItem != null)
+                trapTier = Resources.GameInfo.DifficultyTrapTierMap[comBoxDifficulty.SelectedItem.ToString()];
+
             MessageBox.Show("Saving your changes. Please wait.");
             if (SpitfireGameUPK.HeroObjects.ContainsKey(hero.Name))
             {
                 hero.ApplyLoadoutChanges();
             }
             ApplyMods(spitfireGameUPKFile);
-            ApplyTrapTiers(spitfireGameUPKFile, Resources.GameInfo.DifficultyTrapTierMap[comBoxDifficulty.SelectedItem.ToString()]);
+            ApplyTrapTiers(spitfireGameUPKFile, trapTier);
             spitfireGameUPKFile.Save();
             MessageBox.Show("Finished");
 
@@ -331,7 +335,13 @@ namespace SingleplayerLauncher
                     spitfireGameUPKFile.OverrideBytes(BitConverter.GetBytes((int)Math.Round(trap.CoinCost * (1 - trap.IncreasePerTier * (trapTier - 1)))), trap.CoinCostOffset);
                 }
 
-                spitfireGameUPKFile.OverrideBytes(Resources.Loadout.TrapTextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], trap.TextureOffset);
+                foreach (int offset in trap.TextureOffsets)
+                {
+                    if (trap.TextureIds == null)
+                        spitfireGameUPKFile.OverrideBytes(Resources.Loadout.TrapTextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], offset);
+                    else // assumes that traps with unique TextureIds (WebSpinner) only have 1 texture to replace
+                        spitfireGameUPKFile.OverrideBytes(trap.TextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], offset);
+                }
 
                 if (trap.IconIds != null)
                     spitfireGameUPKFile.OverrideBytes(trap.IconIds[Math.Min(trapTier, MAX_TRAP_TIER) / 2 % 4], trap.IconOffset);
@@ -427,10 +437,15 @@ namespace SingleplayerLauncher
             }
             else if (selectedGameMode.Equals(gameModeEndless))
             {
+                data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = "75";
                 if (extraDifficulty)
                 {
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = IniConfig.endlessDifficulties[selectedExtraDifficulty];
                     data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = "3";
+                }
+                else
+                {
+                    data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = "75";
                 }
             }
 

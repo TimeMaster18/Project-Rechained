@@ -20,8 +20,9 @@ namespace SingleplayerLauncher.Resources
             public string Name { get; private set; }
             public byte[] Id { get; private set; } // id linking the trap, in SpitfireGame.upk
             public List<StatModifierExpression> StatModifierExpressions { get; private set; }
-            public int TextureOffset { get; private set; } // in SpitfireUPK
-            public int IconOffset { get; private set; } // in SpitfireUPK
+            public int[] TextureOffsets { get; private set; } // in SpitfireUPK
+			public List<byte[]> TextureIds { get; private set; } // in SpitfireUPK
+			public int IconOffset { get; private set; } // in SpitfireUPK
             public List<byte[]> IconIds { get; private set; } // ids linking the trap icons
 			public float IncreasePerTier { get; private set; }
 			public int CoinCostOffset { get; private set; } // in SpitfireUPK
@@ -30,22 +31,22 @@ namespace SingleplayerLauncher.Resources
 			// private constructor
 			Trap() { }
 
-            // static members
-            public static Trap FloorSpikes = new Trap()
-            {                
-                Name = "Floor Spikes",
-                Id = new byte[] { 0xB6, 0xC4, 0x00, 0x00 },
-                StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5F98, "160.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-                TextureOffset = 0x186D798,
-                IconOffset = 0x2716FF1,
-                IconIds = new List<byte[]>() { new byte[] { 0x26 }, new byte[] { 0x27 }, new byte[] { 0x28 }, new byte[] { 0x29 } }
-            };
+			// static members
+			public static Trap FloorSpikes = new Trap()
+			{
+				Name = "Floor Spikes",
+				Id = new byte[] { 0xB6, 0xC4, 0x00, 0x00 },
+				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5F98, "160.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
+				TextureOffsets = new int[] { 0x186D798 },
+				IconOffset = 0x2716FF1,
+				IconIds = new List<byte[]>() { new byte[] { 0x26 }, new byte[] { 0x27 }, new byte[] { 0x28 }, new byte[] { 0x29 } }
+			};
 			public static Trap ArcaneBowlingBall = new Trap()
 			{
 				Name = "Arcane Bowling Ball",
 				Id = new byte[] { 0x62, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F218B, "120.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x183E781,
+				TextureOffsets = new int[] { 0x183E781 },
 				IconOffset = 0x27164C7,
 				IconIds = new List<byte[]>() { new byte[] { 0xA2 }, new byte[] { 0xA3 }, new byte[] { 0xA4 }, new byte[] { 0xA5 } }
 			};
@@ -54,16 +55,16 @@ namespace SingleplayerLauncher.Resources
 				Name = "Arcane Phaser",
 				Id = new byte[] { 0x64, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F22D9, "110.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x183EF16,
+				TextureOffsets = new int[] { 0x183EF16 },
 				IconOffset = 0x271650B,
 				IconIds = new List<byte[]>() { new byte[] { 0xE2 }, new byte[] { 0xE3 }, new byte[] { 0xE4 }, new byte[] { 0xE5 } }
 			};
 			public static Trap ArrowWall = new Trap()
 			{
 				Name = "Arrow Wall",
-				Id = new byte[] { 0x66, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x66, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2427, "30.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x183F5D5,
+				TextureOffsets = new int[] { 0x183F5D5 },
 				IconOffset = 0x271654F,
 				IconIds = new List<byte[]>() { new byte[] { 0xEA }, new byte[] { 0xEB }, new byte[] { 0xEC }, new byte[] { 0xED } }
 			};
@@ -72,7 +73,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "BGH Arrow Wall",
 				Id = new byte[] { 0x68, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2594, "18 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x183FD96,
+				TextureOffsets = new int[] { 0x183FD96 },
 				IconOffset = 0x2716593,
 				IconIds = new List<byte[]>() { new byte[] { 0xE6 }, new byte[] { 0xE7 }, new byte[] { 0xE8 }, new byte[] { 0xE9 } }
 			};
@@ -81,7 +82,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Ceiling Ballista",
 				Id = new byte[] { 0x6A, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F26E7, "185.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18423EB,
+				TextureOffsets = new int[] { 0x18423EB },
 				IconOffset = 0x27165D7,
 				IconIds = new List<byte[]>() { new byte[] { 0xF2 }, new byte[] { 0xF3 }, new byte[] { 0xF4 }, new byte[] { 0xF5 } }
 			};
@@ -90,7 +91,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Dragons Lance",
 				Id = new byte[] { 0x6C, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2837, "100.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x1843290,
+				TextureOffsets = new int[] { 0x1843290 },
 				IconOffset = 0x271661B,
 				IconIds = new List<byte[]>() { new byte[] { 0xEE }, new byte[] { 0xEF }, new byte[] { 0xF0 }, new byte[] { 0xF1 } }
 			};
@@ -98,8 +99,8 @@ namespace SingleplayerLauncher.Resources
 			{
 				Name = "BGH Ceiling Ballista",
 				Id = new byte[] { 0x6E, 0xC4, 0x00, 0x00 },
-				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2985, "38 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x1844A3E,
+				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F29A3, "38 * (src.IncreasePerTier ^ src.TrapStrength)") },
+				TextureOffsets = new int[] { 0x1844A3E },
 				IconOffset = 0x271665F,
 				IconIds = new List<byte[]>() { new byte[] { 0x2A }, new byte[] { 0x2B }, new byte[] { 0x2C }, new byte[] { 0x2D } }
 			};
@@ -108,7 +109,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Barricade",
 				Id = new byte[] { 0x70, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2A9E, "(src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x1846B9F,
+				TextureOffsets = new int[] { 0x1846B9F },
 				IconOffset = 0x27166A3,
 				IconIds = new List<byte[]>() { new byte[] { 0xFA }, new byte[] { 0xFB }, new byte[] { 0xFC }, new byte[] { 0xFD } }
 			};
@@ -117,7 +118,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Great Wall Barricade",
 				Id = new byte[] { 0x72, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2A9E, "(src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x1847B72,
+				TextureOffsets = new int[] { 0x1847B72 },
 				IconOffset = 0x27166E7,
 				IconIds = new List<byte[]>() { new byte[] { 0xF6 }, new byte[] { 0xF7 }, new byte[] { 0xF8 }, new byte[] { 0xF9 } }
 			};
@@ -126,25 +127,25 @@ namespace SingleplayerLauncher.Resources
 				Name = "Boom Barrel",
 				Id = new byte[] { 0x74, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2B1B, "250.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x184820A,
+				TextureOffsets = new int[] { 0x184820A },
 				IconOffset = 0x271672B,
 				IconIds = new List<byte[]>() { new byte[] { 0x02 }, new byte[] { 0x03 }, new byte[] { 0x04 }, new byte[] { 0x05 } }
 			};
 			public static Trap BoomBarrelRoller = new Trap()
 			{
 				Name = "Boom Barrel Dispenser",
-				Id = new byte[] { 0x76, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x76, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2CCB, "100.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x184A0FC,
+				TextureOffsets = new int[] { 0x184A0FC },
 				IconOffset = 0x271676F,
 				IconIds = new List<byte[]>() { new byte[] { 0xFE, 0xCA }, new byte[] { 0xFF, 0xCA }, new byte[] { 0x00, 0xCB }, new byte[] { 0x01, 0xCB } }
 			};
 			public static Trap BoulderChute = new Trap()
 			{
 				Name = "Boulder Chute",
-				Id = new byte[] { 0x78, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x78, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2E67, "200.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x184B628,
+				TextureOffsets = new int[] { 0x184B628 },
 				IconOffset = 0x27167CC,
 				IconIds = new List<byte[]>() { new byte[] { 0x06 }, new byte[] { 0x07 }, new byte[] { 0x08 }, new byte[] { 0x09 } }
 			};
@@ -153,7 +154,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Icicle Impaler",
 				Id = new byte[] { 0x7A, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3003, "200.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x184CE4A,
+				TextureOffsets = new int[] { 0x184CE4A },
 				IconOffset = 0x2716829,
 				IconIds = new List<byte[]>() { new byte[] { 0x3E }, new byte[] { 0x3F }, new byte[] { 0x40 }, new byte[] { 0x41 } }
 			};
@@ -162,16 +163,16 @@ namespace SingleplayerLauncher.Resources
 				Name = "Brimstone",
 				Id = new byte[] { 0x7C, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3143, "30.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x184D529,
+				TextureOffsets = new int[] { 0x184D529 },
 				IconOffset = 0x271686D,
 				IconIds = new List<byte[]>() { new byte[] { 0x0A }, new byte[] { 0x0B }, new byte[] { 0x0C }, new byte[] { 0x0D } }
 			};
 			public static Trap CoinForge = new Trap()
 			{
 				Name = "Coin Forge",
-				Id = new byte[] { 0x7E, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x7E, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3238, "1.64f + (src.IncreasePerTier * src.TrapStrength)") },
-				TextureOffset = 0x184DD4C,
+				TextureOffsets = new int[] { 0x184DD4C },
 				IconOffset = 0x27168B1,
 				IconIds = new List<byte[]>() { new byte[] { 0x12 }, new byte[] { 0x13 }, new byte[] { 0x14 }, new byte[] { 0x15 } }
 			};
@@ -182,7 +183,7 @@ namespace SingleplayerLauncher.Resources
 				StatModifierExpressions = new List<StatModifierExpression>() {   new StatModifierExpression(0x28F33C1, "14.0 * (src.IncreasePerTier ^ src.TrapStrength)"),
 																				 new StatModifierExpression(0x28F3349, "27.0 * (src.IncreasePerTier ^ src.TrapStrength)"),
 																				 new StatModifierExpression(0x28F32D1, "95.0 * (src.IncreasePerTier ^ src.TrapStrength)")},
-				TextureOffset = 0x184F600,
+				TextureOffsets = new int[] { 0x184F600 },
 				IconOffset = 0x27168F5,
 				IconIds = new List<byte[]>() { new byte[] { 0x16 }, new byte[] { 0x17 }, new byte[] { 0x18 }, new byte[] { 0x19 }, }
 			};
@@ -191,15 +192,15 @@ namespace SingleplayerLauncher.Resources
 				Name = "Decoy",
 				Id = new byte[] { 0x82, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3459, "(150.0 + src.DamageIncreaseFromLvl) * ((1 + src.IncreasePerTier) ^ src.TrapStrength)") },
-				TextureOffset = 0x1850BD9,
+				TextureOffsets = new int[] { 0x1850BD9, 0x1850C36 },
 				IconIds = null
 			};
 			public static Trap SpitfireWall = new Trap()
 			{
 				Name = "Spitfire Wall",
-				Id = new byte[] { 0x84, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x84, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3774, "15.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x1851A47,
+				TextureOffsets = new int[] { 0x1851A47 },
 				IconOffset = 0x2716965,
 				IconIds = new List<byte[]>() { new byte[] { 0x1A }, new byte[] { 0x1B }, new byte[] { 0x1C }, new byte[] { 0x1D } }
 			};
@@ -208,16 +209,16 @@ namespace SingleplayerLauncher.Resources
 				Name = "Fire Cracker",
 				Id = new byte[] { 0x86, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F38B2, "14 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x185214F,
+				TextureOffsets = new int[] { 0x185214F },
 				IconOffset = 0x27169A9,
 				IconIds = new List<byte[]>() { new byte[] { 0x0E }, new byte[] { 0x0F }, new byte[] { 0x10 }, new byte[] { 0x11 } }
 			};
 			public static Trap FlipTrap = new Trap()
 			{
 				Name = "Flip Trap",
-				Id = new byte[] { 0x88, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x88, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F51AD, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x185290F,
+				TextureOffsets = new int[] { 0x185290F },
 				IconOffset = 0x27169ED,
 				IconIds = new List<byte[]>() { new byte[] { 0x1E }, new byte[] { 0x1F }, new byte[] { 0x20 }, new byte[] { 0x21 } }
 			};
@@ -226,7 +227,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Floor Scorcher",
 				Id = new byte[] { 0x8A, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3D6B, "31.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x185330B,
+				TextureOffsets = new int[] { 0x185330B },
 				IconOffset = 0x2716A31,
 				IconIds = new List<byte[]>() { new byte[] { 0x22 }, new byte[] { 0x23 }, new byte[] { 0x24 }, new byte[] { 0x25 } }
 			};
@@ -235,7 +236,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Temple Alarm Gong",
 				Id = new byte[] { 0x8C, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = null,
-				TextureOffset = 0x185399C,
+				TextureOffsets = new int[] { 0x185399C },
 				IconOffset = 0x2716A75,
 				IconIds = new List<byte[]>() { new byte[] { 0x2E }, new byte[] { 0x2F }, new byte[] { 0x30 }, new byte[] { 0x31 } },
 				CoinCostOffset = 0x1617D7E,
@@ -247,7 +248,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Grinder",
 				Id = new byte[] { 0x8E, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3F5E, "54.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18561F1,
+				TextureOffsets = new int[] { 0x18561F1 },
 				IconOffset = 0x2716AB9,
 				IconIds = new List<byte[]>() { new byte[] { 0x32 }, new byte[] { 0x33 }, new byte[] { 0x34 }, new byte[] { 0x35 } }
 			};
@@ -256,7 +257,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Quarter Pounder",
 				Id = new byte[] { 0x90, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F40B0, "525.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18569A5,
+				TextureOffsets = new int[] { 0x18569A5 },
 				IconOffset = 0x2716AFD,
 				IconIds = new List<byte[]>() { new byte[] { 0x5E }, new byte[] { 0x5F }, new byte[] { 0x60 }, new byte[] { 0x61 } }
 			};
@@ -265,7 +266,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Haymaker",
 				Id = new byte[] { 0x92, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F41A7, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x1858016,
+				TextureOffsets = new int[] { 0x1858016 },
 				IconOffset = 0x2716B41,
 				IconIds = new List<byte[]>() { new byte[] { 0x36 }, new byte[] { 0x37 }, new byte[] { 0x38 }, new byte[] { 0x39 } }
 			};
@@ -274,7 +275,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Healing Well",
 				Id = new byte[] { 0x94, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4307, "(0.09 + (src.TrapStrength * 0.024))*(1 + src.mExtraBoost)*tgt.HealthMax") },
-				TextureOffset = 0x18586EC,
+				TextureOffsets = new int[] { 0x18586EC },
 				IconOffset = 0x2716B85,
 				IconIds = new List<byte[]>() { new byte[] { 0x3A }, new byte[] { 0x3B }, new byte[] { 0x3C }, new byte[] { 0x3D } }
 			};
@@ -283,25 +284,25 @@ namespace SingleplayerLauncher.Resources
 				Name = "Ice Shard",
 				Id = new byte[] { 0x96, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F458D, "130.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x185A670,
+				TextureOffsets = new int[] { 0x185A670 },
 				IconOffset = 0x2716BC9,
 				IconIds = new List<byte[]>() { new byte[] { 0x42 }, new byte[] { 0x43 }, new byte[] { 0x44 }, new byte[] { 0x45 } }
 			};
 			public static Trap IceVent = new Trap()
 			{
 				Name = "Ice Vent",
-				Id = new byte[] { 0x98, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x98, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F46CD, "25.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x185AD42,
+				TextureOffsets = new int[] { 0x185AD42 },
 				IconOffset = 0x2716C0D,
 				IconIds = new List<byte[]>() { new byte[] { 0x46 }, new byte[] { 0x47 }, new byte[] { 0x48 }, new byte[] { 0x49 } }
 			};
 			public static Trap LightningRod = new Trap()
 			{
 				Name = "Lightning Rod",
-				Id = new byte[] { 0x9A, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x9A, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F481C, "85.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x185B5AB,
+				TextureOffsets = new int[] { 0x185B5AB },
 				IconOffset = 0x2716C51,
 				IconIds = new List<byte[]>() { new byte[] { 0x4A }, new byte[] { 0x4B }, new byte[] { 0x4C }, new byte[] { 0x4D } }
 			};
@@ -310,17 +311,17 @@ namespace SingleplayerLauncher.Resources
 				Name = "Mana Well",
 				Id = new byte[] { 0x9C, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4971, "(0.09 + (src.TrapStrength * 0.024))*(1 + src.mExtraBoost)*tgt.ManaMax") },
-				TextureOffset = 0x185BC7A,
+				TextureOffsets = new int[] { 0x185BC7A },
 				IconOffset = 0x2716C95,
 				IconIds = new List<byte[]>() { new byte[] { 0x4E }, new byte[] { 0x4F }, new byte[] { 0x50 }, new byte[] { 0x51 } }
 			};
 			public static Trap SummonerTrap = new Trap()
 			{
 				Name = "Summoner Trap",
-				Id = new byte[] { 0x9E, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0x9E, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() {   new StatModifierExpression(0x28F4B7F, "src.HealthMax * (src.IncreasePerTier ^ src.TrapStrength)"),
 																				 new StatModifierExpression(0x28F4AE6, "160.0 * (src.IncreasePerTier ^ src.TrapStrength)")},
-				TextureOffset = 0x185D7D4,
+				TextureOffsets = new int[] { 0x185D7D4 },
 				IconOffset = 0x2716CD9,
 				IconIds = new List<byte[]>() { new byte[] { 0x52 }, new byte[] { 0x53 }, new byte[] { 0x54 }, new byte[] { 0x55 } }
 			};
@@ -329,25 +330,25 @@ namespace SingleplayerLauncher.Resources
 				Name = "Naphtha Sprayer",
 				Id = new byte[] { 0xA0, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4C94, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x185E8BB,
+				TextureOffsets = new int[] { 0x185E8BB },
 				IconOffset = 0x2716D1D,
 				IconIds = new List<byte[]>() { new byte[] { 0x56 }, new byte[] { 0x57 }, new byte[] { 0x58 }, new byte[] { 0x59 } }
 			};
 			public static Trap OverloadTrap = new Trap()
 			{
 				Name = "Overload Trap",
-				Id = new byte[] { 0xA2, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0xA2, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4D75, "140.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x185F21D,
+				TextureOffsets = new int[] { 0x185F21D },
 				IconOffset = 0x2716D61,
 				IconIds = new List<byte[]>() { new byte[] { 0x5A }, new byte[] { 0x5B }, new byte[] { 0x5C }, new byte[] { 0x5D } }
 			};
 			public static Trap PowerupDamage = new Trap()
 			{
 				Name = "Powerup Damage",
-				Id = new byte[] { 0xA4, 0xC4, 0x00, 0x00  },
+				Id = new byte[] { 0xA4, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4E6C, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x185F9CC,
+				TextureOffsets = new int[] { 0x185F9CC },
 				IconOffset = 0x2716DA5,
 				IconIds = new List<byte[]>() { new byte[] { 0x6E }, new byte[] { 0x6F }, new byte[] { 0x70 }, new byte[] { 0x71 } }
 			};
@@ -356,7 +357,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Pounder",
 				Id = new byte[] { 0xA6, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4FB4, "145.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x1860151,
+				TextureOffsets = new int[] { 0x1860151 },
 				IconOffset = 0x2716DE9,
 				IconIds = new List<byte[]>() { new byte[] { 0x66 }, new byte[] { 0x67 }, new byte[] { 0x68 }, new byte[] { 0x69 } }
 			};
@@ -365,7 +366,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Concussive Pounder",
 				Id = new byte[] { 0xA8, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F50AB, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x18607F9,
+				TextureOffsets = new int[] { 0x18607F9 },
 				IconOffset = 0x2716E2D,
 				IconIds = new List<byte[]>() { new byte[] { 0x62 }, new byte[] { 0x63 }, new byte[] { 0x64 }, new byte[] { 0x65 } }
 			};
@@ -374,7 +375,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Power Generator",
 				Id = new byte[] { 0xAA, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5133, "25 * (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x186225E,
+				TextureOffsets = new int[] { 0x186225E },
 				IconOffset = 0x2716E71,
 				IconIds = new List<byte[]>() { new byte[] { 0x6A }, new byte[] { 0x6B }, new byte[] { 0x6C }, new byte[] { 0x6D } }
 			};
@@ -383,7 +384,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Push Trap",
 				Id = new byte[] { 0xAE, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F51AD, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x186337A,
+				TextureOffsets = new int[] { 0x186337A },
 				IconOffset = 0x2716EE1,
 				IconIds = new List<byte[]>() { new byte[] { 0x76 }, new byte[] { 0x77 }, new byte[] { 0x78 }, new byte[] { 0x79 } }
 			};
@@ -392,7 +393,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Saw Of Arctos",
 				Id = new byte[] { 0xB0, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F543D, "190 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18646E0,
+				TextureOffsets = new int[] { 0x18646E0 },
 				IconOffset = 0x2716F25,
 				IconIds = new List<byte[]>() { new byte[] { 0x7A }, new byte[] { 0x7B }, new byte[] { 0x7C }, new byte[] { 0x7D } }
 			};
@@ -401,7 +402,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Shield Powerup",
 				Id = new byte[] { 0xB2, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F552F, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1") },
-				TextureOffset = 0x1864F99,
+				TextureOffsets = new int[] { 0x1864F99 },
 				IconOffset = 0x2716F69,
 				IconIds = new List<byte[]>() { new byte[] { 0x72 }, new byte[] { 0x73 }, new byte[] { 0x74 }, new byte[] { 0x75 } }
 			};
@@ -410,7 +411,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Speed Pad",
 				Id = new byte[] { 0xB4, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5E0D, "(1.50 + (src.TrapStrength * src.IncreasePerTier) + src.mExtraBoost)") },
-				TextureOffset = 0x186CB15,
+				TextureOffsets = new int[] { 0x186CB15 },
 				IconOffset = 0x2716FAD,
 				IconIds = new List<byte[]>() { new byte[] { 0x86 }, new byte[] { 0x87 }, new byte[] { 0x88 }, new byte[] { 0x89 } }
 			};
@@ -419,7 +420,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Spike Wall",
 				Id = new byte[] { 0xB8, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F608F, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x186DE77,
+				TextureOffsets = new int[] { 0x186DE77 },
 				IconOffset = 0x2717035,
 				IconIds = new List<byte[]>() { new byte[] { 0xAA }, new byte[] { 0xAB }, new byte[] { 0xAC }, new byte[] { 0xAD } }
 			};
@@ -428,7 +429,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Steam Vent",
 				Id = new byte[] { 0xBA, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F62C6, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-				TextureOffset = 0x186E503,
+				TextureOffsets = new int[] { 0x186E503 },
 				IconOffset = 0x2717079,
 				IconIds = new List<byte[]>() { new byte[] { 0x8A }, new byte[] { 0x8B }, new byte[] { 0x8C }, new byte[] { 0x8D } }
 			};
@@ -437,7 +438,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Swinging Mace",
 				Id = new byte[] { 0xBC, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F648C, "250.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x186F027,
+				TextureOffsets = new int[] { 0x186F027 },
 				IconOffset = 0x27170BD,
 				IconIds = new List<byte[]>() { new byte[] { 0x8E }, new byte[] { 0x8F }, new byte[] { 0x90 }, new byte[] { 0x91 } }
 			};
@@ -446,7 +447,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Tar Trap",
 				Id = new byte[] { 0xBE, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6583, "(0.60 - (src.TrapStrength * src.IncreasePerTier))") },
-				TextureOffset = 0x186F6A0,
+				TextureOffsets = new int[] { 0x186F6A0 },
 				IconOffset = 0x2717101,
 				IconIds = new List<byte[]>() { new byte[] { 0x92 }, new byte[] { 0x93 }, new byte[] { 0x94 }, new byte[] { 0x95 } }
 			};
@@ -455,7 +456,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Viscous Tar",
 				Id = new byte[] { 0xC0, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F65FD, "(0.60 - (src.TrapStrength * src.IncreasePerTier))") },
-				TextureOffset = 0x186FD29,
+				TextureOffsets = new int[] { 0x186FD29 },
 				IconOffset = 0x2717145,
 				IconIds = new List<byte[]>() { new byte[] { 0x96 }, new byte[] { 0x97 }, new byte[] { 0x98 }, new byte[] { 0x99 } }
 			};
@@ -464,7 +465,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Shock Zapper",
 				Id = new byte[] { 0xC2, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F66D0, "400.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18703C3,
+				TextureOffsets = new int[] { 0x18703C3 },
 				IconOffset = 0x2717189,
 				IconIds = new List<byte[]>() { new byte[] { 0x82 }, new byte[] { 0x83 }, new byte[] { 0x84 }, new byte[] { 0x85 } }
 			};
@@ -473,7 +474,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "BGH Zapper",
 				Id = new byte[] { 0xC4, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6826, "MIN(((0.08 * tgt.HealthMax) + 40 * (src.IncreasePerTier ^ src.TrapStrength)),1200)") },
-				TextureOffset = 0x1870C22,
+				TextureOffsets = new int[] { 0x1870C22, 0x1870C61 },
 				IconOffset = 0x27171CD,
 				IconIds = new List<byte[]>() { new byte[] { 0x7E }, new byte[] { 0x7F }, new byte[] { 0x80 }, new byte[] { 0x81 } }
 			};
@@ -482,7 +483,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Trip Wire",
 				Id = new byte[] { 0xC6, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = null,
-				TextureOffset = 0x1877088,
+				TextureOffsets = new int[] { 0x1877088 },
 				IconOffset = 0x2717211,
 				IconIds = new List<byte[]>() { new byte[] { 0x9E }, new byte[] { 0x9F }, new byte[] { 0xA0 }, new byte[] { 0xA1 } },
 				CoinCostOffset = 0x161AFD4,
@@ -494,7 +495,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Wall Blades",
 				Id = new byte[] { 0xC8, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6AE5, "250.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18778BD,
+				TextureOffsets = new int[] { 0x18778BD },
 				IconOffset = 0x2717255,
 				IconIds = new List<byte[]>() { new byte[] { 0xA6 }, new byte[] { 0xA7 }, new byte[] { 0xA8 }, new byte[] { 0xA9 } }
 			};
@@ -503,7 +504,7 @@ namespace SingleplayerLauncher.Resources
 				Name = "Wall Charger",
 				Id = new byte[] { 0xCA, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6C35, "255.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-				TextureOffset = 0x18785DB,
+				TextureOffsets = new int[] { 0x18785DB },
 				IconOffset = 0x2717299,
 				IconIds = new List<byte[]>() { new byte[] { 0x9A }, new byte[] { 0x9B }, new byte[] { 0x9C }, new byte[] { 0x9D } }
 			};
@@ -512,15 +513,22 @@ namespace SingleplayerLauncher.Resources
 				Name = "Web Spinner",
 				Id = new byte[] { 0xCC, 0xC4, 0x00, 0x00 },
 				StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6D8B, "(0.75 - (src.TrapStrength * src.IncreasePerTier))") },
-				TextureOffset = 0x1878C5E,
+				TextureOffsets = new int[] { 0x1878C34 },
+				TextureIds = new List<byte[]>() {	new byte[] { 0x31, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x31, 0x5F, 0x4D, 0x61, 0x74, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x31, 0x00, 0x00, 0x00 },
+													new byte[] { 0x31, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x32, 0x5F, 0x4D, 0x61, 0x74, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x31, 0x00, 0x00, 0x00 },
+													new byte[] { 0x31, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x32, 0x5F, 0x4D, 0x61, 0x74, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x31, 0x00, 0x00, 0x00 },
+													new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x33, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
+													new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x33, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
+													new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x34, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
+													new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x34, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF } },
 				IconOffset = 0x27172DD,
 				IconIds = new List<byte[]>() { new byte[] { 0xAE }, new byte[] { 0xAF }, new byte[] { 0xB0 }, new byte[] { 0xB1 } }
 			};
-        }
+		}
 
-        //Traps (Name, Hex)
-        // Hex representation in SpitfireGame.upk
-        public static Dictionary<string, Trap> Traps = new Dictionary<string, Trap>
+		//Traps (Name, Hex)
+		// Hex representation in SpitfireGame.upk
+		public static Dictionary<string, Trap> Traps = new Dictionary<string, Trap>
         {
             //{ "Acid Sprayer", null },
             { "Arcane Bowling Ball", Trap.ArcaneBowlingBall },
