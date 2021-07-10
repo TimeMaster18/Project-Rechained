@@ -124,16 +124,17 @@ namespace SingleplayerLauncher.Resources
             },
             { "Master", new Dictionary<string, int[]>
                 {
-                    { "Master+" , new int[] { 6, 26 } },
+                    { "Master+" , new int[] { 15, 35 } },
                     { "Master++" , new int[] { 1, 45 } }
                 }
             },
             { "Rift Lord", new Dictionary<string, int[]>
                 {
-                    { "Rift Lord+" , new int[] { 26, 46 } },
-                    { "Rift Lord++" , new int[] { 6, 46 } },
-                    { "Rift Lord+3" , new int[] { 1, 61 } },
-                    { "Rift Lord+4" , new int[] { 1, 75 } }
+                    { "Rift Lord+" , new int[] { 35, 55 } },
+                    { "Rift Lord++" , new int[] { 25, 65 } },
+                    { "Rift Lord+3" , new int[] { 15, 75 } },
+                    { "Rift Lord+4" , new int[] { 5, 85 } },
+                    { "Rift Lord+5" , new int[] { 1, 100 } }
                 }
             }
         };
