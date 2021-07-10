@@ -101,7 +101,8 @@ namespace SingleplayerLauncher.Resources
                                                         { "Winter Witch", new Skin("Winter Witch", new byte[] { 0x1A, 0xE0, 0x00, 0x00 } ) },
                                                         { "Skull Ninja", new Skin("Skull Ninja", new byte[] { 0x1C, 0xE0, 0x00, 0x00 } ) },
                                                         { "Evil Ways", new Skin("Evil Ways", new byte[] { 0x1E, 0xE0, 0x00, 0x00 } ) },
-                                                        { "Dragon Charmer", new Skin("Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } ) }
+                                                        { "Dragon Charmer", new Skin("Dragon Charmer", new byte[] { 0x20, 0xE0, 0x00, 0x00 } ) },
+                                                        { "Chang'e", new Skin("Chang'e", new byte[] { 0x80, 0xDF, 0x00, 0x00 } ) }
                                                     },
                 200)
             },
