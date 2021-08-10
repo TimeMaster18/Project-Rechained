@@ -2,11 +2,6 @@
 {
     public class TrapsInTraps : Mod
     {
-        public TrapsInTraps(UPKFile UPKFile) : base(UPKFile)
-        {
-
-        }
-
         public override bool InstallMod()
         {
             UPKFile.OverrideSingleByte(0, 0x15444BC);

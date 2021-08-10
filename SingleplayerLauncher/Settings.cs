@@ -20,7 +20,7 @@ namespace SingleplayerLauncher
                 MessageBox.Show(e.ToString());
             }
         }
-        public static void Load()
+        private static void Load()
         {
             if (File.Exists(SettingsFile))
             {

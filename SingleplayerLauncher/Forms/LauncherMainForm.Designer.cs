@@ -38,8 +38,7 @@
             this.comBoxSkin = new System.Windows.Forms.ComboBox();
             this.labelHero = new System.Windows.Forms.Label();
             this.labelMap = new System.Windows.Forms.Label();
-            this.chkCustomIni = new System.Windows.Forms.CheckBox();
-            this.chkLog = new System.Windows.Forms.CheckBox();
+            this.chkDebug = new System.Windows.Forms.CheckBox();
             this.btnLoadoutEditor = new System.Windows.Forms.Button();
             this.mapSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.comBoxExtraDifficulty = new System.Windows.Forms.ComboBox();
@@ -107,6 +106,7 @@
             this.comBoxDye.Name = "comBoxDye";
             this.comBoxDye.Size = new System.Drawing.Size(75, 21);
             this.comBoxDye.TabIndex = 6;
+            this.comBoxDye.SelectedIndexChanged += new System.EventHandler(this.comBoxDye_SelectedIndexChanged);
             // 
             // labelDye
             // 
@@ -134,6 +134,7 @@
             this.comBoxSkin.Name = "comBoxSkin";
             this.comBoxSkin.Size = new System.Drawing.Size(111, 21);
             this.comBoxSkin.TabIndex = 4;
+            this.comBoxSkin.SelectedIndexChanged += new System.EventHandler(this.comBoxSkin_SelectedIndexChanged);
             // 
             // labelHero
             // 
@@ -153,26 +154,15 @@
             this.labelMap.TabIndex = 0;
             this.labelMap.Text = "Map";
             // 
-            // chkCustomIni
+            // chkDebug
             // 
-            this.chkCustomIni.AutoSize = true;
-            this.chkCustomIni.Location = new System.Drawing.Point(13, 286);
-            this.chkCustomIni.Name = "chkCustomIni";
-            this.chkCustomIni.Size = new System.Drawing.Size(77, 17);
-            this.chkCustomIni.TabIndex = 4;
-            this.chkCustomIni.Text = "Custom .ini";
-            this.chkCustomIni.UseVisualStyleBackColor = true;
-            this.chkCustomIni.CheckedChanged += new System.EventHandler(this.chkCustomIni_CheckedChanged);
-            // 
-            // chkLog
-            // 
-            this.chkLog.AutoSize = true;
-            this.chkLog.Location = new System.Drawing.Point(215, 286);
-            this.chkLog.Name = "chkLog";
-            this.chkLog.Size = new System.Drawing.Size(44, 17);
-            this.chkLog.TabIndex = 6;
-            this.chkLog.Text = "Log";
-            this.chkLog.UseVisualStyleBackColor = true;
+            this.chkDebug.AutoSize = true;
+            this.chkDebug.Location = new System.Drawing.Point(209, 285);
+            this.chkDebug.Name = "chkDebug";
+            this.chkDebug.Size = new System.Drawing.Size(58, 17);
+            this.chkDebug.TabIndex = 6;
+            this.chkDebug.Text = "Debug";
+            this.chkDebug.UseVisualStyleBackColor = true;
             // 
             // btnLoadoutEditor
             // 
@@ -210,6 +200,7 @@
             this.comBoxExtraDifficulty.Name = "comBoxExtraDifficulty";
             this.comBoxExtraDifficulty.Size = new System.Drawing.Size(79, 21);
             this.comBoxExtraDifficulty.TabIndex = 9;
+            this.comBoxExtraDifficulty.SelectedIndexChanged += new System.EventHandler(this.comBoxExtraDifficulty_SelectedIndexChanged);
             // 
             // labelExtraDifficulty
             // 
@@ -289,8 +280,7 @@
             this.Controls.Add(this.btnResetConfig);
             this.Controls.Add(this.mapSettingsGroupBox);
             this.Controls.Add(this.btnLoadoutEditor);
-            this.Controls.Add(this.chkLog);
-            this.Controls.Add(this.chkCustomIni);
+            this.Controls.Add(this.chkDebug);
             this.Controls.Add(this.characterSettingsGroupBox);
             this.Controls.Add(this.btnLaunch);
             this.Name = "LauncherMainForm";
@@ -313,8 +303,7 @@
         private System.Windows.Forms.GroupBox characterSettingsGroupBox;
         private System.Windows.Forms.Label labelHero;
         private System.Windows.Forms.Label labelMap;
-        private System.Windows.Forms.CheckBox chkCustomIni;
-        private System.Windows.Forms.CheckBox chkLog;
+        private System.Windows.Forms.CheckBox chkDebug;
         private System.Windows.Forms.Label labelSkin;
         private System.Windows.Forms.ComboBox comBoxSkin;
         private System.Windows.Forms.Label labelDye;

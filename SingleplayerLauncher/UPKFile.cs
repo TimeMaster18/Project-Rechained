@@ -7,10 +7,24 @@ namespace SingleplayerLauncher
 {
     public class UPKFile
     {
-        private byte[] bytes;
-        private readonly string filePath;
-        private int fileLength = 0;
-        public int nBytesRemoved = 0;
+        public byte[] Bytes { get; private set; }
+        private readonly string FilePath;
+        private int FileLength = 0;
+        public int RemovedBytesCount = 0;
+
+        public class Section
+        {
+            public string Name { get; private set; }
+            public int? Size { get; private set; }
+            public byte[] Header { get; private set; }
+
+            public Section(string name, int? size, byte[] header)
+            {
+                Name = name;
+                Size = size;
+                Header = header;
+            }
+        }
 
         /// <summary>
         ///   <para>
@@ -20,19 +34,20 @@ namespace SingleplayerLauncher
         /// <param name="path">The file path.</param>
         public UPKFile(string path)
         {
-            filePath = path;
-            bytes = ReadAllBytes(path);
+            FilePath = path;
+            Bytes = ReadAllBytes(path);
         }
 
-        protected byte[] Bytes
+        /// <summary>
+        ///   <para>
+        ///  Initializes a new instance of the <see cref="UPKFile"/> class.
+        /// </para>
+        /// </summary>
+        /// <param name="path">The file path.</param>
+        public UPKFile(byte[] bytes)
         {
-            get
-            {
-                if (bytes == null)
-                    bytes = ReadAllBytes(filePath);
-                return bytes;
-            }
-            set => bytes = value;
+            FilePath = null;
+            Bytes = bytes;
         }
 
         private byte[] ReadAllBytes(string fileName)
@@ -43,7 +58,7 @@ namespace SingleplayerLauncher
                 buffer = new byte[fs.Length];
                 fs.Read(buffer, 0, (int)fs.Length);
             }
-            fileLength = buffer.Length;
+            FileLength = buffer.Length;
             return buffer;
         }
 
@@ -66,12 +81,24 @@ namespace SingleplayerLauncher
         /// </summary>
         public void Save()
         {
-            File.WriteAllBytes(filePath, Bytes);
+            _ = FilePath ?? throw new ArgumentNullException(nameof(FilePath), "Mandatory parameter");
+            File.WriteAllBytes(FilePath, Bytes);
         }
 
         public byte GetByte(int index)
         {
             return Bytes[index];
+        }
+
+        public byte[] GetSubArray(int startPosition, int length)
+        {
+            if (startPosition + length > FileLength)
+                throw new ArgumentException("UPKFile index is out of range", nameof(GetSubArray));
+
+            byte[] subArray = new byte[length];
+            Buffer.BlockCopy(Bytes, startPosition, subArray, 0, length);
+
+            return subArray;
         }
 
         /// <summary>
@@ -118,7 +145,18 @@ namespace SingleplayerLauncher
             tmpBytes.RemoveRange(index, numberBytes);
             Bytes = tmpBytes.ToArray();
 
-            nBytesRemoved += numberBytes;
+            RemovedBytesCount += numberBytes;
+        }
+
+        
+        public void RemoveByteSection(Section section)
+        {
+            int removeIndex = FindBytesKMP(section.Header);
+
+            if (removeIndex != -1)
+            {
+                RemoveBytes(removeIndex, (int) section.Size);
+            }
         }
 
         /// <summary>
@@ -131,7 +169,7 @@ namespace SingleplayerLauncher
         {
             if (numberBytes <= 0)
             {
-                numberBytes = nBytesRemoved;
+                numberBytes = RemovedBytesCount;
             }
 
             byte[] zeroedBytes = CreateZeroedByteArray(numberBytes);
@@ -149,7 +187,7 @@ namespace SingleplayerLauncher
             tmpBytes.InsertRange(position, bytesToInsert);
             Bytes = tmpBytes.ToArray();
 
-            nBytesRemoved -= bytesToInsert.Length;
+            RemovedBytesCount -= bytesToInsert.Length;
         }
 
         /// <summary>
@@ -162,7 +200,7 @@ namespace SingleplayerLauncher
         /// <param name="start"> Offset index of where to start the search.</param>
         public int FindBytesNaive(byte[] needle, int start = 0)
         {
-            byte[] haystack = bytes;
+            byte[] haystack = Bytes;
 
             for (int i = start; i <= haystack.Length - needle.Length; i++)
             {
@@ -176,7 +214,7 @@ namespace SingleplayerLauncher
 
         protected bool Match(byte[] needle, int start)
         {
-            byte[] haystack = bytes;
+            byte[] haystack = Bytes;
 
             if (needle.Length + start > haystack.Length)
             {
@@ -205,7 +243,7 @@ namespace SingleplayerLauncher
         public int FindBytesKMP(byte[] pattern, int start = 0, int length = 0)
         {
             int M = pattern.Length;
-            int N = bytes.Length;
+            int N = Bytes.Length;
 
             if (length > 0)
             {
@@ -224,7 +262,7 @@ namespace SingleplayerLauncher
             int i = start; // index for txt[] 
             while (i < N)
             {
-                if (pattern[j] == bytes[i])
+                if (pattern[j] == Bytes[i])
                 {
                     j++;
                     i++;
@@ -235,7 +273,7 @@ namespace SingleplayerLauncher
                 }
 
                 // missmatch after j matches 
-                else if (i < N && pattern[j] != bytes[i])
+                else if (i < N && pattern[j] != Bytes[i])
                 {
                     // Do not match lps[0..lps[j-1]] characters, 
                     // they will match anyway 
