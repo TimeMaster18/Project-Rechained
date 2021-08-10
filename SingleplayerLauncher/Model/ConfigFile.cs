@@ -2,7 +2,7 @@
 using IniParser.Model;
 using System.IO;
 
-namespace SingleplayerLauncher
+namespace SingleplayerLauncher.Model
 {
     internal class ConfigFile
     {
