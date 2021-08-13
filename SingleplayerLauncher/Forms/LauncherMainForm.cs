@@ -69,13 +69,6 @@ namespace SingleplayerLauncher
                 comBoxExtraDifficulty.SelectedItem = Settings.Instance["extraDifficulty"];
             if (Settings.Instance.ContainsKey("debug"))
                 chkDebug.Checked = (bool)Settings.Instance["debug"];
-            /* TODO : Fix Saved Loadout
-            if (Settings.Instance.ContainsKey("loadout"))
-            {
-                string[] savedLoadOut = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>();
-                gameInfo.Loadout = savedLoadOut;
-            }
-            */
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -144,10 +137,6 @@ namespace SingleplayerLauncher
 
                 case Names.GameMode.SURVIVAL:
                     comBoxDifficulty.Items.AddRange(Model.Map.Maps[comBoxMap.SelectedItem.ToString()].SurvivalAvailableMapNames);
-                    /*foreach (string d in Model.Difficulty.SurvivalDifficulties.Keys)
-                        if (Model.Map.Maps[comBoxMap.SelectedItem.ToString()].SurvivalAvailableMapNames.Contains(d))
-                            comBoxDifficulty.Items.Add(d);
-                    */
                     break;
 
                 default:
