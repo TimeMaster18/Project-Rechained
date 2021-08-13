@@ -107,30 +107,6 @@ namespace SingleplayerLauncher
             ld.Show();
         }
 
-        private void comBoxGameMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comBoxDifficulty.Items.Clear();
-
-            switch (comBoxGameMode.SelectedItem)
-            {
-                case Names.GameMode.ENDLESS:
-                    comBoxDifficulty.Items.Add(Model.Difficulty.Endless.Name);
-                    break;
-
-                case Names.GameMode.SURVIVAL:
-                    foreach (string d in Model.Difficulty.SurvivalDifficulties.Keys)
-                        comBoxDifficulty.Items.Add(d);
-                    break;
-
-                default:
-                    break;
-            }
-
-            comBoxDifficulty.SelectedIndex = 0;
-
-            GameInfo.Battleground.GameMode = Model.GameMode.GameModes[comBoxGameMode.SelectedItem.ToString()];
-        }
-
         private void comBoxMap_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedMap = comBoxMap.SelectedItem.ToString();
@@ -147,7 +123,40 @@ namespace SingleplayerLauncher
                 comBoxGameMode.Enabled = true;
                 comBoxDifficulty.Enabled = true;
                 comBoxExtraDifficulty.Enabled = true;
+
+                comBoxGameMode.Items.Clear();
+                comBoxGameMode.Items.Add(Names.GameMode.SURVIVAL);
+                if (GameInfo.Battleground.Map.HasEndlessAvailable)
+                    comBoxGameMode.Items.Add(Names.GameMode.ENDLESS);
+                comBoxGameMode.SelectedIndex = 0;
             }
+        }
+
+        private void comBoxGameMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comBoxDifficulty.Items.Clear();
+
+            switch (comBoxGameMode.SelectedItem)
+            {
+                case Names.GameMode.ENDLESS:
+                    comBoxDifficulty.Items.Add(Model.Difficulty.Endless.Name);
+                    break;
+
+                case Names.GameMode.SURVIVAL:
+                    comBoxDifficulty.Items.AddRange(Model.Map.Maps[comBoxMap.SelectedItem.ToString()].SurvivalAvailableMapNames);
+                    /*foreach (string d in Model.Difficulty.SurvivalDifficulties.Keys)
+                        if (Model.Map.Maps[comBoxMap.SelectedItem.ToString()].SurvivalAvailableMapNames.Contains(d))
+                            comBoxDifficulty.Items.Add(d);
+                    */
+                    break;
+
+                default:
+                    break;
+            }
+
+            comBoxDifficulty.SelectedIndex = 0;
+
+            GameInfo.Battleground.GameMode = Model.GameMode.GameModes[comBoxGameMode.SelectedItem.ToString()];
         }
 
 
