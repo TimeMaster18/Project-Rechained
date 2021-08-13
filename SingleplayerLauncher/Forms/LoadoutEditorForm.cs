@@ -1,4 +1,6 @@
-﻿using SingleplayerLauncher.Model;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Resources;
 using System;
 using System.Collections.Generic;
@@ -37,8 +39,9 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
 
-            // TODO implement a way of loading previous loadout used
-            // Placeholder -> Default loadout
+            if (Settings.Instance.ContainsKey("loadout"))
+                GameInfo.Loadout.SlotItems = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>().Select(lsi => SlotItems[lsi]).ToArray();
+
             SetCurrentLoadout();
             SetCurrenGuardians();
         }
@@ -47,9 +50,8 @@ namespace SingleplayerLauncher
         {
             SaveLoadout();
             SaveGuardians();
-            // TODO
-            //Settings.Instance["loadout"] = hero.Loadout;
-            //Settings.Save();
+            Settings.Instance["loadout"] = ComBoxLoadoutSlots.Select(cls => cls.SelectedItem.ToString());
+            Settings.Save();
             Close();
         }
 
@@ -88,7 +90,7 @@ namespace SingleplayerLauncher
             }
         }
 
-        private static Dictionary<string, SlotItem> SlotItems =
+        private static readonly Dictionary<string, SlotItem> SlotItems =
             new List<Dictionary<string, SlotItem>>() { Gear.Gears, Trap.Traps }
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
