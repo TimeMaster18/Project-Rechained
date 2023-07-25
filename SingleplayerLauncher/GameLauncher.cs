@@ -1,11 +1,8 @@
 ﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Utils;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace SingleplayerLauncher
 {
@@ -81,7 +78,9 @@ namespace SingleplayerLauncher
             {
                 FileInfo pawnWeaponUPKFileInfo = new FileInfo(UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i]);
                 if (pawnWeaponUPKFileInfo.Length == PAWNWEAPON_ORIGINAL_FILESIZES[i])
+                {
                     FileUtils.CreateBackup(PAWNWEAPON_FILENAMES[i], UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i]);
+                }
 
                 File.Delete(UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i]);
                 File.Copy(MOD_DEFAULT_PAWNWEAPON_UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i], UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i]);
@@ -94,7 +93,7 @@ namespace SingleplayerLauncher
             Settings.Save();
         }
 
-        
+
 
         public static void StartGame(bool debug)
         {
@@ -119,7 +118,9 @@ namespace SingleplayerLauncher
             arguments += defaultArgs;
 
             if (debug)
+            {
                 arguments += DEBUG_ARGUMENTS;
+            }
 
             return arguments;
         }

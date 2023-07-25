@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Model;
-using SingleplayerLauncher.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +38,9 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
 
             if (Settings.Instance.ContainsKey("loadout"))
+            {
                 GameInfo.Loadout.SlotItems = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>().Select(lsi => SlotItems[lsi]).ToArray();
+            }
 
             SetCurrentLoadout();
             SetCurrenGuardians();

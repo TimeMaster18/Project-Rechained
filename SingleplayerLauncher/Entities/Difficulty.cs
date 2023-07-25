@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using static SingleplayerLauncher.Names.Difficulty;
 
 namespace SingleplayerLauncher.Model
@@ -163,7 +161,7 @@ namespace SingleplayerLauncher.Model
             { RIFT_LORD_PLUS_5, Difficulty.RiftLordPlus5 },
         };
 
-        public static Dictionary<string, Difficulty> SurvivalExtraDifficulties = 
+        public static Dictionary<string, Difficulty> SurvivalExtraDifficulties =
             new List<Dictionary<string, Difficulty>>() { ApprenticeExtraDifficulties, WarMageExtraDifficulties, MasterExtraDifficulties, RiftLordExtraDifficulties }
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -296,7 +294,7 @@ namespace SingleplayerLauncher.Model
 
 
         public static Dictionary<string, Difficulty> Difficulties =
-            new List<Dictionary<string, Difficulty>>() {  EndlessAllDifficulties, SurvivalAllDifficulties }
+            new List<Dictionary<string, Difficulty>>() { EndlessAllDifficulties, SurvivalAllDifficulties }
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 

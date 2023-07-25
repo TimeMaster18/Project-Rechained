@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using static SingleplayerLauncher.Names.WeeklyChallenge;
-using static SingleplayerLauncher.Model.Map;
 using static SingleplayerLauncher.Model.Dye;
-using static SingleplayerLauncher.Model.Trap;
 using static SingleplayerLauncher.Model.Gear;
+using static SingleplayerLauncher.Model.Map;
+using static SingleplayerLauncher.Model.Trap;
+using static SingleplayerLauncher.Names.WeeklyChallenge;
 
 namespace SingleplayerLauncher.Model
 {
@@ -44,7 +42,7 @@ namespace SingleplayerLauncher.Model
             {
                 Dye = Dyes.ElementAt(Random.Next(Dyes.Count)).Value,
                 // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,
-                SlotItems = new SlotItem[] {LightningRing, MagesClover, GreatWallBarricade, TarTrap, ArcanePhaser, IcicleImpaler, ArrowWall, WebSpinner, LightningRod },
+                SlotItems = new SlotItem[] { LightningRing, MagesClover, GreatWallBarricade, TarTrap, ArcanePhaser, IcicleImpaler, ArrowWall, WebSpinner, LightningRod },
             },
             StartingCoin = 9000,
             ParTime = new TimeSpan(0, 11, 0),

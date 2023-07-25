@@ -1,10 +1,4 @@
-﻿using SingleplayerLauncher.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SingleplayerLauncher.Model
+﻿namespace SingleplayerLauncher.Model
 {
     public class Battleground : IBattleground
     {
@@ -16,6 +10,6 @@ namespace SingleplayerLauncher.Model
 
         public Difficulty Difficulty { get; set; }
 
-        public int StartingCoin { get;  set; }
+        public int StartingCoin { get; set; }
     }
 }

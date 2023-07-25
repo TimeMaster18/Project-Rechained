@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SingleplayerLauncher.Model
+﻿namespace SingleplayerLauncher.Model
 {
     public abstract class SlotItem
     {
         public string Name { get; protected set; }
-        public byte[] Id { get; protected set; } // id linking the gear, in SpitfireGame.upk
-
-        
+        public byte[] Id { get; protected set; } // id linking the item, in SpitfireGame.upk        
     }
 
     public class Loadout
@@ -30,5 +23,5 @@ namespace SingleplayerLauncher.Model
 
         // public Consumable[] Consumables { get; set; }
     }
-        
+
 }

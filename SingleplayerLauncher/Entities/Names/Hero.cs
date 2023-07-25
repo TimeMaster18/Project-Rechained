@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using static SingleplayerLauncher.Names.Gear;
-
-namespace SingleplayerLauncher.Names
+﻿namespace SingleplayerLauncher.Names
 {
     public static class Hero
     {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace SingleplayerLauncher.Utils
 {
@@ -27,10 +23,14 @@ namespace SingleplayerLauncher.Utils
             bool backupFolderExists = System.IO.Directory.Exists(BackupFolderPath);
 
             if (!backupFolderExists)
+            {
                 System.IO.Directory.CreateDirectory(BackupFolderPath);
+            }
 
             if (!File.Exists(BackupFolderPath + "//" + fileName))
+            {
                 File.Copy(path, BackupFolderPath + "//" + fileName);
+            }
         }
 
         public static void DecompressUPKFile(string upkFilePath, int upkFileOriginalSize)
@@ -42,7 +42,9 @@ namespace SingleplayerLauncher.Utils
                 FileUtils.CreateBackup(fileName, upkFilePath);
 
                 if (!File.Exists(SPITFIREGAME_UPK_DECOMPRESS_PATH))
+                {
                     File.Copy(upkFilePath, SPITFIREGAME_UPK_DECOMPRESS_PATH);
+                }
 
                 // Decompress
                 ProcessStartInfo psi = new ProcessStartInfo

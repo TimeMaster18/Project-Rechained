@@ -1,10 +1,7 @@
 ﻿using IniParser.Model;
 using SingleplayerLauncher.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SingleplayerLauncher.Utils;
+using System;
 using System.Globalization;
 
 namespace SingleplayerLauncher.GameSettings
@@ -45,7 +42,7 @@ namespace SingleplayerLauncher.GameSettings
             ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
             IniData data = characterData.data;
 
-            data[RCharacterDataSection][CharacterDataKeyHero] = GameInfo.Loadout.Hero. PawnWeaponString;
+            data[RCharacterDataSection][CharacterDataKeyHero] = GameInfo.Loadout.Hero.PawnWeaponString;
             data[RCharacterDataSection][CharacterDataKeyDye] = GameInfo.Loadout.Dye.Id.ToString();
 
             data[RCharacterDataSection][CharacterDataKeyGodMode] = Mods.Mods.GodMode.IsEnabled ? "TRUE" : "FALSE";
@@ -53,7 +50,7 @@ namespace SingleplayerLauncher.GameSettings
             int startingCoin = GameInfo.Battleground.StartingCoin != 0 ? GameInfo.Battleground.StartingCoin : GameInfo.Battleground.Map.StartingCoin;
             data[RCharacterDataSection][CharacterDataKeyBonusStartingCoin] = CalculateMultiplierStartingCoin(startingCoin);
 
-            characterData.Write(data);           
+            characterData.Write(data);
         }
 
         public static void Initialize()
@@ -78,16 +75,22 @@ namespace SingleplayerLauncher.GameSettings
             string mapName = GameInfo.Instance.Battleground.Map.Name;
 
             if (mapName.Contains("Tutorial") || mapName.Contains("Prologue"))
+            {
                 return "0";
+            }
             else if (startingCoin == -1)
+            {
                 return "0";
+            }
             else if (startingCoin == 0)
+            {
                 return "-1";
+            }
             else
             {
                 int baseStartingCoins = GameInfo.Instance.Battleground.Map.StartingCoin;
 
-                double startingCoinsMultiplier = (double) startingCoin / baseStartingCoins;                
+                double startingCoinsMultiplier = (double)startingCoin / baseStartingCoins;
                 startingCoinsMultiplier--; // it's a multiplier, so it needs an offset of -1
 
                 return startingCoinsMultiplier.ToString("F6", CultureInfo.InvariantCulture);

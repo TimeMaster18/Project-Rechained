@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SingleplayerLauncher.Names
+﻿namespace SingleplayerLauncher.Names
 {
     public static class Guardian
     {
@@ -18,7 +13,7 @@ namespace SingleplayerLauncher.Names
             JADE_EMPIRE = "Jade Empire",
             JAILER_GUARDIAN = "Jailer Guardian",
             LION_GUARDIAN = "Lion Guardian",
-            MOON_GUARDIAN = "Moon Guardian",        
+            MOON_GUARDIAN = "Moon Guardian",
             PRIEST_GUARDIAN = "Priest Guardian",
             QUARTERMASTER_GUARDIAN = "Quartermaster Guardian",
             RANCH_HAND_GUARDIAN = "Ranch Hand Guardian",

@@ -1,12 +1,4 @@
-﻿using SingleplayerLauncher.GameSettings;
-using SingleplayerLauncher.Model;
-using SingleplayerLauncher.Mods;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SingleplayerLauncher.Model
+﻿namespace SingleplayerLauncher.Model
 {
     public sealed class GameInfo
     {
