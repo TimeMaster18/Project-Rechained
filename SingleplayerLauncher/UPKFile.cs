@@ -93,7 +93,9 @@ namespace SingleplayerLauncher
         public byte[] GetSubArray(int startPosition, int length)
         {
             if (startPosition + length > FileLength)
+            {
                 throw new ArgumentException("UPKFile index is out of range", nameof(GetSubArray));
+            }
 
             byte[] subArray = new byte[length];
             Buffer.BlockCopy(Bytes, startPosition, subArray, 0, length);
@@ -148,14 +150,14 @@ namespace SingleplayerLauncher
             RemovedBytesCount += numberBytes;
         }
 
-        
+
         public void RemoveByteSection(Section section)
         {
             int removeIndex = FindBytesKMP(section.Header);
 
             if (removeIndex != -1)
             {
-                RemoveBytes(removeIndex, (int) section.Size);
+                RemoveBytes(removeIndex, (int)section.Size);
             }
         }
 
@@ -278,9 +280,13 @@ namespace SingleplayerLauncher
                     // Do not match lps[0..lps[j-1]] characters, 
                     // they will match anyway 
                     if (j != 0)
+                    {
                         j = lps[j - 1];
+                    }
                     else
+                    {
                         i++;
+                    }
                 }
             }
 

@@ -6,7 +6,7 @@ namespace SingleplayerLauncher
 {
     public partial class ModLoaderForm : Form
     {
-        GameInfo GameInfo = GameInfo.Instance;
+        readonly GameInfo GameInfo = GameInfo.Instance;
 
         public ModLoaderForm()
         {
@@ -48,7 +48,7 @@ namespace SingleplayerLauncher
 
         private void StartingCoinInput_ValueChanged(object sender, EventArgs e)
         {
-            GameInfo.Battleground.StartingCoin = (int) startingCoinInput.Value;
+            GameInfo.Battleground.StartingCoin = (int)startingCoinInput.Value;
             Settings.Instance["StartingCoin"] = startingCoinInput.Value.ToString();
             Settings.Save();
         }

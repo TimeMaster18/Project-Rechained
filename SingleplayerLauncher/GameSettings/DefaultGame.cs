@@ -2,9 +2,6 @@
 using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SingleplayerLauncher.GameSettings
 {
@@ -13,7 +10,7 @@ namespace SingleplayerLauncher.GameSettings
         private static readonly GameInfo GameInfo = GameInfo.Instance;
 
         private const string DefaultGameIniFileName = "DefaultGame.ini";
-        private const string DefaultGameIniPath= "..//SpitfireGame//Config//DefaultGame.ini";
+        private const string DefaultGameIniPath = "..//SpitfireGame//Config//DefaultGame.ini";
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         private const string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";

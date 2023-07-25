@@ -1,9 +1,6 @@
 ﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Mods;
-using SingleplayerLauncher.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace SingleplayerLauncher
@@ -24,9 +21,14 @@ namespace SingleplayerLauncher
 
             int trapTier = GameInfo.Battleground.Difficulty.TrapTier;
             if (trapTier < 1)
+            {
                 throw new Exception("Trap Tier should be greater than 1 but it was: " + trapTier);
+            }
+
             if (SpitfireGameUPKFile == null)
+            {
                 throw new Exception("Null spitfireGameUPKFile");
+            }
 
             foreach (Trap trap in Trap.Traps.Values)
             {
@@ -45,13 +47,19 @@ namespace SingleplayerLauncher
                 foreach (int offset in trap.TextureOffsets)
                 {
                     if (trap.TextureIds == null)
+                    {
                         SpitfireGameUPKFile.OverrideBytes(Trap.DEFAULT_TRAP_TEXTURE_IDS[Math.Min(trapTier, MAX_TRAP_TIER) - 1], offset);
+                    }
                     else // assumes that traps with unique TextureIds (WebSpinner) only have 1 texture to replace
+                    {
                         SpitfireGameUPKFile.OverrideBytes(trap.TextureIds[Math.Min(trapTier, MAX_TRAP_TIER) - 1], offset);
+                    }
                 }
 
                 if (trap.IconIds != null)
+                {
                     SpitfireGameUPKFile.OverrideBytes(trap.IconIds[Math.Min(trapTier, MAX_TRAP_TIER) / 2 % 4], trap.IconOffset);
+                }
             }
         }
 
@@ -61,9 +69,13 @@ namespace SingleplayerLauncher
             foreach (Mod mod in Mods.Mods.ModList)
             {
                 if (mod.IsEnabled)
+                {
                     mod.InstallMod();
+                }
                 else
+                {
                     mod.UninstallMod();
+                }
             }
         }
         public void ApplyLoadout()

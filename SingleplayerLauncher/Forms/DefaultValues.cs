@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SingleplayerLauncher.Resources
+﻿namespace SingleplayerLauncher.Resources
 {
     internal class DefaultValues
     {

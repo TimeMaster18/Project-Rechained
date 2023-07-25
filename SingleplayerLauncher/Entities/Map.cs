@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using static SingleplayerLauncher.Names.Map;
+﻿using System.Collections.Generic;
 using static SingleplayerLauncher.Names.Difficulty;
+using static SingleplayerLauncher.Names.Map;
 
 namespace SingleplayerLauncher.Model
 {

@@ -1,17 +1,9 @@
-﻿using IniParser.Model;
-using Newtonsoft.Json.Linq;
-using SingleplayerLauncher.Model;
-using SingleplayerLauncher.Names;
-using SingleplayerLauncher.Mods;
+﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Resources;
-using SingleplayerLauncher.Utils;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SingleplayerLauncher
 {
@@ -30,21 +22,29 @@ namespace SingleplayerLauncher
             InitializeComponent();
         }
 
-        
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             foreach (string m in Model.Map.Maps.Keys)
+            {
                 comBoxMap.Items.Add(m);
+            }
 
             foreach (string h in Model.Hero.Heroes.Keys)
+            {
                 comBoxHero.Items.Add(h);
+            }
 
             foreach (string d in Model.Dye.Dyes.Keys)
+            {
                 comBoxDye.Items.Add(d);
+            }
 
             foreach (string gm in Model.GameMode.GameModes.Keys)
+            {
                 comBoxGameMode.Items.Add(gm);
+            }
 
             comBoxHero.SelectedItem = DefaultValues.SelectedHero;
             comBoxSkin.SelectedItem = DefaultValues.SelectedSkin;
@@ -54,21 +54,44 @@ namespace SingleplayerLauncher
             comBoxGameMode.SelectedItem = DefaultValues.SelectedGameMode;
 
             if (Settings.Instance.ContainsKey("hero"))
+            {
                 comBoxHero.SelectedItem = Settings.Instance["hero"];
+            }
+
             if (Settings.Instance.ContainsKey("skin"))
+            {
                 comBoxSkin.SelectedItem = Settings.Instance["skin"];
+            }
+
             if (Settings.Instance.ContainsKey("dye"))
+            {
                 comBoxDye.SelectedItem = Settings.Instance["dye"];
+            }
+
             if (Settings.Instance.ContainsKey("map"))
+            {
                 comBoxMap.SelectedItem = Settings.Instance["map"];
+            }
+
             if (Settings.Instance.ContainsKey("gameMode"))
+            {
                 comBoxGameMode.SelectedItem = Settings.Instance["gameMode"];
+            }
+
             if (Settings.Instance.ContainsKey("difficulty"))
+            {
                 comBoxDifficulty.SelectedItem = Settings.Instance["difficulty"];
+            }
+
             if (Settings.Instance.ContainsKey("extraDifficulty"))
+            {
                 comBoxExtraDifficulty.SelectedItem = Settings.Instance["extraDifficulty"];
+            }
+
             if (Settings.Instance.ContainsKey("debug"))
+            {
                 chkDebug.Checked = (bool)Settings.Instance["debug"];
+            }
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -120,7 +143,10 @@ namespace SingleplayerLauncher
                 comBoxGameMode.Items.Clear();
                 comBoxGameMode.Items.Add(Names.GameMode.SURVIVAL);
                 if (GameInfo.Battleground.Map.HasEndlessAvailable)
+                {
                     comBoxGameMode.Items.Add(Names.GameMode.ENDLESS);
+                }
+
                 comBoxGameMode.SelectedIndex = 0;
             }
         }
@@ -163,27 +189,42 @@ namespace SingleplayerLauncher
             {
                 case Names.Difficulty.ENDLESS:
                     foreach (string ed in Model.Difficulty.EndlessExtraDifficulties.Keys)
+                    {
                         comBoxExtraDifficulty.Items.Add(ed);
+                    }
+
                     break;
 
                 case Names.Difficulty.APPRENTICE:
                     foreach (string ed in Model.Difficulty.ApprenticeExtraDifficulties.Keys)
+                    {
                         comBoxExtraDifficulty.Items.Add(ed);
+                    }
+
                     break;
 
                 case Names.Difficulty.WAR_MAGE:
                     foreach (string ed in Model.Difficulty.WarMageExtraDifficulties.Keys)
+                    {
                         comBoxExtraDifficulty.Items.Add(ed);
+                    }
+
                     break;
 
                 case Names.Difficulty.MASTER:
                     foreach (string ed in Model.Difficulty.MasterExtraDifficulties.Keys)
+                    {
                         comBoxExtraDifficulty.Items.Add(ed);
+                    }
+
                     break;
 
                 case Names.Difficulty.RIFT_LORD:
                     foreach (string ed in Model.Difficulty.RiftLordExtraDifficulties.Keys)
+                    {
                         comBoxExtraDifficulty.Items.Add(ed);
+                    }
+
                     break;
 
                 default:
@@ -194,7 +235,7 @@ namespace SingleplayerLauncher
         private void comBoxExtraDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
-            string selectedExtraDifficulty = comBoxDifficulty.SelectedItem.ToString();
+            string selectedExtraDifficulty = comBoxExtraDifficulty.SelectedItem.ToString();
 
             GameInfo.Battleground.Difficulty = selectedExtraDifficulty.Equals(noExtraDifficulty) ? Model.Difficulty.Difficulties[selectedDifficulty] : Model.Difficulty.Difficulties[selectedExtraDifficulty];
         }
@@ -214,7 +255,9 @@ namespace SingleplayerLauncher
             {
 
                 foreach (string s in GameInfo.Loadout.Hero.Skins.Select(s => s.Name).ToArray())
+                {
                     comBoxSkin.Items.Add(s);
+                }
 
                 comBoxSkin.SelectedItem = GameInfo.Loadout.Hero.Skins[0].Name;
                 GameInfo.Loadout.Hero = Model.Hero.Heroes[selectedHero];

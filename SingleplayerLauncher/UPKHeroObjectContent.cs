@@ -1,5 +1,4 @@
 ﻿using SingleplayerLauncher.Model;
-using SingleplayerLauncher.Resources;
 using System;
 using System.Linq;
 
@@ -63,7 +62,7 @@ namespace SingleplayerLauncher
 
             ApplyGuardians(); // Should go after everything else since it's where we are inserting the extra bytes and needs to know the size
 
-            // from here, only edits bytes
+            // From here, only edits bytes
             ApplyHealthFix();
             ApplySkin();
         }
@@ -72,19 +71,21 @@ namespace SingleplayerLauncher
         private void ApplyTrapsGear()
         {
             if (GameInfo.Loadout == null || GameInfo.Loadout.SlotItems == null || GameInfo.Loadout.SlotItems.Length != LoadoutSlotsNumber)
+            {
                 throw new Exception("Loadout must have 9 traps/gear");
+            }
 
             int startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header);
 
             if (startIndexLoadout == -1)
             {
                 // Get position after Archetype and Add Header and Field Type
-                startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Header) + (int) GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size;
+                startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Header) + (int)GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size;
 
                 HeroObjectContent.InsertZeroedBytes(startIndexLoadout, LoadoutSectionLength);
 
                 HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header, startIndexLoadout);
-                HeroObjectContent.OverrideBytes(LoadoutFieldType, startIndexLoadout + (int) GameInfo.Loadout.Hero.DefaultInventoryClasses.Header.Length);
+                HeroObjectContent.OverrideBytes(LoadoutFieldType, startIndexLoadout + GameInfo.Loadout.Hero.DefaultInventoryClasses.Header.Length);
             }
 
             int arraySizeIndex = startIndexLoadout + LoadoutArraySizeOffset;
@@ -109,27 +110,14 @@ namespace SingleplayerLauncher
             HeroObjectContent.OverrideBytes(loadoutBytes, loadoutSlotsIndex);
         }
 
-        public static byte[] ConcatByteArrays(params byte[][] arrays)
-        {
-            return arrays.SelectMany(x => x).ToArray();
-        }
-
-        private byte[] Combine(SlotItem[] slotItems)
-        {
-            byte[] rv = new byte[slotItems.Sum(si => si.Id.Length)];
-            int offset = 0;
-            foreach (SlotItem slotItem in slotItems)
-            {
-                System.Buffer.BlockCopy(slotItem.Id, 0, rv, offset, slotItem.Id.Length);
-                offset += slotItem.Id.Length;
-            }
-            return rv;
-        }
+        public static byte[] ConcatByteArrays(params byte[][] arrays) => arrays.SelectMany(x => x).ToArray();
 
         private void ApplyGuardians()
         {
             if (GameInfo.Loadout == null || GameInfo.Loadout.Guardians == null || GameInfo.Loadout.Guardians.Length != 2)
+            {
                 throw new Exception("Loadout must have 2 guardians");
+            }
 
             int startIndexGuardians = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header);
 
@@ -139,7 +127,7 @@ namespace SingleplayerLauncher
                 startIndexGuardians = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header) + LoadoutSectionLength;
 
                 HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header, startIndexGuardians);
-                HeroObjectContent.OverrideBytes(GuardiansFieldType, startIndexGuardians + (int) GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header.Length);
+                HeroObjectContent.OverrideBytes(GuardiansFieldType, startIndexGuardians + GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header.Length);
             }
 
             int endIndex = HeroObjectContent.FindBytesKMP(StartHeaderAfterGuardians, startIndexGuardians + GuardiansOffset);
@@ -149,17 +137,17 @@ namespace SingleplayerLauncher
             int guardiansArrayElementCountIndex = startIndexGuardians + GuardiansArrayElementCountOffset;
             int guardiansIndex = startIndexGuardians + GuardiansOffset;
 
-            byte[] firstGuardian =  GameInfo.Loadout.Guardians[0].CodeNameBytes; // Extra space after each guardian is already included
+            byte[] firstGuardian = GameInfo.Loadout.Guardians[0].CodeNameBytes; // Extra space after each guardian is already included
             byte[] secondGuardian = GameInfo.Loadout.Guardians[1].CodeNameBytes;
 
-            byte[] sizeFirstGuardian = new byte[] { (byte) firstGuardian.Length, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
+            byte[] sizeFirstGuardian = new byte[] { (byte)firstGuardian.Length, 0x00, 0x00, 0x00 }; // Add the 0x00 to complete the 4 bytes field
 
             int secondGuardianOffset = firstGuardian.Length + sizeFirstGuardian.Length + GuardiansOffset + 4; // 4 from second guardian size itself
             byte[] sizeSecondGuardian = new byte[] { (byte)(totalSize - secondGuardianOffset), 0x00, 0x00, 0x00 }; // Counting extra space
 
             int emptySpaceOffset = secondGuardianOffset + secondGuardian.Length;
 
-            byte[] emptySpace = Enumerable.Repeat( (byte) 0x00, totalSize - emptySpaceOffset).ToArray();
+            byte[] emptySpace = Enumerable.Repeat((byte)0x00, totalSize - emptySpaceOffset).ToArray();
             // Combining arrays to SizeGuardian1 + Guardian1 + SizeGuardian2 + Guardian2 + emptySpace
             byte[] guardiansBytes = sizeFirstGuardian.Concat(firstGuardian).Concat(sizeSecondGuardian).Concat(secondGuardian).Concat(emptySpace).ToArray();
 
@@ -168,12 +156,14 @@ namespace SingleplayerLauncher
             HeroObjectContent.OverrideSingleByte((byte)totalSize, guardiansArraySizeIndex); // Size (counts array element count and both guardians and their sizes but not itself or index so -8)
             //TODO check single byte and avoid override?
             HeroObjectContent.OverrideSingleByte(GuardianSlotsNumber, guardiansArrayElementCountIndex); // Array Element Count 
-        }        
+        }
 
         private void ApplySkin()
         {
             if (GameInfo.Loadout == null || GameInfo.Loadout.Skin == null)
+            {
                 throw new Exception("Hero must have a skin");
+            }
 
             int startIndexSkin = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.CurrentSkinClass.Header);
             HeroObjectContent.OverrideBytes(GameInfo.Loadout.Skin.HexSpitfireGameUPK, startIndexSkin + SkinOffsetFromHeader);
@@ -194,8 +184,6 @@ namespace SingleplayerLauncher
             HeroObjectContent.OverrideBytes(healthAsByteArray, startIndexHealth + HealthOffsetFromHeader);
             HeroObjectContent.OverrideBytes(healthAsByteArray, startIndexHealthMax + HealthMaxOffsetFromHeader);
         }
-
-        
 
         private void FillRemovedBytes(int insertIndex)
         {
