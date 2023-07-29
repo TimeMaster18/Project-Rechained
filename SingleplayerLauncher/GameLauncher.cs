@@ -10,15 +10,23 @@ namespace SingleplayerLauncher
     {
         private static readonly GameInfo GameInfo = GameInfo.Instance;
         private static readonly SpitfireGameUPK SpitfireGameUPK = new SpitfireGameUPK();
-
+        private const string UPK_FILES_PATH = "..//SpitfireGame//CookedPCConsole//";
 
         private static readonly List<string> CUSTOM_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA };
+        private static readonly List<string> READY_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.OZIEL, Names.Hero.BLOODSPIKE, Names.Hero.BLACKPAW, Names.Hero.BRASS, };
         public static void ApplyChanges()
         {
             SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(FileUtils.SPITFIREGAME_UPK_PATH);
             if (CUSTOM_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
             {
                 SpitfireGameUPK.ApplyLoadout();
+            } 
+            else if (READY_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
+            {
+                UPKFile uPKFile = new UPKFile(UPK_FILES_PATH + GameInfo.Loadout.Hero.UPKFileName);
+                PawnWeaponUPK pawnWeaponUPK = new PawnWeaponUPK(uPKFile, GameInfo.Loadout.Hero);
+                pawnWeaponUPK.ApplyLoadout();
+                pawnWeaponUPK.SaveChanges();
             }
             SpitfireGameUPK.ApplyMods();
             SpitfireGameUPK.ApplyTrapTiers();
@@ -28,8 +36,6 @@ namespace SingleplayerLauncher
             GameSettings.DefaultGame.Apply();
         }
 
-
-        private const string UPK_FILES_PATH = "..//SpitfireGame//CookedPCConsole//";
         private const string MOD_DEFAULT_PAWNWEAPON_UPK_FILES_PATH = ".//DefaultLoadouts//";
 
         private const string PAWNWEAPON_DEADEYE_UPK_FILENAME = "pawnweapon_deadeye_SF.upk";
@@ -93,8 +99,6 @@ namespace SingleplayerLauncher
             Settings.Save();
         }
 
-
-
         public static void StartGame(bool debug)
         {
             Process p = new Process();
@@ -103,7 +107,6 @@ namespace SingleplayerLauncher
 
             p.Start();
         }
-
 
         private const string EXE_ARGUMENTS = " -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
         private const string DEBUG_ARGUMENTS = " -log -ABSLOG=log.txt";
