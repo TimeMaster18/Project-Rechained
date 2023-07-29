@@ -94,6 +94,7 @@
     <Compile Include="Mods\NoLimitUniqueTraps.cs" />
     <Compile Include="Mods\NoTrapGrid.cs" />
     <Compile Include="Mods\TrapsAnySurface.cs" />
+    <Compile Include="PawnWeaponUPK.cs" />
     <Compile Include="SpitfireGameUPK.cs" />
     <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="Forms\LauncherMainForm.cs">

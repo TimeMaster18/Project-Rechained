@@ -19,7 +19,6 @@ namespace SingleplayerLauncher
         private const int LoadoutArrayElementCountOffset = 24;
         private const int LoadoutSlotsOffset = 28;
         private const int LoadoutSectionLength = LoadoutSlotsOffset + 4 * LoadoutSlotsNumber;
-        private readonly byte[] LoadoutFieldType = new byte[] { 0xC5, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
         private const int GuardianSlotsNumber = 2;
         // Where the actual array of the guardians starts is + 28 bytes from the start of the guardians header.
@@ -27,10 +26,6 @@ namespace SingleplayerLauncher
         private const int GuardiansArraySizeOffset = 16;
         private const int GuardiansArrayElementCountOffset = 24;
         private const int GuardiansOffset = 28;
-        private readonly byte[] GuardiansFieldType = new byte[] { 0xC5, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-
-        // Hero weaver tree (is after Inventory/Guardians)
-        private static readonly byte[] StartHeaderAfterGuardians = new byte[] { 0x00, 0xB4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
         // Header + Field type + Size in bytes + (start?) index  (8 + 8 + 4 + 4)
         private const int SkinOffsetFromHeader = 24;
@@ -38,6 +33,7 @@ namespace SingleplayerLauncher
         // Header + Field type + Size in bytes + (start?) index  (8 + 8 + 4 + 4)
         private const int HealthOffsetFromHeader = 24;
         private const int HealthMaxOffsetFromHeader = 24;
+        private const int DefaultArchetypesSectionSize = 32;
 
         public UPKHeroObjectContent(UPKFile heroObjectContent)
         {
@@ -52,22 +48,21 @@ namespace SingleplayerLauncher
             }
 
             ApplyTrapsGear(); // May insert bytes
+            ApplyHealthFix(); // May insert bytes
             //ApplyTraits();
 
             if (HeroObjectContent.RemovedBytesCount > 0)
             {
-                int positionToFillRemovedBytesWithZeros = HeroObjectContent.FindBytesKMP(StartHeaderAfterGuardians);
+                // Hero weaver tree (is after Inventory/Guardians) 
+                int positionToFillRemovedBytesWithZeros = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.WeaverTreeDefault.Header);
                 FillRemovedBytes(positionToFillRemovedBytesWithZeros);
             }
 
             ApplyGuardians(); // Should go after everything else since it's where we are inserting the extra bytes and needs to know the size
 
             // From here, only edits bytes
-            ApplyHealthFix();
             ApplySkin();
         }
-
-
         private void ApplyTrapsGear()
         {
             if (GameInfo.Loadout == null || GameInfo.Loadout.SlotItems == null || GameInfo.Loadout.SlotItems.Length != LoadoutSlotsNumber)
@@ -77,15 +72,17 @@ namespace SingleplayerLauncher
 
             int startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header);
 
+
             if (startIndexLoadout == -1)
             {
                 // Get position after Archetype and Add Header and Field Type
-                startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Header) + (int)GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size;
-
+                int archetypesSize = GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size == null ? DefaultArchetypesSectionSize : (int)GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size;
+                startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Header) + archetypesSize;
+                
                 HeroObjectContent.InsertZeroedBytes(startIndexLoadout, LoadoutSectionLength);
 
                 HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header, startIndexLoadout);
-                HeroObjectContent.OverrideBytes(LoadoutFieldType, startIndexLoadout + GameInfo.Loadout.Hero.DefaultInventoryClasses.Header.Length);
+                HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.ArrayProperty.Header, startIndexLoadout + GameInfo.Loadout.Hero.DefaultInventoryClasses.Header.Length);
             }
 
             int arraySizeIndex = startIndexLoadout + LoadoutArraySizeOffset;
@@ -106,7 +103,7 @@ namespace SingleplayerLauncher
             }
 
             // Convert and apply Loadout
-            byte[] loadoutBytes = GameInfo.Loadout.SlotItems.SelectMany(byteArr => byteArr.Id).ToArray();
+            byte[] loadoutBytes = GameInfo.Loadout.SlotItems.SelectMany(slotItem => slotItem.IdByHeroName[GameInfo.Loadout.Hero.Name]).ToArray();
             HeroObjectContent.OverrideBytes(loadoutBytes, loadoutSlotsIndex);
         }
 
@@ -127,10 +124,11 @@ namespace SingleplayerLauncher
                 startIndexGuardians = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header) + LoadoutSectionLength;
 
                 HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header, startIndexGuardians);
-                HeroObjectContent.OverrideBytes(GuardiansFieldType, startIndexGuardians + GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header.Length);
+                HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.ArrayProperty.Header, startIndexGuardians + GameInfo.Loadout.Hero.DefaultGuardianArchetypes.Header.Length);
             }
 
-            int endIndex = HeroObjectContent.FindBytesKMP(StartHeaderAfterGuardians, startIndexGuardians + GuardiansOffset);
+            // Hero weaver tree (is after Inventory/Guardians)
+            int endIndex = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.WeaverTreeDefault.Header, startIndexGuardians + GuardiansOffset);
             int totalSize = endIndex - (startIndexGuardians + GuardiansArrayElementCountOffset); // Everything after header
 
             int guardiansArraySizeIndex = startIndexGuardians + GuardiansArraySizeOffset;
@@ -166,13 +164,13 @@ namespace SingleplayerLauncher
             }
 
             int startIndexSkin = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.CurrentSkinClass.Header);
-            HeroObjectContent.OverrideBytes(GameInfo.Loadout.Skin.HexSpitfireGameUPK, startIndexSkin + SkinOffsetFromHeader);
+            HeroObjectContent.OverrideBytes(GameInfo.Loadout.Skin.Id, startIndexSkin + SkinOffsetFromHeader);
         }
 
         private void ApplyHealthFix()
         {
             int startIndexHealth = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.Health.Header);
-            int startIndexHealthMax = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.MaxHealth.Header);
+            int startIndexHealthMax = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.HealthMax.Header);
             // Original Game Formula. Past lvl 100 it has diminishing returns (first operand of the sum stops incrementing and the second one starts doing so at a much lower rate)
             int accountLevel = GameInfo.Battleground.Difficulty.AccountLevel;
             double healthMultiplier = Math.Pow(1.00763, (Math.Min(accountLevel, 100) - 1)) + (0.00033 * Math.Max((accountLevel - 100), 0));
@@ -182,13 +180,25 @@ namespace SingleplayerLauncher
 
             byte[] healthAsByteArray = BitConverter.GetBytes((float)health);
             HeroObjectContent.OverrideBytes(healthAsByteArray, startIndexHealth + HealthOffsetFromHeader);
-            HeroObjectContent.OverrideBytes(healthAsByteArray, startIndexHealthMax + HealthMaxOffsetFromHeader);
+                        
+            int healthSectionSize = HealthOffsetFromHeader + healthAsByteArray.Length;
+            if (startIndexHealthMax == -1 && HeroObjectContent.RemovedBytesCount >= healthSectionSize)
+            {
+                // Get position after Health and Add HealthMax Section
+                startIndexHealthMax = startIndexHealth + healthSectionSize;
+                HeroObjectContent.InsertBytes(HeroObjectContent.GetSubArray(startIndexHealth, healthSectionSize), startIndexHealthMax);
+                HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.HealthMax.Header, startIndexHealthMax);
+            }           
+
+            if (startIndexHealthMax != -1)
+            {
+                HeroObjectContent.OverrideBytes(healthAsByteArray, startIndexHealthMax + HealthMaxOffsetFromHeader);
+            }
         }
 
         private void FillRemovedBytes(int insertIndex)
         {
             HeroObjectContent.InsertZeroedBytes(insertIndex, 0);
         }
-
     }
 }

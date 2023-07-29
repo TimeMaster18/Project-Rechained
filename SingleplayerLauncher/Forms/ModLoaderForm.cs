@@ -15,13 +15,13 @@ namespace SingleplayerLauncher
 
         private void ModLoaderForm_Load(object sender, EventArgs e)
         {
-            chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode") ? (bool)Settings.Instance["GodMode"] : false;
-            chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") ? (bool)Settings.Instance["NoTrapCap"] : false;
-            chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") ? (bool)Settings.Instance["TrapsInTraps"] : false;
-            chkHardcore.Checked = Settings.Instance.ContainsKey("Hardcore") ? (bool)Settings.Instance["Hardcore"] : false;
-            chkNoLimitUniqueTraps.Checked = Settings.Instance.ContainsKey("NoLimitUniqueTraps") ? (bool)Settings.Instance["NoLimitUniqueTraps"] : false;
-            chkNoTrapGrid.Checked = Settings.Instance.ContainsKey("NoTrapGrid") ? (bool)Settings.Instance["NoTrapGrid"] : false;
-            chkTrapsAnySurface.Checked = Settings.Instance.ContainsKey("TrapsAnySurface") ? (bool)Settings.Instance["TrapsAnySurface"] : false;
+            chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"];
+            chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"];
+            chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"];
+            chkHardcore.Checked = Settings.Instance.ContainsKey("Hardcore") && (bool)Settings.Instance["Hardcore"];
+            chkNoLimitUniqueTraps.Checked = Settings.Instance.ContainsKey("NoLimitUniqueTraps") && (bool)Settings.Instance["NoLimitUniqueTraps"];
+            chkNoTrapGrid.Checked = Settings.Instance.ContainsKey("NoTrapGrid") && (bool)Settings.Instance["NoTrapGrid"];
+            chkTrapsAnySurface.Checked = Settings.Instance.ContainsKey("TrapsAnySurface") && (bool)Settings.Instance["TrapsAnySurface"];
             startingCoinInput.Value = Settings.Instance.ContainsKey("StartingCoin") ? Int32.Parse((string)Settings.Instance["StartingCoin"]) : GameInfo.Battleground.Map.StartingCoin;
         }
 

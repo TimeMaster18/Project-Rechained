@@ -36,6 +36,7 @@ namespace SingleplayerLauncher
         {
             FilePath = path;
             Bytes = ReadAllBytes(path);
+            FileLength = Bytes.Length;
         }
 
         /// <summary>
@@ -48,6 +49,7 @@ namespace SingleplayerLauncher
         {
             FilePath = null;
             Bytes = bytes;
+            FileLength = bytes.Length;
         }
 
         private byte[] ReadAllBytes(string fileName)
@@ -58,7 +60,6 @@ namespace SingleplayerLauncher
                 buffer = new byte[fs.Length];
                 fs.Read(buffer, 0, (int)fs.Length);
             }
-            FileLength = buffer.Length;
             return buffer;
         }
 

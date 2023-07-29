@@ -1,9 +1,11 @@
-﻿namespace SingleplayerLauncher.Model
+﻿using System.Collections.Generic;
+
+namespace SingleplayerLauncher.Model
 {
     public abstract class SlotItem
     {
         public string Name { get; protected set; }
-        public byte[] Id { get; protected set; } // id linking the item, in SpitfireGame.upk        
+        public Dictionary<string, byte[]> IdByHeroName { get; protected set; } // id linking the item, in the respective upk file. i.e: SpitfireGame.upk        
     }
 
     public class Loadout
