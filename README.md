@@ -22,7 +22,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 - Launch the game in **offline mode, single player**
 - Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes**
-- Customize the **Loadout** and hero (only for Maximilian, Gabriella, Ivy, Hogarth, Bionka and Smolder)
+- Customize the **Loadout** and hero (only for Maximilian, Gabriella, Ivy, Hogarth, Bionka, Smolder, Blackpaw, Bloodspike, Oziel and Brass)
   - Choose Traps and Gear
   - Choose your skin and your dye
   - Choose Guardians
@@ -32,6 +32,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
   - Remove Trap Cap
   - Custom intial Coin
   - God Mode
+  - and more!
 - Settings and mods are saved between executions
 
 
