@@ -9,7 +9,7 @@ namespace SingleplayerLauncher
     {
         public byte[] Bytes { get; private set; }
         private readonly string FilePath;
-        private int FileLength = 0;
+        private readonly int FileLength = 0;
         public int RemovedBytesCount = 0;
 
         public class Section

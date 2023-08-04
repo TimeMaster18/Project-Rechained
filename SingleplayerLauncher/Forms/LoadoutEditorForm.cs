@@ -42,6 +42,11 @@ namespace SingleplayerLauncher
                 GameInfo.Loadout.SlotItems = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>().Select(lsi => SlotItems[lsi]).ToArray();
             }
 
+            if (Settings.Instance.ContainsKey("guardians"))
+            {
+                GameInfo.Loadout.Guardians = ((JArray)Settings.Instance["guardians"]).ToObject<string[]>().Select(lgi => Model.Guardian.Guardians[lgi]).ToArray();
+            }
+
             SetCurrentLoadout();
             SetCurrenGuardians();
         }
@@ -51,6 +56,7 @@ namespace SingleplayerLauncher
             SaveLoadout();
             SaveGuardians();
             Settings.Instance["loadout"] = ComBoxLoadoutSlots.Select(cls => cls.SelectedItem.ToString());
+            Settings.Instance["guardians"] = ComBoxGuardianSlots.Select(cgs => cgs.SelectedItem.ToString());
             Settings.Save();
             Close();
         }
