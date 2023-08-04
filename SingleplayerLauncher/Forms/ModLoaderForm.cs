@@ -17,6 +17,7 @@ namespace SingleplayerLauncher
         {
             chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"];
             chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"];
+            chkInvincibleBarricades.Checked = Settings.Instance.ContainsKey("InvincibleBarricades") && (bool)Settings.Instance["InvincibleBarricades"];
             chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"];
             chkHardcore.Checked = Settings.Instance.ContainsKey("Hardcore") && (bool)Settings.Instance["Hardcore"];
             chkNoLimitUniqueTraps.Checked = Settings.Instance.ContainsKey("NoLimitUniqueTraps") && (bool)Settings.Instance["NoLimitUniqueTraps"];
@@ -78,6 +79,13 @@ namespace SingleplayerLauncher
         {
             Mods.Mods.Hardcore.IsEnabled = chkHardcore.Checked;
             Settings.Instance["Hardcore"] = chkHardcore.Checked;
+            Settings.Save();
+        }
+
+        private void chkInvincibleBarricades_CheckedChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.InvincibleBarricades.IsEnabled = chkInvincibleBarricades.Checked;
+            Settings.Instance["InvincibleBarricades"] = chkInvincibleBarricades.Checked;
             Settings.Save();
         }
     }
