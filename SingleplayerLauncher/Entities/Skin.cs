@@ -258,85 +258,85 @@ namespace SingleplayerLauncher.Model
         {
             Name = DEADEYE_DEFAULT,
             CodeName = "RPlayerSkinLadyDeadEye000",
-            Id = new byte[] { 0xB4, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0x6B, 0xFF, 0xFF, 0xFF },
         };
         public static Skin PrettyPunk = new Skin()
         {
             Name = PRETTY_PUNK,
             CodeName = "RPlayerSkinLadyDeadEye001",
-            Id = new byte[] { 0xB6, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xE6, 0xFC, 0xFF, 0xFF },
         };
         public static Skin TheGoodTheBadAndTheDeadeye = new Skin()
         {
             Name = THE_GOOD_THE_BAD_AND_THE_DEADEYE,
             CodeName = "RPlayerSkinLadyDeadEye003",
-            Id = new byte[] { 0xB8, 0xDF, 0x00, 0x00 },
-        };
-        public static Skin HiddenTiger = new Skin()
-        {
-            Name = HIDDEN_TIGER,
-            CodeName = "RPlayerSkinMidnight000",
-            Id = new byte[] { 0xBA, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xE5, 0xFC, 0xFF, 0xFF },
         };
         public static Skin MidnightDefault = new Skin()
         {
             Name = MIDNIGHT_DEFAULT,
             CodeName = "RPlayerSkinMidnight001",
-            Id = new byte[] { 0xBC, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0x7D, 0xFF, 0xFF, 0xFF },
+        };
+        public static Skin HiddenTiger = new Skin()
+        {
+            Name = HIDDEN_TIGER,
+            CodeName = "RPlayerSkinMidnight000",
+            Id = new byte[] { 0xC2, 0xFD, 0xFF, 0xFF },
         };
         public static Skin MidnightDefaultGold = new Skin()
         {
             Name = MIDNIGHT_DEFAULT_GOLD,
             CodeName = "RPlayerSkinMidnight003",
-            Id = new byte[] { 0xBE, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xC1, 0xFD, 0xFF, 0xFF },
         };
         public static Skin CatBurglar = new Skin()
         {
             Name = CAT_BURGLAR,
             CodeName = "RPlayerSkinMidnight007",
-            Id = new byte[] { 0xC2, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xC0, 0xFD, 0xFF, 0xFF },
         };
         public static Skin ShiverMeWhiskers = new Skin()
         {
             Name = SHIVER_ME_WHISKERS,
             CodeName = "RPlayerSkinMidnight009",
-            Id = new byte[] { 0xC4, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xBF, 0xFD, 0xFF, 0xFF },
         };
         public static Skin WuXingAzureAssassin = new Skin()
         {
             Name = WU_XING_AZURE_ASSASSIN,
             CodeName = "RPlayerSkinMidnight011",
-            Id = new byte[] { 0xC6, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xBE, 0xFD, 0xFF, 0xFF },
         };
         public static Skin DobbinDefault = new Skin()
         {
             Name = DOBBIN_DEFAULT,
             CodeName = "RPlayerSkinProspector000",
-            Id = new byte[] { 0xCE, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0x77, 0xFF, 0xFF, 0xFF },
         };
         public static Skin GoldRush = new Skin()
         {
             Name = GOLD_RUSH,
             CodeName = "RPlayerSkinProspector001",
-            Id = new byte[] { 0xD0, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xA6, 0xFD, 0xFF, 0xFF },
         };
         public static Skin DobbinDefaultGold = new Skin()
         {
             Name = DOBBIN_DEFAULT_GOLD,
             CodeName = "RPlayerSkinProspector003",
-            Id = new byte[] { 0xD2, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xA5, 0xFD, 0xFF, 0xFF },
         };
         public static Skin ElCavador = new Skin()
         {
             Name = EL_CAVADOR,
             CodeName = "RPlayerSkinProspector005",
-            Id = new byte[] { 0xD4, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xA4, 0xFD, 0xFF, 0xFF },
         };
         public static Skin SantasLittleHelper = new Skin()
         {
             Name = SANTAS_LITTLE_HELPER,
             CodeName = "RPlayerSkinProspector007",
-            Id = new byte[] { 0xD6, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xA3, 0xFD, 0xFF, 0xFF },
         };
         public static Skin ScurvyRumrudder = new Skin()
         {
@@ -344,9 +344,9 @@ namespace SingleplayerLauncher.Model
             CodeName = "RPlayerSkinScurvy000",
             Id = new byte[] { 0xD8, 0xDF, 0x00, 0x00 },
         };
-        public static Skin DobbinEnchantedArmor = new Skin()
+        public static Skin IvyEnchantedArmor = new Skin()
         {
-            Name = DOBBIN_ENCHANTED_ARMOR,
+            Name = IVY_ENCHANTED_ARMOR,
             CodeName = "RPlayerSkinSheElf000",
             Id = new byte[] { 0xDA, 0xDF, 0x00, 0x00 },
         };
@@ -594,31 +594,39 @@ namespace SingleplayerLauncher.Model
         {
             Name = CYGNUS_DEFAULT,
             CodeName = "RPlayerSkinTheMaster000",
-            Id = new byte[] { 0x34, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x68, 0xFF, 0xFF, 0xFF },
         };
         public static Skin Adventurer = new Skin()
         {
             Name = ADVENTURER,
             CodeName = "RPlayerSkinTheMaster001",
-            Id = new byte[] { 0x36, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x23, 0xFD, 0xFF, 0xFF },
         };
         public static Skin CygnusDefaultRed = new Skin()
         {
             Name = CYGNUS_DEFAULT_RED,
             CodeName = "RPlayerSkinTheMaster003",
-            Id = new byte[] { 0x38, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x22, 0xFD, 0xFF, 0xFF },
         };
+        /* Has no model, it doesn't work
+        public static Skin CygnusUnknown = new Skin()
+        {
+            Name = CYGNUS_UNKNOWN,
+            CodeName = "RPlayerSkinTheMaster005",
+            Id = new byte[] { 0x21, 0xFD, 0xFF, 0xFF },
+        };
+        */
         public static Skin OldCodger = new Skin()
         {
             Name = OLD_CODGER,
             CodeName = "RPlayerSkinTheMaster007",
-            Id = new byte[] { 0x3C, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x20, 0xFD, 0xFF, 0xFF },
         };
         public static Skin RoadMaster = new Skin()
         {
             Name = ROAD_MASTER,
             CodeName = "RPlayerSkinTheMaster010",
-            Id = new byte[] { 0x3E, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x1F, 0xFD, 0xFF, 0xFF },
         };
         public static Skin TundraDefault = new Skin()
         {
@@ -780,25 +788,25 @@ namespace SingleplayerLauncher.Model
         {
             Name = YI_LIN_DEFAULT,
             CodeName = "RPlayerSkinYiLin000",
-            Id = new byte[] { 0x78, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x77, 0xFF, 0xFF, 0xFF },
         };
         public static Skin SentinelOfTheOrder = new Skin()
         {
             Name = SENTINEL_OF_THE_ORDER,
             CodeName = "RPlayerSkinYiLin001",
-            Id = new byte[] { 0x7A, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xE0, 0xFD, 0xFF, 0xFF },
         };
         public static Skin SlayingInTheRain = new Skin()
         {
             Name = SLAYING_IN_THE_RAIN,
             CodeName = "RPlayerSkinYiLin004",
-            Id = new byte[] { 0x7C, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xDF, 0xFD, 0xFF, 0xFF },
         };
         public static Skin YuleLin = new Skin()
         {
             Name = YULE_LIN,
             CodeName = "RPlayerSkinYiLin006",
-            Id = new byte[] { 0x7E, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xDE, 0xFD, 0xFF, 0xFF },
         };
 
 
@@ -910,10 +918,10 @@ namespace SingleplayerLauncher.Model
         public static Skin[] BloodspikeSkins = new Skin[] { BloodpsikeDefault, GrizzlyKill, BreakerOfMolds, BloodAppetit, GreenGuillotine, LaughingToDeath };
         public static Skin[] BrassSkins = new Skin[] { BrassDefault, GunsGearsNLace, BombshellBattalion };
         public static Skin[] HogarthSkins = new Skin[] { HogarthDefault, HogarthEnchantedArmor, GodOfPlunder, LumberingJack, HogarthDefaultGold, IceArmor, ImperialGoldenWarrior, BeachedBod, BlackThane, TheSchling, DragonWard };
-        public static Skin[] DeadeyeSkins = new Skin[] { DeadeyeDefault, PrettyPunk, TheGoodTheBadAndTheDeadeye, HiddenTiger, };
-        public static Skin[] MidnightSkins = new Skin[] { MidnightDefault, MidnightDefaultGold, CatBurglar, ShiverMeWhiskers, WuXingAzureAssassin, };
-        public static Skin[] DobbinSkins = new Skin[] { DobbinDefault, GoldRush, DobbinDefaultGold, ElCavador, SantasLittleHelper, ScurvyRumrudder, DobbinEnchantedArmor, };
-        public static Skin[] IvySkins = new Skin[] { IvyDefault, Valkyrie, FlowerFriend, IvyDefaultGold, ImperialRubyArcher, WickedWarden, Grovewatch, DragonTamer, };
+        public static Skin[] DeadeyeSkins = new Skin[] { DeadeyeDefault, PrettyPunk, TheGoodTheBadAndTheDeadeye, };
+        public static Skin[] MidnightSkins = new Skin[] { MidnightDefault, HiddenTiger, MidnightDefaultGold, CatBurglar, ShiverMeWhiskers, WuXingAzureAssassin, };
+        public static Skin[] DobbinSkins = new Skin[] { DobbinDefault, GoldRush, DobbinDefaultGold, ElCavador, SantasLittleHelper,  };
+        public static Skin[] IvySkins = new Skin[] { IvyEnchantedArmor, IvyDefault, Valkyrie, FlowerFriend, IvyDefaultGold, ImperialRubyArcher, WickedWarden, Grovewatch, DragonTamer, };
         public static Skin[] SmolderSkins = new Skin[] { SmolderDefault, HelterSwelter, SmolderDefaultWhiteHair, Elite, KillAuea, FireAlarmFemme, Firestarter, WuXingDragonMage, };
         public static Skin[] GabriellaSkins = new Skin[] { GabriellaDefault, ViolentVintage, GabriellaEnchantedArmor, BloodQueen, FrightfullyDelightful, GabriellaDefaultRed, LifeInPlastic, ArchmageOfTheOrder, MistressOfIllusion, PromisingProdigy, IDreamOfGabby, MiracleWorker, WinterWitch, SkullNinja, EvilWays, DragonCharmer, };
         public static Skin[] StinkeyeSkins = new Skin[] { StinkeyeDefault, FirstEyeBlind, StinkeyeDefaultAlt, EnfantTerrible, FloatyFun, };
@@ -923,7 +931,7 @@ namespace SingleplayerLauncher.Model
         public static Skin[] MaximilianSkins = new Skin[] { MaximillianDefault, LuckyTunic, MaximillianEnchantedArmor, KnightsWatch, OrcSlayer, CardboardSamurai, ScaredCrow, LionHeart, RobinHood, Paximillian, MaximillianLegendaryDefault, ChampionOfTheOrder, JamezRipher, WinterWarrior, Boomstick, Backdraft, DragonSlayer, SummerOfStunning, RedScarf, YellowScarf, BlueScarf, };
         public static Skin[] YiLinSkins = new Skin[] { YiLinDefault, SentinelOfTheOrder, SlayingInTheRain, YuleLin, };
         public static Skin[] OtherSkins = new Skin[] { DarkPaladin, WinstonDefault, ChangEDefault, Chicken, ChickenWithTrainers, };
-        public static Skin[] MercenarySkins = new Skin[] { PrideAssassin, BouncerBear, ImageHuman, ImageArcane, ImageLightning, ImageIce, ImageFire, ChaoticKobold, DwarfPriest, GnollBreeder };
+        public static Skin[] MercenarySkins = new Skin[] { PrideAssassin, BouncerBear, ImageHuman, ImageArcane, ImageLightning, ImageIce, ImageFire, ChaoticKobold, DwarfPriest, GnollBreeder, ScurvyRumrudder, };
 
         public static Dictionary<string, Skin[]> HeroSkinMap = new Dictionary<string, Skin[]>
         {
@@ -1004,7 +1012,7 @@ namespace SingleplayerLauncher.Model
             { EL_CAVADOR, ElCavador },
             { SANTAS_LITTLE_HELPER, SantasLittleHelper },
             { SCURVY_RUMRUDDER, ScurvyRumrudder },
-            { DOBBIN_ENCHANTED_ARMOR, DobbinEnchantedArmor },
+            { IVY_ENCHANTED_ARMOR, IvyEnchantedArmor },
             { VALKYRIE, Valkyrie },
             { IVY_DEFAULT, IvyDefault },
             { FLOWER_FRIEND, FlowerFriend },

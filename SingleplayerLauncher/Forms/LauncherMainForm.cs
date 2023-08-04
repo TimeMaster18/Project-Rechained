@@ -241,7 +241,7 @@ namespace SingleplayerLauncher
         }
 
         // TODO to change when more heroes are playable
-        private readonly List<string> CUSTOM_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA, Names.Hero.OZIEL, Names.Hero.BLOODSPIKE, Names.Hero.BLACKPAW, Names.Hero.BRASS, };
+        private readonly List<string> CUSTOM_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA, Names.Hero.OZIEL, Names.Hero.BLOODSPIKE, Names.Hero.BLACKPAW, Names.Hero.BRASS, Names.Hero.CYGNUS, Names.Hero.MIDNIGHT, Names.Hero.YI_LIN, Names.Hero.DEADEYE, Names.Hero.DOBBIN, };
         private void comBoxHero_SelectedIndexChanged(object sender, EventArgs e)
         {
             comBoxSkin.Items.Clear();
