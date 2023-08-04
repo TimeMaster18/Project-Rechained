@@ -61,10 +61,10 @@
             DEADEYE_DEFAULT = "Deadeye Default",
             PRETTY_PUNK = "Pretty Punk",
             THE_GOOD_THE_BAD_AND_THE_DEADEYE = "The Good, the Bad, and the Deadeye",
-            HIDDEN_TIGER = "Hidden Tiger",
 
             // MIDNIGHT
             MIDNIGHT_DEFAULT = "Midnight Default",
+            HIDDEN_TIGER = "Hidden Tiger",
             MIDNIGHT_DEFAULT_GOLD = "Midnight Default (with some gold)",
             CAT_BURGLAR = "Cat Burglar",
             SHIVER_ME_WHISKERS = "Shiver Me Whiskers",
@@ -76,11 +76,10 @@
             DOBBIN_DEFAULT_GOLD = "Dobbin Default (with some gold)",
             EL_CAVADOR = "El Cavador",
             SANTAS_LITTLE_HELPER = "Santa's Little Helper",
-            SCURVY_RUMRUDDER = "Scurvy Rumrudder",
-            DOBBIN_ENCHANTED_ARMOR = "Dobbin Enchanted Armor",
-            VALKYRIE = "Valkyrie",
 
             // IVY
+            IVY_ENCHANTED_ARMOR = "Ivy Enchanted Armor",
+            VALKYRIE = "Valkyrie",
             IVY_DEFAULT = "Ivy Default",
             FLOWER_FRIEND = "Flower Friend",
             IVY_DEFAULT_GOLD = "Ivy Default (with some gold)",
@@ -133,6 +132,7 @@
             CYGNUS_DEFAULT = "Cygnus Default",
             ADVENTURER = "Adventurer",
             CYGNUS_DEFAULT_RED = "Cygnus Default (Red)",
+            CYGNUS_UNKNOWN = "Cygnus Unknown",
             OLD_CODGER = "Old Codger",
             ROAD_MASTER = "Road Master",
 
@@ -193,6 +193,7 @@
             IMAGE_FIRE = "iMage Fire",
             CHAOTIC_KOBOLD = "Chaotic Kobold",
             DWARF_PRIEST = "Dwarf Priest",
+            SCURVY_RUMRUDDER = "Scurvy Rumrudder",
             GNOLL_BREEDER = "Gnoll Breeder";
     }
 }

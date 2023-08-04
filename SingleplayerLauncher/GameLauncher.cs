@@ -13,7 +13,7 @@ namespace SingleplayerLauncher
         private const string UPK_FILES_PATH = "..//SpitfireGame//CookedPCConsole//";
 
         private static readonly List<string> CUSTOM_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA };
-        private static readonly List<string> READY_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.OZIEL, Names.Hero.BLOODSPIKE, Names.Hero.BLACKPAW, Names.Hero.BRASS, };
+        private static readonly List<string> READY_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.OZIEL, Names.Hero.BLOODSPIKE, Names.Hero.BLACKPAW, Names.Hero.BRASS, Names.Hero.CYGNUS, Names.Hero.MIDNIGHT, Names.Hero.YI_LIN, Names.Hero.DEADEYE, Names.Hero.DOBBIN, };
         public static void ApplyChanges()
         {
             SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(FileUtils.SPITFIREGAME_UPK_PATH);
