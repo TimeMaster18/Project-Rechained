@@ -22,7 +22,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 - Launch the game in **offline mode, single player**
 - Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes**
-- Customize the **Loadout** and hero (only for Maximilian, Gabriella, Ivy, Hogarth, Bionka, Smolder, Blackpaw, Bloodspike, Oziel and Brass)
+- Customize the **Loadout** and hero (except Stinkeye, Tundra, Temper, Zoey)
   - Choose Traps and Gear
   - Choose your skin and your dye
   - Choose Guardians
@@ -30,6 +30,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 - New extra difficulties for every map
 - New Mods:
   - Remove Trap Cap
+  - Invincible barricades
   - Custom intial Coin
   - God Mode
   - and more!
