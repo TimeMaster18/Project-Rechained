@@ -91,6 +91,7 @@
     <Compile Include="Mods\Hardcore.cs" />
     <Compile Include="Mods\Mods.cs" />
     <Compile Include="Mods\GodMode.cs" />
+    <Compile Include="Mods\InvincibleBarricades.cs" />
     <Compile Include="Mods\NoLimitUniqueTraps.cs" />
     <Compile Include="Mods\NoTrapGrid.cs" />
     <Compile Include="Mods\TrapsAnySurface.cs" />

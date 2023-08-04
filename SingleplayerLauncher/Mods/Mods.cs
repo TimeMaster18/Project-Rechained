@@ -7,6 +7,7 @@ namespace SingleplayerLauncher.Mods
         // static members
         public static Mod NoTrapCap = new NoTrapCap();
         public static Mod NoLimitUniqueTraps = new NoLimitUniqueTraps();
+        public static Mod InvincibleBarricades = new InvincibleBarricades();
         public static Mod TrapsAnySurface = new TrapsAnySurface();
         public static Mod TrapsInTraps = new TrapsInTraps();
         public static Mod NoTrapGrid = new NoTrapGrid();
@@ -17,6 +18,7 @@ namespace SingleplayerLauncher.Mods
         {
             NoTrapCap,
             NoLimitUniqueTraps,
+            InvincibleBarricades,
             TrapsAnySurface,
             TrapsInTraps,
             NoTrapGrid,
