@@ -14,12 +14,14 @@ namespace SingleplayerLauncher.GameSettings
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         private const string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";
+        private const string RHUDBaseSection = "SpitfireGame.RHUDBase";
 
         private const string GameReplicationInfoKeyGameMode = "DefaultOfflineDifficulty";
         private const string GameReplicationInfoKeyMapLevel = "DefaultOfflineSuggestedLevel";
         private const string GameReplicationInfoKeyPlayerLevel = "DefaultOfflinePlayerLevel";
         private const string GameReplicationInfoKeyPlayerCount = "PlayerCountOverride";
         private const string GameReplicationInfoKeyPauseTimerInSeconds = "DefaultOfflinePauseTimerDurationInSeconds";
+        private const string RHUDBaseKeyShowFlyoffsForTrapDamage = "ShowFlyoffsForTrapDamage";
 
         private const string DefaultPauseTimerInSeconds = "999999";
 
@@ -27,10 +29,12 @@ namespace SingleplayerLauncher.GameSettings
         {
             _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(Battleground), "Mandatory parameter");
             _ = GameInfo.Battleground.Difficulty ?? throw new ArgumentNullException(nameof(Battleground.Difficulty), "Mandatory parameter");
+            _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
             ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
             IniData data = defaultGame.data;
 
+            data[RHUDBaseSection][RHUDBaseKeyShowFlyoffsForTrapDamage] = Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString();
             data[RGameReplicationInfoSection][GameReplicationInfoKeyGameMode] = GameInfo.Battleground.GameMode.Id.ToString();
             data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = GameInfo.Battleground.Difficulty.EnemyLevel.ToString();
             data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = GameInfo.Battleground.Difficulty.AccountLevel.ToString();

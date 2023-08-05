@@ -38,13 +38,14 @@
             this.chkTrapsAnySurface = new System.Windows.Forms.CheckBox();
             this.chkNoTrapGrid = new System.Windows.Forms.CheckBox();
             this.chkInvincibleBarricades = new System.Windows.Forms.CheckBox();
+            this.chkShowTrapDamageFlyoffs = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
             this.SuspendLayout();
             // 
             // chkGodMode
             // 
             this.chkGodMode.AutoSize = true;
-            this.chkGodMode.Location = new System.Drawing.Point(12, 172);
+            this.chkGodMode.Location = new System.Drawing.Point(12, 208);
             this.chkGodMode.Name = "chkGodMode";
             this.chkGodMode.Size = new System.Drawing.Size(76, 17);
             this.chkGodMode.TabIndex = 0;
@@ -81,7 +82,7 @@
             0,
             0,
             0});
-            this.startingCoinInput.Location = new System.Drawing.Point(87, 205);
+            this.startingCoinInput.Location = new System.Drawing.Point(87, 241);
             this.startingCoinInput.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -100,7 +101,7 @@
             // startingCoinLabel
             // 
             this.startingCoinLabel.AutoSize = true;
-            this.startingCoinLabel.Location = new System.Drawing.Point(12, 207);
+            this.startingCoinLabel.Location = new System.Drawing.Point(12, 243);
             this.startingCoinLabel.Name = "startingCoinLabel";
             this.startingCoinLabel.Size = new System.Drawing.Size(69, 13);
             this.startingCoinLabel.TabIndex = 4;
@@ -120,7 +121,7 @@
             // chkHardcore
             // 
             this.chkHardcore.AutoSize = true;
-            this.chkHardcore.Location = new System.Drawing.Point(94, 172);
+            this.chkHardcore.Location = new System.Drawing.Point(94, 208);
             this.chkHardcore.Name = "chkHardcore";
             this.chkHardcore.Size = new System.Drawing.Size(101, 17);
             this.chkHardcore.TabIndex = 6;
@@ -161,11 +162,23 @@
             this.chkInvincibleBarricades.UseVisualStyleBackColor = true;
             this.chkInvincibleBarricades.CheckedChanged += new System.EventHandler(this.chkInvincibleBarricades_CheckedChanged);
             // 
+            // chkShowTrapDamageFlyoffs
+            // 
+            this.chkShowTrapDamageFlyoffs.AutoSize = true;
+            this.chkShowTrapDamageFlyoffs.Location = new System.Drawing.Point(12, 159);
+            this.chkShowTrapDamageFlyoffs.Name = "chkShowTrapDamageFlyoffs";
+            this.chkShowTrapDamageFlyoffs.Size = new System.Drawing.Size(121, 17);
+            this.chkShowTrapDamageFlyoffs.TabIndex = 10;
+            this.chkShowTrapDamageFlyoffs.Text = "Show Trap Damage";
+            this.chkShowTrapDamageFlyoffs.UseVisualStyleBackColor = true;
+            this.chkShowTrapDamageFlyoffs.CheckedChanged += new System.EventHandler(this.chkShowTrapDamageFlyoffs_CheckedChanged);
+            // 
             // ModLoaderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(233, 460);
+            this.Controls.Add(this.chkShowTrapDamageFlyoffs);
             this.Controls.Add(this.chkInvincibleBarricades);
             this.Controls.Add(this.chkNoTrapGrid);
             this.Controls.Add(this.chkTrapsAnySurface);
@@ -197,5 +210,6 @@
         private System.Windows.Forms.CheckBox chkTrapsAnySurface;
         private System.Windows.Forms.CheckBox chkNoTrapGrid;
         private System.Windows.Forms.CheckBox chkInvincibleBarricades;
+        private System.Windows.Forms.CheckBox chkShowTrapDamageFlyoffs;
     }
 }
