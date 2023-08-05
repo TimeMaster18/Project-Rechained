@@ -10,7 +10,7 @@
             DRAGON_GUARDIAN = "Dragon Guardian",
             FRIAR_GUARDIAN = "Friar Guardian",
             HEADHUNTER_GUARDIAN = "Headhunter Guardian",
-            JADE_EMPIRE = "Jade Empire",
+            JADE_EMPIRE_GUARDIAN = "Jade Empire Guardian",
             JAILER_GUARDIAN = "Jailer Guardian",
             LION_GUARDIAN = "Lion Guardian",
             MOON_GUARDIAN = "Moon Guardian",
