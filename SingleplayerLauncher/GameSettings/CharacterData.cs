@@ -38,6 +38,7 @@ namespace SingleplayerLauncher.GameSettings
             _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
             _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");
             _ = Mods.Mods.GodMode ?? throw new ArgumentNullException(nameof(Mods.Mods.GodMode), "Mandatory parameter");
+                        
 
             ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
             IniData data = characterData.data;
@@ -45,7 +46,7 @@ namespace SingleplayerLauncher.GameSettings
             data[RCharacterDataSection][CharacterDataKeyHero] = GameInfo.Loadout.Hero.PawnWeaponString;
             data[RCharacterDataSection][CharacterDataKeyDye] = GameInfo.Loadout.Dye.Id.ToString();
 
-            data[RCharacterDataSection][CharacterDataKeyGodMode] = Mods.Mods.GodMode.IsEnabled ? "TRUE" : "FALSE";
+            data[RCharacterDataSection][CharacterDataKeyGodMode] = Mods.Mods.GodMode.IsEnabled.ToString();
 
             int startingCoin = GameInfo.Battleground.StartingCoin != 0 ? GameInfo.Battleground.StartingCoin : GameInfo.Battleground.Map.StartingCoin;
             data[RCharacterDataSection][CharacterDataKeyBonusStartingCoin] = CalculateMultiplierStartingCoin(startingCoin);

@@ -16,6 +16,7 @@ namespace SingleplayerLauncher
         private void ModLoaderForm_Load(object sender, EventArgs e)
         {
             chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"];
+            chkShowTrapDamageFlyoffs.Checked = Settings.Instance.ContainsKey("ShowTrapDamage") && (bool)Settings.Instance["ShowTrapDamage"];
             chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"];
             chkInvincibleBarricades.Checked = Settings.Instance.ContainsKey("InvincibleBarricades") && (bool)Settings.Instance["InvincibleBarricades"];
             chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"];
@@ -86,6 +87,13 @@ namespace SingleplayerLauncher
         {
             Mods.Mods.InvincibleBarricades.IsEnabled = chkInvincibleBarricades.Checked;
             Settings.Instance["InvincibleBarricades"] = chkInvincibleBarricades.Checked;
+            Settings.Save();
+        }
+
+        private void chkShowTrapDamageFlyoffs_CheckedChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled = chkShowTrapDamageFlyoffs.Checked;
+            Settings.Instance["ShowTrapDamage"] = chkShowTrapDamageFlyoffs.Checked;
             Settings.Save();
         }
     }
