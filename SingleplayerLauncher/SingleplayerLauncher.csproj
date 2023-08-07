@@ -106,18 +106,6 @@
       <DependentUpon>LauncherMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UPKHeroObjectContent.cs" />
-    <Compile Include="Forms\LoadoutEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LoadoutEditorForm.Designer.cs">
-      <DependentUpon>LoadoutEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ModLoaderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ModLoaderForm.Designer.cs">
-      <DependentUpon>ModLoaderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mods\Mod.cs" />
     <Compile Include="Mods\NoTrapCap.cs" />
     <Compile Include="Mods\TrapsInTraps.cs" />
@@ -136,12 +124,6 @@
     <Compile Include="UPKFile.cs" />
     <EmbeddedResource Include="Forms\LauncherMainForm.resx">
       <DependentUpon>LauncherMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoadoutEditorForm.resx">
-      <DependentUpon>LoadoutEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ModLoaderForm.resx">
-      <DependentUpon>ModLoaderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

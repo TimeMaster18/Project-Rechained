@@ -11,8 +11,5 @@
 
         public const string SelectedMap = Names.Map.THE_BATHS; // Default Selected "The Baths" because it's well optimised and Iconic Level 
         public const string SelectedGameMode = Names.GameMode.SURVIVAL; // Default selected Game Mode "Survival"
-
-        public const bool CustomIniSetting = true;
-
     }
 }
