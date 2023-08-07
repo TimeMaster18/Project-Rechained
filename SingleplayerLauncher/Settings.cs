@@ -9,6 +9,7 @@ namespace SingleplayerLauncher
     {
         private static readonly string SettingsFile = "settings.txt";
         public static Dictionary<string, object> Instance = new Dictionary<string, object>();
+
         static Settings()
         {
             try
@@ -20,6 +21,7 @@ namespace SingleplayerLauncher
                 MessageBox.Show(e.ToString());
             }
         }
+
         private static void Load()
         {
             if (File.Exists(SettingsFile))
@@ -31,6 +33,7 @@ namespace SingleplayerLauncher
                 Save();
             }
         }
+
         public static void Save()
         {
             File.WriteAllText(SettingsFile, JsonConvert.SerializeObject(Instance, Formatting.Indented));

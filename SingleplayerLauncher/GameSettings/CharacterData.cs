@@ -36,9 +36,8 @@ namespace SingleplayerLauncher.GameSettings
             _ = GameInfo.Loadout.Hero ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Hero), "Mandatory parameter");
             _ = GameInfo.Loadout.Dye ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Dye), "Mandatory parameter");
             _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
-            _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");
-            _ = Mods.Mods.GodMode ?? throw new ArgumentNullException(nameof(Mods.Mods.GodMode), "Mandatory parameter");
-                        
+            _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");                        
+
 
             ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
             IniData data = characterData.data;
@@ -46,9 +45,19 @@ namespace SingleplayerLauncher.GameSettings
             data[RCharacterDataSection][CharacterDataKeyHero] = GameInfo.Loadout.Hero.PawnWeaponString;
             data[RCharacterDataSection][CharacterDataKeyDye] = GameInfo.Loadout.Dye.Id.ToString();
 
-            data[RCharacterDataSection][CharacterDataKeyGodMode] = Mods.Mods.GodMode.IsEnabled.ToString();
+            characterData.Write(data);
+        }
 
-            int startingCoin = GameInfo.Battleground.StartingCoin != 0 ? GameInfo.Battleground.StartingCoin : GameInfo.Battleground.Map.StartingCoin;
+        public static void ApplyMods(bool areEnabled)
+        {
+            _ = Mods.Mods.GodMode ?? throw new ArgumentNullException(nameof(Mods.Mods.GodMode), "Mandatory parameter");
+
+            ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
+            IniData data = characterData.data;
+
+            data[RCharacterDataSection][CharacterDataKeyGodMode] = areEnabled ? false.ToString() : Mods.Mods.GodMode.IsEnabled.ToString();
+
+            int startingCoin = GameInfo.Battleground.StartingCoin != 0 && areEnabled ? GameInfo.Battleground.StartingCoin : GameInfo.Battleground.Map.StartingCoin;
             data[RCharacterDataSection][CharacterDataKeyBonusStartingCoin] = CalculateMultiplierStartingCoin(startingCoin);
 
             characterData.Write(data);

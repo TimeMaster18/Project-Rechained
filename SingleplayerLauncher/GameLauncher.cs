@@ -28,12 +28,18 @@ namespace SingleplayerLauncher
                 pawnWeaponUPK.ApplyLoadout();
                 pawnWeaponUPK.SaveChanges();
             }
-            SpitfireGameUPK.ApplyMods();
+
+            bool areModsEnabled = Settings.Instance.ContainsKey("ModsEnabled") ? (bool)Settings.Instance["ModsEnabled"] : false;
+            SpitfireGameUPK.ApplyMods(areModsEnabled);
+
             SpitfireGameUPK.ApplyTrapTiers();
             SpitfireGameUPK.SaveChanges();
 
             GameSettings.CharacterData.Apply();
             GameSettings.DefaultGame.Apply();
+
+            GameSettings.CharacterData.ApplyMods(areModsEnabled);
+            GameSettings.DefaultGame.ApplyMods(areModsEnabled);
         }
 
         private const string MOD_DEFAULT_PAWNWEAPON_UPK_FILES_PATH = ".//DefaultLoadouts//";

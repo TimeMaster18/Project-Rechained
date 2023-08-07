@@ -43,6 +43,18 @@ namespace SingleplayerLauncher.GameSettings
             defaultGame.Write(data);
         }
 
+        public static void ApplyMods(bool areEnabled)
+        {
+            _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
+
+            ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
+            IniData data = defaultGame.data;
+
+            data[RHUDBaseSection][RHUDBaseKeyShowFlyoffsForTrapDamage] = areEnabled ? false.ToString() : Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString();
+
+            defaultGame.Write(data);
+        }
+
         public static void Initialize()
         {
             FileUtils.CreateBackup(DefaultGameIniFileName, DefaultGameIniPath);
