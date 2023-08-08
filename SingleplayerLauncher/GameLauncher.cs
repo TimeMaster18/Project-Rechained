@@ -29,7 +29,7 @@ namespace SingleplayerLauncher
                 pawnWeaponUPK.SaveChanges();
             }
 
-            bool areModsEnabled = Settings.Instance.ContainsKey("ModsEnabled") ? (bool)Settings.Instance["ModsEnabled"] : false;
+            bool areModsEnabled = Settings.Instance.ContainsKey("modsEnabled") ? (bool)Settings.Instance["modsEnabled"] : false;
             SpitfireGameUPK.ApplyMods(areModsEnabled);
 
             SpitfireGameUPK.ApplyTrapTiers();
