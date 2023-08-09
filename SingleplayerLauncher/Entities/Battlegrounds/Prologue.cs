@@ -1,4 +1,6 @@
-﻿namespace SingleplayerLauncher.Model
+﻿using System;
+
+namespace SingleplayerLauncher.Model
 {
     class Prologue : IBattleground
     {
@@ -21,5 +23,7 @@
         public Difficulty Difficulty { get; set; }
 
         public int StartingCoin { get; set; }
+
+        public TimeSpan ParTime => throw new NotImplementedException();
     }
 }

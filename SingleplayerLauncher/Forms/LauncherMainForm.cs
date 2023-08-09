@@ -44,11 +44,6 @@ namespace SingleplayerLauncher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            foreach (string m in Model.Map.Maps.Keys)
-            {
-                comBoxMap.Items.Add(m);
-            }
-
             foreach (string h in Model.Hero.Heroes.Keys)
             {
                 comBoxHero.Items.Add(h);
@@ -68,18 +63,10 @@ namespace SingleplayerLauncher
             comBoxSkin.SelectedItem = Settings.Instance.ContainsKey("skin") ? Settings.Instance["skin"] : DefaultValues.SelectedSkin;
             comBoxDye.SelectedItem = Settings.Instance.ContainsKey("dye") ? Settings.Instance["dye"] : DefaultValues.SelectedDye;
 
-            comBoxMap.SelectedItem = Settings.Instance.ContainsKey("map") ? Settings.Instance["map"] : DefaultValues.SelectedMap;
             comBoxGameMode.SelectedItem = Settings.Instance.ContainsKey("gameMode") ? Settings.Instance["gameMode"] : DefaultValues.SelectedGameMode;
-
-            if (Settings.Instance.ContainsKey("difficulty"))
-            {
-                comBoxDifficulty.SelectedItem = Settings.Instance["difficulty"];
-            }
-
-            if (Settings.Instance.ContainsKey("extraDifficulty"))
-            {
-                comBoxExtraDifficulty.SelectedItem = Settings.Instance["extraDifficulty"];
-            }
+            comBoxDifficulty.SelectedItem = Settings.Instance.ContainsKey("difficulty") ? Settings.Instance["difficulty"] : DefaultValues.SelectedDifficulty;
+            comBoxBattleground.SelectedItem = Settings.Instance.ContainsKey("battleground") ? Settings.Instance["battleground"] : DefaultValues.SelectedBattleground;
+            comBoxExtraDifficulty.SelectedItem = Settings.Instance.ContainsKey("extraDifficulty") ? Settings.Instance["extraDifficulty"] : noExtraDifficulty;
 
             chkDebug.Checked = Settings.Instance.ContainsKey("debug") && (bool)Settings.Instance["debug"];
             chk_modsEnabled.Checked = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
@@ -113,7 +100,6 @@ namespace SingleplayerLauncher
 
             SetCurrentLoadout();
             SetCurrenGuardians();
-
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -131,7 +117,7 @@ namespace SingleplayerLauncher
             Settings.Instance["hero"] = comBoxHero.SelectedItem;
             Settings.Instance["skin"] = comBoxSkin.SelectedItem;
             Settings.Instance["dye"] = comBoxDye.SelectedItem;
-            Settings.Instance["map"] = comBoxMap.SelectedItem;
+            Settings.Instance["map"] = comBoxBattleground.SelectedItem;
             Settings.Instance["gameMode"] = comBoxGameMode.SelectedItem;
             Settings.Instance["difficulty"] = comBoxDifficulty.SelectedItem;
             Settings.Instance["extraDifficulty"] = comBoxExtraDifficulty.SelectedItem;
@@ -139,53 +125,39 @@ namespace SingleplayerLauncher
             Settings.Save();
         }
 
-        private void comBoxMap_SelectedIndexChanged(object sender, EventArgs e)
+        private void comBoxBattleground_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedMap = comBoxMap.SelectedItem.ToString();
-            GameInfo.Battleground.Map = Model.Map.Maps[selectedMap];
-
-            if (selectedMap.Contains("Tutorial") || selectedMap.Contains("Prologue"))
-            {
-                comBoxGameMode.Enabled = false;
-                comBoxDifficulty.Enabled = false;
-                comBoxExtraDifficulty.Enabled = false;
-            }
-            else
-            {
-                comBoxGameMode.Enabled = true;
-                comBoxDifficulty.Enabled = true;
-                comBoxExtraDifficulty.Enabled = true;
-
-                comBoxGameMode.Items.Clear();
-                comBoxGameMode.Items.Add(Names.GameMode.SURVIVAL);
-                if (GameInfo.Battleground.Map.HasEndlessAvailable)
-                {
-                    comBoxGameMode.Items.Add(Names.GameMode.ENDLESS);
-                }
-
-                comBoxGameMode.SelectedIndex = 0;
-            }
+            string selectedBattleground = comBoxBattleground.SelectedItem.ToString();
+            //GameInfo.Battleground = Model.Map.Maps[selectedMap];
         }
 
         private void comBoxGameMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             comBoxDifficulty.Items.Clear();
+            comBoxBattleground.Items.Clear();
 
             switch (comBoxGameMode.SelectedItem)
             {
                 case Names.GameMode.ENDLESS:
-                    comBoxDifficulty.Items.Add(Model.Difficulty.Endless.Name);
+                    comBoxDifficulty.Enabled = false;
+                    comBoxBattleground.Items.AddRange(Model.Endless.EndlessBattlegrounds.Keys.ToArray());
+                    comBoxBattleground.SelectedIndex = 0;
+
+                    comBoxExtraDifficulty.Items.Clear();
+                    comBoxExtraDifficulty.Items.Add(noExtraDifficulty);
+                    comBoxExtraDifficulty.SelectedItem = noExtraDifficulty;
+                    comBoxExtraDifficulty.Items.AddRange(Model.Difficulty.EndlessExtraDifficulties.Keys.ToArray());
                     break;
 
                 case Names.GameMode.SURVIVAL:
-                    comBoxDifficulty.Items.AddRange(Model.Map.Maps[comBoxMap.SelectedItem.ToString()].SurvivalAvailableMapNames);
+                    comBoxDifficulty.Enabled = true;
+                    comBoxDifficulty.Items.AddRange(Model.Difficulty.SurvivalDifficulties.Keys.ToArray());
+                    comBoxDifficulty.SelectedIndex = 0;
                     break;
 
                 default:
                     break;
             }
-
-            comBoxDifficulty.SelectedIndex = 0;
 
             GameInfo.Battleground.GameMode = Model.GameMode.GameModes[comBoxGameMode.SelectedItem.ToString()];
         }
@@ -193,67 +165,34 @@ namespace SingleplayerLauncher
 
         private void comBoxDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comBoxBattleground.Items.Clear();
             comBoxExtraDifficulty.Items.Clear();
             comBoxExtraDifficulty.Items.Add(noExtraDifficulty);
             comBoxExtraDifficulty.SelectedItem = noExtraDifficulty;
 
             string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
-
             GameInfo.Battleground.Difficulty = Model.Difficulty.Difficulties[selectedDifficulty];
 
-            switch (selectedDifficulty)
+            if (Model.Survival.SurvivalBattlegroundsByDifficulty.TryGetValue(selectedDifficulty, out var battlegrounds))
             {
-                case Names.Difficulty.ENDLESS:
-                    foreach (string ed in Model.Difficulty.EndlessExtraDifficulties.Keys)
-                    {
-                        comBoxExtraDifficulty.Items.Add(ed);
-                    }
+                comBoxBattleground.Items.AddRange(battlegrounds.Keys.ToArray());
+                comBoxBattleground.SelectedIndex = 0;
+            }
 
-                    break;
-
-                case Names.Difficulty.APPRENTICE:
-                    foreach (string ed in Model.Difficulty.ApprenticeExtraDifficulties.Keys)
-                    {
-                        comBoxExtraDifficulty.Items.Add(ed);
-                    }
-
-                    break;
-
-                case Names.Difficulty.WAR_MAGE:
-                    foreach (string ed in Model.Difficulty.WarMageExtraDifficulties.Keys)
-                    {
-                        comBoxExtraDifficulty.Items.Add(ed);
-                    }
-
-                    break;
-
-                case Names.Difficulty.MASTER:
-                    foreach (string ed in Model.Difficulty.MasterExtraDifficulties.Keys)
-                    {
-                        comBoxExtraDifficulty.Items.Add(ed);
-                    }
-
-                    break;
-
-                case Names.Difficulty.RIFT_LORD:
-                    foreach (string ed in Model.Difficulty.RiftLordExtraDifficulties.Keys)
-                    {
-                        comBoxExtraDifficulty.Items.Add(ed);
-                    }
-
-                    break;
-
-                default:
-                    break;
+            if (Model.Difficulty.ExtraDifficultiesByDifficulty.TryGetValue(selectedDifficulty, out var extraDifficulties))
+            {
+                comBoxExtraDifficulty.Items.AddRange(extraDifficulties.Keys.ToArray());
             }
         }
 
         private void comBoxExtraDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
             string selectedExtraDifficulty = comBoxExtraDifficulty.SelectedItem.ToString();
 
-            GameInfo.Battleground.Difficulty = selectedExtraDifficulty.Equals(noExtraDifficulty) ? Model.Difficulty.Difficulties[selectedDifficulty] : Model.Difficulty.Difficulties[selectedExtraDifficulty];
+            if (!comBoxExtraDifficulty.SelectedItem.ToString().Equals(noExtraDifficulty))
+            {
+                GameInfo.Battleground.Difficulty = Model.Difficulty.Difficulties[selectedExtraDifficulty];
+            }
         }
 
         // TODO to change when more heroes are playable

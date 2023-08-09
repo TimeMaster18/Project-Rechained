@@ -32,11 +32,11 @@
             this.chkDebug = new System.Windows.Forms.CheckBox();
             this.characterSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.comBoxDye = new System.Windows.Forms.ComboBox();
-            this.labelDye = new System.Windows.Forms.Label();
-            this.labelSkin = new System.Windows.Forms.Label();
-            this.comBoxSkin = new System.Windows.Forms.ComboBox();
             this.labelHero = new System.Windows.Forms.Label();
             this.comBoxHero = new System.Windows.Forms.ComboBox();
+            this.comBoxSkin = new System.Windows.Forms.ComboBox();
+            this.labelDye = new System.Windows.Forms.Label();
+            this.labelSkin = new System.Windows.Forms.Label();
             this.mapSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.comBoxExtraDifficulty = new System.Windows.Forms.ComboBox();
             this.labelExtraDifficulty = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.labelDifficulty = new System.Windows.Forms.Label();
             this.comBoxGameMode = new System.Windows.Forms.ComboBox();
             this.labelGameMode = new System.Windows.Forms.Label();
-            this.comBoxMap = new System.Windows.Forms.ComboBox();
+            this.comBoxBattleground = new System.Windows.Forms.ComboBox();
             this.labelMap = new System.Windows.Forms.Label();
             this.btnResetConfig = new System.Windows.Forms.Button();
             this.chkShowTrapDamageFlyoffs = new System.Windows.Forms.CheckBox();
@@ -138,34 +138,6 @@
             this.comBoxDye.TabIndex = 6;
             this.comBoxDye.SelectedIndexChanged += new System.EventHandler(this.comBoxDye_SelectedIndexChanged);
             // 
-            // labelDye
-            // 
-            this.labelDye.AutoSize = true;
-            this.labelDye.Location = new System.Drawing.Point(158, 54);
-            this.labelDye.Name = "labelDye";
-            this.labelDye.Size = new System.Drawing.Size(26, 13);
-            this.labelDye.TabIndex = 5;
-            this.labelDye.Text = "Dye";
-            // 
-            // labelSkin
-            // 
-            this.labelSkin.AutoSize = true;
-            this.labelSkin.Location = new System.Drawing.Point(5, 54);
-            this.labelSkin.Name = "labelSkin";
-            this.labelSkin.Size = new System.Drawing.Size(28, 13);
-            this.labelSkin.TabIndex = 3;
-            this.labelSkin.Text = "Skin";
-            // 
-            // comBoxSkin
-            // 
-            this.comBoxSkin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxSkin.FormattingEnabled = true;
-            this.comBoxSkin.Location = new System.Drawing.Point(45, 51);
-            this.comBoxSkin.Name = "comBoxSkin";
-            this.comBoxSkin.Size = new System.Drawing.Size(111, 21);
-            this.comBoxSkin.TabIndex = 4;
-            this.comBoxSkin.SelectedIndexChanged += new System.EventHandler(this.comBoxSkin_SelectedIndexChanged);
-            // 
             // labelHero
             // 
             this.labelHero.AutoSize = true;
@@ -185,6 +157,34 @@
             this.comBoxHero.TabIndex = 2;
             this.comBoxHero.SelectedIndexChanged += new System.EventHandler(this.comBoxHero_SelectedIndexChanged);
             // 
+            // comBoxSkin
+            // 
+            this.comBoxSkin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxSkin.FormattingEnabled = true;
+            this.comBoxSkin.Location = new System.Drawing.Point(45, 51);
+            this.comBoxSkin.Name = "comBoxSkin";
+            this.comBoxSkin.Size = new System.Drawing.Size(111, 21);
+            this.comBoxSkin.TabIndex = 4;
+            this.comBoxSkin.SelectedIndexChanged += new System.EventHandler(this.comBoxSkin_SelectedIndexChanged);
+            // 
+            // labelDye
+            // 
+            this.labelDye.AutoSize = true;
+            this.labelDye.Location = new System.Drawing.Point(158, 54);
+            this.labelDye.Name = "labelDye";
+            this.labelDye.Size = new System.Drawing.Size(26, 13);
+            this.labelDye.TabIndex = 5;
+            this.labelDye.Text = "Dye";
+            // 
+            // labelSkin
+            // 
+            this.labelSkin.AutoSize = true;
+            this.labelSkin.Location = new System.Drawing.Point(5, 54);
+            this.labelSkin.Name = "labelSkin";
+            this.labelSkin.Size = new System.Drawing.Size(28, 13);
+            this.labelSkin.TabIndex = 3;
+            this.labelSkin.Text = "Skin";
+            // 
             // mapSettingsGroupBox
             // 
             this.mapSettingsGroupBox.BackColor = System.Drawing.SystemColors.Control;
@@ -194,11 +194,11 @@
             this.mapSettingsGroupBox.Controls.Add(this.labelDifficulty);
             this.mapSettingsGroupBox.Controls.Add(this.comBoxGameMode);
             this.mapSettingsGroupBox.Controls.Add(this.labelGameMode);
-            this.mapSettingsGroupBox.Controls.Add(this.comBoxMap);
+            this.mapSettingsGroupBox.Controls.Add(this.comBoxBattleground);
             this.mapSettingsGroupBox.Controls.Add(this.labelMap);
             this.mapSettingsGroupBox.Location = new System.Drawing.Point(296, 12);
             this.mapSettingsGroupBox.Name = "mapSettingsGroupBox";
-            this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 103);
+            this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 104);
             this.mapSettingsGroupBox.TabIndex = 8;
             this.mapSettingsGroupBox.TabStop = false;
             this.mapSettingsGroupBox.Text = "Battleground";
@@ -206,9 +206,8 @@
             // comBoxExtraDifficulty
             // 
             this.comBoxExtraDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxExtraDifficulty.Enabled = false;
             this.comBoxExtraDifficulty.FormattingEnabled = true;
-            this.comBoxExtraDifficulty.Location = new System.Drawing.Point(256, 73);
+            this.comBoxExtraDifficulty.Location = new System.Drawing.Point(256, 75);
             this.comBoxExtraDifficulty.Name = "comBoxExtraDifficulty";
             this.comBoxExtraDifficulty.Size = new System.Drawing.Size(79, 21);
             this.comBoxExtraDifficulty.TabIndex = 9;
@@ -217,7 +216,7 @@
             // labelExtraDifficulty
             // 
             this.labelExtraDifficulty.AutoSize = true;
-            this.labelExtraDifficulty.Location = new System.Drawing.Point(181, 77);
+            this.labelExtraDifficulty.Location = new System.Drawing.Point(181, 79);
             this.labelExtraDifficulty.Name = "labelExtraDifficulty";
             this.labelExtraDifficulty.Size = new System.Drawing.Size(74, 13);
             this.labelExtraDifficulty.TabIndex = 8;
@@ -228,7 +227,7 @@
             this.comBoxDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxDifficulty.Enabled = false;
             this.comBoxDifficulty.FormattingEnabled = true;
-            this.comBoxDifficulty.Location = new System.Drawing.Point(53, 73);
+            this.comBoxDifficulty.Location = new System.Drawing.Point(210, 21);
             this.comBoxDifficulty.Name = "comBoxDifficulty";
             this.comBoxDifficulty.Size = new System.Drawing.Size(125, 21);
             this.comBoxDifficulty.TabIndex = 7;
@@ -237,7 +236,7 @@
             // labelDifficulty
             // 
             this.labelDifficulty.AutoSize = true;
-            this.labelDifficulty.Location = new System.Drawing.Point(5, 76);
+            this.labelDifficulty.Location = new System.Drawing.Point(162, 24);
             this.labelDifficulty.Name = "labelDifficulty";
             this.labelDifficulty.Size = new System.Drawing.Size(47, 13);
             this.labelDifficulty.TabIndex = 6;
@@ -246,37 +245,36 @@
             // comBoxGameMode
             // 
             this.comBoxGameMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxGameMode.Enabled = false;
             this.comBoxGameMode.FormattingEnabled = true;
-            this.comBoxGameMode.Location = new System.Drawing.Point(104, 19);
+            this.comBoxGameMode.Location = new System.Drawing.Point(40, 21);
             this.comBoxGameMode.Name = "comBoxGameMode";
-            this.comBoxGameMode.Size = new System.Drawing.Size(139, 21);
+            this.comBoxGameMode.Size = new System.Drawing.Size(116, 21);
             this.comBoxGameMode.TabIndex = 5;
             this.comBoxGameMode.SelectedIndexChanged += new System.EventHandler(this.comBoxGameMode_SelectedIndexChanged);
             // 
             // labelGameMode
             // 
             this.labelGameMode.AutoSize = true;
-            this.labelGameMode.Location = new System.Drawing.Point(70, 22);
+            this.labelGameMode.Location = new System.Drawing.Point(6, 26);
             this.labelGameMode.Name = "labelGameMode";
             this.labelGameMode.Size = new System.Drawing.Size(34, 13);
             this.labelGameMode.TabIndex = 2;
             this.labelGameMode.Text = "Mode";
             // 
-            // comBoxMap
+            // comBoxBattleground
             // 
-            this.comBoxMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxMap.FormattingEnabled = true;
-            this.comBoxMap.Location = new System.Drawing.Point(39, 46);
-            this.comBoxMap.Name = "comBoxMap";
-            this.comBoxMap.Size = new System.Drawing.Size(296, 21);
-            this.comBoxMap.TabIndex = 1;
-            this.comBoxMap.SelectedIndexChanged += new System.EventHandler(this.comBoxMap_SelectedIndexChanged);
+            this.comBoxBattleground.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxBattleground.FormattingEnabled = true;
+            this.comBoxBattleground.Location = new System.Drawing.Point(40, 48);
+            this.comBoxBattleground.Name = "comBoxBattleground";
+            this.comBoxBattleground.Size = new System.Drawing.Size(296, 21);
+            this.comBoxBattleground.TabIndex = 1;
+            this.comBoxBattleground.SelectedIndexChanged += new System.EventHandler(this.comBoxBattleground_SelectedIndexChanged);
             // 
             // labelMap
             // 
             this.labelMap.AutoSize = true;
-            this.labelMap.Location = new System.Drawing.Point(5, 49);
+            this.labelMap.Location = new System.Drawing.Point(6, 51);
             this.labelMap.Name = "labelMap";
             this.labelMap.Size = new System.Drawing.Size(28, 13);
             this.labelMap.TabIndex = 0;
@@ -740,7 +738,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnLaunch;
-        private System.Windows.Forms.ComboBox comBoxMap;
+        private System.Windows.Forms.ComboBox comBoxBattleground;
         private System.Windows.Forms.ComboBox comBoxHero;
         private System.Windows.Forms.GroupBox characterSettingsGroupBox;
         private System.Windows.Forms.Label labelHero;
