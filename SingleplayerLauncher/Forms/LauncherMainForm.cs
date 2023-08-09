@@ -36,11 +36,7 @@ namespace SingleplayerLauncher
             {
                 comBoxGuardianSlot1, comBoxGuardianSlot2
             };
-
-
         }
-
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -128,7 +124,22 @@ namespace SingleplayerLauncher
         private void comBoxBattleground_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedBattleground = comBoxBattleground.SelectedItem.ToString();
-            //GameInfo.Battleground = Model.Map.Maps[selectedMap];
+
+            switch (comBoxGameMode.SelectedItem)
+            {
+                case Names.GameMode.ENDLESS:
+                    GameInfo.Battleground = Model.Endless.EndlessBattlegrounds[selectedBattleground];
+                    break;
+
+                case Names.GameMode.SURVIVAL:
+                    string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
+                    Dictionary<string, Survival> battlegrounds = Model.Survival.SurvivalBattlegroundsByDifficulty[selectedDifficulty];
+                    GameInfo.Battleground = battlegrounds[selectedBattleground];
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void comBoxGameMode_SelectedIndexChanged(object sender, EventArgs e)

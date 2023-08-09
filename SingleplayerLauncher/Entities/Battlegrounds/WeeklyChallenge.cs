@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Linq;
-using static SingleplayerLauncher.Model.Dye;
-using static SingleplayerLauncher.Model.Gear;
-using static SingleplayerLauncher.Model.Map;
-using static SingleplayerLauncher.Model.Trap;
-using static SingleplayerLauncher.Names.WeeklyChallenge;
 
 namespace SingleplayerLauncher.Model
 {

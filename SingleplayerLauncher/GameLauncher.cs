@@ -20,7 +20,7 @@ namespace SingleplayerLauncher
             if (CUSTOM_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
             {
                 SpitfireGameUPK.ApplyLoadout();
-            } 
+            }
             else if (READY_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
             {
                 UPKFile uPKFile = new UPKFile(UPK_FILES_PATH + GameInfo.Loadout.Hero.UPKFileName);
@@ -28,7 +28,7 @@ namespace SingleplayerLauncher
                 pawnWeaponUPK.ApplyLoadout();
                 pawnWeaponUPK.SaveChanges();
             }
-          
+
             bool areModsEnabled = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
             SpitfireGameUPK.ApplyMods(areModsEnabled);
 

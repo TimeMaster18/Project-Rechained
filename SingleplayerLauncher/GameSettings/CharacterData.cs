@@ -36,7 +36,7 @@ namespace SingleplayerLauncher.GameSettings
             _ = GameInfo.Loadout.Hero ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Hero), "Mandatory parameter");
             _ = GameInfo.Loadout.Dye ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Dye), "Mandatory parameter");
             _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
-            _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");                        
+            _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");
 
 
             ConfigFile characterData = new ConfigFile(CharacterDataIniPath);

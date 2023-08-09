@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using static SingleplayerLauncher.Names.Difficulty;
 using static SingleplayerLauncher.Names.Map;
 
 namespace SingleplayerLauncher.Model

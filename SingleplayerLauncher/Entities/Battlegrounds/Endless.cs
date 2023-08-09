@@ -1,6 +1,6 @@
 ﻿using System;
-using static SingleplayerLauncher.Model.Map;
 using System.Collections.Generic;
+using static SingleplayerLauncher.Model.Map;
 
 namespace SingleplayerLauncher.Model
 {
