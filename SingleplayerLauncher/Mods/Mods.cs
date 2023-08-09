@@ -13,7 +13,7 @@ namespace SingleplayerLauncher.Mods
         public static Mod NoTrapGrid = new NoTrapGrid();
         public static Mod GodMode = new GodMode();
         public static Mod ShowTrapDamageFlyoffs = new ShowTrapDamageFlyoffs();
-        public static Mod Hardcore = new Hardcore(); 
+        public static Mod Hardcore = new Hardcore();
 
         public readonly static List<Mod> ModList = new List<Mod>
         {

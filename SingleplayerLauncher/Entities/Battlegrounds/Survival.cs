@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using static SingleplayerLauncher.Model.Map;
 using static SingleplayerLauncher.Names.Difficulty;
-using System.Collections.Generic;
 
 namespace SingleplayerLauncher.Model
 {

@@ -78,7 +78,7 @@ namespace SingleplayerLauncher
                 // Get position after Archetype and Add Header and Field Type
                 int archetypesSize = GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size == null ? DefaultArchetypesSectionSize : (int)GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Size;
                 startIndexLoadout = HeroObjectContent.FindBytesKMP(GameInfo.Loadout.Hero.DefaultInventoryArchetypes.Header) + archetypesSize;
-                
+
                 HeroObjectContent.InsertZeroedBytes(startIndexLoadout, LoadoutSectionLength);
 
                 HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.DefaultInventoryClasses.Header, startIndexLoadout);
@@ -180,7 +180,7 @@ namespace SingleplayerLauncher
 
             byte[] healthAsByteArray = BitConverter.GetBytes((float)health);
             HeroObjectContent.OverrideBytes(healthAsByteArray, startIndexHealth + HealthOffsetFromHeader);
-                        
+
             int healthSectionSize = HealthOffsetFromHeader + healthAsByteArray.Length;
             if (startIndexHealthMax == -1 && HeroObjectContent.RemovedBytesCount >= healthSectionSize)
             {
@@ -188,7 +188,7 @@ namespace SingleplayerLauncher
                 startIndexHealthMax = startIndexHealth + healthSectionSize;
                 HeroObjectContent.InsertBytes(HeroObjectContent.GetSubArray(startIndexHealth, healthSectionSize), startIndexHealthMax);
                 HeroObjectContent.OverrideBytes(GameInfo.Loadout.Hero.HealthMax.Header, startIndexHealthMax);
-            }           
+            }
 
             if (startIndexHealthMax != -1)
             {
