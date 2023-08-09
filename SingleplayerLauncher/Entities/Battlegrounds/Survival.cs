@@ -29,7 +29,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 01,
                 EnemyLevel = 01,
-                TrapTier = 0,
+                TrapTier = 1,
             },
             WaveCount = 6,
             ParTime = new TimeSpan(0, 8, 00),
@@ -44,7 +44,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 02,
                 EnemyLevel = 02,
-                TrapTier = 0,
+                TrapTier = 1,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 10, 00),
@@ -59,7 +59,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 04,
                 EnemyLevel = 04,
-                TrapTier = 0,
+                TrapTier = 1,
             },
             WaveCount = 6,
             ParTime = new TimeSpan(0, 7, 30),
@@ -74,7 +74,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 05,
                 EnemyLevel = 05,
-                TrapTier = 0,
+                TrapTier = 2,
             },
             WaveCount = 6,
             ParTime = new TimeSpan(0, 10, 50),
@@ -89,7 +89,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 06,
                 EnemyLevel = 06,
-                TrapTier = 0,
+                TrapTier = 2,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 9, 35),
@@ -104,7 +104,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 07,
                 EnemyLevel = 07,
-                TrapTier = 0,
+                TrapTier = 2,
             },
             WaveCount = 6,
             ParTime = new TimeSpan(0, 7, 00),
@@ -119,7 +119,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 08,
                 EnemyLevel = 08,
-                TrapTier = 0,
+                TrapTier = 2,
             },
             WaveCount = 6,
             ParTime = new TimeSpan(0, 8, 50),
@@ -134,7 +134,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 09,
                 EnemyLevel = 09,
-                TrapTier = 0,
+                TrapTier = 2,
             },
             WaveCount = 6,
             ParTime = new TimeSpan(0, 9, 15),
@@ -149,7 +149,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 10,
                 EnemyLevel = 10,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 7,
             ParTime = new TimeSpan(0, 9, 50),
@@ -164,7 +164,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 12,
                 EnemyLevel = 12,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 13, 30),
@@ -179,7 +179,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 13,
                 EnemyLevel = 13,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 11, 30),
@@ -194,7 +194,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 14,
                 EnemyLevel = 14,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 12, 45),
@@ -209,7 +209,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 15,
                 EnemyLevel = 15,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 7, 05),
@@ -224,7 +224,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 16,
                 EnemyLevel = 16,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 15, 00),
@@ -239,7 +239,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 17,
                 EnemyLevel = 17,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 8, 30),
@@ -254,7 +254,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 18,
                 EnemyLevel = 18,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 9,
             ParTime = new TimeSpan(0, 11, 45),
@@ -269,7 +269,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 19,
                 EnemyLevel = 19,
-                TrapTier = 1,
+                TrapTier = 2,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 9, 15),
@@ -299,7 +299,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 21,
                 EnemyLevel = 21,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 14, 00),
@@ -314,7 +314,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 23,
                 EnemyLevel = 23,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 12, 30),
@@ -329,7 +329,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 24,
                 EnemyLevel = 24,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 10, 30),
@@ -344,7 +344,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 25,
                 EnemyLevel = 25,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 12, 45),
@@ -359,7 +359,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 25,
                 EnemyLevel = 25,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 8,
             ParTime = new TimeSpan(0, 10, 30),
@@ -374,7 +374,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 26,
                 EnemyLevel = 26,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 9,
             ParTime = new TimeSpan(0, 14, 35),
@@ -389,7 +389,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 27,
                 EnemyLevel = 27,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 12, 40),
@@ -404,7 +404,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 28,
                 EnemyLevel = 28,
-                TrapTier = 2,
+                TrapTier = 3,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 12, 15),
@@ -419,7 +419,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 30,
                 EnemyLevel = 30,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 13, 15),
@@ -434,7 +434,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 32,
                 EnemyLevel = 32,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 15, 30),
@@ -449,7 +449,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 33,
                 EnemyLevel = 33,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 12, 15),
@@ -464,7 +464,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 35,
                 EnemyLevel = 35,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 11,
             ParTime = new TimeSpan(0, 15, 00),
@@ -479,7 +479,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 36,
                 EnemyLevel = 36,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 14, 30),
@@ -494,7 +494,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 37,
                 EnemyLevel = 37,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 13, 00),
@@ -509,7 +509,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 39,
                 EnemyLevel = 39,
-                TrapTier = 3,
+                TrapTier = 4,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 15, 00),
@@ -524,7 +524,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 40,
                 EnemyLevel = 40,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 15, 30),
@@ -539,7 +539,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 41,
                 EnemyLevel = 41,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 11, 00),
@@ -554,7 +554,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 42,
                 EnemyLevel = 42,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 10,
             ParTime = new TimeSpan(0, 13, 45),
@@ -569,7 +569,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 43,
                 EnemyLevel = 43,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 18, 00),
@@ -584,7 +584,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 44,
                 EnemyLevel = 44,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 13, 00),
@@ -599,7 +599,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 45,
                 EnemyLevel = 45,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 18, 00),
@@ -614,7 +614,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 46,
                 EnemyLevel = 46,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 14,
             ParTime = new TimeSpan(0, 12, 00),
@@ -629,7 +629,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 48,
                 EnemyLevel = 48,
-                TrapTier = 4,
+                TrapTier = 5,
             },
             WaveCount = 14,
             ParTime = new TimeSpan(0, 16, 45),
@@ -644,7 +644,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 50,
                 EnemyLevel = 50,
-                TrapTier = 5,
+                TrapTier = 6,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 15, 45),
@@ -659,7 +659,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 52,
                 EnemyLevel = 52,
-                TrapTier = 5,
+                TrapTier = 6,
             },
             WaveCount = 14,
             ParTime = new TimeSpan(0, 15, 00),
@@ -674,7 +674,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 53,
                 EnemyLevel = 53,
-                TrapTier = 5,
+                TrapTier = 6,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 12, 00),
@@ -689,7 +689,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 55,
                 EnemyLevel = 55,
-                TrapTier = 5,
+                TrapTier = 6,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 13, 45),
@@ -704,7 +704,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 57,
                 EnemyLevel = 57,
-                TrapTier = 5,
+                TrapTier = 6,
             },
             WaveCount = 14,
             ParTime = new TimeSpan(0, 15, 30),
@@ -719,7 +719,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 59,
                 EnemyLevel = 59,
-                TrapTier = 5,
+                TrapTier = 6,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 13, 45),
@@ -734,7 +734,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 62,
                 EnemyLevel = 62,
-                TrapTier = 6,
+                TrapTier = 7,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 13, 15),
@@ -749,7 +749,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 63,
                 EnemyLevel = 63,
-                TrapTier = 6,
+                TrapTier = 7,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 14, 00),
@@ -764,7 +764,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 65,
                 EnemyLevel = 65,
-                TrapTier = 6,
+                TrapTier = 7,
             },
             WaveCount = 14,
             ParTime = new TimeSpan(0, 19, 45),
@@ -779,7 +779,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 66,
                 EnemyLevel = 66,
-                TrapTier = 6,
+                TrapTier = 7,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 17, 45),
@@ -794,7 +794,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 67,
                 EnemyLevel = 67,
-                TrapTier = 6,
+                TrapTier = 7,
             },
             WaveCount = 12,
             ParTime = new TimeSpan(0, 14, 00),
@@ -809,7 +809,7 @@ namespace SingleplayerLauncher.Model
             {
                 AccountLevel = 68,
                 EnemyLevel = 68,
-                TrapTier = 6,
+                TrapTier = 7,
             },
             WaveCount = 14,
             ParTime = new TimeSpan(0, 13, 30),
