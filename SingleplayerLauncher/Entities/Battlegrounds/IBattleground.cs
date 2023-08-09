@@ -1,4 +1,6 @@
-﻿namespace SingleplayerLauncher.Model
+﻿using System;
+
+namespace SingleplayerLauncher.Model
 {
     public interface IBattleground
     {
@@ -7,5 +9,6 @@
         GameMode GameMode { get; set; }
         Difficulty Difficulty { get; set; }
         int StartingCoin { get; set; }
+        TimeSpan ParTime { get; }
     }
 }

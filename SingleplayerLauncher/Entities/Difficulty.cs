@@ -122,7 +122,7 @@ namespace SingleplayerLauncher.Model
         {
             Name = RIFT_LORD_PLUS_4,
             AccountLevel = 5,
-            EnemyLevel = 85,
+            EnemyLevel = 75,
             TrapTier = 2,
             PlayerCount = 3,
         };
@@ -131,7 +131,7 @@ namespace SingleplayerLauncher.Model
         {
             Name = RIFT_LORD_PLUS_5,
             AccountLevel = 1,
-            EnemyLevel = 100,
+            EnemyLevel = 75,
             TrapTier = 1,
             PlayerCount = 3,
         };
@@ -297,6 +297,15 @@ namespace SingleplayerLauncher.Model
             new List<Dictionary<string, Difficulty>>() { EndlessAllDifficulties, SurvivalAllDifficulties }
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        public static Dictionary<string, Dictionary<string, Difficulty>> ExtraDifficultiesByDifficulty = new Dictionary<string, Dictionary<string, Difficulty>>
+        {
+            { ENDLESS, EndlessExtraDifficulties },
+            { APPRENTICE, ApprenticeExtraDifficulties },
+            { WAR_MAGE, WarMageExtraDifficulties },
+            { MASTER, MasterExtraDifficulties },
+            { RIFT_LORD, RiftLordExtraDifficulties }
+        };
 
     }
 }
