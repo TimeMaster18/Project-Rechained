@@ -33,6 +33,7 @@ namespace SingleplayerLauncher
             SpitfireGameUPK.ApplyMods(areModsEnabled);
 
             SpitfireGameUPK.ApplyTrapTiers();
+            SpitfireGameUPK.ApplyParTime();
             SpitfireGameUPK.SaveChanges();
 
             GameSettings.CharacterData.Apply();
