@@ -17,7 +17,7 @@ namespace SingleplayerLauncher.Model
 
         public int StartingCoin { get; set; }
 
-        public TimeSpan ParTime => throw new NotImplementedException();
+        public TimeSpan ParTime { get; set; }
 
         public static Endless TheBathsEndless = new Endless()
         {

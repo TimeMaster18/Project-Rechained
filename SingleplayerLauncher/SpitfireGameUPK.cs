@@ -13,6 +13,18 @@ namespace SingleplayerLauncher
 
         private const int MAX_TRAP_TIER = 7;
         private const string TRAP_TIER_STRING = "src.TrapStrength";
+        private const int PAR_TIME_OFFSET = 0x155A3C2;
+
+        public void ApplyParTime()
+        {
+            _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
+
+            if (GameInfo.Battleground.ParTime != null)
+            {
+                byte[] parTimeSeconds = BitConverter.GetBytes((int)GameInfo.Battleground.ParTime.TotalSeconds);
+                SpitfireGameUPKFile.OverrideBytes(parTimeSeconds, PAR_TIME_OFFSET);
+            }
+        }
 
         public void ApplyTrapTiers()
         {
