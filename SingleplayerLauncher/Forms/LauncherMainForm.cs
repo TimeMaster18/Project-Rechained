@@ -182,7 +182,6 @@ namespace SingleplayerLauncher
             comBoxExtraDifficulty.SelectedItem = noExtraDifficulty;
 
             string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
-            GameInfo.Battleground.Difficulty = Model.Difficulty.Difficulties[selectedDifficulty];
 
             if (Model.Survival.SurvivalBattlegroundsByDifficulty.TryGetValue(selectedDifficulty, out var battlegrounds))
             {
