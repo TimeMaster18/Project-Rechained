@@ -12,16 +12,15 @@ namespace SingleplayerLauncher
         private static readonly SpitfireGameUPK SpitfireGameUPK = new SpitfireGameUPK();
         private const string UPK_FILES_PATH = "..//SpitfireGame//CookedPCConsole//";
 
-        private static readonly List<string> CUSTOM_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA };
-        private static readonly List<string> READY_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.OZIEL, Names.Hero.BLOODSPIKE, Names.Hero.BLACKPAW, Names.Hero.BRASS, Names.Hero.CYGNUS, Names.Hero.MIDNIGHT, Names.Hero.YI_LIN, Names.Hero.DEADEYE, Names.Hero.DOBBIN, };
+        private static readonly List<string> SPITFIREGAME_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA };
         public static void ApplyChanges()
         {
             SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(FileUtils.SPITFIREGAME_UPK_PATH);
-            if (CUSTOM_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
+            if (SPITFIREGAME_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
             {
                 SpitfireGameUPK.ApplyLoadout();
             }
-            else if (READY_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
+            else
             {
                 UPKFile uPKFile = new UPKFile(UPK_FILES_PATH + GameInfo.Loadout.Hero.UPKFileName);
                 PawnWeaponUPK pawnWeaponUPK = new PawnWeaponUPK(uPKFile, GameInfo.Loadout.Hero);
@@ -58,19 +57,20 @@ namespace SingleplayerLauncher
         private const string PAWNWEAPON_BLACKPAW_UPK_FILENAME = "pawnweapon_blackpaw_SF.upk";
         private const string PAWNWEAPON_MIDNIGHT_UPK_FILENAME = "pawnweapon_midnight_SF.upk";
 
-        private const int PAWNWEAPON_DEADEYE_UPK_FILE_SIZE = 2971040;
-        private const int PAWNWEAPON_ZOEY_UPK_FILE_SIZE = 1644500;
+        private const int PAWNWEAPON_OZIEL_UPK_FILE_SIZE = 1119775;
+        private const int PAWNWEAPON_BLACKPAW_UPK_FILE_SIZE = 1242970;
+        private const int PAWNWEAPON_BLOODSPIKE_UPK_FILE_SIZE = 1668882;
         private const int PAWNWEAPON_BRASS_UPK_FILE_SIZE = 1594065;
         private const int PAWNWEAPON_CYGNUS_UPK_FILE_SIZE = 1689050;
-        private const int PAWNWEAPON_BLOODSPIKE_UPK_FILE_SIZE = 1668882;
-        private const int PAWNWEAPON_TEMPER_UPK_FILE_SIZE = 1427244;
-        private const int PAWNWEAPON_HOOKSWORD_UPK_FILE_SIZE = 1713352;
-        private const int PAWNWEAPON_OZIEL_UPK_FILE_SIZE = 1119775;
-        private const int PAWNWEAPON_TUNDRA_UPK_FILE_SIZE = 1041680;
-        private const int PAWNWEAPON_STINKEYE_UPK_FILE_SIZE = 983974;
+        private const int PAWNWEAPON_DEADEYE_UPK_FILE_SIZE = 2971040;
         private const int PAWNWEAPON_DOBBIN_UPK_FILE_SIZE = 1124993;
-        private const int PAWNWEAPON_BLACKPAW_UPK_FILE_SIZE = 1242970;
+        private const int PAWNWEAPON_HOOKSWORD_UPK_FILE_SIZE = 1713352;
         private const int PAWNWEAPON_MIDNIGHT_UPK_FILE_SIZE = 696772;
+        private const int PAWNWEAPON_STINKEYE_UPK_FILE_SIZE = 983974;
+        private const int PAWNWEAPON_TEMPER_UPK_FILE_SIZE = 1427244;
+        private const int PAWNWEAPON_TUNDRA_UPK_FILE_SIZE = 1041680;
+        private const int PAWNWEAPON_ZOEY_UPK_FILE_SIZE = 1644500;
+
         private const int NUM_PAWNWEAPONS = 13;
         private static readonly string[] PAWNWEAPON_FILENAMES = new string[NUM_PAWNWEAPONS] { PAWNWEAPON_DEADEYE_UPK_FILENAME, PAWNWEAPON_ZOEY_UPK_FILENAME, PAWNWEAPON_BRASS_UPK_FILENAME,
                                                                  PAWNWEAPON_CYGNUS_UPK_FILENAME, PAWNWEAPON_BLOODSPIKE_UPK_FILENAME, PAWNWEAPON_TEMPER_UPK_FILENAME,
@@ -85,7 +85,7 @@ namespace SingleplayerLauncher
             GameSettings.CharacterData.Initialize();
             GameSettings.DefaultGame.Initialize();
 
-            // Alternative Heroes, Default Loadout (pawnweapon files)
+            // Alternative Heroes, Files with needed import, export and name lists (traps, guardians, gear)
             for (int i = 0; i < NUM_PAWNWEAPONS; i++)
             {
                 FileInfo pawnWeaponUPKFileInfo = new FileInfo(UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i]);

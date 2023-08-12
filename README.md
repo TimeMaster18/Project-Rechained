@@ -21,14 +21,13 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 ### Features:
 - Launch the game in **offline mode, single player**
 - Play **any map**, **Survival** or **Endless** modes
-- Play with **all Heroes**
-- Customize the **Loadout** and hero (except Stinkeye, Tundra, Temper, Zoey)
+- Play with **all Heroes** and Custom **Loadouts**
   - Choose Traps and Gear
   - Choose your skin and your dye
   - Choose Guardians
 - Hero, Guardian and **Trap Tiers** are matched with enemy/map level
-- New extra difficulties for every map
-- New Mods:
+- **New extra difficulties** for every map
+- **New Mods**:
   - Remove Trap Cap
   - Invincible barricades
   - Custom intial Coin
@@ -38,17 +37,13 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 
 ### Coming Next
-- Fix Health scaling to the other heroes
-- Skins and Dyes for the other heroes
-- Guardian loadouts for the other heroes
-- Customizable loadouts for the other heroes
 - Save multiple loadouts with names
 - Share loadouts with other players
-- Improve UX
 
 ### Known Problems
 - UI of the launcher is simple
-- Unchained meter not showing properly after first activation (only visual)
+- Unchained meter (right side of screen) stuck after first activation (only visual)
+  - The **indicator over the hero icon at the bottom left of the screen works correctly**
 - Crogon Keep textures are black
 - Spawn position can be a bit off
 - Decoy icon doesn't change with tier

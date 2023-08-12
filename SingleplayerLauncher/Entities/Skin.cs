@@ -42,25 +42,25 @@ namespace SingleplayerLauncher.Model
         {
             Name = ZOEY_DEFAULT,
             CodeName = "RPlayerSkinApprentice000",
-            Id = new byte[] { 0x4C, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0x63, 0xFF, 0xFF, 0xFF },
         };
         public static Skin SchoolDaze = new Skin()
         {
             Name = SCHOOL_DAZE,
             CodeName = "RPlayerSkinApprentice001",
-            Id = new byte[] { 0x4E, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xD9, 0xFC, 0xFF, 0xFF },
         };
         public static Skin PrettyLittleStitches = new Skin()
         {
             Name = PRETTY_LITTLE_STITCHES,
             CodeName = "RPlayerSkinApprentice003",
-            Id = new byte[] { 0x50, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xD8, 0xFC, 0xFF, 0xFF },
         };
         public static Skin JurassicJourney = new Skin()
         {
             Name = JURASSIC_JOURNEY,
             CodeName = "RPlayerSkinApprentice005",
-            Id = new byte[] { 0x52, 0xDF, 0x00, 0x00 },
+            Id = new byte[] { 0xD7, 0xFC, 0xFF, 0xFF },
         };
         public static Skin BionkaDefault = new Skin()
         {
@@ -546,49 +546,49 @@ namespace SingleplayerLauncher.Model
         {
             Name = FIRST_EYE_BLIND,
             CodeName = "RPlayerSkinStinkeye000",
-            Id = new byte[] { 0x22, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x68, 0xFF, 0xFF, 0xFF },
         };
         public static Skin StinkeyeDefault = new Skin()
         {
             Name = STINKEYE_DEFAULT,
             CodeName = "RPlayerSkinStinkeye002",
-            Id = new byte[] { 0x24, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xF8, 0xFC, 0xFF, 0xFF },
         };
         public static Skin StinkeyeDefaultAlt = new Skin()
         {
             Name = STINKEYE_DEFAULT_ALT,
             CodeName = "RPlayerSkinStinkeye003",
-            Id = new byte[] { 0x26, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xF7, 0xFC, 0xFF, 0xFF },
         };
         public static Skin EnfantTerrible = new Skin()
         {
             Name = ENFANT_TERRIBLE,
             CodeName = "RPlayerSkinStinkeye008",
-            Id = new byte[] { 0x2A, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xF6, 0xFC, 0xFF, 0xFF },
         };
         public static Skin FloatyFun = new Skin()
         {
             Name = FLOATY_FUN,
             CodeName = "RPlayerSkinStinkeye010",
-            Id = new byte[] { 0x2C, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xF5, 0xFC, 0xFF, 0xFF },
         };
         public static Skin TemperDefault = new Skin()
         {
             Name = TEMPER_DEFAULT,
             CodeName = "RPlayerSkinTemper000",
-            Id = new byte[] { 0x2E, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x60, 0xFF, 0xFF, 0xFF },
         };
         public static Skin TemperForgedFury = new Skin()
         {
             Name = TEMPER_FORGED_FURY,
             CodeName = "RPlayerSkinTemper001",
-            Id = new byte[] { 0x30, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xD6, 0xFC, 0xFF, 0xFF },
         };
         public static Skin PrizedCow = new Skin()
         {
             Name = PRIZED_COW,
             CodeName = "RPlayerSkinTemper003",
-            Id = new byte[] { 0x32, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0xD5, 0xFC, 0xFF, 0xFF },
         };
         public static Skin CygnusDefault = new Skin()
         {
@@ -632,31 +632,31 @@ namespace SingleplayerLauncher.Model
         {
             Name = TUNDRA_DEFAULT,
             CodeName = "RPlayerSkinTundra000",
-            Id = new byte[] { 0x40, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x71, 0xFF, 0xFF, 0xFF },
         };
         public static Skin WarChief = new Skin()
         {
             Name = WAR_CHIEF,
             CodeName = "RPlayerSkinTundra001",
-            Id = new byte[] { 0x42, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x6E, 0xFD, 0xFF, 0xFF },
         };
         public static Skin BigLebearski = new Skin()
         {
             Name = BIG_LEBEARSKI,
             CodeName = "RPlayerSkinTundra004",
-            Id = new byte[] { 0x44, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x6D, 0xFD, 0xFF, 0xFF },
         };
         public static Skin KingOfArctos = new Skin()
         {
             Name = KING_OF_ARCTOS,
             CodeName = "RPlayerSkinTundra006",
-            Id = new byte[] { 0x46, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x6C, 0xFD, 0xFF, 0xFF },
         };
         public static Skin ImperialGoldenMage = new Skin()
         {
             Name = IMPERIAL_GOLDEN_MAGE,
             CodeName = "RPlayerSkinTundra008",
-            Id = new byte[] { 0x48, 0xE0, 0x00, 0x00 },
+            Id = new byte[] { 0x6B, 0xFD, 0xFF, 0xFF },
         };
         public static Skin LuckyTunic = new Skin()
         {
