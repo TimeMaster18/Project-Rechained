@@ -31,6 +31,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xEB, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0x25, 0xFE, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0x07, 0xFE, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x3D, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0x1B, 0xFD, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0xB3, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0x1E, 0xFD, 0xFF, 0xFF } },
             }
         };
         public static Gear ArcaneBubbleBlower = new Gear()
@@ -52,6 +56,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xAB, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE5, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC7, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xFD, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xDB, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x73, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xDE, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear FireWallBracers = new Gear()
@@ -73,6 +81,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xAA, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE4, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC6, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xFC, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xDA, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x72, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xDD, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear FreedomTrinket = new Gear()
@@ -94,6 +106,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xB4, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xEE, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xD0, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x06, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xE4, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x7C, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE7, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear GnomishRepairKit = new Gear()
@@ -115,6 +131,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xAD, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE7, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC9, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xFF, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xDD, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x75, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE0, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear GreaterFreedomTrinket = new Gear()
@@ -136,6 +156,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xB3, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xED, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xCF, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x05, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xE3, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x7B, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE6, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear HobgoblinCharm = new Gear()
@@ -157,6 +181,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xB1, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xEB, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xCD, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x03, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xE1, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x79, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE4, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear IceAmulet = new Gear()
@@ -178,6 +206,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xA9, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE3, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC5, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xFB, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xD9, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x71, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xDC, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear LightningRing = new Gear()
@@ -199,6 +231,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xA7, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE1, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC3, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xF9, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xD7, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x6F, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xDA, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear MagesClover = new Gear()
@@ -220,6 +256,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xAE, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE8, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xCA, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x00, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xDE, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x76, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE1, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear MagesPicnic = new Gear()
@@ -241,6 +281,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xAF, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE9, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xCB, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x01, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xDF, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x77, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE2, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear MendingRoot = new Gear()
@@ -262,6 +306,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xB2, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xEC, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xCE, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x04, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xE2, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x7A, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE5, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear RingOfLastStand = new Gear()
@@ -283,6 +331,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xB0, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xEA, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xCC, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0x02, 0xFD, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xE0, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x78, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xE3, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear RingOfStorms = new Gear()
@@ -304,6 +356,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xA8, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE2, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC4, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xFA, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xD8, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x70, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xDB, 0xFC, 0xFF, 0xFF } },
             }
         };
         public static Gear TeleportationRing = new Gear()
@@ -325,6 +381,10 @@ namespace SingleplayerLauncher.Model
                 { DOBBIN, new byte[] { 0xAC, 0xFD, 0xFF, 0xFF } },
                 { YI_LIN, new byte[] { 0xE6, 0xFD, 0xFF, 0xFF } },
                 { MIDNIGHT, new byte[] { 0xC8, 0xFD, 0xFF, 0xFF } },
+                { STINKEYE, new byte[] { 0xFE, 0xFC, 0xFF, 0xFF } },
+                { TEMPER, new byte[] { 0xDC, 0xFC, 0xFF, 0xFF } },
+                { TUNDRA, new byte[] { 0x74, 0xFD, 0xFF, 0xFF } },
+                { ZOEY, new byte[] { 0xDF, 0xFC, 0xFF, 0xFF } },
             }
         };
 
