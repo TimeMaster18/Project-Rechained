@@ -88,6 +88,8 @@
     <Compile Include="Entities\Battlegrounds\WeeklyChallenge.cs" />
     <Compile Include="Model\GameInfo.cs" />
     <Compile Include="GameSettings\CharacterData.cs" />
+    <Compile Include="Mods\SellTrapsAnytime.cs" />
+    <Compile Include="Mods\EnhancedTrapRotation.cs" />
     <Compile Include="Mods\ShowTrapDamageFlyoffs.cs" />
     <Compile Include="Mods\Hardcore.cs" />
     <Compile Include="Mods\Mods.cs" />

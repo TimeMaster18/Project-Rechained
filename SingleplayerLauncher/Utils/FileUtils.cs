@@ -11,6 +11,7 @@ namespace SingleplayerLauncher.Utils
         public const int SPITFIREGAME_UPK_ORG_SIZE = 100225213;
 
         public const string SPITFIREGAME_EXE_FILENAME = "SpitfireGame.exe";
+        public const string SPITFIREGAME_EXE_WIN32_FILEPATH = "./Win32/";
 
         private const string SPITFIREGAME_UPK_DECOMPRESS_PATH = ".//UE Extractor//SpitfireGame.upk";
         private const string SPITFIREGAME_UPK_DECOMPRESSED_PATH = ".//UE Extractor//unpacked//SpitfireGame.upk";

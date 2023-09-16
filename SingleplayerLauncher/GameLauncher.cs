@@ -106,10 +106,14 @@ namespace SingleplayerLauncher
             Settings.Save();
         }
 
-        public static void StartGame(bool debug)
+        public static void StartGame(bool debug, bool launchAs32)
         {
             Process p = new Process();
             p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
+            if (launchAs32)
+            {
+                p.StartInfo.WorkingDirectory = FileUtils.SPITFIREGAME_EXE_WIN32_FILEPATH;
+            }
             p.StartInfo.Arguments = CreateExeArguments(debug);
 
             p.Start();

@@ -57,7 +57,7 @@ namespace SingleplayerLauncher.GameSettings
 
             data[RCharacterDataSection][CharacterDataKeyGodMode] = areEnabled ? false.ToString() : Mods.Mods.GodMode.IsEnabled.ToString();
 
-            int startingCoin = GameInfo.Battleground.StartingCoin != 0 && areEnabled ? GameInfo.Battleground.StartingCoin : GameInfo.Battleground.Map.StartingCoin;
+            int startingCoin = areEnabled && GameInfo.Battleground.StartingCoin != 0  ? GameInfo.Battleground.StartingCoin : GameInfo.Battleground.Map.StartingCoin;
             data[RCharacterDataSection][CharacterDataKeyBonusStartingCoin] = CalculateMultiplierStartingCoin(startingCoin);
 
             characterData.Write(data);

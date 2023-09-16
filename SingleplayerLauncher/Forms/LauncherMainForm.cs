@@ -65,6 +65,7 @@ namespace SingleplayerLauncher
             comBoxExtraDifficulty.SelectedItem = Settings.Instance.ContainsKey("extraDifficulty") ? Settings.Instance["extraDifficulty"] : noExtraDifficulty;
 
             chkDebug.Checked = Settings.Instance.ContainsKey("debug") && (bool)Settings.Instance["debug"];
+            chkRunAs32.Checked = Settings.Instance.ContainsKey("RunAs32") && (bool)Settings.Instance["RunAs32"];
             chk_modsEnabled.Checked = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
             modsGroupBox.Enabled = chk_modsEnabled.Checked;
 
@@ -77,8 +78,12 @@ namespace SingleplayerLauncher
             chkNoLimitUniqueTraps.Checked = Settings.Instance.ContainsKey("NoLimitUniqueTraps") && (bool)Settings.Instance["NoLimitUniqueTraps"];
             chkNoTrapGrid.Checked = Settings.Instance.ContainsKey("NoTrapGrid") && (bool)Settings.Instance["NoTrapGrid"];
             chkTrapsAnySurface.Checked = Settings.Instance.ContainsKey("TrapsAnySurface") && (bool)Settings.Instance["TrapsAnySurface"];
-            startingCoinInput.Value = Settings.Instance.ContainsKey("StartingCoin") ? Int32.Parse((string)Settings.Instance["StartingCoin"]) : GameInfo.Battleground.Map.StartingCoin;
+            chkEnhancedTrapRotation.Checked = Settings.Instance.ContainsKey("EnhancedTrapRotation") && (bool)Settings.Instance["EnhancedTrapRotation"];
+            chkSellTrapsAnytime.Checked = Settings.Instance.ContainsKey("SellTrapsAnytime") && (bool)Settings.Instance["SellTrapsAnytime"];
 
+            chkCustomStartCoin.Checked = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && (bool)Settings.Instance["CustomStartCoinEnabled"];
+            startingCoinInput.Enabled = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && (bool)Settings.Instance["CustomStartCoinEnabled"];
+            startingCoinInput.Value = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && Settings.Instance.ContainsKey("StartingCoin") ? Int32.Parse((string)Settings.Instance["StartingCoin"]) : GameInfo.Battleground.Map.StartingCoin;
 
             PopulateSlots(ComBoxLoadoutSlots, Model.Trap.Traps.Keys.ToList());
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
@@ -105,7 +110,7 @@ namespace SingleplayerLauncher
             MessageBox.Show("Finished");
 
             SaveSettings();
-            GameLauncher.StartGame(chkDebug.Checked);
+            GameLauncher.StartGame(chkDebug.Checked, chkRunAs32.Checked);
         }
 
         public void SaveSettings()
@@ -118,6 +123,7 @@ namespace SingleplayerLauncher
             Settings.Instance["difficulty"] = comBoxDifficulty.SelectedItem;
             Settings.Instance["extraDifficulty"] = comBoxExtraDifficulty.SelectedItem;
             Settings.Instance["debug"] = chkDebug.Checked;
+            Settings.Instance["runAs32"] = chkRunAs32.Checked;
             Settings.Save();
         }
 
@@ -441,6 +447,31 @@ namespace SingleplayerLauncher
         private void comBoxGuardianSlot2_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveGuardians();
+        }
+
+        private void chkCustomStartCoin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkCustomStartCoin.Checked)
+            {
+                GameInfo.Battleground.StartingCoin = 0;
+            }
+            startingCoinInput.Enabled = chkCustomStartCoin.Checked;
+            Settings.Instance["CustomStartCoinEnabled"] = chkCustomStartCoin.Checked;
+            Settings.Save();
+        }
+
+        private void chkSellTrapsAnytime_CheckedChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.SellTrapsAnytime.IsEnabled = chkSellTrapsAnytime.Checked;
+            Settings.Instance["SellTrapsAnytime"] = chkSellTrapsAnytime.Checked;
+            Settings.Save();
+        }
+
+        private void chkEnhancedTrapRotation_CheckedChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.EnhancedTrapRotation.IsEnabled = chkEnhancedTrapRotation.Checked;
+            Settings.Instance["EnhancedTrapRotation"] = chkEnhancedTrapRotation.Checked;
+            Settings.Save();
         }
     }
 }

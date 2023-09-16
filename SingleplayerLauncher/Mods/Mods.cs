@@ -14,6 +14,8 @@ namespace SingleplayerLauncher.Mods
         public static Mod GodMode = new GodMode();
         public static Mod ShowTrapDamageFlyoffs = new ShowTrapDamageFlyoffs();
         public static Mod Hardcore = new Hardcore();
+        public static Mod EnhancedTrapRotation = new EnhancedTrapRotation();
+        public static Mod SellTrapsAnytime = new SellTrapsAnytime();
 
         public readonly static List<Mod> ModList = new List<Mod>
         {
@@ -26,6 +28,8 @@ namespace SingleplayerLauncher.Mods
             GodMode,
             ShowTrapDamageFlyoffs,
             Hardcore,
+            EnhancedTrapRotation,
+            SellTrapsAnytime
         };
     }
 }
