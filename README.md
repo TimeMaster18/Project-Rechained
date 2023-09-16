@@ -32,6 +32,8 @@ If you want to give feedback, contribute, participate in testing or just hang ar
   - Invincible barricades
   - Custom intial Coin
   - God Mode
+  - Show Trap Damage
+  - Sell Traps during waves
   - and more!
 - Settings and mods are saved between executions
 
