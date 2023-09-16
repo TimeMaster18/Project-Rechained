@@ -53,7 +53,6 @@
             this.chkTrapsAnySurface = new System.Windows.Forms.CheckBox();
             this.chkHardcore = new System.Windows.Forms.CheckBox();
             this.chkNoLimitUniqueTraps = new System.Windows.Forms.CheckBox();
-            this.startingCoinLabel = new System.Windows.Forms.Label();
             this.startingCoinInput = new System.Windows.Forms.NumericUpDown();
             this.chkTrapsInTraps = new System.Windows.Forms.CheckBox();
             this.chkNoTrapCap = new System.Windows.Forms.CheckBox();
@@ -84,6 +83,10 @@
             this.comBoxLoadoutSlot7 = new System.Windows.Forms.ComboBox();
             this.comBoxLoadoutSlot6 = new System.Windows.Forms.ComboBox();
             this.chk_modsEnabled = new System.Windows.Forms.CheckBox();
+            this.chkSellTrapsAnytime = new System.Windows.Forms.CheckBox();
+            this.chkRunAs32 = new System.Windows.Forms.CheckBox();
+            this.chkCustomStartCoin = new System.Windows.Forms.CheckBox();
+            this.chkEnhancedTrapRotation = new System.Windows.Forms.CheckBox();
             this.characterSettingsGroupBox.SuspendLayout();
             this.mapSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
@@ -94,7 +97,7 @@
             // btnLaunch
             // 
             this.btnLaunch.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnLaunch.Location = new System.Drawing.Point(296, 346);
+            this.btnLaunch.Location = new System.Drawing.Point(296, 356);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(341, 75);
             this.btnLaunch.TabIndex = 0;
@@ -105,7 +108,7 @@
             // chkDebug
             // 
             this.chkDebug.AutoSize = true;
-            this.chkDebug.Location = new System.Drawing.Point(493, 430);
+            this.chkDebug.Location = new System.Drawing.Point(493, 440);
             this.chkDebug.Name = "chkDebug";
             this.chkDebug.Size = new System.Drawing.Size(58, 17);
             this.chkDebug.TabIndex = 6;
@@ -282,7 +285,7 @@
             // 
             // btnResetConfig
             // 
-            this.btnResetConfig.Location = new System.Drawing.Point(549, 427);
+            this.btnResetConfig.Location = new System.Drawing.Point(549, 437);
             this.btnResetConfig.Name = "btnResetConfig";
             this.btnResetConfig.Size = new System.Drawing.Size(83, 22);
             this.btnResetConfig.TabIndex = 9;
@@ -337,7 +340,7 @@
             // chkHardcore
             // 
             this.chkHardcore.AutoSize = true;
-            this.chkHardcore.Location = new System.Drawing.Point(222, 112);
+            this.chkHardcore.Location = new System.Drawing.Point(7, 149);
             this.chkHardcore.Name = "chkHardcore";
             this.chkHardcore.Size = new System.Drawing.Size(101, 17);
             this.chkHardcore.TabIndex = 17;
@@ -356,15 +359,6 @@
             this.chkNoLimitUniqueTraps.UseVisualStyleBackColor = true;
             this.chkNoLimitUniqueTraps.CheckedChanged += new System.EventHandler(this.chkNoLimitUniqueTraps_CheckedChanged);
             // 
-            // startingCoinLabel
-            // 
-            this.startingCoinLabel.AutoSize = true;
-            this.startingCoinLabel.Location = new System.Drawing.Point(4, 131);
-            this.startingCoinLabel.Name = "startingCoinLabel";
-            this.startingCoinLabel.Size = new System.Drawing.Size(69, 13);
-            this.startingCoinLabel.TabIndex = 15;
-            this.startingCoinLabel.Text = "Starting coin:";
-            // 
             // startingCoinInput
             // 
             this.startingCoinInput.Increment = new decimal(new int[] {
@@ -372,7 +366,7 @@
             0,
             0,
             0});
-            this.startingCoinInput.Location = new System.Drawing.Point(79, 129);
+            this.startingCoinInput.Location = new System.Drawing.Point(248, 146);
             this.startingCoinInput.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -384,7 +378,7 @@
             0,
             -2147483648});
             this.startingCoinInput.Name = "startingCoinInput";
-            this.startingCoinInput.Size = new System.Drawing.Size(100, 20);
+            this.startingCoinInput.Size = new System.Drawing.Size(85, 20);
             this.startingCoinInput.TabIndex = 14;
             this.startingCoinInput.ValueChanged += new System.EventHandler(this.StartingCoinInput_ValueChanged);
             // 
@@ -413,7 +407,7 @@
             // chkGodMode
             // 
             this.chkGodMode.AutoSize = true;
-            this.chkGodMode.Location = new System.Drawing.Point(222, 135);
+            this.chkGodMode.Location = new System.Drawing.Point(7, 172);
             this.chkGodMode.Name = "chkGodMode";
             this.chkGodMode.Size = new System.Drawing.Size(76, 17);
             this.chkGodMode.TabIndex = 11;
@@ -424,10 +418,12 @@
             // modsGroupBox
             // 
             this.modsGroupBox.BackColor = System.Drawing.Color.Bisque;
+            this.modsGroupBox.Controls.Add(this.chkEnhancedTrapRotation);
+            this.modsGroupBox.Controls.Add(this.chkCustomStartCoin);
+            this.modsGroupBox.Controls.Add(this.chkSellTrapsAnytime);
             this.modsGroupBox.Controls.Add(this.chkNoLimitUniqueTraps);
             this.modsGroupBox.Controls.Add(this.chkHardcore);
             this.modsGroupBox.Controls.Add(this.chkShowTrapDamageFlyoffs);
-            this.modsGroupBox.Controls.Add(this.startingCoinLabel);
             this.modsGroupBox.Controls.Add(this.chkNoTrapCap);
             this.modsGroupBox.Controls.Add(this.startingCoinInput);
             this.modsGroupBox.Controls.Add(this.chkNoTrapGrid);
@@ -435,9 +431,9 @@
             this.modsGroupBox.Controls.Add(this.chkInvincibleBarricades);
             this.modsGroupBox.Controls.Add(this.chkTrapsAnySurface);
             this.modsGroupBox.Controls.Add(this.chkTrapsInTraps);
-            this.modsGroupBox.Location = new System.Drawing.Point(298, 172);
+            this.modsGroupBox.Location = new System.Drawing.Point(298, 153);
             this.modsGroupBox.Name = "modsGroupBox";
-            this.modsGroupBox.Size = new System.Drawing.Size(339, 158);
+            this.modsGroupBox.Size = new System.Drawing.Size(339, 197);
             this.modsGroupBox.TabIndex = 22;
             this.modsGroupBox.TabStop = false;
             this.modsGroupBox.Text = "Mods";
@@ -697,7 +693,7 @@
             // chk_modsEnabled
             // 
             this.chk_modsEnabled.AutoSize = true;
-            this.chk_modsEnabled.Location = new System.Drawing.Point(298, 149);
+            this.chk_modsEnabled.Location = new System.Drawing.Point(298, 130);
             this.chk_modsEnabled.Name = "chk_modsEnabled";
             this.chk_modsEnabled.Size = new System.Drawing.Size(93, 17);
             this.chk_modsEnabled.TabIndex = 25;
@@ -705,11 +701,55 @@
             this.chk_modsEnabled.UseVisualStyleBackColor = true;
             this.chk_modsEnabled.CheckedChanged += new System.EventHandler(this.chk_modsEnabled_CheckedChanged);
             // 
+            // chkSellTrapsAnytime
+            // 
+            this.chkSellTrapsAnytime.AutoSize = true;
+            this.chkSellTrapsAnytime.Location = new System.Drawing.Point(170, 82);
+            this.chkSellTrapsAnytime.Name = "chkSellTrapsAnytime";
+            this.chkSellTrapsAnytime.Size = new System.Drawing.Size(113, 17);
+            this.chkSellTrapsAnytime.TabIndex = 22;
+            this.chkSellTrapsAnytime.Text = "Sell Traps Anytime";
+            this.chkSellTrapsAnytime.UseVisualStyleBackColor = true;
+            this.chkSellTrapsAnytime.CheckedChanged += new System.EventHandler(this.chkSellTrapsAnytime_CheckedChanged);
+            // 
+            // chkRunAs32
+            // 
+            this.chkRunAs32.AutoSize = true;
+            this.chkRunAs32.Location = new System.Drawing.Point(403, 440);
+            this.chkRunAs32.Name = "chkRunAs32";
+            this.chkRunAs32.Size = new System.Drawing.Size(84, 17);
+            this.chkRunAs32.TabIndex = 26;
+            this.chkRunAs32.Text = "Force 32bits";
+            this.chkRunAs32.UseVisualStyleBackColor = true;
+            // 
+            // chkCustomStartCoin
+            // 
+            this.chkCustomStartCoin.AutoSize = true;
+            this.chkCustomStartCoin.Location = new System.Drawing.Point(170, 149);
+            this.chkCustomStartCoin.Name = "chkCustomStartCoin";
+            this.chkCustomStartCoin.Size = new System.Drawing.Size(72, 17);
+            this.chkCustomStartCoin.TabIndex = 23;
+            this.chkCustomStartCoin.Text = "Start Coin";
+            this.chkCustomStartCoin.UseVisualStyleBackColor = true;
+            this.chkCustomStartCoin.CheckedChanged += new System.EventHandler(this.chkCustomStartCoin_CheckedChanged);
+            // 
+            // chkEnhancedTrapRotation
+            // 
+            this.chkEnhancedTrapRotation.AutoSize = true;
+            this.chkEnhancedTrapRotation.Location = new System.Drawing.Point(170, 104);
+            this.chkEnhancedTrapRotation.Name = "chkEnhancedTrapRotation";
+            this.chkEnhancedTrapRotation.Size = new System.Drawing.Size(143, 17);
+            this.chkEnhancedTrapRotation.TabIndex = 24;
+            this.chkEnhancedTrapRotation.Text = "Enhanced Trap Rotation";
+            this.chkEnhancedTrapRotation.UseVisualStyleBackColor = true;
+            this.chkEnhancedTrapRotation.CheckedChanged += new System.EventHandler(this.chkEnhancedTrapRotation_CheckedChanged);
+            // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 467);
+            this.Controls.Add(this.chkRunAs32);
             this.Controls.Add(this.chk_modsEnabled);
             this.Controls.Add(this.groupBoxLoadout);
             this.Controls.Add(this.modsGroupBox);
@@ -764,7 +804,6 @@
         private System.Windows.Forms.CheckBox chkTrapsAnySurface;
         private System.Windows.Forms.CheckBox chkHardcore;
         private System.Windows.Forms.CheckBox chkNoLimitUniqueTraps;
-        private System.Windows.Forms.Label startingCoinLabel;
         private System.Windows.Forms.NumericUpDown startingCoinInput;
         private System.Windows.Forms.CheckBox chkTrapsInTraps;
         private System.Windows.Forms.CheckBox chkNoTrapCap;
@@ -795,6 +834,10 @@
         private System.Windows.Forms.ComboBox comBoxLoadoutSlot6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox chk_modsEnabled;
+        private System.Windows.Forms.CheckBox chkCustomStartCoin;
+        private System.Windows.Forms.CheckBox chkSellTrapsAnytime;
+        private System.Windows.Forms.CheckBox chkRunAs32;
+        private System.Windows.Forms.CheckBox chkEnhancedTrapRotation;
     }
 }
 
