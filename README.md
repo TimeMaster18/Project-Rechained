@@ -11,11 +11,12 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 ### How to use:
 
-1. Download the latest release at: [Latest release .zip](https://github.com/TimeMaster18/OMDU-SinglePlayer/releases/latest/download/OMDU-SinglePlayer.zip)
-2. Extract its contents inside the Binaries folder of your game installation: "OrcsMustDieUnchained\Binaries"
-3. Run the "SingleplayerLauncher.exe"
-4. Choose your desired settings in the launcher
-5. Press "Launch" and enjoy! 
+1. Download Game from: [Steam](https://intradeus.github.io/http-protocol-redirector?r=steam://rungameid/427270) (If link doesn't work, ask for help at the Discord server)
+2. Download the Single Player Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/OMDU-SinglePlayer/releases/latest/download/OMDU-SinglePlayer.zip)
+3. Extract the downloaded OMDU-SinglePlayer.zip contents inside the Binaries folder of your game installation: "OrcsMustDieUnchained\Binaries"
+4. Run the "SingleplayerLauncher.exe"
+5. Choose your desired settings in the launcher
+6. Press "Launch" and enjoy! 
 
 
 ### Features:
