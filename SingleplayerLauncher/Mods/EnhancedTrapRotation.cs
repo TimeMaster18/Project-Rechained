@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingleplayerLauncher.Utils;
+using System;
 
 namespace SingleplayerLauncher.Mods
 {
@@ -9,15 +10,24 @@ namespace SingleplayerLauncher.Mods
 
         private const int CHANGE_INDEX = 0x1544729;
 
+        readonly private byte[] UNIQUE_BYTES_REFERENCE = { 0x00, 0x00, 0x00, 0x00, 0xD6, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC8, 0x42, 0x58, 0x83, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6E, 0x4B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+        readonly private int OFFSET_FROM_UNIQUE_BYTES = 0;
+
         public override bool InstallMod()
         {
-            UPKFile.OverrideBytes(DEGREES_10_IN_BYTES, CHANGE_INDEX);
+            int bytesReferenceIndex = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX));
+            int indexToModify = bytesReferenceIndex + UNIQUE_BYTES_REFERENCE.Length + OFFSET_FROM_UNIQUE_BYTES;
+            UPKFile.OverrideBytes(DEGREES_10_IN_BYTES, indexToModify);
+
             return true;
         }
 
         public override bool UninstallMod()
         {
-            UPKFile.OverrideBytes(DEGREES_90_IN_BYTES, CHANGE_INDEX);
+            int bytesReferenceIndex = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX));
+            int indexToModify = bytesReferenceIndex + UNIQUE_BYTES_REFERENCE.Length + OFFSET_FROM_UNIQUE_BYTES;
+            UPKFile.OverrideBytes(DEGREES_90_IN_BYTES, indexToModify);
+
             return true;
         }
     }

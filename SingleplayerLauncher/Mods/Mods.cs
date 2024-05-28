@@ -16,7 +16,7 @@ namespace SingleplayerLauncher.Mods
         public static Mod Hardcore = new Hardcore();
         public static Mod EnhancedTrapRotation = new EnhancedTrapRotation();
         public static Mod SellTrapsAnytime = new SellTrapsAnytime();
-
+        
         public readonly static List<Mod> ModList = new List<Mod>
         {
             NoTrapCap,
