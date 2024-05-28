@@ -578,9 +578,9 @@ namespace SingleplayerLauncher.Model
             CodeName = "RPlayerSkinTemper000",
             Id = new byte[] { 0x60, 0xFF, 0xFF, 0xFF },
         };
-        public static Skin TemperForgedFury = new Skin()
+        public static Skin ForgedFury = new Skin()
         {
-            Name = TEMPER_FORGED_FURY,
+            Name = FORGED_FURY,
             CodeName = "RPlayerSkinTemper001",
             Id = new byte[] { 0xD6, 0xFC, 0xFF, 0xFF },
         };
@@ -925,7 +925,7 @@ namespace SingleplayerLauncher.Model
         public static Skin[] SmolderSkins = new Skin[] { SmolderDefault, HelterSwelter, SmolderDefaultWhiteHair, Elite, KillAuea, FireAlarmFemme, Firestarter, WuXingDragonMage, };
         public static Skin[] GabriellaSkins = new Skin[] { GabriellaDefault, ViolentVintage, GabriellaEnchantedArmor, BloodQueen, FrightfullyDelightful, GabriellaDefaultRed, LifeInPlastic, ArchmageOfTheOrder, MistressOfIllusion, PromisingProdigy, IDreamOfGabby, MiracleWorker, WinterWitch, SkullNinja, EvilWays, DragonCharmer, };
         public static Skin[] StinkeyeSkins = new Skin[] { StinkeyeDefault, FirstEyeBlind, StinkeyeDefaultAlt, EnfantTerrible, FloatyFun, };
-        public static Skin[] TemperSkins = new Skin[] { TemperDefault, TemperForgedFury, PrizedCow };
+        public static Skin[] TemperSkins = new Skin[] { TemperDefault, ForgedFury, PrizedCow };
         public static Skin[] CygnusSkins = new Skin[] { CygnusDefault, Adventurer, CygnusDefaultRed, OldCodger, RoadMaster, };
         public static Skin[] TundraSkins = new Skin[] { TundraDefault, WarChief, BigLebearski, KingOfArctos, ImperialGoldenMage, };
         public static Skin[] MaximilianSkins = new Skin[] { MaximillianDefault, LuckyTunic, MaximillianEnchantedArmor, KnightsWatch, OrcSlayer, CardboardSamurai, ScaredCrow, LionHeart, RobinHood, Paximillian, MaximillianLegendaryDefault, ChampionOfTheOrder, JamezRipher, WinterWarrior, Boomstick, Backdraft, DragonSlayer, SummerOfStunning, RedScarf, YellowScarf, BlueScarf, };
@@ -1051,7 +1051,7 @@ namespace SingleplayerLauncher.Model
             { ENFANT_TERRIBLE, EnfantTerrible },
             { FLOATY_FUN, FloatyFun },
             { TEMPER_DEFAULT, TemperDefault },
-            { TEMPER_FORGED_FURY, TemperForgedFury },
+            { FORGED_FURY, ForgedFury },
             { PRIZED_COW, PrizedCow },
             { CYGNUS_DEFAULT, CygnusDefault },
             { ADVENTURER, Adventurer },
