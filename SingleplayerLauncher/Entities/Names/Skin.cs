@@ -20,10 +20,10 @@
             LIZARD_QUEEN = "Lizard Queen",
             FLUFFALUMP = "Fluffalump",
             BIONKA_BUNNY = "Bionka Bunny",
-            BLACKPAW_ENCHANTED_ARMOR = "Blackpaw Enchanted Armor",
-            PAW_OF_THE_DEAD = "Paw of the Dead",
 
             // BLACKPAW
+            BLACKPAW_ENCHANTED_ARMOR = "Blackpaw Enchanted Armor",
+            PAW_OF_THE_DEAD = "Paw of the Dead",
             BLACKPAW_DEFAULT = "Blackpaw Default",
             TUTU_DLOO = "Tutu D'Loo",
             PRIDE_OF_THE_PACK = "Pride of the Pack",
@@ -125,7 +125,7 @@
 
             // TEMPER
             TEMPER_DEFAULT = "Temper Default",
-            TEMPER_FORGED_FURY = "Temper Forged Fury",
+            FORGED_FURY = "Forged Fury",
             PRIZED_COW = "Prized Cow",
 
             // CYGNUS
