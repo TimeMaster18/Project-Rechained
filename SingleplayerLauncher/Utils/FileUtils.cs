@@ -60,5 +60,14 @@ namespace SingleplayerLauncher.Utils
                 File.Move(SPITFIREGAME_UPK_DECOMPRESSED_PATH, upkFilePath); //TODO I think decompress.exe can get output folder as parameter 
             }
         }
+
+        public static int RoundToNearestLowerThousandPessimistic(int n)
+        {
+            int result = n - 500;
+            if (result <= 0)
+                return 0;
+
+            return (result / 1000) * 1000;
+        }
     }
 }
