@@ -40,8 +40,11 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 
 ### Coming Next
+- Consumables, Traits and Trap Parts
+- Campaign Mode
 - Save multiple loadouts with names
 - Share loadouts with other players
+- Multiplayer?
 
 ### Known Problems
 - UI of the launcher is simple
