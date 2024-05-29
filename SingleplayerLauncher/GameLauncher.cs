@@ -106,7 +106,7 @@ namespace SingleplayerLauncher
             Settings.Save();
         }
 
-        public static void StartGame(bool debug, bool launchAs32)
+        public static void StartGame(bool debug, bool launchAs32, string language)
         {
             Process p = new Process();
             p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
@@ -114,22 +114,25 @@ namespace SingleplayerLauncher
             {
                 p.StartInfo.WorkingDirectory = FileUtils.SPITFIREGAME_EXE_WIN32_FILEPATH;
             }
-            p.StartInfo.Arguments = CreateExeArguments(debug);
+            p.StartInfo.Arguments = CreateExeArguments(debug, language);
 
             p.Start();
         }
 
-        private const string EXE_ARGUMENTS = " -seekfreeloadingpcconsole -writepid -Language=INT -Region=us";
+        private const string EXE_ARGUMENTS = " -seekfreeloadingpcconsole -writepid";
         private const string DEBUG_ARGUMENTS = " -log -ABSLOG=log.txt";
-        private static string CreateExeArguments(bool debug)
+        private const string LANGUAGE_OPTION = " -language=";
+        private static string CreateExeArguments(bool debug, string language)
         {
             string arguments = "";
 
             string map = GameInfo.Battleground.Map.UmapCode;
             string defaultArgs = EXE_ARGUMENTS;
+            string languageArg = LANGUAGE_OPTION + Language.GetKeyFromValue(language);
 
             arguments += map;
             arguments += defaultArgs;
+            arguments += languageArg;
 
             if (debug)
             {

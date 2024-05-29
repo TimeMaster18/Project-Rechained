@@ -40,6 +40,13 @@ namespace SingleplayerLauncher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            foreach (string language in Language.GetLanguageMap().Values)
+            {
+                comBoxLanguage.Items.Add(language);
+            }
+
+            comBoxLanguage.SelectedItem = Settings.Instance.ContainsKey("language") ? Settings.Instance["language"] : DefaultValues.SelectedLanguage;
+
             foreach (string h in Model.Hero.Heroes.Keys)
             {
                 comBoxHero.Items.Add(h);
@@ -110,7 +117,7 @@ namespace SingleplayerLauncher
             MessageBox.Show("Finished");
 
             SaveSettings();
-            GameLauncher.StartGame(chkDebug.Checked, chkRunAs32.Checked);
+            GameLauncher.StartGame(chkDebug.Checked, chkRunAs32.Checked, comBoxLanguage.Text);
         }
 
         public void SaveSettings()
@@ -471,6 +478,13 @@ namespace SingleplayerLauncher
         {
             Mods.Mods.EnhancedTrapRotation.IsEnabled = chkEnhancedTrapRotation.Checked;
             Settings.Instance["EnhancedTrapRotation"] = chkEnhancedTrapRotation.Checked;
+            Settings.Save();
+        }
+
+        private void comBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = comBoxLanguage.SelectedItem.ToString();
+            Settings.Instance["language"] = selectedLanguage;
             Settings.Save();
         }
     }

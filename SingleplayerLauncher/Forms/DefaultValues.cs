@@ -12,5 +12,7 @@
         public const string SelectedBattleground = Names.Map.THE_BATHS; // Default Selected "The Baths" because it's well optimised and Iconic Level 
         public const string SelectedDifficulty = Names.Difficulty.APPRENTICE; // Default Selected "The Baths" because it's well optimised and Iconic Level 
         public const string SelectedGameMode = Names.GameMode.SURVIVAL; // Default selected Game Mode "Survival"
+
+        public const string SelectedLanguage = "English";
     }
 }
