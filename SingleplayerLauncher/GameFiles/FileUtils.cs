@@ -1,7 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 
-namespace SingleplayerLauncher.Utils
+namespace SingleplayerLauncher.GameFiles
 {
     public static class FileUtils
     {
@@ -12,6 +13,7 @@ namespace SingleplayerLauncher.Utils
 
         public const string SPITFIREGAME_EXE_FILENAME = "SpitfireGame.exe";
         public const string SPITFIREGAME_EXE_WIN32_FILEPATH = "./Win32/";
+        public const string SPITFIREGAME_EXE_WIN64_FILEPATH = "./Win64/";
 
         private const string SPITFIREGAME_UPK_DECOMPRESS_PATH = ".//UE Extractor//SpitfireGame.upk";
         private const string SPITFIREGAME_UPK_DECOMPRESSED_PATH = ".//UE Extractor//unpacked//SpitfireGame.upk";
@@ -61,6 +63,12 @@ namespace SingleplayerLauncher.Utils
             }
         }
 
+        /// <summary>
+        /// Rounds a given number to the nearest lower thousand, with a pessimistic adjustment to ensure robustness
+        /// in case the file size changes.
+        /// </summary>
+        /// <param name="n">The number to round.</param>
+        /// <returns>The rounded number.</returns>
         public static int RoundToNearestLowerThousandPessimistic(int n)
         {
             int result = n - 500;
@@ -68,6 +76,28 @@ namespace SingleplayerLauncher.Utils
                 return 0;
 
             return (result / 1000) * 1000;
+        }
+
+        public static void CopyFileWithCheck(string sourcePath, string destinationPath, bool overwrite = false)
+        {
+            try
+            {
+                if (File.Exists(destinationPath))
+                {
+                    if (overwrite)
+                    {
+                        File.Copy(sourcePath, destinationPath, true);
+                    }
+                }
+                else
+                {
+                    File.Copy(sourcePath, destinationPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred while copying the file: {ex.Message}");
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using SingleplayerLauncher.Utils;
+﻿using SingleplayerLauncher.GameFiles;
 
 namespace SingleplayerLauncher.Mods
 {
@@ -19,30 +19,18 @@ namespace SingleplayerLauncher.Mods
 
         public override bool InstallMod()
         {
-            int bytesReferenceIndex1 = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE_1, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX_1));
-            int indexToModify1 = bytesReferenceIndex1 + UNIQUE_BYTES_REFERENCE_1.Length + OFFSET_FROM_UNIQUE_BYTES_1;
-            UPKFile.OverrideBytes(new byte[] { 0xF1, 0x6F }, indexToModify1);
-            int bytesReferenceIndex2 = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE_2, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX_2));
-            int indexToModify2 = bytesReferenceIndex2 + UNIQUE_BYTES_REFERENCE_2.Length + OFFSET_FROM_UNIQUE_BYTES_2;
-            UPKFile.OverrideBytes(new byte[] { 0xFA, 0x6F }, indexToModify2);
-            int bytesReferenceIndex3 = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE_3, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX_3));
-            int indexToModify3 = bytesReferenceIndex3 + UNIQUE_BYTES_REFERENCE_3.Length + OFFSET_FROM_UNIQUE_BYTES_3;
-            UPKFile.OverrideBytes(new byte[] { 0x16, 0x70 }, indexToModify3);
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_1, CHANGE_INDEX_1, OFFSET_FROM_UNIQUE_BYTES_1, new byte[] { 0xF1, 0x6F });
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_2, CHANGE_INDEX_2, OFFSET_FROM_UNIQUE_BYTES_2, new byte[] { 0xFA, 0x6F });
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_3, CHANGE_INDEX_3, OFFSET_FROM_UNIQUE_BYTES_3, new byte[] { 0x16, 0x70 });
 
             return true;
         }
 
         public override bool UninstallMod()
         {
-            int bytesReferenceIndex1 = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE_1, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX_1));
-            int indexToModify1 = bytesReferenceIndex1 + UNIQUE_BYTES_REFERENCE_1.Length + OFFSET_FROM_UNIQUE_BYTES_1;
-            UPKFile.OverrideBytes(new byte[] { 0x32, 0x65 }, indexToModify1);
-            int bytesReferenceIndex2 = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE_2, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX_2));
-            int indexToModify2 = bytesReferenceIndex2 + UNIQUE_BYTES_REFERENCE_2.Length + OFFSET_FROM_UNIQUE_BYTES_2;
-            UPKFile.OverrideBytes(new byte[] { 0x3B, 0x57 }, indexToModify2);
-            int bytesReferenceIndex3 = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE_3, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX_3));
-            int indexToModify3 = bytesReferenceIndex3 + UNIQUE_BYTES_REFERENCE_3.Length + OFFSET_FROM_UNIQUE_BYTES_3;
-            UPKFile.OverrideBytes(new byte[] { 0xE4, 0x0F }, indexToModify3);
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_1, CHANGE_INDEX_1, OFFSET_FROM_UNIQUE_BYTES_1, new byte[] { 0x32, 0x65 });
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_2, CHANGE_INDEX_2, OFFSET_FROM_UNIQUE_BYTES_2, new byte[] { 0x3B, 0x57 });
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_3, CHANGE_INDEX_3, OFFSET_FROM_UNIQUE_BYTES_3, new byte[] { 0xE4, 0x0F });
 
             return true;
         }

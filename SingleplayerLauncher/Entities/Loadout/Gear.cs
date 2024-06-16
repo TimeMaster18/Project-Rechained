@@ -15,6 +15,7 @@ namespace SingleplayerLauncher.Model
         public static Gear AntitrapVambrace = new Gear()
         {
             Name = ANTITRAP_VAMBRACE,
+            ItemTemplateName = "SpitfireGame.RItemDisableTrapVambrace",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
@@ -40,6 +41,7 @@ namespace SingleplayerLauncher.Model
         public static Gear ArcaneBubbleBlower = new Gear()
         {
             Name = ARCANE_BUBBLE_BLOWER,
+            ItemTemplateName = "SpitfireGame.RItemWeaponArcaneBubbleBlower",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
@@ -65,6 +67,7 @@ namespace SingleplayerLauncher.Model
         public static Gear FireWallBracers = new Gear()
         {
             Name = FIRE_WALL_BRACERS,
+            ItemTemplateName = "SpitfireGame.RItemWeaponFlameWallBracers",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
@@ -90,6 +93,7 @@ namespace SingleplayerLauncher.Model
         public static Gear FreedomTrinket = new Gear()
         {
             Name = FREEDOM_TRINKET,
+            ItemTemplateName = "SpitfireGame.RItemTrinketFreedom",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
@@ -115,6 +119,7 @@ namespace SingleplayerLauncher.Model
         public static Gear GnomishRepairKit = new Gear()
         {
             Name = GNOMISH_REPAIR_KIT,
+            ItemTemplateName = "SpitfireGame.RItemTrinketOrcToolkit",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
@@ -140,6 +145,7 @@ namespace SingleplayerLauncher.Model
         public static Gear GreaterFreedomTrinket = new Gear()
         {
             Name = GREATER_FREEDOM_TRINKET,
+            ItemTemplateName = "SpitfireGame.RItemTrinketFreedomGreater",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
@@ -165,6 +171,7 @@ namespace SingleplayerLauncher.Model
         public static Gear HobgoblinCharm = new Gear()
         {
             Name = HOBGOBLIN_CHARM,
+            ItemTemplateName = "SpitfireGame.RItemTrinketHobgoblinCharm",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
@@ -190,6 +197,7 @@ namespace SingleplayerLauncher.Model
         public static Gear IceAmulet = new Gear()
         {
             Name = ICE_AMULET,
+            ItemTemplateName = "SpitfireGame.RItemWeaponIceAmulet",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
@@ -215,6 +223,7 @@ namespace SingleplayerLauncher.Model
         public static Gear LightningRing = new Gear()
         {
             Name = LIGHTNING_RING,
+            ItemTemplateName = "SpitfireGame.RItemWeaponLightningRing",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
@@ -240,6 +249,7 @@ namespace SingleplayerLauncher.Model
         public static Gear MagesClover = new Gear()
         {
             Name = MAGES_CLOVER,
+            ItemTemplateName = "SpitfireGame.RItemTrinketManaRegen",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
@@ -265,6 +275,7 @@ namespace SingleplayerLauncher.Model
         public static Gear MagesPicnic = new Gear()
         {
             Name = MAGES_PICNIC,
+            ItemTemplateName = "SpitfireGame.RItemTrinketMagesPicnic",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
@@ -290,6 +301,7 @@ namespace SingleplayerLauncher.Model
         public static Gear MendingRoot = new Gear()
         {
             Name = MENDING_ROOT,
+            ItemTemplateName = "SpitfireGame.RItemTrinketHealing",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
@@ -315,6 +327,7 @@ namespace SingleplayerLauncher.Model
         public static Gear RingOfLastStand = new Gear()
         {
             Name = RING_OF_LAST_STAND,
+            ItemTemplateName = "SpitfireGame.RItemTrinketLastStand",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
@@ -340,6 +353,7 @@ namespace SingleplayerLauncher.Model
         public static Gear RingOfStorms = new Gear()
         {
             Name = RING_OF_STORMS,
+            ItemTemplateName = "SpitfireGame.RItemWeaponLightningCloudRing",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
@@ -365,6 +379,7 @@ namespace SingleplayerLauncher.Model
         public static Gear TeleportationRing = new Gear()
         {
             Name = TELEPORTATION_RING,
+            ItemTemplateName = "SpitfireGame.RItemTrinketTeleport",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },

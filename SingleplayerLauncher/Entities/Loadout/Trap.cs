@@ -37,6 +37,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ArcaneBowlingBall = new Trap()
         {
             Name = ARCANE_BOWLING_BALL,
+            ItemTemplateName = "SpitfireGame.RItemTrapArcaneOrb",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
@@ -66,6 +67,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ArcanePhaser = new Trap()
         {
             Name = ARCANE_PHASER,
+            ItemTemplateName = "SpitfireGame.RItemTrapArcanePhase",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
@@ -95,6 +97,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ArrowWall = new Trap()
         {
             Name = ARROW_WALL,
+            ItemTemplateName = "SpitfireGame.RItemTrapArrowWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
@@ -124,6 +127,7 @@ namespace SingleplayerLauncher.Model
         public static Trap BGHArrowWall = new Trap()
         {
             Name = BGH_ARROW_WALL,
+            ItemTemplateName = "SpitfireGame.RItemTrapArrowWallGlorySeeker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
@@ -153,6 +157,7 @@ namespace SingleplayerLauncher.Model
         public static Trap CeilingBallista = new Trap()
         {
             Name = CEILING_BALLISTA,
+            ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeiling",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
@@ -182,6 +187,7 @@ namespace SingleplayerLauncher.Model
         public static Trap DragonsLance = new Trap()
         {
             Name = DRAGONS_LANCE,
+            ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeilingArcane",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
@@ -211,6 +217,7 @@ namespace SingleplayerLauncher.Model
         public static Trap BGHCeilingBallista = new Trap()
         {
             Name = BGH_CEILING_BALLISTA,
+            ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeilingGlorySeeker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
@@ -240,6 +247,7 @@ namespace SingleplayerLauncher.Model
         public static Trap Barricade = new Trap()
         {
             Name = BARRICADE,
+            ItemTemplateName = "SpitfireGame.RItemTrapBarricade",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
@@ -269,6 +277,7 @@ namespace SingleplayerLauncher.Model
         public static Trap GreatWallBarricade = new Trap()
         {
             Name = GREAT_WALL_BARRICADE,
+            ItemTemplateName = "SpitfireGame.RItemTrapBarricadeGreatWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
@@ -298,6 +307,7 @@ namespace SingleplayerLauncher.Model
         public static Trap BoomBarrel = new Trap()
         {
             Name = BOOM_BARREL,
+            ItemTemplateName = "SpitfireGame.RItemTrapBoomBarrel",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
@@ -327,6 +337,7 @@ namespace SingleplayerLauncher.Model
         public static Trap BoomBarrelRoller = new Trap()
         {
             Name = BOOM_BARREL_ROLLER,
+            ItemTemplateName = "SpitfireGame.RItemTrapBoomBarrelDispenser",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
@@ -356,6 +367,7 @@ namespace SingleplayerLauncher.Model
         public static Trap BoulderChute = new Trap()
         {
             Name = BOULDER_CHUTE,
+            ItemTemplateName = "SpitfireGame.RItemTrapBoulderChute",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
@@ -385,6 +397,7 @@ namespace SingleplayerLauncher.Model
         public static Trap IcicleImpaler = new Trap()
         {
             Name = ICICLE_IMPALER,
+            ItemTemplateName = "SpitfireGame.RItemTrapBoulderChuteFrost",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
@@ -414,6 +427,7 @@ namespace SingleplayerLauncher.Model
         public static Trap Brimstone = new Trap()
         {
             Name = BRIMSTONE,
+            ItemTemplateName = "SpitfireGame.RItemTrapBrimstone",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
@@ -443,6 +457,7 @@ namespace SingleplayerLauncher.Model
         public static Trap CoinForge = new Trap()
         {
             Name = COIN_FORGE,
+            ItemTemplateName = "SpitfireGame.RItemTrapCoinForge",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
@@ -472,6 +487,7 @@ namespace SingleplayerLauncher.Model
         public static Trap CursedGround = new Trap()
         {
             Name = CURSED_GROUND,
+            ItemTemplateName = "SpitfireGame.RItemTrapCursedGround",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
@@ -503,6 +519,7 @@ namespace SingleplayerLauncher.Model
         public static Trap Decoy = new Trap()
         {
             Name = DECOY,
+            ItemTemplateName = "SpitfireGame.RItemTrapDecoySturdy",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
@@ -531,6 +548,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SpitfireWall = new Trap()
         {
             Name = SPITFIRE_WALL,
+            ItemTemplateName = "SpitfireGame.RItemTrapFireArrowWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
@@ -560,6 +578,7 @@ namespace SingleplayerLauncher.Model
         public static Trap FireCracker = new Trap()
         {
             Name = FIRE_CRACKER,
+            ItemTemplateName = "SpitfireGame.RItemTrapFireCracks",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
@@ -589,6 +608,7 @@ namespace SingleplayerLauncher.Model
         public static Trap FlipTrap = new Trap()
         {
             Name = FLIP_TRAP,
+            ItemTemplateName = "SpitfireGame.RItemTrapFlip",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
@@ -618,6 +638,7 @@ namespace SingleplayerLauncher.Model
         public static Trap FloorScorcher = new Trap()
         {
             Name = FLOOR_SCORCHER,
+            ItemTemplateName = "SpitfireGame.RItemTrapFloorScorcher",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
@@ -647,6 +668,7 @@ namespace SingleplayerLauncher.Model
         public static Trap TempleAlarmGong = new Trap()
         {
             Name = TEMPLE_ALARM_GONG,
+            ItemTemplateName = "SpitfireGame.RItemTrapGong",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
@@ -679,6 +701,7 @@ namespace SingleplayerLauncher.Model
         public static Trap Grinder = new Trap()
         {
             Name = GRINDER,
+            ItemTemplateName = "SpitfireGame.RItemTrapGrinder",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
@@ -708,6 +731,7 @@ namespace SingleplayerLauncher.Model
         public static Trap QuarterPounder = new Trap()
         {
             Name = QUARTER_POUNDER,
+            ItemTemplateName = "SpitfireGame.RItemTrapHammerDrop",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
@@ -737,6 +761,7 @@ namespace SingleplayerLauncher.Model
         public static Trap Haymaker = new Trap()
         {
             Name = HAYMAKER,
+            ItemTemplateName = "SpitfireGame.RItemTrapHaymaker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
@@ -766,6 +791,7 @@ namespace SingleplayerLauncher.Model
         public static Trap HealingWell = new Trap()
         {
             Name = HEALING_WELL,
+            ItemTemplateName = "SpitfireGame.RItemTrapHealingWell",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
@@ -795,6 +821,7 @@ namespace SingleplayerLauncher.Model
         public static Trap IceShard = new Trap()
         {
             Name = ICE_SHARD,
+            ItemTemplateName = "SpitfireGame.RItemTrapIceSpike",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
@@ -824,6 +851,7 @@ namespace SingleplayerLauncher.Model
         public static Trap IceVent = new Trap()
         {
             Name = ICE_VENT,
+            ItemTemplateName = "SpitfireGame.RItemTrapIceVent",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
@@ -853,6 +881,7 @@ namespace SingleplayerLauncher.Model
         public static Trap LightningRod = new Trap()
         {
             Name = LIGHTNING_ROD,
+            ItemTemplateName = "SpitfireGame.RItemTrapLightningRod",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
@@ -882,6 +911,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ManaWell = new Trap()
         {
             Name = MANA_WELL,
+            ItemTemplateName = "SpitfireGame.RItemTrapManaWell",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
@@ -911,6 +941,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SummonerTrap = new Trap()
         {
             Name = SUMMONER_TRAP,
+            ItemTemplateName = "SpitfireGame.RItemTrapMinionSpawner",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
@@ -941,6 +972,7 @@ namespace SingleplayerLauncher.Model
         public static Trap NaphthaSprayer = new Trap()
         {
             Name = NAPHTHA_SPRAYER,
+            ItemTemplateName = "SpitfireGame.RItemTrapNapthaSprayer",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
@@ -970,6 +1002,7 @@ namespace SingleplayerLauncher.Model
         public static Trap OverloadTrap = new Trap()
         {
             Name = OVERLOAD_TRAP,
+            ItemTemplateName = "SpitfireGame.RItemTrapOverload",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
@@ -999,6 +1032,7 @@ namespace SingleplayerLauncher.Model
         public static Trap PowerupDamage = new Trap()
         {
             Name = POWERUP_DAMAGE,
+            ItemTemplateName = "SpitfireGame.RItemTrapPlayerPowerup",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
@@ -1028,6 +1062,7 @@ namespace SingleplayerLauncher.Model
         public static Trap Pounder = new Trap()
         {
             Name = POUNDER,
+            ItemTemplateName = "SpitfireGame.RItemTrapPounder",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
@@ -1057,6 +1092,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ConcussivePounder = new Trap()
         {
             Name = CONCUSSIVE_POUNDER,
+            ItemTemplateName = "SpitfireGame.RItemTrapPounderConcussive",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
@@ -1086,6 +1122,7 @@ namespace SingleplayerLauncher.Model
         public static Trap PowerGenerator = new Trap()
         {
             Name = POWER_GENERATOR,
+            ItemTemplateName = "SpitfireGame.RItemTrapPowerGenerator",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
@@ -1115,6 +1152,7 @@ namespace SingleplayerLauncher.Model
         public static Trap PushTrap = new Trap()
         {
             Name = PUSH_TRAP,
+            ItemTemplateName = "SpitfireGame.RItemTrapPushTrap",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
@@ -1144,6 +1182,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SawOfArctos = new Trap()
         {
             Name = SAW_OF_ARCTOS,
+            ItemTemplateName = "SpitfireGame.RItemTrapSawOfArctos",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
@@ -1173,6 +1212,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ShieldPowerup = new Trap()
         {
             Name = SHIELD_POWERUP,
+            ItemTemplateName = "SpitfireGame.RItemTrapShieldSpawner",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
@@ -1202,6 +1242,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SpeedPad = new Trap()
         {
             Name = SPEED_PAD,
+            ItemTemplateName = "SpitfireGame.RItemTrapSpeedPad",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
@@ -1231,6 +1272,7 @@ namespace SingleplayerLauncher.Model
         public static Trap FloorSpikes = new Trap()
         {
             Name = FLOOR_SPIKES,
+            ItemTemplateName = "SpitfireGame.RItemTrapSpikes",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
@@ -1260,6 +1302,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SpikeWall = new Trap()
         {
             Name = SPIKE_WALL,
+            ItemTemplateName = "SpitfireGame.RItemTrapSpikeWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
@@ -1289,6 +1332,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SteamVent = new Trap()
         {
             Name = STEAM_VENT,
+            ItemTemplateName = "SpitfireGame.RItemTrapSteamVent",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
@@ -1318,6 +1362,7 @@ namespace SingleplayerLauncher.Model
         public static Trap SwingingMace = new Trap()
         {
             Name = SWINGING_MACE,
+            ItemTemplateName = "SpitfireGame.RItemTrapSwingingMace",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
@@ -1347,6 +1392,7 @@ namespace SingleplayerLauncher.Model
         public static Trap TarTrap = new Trap()
         {
             Name = TAR_TRAP,
+            ItemTemplateName = "SpitfireGame.RItemTrapTar",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
@@ -1376,6 +1422,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ViscousTar = new Trap()
         {
             Name = VISCOUS_TAR,
+            ItemTemplateName = "SpitfireGame.RItemTrapTarViscous",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
@@ -1405,6 +1452,7 @@ namespace SingleplayerLauncher.Model
         public static Trap ShockZapper = new Trap()
         {
             Name = SHOCK_ZAPPER,
+            ItemTemplateName = "SpitfireGame.RItemTrapTeslaCoil",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
@@ -1434,6 +1482,7 @@ namespace SingleplayerLauncher.Model
         public static Trap BGHShockZapper = new Trap()
         {
             Name = BGH_SHOCK_ZAPPER,
+            ItemTemplateName = "SpitfireGame.RItemTrapTeslaCoilGlorySeeker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
@@ -1463,6 +1512,7 @@ namespace SingleplayerLauncher.Model
         public static Trap TripWire = new Trap()
         {
             Name = TRIP_WIRE,
+            ItemTemplateName = "SpitfireGame.RItemTrapTripwire",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
@@ -1495,6 +1545,7 @@ namespace SingleplayerLauncher.Model
         public static Trap WallBlades = new Trap()
         {
             Name = WALL_BLADES,
+            ItemTemplateName = "SpitfireGame.RItemTrapWallBlades",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
@@ -1524,6 +1575,7 @@ namespace SingleplayerLauncher.Model
         public static Trap WallCharger = new Trap()
         {
             Name = WALL_CHARGER,
+            ItemTemplateName = "SpitfireGame.RItemTrapWallBladesCharged",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
@@ -1553,6 +1605,7 @@ namespace SingleplayerLauncher.Model
         public static Trap WebSpinner = new Trap()
         {
             Name = WEB_SPINNER,
+            ItemTemplateName = "SpitfireGame.RItemTrapWebSpinner",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
                 { GABRIELLA, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },

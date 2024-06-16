@@ -4,6 +4,8 @@ namespace SingleplayerLauncher
 {
     class PawnWeaponUPK
     {
+        // TODO: make singleton * Load after initialized
+
         private readonly UPKFile uPKFile;
         private readonly Hero hero;
 

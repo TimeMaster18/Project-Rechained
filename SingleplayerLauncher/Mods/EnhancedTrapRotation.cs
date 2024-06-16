@@ -1,4 +1,4 @@
-﻿using SingleplayerLauncher.Utils;
+﻿using SingleplayerLauncher.GameFiles;
 using System;
 
 namespace SingleplayerLauncher.Mods
@@ -15,19 +15,13 @@ namespace SingleplayerLauncher.Mods
 
         public override bool InstallMod()
         {
-            int bytesReferenceIndex = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX));
-            int indexToModify = bytesReferenceIndex + UNIQUE_BYTES_REFERENCE.Length + OFFSET_FROM_UNIQUE_BYTES;
-            UPKFile.OverrideBytes(DEGREES_10_IN_BYTES, indexToModify);
-
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, DEGREES_10_IN_BYTES);
             return true;
         }
 
         public override bool UninstallMod()
         {
-            int bytesReferenceIndex = UPKFile.FindBytesKMP(UNIQUE_BYTES_REFERENCE, FileUtils.RoundToNearestLowerThousandPessimistic(CHANGE_INDEX));
-            int indexToModify = bytesReferenceIndex + UNIQUE_BYTES_REFERENCE.Length + OFFSET_FROM_UNIQUE_BYTES;
-            UPKFile.OverrideBytes(DEGREES_90_IN_BYTES, indexToModify);
-
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, DEGREES_90_IN_BYTES);
             return true;
         }
     }

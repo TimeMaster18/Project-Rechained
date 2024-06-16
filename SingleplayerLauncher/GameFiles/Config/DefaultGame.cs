@@ -1,12 +1,13 @@
-﻿using IniParser.Model;
-using SingleplayerLauncher.Model;
+﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Utils;
 using System;
 
-namespace SingleplayerLauncher.GameSettings
+namespace SingleplayerLauncher.GameFiles
 {
     public static class DefaultGame
     {
+        // TODO: make singleton
+
         private static readonly GameInfo GameInfo = GameInfo.Instance;
 
         private const string DefaultGameIniFileName = "DefaultGame.ini";
@@ -32,15 +33,15 @@ namespace SingleplayerLauncher.GameSettings
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
             ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
-            IniData data = defaultGame.data;
+            IniFile data = defaultGame.data;
 
-            data[RHUDBaseSection][RHUDBaseKeyShowFlyoffsForTrapDamage] = Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString();
-            data[RGameReplicationInfoSection][GameReplicationInfoKeyGameMode] = GameInfo.Battleground.GameMode.Id.ToString();
-            data[RGameReplicationInfoSection][GameReplicationInfoKeyMapLevel] = GameInfo.Battleground.Difficulty.EnemyLevel.ToString();
-            data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerLevel] = GameInfo.Battleground.Difficulty.AccountLevel.ToString();
-            data[RGameReplicationInfoSection][GameReplicationInfoKeyPlayerCount] = GameInfo.Battleground.Difficulty.PlayerCount.ToString();
+            data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyGameMode, GameInfo.Battleground.GameMode.Id.ToString());
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyMapLevel, GameInfo.Battleground.Difficulty.EnemyLevel.ToString());
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerLevel, GameInfo.Battleground.Difficulty.AccountLevel.ToString());
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerCount, GameInfo.Battleground.Difficulty.PlayerCount.ToString());
 
-            defaultGame.Write(data);
+            defaultGame.Write();
         }
 
         public static void ApplyMods(bool areEnabled)
@@ -48,11 +49,11 @@ namespace SingleplayerLauncher.GameSettings
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
             ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
-            IniData data = defaultGame.data;
+            IniFile data = defaultGame.data;
 
-            data[RHUDBaseSection][RHUDBaseKeyShowFlyoffsForTrapDamage] = areEnabled ? false.ToString() : Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString();
+            data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, areEnabled ? false.ToString() : Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
 
-            defaultGame.Write(data);
+            defaultGame.Write();
         }
 
         public static void Initialize()
@@ -60,13 +61,11 @@ namespace SingleplayerLauncher.GameSettings
             FileUtils.CreateBackup(DefaultGameIniFileName, DefaultGameIniPath);
 
             ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
-            IniData data = defaultGame.data;
+            IniFile data = defaultGame.data;
 
-            data[RGameReplicationInfoSection][GameReplicationInfoKeyPauseTimerInSeconds] = DefaultPauseTimerInSeconds;
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPauseTimerInSeconds, DefaultPauseTimerInSeconds);
 
-            data.Sections.RemoveSection(RDisplayColorInfoSection);
-
-            defaultGame.Write(data);
+            defaultGame.Write();
         }
     }
 
