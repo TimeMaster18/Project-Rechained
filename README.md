@@ -1,13 +1,13 @@
 # OMDU Single Player
 
-The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way of playing **offline and single player only**. This is achieved by applying modifications to the game.
+The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way to be played again. This is achieved by applying modifications to the game.
 
 **This mod will modify your game files**. But it will also create backups for the original files automatically.
 
 
 If you want to give feedback, contribute, participate in testing or just hang around and talk about OMDU, **feel free to join our Discord server** clicking the label below:
 
-[![OMDU Offline  Discord Server](https://img.shields.io/discord/583432386960818227?color=%237289da&logo=discord&logoColor=white&label=Join%20the%20Discord%20Server)](https://discord.gg/YrCaHw7Hza)
+[![OMD Modding Discord Server](https://img.shields.io/discord/583432386960818227?color=%237289da&logo=discord&logoColor=white&label=Join%20the%20Discord%20Server)](https://discord.gg/xkZskPXtwm)
 
 ### How to use:
 
@@ -41,15 +41,37 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 ### Coming Next
 - Consumables, Traits and Trap Parts
-- Campaign Mode
 - Save multiple loadouts with names
 - Share loadouts with other players
-- Multiplayer?
+- P2P (Peer-to-peer) Multiplayer
+- Campaign Mode
 
 ### Known Problems
 - UI of the launcher is simple
-- Unchained meter (right side of screen) stuck after first activation (only visual)
+- Host player hero mobility skills (Gabriella teleport, Mdnight dash, etc) partially work
+- Host player has no enemy / guardian / hero voices
+- (Visual only) Host player wave count at top of screen is wrong (press Tab to see actual wave limit)
+- (Visual only) Host player Unchained meter (right side of screen) stuck after first activation 
   - The **indicator over the hero icon at the bottom left of the screen works correctly**
-- Crogon Keep textures are black
-- Spawn position can be a bit off
-- Decoy icon doesn't change with tier
+- (Visual only) Crogon Keep textures can be black
+
+
+## Acknowledgements
+
+This project would not have been possible without the help and support of several people and projects:
+
+A big thank you to all the people who contributed to this project:
+
+- **[DaTeddy](https://github.com/Contributor1)** - Contributed with reverse-engineering, testing, documenting and much more.
+
+This project makes use of the following open-source projects:
+
+- **[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)** - Used to handle the settings and save state
+- **[OMDU Hook by trumank](https://github.com/trumank/omdu-hook)** - Unlocks the possibility of multiplayer and further loadout customisation.
+
+## Contact
+
+If you have any questions, suggestions, or feedback, feel free to reach out:
+
+- **Project Maintainer:** [TimeMaster](https://github.com/TimeMaster18) - timemaster96@gmail.com
+- **Discord Server:** [OMD Modding Server](https://discord.gg/xkZskPXtwm)

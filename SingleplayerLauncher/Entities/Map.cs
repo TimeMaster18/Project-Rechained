@@ -11,7 +11,8 @@ namespace SingleplayerLauncher.Model
         public string Name { get; private set; }
         public string UmapCode { get; private set; }
         public int StartingCoin { get; private set; } = _9000_COIN;
-
+        public int TrapCap { get; private set; } = 85;
+        
         public bool HasEndlessAvailable { get; private set; } = false;
 
         // private constructor
@@ -22,131 +23,155 @@ namespace SingleplayerLauncher.Model
         {
             Name = ACADEMY_SEWERS,
             UmapCode = "PvE_Sewers.umap",
+            TrapCap = 85,
         };
         public static Map ArchmageLibrary = new Map()
         {
             Name = ARCHMAGE_LIBRARY,
             UmapCode = "PvE_AcademyLibrary.umap",
+            TrapCap = 85,
         };
         public static Map Avalanche = new Map()
         {
             Name = AVALANCHE,
             UmapCode = "PvE_Avalanche.umap",
             HasEndlessAvailable = true,
+            TrapCap = 120,
         };
         public static Map BanquetHall = new Map()
         {
             Name = BANQUET_HALL,
             UmapCode = "PvE_BanquetHall.umap",
             HasEndlessAvailable = true,
+            TrapCap = 85,
         };
         public static Map CastleGates = new Map()
         {
             Name = CASTLE_GATES,
             UmapCode = "PvE_ASN_CastleGates.umap",
             StartingCoin = _6000_COIN,
+            TrapCap = 85,
         };
         public static Map CliffsideClash = new Map()
         {
             Name = CLIFFSIDE_CLASH,
             UmapCode = "PvE_2Lane.umap",
+            TrapCap = 85,
         };
         public static Map Confluence = new Map()
         {
             Name = CONFLUENCE,
             UmapCode = "PvE_AcademyCanals.umap",
+            TrapCap = 85,
         };
         public static Map CrogonKeep = new Map()
         {
             Name = CROGON_KEEP,
             UmapCode = "PvE_CrogonKeep.umap",
             HasEndlessAvailable = true,
+            TrapCap = 100,
         };
         public static Map DocksAtEventide = new Map()
         {
             Name = DOCKS_AT_EVENTIDE,
             UmapCode = "PvE_SUR_Pirates.umap",
             HasEndlessAvailable = true,
+            TrapCap = 90,
         };
         public static Map EventideFortress = new Map()
         {
             Name = EVENTIDE_FORTRESS,
             UmapCode = "PvE_Surrounded.umap",
+            TrapCap = 120,
         };
         public static Map EventideRamparts = new Map()
         {
             Name = EVENTIDE_RAMPARTS,
             UmapCode = "PvE_SUR_NorthernClans.umap",
+            TrapCap = 100,
         };
         public static Map Frostbite = new Map()
         {
             Name = FROSTBITE,
             UmapCode = "PvE_FrostBite.umap",
             HasEndlessAvailable = true,
+            TrapCap = 110,
         };
         public static Map GatesOfThuricvod = new Map()
         {
             Name = GATES_OF_THURICVOD,
             UmapCode = "PvE_Corridors.umap",
+            TrapCap = 100,
         };
         public static Map Highlands = new Map()
         {
             Name = HIGHLANDS,
             UmapCode = "PvE_Highlands.umap",
             HasEndlessAvailable = true,
+            TrapCap = 110,
         };
         public static Map MaximumSecurity = new Map()
         {
             Name = MAXIMUM_SECURITY,
             UmapCode = "PvE_AcademyDungeon.umap",
+            TrapCap = 85,
         };
         public static Map MidnightMarket = new Map()
         {
             Name = MIDNIGHT_MARKET,
             UmapCode = "PvE_ASN_NightMarket.umap",
             StartingCoin = _6000_COIN,
+            TrapCap = 85,
         };
         public static Map Orcatraz = new Map()
         {
             Name = ORCATRAZ,
             UmapCode = "PvE_Orcatraz.umap",
+            TrapCap = 85,
         };
         public static Map OrcriLa = new Map()
         {
             Name = ORCRI_LA,
             UmapCode = "PvE_OrcVil_Temple.umap",
+            TrapCap = 85,
         };
         public static Map RestrictedSection = new Map()
         {
             Name = RESTRICTED_SECTION,
             UmapCode = "PvE_RestrictedSection.umap",
+            TrapCap = 85,
         };
         public static Map RiftmakersTemple = new Map()
         {
             Name = RIFTMAKERS_TEMPLE,
             UmapCode = "PvE_AcademyTemple.umap",
             StartingCoin = _6000_COIN,
+            TrapCap = 60,
         };
         public static Map SharkIsland = new Map()
         {
             Name = SHARK_ISLAND,
             UmapCode = "PvE_SharkIsle.umap",
             HasEndlessAvailable = true,
+            TrapCap = 120,
         };
         public static Map StablesAtEventide = new Map()
         {
             Name = STABLES_AT_EVENTIDE,
             UmapCode = "PvE_SUR_JungleTribe.umap",
+            TrapCap = 120,
         };
         public static Map StormDrain = new Map()
         {
             Name = STORM_DRAIN,
             UmapCode = "PvE_Flushed.umap",
+            TrapCap = 85,
         };
         public static Map TempleGraveyard = new Map()
         {
             Name = TEMPLE_GRAVEYARD,
             UmapCode = "PvE_Mausoleum.umap",
+            TrapCap = 85,
         };
         public static Map TheBaths = new Map()
         {
@@ -154,46 +179,55 @@ namespace SingleplayerLauncher.Model
             UmapCode = "PvE_Baths.umap",
             StartingCoin = _6000_COIN,
             HasEndlessAvailable = true,
+            TrapCap = 85,
         };
         public static Map TheFallingFolly = new Map()
         {
             Name = THE_FALLING_FOLLY,
             UmapCode = "PvE_Towering.umap",
+            TrapCap = 85,
         };
         public static Map TheWall = new Map()
         {
             Name = THE_WALL,
             UmapCode = "PvE_TheWall.umap",
             HasEndlessAvailable = true,
+            TrapCap = 120,
         };
         public static Map ThroneRoom = new Map()
         {
             Name = THRONE_ROOM,
             UmapCode = "PvE_ThroneRoom.umap",
             HasEndlessAvailable = true,
+            TrapCap = 85,
         };
         public static Map ThuricvodVillage = new Map()
         {
             Name = THURICVOD_VILLAGE,
             UmapCode = "PvE_Gap.umap",
             HasEndlessAvailable = true,
+            TrapCap = 85,
         };
         public static Map TrainingGrounds = new Map()
         {
             Name = TRAINING_GROUNDS,
             UmapCode = "PvE_TrainingGrounds.umap",
+            TrapCap = 90,
         };
         public static Map UnchainedFortress = new Map()
         {
             Name = UNCHAINED_FORTRESS,
             UmapCode = "PvE_OneWay.umap",
+            TrapCap = 85,
         };
         public static Map WaterGarden = new Map()
         {
             Name = WATER_GARDEN,
             UmapCode = "PvE_ASN_WaterGarden.umap",
             StartingCoin = _6000_COIN,
+            TrapCap = 85,
         };
+
 
         // Maps { Name, umap }
         public static Dictionary<string, Map> Maps = new Dictionary<string, Map>

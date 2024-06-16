@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingleplayerLauncher.GameFiles;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -342,6 +343,67 @@ namespace SingleplayerLauncher
             byte[] arrToPrint = new byte[size];
             Array.Copy(Bytes, offset, arrToPrint, 0, size);
             MessageBox.Show(BitConverter.ToString(arrToPrint));
+        }
+
+        /// <summary>
+        /// Applies a modification by finding a unique byte sequence in a file, calculating the target index
+        /// (rounded to the nearest lower thousand for robustness), and overriding it with a specified byte array
+        /// if the modification has not already been applied.
+        /// </summary>
+        /// <param name="uniqueBytesReference">The unique sequence of bytes to locate in the file.</param>
+        /// <param name="changeIndex">The approximate index in the file where the unique bytes sequence is located. This index will be rounded to the nearest lower thousand to ensure robustness in case the file size changes.</param>
+        /// <param name="offsetFromUniqueBytes">The offset from the end of the found byte sequence to the target index.</param>
+        /// <param name="bytesToWrite">The byte array to write at the target index.</param>
+        public void ApplyModification(byte[] uniqueBytesReference, int changeIndex, int offsetFromUniqueBytes, byte[] bytesToWrite)
+        {
+            int bytesReferenceIndex = FindBytesKMP(uniqueBytesReference, FileUtils.RoundToNearestLowerThousandPessimistic(changeIndex));
+            int indexToModify = bytesReferenceIndex + uniqueBytesReference.Length + offsetFromUniqueBytes;
+
+            // Check if the modification is already applied
+            byte[] currentBytes = GetSubArray(indexToModify, bytesToWrite.Length);
+            if (AreBytesEqual(currentBytes, bytesToWrite))
+            {
+                return;
+            }
+
+            OverrideBytes(bytesToWrite, indexToModify);
+        }
+
+        /// <summary>
+        /// Applies a modification by finding a unique byte sequence in a file, calculating the target index
+        /// (rounded to the nearest lower thousand for robustness), and overriding it with a specified single byte
+        /// if the modification has not already been applied.
+        /// </summary>
+        /// <param name="uniqueBytesReference">The unique sequence of bytes to locate in the file.</param>
+        /// <param name="changeIndex">The approximate index in the file where the unique bytes sequence is located. This index will be rounded to the nearest lower thousand to ensure robustness in case the file size changes.</param>
+        /// <param name="offsetFromUniqueBytes">The offset from the end of the found byte sequence to the target index.</param>
+        /// <param name="byteToWrite">The single byte to write at the target index.</param>
+        public void ApplyModification(byte[] uniqueBytesReference, int changeIndex, int offsetFromUniqueBytes, byte byteToWrite)
+        {
+            int bytesReferenceIndex = FindBytesKMP(uniqueBytesReference, FileUtils.RoundToNearestLowerThousandPessimistic(changeIndex));
+            int indexToModify = bytesReferenceIndex + uniqueBytesReference.Length + offsetFromUniqueBytes;
+
+            // Check if the modification is already applied
+            byte currentByte = Bytes[indexToModify];
+            if (currentByte == byteToWrite)
+            {
+                return;
+            }
+
+            OverrideSingleByte(byteToWrite, indexToModify);
+        }
+
+        private static bool AreBytesEqual(byte[] bytes1, byte[] bytes2)
+        {
+            if (bytes1.Length != bytes2.Length)
+                return false;
+
+            for (int i = 0; i < bytes1.Length; i++)
+            {
+                if (bytes1[i] != bytes2[i])
+                    return false;
+            }
+            return true;
         }
     }
 }

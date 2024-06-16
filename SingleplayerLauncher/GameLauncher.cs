@@ -1,5 +1,5 @@
 ﻿using SingleplayerLauncher.Model;
-using SingleplayerLauncher.Utils;
+using SingleplayerLauncher.GameFiles;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -16,6 +16,11 @@ namespace SingleplayerLauncher
         public static void ApplyChanges()
         {
             SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(FileUtils.SPITFIREGAME_UPK_PATH);
+
+            // TODO make it still usable under flag
+
+            /*
+
             if (SPITFIREGAME_LOADOUT_HERO_NAMES.Contains(GameInfo.Loadout.Hero.Name))
             {
                 SpitfireGameUPK.ApplyLoadout();
@@ -28,22 +33,31 @@ namespace SingleplayerLauncher
                 pawnWeaponUPK.SaveChanges();
             }
 
-            bool areModsEnabled = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
-            SpitfireGameUPK.ApplyMods(areModsEnabled);
-
             SpitfireGameUPK.ApplyTrapTiers();
+
+            */
+
+            bool areModsEnabled = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
+            if (areModsEnabled)
+            {
+                SpitfireGameUPK.ApplyMods();
+            }
             SpitfireGameUPK.ApplyParTime();
+            SpitfireGameUPK.ApplyHostPatches(); // TODO adjust for multiplayer
             SpitfireGameUPK.SaveChanges();
 
-            GameSettings.CharacterData.Apply();
-            GameSettings.DefaultGame.Apply();
+            GameFiles.CharacterData.ApplyLoadout();
+            GameFiles.DefaultGame.Apply();
 
-            GameSettings.CharacterData.ApplyMods(areModsEnabled);
-            GameSettings.DefaultGame.ApplyMods(areModsEnabled);
+            GameFiles.CharacterData.ApplyMods(areModsEnabled);
+            GameFiles.DefaultGame.ApplyMods(areModsEnabled);
         }
 
         private const string MOD_DEFAULT_PAWNWEAPON_UPK_FILES_PATH = ".//DefaultLoadouts//";
+        private const string MOD_HOOK_FILES_PATH = "./Hooks/";
 
+        private const string P2P_HOOK_FILENAME = "omdu_hook.dll";
+        private const string P2P_HOOK_TARGET_FILENAME = "x3daudio1_7.dll";
         private const string PAWNWEAPON_DEADEYE_UPK_FILENAME = "pawnweapon_deadeye_SF.upk";
         private const string PAWNWEAPON_ZOEY_UPK_FILENAME = "pawnweapon_zoey_SF.upk";
         private const string PAWNWEAPON_BRASS_UPK_FILENAME = "pawnweapon_brass_SF.upk";
@@ -83,8 +97,12 @@ namespace SingleplayerLauncher
                                                                  PAWNWEAPON_STINKEYE_UPK_FILE_SIZE, PAWNWEAPON_DOBBIN_UPK_FILE_SIZE, PAWNWEAPON_BLACKPAW_UPK_FILE_SIZE, PAWNWEAPON_MIDNIGHT_UPK_FILE_SIZE };
         public static void FirstLaunchInitialization()
         {
-            GameSettings.CharacterData.Initialize();
-            GameSettings.DefaultGame.Initialize();
+            GameFiles.CharacterData.Initialize();
+            GameFiles.DefaultGame.Initialize();
+
+            // TODO
+
+            /*
 
             // Alternative Heroes, Files with needed import, export and name lists (traps, guardians, gear)
             for (int i = 0; i < NUM_PAWNWEAPONS; i++)
@@ -99,8 +117,17 @@ namespace SingleplayerLauncher
                 File.Copy(MOD_DEFAULT_PAWNWEAPON_UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i], UPK_FILES_PATH + PAWNWEAPON_FILENAMES[i]);
             }
 
+            */
+
             // SpitfireGame (decompress) Initialization
             FileUtils.DecompressUPKFile(FileUtils.SPITFIREGAME_UPK_PATH, FileUtils.SPITFIREGAME_UPK_ORG_SIZE);
+
+            // Hook (for co-op and non-dedicated server) Initialization
+            string hookSourceFilePath = Path.Combine(MOD_HOOK_FILES_PATH, P2P_HOOK_FILENAME);
+            string hookTargetFilePathWin64 = Path.Combine(FileUtils.SPITFIREGAME_EXE_WIN64_FILEPATH, P2P_HOOK_TARGET_FILENAME);
+            string hookTargetFilePathWin32 = Path.Combine(FileUtils.SPITFIREGAME_EXE_WIN32_FILEPATH, P2P_HOOK_TARGET_FILENAME);
+            FileUtils.CopyFileWithCheck(hookSourceFilePath, hookTargetFilePathWin64, overwrite: true);
+            FileUtils.CopyFileWithCheck(hookSourceFilePath, hookTargetFilePathWin32, overwrite: true);
 
             Settings.Instance["FirstRun"] = false;
             Settings.Save();
@@ -117,6 +144,8 @@ namespace SingleplayerLauncher
             p.StartInfo.Arguments = CreateExeArguments(debug, language);
 
             p.Start();
+
+            p.WaitForExit();
         }
 
         private const string EXE_ARGUMENTS = " -seekfreeloadingpcconsole -writepid";
@@ -131,6 +160,8 @@ namespace SingleplayerLauncher
             string languageArg = LANGUAGE_OPTION + Language.GetKeyFromValue(language);
 
             arguments += map;
+            arguments += "?listen?PlayerGUID=0"; // TODO Make conditional on flag like the methods to apply loadout and such
+            arguments += "?listen?PlayerGUID=0 --net_mode=ListenServer"; // TODO Adjust for multiplayer
             arguments += defaultArgs;
             arguments += languageArg;
 
@@ -141,5 +172,5 @@ namespace SingleplayerLauncher
 
             return arguments;
         }
-    }
+    }    
 }
