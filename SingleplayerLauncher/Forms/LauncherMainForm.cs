@@ -16,6 +16,7 @@ namespace SingleplayerLauncher
 
         private readonly List<ComboBox> ComBoxLoadoutSlots;
         private readonly List<ComboBox> ComBoxGuardianSlots;
+        private readonly List<ComboBox> ComBoxConsumableSlots;
 
         public LauncherMainForm()
         {
@@ -35,6 +36,11 @@ namespace SingleplayerLauncher
             ComBoxGuardianSlots = new List<ComboBox>()
             {
                 comBoxGuardianSlot1, comBoxGuardianSlot2
+            };
+
+            ComBoxConsumableSlots = new List<ComboBox>()
+            {
+                comBoxConsumableSlot1, comBoxConsumableSlot2
             };
         }
 
@@ -95,6 +101,7 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxLoadoutSlots, Model.Trap.Traps.Keys.ToList());
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
+            PopulateSlots(ComBoxConsumableSlots, Model.Consumable.Consumables.Keys.ToList());
 
             if (Settings.Instance.ContainsKey("loadout"))
             {
@@ -106,18 +113,27 @@ namespace SingleplayerLauncher
                 GameInfo.Loadout.Guardians = ((JArray)Settings.Instance["guardians"]).ToObject<string[]>().Select(lgi => Model.Guardian.Guardians[lgi]).ToArray();
             }
 
+            if (Settings.Instance.ContainsKey("consumables"))
+            {
+                GameInfo.Loadout.Consumables = ((JArray)Settings.Instance["consumables"]).ToObject<string[]>().Select(lgi => Model.Consumable.Consumables[lgi]).ToArray();
+            }
+
             SetCurrentLoadout();
             SetCurrenGuardians();
+            SetCurrentConsumables();
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Saving your changes. Please wait.");
+            btnLaunch.Text = "Game will start soon...";
             GameLauncher.ApplyChanges();
-            MessageBox.Show("Finished");
 
             SaveSettings();
+
+
+            btnLaunch.Text = "Game running... (Launcher disabled)";
             GameLauncher.StartGame(chkDebug.Checked, chkRunAs32.Checked, comBoxLanguage.Text);
+            btnLaunch.Text = "Launch";
         }
 
         public void SaveSettings()
@@ -283,8 +299,9 @@ namespace SingleplayerLauncher
 
         private void StartingCoinInput_ValueChanged(object sender, EventArgs e)
         {
-            GameInfo.Battleground.StartingCoin = (int)startingCoinInput.Value;
+            Mods.Mods.StartingCoinOverride.Value = (int)startingCoinInput.Value;
             Settings.Instance["StartingCoin"] = startingCoinInput.Value.ToString();
+
             Settings.Save();
         }
 
@@ -356,6 +373,14 @@ namespace SingleplayerLauncher
             }
         }
 
+        private void SetCurrentConsumables()
+        {
+            for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
+            {
+                ComBoxConsumableSlots[i].SelectedItem = GameInfo.Loadout.Consumables[i].Name;
+            }
+        }
+
         private void SaveGuardians()
         {
             List<string> guardianNames = new List<string>();
@@ -369,6 +394,22 @@ namespace SingleplayerLauncher
                 }
             }
             Settings.Instance["guardians"] = guardianNames;
+            Settings.Save();
+        }
+
+        private void SaveConsumables()
+        {
+            List<string> consumableNames = new List<string>();
+            for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
+            {
+                string consumableName = ComBoxConsumableSlots[i].Text;
+                consumableNames.Add(consumableName);
+                if (consumableName.Length > 0)
+                {
+                    GameInfo.Loadout.Consumables[i] = Consumable.Consumables[consumableName];
+                }
+            }
+            Settings.Instance["consumables"] = consumableNames;
             Settings.Save();
         }
 
@@ -456,6 +497,16 @@ namespace SingleplayerLauncher
             SaveGuardians();
         }
 
+        private void comBoxConsumableSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveConsumables();
+        }
+
+        private void comBoxConsumableSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveConsumables();
+        }
+
         private void chkCustomStartCoin_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkCustomStartCoin.Checked)
@@ -463,6 +514,7 @@ namespace SingleplayerLauncher
                 GameInfo.Battleground.StartingCoin = 0;
             }
             startingCoinInput.Enabled = chkCustomStartCoin.Checked;
+            Mods.Mods.StartingCoinOverride.IsEnabled = chkCustomStartCoin.Checked;
             Settings.Instance["CustomStartCoinEnabled"] = chkCustomStartCoin.Checked;
             Settings.Save();
         }

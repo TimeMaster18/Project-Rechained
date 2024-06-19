@@ -25,7 +25,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 - Play with **all Heroes** and Custom **Loadouts**
   - Choose Traps and Gear
   - Choose your skin and your dye
-  - Choose Guardians
+  - Choose Guardians and Consumables
 - Hero, Guardian and **Trap Tiers** are matched with enemy/map level
 - **New extra difficulties** for every map
 - **New Mods**:
@@ -40,7 +40,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 
 ### Coming Next
-- Consumables, Traits and Trap Parts
+- Traits and Trap Parts
 - Save multiple loadouts with names
 - Share loadouts with other players
 - P2P (Peer-to-peer) Multiplayer
@@ -62,7 +62,7 @@ This project would not have been possible without the help and support of severa
 
 A big thank you to all the people who contributed to this project:
 
-- **[DaTeddy](https://github.com/Contributor1)** - Contributed with reverse-engineering, testing, documenting and much more.
+- **DaTeddy** - Contributed with reverse-engineering, testing, documenting and much more.
 
 This project makes use of the following open-source projects:
 

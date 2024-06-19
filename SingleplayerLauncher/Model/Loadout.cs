@@ -27,7 +27,7 @@ namespace SingleplayerLauncher.Model
 
         public Guardian[] Guardians { get; set; } = { Guardian.DragonGuardian, Guardian.MoonGuardian };
 
-        // public Consumable[] Consumables { get; set; }
+        public Consumable[] Consumables { get; set; } = { Consumable.LuckPotion, Consumable.UnchainedScroll };
     }
 
 }
