@@ -27,6 +27,7 @@ namespace SingleplayerLauncher.GameFiles
         private const string CharacterDataKeyDye = "HeroicDyeIdx";
         private const string CharacterDataKeyLoadout = "EquippableInventory";
         private const string CharacterDataKeyGuardian = "PlaceableGuardians";
+        private const string CharacterDataKeyConsumable = "Consumables";
 
         private const string CharacterDataKeyGodMode = "GodMode";
         private const string CharacterDataKeyBonusStartingCoin = "BonusStartingCoin";
@@ -46,6 +47,7 @@ namespace SingleplayerLauncher.GameFiles
             _ = GameInfo.Loadout.Dye ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Dye), "Mandatory parameter");
             _ = GameInfo.Loadout.SlotItems ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.SlotItems), "Mandatory parameter");
             _ = GameInfo.Loadout.Guardians ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Guardians), "Mandatory parameter");
+            _ = GameInfo.Loadout.Consumables ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Consumables), "Mandatory parameter");
             _ = GameInfo.Battleground.Difficulty ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
 
 
@@ -71,6 +73,13 @@ namespace SingleplayerLauncher.GameFiles
             {
                 data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuardian, GenerateItemString(guardian.ItemTemplateName, itemUseCount: 1), index: guardianIdx);
                 guardianIdx++;
+            }
+
+            int consumableIdx = 0;
+            foreach (Consumable consumable in GameInfo.Loadout.Consumables)
+            {
+                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, GenerateItemString(consumable.ItemTemplateName, itemUseCount: consumable.UsageLimit), index: consumableIdx);
+                consumableIdx++;
             }
 
             characterData.Write();
