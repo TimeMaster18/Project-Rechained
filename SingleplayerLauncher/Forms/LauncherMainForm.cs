@@ -17,6 +17,7 @@ namespace SingleplayerLauncher
         private readonly List<ComboBox> ComBoxLoadoutSlots;
         private readonly List<ComboBox> ComBoxGuardianSlots;
         private readonly List<ComboBox> ComBoxConsumableSlots;
+        private readonly List<ComboBox> ComBoxTraitSlots;
 
         public LauncherMainForm()
         {
@@ -41,6 +42,11 @@ namespace SingleplayerLauncher
             ComBoxConsumableSlots = new List<ComboBox>()
             {
                 comBoxConsumableSlot1, comBoxConsumableSlot2
+            };
+
+            ComBoxTraitSlots = new List<ComboBox>()
+            {
+                comboxTraitGreenSlot, comboxTraitBlueSlot, comboxTraitYellowSlot, comboxTraitNoBonusSlot // This order must match the order in Loadout.cs for simplicity
             };
         }
 
@@ -102,6 +108,7 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
             PopulateSlots(ComBoxConsumableSlots, Model.Consumable.Consumables.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.Trait.Traits.Keys.ToList());
 
             if (Settings.Instance.ContainsKey("loadout"))
             {
@@ -115,12 +122,18 @@ namespace SingleplayerLauncher
 
             if (Settings.Instance.ContainsKey("consumables"))
             {
-                GameInfo.Loadout.Consumables = ((JArray)Settings.Instance["consumables"]).ToObject<string[]>().Select(lgi => Model.Consumable.Consumables[lgi]).ToArray();
+                GameInfo.Loadout.Consumables = ((JArray)Settings.Instance["consumables"]).ToObject<string[]>().Select(lci => Model.Consumable.Consumables[lci]).ToArray();
+            }
+
+            if (Settings.Instance.ContainsKey("traits"))
+            {
+                GameInfo.Loadout.Traits = ((JArray)Settings.Instance["traits"]).ToObject<string[]>().Select(lti => Model.Trait.Traits[lti]).ToArray();
             }
 
             SetCurrentLoadout();
             SetCurrenGuardians();
             SetCurrentConsumables();
+            SetCurrentTraits();
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -381,6 +394,16 @@ namespace SingleplayerLauncher
             }
         }
 
+        private void SetCurrentTraits()
+        {
+            ComboBoxHelper comboBoxHelper = new ComboBoxHelper(Trait.Traits);
+            for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
+            {
+                comboBoxHelper.InitializeComboBox(ComBoxTraitSlots[i]);
+                ComBoxTraitSlots[i].SelectedItem = GameInfo.Loadout.Traits[i].Name;
+            }
+        }
+
         private void SaveGuardians()
         {
             List<string> guardianNames = new List<string>();
@@ -410,6 +433,22 @@ namespace SingleplayerLauncher
                 }
             }
             Settings.Instance["consumables"] = consumableNames;
+            Settings.Save();
+        }
+
+        private void SaveTraits()
+        {
+            List<string> traitNames = new List<string>();
+            for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
+            {
+                string traitName = ComBoxTraitSlots[i].Text;
+                traitNames.Add(traitName);
+                if (traitName.Length > 0)
+                {
+                    GameInfo.Loadout.Traits[i] = Trait.Traits[traitName];
+                }
+            }
+            Settings.Instance["traits"] = traitNames;
             Settings.Save();
         }
 
@@ -505,6 +544,26 @@ namespace SingleplayerLauncher
         private void comBoxConsumableSlot2_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveConsumables();
+        }
+
+        private void comboxTraitGreenSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTraits();
+        }
+
+        private void comboxTraitBlueSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTraits();
+        }
+
+        private void comboxTraitYellowSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTraits();
+        }
+
+        private void comboxTraitNoBonusSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTraits();
         }
 
         private void chkCustomStartCoin_CheckedChanged(object sender, EventArgs e)

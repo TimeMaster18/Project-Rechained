@@ -67,7 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Loadout\Trait.cs" />
     <Compile Include="Entities\Loadout\Consumable.cs" />
+    <Compile Include="Entities\Names\Trait.cs" />
     <Compile Include="Entities\Names\Consumable.cs" />
     <Compile Include="GameFiles\Config\CharacterData.cs" />
     <Compile Include="GameFiles\Config\ConfigFile.cs" />

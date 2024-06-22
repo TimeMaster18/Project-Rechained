@@ -17,6 +17,11 @@ namespace SingleplayerLauncher.Model
         public const int TRAIT_SLOT_COUNT = 4;
         public const int TRAIT_BONUS_SLOT_COUNT = 3;
 
+        public const int TRAIT_GREEN_SLOT_IDX = 0;
+        public const int TRAIT_BLUE_SLOT_IDX = 1;
+        public const int TRAIT_YELLOW_SLOT_IDX = 2;
+        public const int TRAIT_NO_BONUS_SLOT_IDX = 3;
+
         public Hero Hero { get; set; } = Hero.Maximilian;
         public Skin Skin { get; set; } = Skin.MaximillianDefault;
         public Dye Dye { get; set; } = Dye.Normal;
@@ -28,6 +33,24 @@ namespace SingleplayerLauncher.Model
         public Guardian[] Guardians { get; set; } = { Guardian.DragonGuardian, Guardian.MoonGuardian };
 
         public Consumable[] Consumables { get; set; } = { Consumable.LuckPotion, Consumable.UnchainedScroll };
+
+        public Trait[] Traits { get; set; } = { Trait.TakesLessonsFromCygnus, Trait.RiftRocket, Trait.Overachiever, Trait.WallBuildingPhD};
+
+
+        public bool isTraitMatchingBonus(int traitIdx)
+        {
+            if (traitIdx == TRAIT_NO_BONUS_SLOT_IDX) return false;            
+            Trait trait = Traits[traitIdx];
+
+            if (traitIdx == TRAIT_BLUE_SLOT_IDX && trait.MatchingSlot == Trait.DIAMOND_BONUS_SLOT ||
+                traitIdx == TRAIT_GREEN_SLOT_IDX && trait.MatchingSlot == Trait.PENTAGON_BONUS_SLOT ||
+                traitIdx == TRAIT_YELLOW_SLOT_IDX && trait.MatchingSlot == Trait.TRIANGLE_BONUS_SLOT)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 
 }

@@ -1,4 +1,7 @@
-﻿namespace SingleplayerLauncher
+﻿using SingleplayerLauncher.Model;
+using System.Windows.Forms;
+
+namespace SingleplayerLauncher
 {
     partial class LauncherMainForm
     {
@@ -30,7 +33,6 @@
         {
             this.btnLaunch = new System.Windows.Forms.Button();
             this.chkDebug = new System.Windows.Forms.CheckBox();
-            this.characterSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.comBoxDye = new System.Windows.Forms.ComboBox();
             this.labelHero = new System.Windows.Forms.Label();
             this.comBoxHero = new System.Windows.Forms.ComboBox();
@@ -66,6 +68,18 @@
             this.labelGuardianSlot1 = new System.Windows.Forms.Label();
             this.comBoxGuardianSlot2 = new System.Windows.Forms.ComboBox();
             this.groupBoxLoadout = new System.Windows.Forms.GroupBox();
+            this.labelTraitNoBonusSlot = new System.Windows.Forms.Label();
+            this.comboxTraitYellowSlot = new System.Windows.Forms.ComboBox();
+            this.labelTraitYellowSlot = new System.Windows.Forms.Label();
+            this.comboxTraitNoBonusSlot = new System.Windows.Forms.ComboBox();
+            this.labelTraitBlueSlot = new System.Windows.Forms.Label();
+            this.comboxTraitGreenSlot = new System.Windows.Forms.ComboBox();
+            this.labelTraitGreenSlot = new System.Windows.Forms.Label();
+            this.comboxTraitBlueSlot = new System.Windows.Forms.ComboBox();
+            this.labelConsumableSlot2 = new System.Windows.Forms.Label();
+            this.comBoxConsumableSlot1 = new System.Windows.Forms.ComboBox();
+            this.labelConsumableSlot1 = new System.Windows.Forms.Label();
+            this.comBoxConsumableSlot2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.labelLoadoutSlot9 = new System.Windows.Forms.Label();
             this.labelLoadoutSlot8 = new System.Windows.Forms.Label();
@@ -89,11 +103,6 @@
             this.chkRunAs32 = new System.Windows.Forms.CheckBox();
             this.comBoxLanguage = new System.Windows.Forms.ComboBox();
             this.labelLanguage = new System.Windows.Forms.Label();
-            this.labelConsumableSlot2 = new System.Windows.Forms.Label();
-            this.comBoxConsumableSlot1 = new System.Windows.Forms.ComboBox();
-            this.labelConsumableSlot1 = new System.Windows.Forms.Label();
-            this.comBoxConsumableSlot2 = new System.Windows.Forms.ComboBox();
-            this.characterSettingsGroupBox.SuspendLayout();
             this.mapSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
             this.modsGroupBox.SuspendLayout();
@@ -103,7 +112,7 @@
             // btnLaunch
             // 
             this.btnLaunch.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnLaunch.Location = new System.Drawing.Point(298, 431);
+            this.btnLaunch.Location = new System.Drawing.Point(587, 387);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(341, 75);
             this.btnLaunch.TabIndex = 0;
@@ -114,43 +123,27 @@
             // chkDebug
             // 
             this.chkDebug.AutoSize = true;
-            this.chkDebug.Location = new System.Drawing.Point(495, 515);
+            this.chkDebug.Location = new System.Drawing.Point(784, 471);
             this.chkDebug.Name = "chkDebug";
             this.chkDebug.Size = new System.Drawing.Size(58, 17);
             this.chkDebug.TabIndex = 6;
             this.chkDebug.Text = "Debug";
             this.chkDebug.UseVisualStyleBackColor = true;
             // 
-            // characterSettingsGroupBox
-            // 
-            this.characterSettingsGroupBox.BackColor = System.Drawing.SystemColors.Control;
-            this.characterSettingsGroupBox.Controls.Add(this.comBoxDye);
-            this.characterSettingsGroupBox.Controls.Add(this.labelHero);
-            this.characterSettingsGroupBox.Controls.Add(this.comBoxHero);
-            this.characterSettingsGroupBox.Controls.Add(this.comBoxSkin);
-            this.characterSettingsGroupBox.Controls.Add(this.labelDye);
-            this.characterSettingsGroupBox.Controls.Add(this.labelSkin);
-            this.characterSettingsGroupBox.Location = new System.Drawing.Point(12, 12);
-            this.characterSettingsGroupBox.Name = "characterSettingsGroupBox";
-            this.characterSettingsGroupBox.Size = new System.Drawing.Size(273, 78);
-            this.characterSettingsGroupBox.TabIndex = 3;
-            this.characterSettingsGroupBox.TabStop = false;
-            this.characterSettingsGroupBox.Text = "Character Settings";
-            // 
             // comBoxDye
             // 
             this.comBoxDye.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxDye.FormattingEnabled = true;
-            this.comBoxDye.Location = new System.Drawing.Point(186, 51);
+            this.comBoxDye.Location = new System.Drawing.Point(451, 60);
             this.comBoxDye.Name = "comBoxDye";
-            this.comBoxDye.Size = new System.Drawing.Size(75, 21);
+            this.comBoxDye.Size = new System.Drawing.Size(111, 21);
             this.comBoxDye.TabIndex = 6;
             this.comBoxDye.SelectedIndexChanged += new System.EventHandler(this.comBoxDye_SelectedIndexChanged);
             // 
             // labelHero
             // 
             this.labelHero.AutoSize = true;
-            this.labelHero.Location = new System.Drawing.Point(6, 27);
+            this.labelHero.Location = new System.Drawing.Point(6, 63);
             this.labelHero.Name = "labelHero";
             this.labelHero.Size = new System.Drawing.Size(30, 13);
             this.labelHero.TabIndex = 1;
@@ -160,9 +153,9 @@
             // 
             this.comBoxHero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxHero.FormattingEnabled = true;
-            this.comBoxHero.Location = new System.Drawing.Point(45, 24);
+            this.comBoxHero.Location = new System.Drawing.Point(42, 60);
             this.comBoxHero.Name = "comBoxHero";
-            this.comBoxHero.Size = new System.Drawing.Size(216, 21);
+            this.comBoxHero.Size = new System.Drawing.Size(126, 21);
             this.comBoxHero.TabIndex = 2;
             this.comBoxHero.SelectedIndexChanged += new System.EventHandler(this.comBoxHero_SelectedIndexChanged);
             // 
@@ -170,16 +163,16 @@
             // 
             this.comBoxSkin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSkin.FormattingEnabled = true;
-            this.comBoxSkin.Location = new System.Drawing.Point(45, 51);
+            this.comBoxSkin.Location = new System.Drawing.Point(210, 60);
             this.comBoxSkin.Name = "comBoxSkin";
-            this.comBoxSkin.Size = new System.Drawing.Size(111, 21);
+            this.comBoxSkin.Size = new System.Drawing.Size(190, 21);
             this.comBoxSkin.TabIndex = 4;
             this.comBoxSkin.SelectedIndexChanged += new System.EventHandler(this.comBoxSkin_SelectedIndexChanged);
             // 
             // labelDye
             // 
             this.labelDye.AutoSize = true;
-            this.labelDye.Location = new System.Drawing.Point(158, 54);
+            this.labelDye.Location = new System.Drawing.Point(419, 63);
             this.labelDye.Name = "labelDye";
             this.labelDye.Size = new System.Drawing.Size(26, 13);
             this.labelDye.TabIndex = 5;
@@ -188,7 +181,7 @@
             // labelSkin
             // 
             this.labelSkin.AutoSize = true;
-            this.labelSkin.Location = new System.Drawing.Point(5, 54);
+            this.labelSkin.Location = new System.Drawing.Point(176, 63);
             this.labelSkin.Name = "labelSkin";
             this.labelSkin.Size = new System.Drawing.Size(28, 13);
             this.labelSkin.TabIndex = 3;
@@ -205,7 +198,7 @@
             this.mapSettingsGroupBox.Controls.Add(this.labelGameMode);
             this.mapSettingsGroupBox.Controls.Add(this.comBoxBattleground);
             this.mapSettingsGroupBox.Controls.Add(this.labelMap);
-            this.mapSettingsGroupBox.Location = new System.Drawing.Point(296, 12);
+            this.mapSettingsGroupBox.Location = new System.Drawing.Point(586, 12);
             this.mapSettingsGroupBox.Name = "mapSettingsGroupBox";
             this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 108);
             this.mapSettingsGroupBox.TabIndex = 8;
@@ -291,7 +284,7 @@
             // 
             // btnResetConfig
             // 
-            this.btnResetConfig.Location = new System.Drawing.Point(551, 512);
+            this.btnResetConfig.Location = new System.Drawing.Point(845, 468);
             this.btnResetConfig.Name = "btnResetConfig";
             this.btnResetConfig.Size = new System.Drawing.Size(83, 22);
             this.btnResetConfig.TabIndex = 9;
@@ -437,7 +430,7 @@
             this.modsGroupBox.Controls.Add(this.chkInvincibleBarricades);
             this.modsGroupBox.Controls.Add(this.chkTrapsAnySurface);
             this.modsGroupBox.Controls.Add(this.chkTrapsInTraps);
-            this.modsGroupBox.Location = new System.Drawing.Point(298, 177);
+            this.modsGroupBox.Location = new System.Drawing.Point(589, 149);
             this.modsGroupBox.Name = "modsGroupBox";
             this.modsGroupBox.Size = new System.Drawing.Size(339, 197);
             this.modsGroupBox.TabIndex = 22;
@@ -480,7 +473,7 @@
             // labelGuardianSlot2
             // 
             this.labelGuardianSlot2.AutoSize = true;
-            this.labelGuardianSlot2.Location = new System.Drawing.Point(5, 334);
+            this.labelGuardianSlot2.Location = new System.Drawing.Point(5, 131);
             this.labelGuardianSlot2.Name = "labelGuardianSlot2";
             this.labelGuardianSlot2.Size = new System.Drawing.Size(59, 13);
             this.labelGuardianSlot2.TabIndex = 21;
@@ -490,7 +483,7 @@
             // 
             this.comBoxGuardianSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxGuardianSlot1.FormattingEnabled = true;
-            this.comBoxGuardianSlot1.Location = new System.Drawing.Point(70, 304);
+            this.comBoxGuardianSlot1.Location = new System.Drawing.Point(70, 101);
             this.comBoxGuardianSlot1.Name = "comBoxGuardianSlot1";
             this.comBoxGuardianSlot1.Size = new System.Drawing.Size(191, 21);
             this.comBoxGuardianSlot1.TabIndex = 18;
@@ -499,7 +492,7 @@
             // labelGuardianSlot1
             // 
             this.labelGuardianSlot1.AutoSize = true;
-            this.labelGuardianSlot1.Location = new System.Drawing.Point(5, 307);
+            this.labelGuardianSlot1.Location = new System.Drawing.Point(5, 104);
             this.labelGuardianSlot1.Name = "labelGuardianSlot1";
             this.labelGuardianSlot1.Size = new System.Drawing.Size(59, 13);
             this.labelGuardianSlot1.TabIndex = 20;
@@ -509,7 +502,7 @@
             // 
             this.comBoxGuardianSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxGuardianSlot2.FormattingEnabled = true;
-            this.comBoxGuardianSlot2.Location = new System.Drawing.Point(70, 331);
+            this.comBoxGuardianSlot2.Location = new System.Drawing.Point(70, 128);
             this.comBoxGuardianSlot2.Name = "comBoxGuardianSlot2";
             this.comBoxGuardianSlot2.Size = new System.Drawing.Size(191, 21);
             this.comBoxGuardianSlot2.TabIndex = 19;
@@ -518,10 +511,24 @@
             // groupBoxLoadout
             // 
             this.groupBoxLoadout.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxLoadout.Controls.Add(this.labelTraitNoBonusSlot);
+            this.groupBoxLoadout.Controls.Add(this.comboxTraitYellowSlot);
+            this.groupBoxLoadout.Controls.Add(this.labelTraitYellowSlot);
+            this.groupBoxLoadout.Controls.Add(this.comboxTraitNoBonusSlot);
+            this.groupBoxLoadout.Controls.Add(this.labelTraitBlueSlot);
+            this.groupBoxLoadout.Controls.Add(this.comboxTraitGreenSlot);
+            this.groupBoxLoadout.Controls.Add(this.labelTraitGreenSlot);
+            this.groupBoxLoadout.Controls.Add(this.comboxTraitBlueSlot);
+            this.groupBoxLoadout.Controls.Add(this.comBoxDye);
+            this.groupBoxLoadout.Controls.Add(this.labelHero);
             this.groupBoxLoadout.Controls.Add(this.labelConsumableSlot2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxHero);
             this.groupBoxLoadout.Controls.Add(this.comBoxConsumableSlot1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxSkin);
             this.groupBoxLoadout.Controls.Add(this.labelConsumableSlot1);
+            this.groupBoxLoadout.Controls.Add(this.labelDye);
             this.groupBoxLoadout.Controls.Add(this.comBoxConsumableSlot2);
+            this.groupBoxLoadout.Controls.Add(this.labelSkin);
             this.groupBoxLoadout.Controls.Add(this.labelGuardianSlot2);
             this.groupBoxLoadout.Controls.Add(this.comboBox1);
             this.groupBoxLoadout.Controls.Add(this.labelLoadoutSlot9);
@@ -545,12 +552,129 @@
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot5);
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot7);
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot6);
-            this.groupBoxLoadout.Location = new System.Drawing.Point(12, 96);
+            this.groupBoxLoadout.Location = new System.Drawing.Point(12, 12);
             this.groupBoxLoadout.Name = "groupBoxLoadout";
-            this.groupBoxLoadout.Size = new System.Drawing.Size(273, 433);
+            this.groupBoxLoadout.Size = new System.Drawing.Size(568, 474);
             this.groupBoxLoadout.TabIndex = 24;
             this.groupBoxLoadout.TabStop = false;
             this.groupBoxLoadout.Text = "Loadout";
+            // 
+            // labelTraitNoBonusSlot
+            // 
+            this.labelTraitNoBonusSlot.AutoSize = true;
+            this.labelTraitNoBonusSlot.Location = new System.Drawing.Point(278, 186);
+            this.labelTraitNoBonusSlot.Name = "labelTraitNoBonusSlot";
+            this.labelTraitNoBonusSlot.Size = new System.Drawing.Size(78, 13);
+            this.labelTraitNoBonusSlot.TabIndex = 35;
+            this.labelTraitNoBonusSlot.Text = "No Bonus Trait";
+            // 
+            // comboxTraitYellowSlot
+            // 
+            this.comboxTraitYellowSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboxTraitYellowSlot.FormattingEnabled = true;
+            this.comboxTraitYellowSlot.Location = new System.Drawing.Point(362, 101);
+            this.comboxTraitYellowSlot.Name = "comboxTraitYellowSlot";
+            this.comboxTraitYellowSlot.Size = new System.Drawing.Size(200, 21);
+            this.comboxTraitYellowSlot.TabIndex = 32;
+            this.comboxTraitYellowSlot.SelectedIndexChanged += new System.EventHandler(this.comboxTraitYellowSlot_SelectedIndexChanged);
+            // 
+            // labelTraitYellowSlot
+            // 
+            this.labelTraitYellowSlot.AutoSize = true;
+            this.labelTraitYellowSlot.BackColor = System.Drawing.Color.Gold;
+            this.labelTraitYellowSlot.Location = new System.Drawing.Point(278, 105);
+            this.labelTraitYellowSlot.Name = "labelTraitYellowSlot";
+            this.labelTraitYellowSlot.Size = new System.Drawing.Size(62, 13);
+            this.labelTraitYellowSlot.TabIndex = 34;
+            this.labelTraitYellowSlot.Text = "Yellow Trait";
+            // 
+            // comboxTraitNoBonusSlot
+            // 
+            this.comboxTraitNoBonusSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboxTraitNoBonusSlot.FormattingEnabled = true;
+            this.comboxTraitNoBonusSlot.Location = new System.Drawing.Point(362, 182);
+            this.comboxTraitNoBonusSlot.Name = "comboxTraitNoBonusSlot";
+            this.comboxTraitNoBonusSlot.Size = new System.Drawing.Size(200, 21);
+            this.comboxTraitNoBonusSlot.TabIndex = 33;
+            this.comboxTraitNoBonusSlot.SelectedIndexChanged += new System.EventHandler(this.comboxTraitNoBonusSlot_SelectedIndexChanged);
+            // 
+            // labelTraitBlueSlot
+            // 
+            this.labelTraitBlueSlot.AutoSize = true;
+            this.labelTraitBlueSlot.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.labelTraitBlueSlot.Location = new System.Drawing.Point(278, 159);
+            this.labelTraitBlueSlot.Name = "labelTraitBlueSlot";
+            this.labelTraitBlueSlot.Size = new System.Drawing.Size(52, 13);
+            this.labelTraitBlueSlot.TabIndex = 31;
+            this.labelTraitBlueSlot.Text = "Blue Trait";
+            // 
+            // comboxTraitGreenSlot
+            // 
+            this.comboxTraitGreenSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboxTraitGreenSlot.FormattingEnabled = true;
+            this.comboxTraitGreenSlot.Location = new System.Drawing.Point(362, 128);
+            this.comboxTraitGreenSlot.Name = "comboxTraitGreenSlot";
+            this.comboxTraitGreenSlot.Size = new System.Drawing.Size(200, 21);
+            this.comboxTraitGreenSlot.TabIndex = 28;
+            this.comboxTraitGreenSlot.SelectedIndexChanged += new System.EventHandler(this.comboxTraitGreenSlot_SelectedIndexChanged);
+            // 
+            // labelTraitGreenSlot
+            // 
+            this.labelTraitGreenSlot.AutoSize = true;
+            this.labelTraitGreenSlot.BackColor = System.Drawing.Color.LightGreen;
+            this.labelTraitGreenSlot.Location = new System.Drawing.Point(278, 132);
+            this.labelTraitGreenSlot.Name = "labelTraitGreenSlot";
+            this.labelTraitGreenSlot.Size = new System.Drawing.Size(60, 13);
+            this.labelTraitGreenSlot.TabIndex = 30;
+            this.labelTraitGreenSlot.Text = "Green Trait";
+            // 
+            // comboxTraitBlueSlot
+            // 
+            this.comboxTraitBlueSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboxTraitBlueSlot.FormattingEnabled = true;
+            this.comboxTraitBlueSlot.Location = new System.Drawing.Point(362, 155);
+            this.comboxTraitBlueSlot.Name = "comboxTraitBlueSlot";
+            this.comboxTraitBlueSlot.Size = new System.Drawing.Size(200, 21);
+            this.comboxTraitBlueSlot.TabIndex = 29;
+            this.comboxTraitBlueSlot.SelectedIndexChanged += new System.EventHandler(this.comboxTraitBlueSlot_SelectedIndexChanged);
+            // 
+            // labelConsumableSlot2
+            // 
+            this.labelConsumableSlot2.AutoSize = true;
+            this.labelConsumableSlot2.Location = new System.Drawing.Point(5, 185);
+            this.labelConsumableSlot2.Name = "labelConsumableSlot2";
+            this.labelConsumableSlot2.Size = new System.Drawing.Size(74, 13);
+            this.labelConsumableSlot2.TabIndex = 27;
+            this.labelConsumableSlot2.Text = "Consumable 2";
+            // 
+            // comBoxConsumableSlot1
+            // 
+            this.comBoxConsumableSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxConsumableSlot1.FormattingEnabled = true;
+            this.comBoxConsumableSlot1.Location = new System.Drawing.Point(85, 155);
+            this.comBoxConsumableSlot1.Name = "comBoxConsumableSlot1";
+            this.comBoxConsumableSlot1.Size = new System.Drawing.Size(176, 21);
+            this.comBoxConsumableSlot1.TabIndex = 24;
+            this.comBoxConsumableSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxConsumableSlot1_SelectedIndexChanged);
+            // 
+            // labelConsumableSlot1
+            // 
+            this.labelConsumableSlot1.AutoSize = true;
+            this.labelConsumableSlot1.Location = new System.Drawing.Point(5, 158);
+            this.labelConsumableSlot1.Name = "labelConsumableSlot1";
+            this.labelConsumableSlot1.Size = new System.Drawing.Size(74, 13);
+            this.labelConsumableSlot1.TabIndex = 26;
+            this.labelConsumableSlot1.Text = "Consumable 1";
+            // 
+            // comBoxConsumableSlot2
+            // 
+            this.comBoxConsumableSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxConsumableSlot2.FormattingEnabled = true;
+            this.comBoxConsumableSlot2.Location = new System.Drawing.Point(85, 182);
+            this.comBoxConsumableSlot2.Name = "comBoxConsumableSlot2";
+            this.comBoxConsumableSlot2.Size = new System.Drawing.Size(176, 21);
+            this.comBoxConsumableSlot2.TabIndex = 25;
+            this.comBoxConsumableSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxConsumableSlot2_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -565,7 +689,7 @@
             // labelLoadoutSlot9
             // 
             this.labelLoadoutSlot9.AutoSize = true;
-            this.labelLoadoutSlot9.Location = new System.Drawing.Point(5, 273);
+            this.labelLoadoutSlot9.Location = new System.Drawing.Point(5, 445);
             this.labelLoadoutSlot9.Name = "labelLoadoutSlot9";
             this.labelLoadoutSlot9.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot9.TabIndex = 17;
@@ -574,7 +698,7 @@
             // labelLoadoutSlot8
             // 
             this.labelLoadoutSlot8.AutoSize = true;
-            this.labelLoadoutSlot8.Location = new System.Drawing.Point(5, 246);
+            this.labelLoadoutSlot8.Location = new System.Drawing.Point(5, 418);
             this.labelLoadoutSlot8.Name = "labelLoadoutSlot8";
             this.labelLoadoutSlot8.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot8.TabIndex = 16;
@@ -583,7 +707,7 @@
             // labelLoadoutSlot7
             // 
             this.labelLoadoutSlot7.AutoSize = true;
-            this.labelLoadoutSlot7.Location = new System.Drawing.Point(6, 219);
+            this.labelLoadoutSlot7.Location = new System.Drawing.Point(5, 391);
             this.labelLoadoutSlot7.Name = "labelLoadoutSlot7";
             this.labelLoadoutSlot7.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot7.TabIndex = 15;
@@ -592,7 +716,7 @@
             // labelLoadoutSlot6
             // 
             this.labelLoadoutSlot6.AutoSize = true;
-            this.labelLoadoutSlot6.Location = new System.Drawing.Point(5, 192);
+            this.labelLoadoutSlot6.Location = new System.Drawing.Point(5, 364);
             this.labelLoadoutSlot6.Name = "labelLoadoutSlot6";
             this.labelLoadoutSlot6.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot6.TabIndex = 14;
@@ -601,7 +725,7 @@
             // labelLoadoutSlot5
             // 
             this.labelLoadoutSlot5.AutoSize = true;
-            this.labelLoadoutSlot5.Location = new System.Drawing.Point(5, 165);
+            this.labelLoadoutSlot5.Location = new System.Drawing.Point(5, 337);
             this.labelLoadoutSlot5.Name = "labelLoadoutSlot5";
             this.labelLoadoutSlot5.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot5.TabIndex = 13;
@@ -610,7 +734,7 @@
             // labelLoadoutSlot4
             // 
             this.labelLoadoutSlot4.AutoSize = true;
-            this.labelLoadoutSlot4.Location = new System.Drawing.Point(5, 138);
+            this.labelLoadoutSlot4.Location = new System.Drawing.Point(5, 310);
             this.labelLoadoutSlot4.Name = "labelLoadoutSlot4";
             this.labelLoadoutSlot4.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot4.TabIndex = 12;
@@ -619,7 +743,7 @@
             // labelLoadoutSlot3
             // 
             this.labelLoadoutSlot3.AutoSize = true;
-            this.labelLoadoutSlot3.Location = new System.Drawing.Point(5, 111);
+            this.labelLoadoutSlot3.Location = new System.Drawing.Point(5, 283);
             this.labelLoadoutSlot3.Name = "labelLoadoutSlot3";
             this.labelLoadoutSlot3.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot3.TabIndex = 11;
@@ -628,7 +752,7 @@
             // labelLoadoutSlot2
             // 
             this.labelLoadoutSlot2.AutoSize = true;
-            this.labelLoadoutSlot2.Location = new System.Drawing.Point(5, 84);
+            this.labelLoadoutSlot2.Location = new System.Drawing.Point(5, 256);
             this.labelLoadoutSlot2.Name = "labelLoadoutSlot2";
             this.labelLoadoutSlot2.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot2.TabIndex = 10;
@@ -637,7 +761,7 @@
             // labelLoadoutSlot1
             // 
             this.labelLoadoutSlot1.AutoSize = true;
-            this.labelLoadoutSlot1.Location = new System.Drawing.Point(5, 57);
+            this.labelLoadoutSlot1.Location = new System.Drawing.Point(5, 229);
             this.labelLoadoutSlot1.Name = "labelLoadoutSlot1";
             this.labelLoadoutSlot1.Size = new System.Drawing.Size(34, 13);
             this.labelLoadoutSlot1.TabIndex = 9;
@@ -647,7 +771,7 @@
             // 
             this.comBoxLoadoutSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot1.FormattingEnabled = true;
-            this.comBoxLoadoutSlot1.Location = new System.Drawing.Point(45, 54);
+            this.comBoxLoadoutSlot1.Location = new System.Drawing.Point(45, 226);
             this.comBoxLoadoutSlot1.Name = "comBoxLoadoutSlot1";
             this.comBoxLoadoutSlot1.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot1.TabIndex = 0;
@@ -657,7 +781,7 @@
             // 
             this.comBoxLoadoutSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot2.FormattingEnabled = true;
-            this.comBoxLoadoutSlot2.Location = new System.Drawing.Point(45, 81);
+            this.comBoxLoadoutSlot2.Location = new System.Drawing.Point(45, 253);
             this.comBoxLoadoutSlot2.Name = "comBoxLoadoutSlot2";
             this.comBoxLoadoutSlot2.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot2.TabIndex = 1;
@@ -667,7 +791,7 @@
             // 
             this.comBoxLoadoutSlot3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot3.FormattingEnabled = true;
-            this.comBoxLoadoutSlot3.Location = new System.Drawing.Point(45, 108);
+            this.comBoxLoadoutSlot3.Location = new System.Drawing.Point(45, 280);
             this.comBoxLoadoutSlot3.Name = "comBoxLoadoutSlot3";
             this.comBoxLoadoutSlot3.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot3.TabIndex = 2;
@@ -677,7 +801,7 @@
             // 
             this.comBoxLoadoutSlot9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot9.FormattingEnabled = true;
-            this.comBoxLoadoutSlot9.Location = new System.Drawing.Point(45, 270);
+            this.comBoxLoadoutSlot9.Location = new System.Drawing.Point(45, 442);
             this.comBoxLoadoutSlot9.Name = "comBoxLoadoutSlot9";
             this.comBoxLoadoutSlot9.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot9.TabIndex = 8;
@@ -687,7 +811,7 @@
             // 
             this.comBoxLoadoutSlot4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot4.FormattingEnabled = true;
-            this.comBoxLoadoutSlot4.Location = new System.Drawing.Point(45, 135);
+            this.comBoxLoadoutSlot4.Location = new System.Drawing.Point(45, 307);
             this.comBoxLoadoutSlot4.Name = "comBoxLoadoutSlot4";
             this.comBoxLoadoutSlot4.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot4.TabIndex = 3;
@@ -697,7 +821,7 @@
             // 
             this.comBoxLoadoutSlot8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot8.FormattingEnabled = true;
-            this.comBoxLoadoutSlot8.Location = new System.Drawing.Point(45, 243);
+            this.comBoxLoadoutSlot8.Location = new System.Drawing.Point(45, 415);
             this.comBoxLoadoutSlot8.Name = "comBoxLoadoutSlot8";
             this.comBoxLoadoutSlot8.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot8.TabIndex = 7;
@@ -707,7 +831,7 @@
             // 
             this.comBoxLoadoutSlot5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot5.FormattingEnabled = true;
-            this.comBoxLoadoutSlot5.Location = new System.Drawing.Point(45, 162);
+            this.comBoxLoadoutSlot5.Location = new System.Drawing.Point(45, 334);
             this.comBoxLoadoutSlot5.Name = "comBoxLoadoutSlot5";
             this.comBoxLoadoutSlot5.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot5.TabIndex = 4;
@@ -717,7 +841,7 @@
             // 
             this.comBoxLoadoutSlot7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot7.FormattingEnabled = true;
-            this.comBoxLoadoutSlot7.Location = new System.Drawing.Point(45, 216);
+            this.comBoxLoadoutSlot7.Location = new System.Drawing.Point(45, 388);
             this.comBoxLoadoutSlot7.Name = "comBoxLoadoutSlot7";
             this.comBoxLoadoutSlot7.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot7.TabIndex = 6;
@@ -727,7 +851,7 @@
             // 
             this.comBoxLoadoutSlot6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLoadoutSlot6.FormattingEnabled = true;
-            this.comBoxLoadoutSlot6.Location = new System.Drawing.Point(45, 189);
+            this.comBoxLoadoutSlot6.Location = new System.Drawing.Point(45, 361);
             this.comBoxLoadoutSlot6.Name = "comBoxLoadoutSlot6";
             this.comBoxLoadoutSlot6.Size = new System.Drawing.Size(216, 21);
             this.comBoxLoadoutSlot6.TabIndex = 5;
@@ -736,7 +860,7 @@
             // chk_modsEnabled
             // 
             this.chk_modsEnabled.AutoSize = true;
-            this.chk_modsEnabled.Location = new System.Drawing.Point(304, 154);
+            this.chk_modsEnabled.Location = new System.Drawing.Point(595, 126);
             this.chk_modsEnabled.Name = "chk_modsEnabled";
             this.chk_modsEnabled.Size = new System.Drawing.Size(93, 17);
             this.chk_modsEnabled.TabIndex = 25;
@@ -747,7 +871,7 @@
             // chkRunAs32
             // 
             this.chkRunAs32.AutoSize = true;
-            this.chkRunAs32.Location = new System.Drawing.Point(405, 515);
+            this.chkRunAs32.Location = new System.Drawing.Point(694, 471);
             this.chkRunAs32.Name = "chkRunAs32";
             this.chkRunAs32.Size = new System.Drawing.Size(84, 17);
             this.chkRunAs32.TabIndex = 26;
@@ -758,7 +882,7 @@
             // 
             this.comBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLanguage.FormattingEnabled = true;
-            this.comBoxLanguage.Location = new System.Drawing.Point(558, 404);
+            this.comBoxLanguage.Location = new System.Drawing.Point(847, 360);
             this.comBoxLanguage.Name = "comBoxLanguage";
             this.comBoxLanguage.Size = new System.Drawing.Size(79, 21);
             this.comBoxLanguage.TabIndex = 11;
@@ -767,55 +891,17 @@
             // labelLanguage
             // 
             this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Location = new System.Drawing.Point(498, 407);
+            this.labelLanguage.Location = new System.Drawing.Point(787, 363);
             this.labelLanguage.Name = "labelLanguage";
             this.labelLanguage.Size = new System.Drawing.Size(55, 13);
             this.labelLanguage.TabIndex = 10;
             this.labelLanguage.Text = "Language";
             // 
-            // labelConsumableSlot2
-            // 
-            this.labelConsumableSlot2.AutoSize = true;
-            this.labelConsumableSlot2.Location = new System.Drawing.Point(5, 392);
-            this.labelConsumableSlot2.Name = "labelConsumableSlot2";
-            this.labelConsumableSlot2.Size = new System.Drawing.Size(74, 13);
-            this.labelConsumableSlot2.TabIndex = 27;
-            this.labelConsumableSlot2.Text = "Consumable 2";
-            // 
-            // comBoxConsumableSlot1
-            // 
-            this.comBoxConsumableSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxConsumableSlot1.FormattingEnabled = true;
-            this.comBoxConsumableSlot1.Location = new System.Drawing.Point(85, 362);
-            this.comBoxConsumableSlot1.Name = "comBoxConsumableSlot1";
-            this.comBoxConsumableSlot1.Size = new System.Drawing.Size(176, 21);
-            this.comBoxConsumableSlot1.TabIndex = 24;
-            this.comBoxConsumableSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxConsumableSlot1_SelectedIndexChanged);
-            // 
-            // labelConsumableSlot1
-            // 
-            this.labelConsumableSlot1.AutoSize = true;
-            this.labelConsumableSlot1.Location = new System.Drawing.Point(5, 365);
-            this.labelConsumableSlot1.Name = "labelConsumableSlot1";
-            this.labelConsumableSlot1.Size = new System.Drawing.Size(74, 13);
-            this.labelConsumableSlot1.TabIndex = 26;
-            this.labelConsumableSlot1.Text = "Consumable 1";
-            // 
-            // comBoxConsumableSlot2
-            // 
-            this.comBoxConsumableSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBoxConsumableSlot2.FormattingEnabled = true;
-            this.comBoxConsumableSlot2.Location = new System.Drawing.Point(85, 389);
-            this.comBoxConsumableSlot2.Name = "comBoxConsumableSlot2";
-            this.comBoxConsumableSlot2.Size = new System.Drawing.Size(176, 21);
-            this.comBoxConsumableSlot2.TabIndex = 25;
-            this.comBoxConsumableSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxConsumableSlot2_SelectedIndexChanged);
-            // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 541);
+            this.ClientSize = new System.Drawing.Size(939, 498);
             this.Controls.Add(this.labelLanguage);
             this.Controls.Add(this.comBoxLanguage);
             this.Controls.Add(this.chkRunAs32);
@@ -826,12 +912,9 @@
             this.Controls.Add(this.mapSettingsGroupBox);
             this.Controls.Add(this.btnLaunch);
             this.Controls.Add(this.chkDebug);
-            this.Controls.Add(this.characterSettingsGroupBox);
             this.Name = "LauncherMainForm";
             this.Text = "OMDU Offline Launcher";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.characterSettingsGroupBox.ResumeLayout(false);
-            this.characterSettingsGroupBox.PerformLayout();
             this.mapSettingsGroupBox.ResumeLayout(false);
             this.mapSettingsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).EndInit();
@@ -849,7 +932,6 @@
         private System.Windows.Forms.Button btnLaunch;
         private System.Windows.Forms.ComboBox comBoxBattleground;
         private System.Windows.Forms.ComboBox comBoxHero;
-        private System.Windows.Forms.GroupBox characterSettingsGroupBox;
         private System.Windows.Forms.Label labelHero;
         private System.Windows.Forms.Label labelMap;
         private System.Windows.Forms.CheckBox chkDebug;
@@ -913,6 +995,14 @@
         private System.Windows.Forms.ComboBox comBoxConsumableSlot1;
         private System.Windows.Forms.Label labelConsumableSlot1;
         private System.Windows.Forms.ComboBox comBoxConsumableSlot2;
+        private System.Windows.Forms.Label labelTraitNoBonusSlot;
+        private System.Windows.Forms.ComboBox comboxTraitYellowSlot;
+        private System.Windows.Forms.Label labelTraitYellowSlot;
+        private System.Windows.Forms.ComboBox comboxTraitNoBonusSlot;
+        private System.Windows.Forms.Label labelTraitBlueSlot;
+        private System.Windows.Forms.ComboBox comboxTraitGreenSlot;
+        private System.Windows.Forms.Label labelTraitGreenSlot;
+        private System.Windows.Forms.ComboBox comboxTraitBlueSlot;
     }
 }
 

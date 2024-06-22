@@ -28,6 +28,7 @@ namespace SingleplayerLauncher.GameFiles
         private const string CharacterDataKeyLoadout = "EquippableInventory";
         private const string CharacterDataKeyGuardian = "PlaceableGuardians";
         private const string CharacterDataKeyConsumable = "Consumables";
+        private const string CharacterDataKeyTrait = "PassiveUpgrades";
 
         private const string CharacterDataKeyGodMode = "GodMode";
         private const string CharacterDataKeyBonusStartingCoin = "BonusStartingCoin";
@@ -81,6 +82,23 @@ namespace SingleplayerLauncher.GameFiles
                 data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, GenerateItemString(consumable.ItemTemplateName, itemUseCount: consumable.UsageLimit), index: consumableIdx);
                 consumableIdx++;
             }
+
+            int traitIdx = 0;
+            int bonusTraitIdx = 4;
+            foreach (Trait trait in GameInfo.Loadout.Traits)
+            {
+                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, trait.CodeName, index: traitIdx);
+
+                string bonusTraitCodeName = GameInfo.Loadout.isTraitMatchingBonus(traitIdx)
+                                            ? trait.MatchingBonusTrait.CodeName
+                                            : "";
+
+                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, bonusTraitCodeName, index: bonusTraitIdx);
+
+                bonusTraitIdx++;
+                traitIdx++;
+            }
+
 
             characterData.Write();
         }
