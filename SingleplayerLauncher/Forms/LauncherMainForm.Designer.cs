@@ -604,9 +604,9 @@ namespace SingleplayerLauncher
             this.labelTraitBlueSlot.BackColor = System.Drawing.Color.LightSkyBlue;
             this.labelTraitBlueSlot.Location = new System.Drawing.Point(278, 159);
             this.labelTraitBlueSlot.Name = "labelTraitBlueSlot";
-            this.labelTraitBlueSlot.Size = new System.Drawing.Size(52, 13);
+            this.labelTraitBlueSlot.Size = new System.Drawing.Size(73, 13);
             this.labelTraitBlueSlot.TabIndex = 31;
-            this.labelTraitBlueSlot.Text = "Blue Trait";
+            this.labelTraitBlueSlot.Text = "Diamond Trait";
             // 
             // comboxTraitGreenSlot
             // 
@@ -624,9 +624,9 @@ namespace SingleplayerLauncher
             this.labelTraitGreenSlot.BackColor = System.Drawing.Color.LightGreen;
             this.labelTraitGreenSlot.Location = new System.Drawing.Point(278, 132);
             this.labelTraitGreenSlot.Name = "labelTraitGreenSlot";
-            this.labelTraitGreenSlot.Size = new System.Drawing.Size(60, 13);
+            this.labelTraitGreenSlot.Size = new System.Drawing.Size(77, 13);
             this.labelTraitGreenSlot.TabIndex = 30;
-            this.labelTraitGreenSlot.Text = "Green Trait";
+            this.labelTraitGreenSlot.Text = "Pentagon Trait";
             // 
             // comboxTraitBlueSlot
             // 

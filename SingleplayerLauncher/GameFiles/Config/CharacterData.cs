@@ -99,7 +99,6 @@ namespace SingleplayerLauncher.GameFiles
                 traitIdx++;
             }
 
-
             characterData.Write();
         }
 
