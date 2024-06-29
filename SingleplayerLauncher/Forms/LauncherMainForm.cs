@@ -135,11 +135,13 @@ namespace SingleplayerLauncher
             if (Settings.Instance.ContainsKey("trapParts"))
             {
                 var trapPartsArray = (JArray)Settings.Instance["trapParts"];
-                GameInfo.Loadout.TrapParts = trapPartsArray
-                    .Select(tpArray => ((JArray)tpArray).ToObject<string[]>()
-                        .Select(tp => tp == "" ? null : Model.TrapPart.TrapParts[tp])
-                        .ToArray())
-                    .ToArray();
+
+                trapPartsArray
+                    .Select((row, i) => ((JArray)row)
+                        .Select((tp, j) => new { i, j, tp = tp.ToString() }))
+                    .SelectMany(x => x)
+                    .ToList()
+                    .ForEach(item => GameInfo.Loadout.TrapParts[item.i, item.j] = string.IsNullOrEmpty(item.tp) ? null : Model.TrapPart.TrapParts[item.tp]);
             }
 
             if (Settings.Instance.ContainsKey("guardians"))
@@ -500,7 +502,7 @@ namespace SingleplayerLauncher
                     if (i < ComBoxTrapPartsSlots.Count && j < ComBoxTrapPartsSlots[i].Count)
                     {
                         comboBoxHelper.InitializeComboBox(ComBoxTrapPartsSlots[i][j]);
-                        TrapPart current = GameInfo.Loadout.TrapParts[i][j];
+                        TrapPart current = GameInfo.Loadout.TrapParts[i,j];
                         ComBoxTrapPartsSlots[i][j].SelectedItem = current == null ? null : current.Name;
                     }
                 }
@@ -543,7 +545,7 @@ namespace SingleplayerLauncher
 
                     if (partName.Length > 0)
                     {
-                        GameInfo.Loadout.TrapParts[i][j] = TrapPart.TrapParts[partName];
+                        GameInfo.Loadout.TrapParts[i,j] = TrapPart.TrapParts[partName];
                     }
                 }
 
