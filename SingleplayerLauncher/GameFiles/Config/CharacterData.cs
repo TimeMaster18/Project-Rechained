@@ -3,6 +3,7 @@ using SingleplayerLauncher.Utils;
 using System;
 using System.Globalization;
 using System.Text;
+using System.Linq;
 
 namespace SingleplayerLauncher.GameFiles
 {
@@ -15,7 +16,7 @@ namespace SingleplayerLauncher.GameFiles
         private const string CharacterDataIniFileName = "DefaultCharacterData.ini";
         private const string CharacterDataIniPath = "..//SpitfireGame//Config//DefaultCharacterData.ini";
 
-        private const string RCharacterDataSection = "RCharacterData_0 RCharacterData";
+        private const string RCharacterDataSection = "RCharacterData_Time-Master RCharacterData";
 
         private const string DefaultPlayerName = "TimeMaster";
         private const string DefaultGuildTag = "~(^-^)~";
@@ -47,8 +48,10 @@ namespace SingleplayerLauncher.GameFiles
             _ = GameInfo.Loadout.Hero ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Hero), "Mandatory parameter");
             _ = GameInfo.Loadout.Dye ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Dye), "Mandatory parameter");
             _ = GameInfo.Loadout.SlotItems ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.SlotItems), "Mandatory parameter");
+            _ = GameInfo.Loadout.TrapParts ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.TrapParts), "Mandatory parameter");
             _ = GameInfo.Loadout.Guardians ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Guardians), "Mandatory parameter");
             _ = GameInfo.Loadout.Consumables ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Consumables), "Mandatory parameter");
+            _ = GameInfo.Loadout.Traits ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Traits), "Mandatory parameter");
             _ = GameInfo.Battleground.Difficulty ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
 
 
@@ -65,7 +68,8 @@ namespace SingleplayerLauncher.GameFiles
             int loadoutIdx = 1;
             foreach (SlotItem slotItem in GameInfo.Loadout.SlotItems)
             {
-                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, GenerateItemString(slotItem.ItemTemplateName, trapLevel: GameInfo.Battleground.Difficulty.TrapTier), index: loadoutIdx);  ;
+                bool isTrap = slotItem.GetType() == typeof(Trap);
+                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, GenerateItemString(slotItem.ItemTemplateName, trapLevel: GameInfo.Battleground.Difficulty.TrapTier, trapParts: isTrap ? GameInfo.Loadout.TrapParts[loadoutIdx - 1] : null), index: loadoutIdx);  ;
                 loadoutIdx++;
             }
 
@@ -157,7 +161,7 @@ namespace SingleplayerLauncher.GameFiles
 
         }
 
-        private static string GenerateItemString(string itemTemplateName, int? trapLevel = null, int? itemUseCount = null)
+        private static string GenerateItemString(string itemTemplateName, int? trapLevel = null, TrapPart[] trapParts = null, int? itemUseCount = null)
         {
             if (string.IsNullOrEmpty(itemTemplateName))
             {
@@ -176,6 +180,12 @@ namespace SingleplayerLauncher.GameFiles
             {
                 // - 1 since the config uses 0 to 6 instead of 1 to 7
                 stringBuilder.Append($", Strength={trapLevel.Value - 1}");
+            }
+
+            if (trapParts != null && trapParts.Length > 0)
+            {
+                var trapPartsString = string.Join(", ", trapParts.Select(tp => tp == null ? "" : $"\"{tp.ItemTinkerEffect}\""));
+                stringBuilder.Append($", ItemTinkerEffects=({trapPartsString})");
             }
 
             if (itemUseCount.HasValue)

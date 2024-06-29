@@ -16,391 +16,97 @@ namespace SingleplayerLauncher.Model
         {
             Name = ANTITRAP_VAMBRACE,
             ItemTemplateName = "SpitfireGame.RItemDisableTrapVambrace",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x02, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x89, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x1D, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x5E, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x47, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x68, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x2B, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xEB, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x25, 0xFE, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x07, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x3D, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x1B, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xB3, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x1E, 0xFD, 0xFF, 0xFF } },
-            }
+            Description = "Negates control effects for a short time after use."
         };
         public static Gear ArcaneBubbleBlower = new Gear()
         {
             Name = ARCANE_BUBBLE_BLOWER,
             ItemTemplateName = "SpitfireGame.RItemWeaponArcaneBubbleBlower",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xE3, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x4F, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xDD, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x1E, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x07, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x28, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xEB, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xAB, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE5, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC7, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xFD, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xDB, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x73, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xDE, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Creates a bomb that explodes after a time, dealing Arcane damage in that area. It's targets are susceptible to Arcane damage."
         };
         public static Gear FireWallBracers = new Gear()
         {
             Name = FIRE_WALL_BRACERS,
             ItemTemplateName = "SpitfireGame.RItemWeaponFlameWallBracers",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xE5, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x4E, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xDC, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x1D, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x06, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x27, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xEA, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xAA, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE4, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC6, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xFC, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xDA, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x72, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xDD, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Creates a wall of Fire igniting enemies who walk through it. Fire damage from the same Hero or Trap-type does not stack."
         };
         public static Gear FreedomTrinket = new Gear()
         {
             Name = FREEDOM_TRINKET,
             ItemTemplateName = "SpitfireGame.RItemTrinketFreedom",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xCE, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x56, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE6, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x27, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x10, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x31, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF4, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB4, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xEE, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD0, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x06, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE4, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x7C, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE7, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Negates control effects for a short time after use."
         };
         public static Gear GnomishRepairKit = new Gear()
         {
             Name = GNOMISH_REPAIR_KIT,
             ItemTemplateName = "SpitfireGame.RItemTrinketOrcToolkit",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xDC, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x51, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xDF, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x20, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x09, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x2A, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xED, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xAD, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE7, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC9, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xFF, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xDD, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x75, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE0, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Activates a targeted Trap even if it is on cooldown."
         };
         public static Gear GreaterFreedomTrinket = new Gear()
         {
             Name = GREATER_FREEDOM_TRINKET,
             ItemTemplateName = "SpitfireGame.RItemTrinketFreedomGreater",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xD0, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x55, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE5, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x26, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x0F, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x30, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF3, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB3, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xED, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xCF, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x05, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE3, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x7B, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE6, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Negates control effects for you and nearby allies/minions for a short time after use."
         };
         public static Gear HobgoblinCharm = new Gear()
         {
             Name = HOBGOBLIN_CHARM,
             ItemTemplateName = "SpitfireGame.RItemTrinketHobgoblinCharm",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xD4, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x54, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE3, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x24, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x0D, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x2E, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF1, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB1, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xEB, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xCD, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x03, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE1, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x79, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE4, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Heals an allied minion. Siege gear but can work on summoned allied minions."
         };
         public static Gear IceAmulet = new Gear()
         {
             Name = ICE_AMULET,
             ItemTemplateName = "SpitfireGame.RItemWeaponIceAmulet",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xE7, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x4D, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xDB, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x1C, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x05, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x26, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xE9, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xA9, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE3, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC5, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xFB, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xD9, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x71, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xDC, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Fires three projectiles at once. Frost damage applies chilled to enemies, which can cause them to become frozen."
         };
         public static Gear LightningRing = new Gear()
         {
             Name = LIGHTNING_RING,
             ItemTemplateName = "SpitfireGame.RItemWeaponLightningRing",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xEB, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x4B, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xD9, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x1A, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x03, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x24, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xE7, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xA7, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE1, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC3, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xF9, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xD7, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x6F, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xDA, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Fires a short burst of Lightning damage to enemies in range."
         };
         public static Gear MagesClover = new Gear()
         {
             Name = MAGES_CLOVER,
             ItemTemplateName = "SpitfireGame.RItemTrinketManaRegen",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xDA, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x70, 0xFF, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE0, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x21, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x0A, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x2B, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xEE, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xAE, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE8, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xCA, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x00, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xDE, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x76, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE1, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Grants a short period of increased mana regeneration. Effect is canceled upon taking damage."
         };
         public static Gear MagesPicnic = new Gear()
         {
             Name = MAGES_PICNIC,
             ItemTemplateName = "SpitfireGame.RItemTrinketMagesPicnic",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xD8, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x52, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE1, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x22, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x0B, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x2C, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xEF, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xAF, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE9, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xCB, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x01, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xDF, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x77, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE2, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Creates a totem that increases mana regeneration for nearby allied players."
         };
         public static Gear MendingRoot = new Gear()
         {
             Name = MENDING_ROOT,
             ItemTemplateName = "SpitfireGame.RItemTrinketHealing",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xD2, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x71, 0xFF, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE4, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x25, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x0E, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x2F, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF2, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB2, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xEC, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xCE, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x04, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE2, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x7A, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE5, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Grants a short duration of increased health regeneration. Being attacked cancels the regeneration."
         };
         public static Gear RingOfLastStand = new Gear()
         {
             Name = RING_OF_LAST_STAND,
             ItemTemplateName = "SpitfireGame.RItemTrinketLastStand",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xD6, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x53, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE2, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x23, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x0C, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x2D, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF0, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB0, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xEA, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xCC, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x02, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE0, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x78, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE3, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Grants the Hero damage immunity for a short duration."
         };
         public static Gear RingOfStorms = new Gear()
         {
             Name = RING_OF_STORMS,
             ItemTemplateName = "SpitfireGame.RItemWeaponLightningCloudRing",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xE9, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x4C, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xDA, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x1B, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x04, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x25, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xE8, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xA8, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE2, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC4, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xFA, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xD8, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x70, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xDB, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Creates a storm that deals Lightning damage to enemies in range. Enemies killed by Lightning explode, dealing damage in an area around them."
         };
         public static Gear TeleportationRing = new Gear()
         {
             Name = TELEPORTATION_RING,
             ItemTemplateName = "SpitfireGame.RItemTrinketTeleport",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xDE, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x50, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xDE, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x1F, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x08, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x29, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xEC, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xAC, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xE6, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xC8, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0xFE, 0xFC, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xDC, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x74, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xDF, 0xFC, 0xFF, 0xFF } },
-            }
+            Description = "Teleports the Hero back to its allied rift. Ring takes 1s to cast. Taking damage interrupts cast."
+        };
+        public static Gear FlameBracers = new Gear()
+        {
+            Name = FLAME_BRACERS,
+            ItemTemplateName = "gear_firebracers.gear_firebracers",
+            Description = "Launches a Fireball that deals significant damage over time to the first target hit. Fire damage from the same hero or trap-type does not stack.."
         };
 
 
@@ -420,7 +126,8 @@ namespace SingleplayerLauncher.Model
             { MENDING_ROOT, MendingRoot },
             { RING_OF_LAST_STAND, RingOfLastStand },
             { RING_OF_STORMS, RingOfStorms },
-            { TELEPORTATION_RING, TeleportationRing }
+            { TELEPORTATION_RING, TeleportationRing },
+            { FLAME_BRACERS, FlameBracers }
         };
     }
 }

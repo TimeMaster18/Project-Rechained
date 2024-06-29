@@ -1,0 +1,45 @@
+﻿namespace SingleplayerLauncher.Names
+{
+    public static class TrapPart
+    {
+        public const string
+            DOUBLE_TANK_ACCUMULATOR = "Double Tank Accumulator",
+            STUNNING_ACCUMULATOR = "Stunning Accumulator",
+            CAPACITANCE_ATTUNER = "Capacitance Attuner",
+            DEEP_CELL_ATTUNER = "Deep Cell Attuner",
+            REFLECTIVE_ARMOR = "Reflective Armor",
+            REUSABLE_SHIELDING = "Reusable Shielding",
+            REVENGE_RUNE = "Revenge Rune",
+            BRAIDED_COIL = "Braided Coil",
+            DISCOUNT_COIL = "Discount Coil",
+            SELF_IMPROVING_COIL = "Self-Improving Coil",
+            QUICK_TRAP_COMPONENTS = "Quick Trap Components",
+            RENTAL_PARTS = "Rental Parts",
+            STAMPED_PARTS = "Stamped Parts",
+            SUBSIDIZED_PARTS = "Subsidized Parts",
+            VANITY_PLATING = "Vanity Plating",
+            BOUNTY_GENERATOR = "Bounty Generator",
+            HEALTH_SIPHON = "Health Siphon",
+            MANA_SIPHON = "Mana Siphon",
+            XP_SIPHON = "XP Siphon",
+            DOUBLE_STRUTS = "Double Struts",
+            HERO_RUNED_FRAME = "Hero Runed Frame",
+            CONTROLLED_RESONATOR = "Controlled Resonator",
+            FIRE_RESONATOR = "Fire Resonator",
+            ICE_RESONATOR = "Ice Resonator",
+            KINETIC_RESONATOR = "Kinetic Resonator",
+            UNCHAINED_RESONATOR = "Unchained Resonator",
+            WEAKNESS_RESONATOR = "Debilitation Resonator",
+            CHARGING_SPRING = "Charging Spring",
+            DOUBLE_SPRING = "Double Spring",
+            SHORT_SPRING = "Short Spring",
+            AMBUSH_TRIGGER = "Ambush Trigger",
+            COMBO_GENERATOR = "Combo Generator",
+            CROWD_CONTROL_TRIGGER = "Crowd Control Trigger",
+            EXECUTION_TRIGGER = "Execution Trigger",
+            HEAT_ACTIVATED_TRIGGER = "Heat Activated Trigger",
+            HEAVY_PRESSURE_PLATE = "Heavy Pressure Plate",
+            KINETIC_RECLAIMER = "Kinetic Reclaimer",
+            LIGHT_PRESSURE_PLATE = "Light Pressure Plate";
+    }
+}

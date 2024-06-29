@@ -68,6 +68,33 @@ namespace SingleplayerLauncher
             this.labelGuardianSlot1 = new System.Windows.Forms.Label();
             this.comBoxGuardianSlot2 = new System.Windows.Forms.ComboBox();
             this.groupBoxLoadout = new System.Windows.Forms.GroupBox();
+            this.comBoxTrapPartsSlot9Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot9Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot9Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot8Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot8Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot8Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot7Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot7Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot7Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot6Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot6Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot6Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot5Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot5Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot5Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot4Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot4Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot4Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot3Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot3Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot3Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot2Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot2Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot2Part1 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot1Part3 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot1Part2 = new System.Windows.Forms.ComboBox();
+            this.comBoxTrapPartsSlot1Part1 = new System.Windows.Forms.ComboBox();
             this.labelTraitNoBonusSlot = new System.Windows.Forms.Label();
             this.comboxTraitYellowSlot = new System.Windows.Forms.ComboBox();
             this.labelTraitYellowSlot = new System.Windows.Forms.Label();
@@ -511,6 +538,33 @@ namespace SingleplayerLauncher
             // groupBoxLoadout
             // 
             this.groupBoxLoadout.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot9Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot9Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot9Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot8Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot8Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot8Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot7Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot7Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot7Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot6Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot6Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot6Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot5Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot5Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot5Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot4Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot4Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot4Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot3Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot3Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot3Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot2Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot2Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot2Part1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot1Part3);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot1Part2);
+            this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot1Part1);
             this.groupBoxLoadout.Controls.Add(this.labelTraitNoBonusSlot);
             this.groupBoxLoadout.Controls.Add(this.comboxTraitYellowSlot);
             this.groupBoxLoadout.Controls.Add(this.labelTraitYellowSlot);
@@ -559,6 +613,276 @@ namespace SingleplayerLauncher
             this.groupBoxLoadout.TabStop = false;
             this.groupBoxLoadout.Text = "Loadout";
             // 
+            // comBoxTrapPartsSlot9Part3
+            // 
+            this.comBoxTrapPartsSlot9Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot9Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot9Part3.Location = new System.Drawing.Point(454, 442);
+            this.comBoxTrapPartsSlot9Part3.Name = "comBoxTrapPartsSlot9Part3";
+            this.comBoxTrapPartsSlot9Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot9Part3.TabIndex = 63;
+            this.comBoxTrapPartsSlot9Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot9Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot9Part2
+            // 
+            this.comBoxTrapPartsSlot9Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot9Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot9Part2.Location = new System.Drawing.Point(344, 442);
+            this.comBoxTrapPartsSlot9Part2.Name = "comBoxTrapPartsSlot9Part2";
+            this.comBoxTrapPartsSlot9Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot9Part2.TabIndex = 62;
+            this.comBoxTrapPartsSlot9Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot9Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot9Part1
+            // 
+            this.comBoxTrapPartsSlot9Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot9Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot9Part1.Location = new System.Drawing.Point(234, 442);
+            this.comBoxTrapPartsSlot9Part1.Name = "comBoxTrapPartsSlot9Part1";
+            this.comBoxTrapPartsSlot9Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot9Part1.TabIndex = 61;
+            this.comBoxTrapPartsSlot9Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot9Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot8Part3
+            // 
+            this.comBoxTrapPartsSlot8Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot8Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot8Part3.Location = new System.Drawing.Point(454, 415);
+            this.comBoxTrapPartsSlot8Part3.Name = "comBoxTrapPartsSlot8Part3";
+            this.comBoxTrapPartsSlot8Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot8Part3.TabIndex = 60;
+            this.comBoxTrapPartsSlot8Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot8Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot8Part2
+            // 
+            this.comBoxTrapPartsSlot8Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot8Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot8Part2.Location = new System.Drawing.Point(344, 415);
+            this.comBoxTrapPartsSlot8Part2.Name = "comBoxTrapPartsSlot8Part2";
+            this.comBoxTrapPartsSlot8Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot8Part2.TabIndex = 59;
+            this.comBoxTrapPartsSlot8Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot8Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot8Part1
+            // 
+            this.comBoxTrapPartsSlot8Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot8Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot8Part1.Location = new System.Drawing.Point(234, 415);
+            this.comBoxTrapPartsSlot8Part1.Name = "comBoxTrapPartsSlot8Part1";
+            this.comBoxTrapPartsSlot8Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot8Part1.TabIndex = 58;
+            this.comBoxTrapPartsSlot8Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot8Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot7Part3
+            // 
+            this.comBoxTrapPartsSlot7Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot7Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot7Part3.Location = new System.Drawing.Point(454, 388);
+            this.comBoxTrapPartsSlot7Part3.Name = "comBoxTrapPartsSlot7Part3";
+            this.comBoxTrapPartsSlot7Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot7Part3.TabIndex = 57;
+            this.comBoxTrapPartsSlot7Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot7Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot7Part2
+            // 
+            this.comBoxTrapPartsSlot7Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot7Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot7Part2.Location = new System.Drawing.Point(344, 388);
+            this.comBoxTrapPartsSlot7Part2.Name = "comBoxTrapPartsSlot7Part2";
+            this.comBoxTrapPartsSlot7Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot7Part2.TabIndex = 56;
+            this.comBoxTrapPartsSlot7Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot7Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot7Part1
+            // 
+            this.comBoxTrapPartsSlot7Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot7Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot7Part1.Location = new System.Drawing.Point(234, 388);
+            this.comBoxTrapPartsSlot7Part1.Name = "comBoxTrapPartsSlot7Part1";
+            this.comBoxTrapPartsSlot7Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot7Part1.TabIndex = 55;
+            this.comBoxTrapPartsSlot7Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot7Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot6Part3
+            // 
+            this.comBoxTrapPartsSlot6Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot6Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot6Part3.Location = new System.Drawing.Point(454, 361);
+            this.comBoxTrapPartsSlot6Part3.Name = "comBoxTrapPartsSlot6Part3";
+            this.comBoxTrapPartsSlot6Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot6Part3.TabIndex = 54;
+            this.comBoxTrapPartsSlot6Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot6Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot6Part2
+            // 
+            this.comBoxTrapPartsSlot6Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot6Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot6Part2.Location = new System.Drawing.Point(344, 361);
+            this.comBoxTrapPartsSlot6Part2.Name = "comBoxTrapPartsSlot6Part2";
+            this.comBoxTrapPartsSlot6Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot6Part2.TabIndex = 53;
+            this.comBoxTrapPartsSlot6Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot6Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot6Part1
+            // 
+            this.comBoxTrapPartsSlot6Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot6Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot6Part1.Location = new System.Drawing.Point(234, 361);
+            this.comBoxTrapPartsSlot6Part1.Name = "comBoxTrapPartsSlot6Part1";
+            this.comBoxTrapPartsSlot6Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot6Part1.TabIndex = 52;
+            this.comBoxTrapPartsSlot6Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot6Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot5Part3
+            // 
+            this.comBoxTrapPartsSlot5Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot5Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot5Part3.Location = new System.Drawing.Point(454, 334);
+            this.comBoxTrapPartsSlot5Part3.Name = "comBoxTrapPartsSlot5Part3";
+            this.comBoxTrapPartsSlot5Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot5Part3.TabIndex = 51;
+            this.comBoxTrapPartsSlot5Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot5Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot5Part2
+            // 
+            this.comBoxTrapPartsSlot5Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot5Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot5Part2.Location = new System.Drawing.Point(344, 334);
+            this.comBoxTrapPartsSlot5Part2.Name = "comBoxTrapPartsSlot5Part2";
+            this.comBoxTrapPartsSlot5Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot5Part2.TabIndex = 50;
+            this.comBoxTrapPartsSlot5Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot5Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot5Part1
+            // 
+            this.comBoxTrapPartsSlot5Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot5Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot5Part1.Location = new System.Drawing.Point(234, 334);
+            this.comBoxTrapPartsSlot5Part1.Name = "comBoxTrapPartsSlot5Part1";
+            this.comBoxTrapPartsSlot5Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot5Part1.TabIndex = 49;
+            this.comBoxTrapPartsSlot5Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot5Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot4Part3
+            // 
+            this.comBoxTrapPartsSlot4Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot4Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot4Part3.Location = new System.Drawing.Point(454, 307);
+            this.comBoxTrapPartsSlot4Part3.Name = "comBoxTrapPartsSlot4Part3";
+            this.comBoxTrapPartsSlot4Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot4Part3.TabIndex = 48;
+            this.comBoxTrapPartsSlot4Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot4Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot4Part2
+            // 
+            this.comBoxTrapPartsSlot4Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot4Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot4Part2.Location = new System.Drawing.Point(344, 307);
+            this.comBoxTrapPartsSlot4Part2.Name = "comBoxTrapPartsSlot4Part2";
+            this.comBoxTrapPartsSlot4Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot4Part2.TabIndex = 47;
+            this.comBoxTrapPartsSlot4Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot4Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot4Part1
+            // 
+            this.comBoxTrapPartsSlot4Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot4Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot4Part1.Location = new System.Drawing.Point(234, 307);
+            this.comBoxTrapPartsSlot4Part1.Name = "comBoxTrapPartsSlot4Part1";
+            this.comBoxTrapPartsSlot4Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot4Part1.TabIndex = 46;
+            this.comBoxTrapPartsSlot4Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot4Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot3Part3
+            // 
+            this.comBoxTrapPartsSlot3Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot3Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot3Part3.Location = new System.Drawing.Point(454, 280);
+            this.comBoxTrapPartsSlot3Part3.Name = "comBoxTrapPartsSlot3Part3";
+            this.comBoxTrapPartsSlot3Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot3Part3.TabIndex = 45;
+            this.comBoxTrapPartsSlot3Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot3Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot3Part2
+            // 
+            this.comBoxTrapPartsSlot3Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot3Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot3Part2.Location = new System.Drawing.Point(344, 280);
+            this.comBoxTrapPartsSlot3Part2.Name = "comBoxTrapPartsSlot3Part2";
+            this.comBoxTrapPartsSlot3Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot3Part2.TabIndex = 44;
+            this.comBoxTrapPartsSlot3Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot3Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot3Part1
+            // 
+            this.comBoxTrapPartsSlot3Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot3Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot3Part1.Location = new System.Drawing.Point(234, 280);
+            this.comBoxTrapPartsSlot3Part1.Name = "comBoxTrapPartsSlot3Part1";
+            this.comBoxTrapPartsSlot3Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot3Part1.TabIndex = 43;
+            this.comBoxTrapPartsSlot3Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot3Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot2Part3
+            // 
+            this.comBoxTrapPartsSlot2Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot2Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot2Part3.Location = new System.Drawing.Point(454, 253);
+            this.comBoxTrapPartsSlot2Part3.Name = "comBoxTrapPartsSlot2Part3";
+            this.comBoxTrapPartsSlot2Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot2Part3.TabIndex = 42;
+            this.comBoxTrapPartsSlot2Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot2Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot2Part2
+            // 
+            this.comBoxTrapPartsSlot2Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot2Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot2Part2.Location = new System.Drawing.Point(344, 253);
+            this.comBoxTrapPartsSlot2Part2.Name = "comBoxTrapPartsSlot2Part2";
+            this.comBoxTrapPartsSlot2Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot2Part2.TabIndex = 41;
+            this.comBoxTrapPartsSlot2Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot2Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot2Part1
+            // 
+            this.comBoxTrapPartsSlot2Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot2Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot2Part1.Location = new System.Drawing.Point(234, 253);
+            this.comBoxTrapPartsSlot2Part1.Name = "comBoxTrapPartsSlot2Part1";
+            this.comBoxTrapPartsSlot2Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot2Part1.TabIndex = 40;
+            this.comBoxTrapPartsSlot2Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot2Part1_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot1Part3
+            // 
+            this.comBoxTrapPartsSlot1Part3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot1Part3.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot1Part3.Location = new System.Drawing.Point(454, 226);
+            this.comBoxTrapPartsSlot1Part3.Name = "comBoxTrapPartsSlot1Part3";
+            this.comBoxTrapPartsSlot1Part3.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot1Part3.TabIndex = 39;
+            this.comBoxTrapPartsSlot1Part3.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot1Part3_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot1Part2
+            // 
+            this.comBoxTrapPartsSlot1Part2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot1Part2.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot1Part2.Location = new System.Drawing.Point(344, 226);
+            this.comBoxTrapPartsSlot1Part2.Name = "comBoxTrapPartsSlot1Part2";
+            this.comBoxTrapPartsSlot1Part2.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot1Part2.TabIndex = 38;
+            this.comBoxTrapPartsSlot1Part2.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot1Part2_SelectedIndexChanged);
+            // 
+            // comBoxTrapPartsSlot1Part1
+            // 
+            this.comBoxTrapPartsSlot1Part1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxTrapPartsSlot1Part1.FormattingEnabled = true;
+            this.comBoxTrapPartsSlot1Part1.Location = new System.Drawing.Point(234, 226);
+            this.comBoxTrapPartsSlot1Part1.Name = "comBoxTrapPartsSlot1Part1";
+            this.comBoxTrapPartsSlot1Part1.Size = new System.Drawing.Size(108, 21);
+            this.comBoxTrapPartsSlot1Part1.TabIndex = 37;
+            this.comBoxTrapPartsSlot1Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot1Part1_SelectedIndexChanged_1);
+            // 
             // labelTraitNoBonusSlot
             // 
             this.labelTraitNoBonusSlot.AutoSize = true;
@@ -584,9 +908,9 @@ namespace SingleplayerLauncher
             this.labelTraitYellowSlot.BackColor = System.Drawing.Color.Gold;
             this.labelTraitYellowSlot.Location = new System.Drawing.Point(278, 105);
             this.labelTraitYellowSlot.Name = "labelTraitYellowSlot";
-            this.labelTraitYellowSlot.Size = new System.Drawing.Size(62, 13);
+            this.labelTraitYellowSlot.Size = new System.Drawing.Size(69, 13);
             this.labelTraitYellowSlot.TabIndex = 34;
-            this.labelTraitYellowSlot.Text = "Yellow Trait";
+            this.labelTraitYellowSlot.Text = "Triangle Trait";
             // 
             // comboxTraitNoBonusSlot
             // 
@@ -773,7 +1097,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot1.FormattingEnabled = true;
             this.comBoxLoadoutSlot1.Location = new System.Drawing.Point(45, 226);
             this.comBoxLoadoutSlot1.Name = "comBoxLoadoutSlot1";
-            this.comBoxLoadoutSlot1.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot1.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot1.TabIndex = 0;
             this.comBoxLoadoutSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot1_SelectedIndexChanged);
             // 
@@ -783,7 +1107,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot2.FormattingEnabled = true;
             this.comBoxLoadoutSlot2.Location = new System.Drawing.Point(45, 253);
             this.comBoxLoadoutSlot2.Name = "comBoxLoadoutSlot2";
-            this.comBoxLoadoutSlot2.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot2.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot2.TabIndex = 1;
             this.comBoxLoadoutSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot2_SelectedIndexChanged);
             // 
@@ -793,7 +1117,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot3.FormattingEnabled = true;
             this.comBoxLoadoutSlot3.Location = new System.Drawing.Point(45, 280);
             this.comBoxLoadoutSlot3.Name = "comBoxLoadoutSlot3";
-            this.comBoxLoadoutSlot3.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot3.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot3.TabIndex = 2;
             this.comBoxLoadoutSlot3.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot3_SelectedIndexChanged);
             // 
@@ -803,7 +1127,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot9.FormattingEnabled = true;
             this.comBoxLoadoutSlot9.Location = new System.Drawing.Point(45, 442);
             this.comBoxLoadoutSlot9.Name = "comBoxLoadoutSlot9";
-            this.comBoxLoadoutSlot9.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot9.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot9.TabIndex = 8;
             this.comBoxLoadoutSlot9.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot9_SelectedIndexChanged);
             // 
@@ -813,7 +1137,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot4.FormattingEnabled = true;
             this.comBoxLoadoutSlot4.Location = new System.Drawing.Point(45, 307);
             this.comBoxLoadoutSlot4.Name = "comBoxLoadoutSlot4";
-            this.comBoxLoadoutSlot4.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot4.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot4.TabIndex = 3;
             this.comBoxLoadoutSlot4.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot4_SelectedIndexChanged);
             // 
@@ -823,7 +1147,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot8.FormattingEnabled = true;
             this.comBoxLoadoutSlot8.Location = new System.Drawing.Point(45, 415);
             this.comBoxLoadoutSlot8.Name = "comBoxLoadoutSlot8";
-            this.comBoxLoadoutSlot8.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot8.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot8.TabIndex = 7;
             this.comBoxLoadoutSlot8.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot8_SelectedIndexChanged);
             // 
@@ -833,7 +1157,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot5.FormattingEnabled = true;
             this.comBoxLoadoutSlot5.Location = new System.Drawing.Point(45, 334);
             this.comBoxLoadoutSlot5.Name = "comBoxLoadoutSlot5";
-            this.comBoxLoadoutSlot5.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot5.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot5.TabIndex = 4;
             this.comBoxLoadoutSlot5.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot5_SelectedIndexChanged);
             // 
@@ -843,7 +1167,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot7.FormattingEnabled = true;
             this.comBoxLoadoutSlot7.Location = new System.Drawing.Point(45, 388);
             this.comBoxLoadoutSlot7.Name = "comBoxLoadoutSlot7";
-            this.comBoxLoadoutSlot7.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot7.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot7.TabIndex = 6;
             this.comBoxLoadoutSlot7.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot7_SelectedIndexChanged);
             // 
@@ -853,7 +1177,7 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot6.FormattingEnabled = true;
             this.comBoxLoadoutSlot6.Location = new System.Drawing.Point(45, 361);
             this.comBoxLoadoutSlot6.Name = "comBoxLoadoutSlot6";
-            this.comBoxLoadoutSlot6.Size = new System.Drawing.Size(216, 21);
+            this.comBoxLoadoutSlot6.Size = new System.Drawing.Size(159, 21);
             this.comBoxLoadoutSlot6.TabIndex = 5;
             this.comBoxLoadoutSlot6.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadoutSlot6_SelectedIndexChanged);
             // 
@@ -1003,6 +1327,33 @@ namespace SingleplayerLauncher
         private System.Windows.Forms.ComboBox comboxTraitGreenSlot;
         private System.Windows.Forms.Label labelTraitGreenSlot;
         private System.Windows.Forms.ComboBox comboxTraitBlueSlot;
+        private ComboBox comBoxTrapPartsSlot1Part3;
+        private ComboBox comBoxTrapPartsSlot1Part2;
+        private ComboBox comBoxTrapPartsSlot1Part1;
+        private ComboBox comBoxTrapPartsSlot3Part3;
+        private ComboBox comBoxTrapPartsSlot3Part2;
+        private ComboBox comBoxTrapPartsSlot3Part1;
+        private ComboBox comBoxTrapPartsSlot2Part3;
+        private ComboBox comBoxTrapPartsSlot2Part2;
+        private ComboBox comBoxTrapPartsSlot2Part1;
+        private ComboBox comBoxTrapPartsSlot9Part3;
+        private ComboBox comBoxTrapPartsSlot9Part2;
+        private ComboBox comBoxTrapPartsSlot9Part1;
+        private ComboBox comBoxTrapPartsSlot8Part3;
+        private ComboBox comBoxTrapPartsSlot8Part2;
+        private ComboBox comBoxTrapPartsSlot8Part1;
+        private ComboBox comBoxTrapPartsSlot7Part3;
+        private ComboBox comBoxTrapPartsSlot7Part2;
+        private ComboBox comBoxTrapPartsSlot7Part1;
+        private ComboBox comBoxTrapPartsSlot6Part3;
+        private ComboBox comBoxTrapPartsSlot6Part2;
+        private ComboBox comBoxTrapPartsSlot6Part1;
+        private ComboBox comBoxTrapPartsSlot5Part3;
+        private ComboBox comBoxTrapPartsSlot5Part2;
+        private ComboBox comBoxTrapPartsSlot5Part1;
+        private ComboBox comBoxTrapPartsSlot4Part3;
+        private ComboBox comBoxTrapPartsSlot4Part2;
+        private ComboBox comBoxTrapPartsSlot4Part1;
     }
 }
 

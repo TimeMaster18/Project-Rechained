@@ -17,6 +17,7 @@
             ICE_AMULET = "Ice Amulet",
             RING_OF_STORMS = "Ring of Storms",
             LIGHTNING_RING = "Lightning Ring",
+            FLAME_BRACERS = "Flame Bracers",
             ANTITRAP_VAMBRACE = "AntiTrap Vambrace";
     }
 }

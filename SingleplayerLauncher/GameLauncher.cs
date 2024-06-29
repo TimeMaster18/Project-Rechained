@@ -160,8 +160,7 @@ namespace SingleplayerLauncher
             string languageArg = LANGUAGE_OPTION + Language.GetKeyFromValue(language);
 
             arguments += map;
-            arguments += "?listen?PlayerGUID=0"; // TODO Make conditional on flag like the methods to apply loadout and such
-            arguments += "?listen?PlayerGUID=0 --net_mode=ListenServer"; // TODO Adjust for multiplayer
+            arguments += "?listen?PlayerGUID=Time-Master --net_mode=ListenServer"; // TODO Adjust for multiplayer
             arguments += defaultArgs;
             arguments += languageArg;
 

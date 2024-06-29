@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using static SingleplayerLauncher.Names.Hero;
 using static SingleplayerLauncher.Names.Trap;
+using static SingleplayerLauncher.Names.TrapPartSlot;
 
 namespace SingleplayerLauncher.Model
 {
@@ -29,6 +30,7 @@ namespace SingleplayerLauncher.Model
         public float IncreasePerTier { get; private set; }
         public int CoinCostOffset { get; private set; } // in SpitfireUPK
         public int CoinCost { get; private set; }
+        public string[] TrapPartSlots { get; private set; }
 
         // private constructor
         Trap() { }
@@ -37,6 +39,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ArcaneBowlingBall = new Trap()
         {
             Name = ARCANE_BOWLING_BALL,
+            Description = "Fires an orb in a straight line, dealing arcane damage. The orb's damage causes subsequent Arcane attacks to deal more damage. +25% damage when used by Stinkeye.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapArcaneOrb",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
@@ -67,6 +71,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ArcanePhaser = new Trap()
         {
             Name = ARCANE_PHASER,
+            Description = "Emits a cloud of Arcane energy when triggered, dealing Arcane damage to enemies that walk across it. Trap expires after firing 9 times.",
+            TrapPartSlots = new string[] { COMPONENTS, FIELD, RESONATOR },
             ItemTemplateName = "SpitfireGame.RItemTrapArcanePhase",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
@@ -97,6 +103,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ArrowWall = new Trap()
         {
             Name = ARROW_WALL,
+            Description = "Fires a barrage of arrows in a straight line when triggered, dealing Physical damage.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapArrowWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
@@ -127,6 +135,8 @@ namespace SingleplayerLauncher.Model
         public static Trap BGHArrowWall = new Trap()
         {
             Name = BGH_ARROW_WALL,
+            Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Fires a barrage of magical, mercenary and boss seeking arrows, dealing a portion of the target's max health and a bonus as damage.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapArrowWallGlorySeeker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
@@ -157,6 +167,8 @@ namespace SingleplayerLauncher.Model
         public static Trap CeilingBallista = new Trap()
         {
             Name = CEILING_BALLISTA,
+            Description = "Fires long-range arrows radially from above when triggered, dealing Physical damage. It also targets Unstable Rifts but deals very low damage to them  opposed to the Big Game Hunting Ballista.Ballistas, activation range is lengthened / shortened by Line of Sight(LoS).So if minions come around a corner, the activation range is changed based on the trap's LoS and any Triggers would activate at that point.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeiling",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
@@ -187,6 +199,8 @@ namespace SingleplayerLauncher.Model
         public static Trap DragonsLance = new Trap()
         {
             Name = DRAGONS_LANCE,
+            Description = "Fires a magical lance when triggered, dealing Arcane damage. Lance casts a debuff, causing Arcane attacks to deal more damage. Dragon's Lance, activation range is lengthened / shortened by Line of Sight(LoS).So if minions come around a corner, the activation range is changed based on the trap's LoS and any Triggers would activate at that point.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeilingArcane",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
@@ -217,6 +231,8 @@ namespace SingleplayerLauncher.Model
         public static Trap BGHCeilingBallista = new Trap()
         {
             Name = BGH_CEILING_BALLISTA,
+            Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Also attacks Unstable Rifts Fires Mercenary and Boss seeking arrows, dealing a portion of the target's max health plus a bonus as damage.", 
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeilingGlorySeeker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
@@ -247,6 +263,8 @@ namespace SingleplayerLauncher.Model
         public static Trap Barricade = new Trap()
         {
             Name = BARRICADE,
+            Description = "Blocks and redirects Minion paths. Useful for forcing Minions into Traps.",
+            TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapBarricade",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
@@ -277,6 +295,8 @@ namespace SingleplayerLauncher.Model
         public static Trap GreatWallBarricade = new Trap()
         {
             Name = GREAT_WALL_BARRICADE,
+            Description = "Blocks and redirects minions. The Great Wall Barricade is a longer version of the Barricade.",
+            TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapBarricadeGreatWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
@@ -307,6 +327,8 @@ namespace SingleplayerLauncher.Model
         public static Trap BoomBarrel = new Trap()
         {
             Name = BOOM_BARREL,
+            Description = "Explodes when hit, dealing damage in a small area. -20% cost when used by Deadeye.",
+            TrapPartSlots = new string[] { RESONATOR, COMPONENTS, RESONATOR },
             ItemTemplateName = "SpitfireGame.RItemTrapBoomBarrel",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
@@ -337,6 +359,8 @@ namespace SingleplayerLauncher.Model
         public static Trap BoomBarrelRoller = new Trap()
         {
             Name = BOOM_BARREL_ROLLER,
+            Description = "Occasionally rolls out Boom Barrels which explode when hit, dealing damage in a small area.",
+            TrapPartSlots = new string[] { COIL, COMPONENTS, COIL },
             ItemTemplateName = "SpitfireGame.RItemTrapBoomBarrelDispenser",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
@@ -367,6 +391,8 @@ namespace SingleplayerLauncher.Model
         public static Trap BoulderChute = new Trap()
         {
             Name = BOULDER_CHUTE,
+            Description = "Drops boulders on Enemies when shot by a hero. Boulders deal Physical damage.",
+            TrapPartSlots = new string[] { COMPONENTS, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapBoulderChute",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
@@ -397,6 +423,8 @@ namespace SingleplayerLauncher.Model
         public static Trap IcicleImpaler = new Trap()
         {
             Name = ICICLE_IMPALER,
+            Description = "Drops sharp icicles when shot by a Hero, dealing Frost damage and casting Chilled on Enemies.",
+            TrapPartSlots = new string[] { COMPONENTS, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapBoulderChuteFrost",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
@@ -427,6 +455,8 @@ namespace SingleplayerLauncher.Model
         public static Trap Brimstone = new Trap()
         {
             Name = BRIMSTONE,
+            Description = "Burns Enemies that walk across its embers, dealing Fire damage over time. Fire damage from multiple brimstones does not stack.",
+            TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapBrimstone",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
@@ -457,6 +487,8 @@ namespace SingleplayerLauncher.Model
         public static Trap CoinForge = new Trap()
         {
             Name = COIN_FORGE,
+            Description = "Enemies are worth 64% additional coin if they are killed on this trap. +10% additional coin when used by Dobbin.",
+            TrapPartSlots = new string[] { FIELD, FIELD, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapCoinForge",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
@@ -487,6 +519,8 @@ namespace SingleplayerLauncher.Model
         public static Trap CursedGround = new Trap()
         {
             Name = CURSED_GROUND,
+            Description = "Deals Arcane damage that increases as Enemies stay on this tile. Also causes subsequent Arcane attacks to deal more damage. +25% damage when used by Oziel.",
+            TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapCursedGround",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
@@ -519,6 +553,8 @@ namespace SingleplayerLauncher.Model
         public static Trap Decoy = new Trap()
         {
             Name = DECOY,
+            Description = "Attracts Enemies to attack it until it is destroyed. The decoy does not respawn and must be replaced. Trap is free when used by Maximilian.",
+            TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapDecoySturdy",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
@@ -548,6 +584,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SpitfireWall = new Trap()
         {
             Name = SPITFIRE_WALL,
+            Description = "Spits fireballs at Enemies, dealing Fire damage over time. Fire damage from multiple spitfire walls does not stack.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapFireArrowWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
@@ -578,6 +616,8 @@ namespace SingleplayerLauncher.Model
         public static Trap FireCracker = new Trap()
         {
             Name = FIRE_CRACKER,
+            Description = "Emits a fiery mist, dealing Fire damage over time when triggered. Fire damage from multiple fire crackers does not stack.",
+            TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapFireCracks",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
@@ -608,6 +648,8 @@ namespace SingleplayerLauncher.Model
         public static Trap FlipTrap = new Trap()
         {
             Name = FLIP_TRAP,
+            Description = "Flips enemies into the air when triggered. This trap is useful for propelling Enemies into other traps.",
+            TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapFlip",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
@@ -638,6 +680,8 @@ namespace SingleplayerLauncher.Model
         public static Trap FloorScorcher = new Trap()
         {
             Name = FLOOR_SCORCHER,
+            Description = "Scorches Enemies when triggered, dealing Fire damage over time. Fire damage from multiple floor scorchers does not stack.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapFloorScorcher",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
@@ -668,6 +712,8 @@ namespace SingleplayerLauncher.Model
         public static Trap TempleAlarmGong = new Trap()
         {
             Name = TEMPLE_ALARM_GONG,
+            Description = "This ancient gong sounds an alarm when Enemies approach and slows them by 70%. -20% cooldown when used by Yi-Lin.",
+            TrapPartSlots = new string[] { FIELD, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapGong",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
@@ -701,6 +747,8 @@ namespace SingleplayerLauncher.Model
         public static Trap Grinder = new Trap()
         {
             Name = GRINDER,
+            Description = "Grinds up Enemies walking past it, dealing Physical damage until it jams. After jamming, the Grinder must cooldown to reset.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapGrinder",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
@@ -731,6 +779,8 @@ namespace SingleplayerLauncher.Model
         public static Trap QuarterPounder = new Trap()
         {
             Name = QUARTER_POUNDER,
+            Description = "Pounds one quarter of the trap area when triggered, dealing high Physical damage and stunning Minions.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapHammerDrop",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
@@ -761,6 +811,8 @@ namespace SingleplayerLauncher.Model
         public static Trap Haymaker = new Trap()
         {
             Name = HAYMAKER,
+            Description = "Descends from the ceiling and spins when triggered, knocking Enemies around and dealing Physical damage.",
+            TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapHaymaker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
@@ -791,6 +843,8 @@ namespace SingleplayerLauncher.Model
         public static Trap HealingWell = new Trap()
         {
             Name = HEALING_WELL,
+            Description = "Casts a health regeneration buff on an ally. The buff is dispelled upon taking damage. Once used, it must reset.",
+            TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapHealingWell",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
@@ -821,6 +875,8 @@ namespace SingleplayerLauncher.Model
         public static Trap IceShard = new Trap()
         {
             Name = ICE_SHARD,
+            Description = "Cuts enemies, dealing Frost damage and casting Chilled on them. Enemies are frozen after multiple stacks of Chilled (5 stacks).",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapIceSpike",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
@@ -851,6 +907,8 @@ namespace SingleplayerLauncher.Model
         public static Trap IceVent = new Trap()
         {
             Name = ICE_VENT,
+            Description = "Emits icy mist that deals Frost damage and casts Chilled on enemies. Enemies are frozen after multiple stacks of Chilled (5 stacks). +25% damage when used by Hogarth.",
+            TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },            
             ItemTemplateName = "SpitfireGame.RItemTrapIceVent",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
@@ -881,6 +939,8 @@ namespace SingleplayerLauncher.Model
         public static Trap LightningRod = new Trap()
         {
             Name = LIGHTNING_ROD,
+            Description = "Shocks Enemies beneath it with lightning when triggered. Every few times this trap fires, it becomes more powerful, allowing its attack to chain to additional Enemies.",
+            TrapPartSlots = new string[] { COMPONENTS, SPRING, TRIGGER },                        
             ItemTemplateName = "SpitfireGame.RItemTrapLightningRod",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
@@ -911,6 +971,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ManaWell = new Trap()
         {
             Name = MANA_WELL,
+            Description = "Grants a mana regeneration buff to a nearby ally. Buff is lost upon taking damage. Once used, the Mana Well must reset.",
+            TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapManaWell",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
@@ -941,6 +1003,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SummonerTrap = new Trap()
         {
             Name = SUMMONER_TRAP,
+            Description = "Calls a ghostly summoned retainer to fight for the Hero. If it is killed, the trap must reset. Limit 2 at a time. +25 trap health if used by Gabriella.Revenge Rune and Reusable Shielding have a cooldown of 300 seconds(5 minutes) when used in Summoner Trap.",
+            TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapMinionSpawner",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
@@ -972,6 +1036,8 @@ namespace SingleplayerLauncher.Model
         public static Trap NaphthaSprayer = new Trap()
         {
             Name = NAPHTHA_SPRAYER,
+            Description = "Sprays enemies with naphtha when triggered. Naphtha causes Enemies to take increased Fire damage. Trap is free when used by Smolder.",
+            TrapPartSlots = new string[] { COMPONENTS, FIELD, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapNapthaSprayer",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
@@ -1002,6 +1068,8 @@ namespace SingleplayerLauncher.Model
         public static Trap OverloadTrap = new Trap()
         {
             Name = OVERLOAD_TRAP,
+            Description = "Overloads traps, dealing damage when triggered and disabling floor traps that deal damage. +25% damage when used by Zoey.",
+            TrapPartSlots = new string[] { COMPONENTS, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapOverload",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
@@ -1032,6 +1100,8 @@ namespace SingleplayerLauncher.Model
         public static Trap PowerupDamage = new Trap()
         {
             Name = POWERUP_DAMAGE,
+            Description = "Drops a Powerup that boosts player damage for a short time.",
+            TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapPlayerPowerup",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
@@ -1062,6 +1132,8 @@ namespace SingleplayerLauncher.Model
         public static Trap Pounder = new Trap()
         {
             Name = POUNDER,
+            Description = "Pounds Enemies that pass beneath it when triggered, dealing Physical damage.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapPounder",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
@@ -1092,6 +1164,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ConcussivePounder = new Trap()
         {
             Name = CONCUSSIVE_POUNDER,
+            Description = "Pounds Enemies into the ground when triggered, stunning them. Deals no damage.",
+            TrapPartSlots = new string[] { COIL, COMPONENTS, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapPounderConcussive",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
@@ -1122,6 +1196,8 @@ namespace SingleplayerLauncher.Model
         public static Trap PowerGenerator = new Trap()
         {
             Name = POWER_GENERATOR,
+            Description = "Generates coin for the owner if Enemies walk in front of it. Loses health each time it generates coin. Doesn't return coin when sold. Note: Generates 468 coins per wave at Tier 7.",
+            TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },            
             ItemTemplateName = "SpitfireGame.RItemTrapPowerGenerator",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
@@ -1152,6 +1228,8 @@ namespace SingleplayerLauncher.Model
         public static Trap PushTrap = new Trap()
         {
             Name = PUSH_TRAP,
+            Description = "Shoves Enemies when triggered, pushing them away and dealing Physical damage.",
+            TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapPushTrap",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
@@ -1182,6 +1260,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SawOfArctos = new Trap()
         {
             Name = SAW_OF_ARCTOS,
+            Description = "Slices through Enemies with an ice blade, dealing Frost damage and casting Chilled on them. Enemies are frozen with 5 Chilled Stacks. + 25% damage when used by Tundra.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSawOfArctos",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
@@ -1212,6 +1292,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ShieldPowerup = new Trap()
         {
             Name = SHIELD_POWERUP,
+            Description = "Drops a Powerup for Heroes that temporarily reduces damage taken.",
+            TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapShieldSpawner",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
@@ -1242,6 +1324,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SpeedPad = new Trap()
         {
             Name = SPEED_PAD,
+            Description = "Increases the movement speed of a Hero crossing it. Pad must reset after use.",
+            TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapSpeedPad",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
@@ -1272,6 +1356,8 @@ namespace SingleplayerLauncher.Model
         public static Trap FloorSpikes = new Trap()
         {
             Name = FLOOR_SPIKES,
+            Description = "Skewers Enemies from below when triggered, dealing Physical damage.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSpikes",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
@@ -1302,6 +1388,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SpikeWall = new Trap()
         {
             Name = SPIKE_WALL,
+            Description = "Swings a wall of spikes at Enemies when triggered, knocking them back and dealing Physical damage.",
+            TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSpikeWall",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
@@ -1332,6 +1420,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SteamVent = new Trap()
         {
             Name = STEAM_VENT,
+            Description = "Blows small and normal-sized Minions into the air when triggered. Slows large Minions. Trap deals no damage.",
+            TrapPartSlots = new string[] { COIL, COMPONENTS, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSteamVent",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
@@ -1362,6 +1452,8 @@ namespace SingleplayerLauncher.Model
         public static Trap SwingingMace = new Trap()
         {
             Name = SWINGING_MACE,
+            Description = "Continuously swings a large mace, pummeling enemies that pass beneath it and dealing Physical damage.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapSwingingMace",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
@@ -1392,6 +1484,8 @@ namespace SingleplayerLauncher.Model
         public static Trap TarTrap = new Trap()
         {
             Name = TAR_TRAP,
+            Description = "Tars the feet of Enemies crossing it, causing them to be slowed while on the trap.",
+            TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapTar",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
@@ -1422,6 +1516,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ViscousTar = new Trap()
         {
             Name = VISCOUS_TAR,
+            Description = "Tars the feet of Enemies crossing it, causing them to be slowed while on the trap and for a short duration afterwards.",
+            TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapTarViscous",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
@@ -1452,6 +1548,8 @@ namespace SingleplayerLauncher.Model
         public static Trap ShockZapper = new Trap()
         {
             Name = SHOCK_ZAPPER,
+            Description = "Zaps enemies with Lightning, dealing Lightning damage. Enemies killed by Lightning explode, dealing damage in an area.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapTeslaCoil",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
@@ -1482,6 +1580,8 @@ namespace SingleplayerLauncher.Model
         public static Trap BGHShockZapper = new Trap()
         {
             Name = BGH_SHOCK_ZAPPER,
+            Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Zaps Mercenaries and Bosses with Lightning, dealing a portion of targets' max health as damage plus a bonus.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },            
             ItemTemplateName = "SpitfireGame.RItemTrapTeslaCoilGlorySeeker",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
@@ -1512,6 +1612,8 @@ namespace SingleplayerLauncher.Model
         public static Trap TripWire = new Trap()
         {
             Name = TRIP_WIRE,
+            Description = "When a Minion 'trips' on the trip wire, it triggers nearby Traps. Wire is destroyed on use. -20% trap cost when used by Midnight.",
+            TrapPartSlots = new string[] { COMPONENTS, TRIGGER, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapTripwire",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
@@ -1545,6 +1647,8 @@ namespace SingleplayerLauncher.Model
         public static Trap WallBlades = new Trap()
         {
             Name = WALL_BLADES,
+            Description = "Slices and dices Enemies when triggered, dealing Physical damage.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapWallBlades",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
@@ -1575,6 +1679,8 @@ namespace SingleplayerLauncher.Model
         public static Trap WallCharger = new Trap()
         {
             Name = WALL_CHARGER,
+            Description = "Shocks Enemies that walk by it, dealing Lightning damage. Enemies killed by Lightning explode, dealing damage in an area.",
+            TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapWallBladesCharged",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
@@ -1605,6 +1711,8 @@ namespace SingleplayerLauncher.Model
         public static Trap WebSpinner = new Trap()
         {
             Name = WEB_SPINNER,
+            Description = "Spins a web around Enemies when triggered, slowing their attack speed and causing them to be slowed.",
+            TrapPartSlots = new string[] { COMPONENTS, FIELD, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapWebSpinner",
             IdByHeroName = new Dictionary<string, byte[]> {
                 { BIONKA, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },

@@ -6,6 +6,7 @@ namespace SingleplayerLauncher.Model
     {
         public string Name { get; protected set; }
         public string ItemTemplateName { get; protected set; }
+        public string Description { get; protected set; }
         public Dictionary<string, byte[]> IdByHeroName { get; protected set; } // id linking the item, in the respective upk file. i.e: SpitfireGame.upk        
     }
 
@@ -16,6 +17,7 @@ namespace SingleplayerLauncher.Model
         public const int CONSUMABLE_SLOT_COUNT = 2;
         public const int TRAIT_SLOT_COUNT = 4;
         public const int TRAIT_BONUS_SLOT_COUNT = 3;
+        public const int TRAP_PART_SLOT_COUNT = 3;
 
         public const int TRAIT_GREEN_SLOT_IDX = 0;
         public const int TRAIT_BLUE_SLOT_IDX = 1;
@@ -26,8 +28,6 @@ namespace SingleplayerLauncher.Model
         public Skin Skin { get; set; } = Skin.MaximillianDefault;
         public Dye Dye { get; set; } = Dye.Normal;
 
-        // public Trait[] Traits { get; set; }
-
         public SlotItem[] SlotItems { get; set; } = { Gear.MendingRoot, Gear.MagesClover, Trap.Barricade, Trap.ViscousTar, Trap.FlipTrap, Trap.WallBlades, Trap.ArrowWall, Trap.ConcussivePounder, Trap.CeilingBallista };
 
         public Guardian[] Guardians { get; set; } = { Guardian.DragonGuardian, Guardian.MoonGuardian };
@@ -35,6 +35,8 @@ namespace SingleplayerLauncher.Model
         public Consumable[] Consumables { get; set; } = { Consumable.LuckPotion, Consumable.UnchainedScroll };
 
         public Trait[] Traits { get; set; } = { Trait.TakesLessonsFromCygnus, Trait.RiftRocket, Trait.Overachiever, Trait.WallBuildingPhD};
+
+        public TrapPart[][] TrapParts { get; set; } = new TrapPart[SLOT_ITEMS_COUNT][];
 
 
         public bool isTraitMatchingBonus(int traitIdx)
