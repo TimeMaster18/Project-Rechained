@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-public class ComboBoxHelper
+public class ComboBoxHelper<T>
 {
     private ToolTip toolTip;
-    private Dictionary<string, Trait> traits;
+    private Dictionary<string, T> items;
+    private Func<T, string> getToolTipText;
+    private Action<Graphics, Rectangle, T> drawItemShape;
 
-    public ComboBoxHelper(Dictionary<string, Trait> traits)
+    public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
         toolTip = new ToolTip();
-        this.traits = traits;
+        this.items = items;
+        this.getToolTipText = getToolTipText;
+        this.drawItemShape = drawItemShape;
     }
 
     public void InitializeComboBox(ComboBox comboBox)
@@ -21,7 +25,7 @@ public class ComboBoxHelper
         comboBox.DrawItem += ComboBox_DrawItem;
         comboBox.DropDownClosed += ComboBox_DropDownClosed;
         comboBox.MouseLeave += ComboBox_MouseLeave;
-        comboBox.LostFocus += ComboBox_LostFocus; // Add this line
+        comboBox.LostFocus += ComboBox_LostFocus;
     }
 
     private void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
@@ -31,7 +35,7 @@ public class ComboBoxHelper
         if (e.Index < 0) { return; }
 
         string itemName = comboBox.GetItemText(comboBox.Items[e.Index]);
-        if (!traits.TryGetValue(itemName, out Trait trait))
+        if (!items.TryGetValue(itemName, out T item))
             return;
 
         // Draw the background
@@ -44,7 +48,63 @@ public class ComboBoxHelper
             e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds);
         }
 
-        // Determine the shape and color based on the MatchingSlot
+        if (drawItemShape != null)
+        {
+            // Draw the shape with the appropriate item
+            drawItemShape(e.Graphics, e.Bounds, item);
+        }
+
+        // Draw the item text
+        using (Brush brush = new SolidBrush((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : SystemColors.ControlText))
+        {
+            int xPadding = drawItemShape != null ? 25 : 0;
+            e.Graphics.DrawString(itemName, e.Font, brush, e.Bounds.X + xPadding, e.Bounds.Y);
+        }
+
+        // Draw the focus rectangle if needed
+        if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
+        {
+            e.DrawFocusRectangle();
+        }
+
+        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+        {
+            string toolTipText = getToolTipText(item);
+            toolTip.Show(toolTipText, comboBox, e.Bounds.Right, e.Bounds.Bottom);
+        }
+    }
+
+    private void ComboBox_DropDownClosed(object sender, EventArgs e)
+    {
+        toolTip.Hide((Control)sender);
+        ((ComboBox)sender).Focus();
+    }
+
+    private void ComboBox_MouseLeave(object sender, EventArgs e)
+    {
+        toolTip.Hide((Control)sender);
+    }
+
+    private void ComboBox_LostFocus(object sender, EventArgs e)
+    {
+        toolTip.Hide((Control)sender);
+    }
+}
+
+public class TraitComboBoxHelper : ComboBoxHelper<Trait>
+{
+    public TraitComboBoxHelper(Dictionary<string, Trait> traits)
+        : base(traits, GetToolTipText, DrawItemShape)
+    {
+    }
+
+    private static string GetToolTipText(Trait trait)
+    {
+        return $"{trait.Name}\n\n{trait.Description}\n\nMatching Bonus: {trait.MatchingBonusTrait.Description}";
+    }
+
+    private static void DrawItemShape(Graphics g, Rectangle bounds, Trait trait)
+    {
         Color shapeColor;
         Action<Graphics, Rectangle> drawShape;
 
@@ -68,53 +128,13 @@ public class ComboBoxHelper
                 break;
         }
 
-        // Draw the shape with the appropriate color
         using (Brush brush = new SolidBrush(shapeColor))
         {
-            drawShape(e.Graphics, e.Bounds);
-        }
-
-        // Draw the item text
-        using (Brush brush = new SolidBrush((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : SystemColors.ControlText))
-        {
-            e.Graphics.DrawString(itemName, e.Font, brush, e.Bounds.X + 25, e.Bounds.Y);
-        }
-
-        // Draw the focus rectangle if needed
-        if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
-        {
-            e.DrawFocusRectangle();
-        }
-
-        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-        {
-            string toolTipText = GetToolTipText(trait);
-            toolTip.Show(toolTipText, comboBox, e.Bounds.Right, e.Bounds.Bottom);
+            drawShape(g, bounds);
         }
     }
 
-    private void ComboBox_DropDownClosed(object sender, EventArgs e)
-    {
-        toolTip.Hide((Control)sender);
-        ((ComboBox)sender).Focus();
-    }
-
-    private void ComboBox_MouseLeave(object sender, EventArgs e)
-    {
-        toolTip.Hide((Control)sender);
-    }
-
-    private void ComboBox_LostFocus(object sender, EventArgs e)
-    {
-        toolTip.Hide((Control)sender);
-    }
-
-    private string GetToolTipText(Trait trait)
-    {
-        return $"{trait.Name}\n\n{trait.Description}\n\nMatching Bonus: {trait.MatchingBonusTrait.Description}";
-    }
-
-    private void DrawTriangle(Graphics g, Rectangle bounds)
+    private static void DrawTriangle(Graphics g, Rectangle bounds)
     {
         Point[] points = new Point[]
         {
@@ -125,7 +145,7 @@ public class ComboBoxHelper
         g.FillPolygon(Brushes.Gold, points);
     }
 
-    private void DrawDiamond(Graphics g, Rectangle bounds)
+    private static void DrawDiamond(Graphics g, Rectangle bounds)
     {
         Point[] points = new Point[]
         {
@@ -137,7 +157,7 @@ public class ComboBoxHelper
         g.FillPolygon(Brushes.LightSkyBlue, points);
     }
 
-    private void DrawPentagon(Graphics g, Rectangle bounds)
+    private static void DrawPentagon(Graphics g, Rectangle bounds)
     {
         Point[] points = new Point[]
         {
@@ -150,8 +170,36 @@ public class ComboBoxHelper
         g.FillPolygon(Brushes.LightGreen, points);
     }
 
-    private void DrawRectangle(Graphics g, Rectangle bounds)
+    private static void DrawRectangle(Graphics g, Rectangle bounds)
     {
         g.FillRectangle(Brushes.Gray, bounds);
+    }
+}
+
+
+public class SlotItemComboBoxHelper : ComboBoxHelper<SlotItem>
+{
+    public SlotItemComboBoxHelper(Dictionary<string, SlotItem> slotitems)
+        : base(slotitems, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(SlotItem slotItem)
+    {
+        return $"{slotItem.Name}\n\n{slotItem.Description}";
+    }
+}
+
+
+public class TrapPartComboBoxHelper : ComboBoxHelper<TrapPart>
+{
+    public TrapPartComboBoxHelper(Dictionary<string, TrapPart> trapParts)
+        : base(trapParts, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(TrapPart trapPart)
+    {
+        return $"{trapPart.Name}\n\n{trapPart.Description}";
     }
 }

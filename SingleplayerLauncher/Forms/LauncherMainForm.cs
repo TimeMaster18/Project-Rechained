@@ -15,6 +15,7 @@ namespace SingleplayerLauncher
         private readonly GameInfo GameInfo = GameInfo.Instance;
 
         private readonly List<ComboBox> ComBoxLoadoutSlots;
+        private readonly List<List<ComboBox>> ComBoxTrapPartsSlots;
         private readonly List<ComboBox> ComBoxGuardianSlots;
         private readonly List<ComboBox> ComBoxConsumableSlots;
         private readonly List<ComboBox> ComBoxTraitSlots;
@@ -32,6 +33,19 @@ namespace SingleplayerLauncher
                 comBoxLoadoutSlot1, comBoxLoadoutSlot2, comBoxLoadoutSlot3,
                 comBoxLoadoutSlot4, comBoxLoadoutSlot5, comBoxLoadoutSlot6,
                 comBoxLoadoutSlot7, comBoxLoadoutSlot8, comBoxLoadoutSlot9
+            };
+
+            ComBoxTrapPartsSlots = new List<List<ComboBox>>()
+            {
+                new List<ComboBox> { comBoxTrapPartsSlot1Part1, comBoxTrapPartsSlot1Part2, comBoxTrapPartsSlot1Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot2Part1, comBoxTrapPartsSlot2Part2, comBoxTrapPartsSlot2Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot3Part1, comBoxTrapPartsSlot3Part2, comBoxTrapPartsSlot3Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot4Part1, comBoxTrapPartsSlot4Part2, comBoxTrapPartsSlot4Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot5Part1, comBoxTrapPartsSlot5Part2, comBoxTrapPartsSlot5Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot6Part1, comBoxTrapPartsSlot6Part2, comBoxTrapPartsSlot6Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot7Part1, comBoxTrapPartsSlot7Part2, comBoxTrapPartsSlot7Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot8Part1, comBoxTrapPartsSlot8Part2, comBoxTrapPartsSlot8Part3 },
+                new List<ComboBox> { comBoxTrapPartsSlot9Part1, comBoxTrapPartsSlot9Part2, comBoxTrapPartsSlot9Part3 }
             };
 
             ComBoxGuardianSlots = new List<ComboBox>()
@@ -104,15 +118,28 @@ namespace SingleplayerLauncher
             startingCoinInput.Enabled = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && (bool)Settings.Instance["CustomStartCoinEnabled"];
             startingCoinInput.Value = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && Settings.Instance.ContainsKey("StartingCoin") ? Int32.Parse((string)Settings.Instance["StartingCoin"]) : GameInfo.Battleground.Map.StartingCoin;
 
+            // TODO: check if loading from JSON is possible with embedded: https://github.com/Fody/Costura
             PopulateSlots(ComBoxLoadoutSlots, Model.Trap.Traps.Keys.ToList());
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
             PopulateSlots(ComBoxConsumableSlots, Model.Consumable.Consumables.Keys.ToList());
             PopulateSlots(ComBoxTraitSlots, Model.Trait.Traits.Keys.ToList());
 
+
+            // Load settings from json
             if (Settings.Instance.ContainsKey("loadout"))
             {
                 GameInfo.Loadout.SlotItems = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>().Select(lsi => SlotItems[lsi]).ToArray();
+            }
+
+            if (Settings.Instance.ContainsKey("trapParts"))
+            {
+                var trapPartsArray = (JArray)Settings.Instance["trapParts"];
+                GameInfo.Loadout.TrapParts = trapPartsArray
+                    .Select(tpArray => ((JArray)tpArray).ToObject<string[]>()
+                        .Select(tp => tp == "" ? null : Model.TrapPart.TrapParts[tp])
+                        .ToArray())
+                    .ToArray();
             }
 
             if (Settings.Instance.ContainsKey("guardians"))
@@ -131,6 +158,7 @@ namespace SingleplayerLauncher
             }
 
             SetCurrentLoadout();
+            SetCurrentTrapParts();
             SetCurrenGuardians();
             SetCurrentConsumables();
             SetCurrentTraits();
@@ -396,7 +424,7 @@ namespace SingleplayerLauncher
 
         private void SetCurrentTraits()
         {
-            ComboBoxHelper comboBoxHelper = new ComboBoxHelper(Trait.Traits);
+            TraitComboBoxHelper comboBoxHelper = new TraitComboBoxHelper(Trait.Traits);
             for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
             {
                 comboBoxHelper.InitializeComboBox(ComBoxTraitSlots[i]);
@@ -454,9 +482,28 @@ namespace SingleplayerLauncher
 
         private void SetCurrentLoadout()
         {
+            SlotItemComboBoxHelper comboBoxHelper = new SlotItemComboBoxHelper(SlotItems);
             for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
             {
+                comboBoxHelper.InitializeComboBox(ComBoxLoadoutSlots[i]);
                 ComBoxLoadoutSlots[i].SelectedItem = GameInfo.Loadout.SlotItems[i].Name;
+            }
+        }
+
+        private void SetCurrentTrapParts()
+        {
+            TrapPartComboBoxHelper comboBoxHelper = new TrapPartComboBoxHelper(TrapPart.TrapParts);
+            for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
+            {
+                for (int j = 0; j < Loadout.TRAP_PART_SLOT_COUNT; j++)
+                {
+                    if (i < ComBoxTrapPartsSlots.Count && j < ComBoxTrapPartsSlots[i].Count)
+                    {
+                        comboBoxHelper.InitializeComboBox(ComBoxTrapPartsSlots[i][j]);
+                        TrapPart current = GameInfo.Loadout.TrapParts[i][j];
+                        ComBoxTrapPartsSlots[i][j].SelectedItem = current == null ? null : current.Name;
+                    }
+                }
             }
         }
 
@@ -481,49 +528,114 @@ namespace SingleplayerLauncher
             Settings.Save();
         }
 
+        private void SaveTrapParts()
+        {
+            List<List<string>> trapPartNames = new List<List<string>>();
+
+            for (int i = 0; i < ComBoxTrapPartsSlots.Count; i++)
+            {
+                List<string> partNames = new List<string>();
+
+                for (int j = 0; j < ComBoxTrapPartsSlots[i].Count; j++)
+                {
+                    string partName = ComBoxTrapPartsSlots[i][j].Text;
+                    partNames.Add(partName);
+
+                    if (partName.Length > 0)
+                    {
+                        GameInfo.Loadout.TrapParts[i][j] = TrapPart.TrapParts[partName];
+                    }
+                }
+
+                trapPartNames.Add(partNames);
+            }
+
+            Settings.Instance["trapParts"] = trapPartNames;
+            Settings.Save();
+        }
+
         private void comBoxLoadoutSlot1_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 1 - 1);
         }
 
         private void comBoxLoadoutSlot2_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 2 - 1);
         }
 
         private void comBoxLoadoutSlot3_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 3 - 1);
         }
 
         private void comBoxLoadoutSlot4_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 4 - 1);
         }
 
         private void comBoxLoadoutSlot5_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 5 - 1);
         }
 
         private void comBoxLoadoutSlot6_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 6 - 1);
         }
 
         private void comBoxLoadoutSlot7_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 7 - 1);
         }
 
         private void comBoxLoadoutSlot8_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 8 - 1);
         }
 
         private void comBoxLoadoutSlot9_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveLoadout();
+            AdjustTrapPartsComBoxes(sender, 9 - 1);
+        }
+
+        private void AdjustTrapPartsComBoxes(object sender, int slotIdx)
+        {
+            String selected = ((ComboBox)sender).SelectedItem?.ToString();
+            Trap trap = Trap.Traps.ContainsKey(selected) ? (Trap)Trap.Traps[selected] : null;
+            bool isTrap = trap != null;
+
+            for (int i = 0; i < ComBoxTrapPartsSlots[slotIdx].Count; i++)
+            {
+                ComboBox trapPartComBox = ComBoxTrapPartsSlots[slotIdx][i];
+                trapPartComBox.Enabled = isTrap;
+                if (trapPartComBox.Enabled)
+                {
+                    var trapPartNames = TrapPart.GetTrapPartsBySlotType(trap.TrapPartSlots[i])
+                                                .Select(tp => tp.Name)
+                                                .ToList();
+                    trapPartNames.Insert(0, "");
+                    trapPartComBox.Items.Clear();
+                    PopulateSlots(new List<ComboBox> { trapPartComBox }, trapPartNames);
+                } else
+                {
+                    trapPartComBox.SelectedItem = null;
+                }
+            }
+        }
+
+        private void comBoxTrapPartsSlot1Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
         }
 
         private void comBoxGuardianSlot1_SelectedIndexChanged(object sender, EventArgs e)
@@ -597,6 +709,141 @@ namespace SingleplayerLauncher
             string selectedLanguage = comBoxLanguage.SelectedItem.ToString();
             Settings.Instance["language"] = selectedLanguage;
             Settings.Save();
+        }
+
+        private void comBoxTrapPartsSlot1Part1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot1Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot1Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot2Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot2Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot2Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot3Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot3Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot3Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot4Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot4Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot4Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot5Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot5Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot5Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot6Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot6Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot6Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot7Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot7Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot7Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot8Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot8Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot8Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot9Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot9Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
+        }
+
+        private void comBoxTrapPartsSlot9Part1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapParts();
         }
     }
 }
