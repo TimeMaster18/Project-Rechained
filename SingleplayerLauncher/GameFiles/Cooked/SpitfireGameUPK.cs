@@ -79,12 +79,12 @@ namespace SingleplayerLauncher
             }
         }
 
-        public void ApplyMods()
+        public void ApplyMods(bool areModsEnabled)
         {
             Mod.UPKFile = SpitfireGameUPKFile;
             foreach (Mod mod in Mods.Mods.ModList)
             {
-                if (mod.IsEnabled)
+                if (areModsEnabled && mod.IsEnabled)
                 {
                     mod.InstallMod();
                 }

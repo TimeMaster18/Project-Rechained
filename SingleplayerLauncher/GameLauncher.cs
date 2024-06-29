@@ -38,10 +38,9 @@ namespace SingleplayerLauncher
             */
 
             bool areModsEnabled = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
-            if (areModsEnabled)
-            {
-                SpitfireGameUPK.ApplyMods();
-            }
+
+            SpitfireGameUPK.ApplyMods(areModsEnabled);
+
             SpitfireGameUPK.ApplyParTime();
             SpitfireGameUPK.ApplyHostPatches(); // TODO adjust for multiplayer
             SpitfireGameUPK.SaveChanges();
