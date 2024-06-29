@@ -69,7 +69,16 @@ namespace SingleplayerLauncher.GameFiles
             foreach (SlotItem slotItem in GameInfo.Loadout.SlotItems)
             {
                 bool isTrap = slotItem.GetType() == typeof(Trap);
-                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, GenerateItemString(slotItem.ItemTemplateName, trapLevel: GameInfo.Battleground.Difficulty.TrapTier, trapParts: isTrap ? GameInfo.Loadout.TrapParts[loadoutIdx - 1] : null), index: loadoutIdx);  ;
+                data.UpdateEntry(
+                    RCharacterDataSection,
+                    CharacterDataKeyLoadout,
+                    GenerateItemString(
+                        slotItem.ItemTemplateName,
+                        trapLevel: GameInfo.Battleground.Difficulty.TrapTier,
+                        trapParts: isTrap ? GameInfo.Loadout.GetTrapPartsForLoadout(loadoutIdx) : null
+                    ),
+                    index: loadoutIdx
+                );
                 loadoutIdx++;
             }
 
