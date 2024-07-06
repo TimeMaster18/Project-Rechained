@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Resources;
 using System;
@@ -390,7 +390,7 @@ namespace SingleplayerLauncher
             {
                 comboBoxHelper.InitializeComboBox(ComBoxGuardianSlots[i]);
                 Guardian current = guardians[i];
-                ComBoxGuardianSlots[i].SelectedItem = current == null ? null : current.Name;
+                ComBoxGuardianSlots[i].SelectedItem = current?.Name;
             }
         }
 
@@ -402,7 +402,7 @@ namespace SingleplayerLauncher
             {
                 comboBoxHelper.InitializeComboBox(ComBoxConsumableSlots[i]);
                 Consumable current = consumables[i];
-                ComBoxConsumableSlots[i].SelectedItem = current == null ? null : current.Name;
+                ComBoxConsumableSlots[i].SelectedItem = current?.Name;
             }
         }
 
@@ -414,7 +414,7 @@ namespace SingleplayerLauncher
             {
                 comboBoxHelper.InitializeComboBox(ComBoxTraitSlots[i]);
                 Trait current = traits[i];
-                ComBoxTraitSlots[i].SelectedItem = current == null ? null : current.Name;
+                ComBoxTraitSlots[i].SelectedItem = current?.Name;
             }
         }
 
@@ -467,13 +467,15 @@ namespace SingleplayerLauncher
             {
                 comboBoxHelper.InitializeComboBox(ComBoxLoadoutSlots[i]);
                 SlotItem current = slotItems[i];
-                ComBoxLoadoutSlots[i].SelectedItem = current == null ? null : current.Name;
+                ComBoxLoadoutSlots[i].SelectedItem = current?.Name;
             }
         }
 
         private void SetCurrentTrapParts()
         {
             TrapPartComboBoxHelper comboBoxHelper = new TrapPartComboBoxHelper(TrapPart.TrapParts);
+            List<List<TrapPart>> trapParts = ConvertArrayToListOfLists(GameInfo.Loadout.TrapParts);
+
             for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
             {
                 for (int j = 0; j < Loadout.TRAP_PART_SLOT_COUNT; j++)
@@ -481,11 +483,20 @@ namespace SingleplayerLauncher
                     if (i < ComBoxTrapPartsSlots.Count && j < ComBoxTrapPartsSlots[i].Count)
                     {
                         comboBoxHelper.InitializeComboBox(ComBoxTrapPartsSlots[i][j]);
-                        TrapPart current = GameInfo.Loadout.TrapParts[i,j];
-                        ComBoxTrapPartsSlots[i][j].SelectedItem = current == null ? null : current.Name;
+                        TrapPart current = trapParts[i][j];
+                        ComBoxTrapPartsSlots[i][j].SelectedItem = current?.Name;
                     }
                 }
             }
+        }
+
+        private List<List<TrapPart>> ConvertArrayToListOfLists(TrapPart[,] trapPartsArray)
+        {
+            return Enumerable.Range(0, trapPartsArray.GetLength(0))
+                             .Select(i => Enumerable.Range(0, trapPartsArray.GetLength(1))
+                                                    .Select(j => trapPartsArray[i, j])
+                                                    .ToList())
+                             .ToList();
         }
 
         private static readonly Dictionary<string, SlotItem> SlotItems =
@@ -504,20 +515,10 @@ namespace SingleplayerLauncher
             UpdateLoadoutExportCode();
         }
 
-        private void SaveTrapParts()
+        private void SaveTrapPart(int slotIdx, int partIdx)
         {
-            for (int i = 0; i < ComBoxTrapPartsSlots.Count; i++)
-            {
-                List<string> partNames = new List<string>();
-
-                for (int j = 0; j < ComBoxTrapPartsSlots[i].Count; j++)
-                {
-                    string partName = ComBoxTrapPartsSlots[i][j].Text;
-
-                    GameInfo.Loadout.TrapParts[i,j] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
-                }
-            }
-
+            string partName = ComBoxTrapPartsSlots[slotIdx][partIdx].Text;
+            GameInfo.Loadout.TrapParts[slotIdx, partIdx] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
             UpdateLoadoutExportCode();
         }
 
@@ -597,16 +598,12 @@ namespace SingleplayerLauncher
                                                 .ToList();
                     trapPartComBox.Items.Clear();
                     PopulateSlots(new List<ComboBox> { trapPartComBox }, trapPartNames);
-                } else
+                }
+                else
                 {
                     trapPartComBox.SelectedItem = null;
                 }
             }
-        }
-
-        private void comBoxTrapPartsSlot1Part1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
         }
 
         private void comBoxGuardianSlot1_SelectedIndexChanged(object sender, EventArgs e)
@@ -682,140 +679,141 @@ namespace SingleplayerLauncher
             Settings.Instance.Save();
         }
 
-        private void comBoxTrapPartsSlot1Part1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void comBoxTrapPartsSlot1Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(0, 0);
         }
 
         private void comBoxTrapPartsSlot1Part2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(0, 1);
         }
 
         private void comBoxTrapPartsSlot1Part3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot2Part3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot2Part2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
+            SaveTrapPart(0, 2);
         }
 
         private void comBoxTrapPartsSlot2Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(1, 0);
+        }
+
+        private void comBoxTrapPartsSlot2Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(1, 1);
+        }
+
+        private void comBoxTrapPartsSlot2Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(1, 2);
         }
 
         private void comBoxTrapPartsSlot3Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(2, 0);
         }
 
         private void comBoxTrapPartsSlot3Part2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(2, 1);
         }
 
         private void comBoxTrapPartsSlot3Part3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(2, 2);
         }
 
         private void comBoxTrapPartsSlot4Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(3, 0);
         }
 
         private void comBoxTrapPartsSlot4Part2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(3, 1);
         }
 
         private void comBoxTrapPartsSlot4Part3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot5Part3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot5Part2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
+            SaveTrapPart(3, 2);
         }
 
         private void comBoxTrapPartsSlot5Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(4, 0);
+        }
+
+        private void comBoxTrapPartsSlot5Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(4, 1);
+        }
+
+        private void comBoxTrapPartsSlot5Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(4, 2);
         }
 
         private void comBoxTrapPartsSlot6Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(5, 0);
         }
 
         private void comBoxTrapPartsSlot6Part2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(5, 1);
         }
 
         private void comBoxTrapPartsSlot6Part3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot7Part3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot7Part2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
+            SaveTrapPart(5, 2);
         }
 
         private void comBoxTrapPartsSlot7Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(6, 0);
+        }
+
+        private void comBoxTrapPartsSlot7Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(6, 1);
+        }
+
+        private void comBoxTrapPartsSlot7Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(6, 2);
         }
 
         private void comBoxTrapPartsSlot8Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(7, 0);
         }
 
         private void comBoxTrapPartsSlot8Part2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(7, 1);
         }
 
         private void comBoxTrapPartsSlot8Part3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot9Part3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
-        }
-
-        private void comBoxTrapPartsSlot9Part2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveTrapParts();
+            SaveTrapPart(7, 2);
         }
 
         private void comBoxTrapPartsSlot9Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveTrapParts();
+            SaveTrapPart(8, 0);
         }
+
+        private void comBoxTrapPartsSlot9Part2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(8, 1);
+        }
+
+        private void comBoxTrapPartsSlot9Part3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveTrapPart(8, 2);
+        }
+
 
         private void btnCopyLoadoutToClipboard_Click(object sender, EventArgs e)
         {
@@ -827,9 +825,12 @@ namespace SingleplayerLauncher
             string loadoutName = maskedTextBoxLoadoutName.Text;
             string loadoutCode = textBoxExportLoadout.Text;
 
-            if (Loadouts.Instance.Exists(loadoutName)) {
+            if (Loadouts.Instance.Exists(loadoutName))
+            {
                 Loadouts.Instance.UpdateLoadout(loadoutName, loadoutCode);
-            } else {
+            }
+            else
+            {
                 Loadouts.Instance.AddLoadout(loadoutName, loadoutCode);
                 comBoxLoadouts.Items.Add(loadoutName);
             }
@@ -908,6 +909,7 @@ namespace SingleplayerLauncher
             Loadout decodedLoadout = Loadout.DecodeLoadout(selectedLoadoutCode);
             GameInfo.Loadout = decodedLoadout;
 
+            SetCurrentHero();
             SetCurrentSlotItems();
             SetCurrentTrapParts();
             SetCurrenGuardians();
@@ -959,7 +961,8 @@ namespace SingleplayerLauncher
                 Loadout decodedLoadout = Loadout.DecodeLoadout(loadoutCode);
                 btnImportLoadout.Enabled = true;
                 errorProvider3.SetError(maskedTextBoxImportLoadout, "");
-            } catch
+            }
+            catch
             {
                 btnImportLoadout.Enabled = false;
                 errorProvider3.SetError(maskedTextBoxImportLoadout, "Invalid loadout code.");
