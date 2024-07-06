@@ -51,7 +51,8 @@ namespace SingleplayerLauncher.GameFiles
             ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
             IniFile data = defaultGame.data;
 
-            data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, areEnabled ? false.ToString() : Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
+            bool isShowFlyoffsForTrapDamageEnabled = areEnabled && Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled;
+            data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, isShowFlyoffsForTrapDamageEnabled.ToString());
 
             defaultGame.Write();
         }
