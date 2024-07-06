@@ -183,13 +183,13 @@ namespace SingleplayerLauncher.GameFiles
             {
                 return "0";
             }
-            else if (startingCoin <= 0)
+            else if (targetStartingCoin <= 0)
             {
                 return "-1";
             }
             else
             {
-                double startingCoinsMultiplier = (double)targetStartingCoin / map.StartingCoin; // TODO handle non-server mode
+                double startingCoinsMultiplier = (double)targetStartingCoin / map.StartingCoin;
                 startingCoinsMultiplier--; // it's a multiplier, so it needs an offset of -1
 
                 return startingCoinsMultiplier.ToString("F6", CultureInfo.InvariantCulture);
