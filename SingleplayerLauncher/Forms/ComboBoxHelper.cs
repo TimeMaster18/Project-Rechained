@@ -212,7 +212,7 @@ public class GuardianComboBoxHelper : ComboBoxHelper<Guardian>
 
     private static string GetToolTipText(Guardian guardian)
     {
-        return $"{guardian.Name}\n\n{guardian.Description}";
+        return $"{guardian.Name}\n\n{guardian.AuraText}";
     }
 }
 
