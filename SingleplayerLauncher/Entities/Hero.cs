@@ -3,9 +3,8 @@ using static SingleplayerLauncher.Names.Hero;
 
 namespace SingleplayerLauncher.Model
 {
-    public class Hero
+    public class Hero : LoadoutItem
     {
-        public string Name { get; private set; }
         public Skin[] Skins { get; private set; }
         public int BaseHealth { get; private set; }
         public string PawnWeaponTemplateName { get; private set; }
@@ -33,6 +32,7 @@ namespace SingleplayerLauncher.Model
         // static members
         public static Hero Bionka = new Hero()
         {
+            Id = 1,
             Name = BIONKA,
             BaseHealth = 625,
             Skins = Skin.BionkaSkins,
@@ -60,6 +60,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Blackpaw = new Hero()
         {
+            Id = 2,
             Name = BLACKPAW,
             BaseHealth = 341,
             Skins = Skin.BlackpawSkins,
@@ -91,6 +92,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Bloodspike = new Hero()
         {
+            Id = 3,
             Name = BLOODSPIKE,
             BaseHealth = 600,
             Skins = Skin.BloodspikeSkins,
@@ -121,6 +123,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Brass = new Hero()
         {
+            Id = 4,
             Name = BRASS,
             BaseHealth = 350,
             Skins = Skin.BrassSkins,
@@ -153,6 +156,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Cygnus = new Hero()
         {
+            Id = 5,
             Name = CYGNUS,
             BaseHealth = 215,
             Skins = Skin.CygnusSkins,
@@ -182,6 +186,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Deadeye = new Hero()
         {
+            Id = 6,
             Name = DEADEYE,
             BaseHealth = 219,
             Skins = Skin.DeadeyeSkins,
@@ -211,6 +216,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Dobbin = new Hero()
         {
+            Id = 7,
             Name = DOBBIN,
             BaseHealth = 500,
             Skins = Skin.DobbinSkins,
@@ -241,6 +247,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Gabriella = new Hero()
         {
+            Id = 8,
             Name = GABRIELLA,
             BaseHealth = 200,
             Skins = Skin.GabriellaSkins,
@@ -268,6 +275,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Hogarth = new Hero()
         {
+            Id = 9,
             Name = HOGARTH,
             BaseHealth = 950,
             Skins = Skin.HogarthSkins,
@@ -295,6 +303,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Ivy = new Hero()
         {
+            Id = 10,
             Name = IVY,
             BaseHealth = 162,
             Skins = Skin.IvySkins,
@@ -322,6 +331,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Maximilian = new Hero()
         {
+            Id = 11,
             Name = MAXIMILIAN,
             BaseHealth = 206,
             Skins = Skin.MaximilianSkins,
@@ -346,6 +356,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Midnight = new Hero()
         {
+            Id = 12,
             Name = MIDNIGHT,
             BaseHealth = 220,
             Skins = Skin.MidnightSkins,
@@ -377,6 +388,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Oziel = new Hero()
         {
+            Id = 13,
             Name = OZIEL,
             BaseHealth = 200,
             Skins = Skin.OzielSkins,
@@ -409,6 +421,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Smolder = new Hero()
         {
+            Id = 14,
             Name = SMOLDER,
             BaseHealth = 313,
             Skins = Skin.SmolderSkins,
@@ -436,6 +449,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Stinkeye = new Hero()
         {
+            Id = 15,
             Name = STINKEYE,
             BaseHealth = 356,
             Skins = Skin.StinkeyeSkins,
@@ -467,6 +481,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Temper = new Hero()
         {
+            Id = 16,
             Name = TEMPER,
             BaseHealth = 500,
             Skins = Skin.TemperSkins,
@@ -498,6 +513,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Tundra = new Hero()
         {
+            Id = 17,
             Name = TUNDRA,
             BaseHealth = 625,
             Skins = Skin.TundraSkins,
@@ -528,6 +544,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero YiLin = new Hero()
         {
+            Id = 18,
             Name = YI_LIN,
             BaseHealth = 250,
             Skins = Skin.YiLinSkins,
@@ -557,6 +574,7 @@ namespace SingleplayerLauncher.Model
         };
         public static Hero Zoey = new Hero()
         {
+            Id = 19,
             Name = ZOEY,
             BaseHealth = 275,
             Skins = Skin.ZoeySkins,
@@ -608,6 +626,38 @@ namespace SingleplayerLauncher.Model
             { YI_LIN, YiLin },
             { ZOEY, Zoey },
         };
+
+        public static Dictionary<int, Hero> HeroesById = new Dictionary<int, Hero>
+        {
+            { Bionka.Id, Bionka },
+            { Blackpaw.Id, Blackpaw },
+            { Bloodspike.Id, Bloodspike },
+            { Brass.Id, Brass },
+            { Cygnus.Id, Cygnus },
+            { Deadeye.Id, Deadeye },
+            { Dobbin.Id, Dobbin },
+            { Gabriella.Id, Gabriella },
+            { Hogarth.Id, Hogarth },
+            { Ivy.Id, Ivy },
+            { Maximilian.Id, Maximilian },
+            { Midnight.Id, Midnight },
+            { Oziel.Id, Oziel },
+            { Smolder.Id, Smolder },
+            { Stinkeye.Id, Stinkeye },
+            { Temper.Id, Temper },
+            { Tundra.Id, Tundra },
+            { YiLin.Id, YiLin },
+            { Zoey.Id, Zoey },
+        };
+
+        public static Hero GetById(int id)
+        {
+            if (HeroesById.TryGetValue(id, out var hero))
+            {
+                return hero;
+            }
+            return new Hero { Id = 0, Name = "Unknown" };
+        }
 
     }
 }

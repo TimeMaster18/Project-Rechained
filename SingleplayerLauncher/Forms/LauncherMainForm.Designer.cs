@@ -31,6 +31,7 @@ namespace SingleplayerLauncher
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnLaunch = new System.Windows.Forms.Button();
             this.chkDebug = new System.Windows.Forms.CheckBox();
             this.comBoxDye = new System.Windows.Forms.ComboBox();
@@ -68,6 +69,16 @@ namespace SingleplayerLauncher
             this.labelGuardianSlot1 = new System.Windows.Forms.Label();
             this.comBoxGuardianSlot2 = new System.Windows.Forms.ComboBox();
             this.groupBoxLoadout = new System.Windows.Forms.GroupBox();
+            this.labelPlayerName = new System.Windows.Forms.Label();
+            this.maskedTextBoxPlayerName = new System.Windows.Forms.MaskedTextBox();
+            this.labelLoadoutName = new System.Windows.Forms.Label();
+            this.btnSaveLoadout = new System.Windows.Forms.Button();
+            this.maskedTextBoxLoadoutName = new System.Windows.Forms.MaskedTextBox();
+            this.btnCopyLoadoutToClipboard = new System.Windows.Forms.Button();
+            this.btnImportLoadout = new System.Windows.Forms.Button();
+            this.labelExportLoadout = new System.Windows.Forms.Label();
+            this.textBoxExportLoadout = new System.Windows.Forms.TextBox();
+            this.maskedTextBoxImportLoadout = new System.Windows.Forms.MaskedTextBox();
             this.comBoxTrapPartsSlot9Part3 = new System.Windows.Forms.ComboBox();
             this.comBoxTrapPartsSlot9Part2 = new System.Windows.Forms.ComboBox();
             this.comBoxTrapPartsSlot9Part1 = new System.Windows.Forms.ComboBox();
@@ -107,7 +118,7 @@ namespace SingleplayerLauncher
             this.comBoxConsumableSlot1 = new System.Windows.Forms.ComboBox();
             this.labelConsumableSlot1 = new System.Windows.Forms.Label();
             this.comBoxConsumableSlot2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comBoxLoadouts = new System.Windows.Forms.ComboBox();
             this.labelLoadoutSlot9 = new System.Windows.Forms.Label();
             this.labelLoadoutSlot8 = new System.Windows.Forms.Label();
             this.labelLoadoutSlot7 = new System.Windows.Forms.Label();
@@ -130,16 +141,23 @@ namespace SingleplayerLauncher
             this.chkRunAs32 = new System.Windows.Forms.CheckBox();
             this.comBoxLanguage = new System.Windows.Forms.ComboBox();
             this.labelLanguage = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnDeleteLoadout = new System.Windows.Forms.Button();
             this.mapSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
             this.modsGroupBox.SuspendLayout();
             this.groupBoxLoadout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLaunch
             // 
             this.btnLaunch.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnLaunch.Location = new System.Drawing.Point(587, 387);
+            this.btnLaunch.Location = new System.Drawing.Point(587, 457);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(341, 75);
             this.btnLaunch.TabIndex = 0;
@@ -150,7 +168,7 @@ namespace SingleplayerLauncher
             // chkDebug
             // 
             this.chkDebug.AutoSize = true;
-            this.chkDebug.Location = new System.Drawing.Point(784, 471);
+            this.chkDebug.Location = new System.Drawing.Point(784, 541);
             this.chkDebug.Name = "chkDebug";
             this.chkDebug.Size = new System.Drawing.Size(58, 17);
             this.chkDebug.TabIndex = 6;
@@ -311,7 +329,7 @@ namespace SingleplayerLauncher
             // 
             // btnResetConfig
             // 
-            this.btnResetConfig.Location = new System.Drawing.Point(845, 468);
+            this.btnResetConfig.Location = new System.Drawing.Point(845, 538);
             this.btnResetConfig.Name = "btnResetConfig";
             this.btnResetConfig.Size = new System.Drawing.Size(83, 22);
             this.btnResetConfig.TabIndex = 9;
@@ -538,6 +556,17 @@ namespace SingleplayerLauncher
             // groupBoxLoadout
             // 
             this.groupBoxLoadout.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBoxLoadout.Controls.Add(this.btnDeleteLoadout);
+            this.groupBoxLoadout.Controls.Add(this.labelPlayerName);
+            this.groupBoxLoadout.Controls.Add(this.maskedTextBoxPlayerName);
+            this.groupBoxLoadout.Controls.Add(this.labelLoadoutName);
+            this.groupBoxLoadout.Controls.Add(this.btnSaveLoadout);
+            this.groupBoxLoadout.Controls.Add(this.maskedTextBoxLoadoutName);
+            this.groupBoxLoadout.Controls.Add(this.btnCopyLoadoutToClipboard);
+            this.groupBoxLoadout.Controls.Add(this.btnImportLoadout);
+            this.groupBoxLoadout.Controls.Add(this.labelExportLoadout);
+            this.groupBoxLoadout.Controls.Add(this.textBoxExportLoadout);
+            this.groupBoxLoadout.Controls.Add(this.maskedTextBoxImportLoadout);
             this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot9Part3);
             this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot9Part2);
             this.groupBoxLoadout.Controls.Add(this.comBoxTrapPartsSlot9Part1);
@@ -584,7 +613,7 @@ namespace SingleplayerLauncher
             this.groupBoxLoadout.Controls.Add(this.comBoxConsumableSlot2);
             this.groupBoxLoadout.Controls.Add(this.labelSkin);
             this.groupBoxLoadout.Controls.Add(this.labelGuardianSlot2);
-            this.groupBoxLoadout.Controls.Add(this.comboBox1);
+            this.groupBoxLoadout.Controls.Add(this.comBoxLoadouts);
             this.groupBoxLoadout.Controls.Add(this.labelLoadoutSlot9);
             this.groupBoxLoadout.Controls.Add(this.comBoxGuardianSlot1);
             this.groupBoxLoadout.Controls.Add(this.labelGuardianSlot1);
@@ -608,10 +637,106 @@ namespace SingleplayerLauncher
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot6);
             this.groupBoxLoadout.Location = new System.Drawing.Point(12, 12);
             this.groupBoxLoadout.Name = "groupBoxLoadout";
-            this.groupBoxLoadout.Size = new System.Drawing.Size(568, 474);
+            this.groupBoxLoadout.Size = new System.Drawing.Size(568, 549);
             this.groupBoxLoadout.TabIndex = 24;
             this.groupBoxLoadout.TabStop = false;
             this.groupBoxLoadout.Text = "Loadout";
+            // 
+            // labelPlayerName
+            // 
+            this.labelPlayerName.AutoSize = true;
+            this.labelPlayerName.Location = new System.Drawing.Point(6, 497);
+            this.labelPlayerName.Name = "labelPlayerName";
+            this.labelPlayerName.Size = new System.Drawing.Size(67, 13);
+            this.labelPlayerName.TabIndex = 71;
+            this.labelPlayerName.Text = "Player Name";
+            // 
+            // maskedTextBoxPlayerName
+            // 
+            this.maskedTextBoxPlayerName.Location = new System.Drawing.Point(79, 494);
+            this.maskedTextBoxPlayerName.Name = "maskedTextBoxPlayerName";
+            this.maskedTextBoxPlayerName.Size = new System.Drawing.Size(106, 20);
+            this.maskedTextBoxPlayerName.TabIndex = 70;
+            this.maskedTextBoxPlayerName.TextChanged += new System.EventHandler(this.maskedTextBoxPlayerName_TextChanged);
+            // 
+            // labelLoadoutName
+            // 
+            this.labelLoadoutName.AutoSize = true;
+            this.labelLoadoutName.Location = new System.Drawing.Point(201, 497);
+            this.labelLoadoutName.Name = "labelLoadoutName";
+            this.labelLoadoutName.Size = new System.Drawing.Size(77, 13);
+            this.labelLoadoutName.TabIndex = 69;
+            this.labelLoadoutName.Text = "Loadout Name";
+            // 
+            // btnSaveLoadout
+            // 
+            this.btnSaveLoadout.Enabled = false;
+            this.btnSaveLoadout.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSaveLoadout.Location = new System.Drawing.Point(520, 493);
+            this.btnSaveLoadout.Name = "btnSaveLoadout";
+            this.btnSaveLoadout.Size = new System.Drawing.Size(42, 20);
+            this.btnSaveLoadout.TabIndex = 67;
+            this.btnSaveLoadout.Text = "Save";
+            this.btnSaveLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSaveLoadout.UseVisualStyleBackColor = true;
+            this.btnSaveLoadout.Click += new System.EventHandler(this.btnSaveLoadout_Click);
+            // 
+            // maskedTextBoxLoadoutName
+            // 
+            this.maskedTextBoxLoadoutName.Location = new System.Drawing.Point(284, 494);
+            this.maskedTextBoxLoadoutName.Name = "maskedTextBoxLoadoutName";
+            this.maskedTextBoxLoadoutName.Size = new System.Drawing.Size(230, 20);
+            this.maskedTextBoxLoadoutName.TabIndex = 68;
+            this.maskedTextBoxLoadoutName.TextChanged += new System.EventHandler(this.maskedTextBoxLoadoutName_TextChanged);
+            // 
+            // btnCopyLoadoutToClipboard
+            // 
+            this.btnCopyLoadoutToClipboard.Enabled = false;
+            this.btnCopyLoadoutToClipboard.Location = new System.Drawing.Point(520, 523);
+            this.btnCopyLoadoutToClipboard.Name = "btnCopyLoadoutToClipboard";
+            this.btnCopyLoadoutToClipboard.Size = new System.Drawing.Size(42, 20);
+            this.btnCopyLoadoutToClipboard.TabIndex = 27;
+            this.btnCopyLoadoutToClipboard.Text = "Copy";
+            this.btnCopyLoadoutToClipboard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCopyLoadoutToClipboard.UseVisualStyleBackColor = true;
+            this.btnCopyLoadoutToClipboard.Click += new System.EventHandler(this.btnCopyLoadoutToClipboard_Click);
+            // 
+            // btnImportLoadout
+            // 
+            this.btnImportLoadout.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnImportLoadout.Location = new System.Drawing.Point(517, 19);
+            this.btnImportLoadout.Name = "btnImportLoadout";
+            this.btnImportLoadout.Size = new System.Drawing.Size(45, 20);
+            this.btnImportLoadout.TabIndex = 28;
+            this.btnImportLoadout.Text = "Import";
+            this.btnImportLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnImportLoadout.UseVisualStyleBackColor = true;
+            this.btnImportLoadout.Click += new System.EventHandler(this.btnImportLoadout_Click);
+            // 
+            // labelExportLoadout
+            // 
+            this.labelExportLoadout.AutoSize = true;
+            this.labelExportLoadout.Location = new System.Drawing.Point(191, 527);
+            this.labelExportLoadout.Name = "labelExportLoadout";
+            this.labelExportLoadout.Size = new System.Drawing.Size(37, 13);
+            this.labelExportLoadout.TabIndex = 66;
+            this.labelExportLoadout.Text = "Export";
+            // 
+            // textBoxExportLoadout
+            // 
+            this.textBoxExportLoadout.Location = new System.Drawing.Point(234, 523);
+            this.textBoxExportLoadout.Name = "textBoxExportLoadout";
+            this.textBoxExportLoadout.ReadOnly = true;
+            this.textBoxExportLoadout.Size = new System.Drawing.Size(280, 20);
+            this.textBoxExportLoadout.TabIndex = 65;
+            // 
+            // maskedTextBoxImportLoadout
+            // 
+            this.maskedTextBoxImportLoadout.Location = new System.Drawing.Point(314, 19);
+            this.maskedTextBoxImportLoadout.Name = "maskedTextBoxImportLoadout";
+            this.maskedTextBoxImportLoadout.Size = new System.Drawing.Size(200, 20);
+            this.maskedTextBoxImportLoadout.TabIndex = 64;
+            this.maskedTextBoxImportLoadout.TextChanged += new System.EventHandler(this.maskedTextBoxImportLoadout_TextChanged);
             // 
             // comBoxTrapPartsSlot9Part3
             // 
@@ -1000,15 +1125,15 @@ namespace SingleplayerLauncher
             this.comBoxConsumableSlot2.TabIndex = 25;
             this.comBoxConsumableSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxConsumableSlot2_SelectedIndexChanged);
             // 
-            // comboBox1
+            // comBoxLoadouts
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(252, 21);
-            this.comboBox1.TabIndex = 23;
+            this.comBoxLoadouts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxLoadouts.FormattingEnabled = true;
+            this.comBoxLoadouts.Location = new System.Drawing.Point(9, 19);
+            this.comBoxLoadouts.Name = "comBoxLoadouts";
+            this.comBoxLoadouts.Size = new System.Drawing.Size(252, 21);
+            this.comBoxLoadouts.TabIndex = 23;
+            this.comBoxLoadouts.SelectedIndexChanged += new System.EventHandler(this.comBoxLoadouts_SelectedIndexChanged);
             // 
             // labelLoadoutSlot9
             // 
@@ -1195,7 +1320,7 @@ namespace SingleplayerLauncher
             // chkRunAs32
             // 
             this.chkRunAs32.AutoSize = true;
-            this.chkRunAs32.Location = new System.Drawing.Point(694, 471);
+            this.chkRunAs32.Location = new System.Drawing.Point(694, 541);
             this.chkRunAs32.Name = "chkRunAs32";
             this.chkRunAs32.Size = new System.Drawing.Size(84, 17);
             this.chkRunAs32.TabIndex = 26;
@@ -1206,7 +1331,7 @@ namespace SingleplayerLauncher
             // 
             this.comBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLanguage.FormattingEnabled = true;
-            this.comBoxLanguage.Location = new System.Drawing.Point(847, 360);
+            this.comBoxLanguage.Location = new System.Drawing.Point(847, 430);
             this.comBoxLanguage.Name = "comBoxLanguage";
             this.comBoxLanguage.Size = new System.Drawing.Size(79, 21);
             this.comBoxLanguage.TabIndex = 11;
@@ -1215,17 +1340,42 @@ namespace SingleplayerLauncher
             // labelLanguage
             // 
             this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Location = new System.Drawing.Point(787, 363);
+            this.labelLanguage.Location = new System.Drawing.Point(787, 433);
             this.labelLanguage.Name = "labelLanguage";
             this.labelLanguage.Size = new System.Drawing.Size(55, 13);
             this.labelLanguage.TabIndex = 10;
             this.labelLanguage.Text = "Language";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // btnDeleteLoadout
+            // 
+            this.btnDeleteLoadout.BackColor = System.Drawing.Color.Tomato;
+            this.btnDeleteLoadout.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnDeleteLoadout.Location = new System.Drawing.Point(6, 521);
+            this.btnDeleteLoadout.Name = "btnDeleteLoadout";
+            this.btnDeleteLoadout.Size = new System.Drawing.Size(159, 22);
+            this.btnDeleteLoadout.TabIndex = 72;
+            this.btnDeleteLoadout.Text = "Delete selected Loadout";
+            this.btnDeleteLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDeleteLoadout.UseVisualStyleBackColor = false;
+            this.btnDeleteLoadout.Click += new System.EventHandler(this.btnDeleteLoadout_Click);
+            // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 498);
+            this.ClientSize = new System.Drawing.Size(939, 573);
             this.Controls.Add(this.labelLanguage);
             this.Controls.Add(this.comBoxLanguage);
             this.Controls.Add(this.chkRunAs32);
@@ -1246,6 +1396,9 @@ namespace SingleplayerLauncher
             this.modsGroupBox.PerformLayout();
             this.groupBoxLoadout.ResumeLayout(false);
             this.groupBoxLoadout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1307,7 +1460,7 @@ namespace SingleplayerLauncher
         private System.Windows.Forms.ComboBox comBoxLoadoutSlot5;
         private System.Windows.Forms.ComboBox comBoxLoadoutSlot7;
         private System.Windows.Forms.ComboBox comBoxLoadoutSlot6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comBoxLoadouts;
         private System.Windows.Forms.CheckBox chk_modsEnabled;
         private System.Windows.Forms.CheckBox chkCustomStartCoin;
         private System.Windows.Forms.CheckBox chkSellTrapsAnytime;
@@ -1354,6 +1507,20 @@ namespace SingleplayerLauncher
         private ComboBox comBoxTrapPartsSlot4Part3;
         private ComboBox comBoxTrapPartsSlot4Part2;
         private ComboBox comBoxTrapPartsSlot4Part1;
+        private MaskedTextBox maskedTextBoxImportLoadout;
+        private Button btnImportLoadout;
+        private Label labelExportLoadout;
+        private TextBox textBoxExportLoadout;
+        private Button btnCopyLoadoutToClipboard;
+        private Label labelPlayerName;
+        private MaskedTextBox maskedTextBoxPlayerName;
+        private Label labelLoadoutName;
+        private Button btnSaveLoadout;
+        private MaskedTextBox maskedTextBoxLoadoutName;
+        private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
+        private ErrorProvider errorProvider3;
+        private Button btnDeleteLoadout;
     }
 }
 

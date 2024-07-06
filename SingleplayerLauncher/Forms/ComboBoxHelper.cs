@@ -190,7 +190,6 @@ public class SlotItemComboBoxHelper : ComboBoxHelper<SlotItem>
     }
 }
 
-
 public class TrapPartComboBoxHelper : ComboBoxHelper<TrapPart>
 {
     public TrapPartComboBoxHelper(Dictionary<string, TrapPart> trapParts)
@@ -201,5 +200,31 @@ public class TrapPartComboBoxHelper : ComboBoxHelper<TrapPart>
     private static string GetToolTipText(TrapPart trapPart)
     {
         return $"{trapPart.Name}\n\n{trapPart.Description}";
+    }
+}
+
+public class GuardianComboBoxHelper : ComboBoxHelper<Guardian>
+{
+    public GuardianComboBoxHelper(Dictionary<string, Guardian> guardians)
+        : base(guardians, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(Guardian guardian)
+    {
+        return $"{guardian.Name}\n\n{guardian.Description}";
+    }
+}
+
+public class ConsumableComboBoxHelper : ComboBoxHelper<Consumable>
+{
+    public ConsumableComboBoxHelper(Dictionary<string, Consumable> consumables)
+        : base(consumables, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(Consumable consumable)
+    {
+        return $"{consumable.Name}\n\n{consumable.Description}";
     }
 }

@@ -3,7 +3,9 @@ using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Resources;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
@@ -22,7 +24,7 @@ namespace SingleplayerLauncher
 
         public LauncherMainForm()
         {
-            if (IsFirstRun())
+            if (Settings.Instance.FirstRun)
             {
                 GameLauncher.FirstLaunchInitialization();
             }
@@ -66,12 +68,22 @@ namespace SingleplayerLauncher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Launcher settings
             foreach (string language in Language.GetLanguageMap().Values)
             {
                 comBoxLanguage.Items.Add(language);
             }
+            chkDebug.Checked = Settings.Instance.Debug;
+            chkRunAs32.Checked = Settings.Instance.RunAs32;
+            comBoxLanguage.SelectedItem = Settings.Instance.Language;
 
-            comBoxLanguage.SelectedItem = Settings.Instance.ContainsKey("language") ? Settings.Instance["language"] : DefaultValues.SelectedLanguage;
+            // Game settings
+            foreach (string loadoutName in Loadouts.Instance.GetLoadoutNames())
+            {
+                comBoxLoadouts.Items.Add(loadoutName);
+            }
+            comBoxLoadouts.SelectedIndex = comBoxLoadouts.Items.Count == 0 ? -1 : 0;
+            btnDeleteLoadout.Enabled = comBoxLoadouts.Items.Count > 0;
 
             foreach (string h in Model.Hero.Heroes.Keys)
             {
@@ -88,36 +100,33 @@ namespace SingleplayerLauncher
                 comBoxGameMode.Items.Add(gm);
             }
 
-            comBoxHero.SelectedItem = Settings.Instance.ContainsKey("hero") ? Settings.Instance["hero"] : DefaultValues.SelectedHero;
-            comBoxSkin.SelectedItem = Settings.Instance.ContainsKey("skin") ? Settings.Instance["skin"] : DefaultValues.SelectedSkin;
-            comBoxDye.SelectedItem = Settings.Instance.ContainsKey("dye") ? Settings.Instance["dye"] : DefaultValues.SelectedDye;
+            chk_modsEnabled.Checked = GameConfig.Instance.ModsEnabled;
+            modsGroupBox.Enabled = GameConfig.Instance.ModsEnabled;
 
-            comBoxGameMode.SelectedItem = Settings.Instance.ContainsKey("gameMode") ? Settings.Instance["gameMode"] : DefaultValues.SelectedGameMode;
-            comBoxDifficulty.SelectedItem = Settings.Instance.ContainsKey("difficulty") ? Settings.Instance["difficulty"] : DefaultValues.SelectedDifficulty;
-            comBoxBattleground.SelectedItem = Settings.Instance.ContainsKey("battleground") ? Settings.Instance["battleground"] : DefaultValues.SelectedBattleground;
-            comBoxExtraDifficulty.SelectedItem = Settings.Instance.ContainsKey("extraDifficulty") ? Settings.Instance["extraDifficulty"] : noExtraDifficulty;
+            // TODO Fix loading of below game settings (it gets ovewritten from the onChange event)
+            comBoxExtraDifficulty.SelectedItem = GameConfig.Instance.ExtraDifficulty;
+            comBoxDifficulty.SelectedItem = GameConfig.Instance.Difficulty;
+            comBoxBattleground.SelectedItem = GameConfig.Instance.Battleground;
+            comBoxGameMode.SelectedItem = GameConfig.Instance.GameMode;
 
-            chkDebug.Checked = Settings.Instance.ContainsKey("debug") && (bool)Settings.Instance["debug"];
-            chkRunAs32.Checked = Settings.Instance.ContainsKey("RunAs32") && (bool)Settings.Instance["RunAs32"];
-            chk_modsEnabled.Checked = Settings.Instance.ContainsKey("modsEnabled") && (bool)Settings.Instance["modsEnabled"];
-            modsGroupBox.Enabled = chk_modsEnabled.Checked;
+            // Mods
+            chkGodMode.Checked = GameConfig.Instance.GodMode;
+            chkShowTrapDamageFlyoffs.Checked = GameConfig.Instance.ShowTrapDamage;
+            chkNoTrapCap.Checked = GameConfig.Instance.NoTrapCap;
+            chkInvincibleBarricades.Checked = GameConfig.Instance.InvincibleBarricades;
+            chkTrapsInTraps.Checked = GameConfig.Instance.TrapsInTraps;
+            chkHardcore.Checked = GameConfig.Instance.Hardcore;
+            chkNoLimitUniqueTraps.Checked = GameConfig.Instance.NoLimitUniqueTraps;
+            chkNoTrapGrid.Checked = GameConfig.Instance.NoTrapGrid;
+            chkTrapsAnySurface.Checked = GameConfig.Instance.TrapsAnySurface;
+            chkEnhancedTrapRotation.Checked = GameConfig.Instance.EnhancedTrapRotation;
+            chkSellTrapsAnytime.Checked = GameConfig.Instance.SellTrapsAnytime;
 
-            chkGodMode.Checked = Settings.Instance.ContainsKey("GodMode") && (bool)Settings.Instance["GodMode"];
-            chkShowTrapDamageFlyoffs.Checked = Settings.Instance.ContainsKey("ShowTrapDamage") && (bool)Settings.Instance["ShowTrapDamage"];
-            chkNoTrapCap.Checked = Settings.Instance.ContainsKey("NoTrapCap") && (bool)Settings.Instance["NoTrapCap"];
-            chkInvincibleBarricades.Checked = Settings.Instance.ContainsKey("InvincibleBarricades") && (bool)Settings.Instance["InvincibleBarricades"];
-            chkTrapsInTraps.Checked = Settings.Instance.ContainsKey("TrapsInTraps") && (bool)Settings.Instance["TrapsInTraps"];
-            chkHardcore.Checked = Settings.Instance.ContainsKey("Hardcore") && (bool)Settings.Instance["Hardcore"];
-            chkNoLimitUniqueTraps.Checked = Settings.Instance.ContainsKey("NoLimitUniqueTraps") && (bool)Settings.Instance["NoLimitUniqueTraps"];
-            chkNoTrapGrid.Checked = Settings.Instance.ContainsKey("NoTrapGrid") && (bool)Settings.Instance["NoTrapGrid"];
-            chkTrapsAnySurface.Checked = Settings.Instance.ContainsKey("TrapsAnySurface") && (bool)Settings.Instance["TrapsAnySurface"];
-            chkEnhancedTrapRotation.Checked = Settings.Instance.ContainsKey("EnhancedTrapRotation") && (bool)Settings.Instance["EnhancedTrapRotation"];
-            chkSellTrapsAnytime.Checked = Settings.Instance.ContainsKey("SellTrapsAnytime") && (bool)Settings.Instance["SellTrapsAnytime"];
+            chkCustomStartCoin.Checked = GameConfig.Instance.CustomStartCoinEnabled;
+            startingCoinInput.Enabled = GameConfig.Instance.CustomStartCoinEnabled;
+            startingCoinInput.Value = GameConfig.Instance.StartingCoin;
 
-            chkCustomStartCoin.Checked = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && (bool)Settings.Instance["CustomStartCoinEnabled"];
-            startingCoinInput.Enabled = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && (bool)Settings.Instance["CustomStartCoinEnabled"];
-            startingCoinInput.Value = Settings.Instance.ContainsKey("CustomStartCoinEnabled") && Settings.Instance.ContainsKey("StartingCoin") ? Int32.Parse((string)Settings.Instance["StartingCoin"]) : GameInfo.Battleground.Map.StartingCoin;
-
+            // Loadout
             // TODO: check if loading from JSON is possible with embedded: https://github.com/Fody/Costura
             PopulateSlots(ComBoxLoadoutSlots, Model.Trap.Traps.Keys.ToList());
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
@@ -125,41 +134,8 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxConsumableSlots, Model.Consumable.Consumables.Keys.ToList());
             PopulateSlots(ComBoxTraitSlots, Model.Trait.Traits.Keys.ToList());
 
-
-            // Load settings from json
-            if (Settings.Instance.ContainsKey("loadout"))
-            {
-                GameInfo.Loadout.SlotItems = ((JArray)Settings.Instance["loadout"]).ToObject<string[]>().Select(lsi => SlotItems[lsi]).ToArray();
-            }
-
-            if (Settings.Instance.ContainsKey("trapParts"))
-            {
-                var trapPartsArray = (JArray)Settings.Instance["trapParts"];
-
-                trapPartsArray
-                    .Select((row, i) => ((JArray)row)
-                        .Select((tp, j) => new { i, j, tp = tp.ToString() }))
-                    .SelectMany(x => x)
-                    .ToList()
-                    .ForEach(item => GameInfo.Loadout.TrapParts[item.i, item.j] = string.IsNullOrEmpty(item.tp) ? null : Model.TrapPart.TrapParts[item.tp]);
-            }
-
-            if (Settings.Instance.ContainsKey("guardians"))
-            {
-                GameInfo.Loadout.Guardians = ((JArray)Settings.Instance["guardians"]).ToObject<string[]>().Select(lgi => Model.Guardian.Guardians[lgi]).ToArray();
-            }
-
-            if (Settings.Instance.ContainsKey("consumables"))
-            {
-                GameInfo.Loadout.Consumables = ((JArray)Settings.Instance["consumables"]).ToObject<string[]>().Select(lci => Model.Consumable.Consumables[lci]).ToArray();
-            }
-
-            if (Settings.Instance.ContainsKey("traits"))
-            {
-                GameInfo.Loadout.Traits = ((JArray)Settings.Instance["traits"]).ToObject<string[]>().Select(lti => Model.Trait.Traits[lti]).ToArray();
-            }
-
-            SetCurrentLoadout();
+            SetCurrentHero();
+            SetCurrentSlotItems();
             SetCurrentTrapParts();
             SetCurrenGuardians();
             SetCurrentConsumables();
@@ -170,32 +146,25 @@ namespace SingleplayerLauncher
         {
             btnLaunch.Text = "Game will start soon...";
             GameLauncher.ApplyChanges();
-
             SaveSettings();
 
-
             btnLaunch.Text = "Game running... (Launcher disabled)";
-            GameLauncher.StartGame(chkDebug.Checked, chkRunAs32.Checked, comBoxLanguage.Text);
+            GameLauncher.StartGame();
             btnLaunch.Text = "Launch";
         }
 
         public void SaveSettings()
         {
-            Settings.Instance["hero"] = comBoxHero.SelectedItem;
-            Settings.Instance["skin"] = comBoxSkin.SelectedItem;
-            Settings.Instance["dye"] = comBoxDye.SelectedItem;
-            Settings.Instance["map"] = comBoxBattleground.SelectedItem;
-            Settings.Instance["gameMode"] = comBoxGameMode.SelectedItem;
-            Settings.Instance["difficulty"] = comBoxDifficulty.SelectedItem;
-            Settings.Instance["extraDifficulty"] = comBoxExtraDifficulty.SelectedItem;
-            Settings.Instance["debug"] = chkDebug.Checked;
-            Settings.Instance["runAs32"] = chkRunAs32.Checked;
-            Settings.Save();
+            Settings.Instance.Debug = chkDebug.Checked;
+            Settings.Instance.RunAs32 = chkRunAs32.Checked;
+            Settings.Instance.Save();
         }
 
         private void comBoxBattleground_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedBattleground = comBoxBattleground.SelectedItem.ToString();
+            GameConfig.Instance.Battleground = selectedBattleground;
+            GameConfig.Instance.Save();
 
             switch (comBoxGameMode.SelectedItem)
             {
@@ -243,11 +212,16 @@ namespace SingleplayerLauncher
             }
 
             GameInfo.Battleground.GameMode = Model.GameMode.GameModes[comBoxGameMode.SelectedItem.ToString()];
+            GameConfig.Instance.GameMode = comBoxGameMode.SelectedItem.ToString();
+            GameConfig.Instance.Save();
         }
 
 
         private void comBoxDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GameConfig.Instance.Difficulty = comBoxDifficulty.SelectedItem.ToString();
+            GameConfig.Instance.Save();
+
             comBoxBattleground.Items.Clear();
             comBoxExtraDifficulty.Items.Clear();
             comBoxExtraDifficulty.Items.Add(noExtraDifficulty);
@@ -270,6 +244,8 @@ namespace SingleplayerLauncher
         private void comBoxExtraDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedExtraDifficulty = comBoxExtraDifficulty.SelectedItem.ToString();
+            GameConfig.Instance.ExtraDifficulty = selectedExtraDifficulty;
+            GameConfig.Instance.Save();
 
             if (!comBoxExtraDifficulty.SelectedItem.ToString().Equals(noExtraDifficulty))
             {
@@ -294,6 +270,7 @@ namespace SingleplayerLauncher
 
                 comBoxSkin.SelectedItem = GameInfo.Loadout.Hero.Skins[0].Name;
                 GameInfo.Loadout.Hero = Model.Hero.Heroes[selectedHero];
+                UpdateLoadoutExportCode();
             }
         }
 
@@ -301,17 +278,14 @@ namespace SingleplayerLauncher
         {
             string selectedSkin = comBoxSkin.SelectedItem.ToString();
             GameInfo.Loadout.Skin = Model.Skin.Skins[selectedSkin];
+            UpdateLoadoutExportCode();
         }
 
         private void comBoxDye_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedDye = comBoxDye.SelectedItem.ToString();
             GameInfo.Loadout.Dye = Model.Dye.Dyes[selectedDye];
-        }
-
-        private static bool IsFirstRun()
-        {
-            return !Settings.Instance.ContainsKey("FirstRun");
+            UpdateLoadoutExportCode();
         }
 
         private void btnResetConfig_Click(object sender, EventArgs e)
@@ -322,83 +296,83 @@ namespace SingleplayerLauncher
         private void chkGodMode_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.GodMode.IsEnabled = chkGodMode.Checked;
-            Settings.Instance["GodMode"] = chkGodMode.Checked;
-            Settings.Save();
+            GameConfig.Instance.GodMode = chkGodMode.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkNoTrapCap_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.NoTrapCap.IsEnabled = chkNoTrapCap.Checked;
-            Settings.Instance["NoTrapCap"] = chkNoTrapCap.Checked;
-            Settings.Save();
+            GameConfig.Instance.NoTrapCap = chkNoTrapCap.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkTrapsInTraps_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.TrapsInTraps.IsEnabled = chkTrapsInTraps.Checked;
-            Settings.Instance["TrapsInTraps"] = chkTrapsInTraps.Checked;
-            Settings.Save();
+            GameConfig.Instance.TrapsInTraps = chkTrapsInTraps.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void StartingCoinInput_ValueChanged(object sender, EventArgs e)
         {
             Mods.Mods.StartingCoinOverride.Value = (int)startingCoinInput.Value;
-            Settings.Instance["StartingCoin"] = startingCoinInput.Value.ToString();
-
-            Settings.Save();
+            GameConfig.Instance.StartingCoin = (int)startingCoinInput.Value;
+            GameConfig.Instance.Save();
         }
 
         private void chkNoLimitUniqueTraps_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.NoLimitUniqueTraps.IsEnabled = chkNoLimitUniqueTraps.Checked;
-            Settings.Instance["NoLimitUniqueTraps"] = chkNoLimitUniqueTraps.Checked;
-            Settings.Save();
+            GameConfig.Instance.NoLimitUniqueTraps = chkNoLimitUniqueTraps.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkTrapsAnySurface_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.TrapsAnySurface.IsEnabled = chkTrapsAnySurface.Checked;
-            Settings.Instance["TrapsAnySurface"] = chkTrapsAnySurface.Checked;
-            Settings.Save();
+            GameConfig.Instance.TrapsAnySurface = chkTrapsAnySurface.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkNoTrapGrid_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.NoTrapGrid.IsEnabled = chkNoTrapGrid.Checked;
-            Settings.Instance["NoTrapGrid"] = chkNoTrapGrid.Checked;
-            Settings.Save();
+            GameConfig.Instance.NoTrapGrid = chkNoTrapGrid.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkHardcore_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.Hardcore.IsEnabled = chkHardcore.Checked;
-            Settings.Instance["Hardcore"] = chkHardcore.Checked;
-            Settings.Save();
+            GameConfig.Instance.Hardcore = chkHardcore.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkInvincibleBarricades_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.InvincibleBarricades.IsEnabled = chkInvincibleBarricades.Checked;
-            Settings.Instance["InvincibleBarricades"] = chkInvincibleBarricades.Checked;
-            Settings.Save();
+            GameConfig.Instance.InvincibleBarricades = chkInvincibleBarricades.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkShowTrapDamageFlyoffs_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled = chkShowTrapDamageFlyoffs.Checked;
-            Settings.Instance["ShowTrapDamage"] = chkShowTrapDamageFlyoffs.Checked;
-            Settings.Save();
+            GameConfig.Instance.ShowTrapDamage = chkShowTrapDamageFlyoffs.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chk_modsEnabled_CheckedChanged(object sender, EventArgs e)
         {
             modsGroupBox.Enabled = chk_modsEnabled.Checked;
-            Settings.Instance["modsEnabled"] = chk_modsEnabled.Checked;
-            Settings.Save();
+            GameConfig.Instance.ModsEnabled = chk_modsEnabled.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void PopulateSlots(List<ComboBox> comBoxSlotList, List<String> entryList)
         {
+            entryList.Insert(0, "");
             foreach (ComboBox comBoxSlot in comBoxSlotList)
             {
                 foreach (string entry in entryList)
@@ -410,85 +384,90 @@ namespace SingleplayerLauncher
 
         private void SetCurrenGuardians()
         {
+            GuardianComboBoxHelper comboBoxHelper = new GuardianComboBoxHelper(Guardian.Guardians);
+            List<Guardian> guardians = GameInfo.Loadout.Guardians.ToList();
             for (int i = 0; i < Loadout.GUARDIAN_SLOT_COUNT; i++)
             {
-                ComBoxGuardianSlots[i].SelectedItem = GameInfo.Loadout.Guardians[i].Name;
+                comboBoxHelper.InitializeComboBox(ComBoxGuardianSlots[i]);
+                Guardian current = guardians[i];
+                ComBoxGuardianSlots[i].SelectedItem = current == null ? null : current.Name;
             }
         }
 
         private void SetCurrentConsumables()
         {
+            ConsumableComboBoxHelper comboBoxHelper = new ConsumableComboBoxHelper(Consumable.Consumables);
+            List<Consumable> consumables = GameInfo.Loadout.Consumables.ToList();
             for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
             {
-                ComBoxConsumableSlots[i].SelectedItem = GameInfo.Loadout.Consumables[i].Name;
+                comboBoxHelper.InitializeComboBox(ComBoxConsumableSlots[i]);
+                Consumable current = consumables[i];
+                ComBoxConsumableSlots[i].SelectedItem = current == null ? null : current.Name;
             }
         }
 
         private void SetCurrentTraits()
         {
             TraitComboBoxHelper comboBoxHelper = new TraitComboBoxHelper(Trait.Traits);
+            List<Trait> traits = GameInfo.Loadout.Traits.ToList();
             for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
             {
                 comboBoxHelper.InitializeComboBox(ComBoxTraitSlots[i]);
-                ComBoxTraitSlots[i].SelectedItem = GameInfo.Loadout.Traits[i].Name;
+                Trait current = traits[i];
+                ComBoxTraitSlots[i].SelectedItem = current == null ? null : current.Name;
             }
         }
 
         private void SaveGuardians()
         {
-            List<string> guardianNames = new List<string>();
             for (int i = 0; i < Loadout.GUARDIAN_SLOT_COUNT; i++)
             {
                 string guardianName = ComBoxGuardianSlots[i].Text;
-                guardianNames.Add(guardianName);
-                if (guardianName.Length > 0)
-                {
-                    GameInfo.Loadout.Guardians[i] = Guardian.Guardians[guardianName];
-                }
+                GameInfo.Loadout.Guardians[i] = guardianName.Length > 0 ? Guardian.Guardians[guardianName] : null;
             }
-            Settings.Instance["guardians"] = guardianNames;
-            Settings.Save();
+
+            UpdateLoadoutExportCode();
         }
 
         private void SaveConsumables()
         {
-            List<string> consumableNames = new List<string>();
             for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
             {
                 string consumableName = ComBoxConsumableSlots[i].Text;
-                consumableNames.Add(consumableName);
-                if (consumableName.Length > 0)
-                {
-                    GameInfo.Loadout.Consumables[i] = Consumable.Consumables[consumableName];
-                }
+                GameInfo.Loadout.Consumables[i] = consumableName.Length > 0 ? Consumable.Consumables[consumableName] : null;
             }
-            Settings.Instance["consumables"] = consumableNames;
-            Settings.Save();
+
+            UpdateLoadoutExportCode();
         }
 
         private void SaveTraits()
         {
-            List<string> traitNames = new List<string>();
             for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
             {
                 string traitName = ComBoxTraitSlots[i].Text;
-                traitNames.Add(traitName);
-                if (traitName.Length > 0)
-                {
-                    GameInfo.Loadout.Traits[i] = Trait.Traits[traitName];
-                }
+                GameInfo.Loadout.Traits[i] = traitName.Length > 0 ? Trait.Traits[traitName] : null;
             }
-            Settings.Instance["traits"] = traitNames;
-            Settings.Save();
+
+            UpdateLoadoutExportCode();
         }
 
-        private void SetCurrentLoadout()
+        private void SetCurrentHero()
+        {
+            comBoxHero.SelectedItem = GameInfo.Loadout.Hero.Name;
+            comBoxSkin.SelectedItem = GameInfo.Loadout.Skin.Name;
+            comBoxDye.SelectedItem = GameInfo.Loadout.Dye.Name;
+        }
+
+        private void SetCurrentSlotItems()
         {
             SlotItemComboBoxHelper comboBoxHelper = new SlotItemComboBoxHelper(SlotItems);
+            List<SlotItem> slotItems = GameInfo.Loadout.SlotItems.ToList();
+
             for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
             {
                 comboBoxHelper.InitializeComboBox(ComBoxLoadoutSlots[i]);
-                ComBoxLoadoutSlots[i].SelectedItem = GameInfo.Loadout.SlotItems[i].Name;
+                SlotItem current = slotItems[i];
+                ComBoxLoadoutSlots[i].SelectedItem = current == null ? null : current.Name;
             }
         }
 
@@ -516,24 +495,17 @@ namespace SingleplayerLauncher
 
         private void SaveLoadout()
         {
-            List<string> slotItemNames = new List<string>();
             for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
             {
                 string slotItemName = ComBoxLoadoutSlots[i].Text;
-                slotItemNames.Add(slotItemName);
-                if (slotItemName.Length > 0)
-                {
-                    GameInfo.Loadout.SlotItems[i] = SlotItems[slotItemName];
-                }
+                GameInfo.Loadout.SlotItems[i] = slotItemName.Length > 0 ? SlotItems[slotItemName] : null;
             }
-            Settings.Instance["loadout"] = slotItemNames;
-            Settings.Save();
+
+            UpdateLoadoutExportCode();
         }
 
         private void SaveTrapParts()
         {
-            List<List<string>> trapPartNames = new List<List<string>>();
-
             for (int i = 0; i < ComBoxTrapPartsSlots.Count; i++)
             {
                 List<string> partNames = new List<string>();
@@ -541,19 +513,17 @@ namespace SingleplayerLauncher
                 for (int j = 0; j < ComBoxTrapPartsSlots[i].Count; j++)
                 {
                     string partName = ComBoxTrapPartsSlots[i][j].Text;
-                    partNames.Add(partName);
 
-                    if (partName.Length > 0)
-                    {
-                        GameInfo.Loadout.TrapParts[i,j] = TrapPart.TrapParts[partName];
-                    }
+                    GameInfo.Loadout.TrapParts[i,j] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
                 }
-
-                trapPartNames.Add(partNames);
             }
 
-            Settings.Instance["trapParts"] = trapPartNames;
-            Settings.Save();
+            UpdateLoadoutExportCode();
+        }
+
+        private void UpdateLoadoutExportCode()
+        {
+            textBoxExportLoadout.Text = Loadout.EncodeLoadout(GameInfo.Loadout);
         }
 
         private void comBoxLoadoutSlot1_SelectedIndexChanged(object sender, EventArgs e)
@@ -613,7 +583,7 @@ namespace SingleplayerLauncher
         private void AdjustTrapPartsComBoxes(object sender, int slotIdx)
         {
             String selected = ((ComboBox)sender).SelectedItem?.ToString();
-            Trap trap = Trap.Traps.ContainsKey(selected) ? (Trap)Trap.Traps[selected] : null;
+            Trap trap = selected != null && selected != "" && Trap.Traps.ContainsKey(selected) ? (Trap)Trap.Traps[selected] : null;
             bool isTrap = trap != null;
 
             for (int i = 0; i < ComBoxTrapPartsSlots[slotIdx].Count; i++)
@@ -625,7 +595,6 @@ namespace SingleplayerLauncher
                     var trapPartNames = TrapPart.GetTrapPartsBySlotType(trap.TrapPartSlots[i])
                                                 .Select(tp => tp.Name)
                                                 .ToList();
-                    trapPartNames.Insert(0, "");
                     trapPartComBox.Items.Clear();
                     PopulateSlots(new List<ComboBox> { trapPartComBox }, trapPartNames);
                 } else
@@ -688,29 +657,29 @@ namespace SingleplayerLauncher
             }
             startingCoinInput.Enabled = chkCustomStartCoin.Checked;
             Mods.Mods.StartingCoinOverride.IsEnabled = chkCustomStartCoin.Checked;
-            Settings.Instance["CustomStartCoinEnabled"] = chkCustomStartCoin.Checked;
-            Settings.Save();
+            GameConfig.Instance.CustomStartCoinEnabled = chkCustomStartCoin.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkSellTrapsAnytime_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.SellTrapsAnytime.IsEnabled = chkSellTrapsAnytime.Checked;
-            Settings.Instance["SellTrapsAnytime"] = chkSellTrapsAnytime.Checked;
-            Settings.Save();
+            GameConfig.Instance.SellTrapsAnytime = chkSellTrapsAnytime.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void chkEnhancedTrapRotation_CheckedChanged(object sender, EventArgs e)
         {
             Mods.Mods.EnhancedTrapRotation.IsEnabled = chkEnhancedTrapRotation.Checked;
-            Settings.Instance["EnhancedTrapRotation"] = chkEnhancedTrapRotation.Checked;
-            Settings.Save();
+            GameConfig.Instance.EnhancedTrapRotation = chkEnhancedTrapRotation.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void comBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedLanguage = comBoxLanguage.SelectedItem.ToString();
-            Settings.Instance["language"] = selectedLanguage;
-            Settings.Save();
+            Settings.Instance.Language = selectedLanguage;
+            Settings.Instance.Save();
         }
 
         private void comBoxTrapPartsSlot1Part1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -846,6 +815,169 @@ namespace SingleplayerLauncher
         private void comBoxTrapPartsSlot9Part1_SelectedIndexChanged(object sender, EventArgs e)
         {
             SaveTrapParts();
+        }
+
+        private void btnCopyLoadoutToClipboard_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(textBoxExportLoadout.Text);
+        }
+
+        private void btnSaveLoadout_Click(object sender, EventArgs e)
+        {
+            string loadoutName = maskedTextBoxLoadoutName.Text;
+            string loadoutCode = textBoxExportLoadout.Text;
+
+            if (Loadouts.Instance.Exists(loadoutName)) {
+                Loadouts.Instance.UpdateLoadout(loadoutName, loadoutCode);
+            } else {
+                Loadouts.Instance.AddLoadout(loadoutName, loadoutCode);
+                comBoxLoadouts.Items.Add(loadoutName);
+            }
+
+            Loadouts.Instance.Save();
+            comBoxLoadouts.SelectedItem = loadoutName;
+        }
+
+        private void maskedTextBoxLoadoutName_TextChanged(object sender, EventArgs e)
+        {
+            btnSaveLoadout.Enabled = IsLoadoutSaveable();
+            GameInfo.Loadout.Name = maskedTextBoxLoadoutName.Text;
+        }
+
+        private void maskedTextBoxPlayerName_TextChanged(object sender, EventArgs e)
+        {
+            btnSaveLoadout.Enabled = IsLoadoutSaveable();
+            btnCopyLoadoutToClipboard.Enabled = IsLoadoutExportable();
+            GameInfo.Loadout.PlayerName = maskedTextBoxPlayerName.Text;
+            UpdateLoadoutExportCode();
+        }
+
+        private bool IsLoadoutSaveable()
+        {
+            return IsLoadoutNameValid() && IsPlayerNameValid();
+        }
+
+        private bool IsLoadoutExportable()
+        {
+            return IsPlayerNameValid();
+        }
+
+        private bool IsLoadoutNameValid()
+        {
+            string currLoadoutName = maskedTextBoxLoadoutName.Text;
+            if (currLoadoutName.Length < 3)
+            {
+                errorProvider2.SetError(maskedTextBoxLoadoutName, "Loadout name must be at least 3 characters long.");
+                return false;
+            }
+
+            if (currLoadoutName.Length > 32)
+            {
+                errorProvider2.SetError(maskedTextBoxLoadoutName, "Loadout name must be at most 32 characters long.");
+                return false;
+            }
+
+            errorProvider2.SetError(maskedTextBoxLoadoutName, "");
+            return true;
+        }
+
+        private bool IsPlayerNameValid()
+        {
+            if (maskedTextBoxPlayerName.Text.Length < 3)
+            {
+                errorProvider1.SetError(maskedTextBoxPlayerName, "Player name must be at least 3 characters long.");
+                return false;
+            }
+
+            if (maskedTextBoxPlayerName.Text.Length > 12)
+            {
+                btnCopyLoadoutToClipboard.Enabled = false;
+                errorProvider1.SetError(maskedTextBoxPlayerName, "Player name must be at most 12 characters long.");
+                return false;
+            }
+
+            btnCopyLoadoutToClipboard.Enabled = true;
+            errorProvider1.SetError(maskedTextBoxPlayerName, "");
+            return true;
+        }
+
+        private void comBoxLoadouts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLoadoutName = comBoxLoadouts.SelectedItem.ToString();
+            string selectedLoadoutCode = Loadouts.Instance.GetLoadoutByName(selectedLoadoutName).Code;
+            Loadout decodedLoadout = Loadout.DecodeLoadout(selectedLoadoutCode);
+            GameInfo.Loadout = decodedLoadout;
+
+            SetCurrentSlotItems();
+            SetCurrentTrapParts();
+            SetCurrenGuardians();
+            SetCurrentConsumables();
+            SetCurrentTraits();
+
+            maskedTextBoxLoadoutName.Text = selectedLoadoutName;
+            maskedTextBoxPlayerName.Text = decodedLoadout.PlayerName;
+
+            if (comBoxLoadouts.Items.Count > 0)
+            {
+                btnDeleteLoadout.Enabled = true;
+            }
+        }
+
+        private void btnImportLoadout_Click(object sender, EventArgs e)
+        {
+            string loadoutCode = maskedTextBoxImportLoadout.Text;
+            Loadout decodedLoadout = Loadout.DecodeLoadout(loadoutCode);
+            GameInfo.Loadout = decodedLoadout;
+
+            string loadoutName = "";
+            while (loadoutName.Length == 0 || Loadouts.Instance.Exists(loadoutName))
+            {
+                loadoutName = decodedLoadout.PlayerName + "-Imported-" + Guid.NewGuid().ToString().Substring(0, 8);
+            }
+
+            Loadouts.Instance.AddLoadout(loadoutName, loadoutCode);
+            Loadouts.Instance.Save();
+
+            comBoxLoadouts.Items.Add(loadoutName);
+            comBoxLoadouts.SelectedItem = loadoutName;
+            btnImportLoadout.Enabled = false;
+            maskedTextBoxImportLoadout.Text = "";
+        }
+
+        private void maskedTextBoxImportLoadout_TextChanged(object sender, EventArgs e)
+        {
+            if (maskedTextBoxImportLoadout.Text.Length == 0)
+            {
+                btnImportLoadout.Enabled = false;
+                errorProvider3.SetError(maskedTextBoxImportLoadout, "");
+                return;
+            }
+
+            try
+            {
+                string loadoutCode = maskedTextBoxImportLoadout.Text;
+                Loadout decodedLoadout = Loadout.DecodeLoadout(loadoutCode);
+                btnImportLoadout.Enabled = true;
+                errorProvider3.SetError(maskedTextBoxImportLoadout, "");
+            } catch
+            {
+                btnImportLoadout.Enabled = false;
+                errorProvider3.SetError(maskedTextBoxImportLoadout, "Invalid loadout code.");
+            }
+        }
+
+        private void btnDeleteLoadout_Click(object sender, EventArgs e)
+        {
+            string selectedLoadoutName = comBoxLoadouts.SelectedItem.ToString();
+            Loadouts.Instance.RemoveLoadout(selectedLoadoutName);
+            Loadouts.Instance.Save();
+            comBoxLoadouts.Items.Remove(selectedLoadoutName);
+            comBoxLoadouts.SelectedIndex = comBoxLoadouts.Items.Count == 0 ? -1 : 0;
+
+            if (comBoxLoadouts.Items.Count == 0)
+            {
+                btnDeleteLoadout.Enabled = false;
+            }
         }
     }
 }
