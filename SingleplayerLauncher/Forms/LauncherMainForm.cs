@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Resources;
 using System;
@@ -981,6 +981,14 @@ namespace SingleplayerLauncher
             {
                 btnDeleteLoadout.Enabled = false;
             }
+        }
+
+        private static readonly string DISCORD_SERVER_INVITE_CODE = "MngtsvvA5E";
+        private static readonly string DISCORD_SERVER_INVITE_URL = "https://discord.gg/" + DISCORD_SERVER_INVITE_CODE;
+
+        private void btnDiscord_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(DISCORD_SERVER_INVITE_URL);
         }
     }
 }
