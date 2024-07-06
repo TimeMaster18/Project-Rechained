@@ -4,16 +4,15 @@ using static SingleplayerLauncher.Names.TrapPartSlot;
 
 namespace SingleplayerLauncher.Model
 {
-    public class TrapPart
+    public class TrapPart : LoadoutItem
     {
-        public string Name { get; private set; }
         public string ItemTinkerEffect { get; private set; }
-        public string Description { get; private set; }
         public string PartSlot { get; private set; }
         public string FlavourText { get; private set; }
 
         public static TrapPart DoubleTankAccumulator = new TrapPart
         {
+            Id = 1,
             Name = DOUBLE_TANK_ACCUMULATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectDoubleTankAccumulator",
             Description = "Increases the Trap's knock-back by 25%.",
@@ -22,6 +21,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart StunningAccumulator = new TrapPart
         {
+            Id = 2,
             Name = STUNNING_ACCUMULATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectStunningAccumulator",
             Description = "Causes knocked-back Enemies (Large enemies aren't affected) to take 100% more damage for 5s.",
@@ -30,6 +30,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart CapacitanceAttuner = new TrapPart
         {
+            Id = 3,
             Name = CAPACITANCE_ATTUNER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectCapacitanceAttuner",
             Description = "Amplifies the buffs cast by this Trap by 100% when first placed. Amplification weakens to 0% over 90s.",
@@ -38,6 +39,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart DeepCellAttuner = new TrapPart
         {
+            Id = 4,
             Name = DEEP_CELL_ATTUNER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectDeepCellAttuner",
             Description = "Amplifies the buffs cast by this Trap by 25%.",
@@ -46,6 +48,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ReflectiveArmor = new TrapPart
         {
+            Id = 5,
             Name = REFLECTIVE_ARMOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectReflectiveArmor",
             Description = "Reflects 200% of damage dealt to the Trap in a radius.",
@@ -54,6 +57,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ReusableShielding = new TrapPart
         {
+            Id = 6,
             Name = REUSABLE_SHIELDING,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectReusableShielding",
             Description = "Returns 25% of its base cost to its owner when the Trap is destroyed. It has a cooldown of 300 seconds (5 minutes) when used in Summoner Trap",
@@ -62,6 +66,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart RevengeRune = new TrapPart
         {
+            Id = 7,
             Name = REVENGE_RUNE,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectRevengeRune",
             Description = "When this Trap is killed, the attacker takes 75% of their max health in damage. It has a cooldown of 300 seconds (5 minutes) when used in Summoner Trap",
@@ -70,6 +75,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart BraidedCoil = new TrapPart
         {
+            Id = 8,
             Name = BRAIDED_COIL,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectBraidedCoil",
             Description = "Improves the Trap's refire rate, making it 20% faster.",
@@ -78,6 +84,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart DiscountCoil = new TrapPart
         {
+            Id = 9,
             Name = DISCOUNT_COIL,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectDiscountCoil",
             Description = "Reduces the Trap's build cost by 25% but increases its cooldown by 10%.",
@@ -86,6 +93,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart SelfImprovingCoil = new TrapPart
         {
+            Id = 10,
             Name = SELF_IMPROVING_COIL,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectSelfImprovingCoil",
             Description = "Reduces the Trap's cooldown by 3% per wave (max 30%).",
@@ -94,6 +102,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart QuickTrapComponents = new TrapPart
         {
+            Id = 11,
             Name = QUICK_TRAP_COMPONENTS,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectQuikTrapComponents",
             Description = "Needs to be tested",
@@ -102,6 +111,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart RentalParts = new TrapPart
         {
+            Id = 12,
             Name = RENTAL_PARTS,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectRentalParts",
             Description = "Reduces Trap build cost by 50% but Trap cannot be sold. Trap is \"returned\" after two waves, selling itself back to owner at 50% its value.",
@@ -110,6 +120,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart StampedParts = new TrapPart
         {
+            Id = 13,
             Name = STAMPED_PARTS,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectStampedParts",
             Description = "Reduces build cost by 20%.",
@@ -118,6 +129,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart SubsidizedParts = new TrapPart
         {
+            Id = 14,
             Name = SUBSIDIZED_PARTS,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectSubsidizedParts",
             Description = "Reduces the build cost of the Trap by 10% and grants +500 coin at the start of a match.",
@@ -126,6 +138,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart VanityPlating = new TrapPart
         {
+            Id = 15,
             Name = VANITY_PLATING,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectVanityPlating",
             Description = "Increases the Trap's build cost by 10%, but generates XP for the Traps' owner per second.",
@@ -134,6 +147,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart BountyGenerator = new TrapPart
         {
+            Id = 16,
             Name = BOUNTY_GENERATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectBountyGenerator",
             Description = "Increases the coin reward of Enemies affected by the trap by 2% (stacks to max 20%).",
@@ -142,6 +156,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart HealthSiphon = new TrapPart
         {
+            Id = 17,
             Name = HEALTH_SIPHON,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectHealthSiphon",
             Description = "Restores +0.25% of owner's max health each time an enemy crosses the trap.",
@@ -150,6 +165,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ManaSiphon = new TrapPart
         {
+            Id = 18,
             Name = MANA_SIPHON,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectManaSiphon",
             Description = "Restores 0.25% of owner's max mana each time an enemy crosses the Trap.",
@@ -158,6 +174,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart XPSiphon = new TrapPart
         {
+            Id = 19,
             Name = XP_SIPHON,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectXPSiphon",
             Description = "Grants +3XP to the Trap's owner each time an enemy crosses the Trap.",
@@ -166,6 +183,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart DoubleStruts = new TrapPart
         {
+            Id = 20,
             Name = DOUBLE_STRUTS,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectDoubleStruts",
             Description = "Reduces damage taken by the Trap by 40%.",
@@ -174,6 +192,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart HeroRunedFrame = new TrapPart
         {
+            Id = 21,
             Name = HERO_RUNED_FRAME,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectHeroRunedFrame",
             Description = "Reduces damage taken by Heroes near the Trap by 10%.",
@@ -182,6 +201,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ControlledResonator = new TrapPart
         {
+            Id = 22,
             Name = CONTROLLED_RESONATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectControlledResonator",
             Description = "Increases the Trap's damage to stunned, slowed or rooted Enemies by 30%.",
@@ -190,6 +210,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart FireResonator = new TrapPart
         {
+            Id = 23,
             Name = FIRE_RESONATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectFireResonator",
             Description = "Increases the Trap's damage to burning Enemies by 30%.",
@@ -198,6 +219,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart IceResonator = new TrapPart
         {
+            Id = 24,
             Name = ICE_RESONATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectIceResonator",
             Description = "Increases the Trap's damage to frozen Enemies by 90%.",
@@ -206,6 +228,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart KineticResonator = new TrapPart
         {
+            Id = 25,
             Name = KINETIC_RESONATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectKineticResonator",
             Description = "Slows Minions damaged by the trap by 10% for 2s.",
@@ -214,6 +237,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart UnchainedResonator = new TrapPart
         {
+            Id = 26,
             Name = UNCHAINED_RESONATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectUnchainedResonator",
             Description = "Causes Enemies killed by the Trap to increase its owner's Unchained Meter by a small amount.",
@@ -222,6 +246,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart WeaknessResonator = new TrapPart
         {
+            Id = 27,
             Name = WEAKNESS_RESONATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectWeaknessResonator",
             Description = "Reduces the Physical Armor of Enemies damaged by the trap by -50 for 2s. Debuff does not stack with other Debilitation Resonators.",
@@ -230,6 +255,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ChargingSpring = new TrapPart
         {
+            Id = 28,
             Name = CHARGING_SPRING,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectChargingSpring",
             Description = "Improves the Trap's refire rate, making it 20% faster.",
@@ -238,6 +264,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart DoubleSpring = new TrapPart
         {
+            Id = 29,
             Name = DOUBLE_SPRING,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectDoubleSpring",
             Description = "Improves the Trap's refire rate, making it 35% faster. It also increases its build cost by 25%.",
@@ -246,6 +273,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ShortSpring = new TrapPart
         {
+            Id = 30,
             Name = SHORT_SPRING,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectShortSpring",
             Description = "Penalizes the Trap's refire rate, slowing it by 15% but reduces the Traps build cost by 30%.",
@@ -254,6 +282,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart AmbushTrigger = new TrapPart
         {
+            Id = 31,
             Name = AMBUSH_TRIGGER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectAmbushTrigger",
             Description = "This Trap will only trigger if there is a Minion with more than 75% health in range. In addition, increases the damage of the Trap by 25%.",
@@ -262,6 +291,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ComboGenerator = new TrapPart
         {
+            Id = 32,
             Name = COMBO_GENERATOR,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectComboGenerator",
             Description = "Adds +1 Combo Point to frozen, stunned, or mid-air Minions while on the Trap. In addition, increases the damage of the trap by 10%. Does not stack with other combo generators.",
@@ -270,6 +300,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart CrowdControlTrigger = new TrapPart
         {
+            Id = 33,
             Name = CROWD_CONTROL_TRIGGER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectCrowdControlTrigger",
             Description = "Causes the Trap to be triggered only if 3 or more Minions are within range. In addition, increases damage by 10%.",
@@ -278,6 +309,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart ExecutionTrigger = new TrapPart
         {
+            Id = 34,
             Name = EXECUTION_TRIGGER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectExecutionTrigger",
             Description = "This Trap will only trigger if there is a Minion with less than 25% health in range. In addition, increases the damage of the trap by 25%.",
@@ -286,6 +318,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart HeatActivatedTrigger = new TrapPart
         {
+            Id = 35,
             Name = HEAT_ACTIVATED_TRIGGER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectHeatActivated",
             Description = "Adds a 10% chance for the Trap to reset if burning Minions are nearby, regardless of the traps' cooldown state. The Heat Activated Trigger will only trigger, when an enemy crosses into the trigger range for a trap.",
@@ -294,6 +327,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart HeavyPressurePlate = new TrapPart
         {
+            Id = 36,
             Name = HEAVY_PRESSURE_PLATE,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectHeavyPressurePlate",
             Description = "Causes only heavy/Large Minions to trigger the trap. In addition, increases the damage of the trap by 25%. Not compatible with Big Game Hunting Traps.",
@@ -302,6 +336,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart KineticReclaimer = new TrapPart
         {
+            Id = 37,
             Name = KINETIC_RECLAIMER,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectKineticReclaimer",
             Description = "Adds a 10% chance for a Trap reset if Minions are thrown into it, regardless of cooldown. Trap jams and resets normally if it resets too many times too quickly.",
@@ -310,6 +345,7 @@ namespace SingleplayerLauncher.Model
         };
         public static TrapPart LightPressurePlate = new TrapPart
         {
+            Id = 38,
             Name = LIGHT_PRESSURE_PLATE,
             ItemTinkerEffect = "SpitfireGame.RTrapTinkeringEffectLightPressurePlate",
             Description = "Causes only light Minions to trigger the Trap. In addition, increases the damage of the trap by 15%. Not compatible with Big Game Hunting Traps.",
@@ -372,6 +408,57 @@ namespace SingleplayerLauncher.Model
             }
 
             return partsBySlotType;
+        }
+
+        public static Dictionary<int, TrapPart> TrapPartsById = new Dictionary<int, TrapPart>
+        {
+            { DoubleTankAccumulator.Id, DoubleTankAccumulator },
+            { StunningAccumulator.Id, StunningAccumulator },
+            { CapacitanceAttuner.Id, CapacitanceAttuner },
+            { DeepCellAttuner.Id, DeepCellAttuner },
+            { ReflectiveArmor.Id, ReflectiveArmor },
+            { ReusableShielding.Id, ReusableShielding },
+            { RevengeRune.Id, RevengeRune },
+            { BraidedCoil.Id, BraidedCoil },
+            { DiscountCoil.Id, DiscountCoil },
+            { SelfImprovingCoil.Id, SelfImprovingCoil },
+            { QuickTrapComponents.Id, QuickTrapComponents },
+            { RentalParts.Id, RentalParts },
+            { StampedParts.Id, StampedParts },
+            { SubsidizedParts.Id, SubsidizedParts },
+            { VanityPlating.Id, VanityPlating },
+            { BountyGenerator.Id, BountyGenerator },
+            { HealthSiphon.Id, HealthSiphon },
+            { ManaSiphon.Id, ManaSiphon },
+            { XPSiphon.Id, XPSiphon },
+            { DoubleStruts.Id, DoubleStruts },
+            { HeroRunedFrame.Id, HeroRunedFrame },
+            { ControlledResonator.Id, ControlledResonator },
+            { FireResonator.Id, FireResonator },
+            { IceResonator.Id, IceResonator },
+            { KineticResonator.Id, KineticResonator },
+            { UnchainedResonator.Id, UnchainedResonator },
+            { WeaknessResonator.Id, WeaknessResonator },
+            { ChargingSpring.Id, ChargingSpring },
+            { DoubleSpring.Id, DoubleSpring },
+            { ShortSpring.Id, ShortSpring },
+            { AmbushTrigger.Id, AmbushTrigger },
+            { ComboGenerator.Id, ComboGenerator },
+            { CrowdControlTrigger.Id, CrowdControlTrigger },
+            { ExecutionTrigger.Id, ExecutionTrigger },
+            { HeatActivatedTrigger.Id, HeatActivatedTrigger },
+            { HeavyPressurePlate.Id, HeavyPressurePlate },
+            { KineticReclaimer.Id, KineticReclaimer },
+            { LightPressurePlate.Id, LightPressurePlate },
+        };
+
+        public static TrapPart GetById(int id)
+        {
+            if (TrapPartsById.TryGetValue(id, out var trapPart))
+            {
+                return trapPart;
+            }
+            return new TrapPart { Id = 0, Name = "Unknown" };
         }
     }
 }

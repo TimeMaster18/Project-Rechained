@@ -7,1745 +7,534 @@ namespace SingleplayerLauncher.Model
 {
     public class Trap : SlotItem
     {
-        public static readonly List<byte[]> DEFAULT_TRAP_TEXTURE_IDS = new List<byte[]>() {    new byte[] { 0x31 },
-                                                                            new byte[] { 0x32 }, new byte[] { 0x32 },
-                                                                            new byte[] { 0x33 }, new byte[] { 0x33 },
-                                                                            new byte[] { 0x34 }, new byte[] { 0x34 } };
 
-        public class StatModifierExpression
-        {
-            public int Offset;
-            public string Expression;
-            public StatModifierExpression(int offset, string expression)
-            {
-                Offset = offset;
-                Expression = expression;
-            }
-        }
-        public List<StatModifierExpression> StatModifierExpressions { get; private set; }
-        public int[] TextureOffsets { get; private set; } // in SpitfireUPK
-        public List<byte[]> TextureIds { get; private set; } = DEFAULT_TRAP_TEXTURE_IDS; // in SpitfireUPK
-        public int IconOffset { get; private set; } // in SpitfireUPK
-        public List<byte[]> IconIds { get; private set; } // ids linking the trap icons
-        public float IncreasePerTier { get; private set; }
-        public int CoinCostOffset { get; private set; } // in SpitfireUPK
-        public int CoinCost { get; private set; }
-        public string[] TrapPartSlots { get; private set; }
-
-        // private constructor
-        Trap() { }
+    public int CoinCost { get; private set; }
+    public string[] TrapPartSlots { get; private set; }
 
         // static members
         public static Trap ArcaneBowlingBall = new Trap()
         {
+            Id = 100,
             Name = ARCANE_BOWLING_BALL,
             Description = "Fires an orb in a straight line, dealing arcane damage. The orb's damage causes subsequent Arcane attacks to deal more damage. +25% damage when used by Stinkeye.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapArcaneOrb",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x62, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x88, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x1C, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x5D, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x46, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x67, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x2A, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xEA, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x06, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x24, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x3C, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x1A, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xB2, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x1D, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F218B, "120.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x183E781 },
-            IconOffset = 0x27164C7,
-            IconIds = new List<byte[]>() { new byte[] { 0xA2 }, new byte[] { 0xA3 }, new byte[] { 0xA4 }, new byte[] { 0xA5 } }
+
+
         };
         public static Trap ArcanePhaser = new Trap()
         {
+            Id = 101,
             Name = ARCANE_PHASER,
             Description = "Emits a cloud of Arcane energy when triggered, dealing Arcane damage to enemies that walk across it. Trap expires after firing 9 times.",
             TrapPartSlots = new string[] { COMPONENTS, FIELD, RESONATOR },
             ItemTemplateName = "SpitfireGame.RItemTrapArcanePhase",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x64, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x87, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x1B, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x5C, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x45, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x66, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x29, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE9, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x05, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x23, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x3B, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x19, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xB1, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x1C, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F22D9, "110.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x183EF16 },
-            IconOffset = 0x271650B,
-            IconIds = new List<byte[]>() { new byte[] { 0xE2 }, new byte[] { 0xE3 }, new byte[] { 0xE4 }, new byte[] { 0xE5 } }
+
+
         };
         public static Trap ArrowWall = new Trap()
         {
+            Id = 102,
             Name = ARROW_WALL,
             Description = "Fires a barrage of arrows in a straight line when triggered, dealing Physical damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapArrowWall",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x66, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x75, 0xFF, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x1A, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x5B, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x44, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x65, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x28, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE8, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x04, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x22, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x3A, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x18, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xB0, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x1B, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2427, "30.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x183F5D5 },
-            IconOffset = 0x271654F,
-            IconIds = new List<byte[]>() { new byte[] { 0xEA }, new byte[] { 0xEB }, new byte[] { 0xEC }, new byte[] { 0xED } }
+
+
         };
         public static Trap BGHArrowWall = new Trap()
         {
+            Id = 103,
             Name = BGH_ARROW_WALL,
             Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Fires a barrage of magical, mercenary and boss seeking arrows, dealing a portion of the target's max health and a bonus as damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapArrowWallGlorySeeker",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x68, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x86, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x19, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x5A, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x43, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x64, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x27, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE7, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x03, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x21, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x39, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x17, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xAF, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x1A, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2594, "18 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x183FD96 },
-            IconOffset = 0x2716593,
-            IconIds = new List<byte[]>() { new byte[] { 0xE6 }, new byte[] { 0xE7 }, new byte[] { 0xE8 }, new byte[] { 0xE9 } }
+
+
         };
         public static Trap CeilingBallista = new Trap()
         {
+            Id = 104,
             Name = CEILING_BALLISTA,
             Description = "Fires long-range arrows radially from above when triggered, dealing Physical damage. It also targets Unstable Rifts but deals very low damage to them  opposed to the Big Game Hunting Ballista.Ballistas, activation range is lengthened / shortened by Line of Sight(LoS).So if minions come around a corner, the activation range is changed based on the trap's LoS and any Triggers would activate at that point.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeiling",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x6A, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x85, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x18, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x59, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x42, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x63, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x26, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE6, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x02, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x20, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x38, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x16, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xAE, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x19, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F26E7, "185.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18423EB },
-            IconOffset = 0x27165D7,
-            IconIds = new List<byte[]>() { new byte[] { 0xF2 }, new byte[] { 0xF3 }, new byte[] { 0xF4 }, new byte[] { 0xF5 } }
+
+
         };
         public static Trap DragonsLance = new Trap()
         {
+            Id = 105,
             Name = DRAGONS_LANCE,
             Description = "Fires a magical lance when triggered, dealing Arcane damage. Lance casts a debuff, causing Arcane attacks to deal more damage. Dragon's Lance, activation range is lengthened / shortened by Line of Sight(LoS).So if minions come around a corner, the activation range is changed based on the trap's LoS and any Triggers would activate at that point.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeilingArcane",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x6C, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x84, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x17, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x58, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x41, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x62, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x25, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE5, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x01, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x1F, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x37, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x15, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xAD, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x18, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2837, "100.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1843290 },
-            IconOffset = 0x271661B,
-            IconIds = new List<byte[]>() { new byte[] { 0xEE }, new byte[] { 0xEF }, new byte[] { 0xF0 }, new byte[] { 0xF1 } }
+
+
         };
         public static Trap BGHCeilingBallista = new Trap()
         {
+            Id = 106,
             Name = BGH_CEILING_BALLISTA,
-            Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Also attacks Unstable Rifts Fires Mercenary and Boss seeking arrows, dealing a portion of the target's max health plus a bonus as damage.", 
+            Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Also attacks Unstable Rifts Fires Mercenary and Boss seeking arrows, dealing a portion of the target's max health plus a bonus as damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapBallistaCeilingGlorySeeker",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x6E, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x83, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x16, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x57, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x40, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x61, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x24, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE4, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0x00, 0xFE, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x1E, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x36, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x14, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xAC, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x17, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F29A3, "38 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1844A3E },
-            IconOffset = 0x271665F,
-            IconIds = new List<byte[]>() { new byte[] { 0x2A }, new byte[] { 0x2B }, new byte[] { 0x2C }, new byte[] { 0x2D } }
+
+
         };
         public static Trap Barricade = new Trap()
         {
+            Id = 107,
             Name = BARRICADE,
             Description = "Blocks and redirects Minion paths. Useful for forcing Minions into Traps.",
             TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapBarricade",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x70, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x82, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x15, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x56, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x3F, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x60, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x23, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE3, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xFF, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x1D, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x35, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x13, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xAB, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x16, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2A9E, "(src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1846B9F },
-            IconOffset = 0x27166A3,
-            IconIds = new List<byte[]>() { new byte[] { 0xFA }, new byte[] { 0xFB }, new byte[] { 0xFC }, new byte[] { 0xFD } }
+
         };
         public static Trap GreatWallBarricade = new Trap()
         {
+            Id = 108,
             Name = GREAT_WALL_BARRICADE,
             Description = "Blocks and redirects minions. The Great Wall Barricade is a longer version of the Barricade.",
             TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapBarricadeGreatWall",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x72, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x81, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x14, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x55, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x3E, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x5F, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x22, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE2, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xFE, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x1C, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x34, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x12, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xAA, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x15, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2A9E, "(src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1847B72 },
-            IconOffset = 0x27166E7,
-            IconIds = new List<byte[]>() { new byte[] { 0xF6 }, new byte[] { 0xF7 }, new byte[] { 0xF8 }, new byte[] { 0xF9 } }
+
         };
         public static Trap BoomBarrel = new Trap()
         {
+            Id = 109,
             Name = BOOM_BARREL,
             Description = "Explodes when hit, dealing damage in a small area. -20% cost when used by Deadeye.",
             TrapPartSlots = new string[] { RESONATOR, COMPONENTS, RESONATOR },
             ItemTemplateName = "SpitfireGame.RItemTrapBoomBarrel",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x74, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x80, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x13, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x54, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x3D, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x5E, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x21, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE1, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xFD, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x1B, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x33, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x11, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA9, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x14, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2B1B, "250.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x184820A },
-            IconOffset = 0x271672B,
-            IconIds = new List<byte[]>() { new byte[] { 0x02 }, new byte[] { 0x03 }, new byte[] { 0x04 }, new byte[] { 0x05 } }
+
+
         };
         public static Trap BoomBarrelRoller = new Trap()
         {
+            Id = 110,
             Name = BOOM_BARREL_ROLLER,
             Description = "Occasionally rolls out Boom Barrels which explode when hit, dealing damage in a small area.",
             TrapPartSlots = new string[] { COIL, COMPONENTS, COIL },
             ItemTemplateName = "SpitfireGame.RItemTrapBoomBarrelDispenser",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x76, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x7F, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x12, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x53, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x3C, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x5D, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x20, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xE0, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xFC, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x1A, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x32, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x10, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA8, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x13, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2CCB, "100.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x184A0FC },
-            IconOffset = 0x271676F,
-            IconIds = new List<byte[]>() { new byte[] { 0xFE, 0xCA }, new byte[] { 0xFF, 0xCA }, new byte[] { 0x00, 0xCB }, new byte[] { 0x01, 0xCB } }
+
+
         };
         public static Trap BoulderChute = new Trap()
         {
+            Id = 111,
             Name = BOULDER_CHUTE,
             Description = "Drops boulders on Enemies when shot by a hero. Boulders deal Physical damage.",
             TrapPartSlots = new string[] { COMPONENTS, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapBoulderChute",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x78, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x7E, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x11, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x52, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x3B, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x5C, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x1F, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xDF, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xFB, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x19, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x31, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x0F, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA7, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x12, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F2E67, "200.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x184B628 },
-            IconOffset = 0x27167CC,
-            IconIds = new List<byte[]>() { new byte[] { 0x06 }, new byte[] { 0x07 }, new byte[] { 0x08 }, new byte[] { 0x09 } }
+
+
         };
         public static Trap IcicleImpaler = new Trap()
         {
+            Id = 112,
             Name = ICICLE_IMPALER,
             Description = "Drops sharp icicles when shot by a Hero, dealing Frost damage and casting Chilled on Enemies.",
             TrapPartSlots = new string[] { COMPONENTS, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapBoulderChuteFrost",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x7A, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x7D, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x10, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x51, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x3A, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x5B, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x1E, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xDE, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xFA, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x18, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x30, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x0E, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA6, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x11, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3003, "200.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x184CE4A },
-            IconOffset = 0x2716829,
-            IconIds = new List<byte[]>() { new byte[] { 0x3E }, new byte[] { 0x3F }, new byte[] { 0x40 }, new byte[] { 0x41 } }
+
+
         };
         public static Trap Brimstone = new Trap()
         {
+            Id = 113,
             Name = BRIMSTONE,
             Description = "Burns Enemies that walk across its embers, dealing Fire damage over time. Fire damage from multiple brimstones does not stack.",
             TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapBrimstone",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x7C, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x74, 0xFF, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x0F, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x50, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x39, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x5A, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x1D, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xDD, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF9, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x17, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x2F, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x0D, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA5, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x10, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3143, "30.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x184D529 },
-            IconOffset = 0x271686D,
-            IconIds = new List<byte[]>() { new byte[] { 0x0A }, new byte[] { 0x0B }, new byte[] { 0x0C }, new byte[] { 0x0D } }
+
+
         };
         public static Trap CoinForge = new Trap()
         {
+            Id = 114,
             Name = COIN_FORGE,
             Description = "Enemies are worth 64% additional coin if they are killed on this trap. +10% additional coin when used by Dobbin.",
             TrapPartSlots = new string[] { FIELD, FIELD, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapCoinForge",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x7E, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x7C, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x0E, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x4F, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x38, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x59, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x1C, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xDC, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF8, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x16, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x2E, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x0C, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA4, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x0F, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3238, "1.64f + (src.IncreasePerTier * src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x184DD4C },
-            IconOffset = 0x27168B1,
-            IconIds = new List<byte[]>() { new byte[] { 0x12 }, new byte[] { 0x13 }, new byte[] { 0x14 }, new byte[] { 0x15 } }
+
+
         };
         public static Trap CursedGround = new Trap()
         {
+            Id = 115,
             Name = CURSED_GROUND,
             Description = "Deals Arcane damage that increases as Enemies stay on this tile. Also causes subsequent Arcane attacks to deal more damage. +25% damage when used by Oziel.",
             TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapCursedGround",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x80, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x7B, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x0D, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x4E, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x37, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x58, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x1B, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xDB, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF7, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x15, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x2D, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x0B, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA3, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x0E, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() {   new StatModifierExpression(0x28F33C1, "14.0 * (src.IncreasePerTier ^ src.TrapStrength)"),
-                                                                                 new StatModifierExpression(0x28F3349, "27.0 * (src.IncreasePerTier ^ src.TrapStrength)"),
-                                                                                 new StatModifierExpression(0x28F32D1, "95.0 * (src.IncreasePerTier ^ src.TrapStrength)")},
-            TextureOffsets = new int[] { 0x184F600 },
-            IconOffset = 0x27168F5,
-            IconIds = new List<byte[]>() { new byte[] { 0x16 }, new byte[] { 0x17 }, new byte[] { 0x18 }, new byte[] { 0x19 }, }
+
+
         };
         public static Trap Decoy = new Trap()
         {
+            Id = 116,
             Name = DECOY,
             Description = "Attracts Enemies to attack it until it is destroyed. The decoy does not respawn and must be replaced. Trap is free when used by Maximilian.",
             TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapDecoySturdy",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x82, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x7A, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x0C, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x4D, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x36, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x57, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x1A, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xDA, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF6, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x14, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x2C, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x0A, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA2, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x0D, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3459, "(150.0 + src.DamageIncreaseFromLvl) * ((1 + src.IncreasePerTier) ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1850BD9, 0x1850C36 },
-            IconIds = null
+
         };
         public static Trap SpitfireWall = new Trap()
         {
+            Id = 117,
             Name = SPITFIRE_WALL,
             Description = "Spits fireballs at Enemies, dealing Fire damage over time. Fire damage from multiple spitfire walls does not stack.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapFireArrowWall",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x84, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x79, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x0B, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x4C, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x35, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x56, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x19, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD9, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF5, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x13, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x2B, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x09, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA1, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x0C, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3774, "15.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1851A47 },
-            IconOffset = 0x2716965,
-            IconIds = new List<byte[]>() { new byte[] { 0x1A }, new byte[] { 0x1B }, new byte[] { 0x1C }, new byte[] { 0x1D } }
+
+
         };
         public static Trap FireCracker = new Trap()
         {
+            Id = 118,
             Name = FIRE_CRACKER,
             Description = "Emits a fiery mist, dealing Fire damage over time when triggered. Fire damage from multiple fire crackers does not stack.",
             TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapFireCracks",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x86, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x78, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x0A, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x4B, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x34, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x55, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x18, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD8, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF4, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x12, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x2A, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x08, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0xA0, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x0B, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F38B2, "14 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x185214F },
-            IconOffset = 0x27169A9,
-            IconIds = new List<byte[]>() { new byte[] { 0x0E }, new byte[] { 0x0F }, new byte[] { 0x10 }, new byte[] { 0x11 } }
+
+
         };
         public static Trap FlipTrap = new Trap()
         {
+            Id = 119,
             Name = FLIP_TRAP,
             Description = "Flips enemies into the air when triggered. This trap is useful for propelling Enemies into other traps.",
             TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapFlip",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x88, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x77, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x09, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x4A, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x33, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x54, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x17, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD7, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF3, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x11, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x29, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x07, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x9F, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x0A, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F51AD, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x185290F },
-            IconOffset = 0x27169ED,
-            IconIds = new List<byte[]>() { new byte[] { 0x1E }, new byte[] { 0x1F }, new byte[] { 0x20 }, new byte[] { 0x21 } }
+
+
         };
         public static Trap FloorScorcher = new Trap()
         {
+            Id = 120,
             Name = FLOOR_SCORCHER,
             Description = "Scorches Enemies when triggered, dealing Fire damage over time. Fire damage from multiple floor scorchers does not stack.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapFloorScorcher",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x8A, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x76, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x08, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x49, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x32, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x53, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x16, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD6, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF2, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x10, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x28, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x06, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x9E, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x09, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3D6B, "31.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x185330B },
-            IconOffset = 0x2716A31,
-            IconIds = new List<byte[]>() { new byte[] { 0x22 }, new byte[] { 0x23 }, new byte[] { 0x24 }, new byte[] { 0x25 } }
+
+
         };
         public static Trap TempleAlarmGong = new Trap()
         {
+            Id = 121,
             Name = TEMPLE_ALARM_GONG,
             Description = "This ancient gong sounds an alarm when Enemies approach and slows them by 70%. -20% cooldown when used by Yi-Lin.",
             TrapPartSlots = new string[] { FIELD, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapGong",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x8C, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x75, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x07, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x48, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x31, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x52, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x15, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD5, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF1, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x0F, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x27, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x05, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x9D, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x08, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = null,
-            TextureOffsets = new int[] { 0x185399C },
-            IconOffset = 0x2716A75,
-            IconIds = new List<byte[]>() { new byte[] { 0x2E }, new byte[] { 0x2F }, new byte[] { 0x30 }, new byte[] { 0x31 } },
-            CoinCostOffset = 0x1617D7E,
             CoinCost = 1000,
-            IncreasePerTier = 0.15F
         };
         public static Trap Grinder = new Trap()
         {
+            Id = 122,
             Name = GRINDER,
             Description = "Grinds up Enemies walking past it, dealing Physical damage until it jams. After jamming, the Grinder must cooldown to reset.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapGrinder",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x8E, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x74, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x06, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x47, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x30, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x51, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x14, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD4, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xF0, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x0E, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x26, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x04, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x9C, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x07, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F3F5E, "54.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18561F1 },
-            IconOffset = 0x2716AB9,
-            IconIds = new List<byte[]>() { new byte[] { 0x32 }, new byte[] { 0x33 }, new byte[] { 0x34 }, new byte[] { 0x35 } }
+
+
         };
         public static Trap QuarterPounder = new Trap()
         {
+            Id = 123,
             Name = QUARTER_POUNDER,
             Description = "Pounds one quarter of the trap area when triggered, dealing high Physical damage and stunning Minions.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapHammerDrop",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x90, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x73, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x05, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x46, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x2F, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x50, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x13, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD3, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xEF, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x0D, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x25, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x03, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x9B, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x06, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F40B0, "525.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18569A5 },
-            IconOffset = 0x2716AFD,
-            IconIds = new List<byte[]>() { new byte[] { 0x5E }, new byte[] { 0x5F }, new byte[] { 0x60 }, new byte[] { 0x61 } }
+
+
         };
         public static Trap Haymaker = new Trap()
         {
+            Id = 124,
             Name = HAYMAKER,
             Description = "Descends from the ceiling and spins when triggered, knocking Enemies around and dealing Physical damage.",
             TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapHaymaker",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x92, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x72, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x04, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x45, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x2E, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x4F, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x12, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD2, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xEE, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x0C, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x24, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x02, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x9A, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x05, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F41A7, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x1858016 },
-            IconOffset = 0x2716B41,
-            IconIds = new List<byte[]>() { new byte[] { 0x36 }, new byte[] { 0x37 }, new byte[] { 0x38 }, new byte[] { 0x39 } }
+
+
         };
         public static Trap HealingWell = new Trap()
         {
+            Id = 125,
             Name = HEALING_WELL,
             Description = "Casts a health regeneration buff on an ally. The buff is dispelled upon taking damage. Once used, it must reset.",
             TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapHealingWell",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x94, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x71, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x03, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x44, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x2D, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x4E, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x11, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD1, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xED, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x0B, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x23, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x01, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x99, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x04, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4307, "(0.09 + (src.TrapStrength * 0.024))*(1 + src.mExtraBoost)*tgt.HealthMax") },
-            TextureOffsets = new int[] { 0x18586EC },
-            IconOffset = 0x2716B85,
-            IconIds = new List<byte[]>() { new byte[] { 0x3A }, new byte[] { 0x3B }, new byte[] { 0x3C }, new byte[] { 0x3D } }
+
+
         };
         public static Trap IceShard = new Trap()
         {
+            Id = 126,
             Name = ICE_SHARD,
             Description = "Cuts enemies, dealing Frost damage and casting Chilled on them. Enemies are frozen after multiple stacks of Chilled (5 stacks).",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapIceSpike",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x96, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x70, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x02, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x43, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x2C, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x4D, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x10, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xD0, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xEC, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x0A, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x22, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0x00, 0xFD, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x98, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x03, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F458D, "130.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x185A670 },
-            IconOffset = 0x2716BC9,
-            IconIds = new List<byte[]>() { new byte[] { 0x42 }, new byte[] { 0x43 }, new byte[] { 0x44 }, new byte[] { 0x45 } }
+
+
         };
         public static Trap IceVent = new Trap()
         {
+            Id = 127,
             Name = ICE_VENT,
             Description = "Emits icy mist that deals Frost damage and casts Chilled on enemies. Enemies are frozen after multiple stacks of Chilled (5 stacks). +25% damage when used by Hogarth.",
-            TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },            
+            TrapPartSlots = new string[] { FIELD, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapIceVent",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x98, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x6F, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x01, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x42, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x2B, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x4C, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x0F, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xCF, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xEB, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x09, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x21, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xFF, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x97, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x02, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F46CD, "25.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x185AD42 },
-            IconOffset = 0x2716C0D,
-            IconIds = new List<byte[]>() { new byte[] { 0x46 }, new byte[] { 0x47 }, new byte[] { 0x48 }, new byte[] { 0x49 } }
+
+
         };
         public static Trap LightningRod = new Trap()
         {
+            Id = 128,
             Name = LIGHTNING_ROD,
             Description = "Shocks Enemies beneath it with lightning when triggered. Every few times this trap fires, it becomes more powerful, allowing its attack to chain to additional Enemies.",
-            TrapPartSlots = new string[] { COMPONENTS, SPRING, TRIGGER },                        
+            TrapPartSlots = new string[] { COMPONENTS, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapLightningRod",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x9A, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x6E, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0x00, 0xFE, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x41, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x2A, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x4B, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x0E, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xCE, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xEA, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x08, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x20, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xFE, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x96, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x01, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F481C, "85.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x185B5AB },
-            IconOffset = 0x2716C51,
-            IconIds = new List<byte[]>() { new byte[] { 0x4A }, new byte[] { 0x4B }, new byte[] { 0x4C }, new byte[] { 0x4D } }
+
+
         };
         public static Trap ManaWell = new Trap()
         {
+            Id = 129,
             Name = MANA_WELL,
             Description = "Grants a mana regeneration buff to a nearby ally. Buff is lost upon taking damage. Once used, the Mana Well must reset.",
             TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapManaWell",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x9C, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x6D, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xFF, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x40, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x29, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x4A, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x0D, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xCD, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE9, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x07, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x1F, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xFD, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x95, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0x00, 0xFD, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4971, "(0.09 + (src.TrapStrength * 0.024))*(1 + src.mExtraBoost)*tgt.ManaMax") },
-            TextureOffsets = new int[] { 0x185BC7A },
-            IconOffset = 0x2716C95,
-            IconIds = new List<byte[]>() { new byte[] { 0x4E }, new byte[] { 0x4F }, new byte[] { 0x50 }, new byte[] { 0x51 } }
+
+
         };
         public static Trap SummonerTrap = new Trap()
         {
+            Id = 130,
             Name = SUMMONER_TRAP,
             Description = "Calls a ghostly summoned retainer to fight for the Hero. If it is killed, the trap must reset. Limit 2 at a time. +25 trap health if used by Gabriella.Revenge Rune and Reusable Shielding have a cooldown of 300 seconds(5 minutes) when used in Summoner Trap.",
             TrapPartSlots = new string[] { CLADDING, COMPONENTS, FRAME },
             ItemTemplateName = "SpitfireGame.RItemTrapMinionSpawner",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0x9E, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x6C, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xFE, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x3F, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x28, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x49, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x0C, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xCC, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE8, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x06, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x1E, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xFC, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x94, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xFF, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() {   new StatModifierExpression(0x28F4B7F, "src.HealthMax * (src.IncreasePerTier ^ src.TrapStrength)"),
-                                                                                 new StatModifierExpression(0x28F4AE6, "160.0 * (src.IncreasePerTier ^ src.TrapStrength)")},
-            TextureOffsets = new int[] { 0x185D7D4 },
-            IconOffset = 0x2716CD9,
-            IconIds = new List<byte[]>() { new byte[] { 0x52 }, new byte[] { 0x53 }, new byte[] { 0x54 }, new byte[] { 0x55 } }
+
+
         };
         public static Trap NaphthaSprayer = new Trap()
         {
+            Id = 131,
             Name = NAPHTHA_SPRAYER,
             Description = "Sprays enemies with naphtha when triggered. Naphtha causes Enemies to take increased Fire damage. Trap is free when used by Smolder.",
             TrapPartSlots = new string[] { COMPONENTS, FIELD, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapNapthaSprayer",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xA0, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x6B, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xFD, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x3E, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x27, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x48, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x0B, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xCB, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE7, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x05, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x1D, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xFB, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x93, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xFE, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4C94, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x185E8BB },
-            IconOffset = 0x2716D1D,
-            IconIds = new List<byte[]>() { new byte[] { 0x56 }, new byte[] { 0x57 }, new byte[] { 0x58 }, new byte[] { 0x59 } }
+
+
         };
         public static Trap OverloadTrap = new Trap()
         {
+            Id = 132,
             Name = OVERLOAD_TRAP,
             Description = "Overloads traps, dealing damage when triggered and disabling floor traps that deal damage. +25% damage when used by Zoey.",
             TrapPartSlots = new string[] { COMPONENTS, RESONATOR, SPRING },
             ItemTemplateName = "SpitfireGame.RItemTrapOverload",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xA2, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x6A, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xFC, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x3D, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x26, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x47, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x0A, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xCA, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE6, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x04, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x1C, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xFA, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x92, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xFD, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4D75, "140.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x185F21D },
-            IconOffset = 0x2716D61,
-            IconIds = new List<byte[]>() { new byte[] { 0x5A }, new byte[] { 0x5B }, new byte[] { 0x5C }, new byte[] { 0x5D } }
+
+
         };
         public static Trap PowerupDamage = new Trap()
         {
+            Id = 133,
             Name = POWERUP_DAMAGE,
             Description = "Drops a Powerup that boosts player damage for a short time.",
             TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapPlayerPowerup",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xA4, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x69, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xFB, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x3C, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x25, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x46, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x09, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC9, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE5, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x03, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x1B, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF9, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x91, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xFC, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4E6C, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x185F9CC },
-            IconOffset = 0x2716DA5,
-            IconIds = new List<byte[]>() { new byte[] { 0x6E }, new byte[] { 0x6F }, new byte[] { 0x70 }, new byte[] { 0x71 } }
+
+
         };
         public static Trap Pounder = new Trap()
         {
+            Id = 134,
             Name = POUNDER,
             Description = "Pounds Enemies that pass beneath it when triggered, dealing Physical damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapPounder",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xA6, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x68, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xFA, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x3B, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x24, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x45, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x08, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC8, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE4, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x02, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x1A, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF8, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x90, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xFB, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F4FB4, "145.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x1860151 },
-            IconOffset = 0x2716DE9,
-            IconIds = new List<byte[]>() { new byte[] { 0x66 }, new byte[] { 0x67 }, new byte[] { 0x68 }, new byte[] { 0x69 } }
+
+
         };
         public static Trap ConcussivePounder = new Trap()
         {
+            Id = 135,
             Name = CONCUSSIVE_POUNDER,
             Description = "Pounds Enemies into the ground when triggered, stunning them. Deals no damage.",
             TrapPartSlots = new string[] { COIL, COMPONENTS, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapPounderConcussive",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xA8, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x67, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF9, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x3A, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x23, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x44, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x07, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC7, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE3, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x01, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x19, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF7, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x8F, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xFA, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F50AB, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x18607F9 },
-            IconOffset = 0x2716E2D,
-            IconIds = new List<byte[]>() { new byte[] { 0x62 }, new byte[] { 0x63 }, new byte[] { 0x64 }, new byte[] { 0x65 } }
+
+
         };
         public static Trap PowerGenerator = new Trap()
         {
+            Id = 136,
             Name = POWER_GENERATOR,
             Description = "Generates coin for the owner if Enemies walk in front of it. Loses health each time it generates coin. Doesn't return coin when sold. Note: Generates 468 coins per wave at Tier 7.",
-            TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },            
+            TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapPowerGenerator",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xAA, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x66, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF8, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x39, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x22, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x43, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x06, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC6, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE2, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0x00, 0xFE, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x18, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF6, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x8E, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF9, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5133, "25 * (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x186225E },
-            IconOffset = 0x2716E71,
-            IconIds = new List<byte[]>() { new byte[] { 0x6A }, new byte[] { 0x6B }, new byte[] { 0x6C }, new byte[] { 0x6D } }
+
+
         };
         public static Trap PushTrap = new Trap()
         {
+            Id = 137,
             Name = PUSH_TRAP,
             Description = "Shoves Enemies when triggered, pushing them away and dealing Physical damage.",
             TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapPushTrap",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xAE, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x73, 0xFF, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF6, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x37, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x20, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x41, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x04, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC4, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xE0, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xFE, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x16, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF4, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x8C, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF7, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F51AD, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x186337A },
-            IconOffset = 0x2716EE1,
-            IconIds = new List<byte[]>() { new byte[] { 0x76 }, new byte[] { 0x77 }, new byte[] { 0x78 }, new byte[] { 0x79 } }
+
+
         };
         public static Trap SawOfArctos = new Trap()
         {
+            Id = 138,
             Name = SAW_OF_ARCTOS,
             Description = "Slices through Enemies with an ice blade, dealing Frost damage and casting Chilled on them. Enemies are frozen with 5 Chilled Stacks. + 25% damage when used by Tundra.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSawOfArctos",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xB0, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x64, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF5, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x36, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x1F, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x40, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x03, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC3, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xDF, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xFD, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x15, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF3, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x8B, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF6, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F543D, "190 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18646E0 },
-            IconOffset = 0x2716F25,
-            IconIds = new List<byte[]>() { new byte[] { 0x7A }, new byte[] { 0x7B }, new byte[] { 0x7C }, new byte[] { 0x7D } }
+
+
         };
         public static Trap ShieldPowerup = new Trap()
         {
+            Id = 139,
             Name = SHIELD_POWERUP,
             Description = "Drops a Powerup for Heroes that temporarily reduces damage taken.",
             TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapShieldSpawner",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xB2, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x63, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF4, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x35, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x1E, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x3F, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x02, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC2, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xDE, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xFC, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x14, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF2, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x8A, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF5, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F552F, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1") },
-            TextureOffsets = new int[] { 0x1864F99 },
-            IconOffset = 0x2716F69,
-            IconIds = new List<byte[]>() { new byte[] { 0x72 }, new byte[] { 0x73 }, new byte[] { 0x74 }, new byte[] { 0x75 } }
+
+
         };
         public static Trap SpeedPad = new Trap()
         {
+            Id = 140,
             Name = SPEED_PAD,
             Description = "Increases the movement speed of a Hero crossing it. Pad must reset after use.",
             TrapPartSlots = new string[] { ATTUNER, COIL, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapSpeedPad",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xB4, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x62, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF3, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x34, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x1D, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x3E, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x01, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC1, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xDD, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xFB, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x13, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF1, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x89, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF4, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5E0D, "(1.50 + (src.TrapStrength * src.IncreasePerTier) + src.mExtraBoost)") },
-            TextureOffsets = new int[] { 0x186CB15 },
-            IconOffset = 0x2716FAD,
-            IconIds = new List<byte[]>() { new byte[] { 0x86 }, new byte[] { 0x87 }, new byte[] { 0x88 }, new byte[] { 0x89 } }
+
+
         };
         public static Trap FloorSpikes = new Trap()
         {
+            Id = 141,
             Name = FLOOR_SPIKES,
             Description = "Skewers Enemies from below when triggered, dealing Physical damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSpikes",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xB6, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x61, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF2, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x33, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x1C, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x3D, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0x00, 0xFD, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xC0, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xDC, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xFA, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x12, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xF0, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x88, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF3, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F5F98, "160.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x186D798 },
-            IconOffset = 0x2716FF1,
-            IconIds = new List<byte[]>() { new byte[] { 0x26 }, new byte[] { 0x27 }, new byte[] { 0x28 }, new byte[] { 0x29 } }
+
+
         };
         public static Trap SpikeWall = new Trap()
         {
+            Id = 142,
             Name = SPIKE_WALL,
             Description = "Swings a wall of spikes at Enemies when triggered, knocking them back and dealing Physical damage.",
             TrapPartSlots = new string[] { ACCUMULATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSpikeWall",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xB8, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x60, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF1, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x32, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x1B, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x3C, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xFF, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xBF, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xDB, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF9, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x11, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xEF, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x87, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF2, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F608F, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x186DE77 },
-            IconOffset = 0x2717035,
-            IconIds = new List<byte[]>() { new byte[] { 0xAA }, new byte[] { 0xAB }, new byte[] { 0xAC }, new byte[] { 0xAD } }
+
+
         };
         public static Trap SteamVent = new Trap()
         {
+            Id = 143,
             Name = STEAM_VENT,
             Description = "Blows small and normal-sized Minions into the air when triggered. Slows large Minions. Trap deals no damage.",
             TrapPartSlots = new string[] { COIL, COMPONENTS, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapSteamVent",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xBA, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x5F, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xF0, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x31, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x1A, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x3B, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xFE, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xBE, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xDA, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF8, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x10, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xEE, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x86, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF1, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F62C6, "src.BaseCooldown / (src.TrapStrength * src.IncreasePerTier + 1)") },
-            TextureOffsets = new int[] { 0x186E503 },
-            IconOffset = 0x2717079,
-            IconIds = new List<byte[]>() { new byte[] { 0x8A }, new byte[] { 0x8B }, new byte[] { 0x8C }, new byte[] { 0x8D } }
+
+
         };
         public static Trap SwingingMace = new Trap()
         {
+            Id = 144,
             Name = SWINGING_MACE,
             Description = "Continuously swings a large mace, pummeling enemies that pass beneath it and dealing Physical damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapSwingingMace",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xBC, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x5E, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xEF, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x30, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x19, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x3A, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xFD, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xBD, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD9, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF7, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x0F, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xED, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x85, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xF0, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F648C, "250.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x186F027 },
-            IconOffset = 0x27170BD,
-            IconIds = new List<byte[]>() { new byte[] { 0x8E }, new byte[] { 0x8F }, new byte[] { 0x90 }, new byte[] { 0x91 } }
+
+
         };
         public static Trap TarTrap = new Trap()
         {
+            Id = 145,
             Name = TAR_TRAP,
             Description = "Tars the feet of Enemies crossing it, causing them to be slowed while on the trap.",
             TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapTar",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xBE, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x5D, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xEE, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x2F, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x18, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x39, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xFC, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xBC, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD8, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF6, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x0E, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xEC, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x84, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xEF, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6583, "(0.60 - (src.TrapStrength * src.IncreasePerTier))") },
-            TextureOffsets = new int[] { 0x186F6A0 },
-            IconOffset = 0x2717101,
-            IconIds = new List<byte[]>() { new byte[] { 0x92 }, new byte[] { 0x93 }, new byte[] { 0x94 }, new byte[] { 0x95 } }
+
+
         };
         public static Trap ViscousTar = new Trap()
         {
+            Id = 146,
             Name = VISCOUS_TAR,
             Description = "Tars the feet of Enemies crossing it, causing them to be slowed while on the trap and for a short duration afterwards.",
             TrapPartSlots = new string[] { FIELD, COMPONENTS, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapTarViscous",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xC0, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x5C, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xED, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x2E, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x17, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x38, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xFB, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xBB, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD7, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF5, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x0D, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xEB, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x83, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xEE, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F65FD, "(0.60 - (src.TrapStrength * src.IncreasePerTier))") },
-            TextureOffsets = new int[] { 0x186FD29 },
-            IconOffset = 0x2717145,
-            IconIds = new List<byte[]>() { new byte[] { 0x96 }, new byte[] { 0x97 }, new byte[] { 0x98 }, new byte[] { 0x99 } }
+
+
         };
         public static Trap ShockZapper = new Trap()
         {
+            Id = 147,
             Name = SHOCK_ZAPPER,
             Description = "Zaps enemies with Lightning, dealing Lightning damage. Enemies killed by Lightning explode, dealing damage in an area.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapTeslaCoil",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xC2, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x72, 0xFF, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xEC, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x2D, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x16, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x37, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xFA, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xBA, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD6, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF4, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x0C, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xEA, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x82, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xED, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F66D0, "400.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18703C3 },
-            IconOffset = 0x2717189,
-            IconIds = new List<byte[]>() { new byte[] { 0x82 }, new byte[] { 0x83 }, new byte[] { 0x84 }, new byte[] { 0x85 } }
+
+
         };
         public static Trap BGHShockZapper = new Trap()
         {
+            Id = 148,
             Name = BGH_SHOCK_ZAPPER,
             Description = "ONLY attacks Hunter Minions, Bosses and Mercenaries. Zaps Mercenaries and Bosses with Lightning, dealing a portion of targets' max health as damage plus a bonus.",
-            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },            
+            TrapPartSlots = new string[] { RESONATOR, SPRING, COMPONENTS },
             ItemTemplateName = "SpitfireGame.RItemTrapTeslaCoilGlorySeeker",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xC4, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x5B, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xEB, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x2C, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x15, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x36, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF9, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB9, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD5, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF3, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x0B, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE9, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x81, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xEC, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6826, "MIN(((0.08 * tgt.HealthMax) + 40 * (src.IncreasePerTier ^ src.TrapStrength)),1200)") },
-            TextureOffsets = new int[] { 0x1870C22, 0x1870C61 },
-            IconOffset = 0x27171CD,
-            IconIds = new List<byte[]>() { new byte[] { 0x7E }, new byte[] { 0x7F }, new byte[] { 0x80 }, new byte[] { 0x81 } }
+
+
         };
         public static Trap TripWire = new Trap()
         {
+            Id = 149,
             Name = TRIP_WIRE,
             Description = "When a Minion 'trips' on the trip wire, it triggers nearby Traps. Wire is destroyed on use. -20% trap cost when used by Midnight.",
             TrapPartSlots = new string[] { COMPONENTS, TRIGGER, FIELD },
             ItemTemplateName = "SpitfireGame.RItemTrapTripwire",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xC6, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x5A, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xEA, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x2B, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x14, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x35, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF8, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB8, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD4, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF2, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x0A, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE8, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x80, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xEB, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = null,
-            TextureOffsets = new int[] { 0x1877088 },
-            IconOffset = 0x2717211,
-            IconIds = new List<byte[]>() { new byte[] { 0x9E }, new byte[] { 0x9F }, new byte[] { 0xA0 }, new byte[] { 0xA1 } },
-            CoinCostOffset = 0x161AFD4,
             CoinCost = 1000,
-            IncreasePerTier = 0.05F
         };
         public static Trap WallBlades = new Trap()
         {
+            Id = 150,
             Name = WALL_BLADES,
             Description = "Slices and dices Enemies when triggered, dealing Physical damage.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapWallBlades",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xC8, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x59, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE9, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x2A, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x13, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x34, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF7, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB7, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD3, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF1, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x09, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE7, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x7F, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xEA, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6AE5, "250.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18778BD },
-            IconOffset = 0x2717255,
-            IconIds = new List<byte[]>() { new byte[] { 0xA6 }, new byte[] { 0xA7 }, new byte[] { 0xA8 }, new byte[] { 0xA9 } }
+
+
         };
         public static Trap WallCharger = new Trap()
         {
+            Id = 151,
             Name = WALL_CHARGER,
             Description = "Shocks Enemies that walk by it, dealing Lightning damage. Enemies killed by Lightning explode, dealing damage in an area.",
             TrapPartSlots = new string[] { RESONATOR, SPRING, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapWallBladesCharged",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xCA, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x58, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE8, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x29, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x12, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x33, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF6, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB6, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD2, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xF0, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x08, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE6, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x7E, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE9, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6C35, "255.0 * (src.IncreasePerTier ^ src.TrapStrength)") },
-            TextureOffsets = new int[] { 0x18785DB },
-            IconOffset = 0x2717299,
-            IconIds = new List<byte[]>() { new byte[] { 0x9A }, new byte[] { 0x9B }, new byte[] { 0x9C }, new byte[] { 0x9D } }
+
+
         };
         public static Trap WebSpinner = new Trap()
         {
+            Id = 152,
             Name = WEB_SPINNER,
             Description = "Spins a web around Enemies when triggered, slowing their attack speed and causing them to be slowed.",
             TrapPartSlots = new string[] { COMPONENTS, FIELD, TRIGGER },
             ItemTemplateName = "SpitfireGame.RItemTrapWebSpinner",
-            IdByHeroName = new Dictionary<string, byte[]> {
-                { BIONKA, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
-                { GABRIELLA, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
-                { HOGARTH, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
-                { IVY, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
-                { MAXIMILIAN, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
-                { SMOLDER, new byte[] { 0xCC, 0xC4, 0x00, 0x00 } },
-                { OZIEL, new byte[] { 0x57, 0xFD, 0xFF, 0xFF } },
-                { BLOODSPIKE, new byte[] { 0xE7, 0xFD, 0xFF, 0xFF } },
-                { BLACKPAW, new byte[] { 0x28, 0xFE, 0xFF, 0xFF } },
-                { BRASS, new byte[] { 0x11, 0xFD, 0xFF, 0xFF } },
-                { CYGNUS, new byte[] { 0x32, 0xFD, 0xFF, 0xFF } },
-                { DEADEYE, new byte[] { 0xF5, 0xFC, 0xFF, 0xFF } },
-                { DOBBIN, new byte[] { 0xB5, 0xFD, 0xFF, 0xFF } },
-                { MIDNIGHT, new byte[] { 0xD1, 0xFD, 0xFF, 0xFF } },
-                { YI_LIN, new byte[] { 0xEF, 0xFD, 0xFF, 0xFF } },
-                { STINKEYE, new byte[] { 0x07, 0xFD, 0xFF, 0xFF } },
-                { TEMPER, new byte[] { 0xE5, 0xFC, 0xFF, 0xFF } },
-                { TUNDRA, new byte[] { 0x7D, 0xFD, 0xFF, 0xFF } },
-                { ZOEY, new byte[] { 0xE8, 0xFC, 0xFF, 0xFF } },
-            },
-            StatModifierExpressions = new List<StatModifierExpression>() { new StatModifierExpression(0x28F6D8B, "(0.75 - (src.TrapStrength * src.IncreasePerTier))") },
-            TextureOffsets = new int[] { 0x1878C34 },
-            TextureIds = new List<byte[]>() {   new byte[] { 0x31, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x31, 0x5F, 0x4D, 0x61, 0x74, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x31, 0x00, 0x00, 0x00 },
-                                                    new byte[] { 0x31, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x32, 0x5F, 0x4D, 0x61, 0x74, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x31, 0x00, 0x00, 0x00 },
-                                                    new byte[] { 0x31, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x32, 0x5F, 0x4D, 0x61, 0x74, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x31, 0x00, 0x00, 0x00 },
-                                                    new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x33, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
-                                                    new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x33, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
-                                                    new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x34, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
-                                                    new byte[] { 0x2D, 0x00, 0x00, 0x00, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x4D, 0x61, 0x74, 0x2E, 0x4D, 0x61, 0x74, 0x65, 0x72, 0x69, 0x61, 0x6C, 0x2E, 0x57, 0x65, 0x62, 0x53, 0x70, 0x72, 0x61, 0x79, 0x65, 0x72, 0x54, 0x69, 0x65, 0x72, 0x34, 0x5F, 0x49, 0x4E, 0x53, 0x54, 0x00, 0x35, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF } },
-            IconOffset = 0x27172DD,
-            IconIds = new List<byte[]>() { new byte[] { 0xAE }, new byte[] { 0xAF }, new byte[] { 0xB0 }, new byte[] { 0xB1 } }
+
         };
 
 
@@ -1806,6 +595,66 @@ namespace SingleplayerLauncher.Model
             { WALL_BLADES, WallBlades },
             { WALL_CHARGER, WallCharger },
             { WEB_SPINNER, WebSpinner }
+        };
+
+
+        public static Dictionary<int, SlotItem> TrapsById = new Dictionary<int, SlotItem>
+        {
+            //{ AcidSprayer.Id, null },
+            { ArcaneBowlingBall.Id, ArcaneBowlingBall },
+            { ArcanePhaser.Id, ArcanePhaser },
+            { ArrowWall.Id, ArrowWall },
+            { BGHArrowWall.Id, BGHArrowWall },
+            { CeilingBallista.Id, CeilingBallista },
+            { DragonsLance.Id, DragonsLance },
+            { BGHCeilingBallista.Id, BGHCeilingBallista },
+            { Barricade.Id, Barricade },
+            { GreatWallBarricade.Id, GreatWallBarricade },
+            { BoomBarrel.Id, BoomBarrel },
+            { BoomBarrelRoller.Id, BoomBarrelRoller },
+            { BoulderChute.Id, BoulderChute },
+            { IcicleImpaler.Id, IcicleImpaler },
+            { Brimstone.Id, Brimstone },
+            { CoinForge.Id, CoinForge },
+            { CursedGround.Id, CursedGround },
+            { Decoy.Id, Decoy },
+            { SpitfireWall.Id, SpitfireWall },
+            { FireCracker.Id, FireCracker },
+            { FlipTrap.Id, FlipTrap },
+            { FloorScorcher.Id, FloorScorcher },
+            { TempleAlarmGong.Id, TempleAlarmGong },
+            { Grinder.Id, Grinder },
+            { QuarterPounder.Id, QuarterPounder },
+            { Haymaker.Id, Haymaker },
+            { HealingWell.Id, HealingWell },
+            { IceShard.Id, IceShard },
+            { IceVent.Id, IceVent },
+            { LightningRod.Id, LightningRod },
+            { ManaWell.Id, ManaWell },
+            { SummonerTrap.Id, SummonerTrap },
+            { NaphthaSprayer.Id, NaphthaSprayer },
+            { OverloadTrap.Id, OverloadTrap },
+            { PowerupDamage.Id, PowerupDamage },
+            { Pounder.Id, Pounder },
+            { ConcussivePounder.Id, ConcussivePounder },
+            { PowerGenerator.Id, PowerGenerator },
+            //{ ShieldProjectile.Id, null },
+            { PushTrap.Id, PushTrap },
+            { SawOfArctos.Id, SawOfArctos },
+            { ShieldPowerup.Id, ShieldPowerup },
+            { SpeedPad.Id, SpeedPad },
+            { FloorSpikes.Id, FloorSpikes },
+            { SpikeWall.Id, SpikeWall },
+            { SteamVent.Id, SteamVent },
+            { SwingingMace.Id, SwingingMace },
+            { TarTrap.Id, TarTrap },
+            { ViscousTar.Id, ViscousTar },
+            { ShockZapper.Id, ShockZapper },
+            { BGHShockZapper.Id, BGHShockZapper },
+            { TripWire.Id, TripWire},
+            { WallBlades.Id, WallBlades },
+            { WallCharger.Id, WallCharger },
+            { WebSpinner.Id, WebSpinner }
         };
     }
 }

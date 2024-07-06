@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingleplayerLauncher.Model;
+using System;
 using System.Windows.Forms;
 //using CefSharp;
 //using CefSharp.WinForms;
@@ -20,6 +21,11 @@ namespace SingleplayerLauncher
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Settings.Instance.Load();
+            GameConfig.Instance.Load();
+            Loadouts.Instance.Load();
+
             Application.Run(new LauncherMainForm());
             ////Application.Run(new MainForm());
 

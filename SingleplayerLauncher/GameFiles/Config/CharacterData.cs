@@ -60,7 +60,7 @@ namespace SingleplayerLauncher.GameFiles
 
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeyHero, GameInfo.Loadout.Hero.PawnTemplateName);
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeySkin, GameInfo.Loadout.Skin.PlayerSkinName);
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyDye, GameInfo.Loadout.Dye.Id.ToString());
+            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyDye, GameInfo.Loadout.Dye.SpitfireGameIdBytes.ToString());
 
 
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, GenerateItemString(GameInfo.Loadout.Hero.PawnWeaponTemplateName), index: 0);
@@ -68,31 +68,51 @@ namespace SingleplayerLauncher.GameFiles
             int loadoutIdx = 1;
             foreach (SlotItem slotItem in GameInfo.Loadout.SlotItems)
             {
-                bool isTrap = slotItem.GetType() == typeof(Trap);
-                data.UpdateEntry(
-                    RCharacterDataSection,
-                    CharacterDataKeyLoadout,
-                    GenerateItemString(
-                        slotItem.ItemTemplateName,
-                        trapLevel: GameInfo.Battleground.Difficulty.TrapTier,
-                        trapParts: isTrap ? GameInfo.Loadout.GetTrapPartsForLoadout(loadoutIdx) : null
-                    ),
-                    index: loadoutIdx
-                );
+                if (slotItem == null)
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, "", index: loadoutIdx);
+                } else
+                {
+
+                    bool isTrap = slotItem.GetType() == typeof(Trap);
+                    data.UpdateEntry(
+                        RCharacterDataSection,
+                        CharacterDataKeyLoadout,
+                        GenerateItemString(
+                            slotItem.ItemTemplateName,
+                            trapLevel: GameInfo.Battleground.Difficulty.TrapTier,
+                            trapParts: isTrap ? GameInfo.Loadout.GetTrapPartsForLoadout(loadoutIdx) : null
+                        ),
+                        index: loadoutIdx
+                    );
+
+                }
                 loadoutIdx++;
             }
 
             int guardianIdx = 0;
             foreach (Guardian guardian in GameInfo.Loadout.Guardians)
             {
-                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuardian, GenerateItemString(guardian.ItemTemplateName, itemUseCount: 1), index: guardianIdx);
+                if (guardian == null)
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuardian, "", index: guardianIdx);
+                } else
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuardian, GenerateItemString(guardian.ItemTemplateName, itemUseCount: 1), index: guardianIdx);
+                }
                 guardianIdx++;
             }
 
             int consumableIdx = 0;
             foreach (Consumable consumable in GameInfo.Loadout.Consumables)
             {
-                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, GenerateItemString(consumable.ItemTemplateName, itemUseCount: consumable.UsageLimit), index: consumableIdx);
+                if (consumable == null)
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, "", index: consumableIdx);
+                } else
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, GenerateItemString(consumable.ItemTemplateName, itemUseCount: consumable.UsageLimit), index: consumableIdx);
+                }
                 consumableIdx++;
             }
 
@@ -100,13 +120,20 @@ namespace SingleplayerLauncher.GameFiles
             int bonusTraitIdx = 4;
             foreach (Trait trait in GameInfo.Loadout.Traits)
             {
-                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, trait.CodeName, index: traitIdx);
+                if (trait == null)
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, "", index: traitIdx);
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, "", index: bonusTraitIdx);
+                } else
+                {
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, trait.CodeName, index: traitIdx);
 
-                string bonusTraitCodeName = GameInfo.Loadout.isTraitMatchingBonus(traitIdx)
-                                            ? trait.MatchingBonusTrait.CodeName
-                                            : "";
+                    string bonusTraitCodeName = GameInfo.Loadout.isTraitMatchingBonus(traitIdx)
+                                                ? trait.MatchingBonusTrait.CodeName
+                                                : "";
 
-                data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, bonusTraitCodeName, index: bonusTraitIdx);
+                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, bonusTraitCodeName, index: bonusTraitIdx);
+                }
 
                 bonusTraitIdx++;
                 traitIdx++;

@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\GameConfig.cs" />
+    <Compile Include="Configuration\IConfiguration.cs" />
+    <Compile Include="Configuration\Loadouts.cs" />
     <Compile Include="Entities\Loadout\Trait.cs" />
     <Compile Include="Entities\Loadout\Consumable.cs" />
     <Compile Include="Entities\Loadout\TrapPart.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="GameFiles\Cooked\UPKHeroObjectContent.cs" />
     <Compile Include="GameFiles\FileUtils.cs" />
     <Compile Include="Mods\StartingCoinOverride.cs" />
+    <Compile Include="Utils\Base62Converter.cs" />
     <Compile Include="Utils\Comment.cs" />
     <Compile Include="Utils\Entry.cs" />
     <Compile Include="Utils\IniElement.cs" />
@@ -141,7 +145,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\DefaultValues.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Configuration\Settings.cs" />
     <EmbeddedResource Include="Forms\LauncherMainForm.resx">
       <DependentUpon>LauncherMainForm.cs</DependentUpon>
     </EmbeddedResource>
