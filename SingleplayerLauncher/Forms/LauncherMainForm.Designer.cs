@@ -1,4 +1,4 @@
-using SingleplayerLauncher.Model;
+﻿using SingleplayerLauncher.Model;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
@@ -32,6 +32,7 @@ namespace SingleplayerLauncher
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherMainForm));
             this.btnLaunch = new System.Windows.Forms.Button();
             this.chkDebug = new System.Windows.Forms.CheckBox();
             this.comBoxDye = new System.Windows.Forms.ComboBox();
@@ -69,6 +70,7 @@ namespace SingleplayerLauncher
             this.labelGuardianSlot1 = new System.Windows.Forms.Label();
             this.comBoxGuardianSlot2 = new System.Windows.Forms.ComboBox();
             this.groupBoxLoadout = new System.Windows.Forms.GroupBox();
+            this.btnDeleteLoadout = new System.Windows.Forms.Button();
             this.labelPlayerName = new System.Windows.Forms.Label();
             this.maskedTextBoxPlayerName = new System.Windows.Forms.MaskedTextBox();
             this.labelLoadoutName = new System.Windows.Forms.Label();
@@ -144,7 +146,8 @@ namespace SingleplayerLauncher
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnDeleteLoadout = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnDiscord = new System.Windows.Forms.Button();
             this.mapSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
             this.modsGroupBox.SuspendLayout();
@@ -157,7 +160,7 @@ namespace SingleplayerLauncher
             // btnLaunch
             // 
             this.btnLaunch.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnLaunch.Location = new System.Drawing.Point(587, 457);
+            this.btnLaunch.Location = new System.Drawing.Point(586, 474);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(341, 75);
             this.btnLaunch.TabIndex = 0;
@@ -168,7 +171,7 @@ namespace SingleplayerLauncher
             // chkDebug
             // 
             this.chkDebug.AutoSize = true;
-            this.chkDebug.Location = new System.Drawing.Point(784, 541);
+            this.chkDebug.Location = new System.Drawing.Point(783, 558);
             this.chkDebug.Name = "chkDebug";
             this.chkDebug.Size = new System.Drawing.Size(58, 17);
             this.chkDebug.TabIndex = 6;
@@ -243,7 +246,7 @@ namespace SingleplayerLauncher
             this.mapSettingsGroupBox.Controls.Add(this.labelGameMode);
             this.mapSettingsGroupBox.Controls.Add(this.comBoxBattleground);
             this.mapSettingsGroupBox.Controls.Add(this.labelMap);
-            this.mapSettingsGroupBox.Location = new System.Drawing.Point(586, 12);
+            this.mapSettingsGroupBox.Location = new System.Drawing.Point(585, 29);
             this.mapSettingsGroupBox.Name = "mapSettingsGroupBox";
             this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 108);
             this.mapSettingsGroupBox.TabIndex = 8;
@@ -329,7 +332,7 @@ namespace SingleplayerLauncher
             // 
             // btnResetConfig
             // 
-            this.btnResetConfig.Location = new System.Drawing.Point(845, 538);
+            this.btnResetConfig.Location = new System.Drawing.Point(844, 555);
             this.btnResetConfig.Name = "btnResetConfig";
             this.btnResetConfig.Size = new System.Drawing.Size(83, 22);
             this.btnResetConfig.TabIndex = 9;
@@ -475,7 +478,7 @@ namespace SingleplayerLauncher
             this.modsGroupBox.Controls.Add(this.chkInvincibleBarricades);
             this.modsGroupBox.Controls.Add(this.chkTrapsAnySurface);
             this.modsGroupBox.Controls.Add(this.chkTrapsInTraps);
-            this.modsGroupBox.Location = new System.Drawing.Point(589, 149);
+            this.modsGroupBox.Location = new System.Drawing.Point(588, 166);
             this.modsGroupBox.Name = "modsGroupBox";
             this.modsGroupBox.Size = new System.Drawing.Size(339, 197);
             this.modsGroupBox.TabIndex = 22;
@@ -635,12 +638,25 @@ namespace SingleplayerLauncher
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot5);
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot7);
             this.groupBoxLoadout.Controls.Add(this.comBoxLoadoutSlot6);
-            this.groupBoxLoadout.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxLoadout.Location = new System.Drawing.Point(11, 29);
             this.groupBoxLoadout.Name = "groupBoxLoadout";
             this.groupBoxLoadout.Size = new System.Drawing.Size(568, 549);
             this.groupBoxLoadout.TabIndex = 24;
             this.groupBoxLoadout.TabStop = false;
             this.groupBoxLoadout.Text = "Loadout";
+            // 
+            // btnDeleteLoadout
+            // 
+            this.btnDeleteLoadout.BackColor = System.Drawing.Color.Tomato;
+            this.btnDeleteLoadout.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnDeleteLoadout.Location = new System.Drawing.Point(6, 521);
+            this.btnDeleteLoadout.Name = "btnDeleteLoadout";
+            this.btnDeleteLoadout.Size = new System.Drawing.Size(159, 22);
+            this.btnDeleteLoadout.TabIndex = 72;
+            this.btnDeleteLoadout.Text = "Delete selected Loadout";
+            this.btnDeleteLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDeleteLoadout.UseVisualStyleBackColor = false;
+            this.btnDeleteLoadout.Click += new System.EventHandler(this.btnDeleteLoadout_Click);
             // 
             // labelPlayerName
             // 
@@ -1310,7 +1326,7 @@ namespace SingleplayerLauncher
             // chk_modsEnabled
             // 
             this.chk_modsEnabled.AutoSize = true;
-            this.chk_modsEnabled.Location = new System.Drawing.Point(595, 126);
+            this.chk_modsEnabled.Location = new System.Drawing.Point(594, 143);
             this.chk_modsEnabled.Name = "chk_modsEnabled";
             this.chk_modsEnabled.Size = new System.Drawing.Size(93, 17);
             this.chk_modsEnabled.TabIndex = 25;
@@ -1321,7 +1337,7 @@ namespace SingleplayerLauncher
             // chkRunAs32
             // 
             this.chkRunAs32.AutoSize = true;
-            this.chkRunAs32.Location = new System.Drawing.Point(694, 541);
+            this.chkRunAs32.Location = new System.Drawing.Point(693, 558);
             this.chkRunAs32.Name = "chkRunAs32";
             this.chkRunAs32.Size = new System.Drawing.Size(84, 17);
             this.chkRunAs32.TabIndex = 26;
@@ -1332,7 +1348,7 @@ namespace SingleplayerLauncher
             // 
             this.comBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLanguage.FormattingEnabled = true;
-            this.comBoxLanguage.Location = new System.Drawing.Point(847, 430);
+            this.comBoxLanguage.Location = new System.Drawing.Point(846, 447);
             this.comBoxLanguage.Name = "comBoxLanguage";
             this.comBoxLanguage.Size = new System.Drawing.Size(79, 21);
             this.comBoxLanguage.TabIndex = 11;
@@ -1341,7 +1357,7 @@ namespace SingleplayerLauncher
             // labelLanguage
             // 
             this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Location = new System.Drawing.Point(787, 433);
+            this.labelLanguage.Location = new System.Drawing.Point(786, 450);
             this.labelLanguage.Name = "labelLanguage";
             this.labelLanguage.Size = new System.Drawing.Size(55, 13);
             this.labelLanguage.TabIndex = 10;
@@ -1359,24 +1375,36 @@ namespace SingleplayerLauncher
             // 
             this.errorProvider3.ContainerControl = this;
             // 
-            // btnDeleteLoadout
+            // label1
             // 
-            this.btnDeleteLoadout.BackColor = System.Drawing.Color.Tomato;
-            this.btnDeleteLoadout.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnDeleteLoadout.Location = new System.Drawing.Point(6, 521);
-            this.btnDeleteLoadout.Name = "btnDeleteLoadout";
-            this.btnDeleteLoadout.Size = new System.Drawing.Size(159, 22);
-            this.btnDeleteLoadout.TabIndex = 72;
-            this.btnDeleteLoadout.Text = "Delete selected Loadout";
-            this.btnDeleteLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteLoadout.UseVisualStyleBackColor = false;
-            this.btnDeleteLoadout.Click += new System.EventHandler(this.btnDeleteLoadout_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(684, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(205, 13);
+            this.label1.TabIndex = 73;
+            this.label1.Text = "Any issues or feedback? Join our Discord:";
+            // 
+            // btnDiscord
+            // 
+            this.btnDiscord.BackColor = System.Drawing.Color.Transparent;
+            this.btnDiscord.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDiscord.Image = ((System.Drawing.Image)(resources.GetObject("btnDiscord.Image")));
+            this.btnDiscord.Location = new System.Drawing.Point(891, 4);
+            this.btnDiscord.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDiscord.Name = "btnDiscord";
+            this.btnDiscord.Size = new System.Drawing.Size(34, 27);
+            this.btnDiscord.TabIndex = 74;
+            this.btnDiscord.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDiscord.UseVisualStyleBackColor = false;
+            this.btnDiscord.Click += new System.EventHandler(this.btnDiscord_Click);
             // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 573);
+            this.ClientSize = new System.Drawing.Size(939, 583);
+            this.Controls.Add(this.btnDiscord);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelLanguage);
             this.Controls.Add(this.comBoxLanguage);
             this.Controls.Add(this.chkRunAs32);
@@ -1522,6 +1550,8 @@ namespace SingleplayerLauncher
         private ErrorProvider errorProvider2;
         private ErrorProvider errorProvider3;
         private Button btnDeleteLoadout;
+        private Label label1;
+        private Button btnDiscord;
     }
 }
 
