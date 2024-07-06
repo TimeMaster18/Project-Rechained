@@ -23,9 +23,9 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 - Launch the game in **offline mode, single player**
 - Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes** and Custom **Loadouts**
-  - Choose Traps and Gear
-  - Choose your skin and your dye
-  - Choose Guardians and Consumables
+  - Choose Traps (with trap parts) and Gear
+  - Choose Guardians, Traits and Consumables
+- **Save your loadouts and share them with other players**
 - Hero, Guardian and **Trap Tiers** are matched with enemy/map level
 - **New extra difficulties** for every map
 - **New Mods**:
@@ -40,9 +40,6 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 
 ### Coming Next
-- Traits and Trap Parts
-- Save multiple loadouts with names
-- Share loadouts with other players
 - P2P (Peer-to-peer) Multiplayer
 - Campaign Mode
 

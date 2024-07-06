@@ -1,4 +1,4 @@
-﻿using SingleplayerLauncher.Model;
+using SingleplayerLauncher.Model;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
@@ -703,6 +703,7 @@ namespace SingleplayerLauncher
             // 
             // btnImportLoadout
             // 
+            this.btnImportLoadout.Enabled = false;
             this.btnImportLoadout.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnImportLoadout.Location = new System.Drawing.Point(517, 19);
             this.btnImportLoadout.Name = "btnImportLoadout";
@@ -1006,7 +1007,7 @@ namespace SingleplayerLauncher
             this.comBoxTrapPartsSlot1Part1.Name = "comBoxTrapPartsSlot1Part1";
             this.comBoxTrapPartsSlot1Part1.Size = new System.Drawing.Size(108, 21);
             this.comBoxTrapPartsSlot1Part1.TabIndex = 37;
-            this.comBoxTrapPartsSlot1Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot1Part1_SelectedIndexChanged_1);
+            this.comBoxTrapPartsSlot1Part1.SelectedIndexChanged += new System.EventHandler(this.comBoxTrapPartsSlot1Part1_SelectedIndexChanged);
             // 
             // labelTraitNoBonusSlot
             // 
