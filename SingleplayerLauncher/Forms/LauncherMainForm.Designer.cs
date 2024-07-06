@@ -661,7 +661,7 @@ namespace SingleplayerLauncher
             // labelPlayerName
             // 
             this.labelPlayerName.AutoSize = true;
-            this.labelPlayerName.Location = new System.Drawing.Point(6, 497);
+            this.labelPlayerName.Location = new System.Drawing.Point(6, 485);
             this.labelPlayerName.Name = "labelPlayerName";
             this.labelPlayerName.Size = new System.Drawing.Size(67, 13);
             this.labelPlayerName.TabIndex = 71;
@@ -669,16 +669,16 @@ namespace SingleplayerLauncher
             // 
             // maskedTextBoxPlayerName
             // 
-            this.maskedTextBoxPlayerName.Location = new System.Drawing.Point(79, 494);
+            this.maskedTextBoxPlayerName.Location = new System.Drawing.Point(79, 482);
             this.maskedTextBoxPlayerName.Name = "maskedTextBoxPlayerName";
-            this.maskedTextBoxPlayerName.Size = new System.Drawing.Size(106, 20);
+            this.maskedTextBoxPlayerName.Size = new System.Drawing.Size(99, 20);
             this.maskedTextBoxPlayerName.TabIndex = 70;
             this.maskedTextBoxPlayerName.TextChanged += new System.EventHandler(this.maskedTextBoxPlayerName_TextChanged);
             // 
             // labelLoadoutName
             // 
             this.labelLoadoutName.AutoSize = true;
-            this.labelLoadoutName.Location = new System.Drawing.Point(201, 497);
+            this.labelLoadoutName.Location = new System.Drawing.Point(184, 485);
             this.labelLoadoutName.Name = "labelLoadoutName";
             this.labelLoadoutName.Size = new System.Drawing.Size(77, 13);
             this.labelLoadoutName.TabIndex = 69;
@@ -686,20 +686,19 @@ namespace SingleplayerLauncher
             // 
             // btnSaveLoadout
             // 
+            this.btnSaveLoadout.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnSaveLoadout.Enabled = false;
-            this.btnSaveLoadout.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSaveLoadout.Location = new System.Drawing.Point(520, 493);
+            this.btnSaveLoadout.Location = new System.Drawing.Point(503, 469);
             this.btnSaveLoadout.Name = "btnSaveLoadout";
-            this.btnSaveLoadout.Size = new System.Drawing.Size(42, 20);
+            this.btnSaveLoadout.Size = new System.Drawing.Size(59, 44);
             this.btnSaveLoadout.TabIndex = 67;
-            this.btnSaveLoadout.Text = "Save";
-            this.btnSaveLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSaveLoadout.UseVisualStyleBackColor = true;
+            this.btnSaveLoadout.Text = "Save Loadout";
+            this.btnSaveLoadout.UseVisualStyleBackColor = false;
             this.btnSaveLoadout.Click += new System.EventHandler(this.btnSaveLoadout_Click);
             // 
             // maskedTextBoxLoadoutName
             // 
-            this.maskedTextBoxLoadoutName.Location = new System.Drawing.Point(284, 494);
+            this.maskedTextBoxLoadoutName.Location = new System.Drawing.Point(267, 482);
             this.maskedTextBoxLoadoutName.Name = "maskedTextBoxLoadoutName";
             this.maskedTextBoxLoadoutName.Size = new System.Drawing.Size(230, 20);
             this.maskedTextBoxLoadoutName.TabIndex = 68;

@@ -453,9 +453,13 @@ namespace SingleplayerLauncher
 
         private void SetCurrentHero()
         {
-            comBoxHero.SelectedItem = GameInfo.Loadout.Hero.Name;
-            comBoxSkin.SelectedItem = GameInfo.Loadout.Skin.Name;
-            comBoxDye.SelectedItem = GameInfo.Loadout.Dye.Name;
+            string heroName = GameInfo.Loadout.Hero.Name;
+            string skinName = GameInfo.Loadout.Skin.Name;
+            string dyeName = GameInfo.Loadout.Dye.Name;
+
+            comBoxHero.SelectedItem = heroName;
+            comBoxSkin.SelectedItem = skinName;
+            comBoxDye.SelectedItem = dyeName;
         }
 
         private void SetCurrentSlotItems()
