@@ -41,103 +41,19 @@ namespace SingleplayerLauncher.GameFiles
 
         private const int BASE_STARTING_COIN_SERVER_MODE = 6000;
 
-
         public static void ApplyLoadout()
         {
-            _ = GameInfo.Loadout ?? throw new ArgumentNullException(nameof(GameInfo.Loadout), "Mandatory parameter");
-            _ = GameInfo.Loadout.Hero ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Hero), "Mandatory parameter");
-            _ = GameInfo.Loadout.Dye ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Dye), "Mandatory parameter");
-            _ = GameInfo.Loadout.SlotItems ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.SlotItems), "Mandatory parameter");
-            _ = GameInfo.Loadout.TrapParts ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.TrapParts), "Mandatory parameter");
-            _ = GameInfo.Loadout.Guardians ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Guardians), "Mandatory parameter");
-            _ = GameInfo.Loadout.Consumables ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Consumables), "Mandatory parameter");
-            _ = GameInfo.Loadout.Traits ?? throw new ArgumentNullException(nameof(GameInfo.Loadout.Traits), "Mandatory parameter");
-            _ = GameInfo.Battleground.Difficulty ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
+            ValidateLoadout();
 
-
+            string characterDataSection = $"RCharacterData_{GameInfo.Loadout.PlayerName} RCharacterData";
             ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
             IniFile data = characterData.data;
 
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyHero, GameInfo.Loadout.Hero.PawnTemplateName);
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeySkin, GameInfo.Loadout.Skin.PlayerSkinName);
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyDye, GameInfo.Loadout.Dye.SpitfireGameIdBytes.ToString());
-
-
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, GenerateItemString(GameInfo.Loadout.Hero.PawnWeaponTemplateName), index: 0);
-
-            int loadoutIdx = 1;
-            foreach (SlotItem slotItem in GameInfo.Loadout.SlotItems)
-            {
-                if (slotItem == null)
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyLoadout, "", index: loadoutIdx);
-                } else
-                {
-
-                    bool isTrap = slotItem.GetType() == typeof(Trap);
-                    data.UpdateEntry(
-                        RCharacterDataSection,
-                        CharacterDataKeyLoadout,
-                        GenerateItemString(
-                            slotItem.ItemTemplateName,
-                            trapLevel: GameInfo.Battleground.Difficulty.TrapTier,
-                            trapParts: isTrap ? GameInfo.Loadout.GetTrapPartsForLoadout(loadoutIdx) : null
-                        ),
-                        index: loadoutIdx
-                    );
-
-                }
-                loadoutIdx++;
-            }
-
-            int guardianIdx = 0;
-            foreach (Guardian guardian in GameInfo.Loadout.Guardians)
-            {
-                if (guardian == null)
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuardian, "", index: guardianIdx);
-                } else
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuardian, GenerateItemString(guardian.ItemTemplateName, itemUseCount: 1), index: guardianIdx);
-                }
-                guardianIdx++;
-            }
-
-            int consumableIdx = 0;
-            foreach (Consumable consumable in GameInfo.Loadout.Consumables)
-            {
-                if (consumable == null)
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, "", index: consumableIdx);
-                } else
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyConsumable, GenerateItemString(consumable.ItemTemplateName, itemUseCount: consumable.UsageLimit), index: consumableIdx);
-                }
-                consumableIdx++;
-            }
-
-            int traitIdx = 0;
-            int bonusTraitIdx = 4;
-            foreach (Trait trait in GameInfo.Loadout.Traits)
-            {
-                if (trait == null)
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, "", index: traitIdx);
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, "", index: bonusTraitIdx);
-                } else
-                {
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, trait.CodeName, index: traitIdx);
-
-                    string bonusTraitCodeName = GameInfo.Loadout.isTraitMatchingBonus(traitIdx)
-                                                ? trait.MatchingBonusTrait.CodeName
-                                                : "";
-
-                    data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTrait, bonusTraitCodeName, index: bonusTraitIdx);
-                }
-
-                bonusTraitIdx++;
-                traitIdx++;
-            }
+            UpdateCharacterDataEntries(data, characterDataSection);
+            UpdateLoadoutEntries(data, characterDataSection);
+            UpdateGuardianEntries(data, characterDataSection);
+            UpdateConsumableEntries(data, characterDataSection);
+            UpdateTraitEntries(data, characterDataSection);
 
             characterData.Write();
         }
@@ -164,14 +80,87 @@ namespace SingleplayerLauncher.GameFiles
             FileUtils.CreateBackup(CharacterDataIniFileName, CharacterDataIniPath);
 
             ConfigFile characterDataConfigFile = new ConfigFile(CharacterDataIniPath, true);
-            IniFile data = characterDataConfigFile.data;
-
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyPlayerName, DefaultPlayerName);
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuildTag, DefaultGuildTag);
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGuildName, DefaultGuildName);
-            data.UpdateEntry(RCharacterDataSection, CharacterDataKeyTeam, DefaultTeam);
 
             characterDataConfigFile.Write();
+        }
+
+        private static void ValidateLoadout()
+        {
+            var loadout = GameInfo.Loadout ?? throw new ArgumentNullException(nameof(GameInfo.Loadout), "Mandatory parameter");
+
+            if (loadout.Hero == null) throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
+            if (loadout.Dye == null) throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
+            if (loadout.SlotItems == null) throw new ArgumentNullException(nameof(loadout.SlotItems), "Mandatory parameter");
+            if (loadout.TrapParts == null) throw new ArgumentNullException(nameof(loadout.TrapParts), "Mandatory parameter");
+            if (loadout.Guardians == null) throw new ArgumentNullException(nameof(loadout.Guardians), "Mandatory parameter");
+            if (loadout.Consumables == null) throw new ArgumentNullException(nameof(loadout.Consumables), "Mandatory parameter");
+            if (loadout.Traits == null) throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
+            if (loadout.PlayerName == null) throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
+            if (GameInfo.Battleground.Difficulty == null) throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
+        }
+
+        private static void UpdateCharacterDataEntries(IniFile data, string section)
+        {
+            var loadout = GameInfo.Loadout;
+
+            data.UpdateEntry(section, CharacterDataKeyHero, loadout.Hero.PawnTemplateName);
+            data.UpdateEntry(section, CharacterDataKeySkin, loadout.Skin.PlayerSkinName);
+            data.UpdateEntry(section, CharacterDataKeyDye, loadout.Dye.CodeName.ToString());
+            data.UpdateEntry(section, CharacterDataKeyPlayerName, loadout.PlayerName);
+            data.UpdateEntry(section, CharacterDataKeyGuildTag, DefaultGuildTag);
+            data.UpdateEntry(section, CharacterDataKeyGuildName, DefaultGuildName);
+            data.UpdateEntry(section, CharacterDataKeyTeam, DefaultTeam);
+        }
+
+        private static void UpdateLoadoutEntries(IniFile data, string section)
+        {
+            var loadout = GameInfo.Loadout;
+            data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(loadout.Hero.PawnWeaponTemplateName), index: 0);
+
+            for (int i = 0; i < loadout.SlotItems.Length; i++)
+            {
+                var slotItem = loadout.SlotItems[i];
+                string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, slotItem is Trap ? loadout.GetTrapPartsForLoadout(i + 1) : null);
+                data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: i + 1);
+            }
+        }
+
+        private static void UpdateGuardianEntries(IniFile data, string section)
+        {
+            var loadout = GameInfo.Loadout;
+
+            for (int i = 0; i < loadout.Guardians.Length; i++)
+            {
+                var guardian = loadout.Guardians[i];
+                string itemString = guardian == null ? "" : GenerateItemString(guardian.ItemTemplateName, itemUseCount: 1);
+                data.UpdateEntry(section, CharacterDataKeyGuardian, itemString, index: i);
+            }
+        }
+
+        private static void UpdateConsumableEntries(IniFile data, string section)
+        {
+            var loadout = GameInfo.Loadout;
+
+            for (int i = 0; i < loadout.Consumables.Length; i++)
+            {
+                var consumable = loadout.Consumables[i];
+                string itemString = consumable == null ? "" : GenerateItemString(consumable.ItemTemplateName, itemUseCount: consumable.UsageLimit);
+                data.UpdateEntry(section, CharacterDataKeyConsumable, itemString, index: i);
+            }
+        }
+
+        private static void UpdateTraitEntries(IniFile data, string section)
+        {
+            var loadout = GameInfo.Loadout;
+            for (int i = 0; i < loadout.Traits.Length; i++)
+            {
+                var trait = loadout.Traits[i];
+                string traitCodeName = trait?.CodeName ?? "";
+                string bonusTraitCodeName = trait != null && loadout.isTraitMatchingBonus(i) ? trait.MatchingBonusTrait.CodeName : "";
+
+                data.UpdateEntry(section, CharacterDataKeyTrait, traitCodeName, index: i);
+                data.UpdateEntry(section, CharacterDataKeyTrait, bonusTraitCodeName, index: i + 4);
+            }
         }
 
         private static string CalculateMultiplierStartingCoin(bool shouldOverride, int startingCoin, Map map)
