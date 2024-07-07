@@ -1,5 +1,4 @@
-﻿using SingleplayerLauncher.Model;
-using System;
+﻿using System;
 using System.Windows.Forms;
 //using CefSharp;
 //using CefSharp.WinForms;

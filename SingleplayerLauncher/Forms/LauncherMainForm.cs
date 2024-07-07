@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using SingleplayerLauncher.Model;
-using SingleplayerLauncher.Resources;
+﻿using SingleplayerLauncher.Model;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher

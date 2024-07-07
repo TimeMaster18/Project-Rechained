@@ -1,8 +1,10 @@
-﻿using SingleplayerLauncher.Model;
+using SingleplayerLauncher.Model;
 using SingleplayerLauncher.GameFiles;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System;
 
 namespace SingleplayerLauncher
 {
@@ -76,11 +78,14 @@ namespace SingleplayerLauncher
             string arguments = "";
 
             string map = GameInfo.Battleground.Map.UmapCode;
+            string playerGUID = GameInfo.Loadout.PlayerName;
             string defaultArgs = EXE_ARGUMENTS;
             string languageArg = LANGUAGE_OPTION + Language.GetKeyFromValue(language);
 
             arguments += map;
-            arguments += "?listen?PlayerGUID=Time-Master --net_mode=ListenServer"; // TODO Adjust for multiplayer
+            arguments += "?listen";
+            arguments += "?PlayerGUID=" + playerGUID;
+            arguments += " --net_mode=ListenServer"; // TODO Adjust for multiplayer
             arguments += defaultArgs;
             arguments += languageArg;
 

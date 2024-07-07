@@ -50,7 +50,7 @@ namespace SingleplayerLauncher.Model
         private const bool FORCE_LENGTH_TWO = true;
 
         public string Name { get; set; } = "";
-        public string PlayerName { get; set; } = "";
+        public string PlayerName { get; set; } = "TimeMaster";
 
         public Hero Hero { get; set; } = Hero.Maximilian;
         public Skin Skin { get; set; } = Skin.MaximillianDefault;

@@ -5,7 +5,7 @@ namespace SingleplayerLauncher.Model
 {
     public class Dye : LoadoutItem
     {
-        public int SpitfireGameIdBytes { get; private set; } // integer used in the .ini config
+        public int CodeName { get; private set; }
 
         // private constructor
         Dye() { }
@@ -15,19 +15,19 @@ namespace SingleplayerLauncher.Model
         {
             Id = 1,
             Name = NORMAL,
-            SpitfireGameIdBytes = 0
+            CodeName = 0
         };
         public static Dye Heroic = new Dye()
         {
             Id = 2,
             Name = HEROIC,
-            SpitfireGameIdBytes = 1
+            CodeName = 1
         };
         public static Dye Legendary = new Dye()
         {
             Id = 3,
             Name = LEGENDARY,
-            SpitfireGameIdBytes = 2
+            CodeName = 2
         };
 
         public static Dictionary<string, Dye> Dyes = new Dictionary<string, Dye>
