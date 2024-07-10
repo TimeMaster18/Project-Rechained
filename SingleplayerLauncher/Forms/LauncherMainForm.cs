@@ -128,7 +128,9 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
             PopulateSlots(ComBoxConsumableSlots, Model.Consumable.Consumables.Keys.ToList());
-            PopulateSlots(ComBoxTraitSlots, Model.Trait.Traits.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.Trait.TriangleSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.Trait.PentagonSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.Trait.DiamondSlotTraits.Keys.ToList());
 
             SetCurrentHero();
             SetCurrentSlotItems();
@@ -368,6 +370,7 @@ namespace SingleplayerLauncher
 
         private void PopulateSlots(List<ComboBox> comBoxSlotList, List<String> entryList)
         {
+            entryList.Sort();
             entryList.Insert(0, "");
             foreach (ComboBox comBoxSlot in comBoxSlotList)
             {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using static SingleplayerLauncher.Names.Trait;
 using static SingleplayerLauncher.Names.Difficulty;
+using System.Linq;
 
 namespace SingleplayerLauncher.Model
 {
@@ -609,9 +610,7 @@ namespace SingleplayerLauncher.Model
             MatchingBonusTrait = BONUS_TRAIT_HEALTH
         };
 
-
-        public static Dictionary<string, Trait> Traits = new Dictionary<string, Trait>
-        {
+        public static Dictionary<string, Trait> TriangleSlotTraits = new Dictionary<string, Trait> {
             { EASILY_EXCITED, EasilyExcited},
             { MAKING_IT_RAIN, MakingItRain},
             { NATURAL_BORN_SPRINTER, NaturalBornSprinter},
@@ -630,7 +629,11 @@ namespace SingleplayerLauncher.Model
             { RIFT_GIFT, RiftGift},
             { RIFT_ROCKET, RiftRocket},
             { SMASHING_DEALS, SmashingDeals},
-            { HAS_A_TRAP_FETISH, HasATrapFetish},
+            { HAS_A_TRAP_FETISH, HasATrapFetish}
+        };
+
+        public static Dictionary<string, Trait> PentagonSlotTraits = new Dictionary<string, Trait>
+        {
             { BELIEVES_SIZE_MATTERS, BelievesSizeMatters},
             { UNCLE_KILLED_BY_GIANT, UncleKilledByGiant},
             { CAT_EATEN_BY_GNOLLS, CatEatenByGnolls},
@@ -647,7 +650,12 @@ namespace SingleplayerLauncher.Model
             { KILLER_BUZZ, KillerBuzz},
             { PAGING_DR_LOVE, PagingDrLove},
             { RIFT_AWAY, RiftAway},
-            { FEELING_FIERCE, FeelingFierce},
+            { FEELING_FIERCE, FeelingFierce}
+        };
+
+        public static Dictionary<string, Trait> DiamondSlotTraits = new Dictionary<string, Trait>
+        {
+
             { TRIES_TOO_HARD, TriesTooHard},
             { ENJOYS_PAIN, EnjoysPain},
             { EXECUTION_ADVANTAGE, ExecutionAdvantage},
@@ -661,6 +669,13 @@ namespace SingleplayerLauncher.Model
             { EXTRA_PADDING, ExtraPadding},
             { RESPECT_MY_AUTHORITY, RespectMyAuthority},
         };
+
+
+        public static Dictionary<string, Trait> Traits =
+            TriangleSlotTraits
+            .Concat(PentagonSlotTraits)
+            .Concat(DiamondSlotTraits)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
 
         public static Dictionary<int, Trait> TraitsById = new Dictionary<int, Trait>
@@ -684,6 +699,7 @@ namespace SingleplayerLauncher.Model
             { RiftRocket.Id, RiftRocket},
             { SmashingDeals.Id, SmashingDeals},
             { HasATrapFetish.Id, HasATrapFetish},
+
             { BelievesSizeMatters.Id, BelievesSizeMatters},
             { UncleKilledByGiant.Id, UncleKilledByGiant},
             { CatEatenByGnolls.Id, CatEatenByGnolls},
@@ -701,6 +717,7 @@ namespace SingleplayerLauncher.Model
             { PagingDrLove.Id, PagingDrLove},
             { RiftAway.Id, RiftAway},
             { FeelingFierce.Id, FeelingFierce},
+
             { TriesTooHard.Id, TriesTooHard},
             { EnjoysPain.Id, EnjoysPain},
             { ExecutionAdvantage.Id, ExecutionAdvantage},
