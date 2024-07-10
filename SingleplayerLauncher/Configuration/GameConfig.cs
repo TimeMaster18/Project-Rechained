@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SingleplayerLauncher.Configuration;
+using SingleplayerLauncher.GameFiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,12 +9,12 @@ namespace SingleplayerLauncher
 {
     public class GameConfig : IConfiguration
     {
-        private static readonly string GameConfigFile = "gameconfig.json";
+        public static readonly string GAME_CONFIG_FILE_NAME = "gameconfig.json";
         private static GameConfig _instance;
         private static readonly object _lock = new object();
 
         public bool ModsEnabled { get; set; }
-        public string GameMode { get; set; }
+        public string GameMode { get; set; } = "Survival";
         public string Difficulty { get; set; }
         public string Battleground { get; set; }
         public string ExtraDifficulty { get; set; }
@@ -42,7 +43,6 @@ namespace SingleplayerLauncher
                     if (_instance == null)
                     {
                         _instance = new GameConfig();
-                        _instance.Load();
                     }
                 }
                 return _instance;
@@ -51,9 +51,10 @@ namespace SingleplayerLauncher
 
         public void Load()
         {
-            if (File.Exists(GameConfigFile))
+            string gameConfigFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, GAME_CONFIG_FILE_NAME);
+            if (File.Exists(gameConfigFile))
             {
-                var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(File.ReadAllText(GameConfigFile));
+                var settings = JsonConvert.DeserializeObject<Dictionary<string, object>>(File.ReadAllText(gameConfigFile));
                 LoadFromDictionary(settings);
             }
             else
@@ -85,7 +86,8 @@ namespace SingleplayerLauncher
                 }
             }
 
-            File.WriteAllText(GameConfigFile, JsonConvert.SerializeObject(settings, Formatting.Indented));
+            string gameConfigFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, GAME_CONFIG_FILE_NAME);
+            File.WriteAllText(gameConfigFile, JsonConvert.SerializeObject(settings, Formatting.Indented));
         }
     }
 }

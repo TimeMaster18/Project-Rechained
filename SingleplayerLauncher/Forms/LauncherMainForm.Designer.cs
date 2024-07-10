@@ -1415,7 +1415,7 @@ namespace SingleplayerLauncher
             this.Controls.Add(this.btnLaunch);
             this.Controls.Add(this.chkDebug);
             this.Name = "LauncherMainForm";
-            this.Text = "OMDU Offline Launcher";
+            this.Text = "Project Rechained Launcher";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.mapSettingsGroupBox.ResumeLayout(false);
             this.mapSettingsGroupBox.PerformLayout();

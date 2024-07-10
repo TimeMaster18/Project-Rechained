@@ -1,10 +1,11 @@
-using SingleplayerLauncher.Model;
+﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.GameFiles;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System;
+using System.Windows.Forms;
 
 namespace SingleplayerLauncher
 {
@@ -16,7 +17,7 @@ namespace SingleplayerLauncher
         private static readonly List<string> SPITFIREGAME_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA };
         public static void ApplyChanges()
         {
-            SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(FileUtils.SPITFIREGAME_UPK_PATH);
+            SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.UPKS_PATH, FileUtils.SPITFIREGAME_UPK_FILENAME));
 
             SpitfireGameUPK.ApplyMods(GameConfig.Instance.ModsEnabled);
 
@@ -31,24 +32,69 @@ namespace SingleplayerLauncher
             GameFiles.DefaultGame.ApplyMods(GameConfig.Instance.ModsEnabled);
         }
 
-        private const string MOD_HOOK_FILES_PATH = "./Hooks/";
-        private const string P2P_HOOK_FILENAME = "omdu_hook.dll";
-        private const string P2P_HOOK_TARGET_FILENAME = "x3daudio1_7.dll";
-
         public static void FirstLaunchInitialization()
         {
+            string launcherInstallationPath = FileUtils.GetLauncherInstallationPath(Settings.Instance.RootGamePath);
+            Settings.Instance.LauncherInstallationPath = launcherInstallationPath;
+
+            FileUtils.CreateBackup(FileUtils.INI_CHARACTER_DATA_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
+            FileUtils.CreateBackup(FileUtils.INI_DEFAULT_GAME_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
+
             GameFiles.CharacterData.Initialize();
             GameFiles.DefaultGame.Initialize();
 
             // SpitfireGame (decompress) Initialization
-            FileUtils.DecompressUPKFile(FileUtils.SPITFIREGAME_UPK_PATH, FileUtils.SPITFIREGAME_UPK_ORG_SIZE);
+            FileUtils.DecompressUPKFile(FileUtils.SPITFIREGAME_UPK_FILENAME, FileUtils.SPITFIREGAME_UPK_ORG_SIZE);
 
             // Hook (for co-op and non-dedicated server) Initialization
-            string hookSourceFilePath = Path.Combine(MOD_HOOK_FILES_PATH, P2P_HOOK_FILENAME);
-            string hookTargetFilePathWin64 = Path.Combine(FileUtils.SPITFIREGAME_EXE_WIN64_FILEPATH, P2P_HOOK_TARGET_FILENAME);
-            string hookTargetFilePathWin32 = Path.Combine(FileUtils.SPITFIREGAME_EXE_WIN32_FILEPATH, P2P_HOOK_TARGET_FILENAME);
-            FileUtils.CopyFileWithCheck(hookSourceFilePath, hookTargetFilePathWin64, overwrite: true);
-            FileUtils.CopyFileWithCheck(hookSourceFilePath, hookTargetFilePathWin32, overwrite: true);
+            FileUtils.ApplyHook(FileUtils.P2P_HOOK_FILENAME, FileUtils.P2P_HOOK_TARGET_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.SPITFIREGAME_BINARIES_WIN64_PATH));
+            FileUtils.ApplyHook(FileUtils.P2P_HOOK_FILENAME, FileUtils.P2P_HOOK_TARGET_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH));
+            FileUtils.CreateBackup(FileUtils.P2P_HOOK_FILENAME, Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.MOD_HOOKS_FOLDER_NAME, FileUtils.P2P_HOOK_FILENAME));
+
+            // Delete Hooks folder (not needed anymore)
+            try
+            {
+                // TODO: Remove in future release
+                if (Directory.Exists(Path.Combine(Settings.Instance.RootGamePath, FileUtils.BINARIES_FOLDER_NAME, FileUtils.MOD_HOOKS_FOLDER_NAME)))
+                {
+                    Directory.Delete(Path.Combine(Settings.Instance.RootGamePath, FileUtils.BINARIES_FOLDER_NAME, FileUtils.MOD_HOOKS_FOLDER_NAME), true);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error deleting obsolete Hooks folder: " + e.Message);
+            }
+
+            // Delete UE Extractor folder (not needed here anymore)
+            try
+            {
+                // TODO: Remove in future release
+                if (Directory.Exists(Path.Combine(Settings.Instance.RootGamePath, FileUtils.BINARIES_FOLDER_NAME, FileUtils.UE_EXTRACTOR_FOLDER_NAME)))
+                {
+                    Directory.Delete(Path.Combine(Settings.Instance.RootGamePath, FileUtils.BINARIES_FOLDER_NAME, FileUtils.UE_EXTRACTOR_FOLDER_NAME), true);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error deleting obsolete UE Extractor folder: " + e.Message);
+            }
+
+            // SpitfireDashboard Initialization
+            string dashboardFolderPath = Path.Combine(Settings.Instance.RootGamePath, FileUtils.DASHBOARD_FOLDER_PATH);
+            string dashboardExePath = Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
+            FileInfo spitfireGameUPKFileInfo = new FileInfo(dashboardExePath);
+            if (spitfireGameUPKFileInfo.Length >= FileUtils.SPITFIREDASHBOARD_EXE_ORG_SIZE)
+            {
+                FileUtils.CreateBackup(FileUtils.SPITFIREDASHBOARD_EXE_FILENAME, Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME));
+                FileUtils.CopyFileWithCheck(
+                    Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.PROJECT_RECHAINED_LAUNCHER_EXE_FILE_NAME),
+                    Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME),
+                    true);
+                FileUtils.CopyFileWithCheck(
+                    Path.Combine(Settings.Instance.LauncherInstallationPath, "Newtonsoft.Json.dll"),
+                    Path.Combine(dashboardFolderPath, "Newtonsoft.Json.dll"),
+                    true);
+            }
 
             Settings.Instance.FirstRun = false;
             Settings.Instance.Save();
@@ -58,10 +104,9 @@ namespace SingleplayerLauncher
         {
             Process p = new Process();
             p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
-            if (Settings.Instance.RunAs32)
-            {
-                p.StartInfo.WorkingDirectory = FileUtils.SPITFIREGAME_EXE_WIN32_FILEPATH;
-            }
+            string filePath = Path.Combine(Settings.Instance.RootGamePath, Settings.Instance.RunAs32 ? FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH : FileUtils.BINARIES_FOLDER_NAME);
+            p.StartInfo.WorkingDirectory = filePath;
+            
             p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language);
 
             p.Start();

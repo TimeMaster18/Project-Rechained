@@ -4,19 +4,15 @@ using System;
 using System.Globalization;
 using System.Text;
 using System.Linq;
+using System.IO;
 
 namespace SingleplayerLauncher.GameFiles
 {
     public static class CharacterData
     {
-        // TODO: make singleton
+        // TODO: make singleton and read after initialization
 
         private static readonly GameInfo GameInfo = GameInfo.Instance;
-
-        private const string CharacterDataIniFileName = "DefaultCharacterData.ini";
-        private const string CharacterDataIniPath = "..//SpitfireGame//Config//DefaultCharacterData.ini";
-
-        private const string RCharacterDataSection = "RCharacterData_Time-Master RCharacterData";
 
         private const string DefaultPlayerName = "TimeMaster";
         private const string DefaultGuildTag = "~(^-^)~";
@@ -46,7 +42,7 @@ namespace SingleplayerLauncher.GameFiles
             ValidateLoadout();
 
             string characterDataSection = $"RCharacterData_{GameInfo.Loadout.PlayerName} RCharacterData";
-            ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
+            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
             UpdateCharacterDataEntries(data, characterDataSection);
@@ -64,9 +60,10 @@ namespace SingleplayerLauncher.GameFiles
             _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
             _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");
 
-            ConfigFile characterData = new ConfigFile(CharacterDataIniPath);
+            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
+            string RCharacterDataSection = $"RCharacterData_{GameInfo.Loadout.PlayerName} RCharacterData";
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGodMode, areEnabled ? Mods.Mods.GodMode.IsEnabled.ToString() : false.ToString());
 
             string startingCoinMultiplier = CalculateMultiplierStartingCoin(areEnabled && Mods.Mods.StartingCoinOverride.IsEnabled, Mods.Mods.StartingCoinOverride.Value, GameInfo.Instance.Battleground.Map);
@@ -77,11 +74,8 @@ namespace SingleplayerLauncher.GameFiles
 
         public static void Initialize()
         {
-            FileUtils.CreateBackup(CharacterDataIniFileName, CharacterDataIniPath);
-
-            ConfigFile characterDataConfigFile = new ConfigFile(CharacterDataIniPath, true);
-
-            characterDataConfigFile.Write();
+            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME), true);
+            characterData.Write();
         }
 
         private static void ValidateLoadout()
