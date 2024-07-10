@@ -1,6 +1,7 @@
 ﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Utils;
 using System;
+using System.IO;
 
 namespace SingleplayerLauncher.GameFiles
 {
@@ -9,9 +10,6 @@ namespace SingleplayerLauncher.GameFiles
         // TODO: make singleton
 
         private static readonly GameInfo GameInfo = GameInfo.Instance;
-
-        private const string DefaultGameIniFileName = "DefaultGame.ini";
-        private const string DefaultGameIniPath = "..//SpitfireGame//Config//DefaultGame.ini";
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         private const string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";
@@ -32,7 +30,7 @@ namespace SingleplayerLauncher.GameFiles
             _ = GameInfo.Battleground.Difficulty ?? throw new ArgumentNullException(nameof(Battleground.Difficulty), "Mandatory parameter");
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
-            ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
+            ConfigFile defaultGame = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
             IniFile data = defaultGame.data;
 
             data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
@@ -48,7 +46,7 @@ namespace SingleplayerLauncher.GameFiles
         {
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
-            ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
+            ConfigFile defaultGame = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
             IniFile data = defaultGame.data;
 
             bool isShowFlyoffsForTrapDamageEnabled = areEnabled && Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled;
@@ -59,9 +57,7 @@ namespace SingleplayerLauncher.GameFiles
 
         public static void Initialize()
         {
-            FileUtils.CreateBackup(DefaultGameIniFileName, DefaultGameIniPath);
-
-            ConfigFile defaultGame = new ConfigFile(DefaultGameIniPath);
+            ConfigFile defaultGame = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
             IniFile data = defaultGame.data;
 
             data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPauseTimerInSeconds, DefaultPauseTimerInSeconds);

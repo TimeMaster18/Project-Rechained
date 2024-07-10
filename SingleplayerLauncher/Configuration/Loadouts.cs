@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SingleplayerLauncher.Configuration;
+using SingleplayerLauncher.GameFiles;
 using System.Collections.Generic;
 using System.IO;
 
@@ -7,7 +8,7 @@ namespace SingleplayerLauncher
 {
     public class Loadouts : IConfiguration
     {
-        private static readonly string LoadoutsFile = "loadouts.json";
+        public static readonly string LOADOUTS_FILE_NAME = "loadouts.json";
         private static Loadouts _instance;
         private static readonly object _lock = new object();
 
@@ -72,9 +73,10 @@ namespace SingleplayerLauncher
 
         public void Load()
         {
-            if (File.Exists(LoadoutsFile))
+            string loadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, LOADOUTS_FILE_NAME);
+            if (File.Exists(loadoutsFile))
             {
-                var root = JsonConvert.DeserializeObject<LoadoutRootDTO>(File.ReadAllText(LoadoutsFile));
+                var root = JsonConvert.DeserializeObject<LoadoutRootDTO>(File.ReadAllText(loadoutsFile));
                 LoadoutList = root.Loadouts;
             }
             else
@@ -85,8 +87,9 @@ namespace SingleplayerLauncher
 
         public void Save()
         {
+            string loadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, LOADOUTS_FILE_NAME);
             var root = new LoadoutRootDTO { Loadouts = LoadoutList };
-            File.WriteAllText(LoadoutsFile, JsonConvert.SerializeObject(root, Formatting.Indented));
+            File.WriteAllText(loadoutsFile, JsonConvert.SerializeObject(root, Formatting.Indented));
         }
     }
 

@@ -1,4 +1,4 @@
-# OMDU Single Player
+# Project Rechained
 
 The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way to be played again. This is achieved by applying modifications to the game.
 
@@ -9,18 +9,18 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 [![OMD Modding Discord Server](https://img.shields.io/discord/583432386960818227?color=%237289da&logo=discord&logoColor=white&label=Join%20the%20Discord%20Server)](https://discord.gg/xkZskPXtwm)
 
-### How to use:
+### How to install:
 
 1. Download Game from: [Steam](https://intradeus.github.io/http-protocol-redirector?r=steam://rungameid/427270) (If link doesn't work, ask for help at the Discord server)
-2. Download the Single Player Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/OMDU-SinglePlayer/releases/latest/download/OMDU-SinglePlayer.zip)
-3. Extract the downloaded OMDU-SinglePlayer.zip contents inside the Binaries folder of your game installation: "OrcsMustDieUnchained\Binaries"
-4. Run the "SingleplayerLauncher.exe"
-5. Choose your desired settings in the launcher
-6. Press "Launch" and enjoy! 
+2. Download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/OMDU-SinglePlayer/releases/latest/download/Project_Rechained_Launcher.zip)
+3. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
+4. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder.
+5. (Optional) Close the Launcher and launch from Steam
 
+Note: Once installed, it can be launched from Steam by Pressing play on the Orcs Must Die! Unchained Game in your library.
 
 ### Features:
-- Launch the game in **offline mode, single player**
+- Launch the game from **Steam**
 - Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes** and Custom **Loadouts**
   - Choose Traps (with trap parts) and Gear
