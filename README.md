@@ -12,7 +12,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 ### How to install:
 
 1. Download Game from: [Steam](https://intradeus.github.io/http-protocol-redirector?r=steam://rungameid/427270) (If link doesn't work, ask for help at the Discord server)
-2. Download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/OMDU-SinglePlayer/releases/latest/download/Project_Rechained_Launcher.zip)
+2. Download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
 3. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
 4. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder.
 5. (Optional) Close the Launcher and launch from Steam
