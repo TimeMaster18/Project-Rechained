@@ -37,19 +37,19 @@ namespace SingleplayerLauncher.GameFiles
 
         private const int BASE_STARTING_COIN_SERVER_MODE = 6000;
 
-        public static void ApplyLoadout()
+        public static void ApplyLoadout(Loadout loadout)
         {
-            ValidateLoadout();
+            ValidateLoadout(loadout);
 
-            string characterDataSection = $"RCharacterData_{GameInfo.Loadout.PlayerName} RCharacterData";
+            string characterDataSection = $"RCharacterData_{loadout.PlayerName} RCharacterData";
             ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
-            UpdateCharacterDataEntries(data, characterDataSection);
-            UpdateLoadoutEntries(data, characterDataSection);
-            UpdateGuardianEntries(data, characterDataSection);
-            UpdateConsumableEntries(data, characterDataSection);
-            UpdateTraitEntries(data, characterDataSection);
+            UpdateCharacterDataEntries(data, characterDataSection, loadout);
+            UpdateLoadoutEntries(data, characterDataSection, loadout);
+            UpdateGuardianEntries(data, characterDataSection, loadout);
+            UpdateConsumableEntries(data, characterDataSection, loadout);
+            UpdateTraitEntries(data, characterDataSection, loadout);
 
             characterData.Write();
         }
@@ -78,9 +78,9 @@ namespace SingleplayerLauncher.GameFiles
             characterData.Write();
         }
 
-        private static void ValidateLoadout()
+        private static void ValidateLoadout(Loadout loadout)
         {
-            var loadout = GameInfo.Loadout ?? throw new ArgumentNullException(nameof(GameInfo.Loadout), "Mandatory parameter");
+            var _ = loadout ?? throw new ArgumentNullException(nameof(loadout), "Mandatory parameter");
 
             if (loadout.Hero == null) throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
             if (loadout.Dye == null) throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
@@ -93,10 +93,8 @@ namespace SingleplayerLauncher.GameFiles
             if (GameInfo.Battleground.Difficulty == null) throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
         }
 
-        private static void UpdateCharacterDataEntries(IniFile data, string section)
+        private static void UpdateCharacterDataEntries(IniFile data, string section, Loadout loadout)
         {
-            var loadout = GameInfo.Loadout;
-
             data.UpdateEntry(section, CharacterDataKeyHero, loadout.Hero.PawnTemplateName);
             data.UpdateEntry(section, CharacterDataKeySkin, loadout.Skin.PlayerSkinName);
             data.UpdateEntry(section, CharacterDataKeyDye, loadout.Dye.CodeName.ToString());
@@ -106,9 +104,8 @@ namespace SingleplayerLauncher.GameFiles
             data.UpdateEntry(section, CharacterDataKeyTeam, DefaultTeam);
         }
 
-        private static void UpdateLoadoutEntries(IniFile data, string section)
+        private static void UpdateLoadoutEntries(IniFile data, string section, Loadout loadout)
         {
-            var loadout = GameInfo.Loadout;
             data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(loadout.Hero.PawnWeaponTemplateName), index: 0);
 
             for (int i = 0; i < loadout.SlotItems.Length; i++)
@@ -119,10 +116,8 @@ namespace SingleplayerLauncher.GameFiles
             }
         }
 
-        private static void UpdateGuardianEntries(IniFile data, string section)
+        private static void UpdateGuardianEntries(IniFile data, string section, Loadout loadout)
         {
-            var loadout = GameInfo.Loadout;
-
             for (int i = 0; i < loadout.Guardians.Length; i++)
             {
                 var guardian = loadout.Guardians[i];
@@ -131,10 +126,8 @@ namespace SingleplayerLauncher.GameFiles
             }
         }
 
-        private static void UpdateConsumableEntries(IniFile data, string section)
+        private static void UpdateConsumableEntries(IniFile data, string section, Loadout loadout)
         {
-            var loadout = GameInfo.Loadout;
-
             for (int i = 0; i < loadout.Consumables.Length; i++)
             {
                 var consumable = loadout.Consumables[i];
@@ -143,9 +136,8 @@ namespace SingleplayerLauncher.GameFiles
             }
         }
 
-        private static void UpdateTraitEntries(IniFile data, string section)
+        private static void UpdateTraitEntries(IniFile data, string section, Loadout loadout)
         {
-            var loadout = GameInfo.Loadout;
             for (int i = 0; i < loadout.Traits.Length; i++)
             {
                 var trait = loadout.Traits[i];

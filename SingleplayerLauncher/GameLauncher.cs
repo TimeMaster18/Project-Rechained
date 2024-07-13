@@ -14,22 +14,25 @@ namespace SingleplayerLauncher
         private static readonly GameInfo GameInfo = GameInfo.Instance;
         private static readonly SpitfireGameUPK SpitfireGameUPK = new SpitfireGameUPK();
 
-        private static readonly List<string> SPITFIREGAME_LOADOUT_HERO_NAMES = new List<string>() { Names.Hero.MAXIMILIAN, Names.Hero.HOGARTH, Names.Hero.GABRIELLA, Names.Hero.SMOLDER, Names.Hero.IVY, Names.Hero.BIONKA };
-        public static void ApplyChanges()
+        public static void ApplyChanges(bool isHost)
         {
             SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.UPKS_PATH, FileUtils.SPITFIREGAME_UPK_FILENAME));
 
-            SpitfireGameUPK.ApplyMods(GameConfig.Instance.ModsEnabled);
+            SpitfireGameUPK.ApplyMultiplayerPatches(isHost);
 
-            SpitfireGameUPK.ApplyParTime();
-            SpitfireGameUPK.ApplyHostPatches(); // TODO adjust for multiplayer
+            if (isHost)
+            {
+                SpitfireGameUPK.ApplyMods(GameConfig.Instance.ModsEnabled);
+                SpitfireGameUPK.ApplyParTime();
+
+                GameFiles.CharacterData.ApplyLoadout(GameInfo.Loadout);
+                GameFiles.DefaultGame.Apply();
+
+                GameFiles.CharacterData.ApplyMods(GameConfig.Instance.ModsEnabled);
+                GameFiles.DefaultGame.ApplyMods(GameConfig.Instance.ModsEnabled);
+            }
+
             SpitfireGameUPK.SaveChanges();
-
-            GameFiles.CharacterData.ApplyLoadout();
-            GameFiles.DefaultGame.Apply();
-
-            GameFiles.CharacterData.ApplyMods(GameConfig.Instance.ModsEnabled);
-            GameFiles.DefaultGame.ApplyMods(GameConfig.Instance.ModsEnabled);
         }
 
         public static void FirstLaunchInitialization()
@@ -100,14 +103,14 @@ namespace SingleplayerLauncher
             Settings.Instance.Save();
         }
 
-        public static void StartGame()
+        public static void StartGame(string playerName, bool isHost, string hostIP = "")
         {
             Process p = new Process();
             p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
             string filePath = Path.Combine(Settings.Instance.RootGamePath, Settings.Instance.RunAs32 ? FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH : FileUtils.BINARIES_FOLDER_NAME);
             p.StartInfo.WorkingDirectory = filePath;
             
-            p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language);
+            p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language, isHost, hostIP, playerName);
 
             p.Start();
 
@@ -118,19 +121,18 @@ namespace SingleplayerLauncher
         private const string DEBUG_ARGUMENTS = " -log -ABSLOG=log.txt";
         private const string LANGUAGE_OPTION = " -language=";
 
-        private static string CreateExeArguments(bool debug, string language)
+        private static string CreateExeArguments(bool debug, string language, bool isHost, string hostIP, string playerName)
         {
             string arguments = "";
 
             string map = GameInfo.Battleground.Map.UmapCode;
-            string playerGUID = GameInfo.Loadout.PlayerName;
+            string playerGUID = playerName;
             string defaultArgs = EXE_ARGUMENTS;
             string languageArg = LANGUAGE_OPTION + Language.GetKeyFromValue(language);
 
-            arguments += map;
-            arguments += "?listen";
+            arguments += isHost ? map : hostIP;
+            arguments += isHost ? "?listen" : "";
             arguments += "?PlayerGUID=" + playerGUID;
-            arguments += " --net_mode=ListenServer"; // TODO Adjust for multiplayer
             arguments += defaultArgs;
             arguments += languageArg;
 
@@ -138,6 +140,8 @@ namespace SingleplayerLauncher
             {
                 arguments += DEBUG_ARGUMENTS;
             }
+
+            arguments += isHost ? " --net_mode=ListenServer" : " --net_mode=Client";
 
             return arguments;
         }

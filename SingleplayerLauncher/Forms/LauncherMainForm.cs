@@ -142,13 +142,77 @@ namespace SingleplayerLauncher
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            btnLaunch.Text = "Game will start soon...";
-            GameLauncher.ApplyChanges();
+            GameLauncher.ApplyChanges(isHost: true);
             SaveSettings();
 
-            btnLaunch.Text = "Game running... (Launcher disabled)";
-            GameLauncher.StartGame();
-            btnLaunch.Text = "Launch";
+            string playerName = maskedTextBoxPlayerName.Text;
+            var (isPlayerNameValid, errorMessagePlayerName) = InputValidator.ValidatePlayerName(playerName);
+
+            if (!isPlayerNameValid)
+            {
+                MessageBox.Show(errorMessagePlayerName, "Invalid Player Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var invalidLoadouts = ValidateAllLoadoutCodes();
+            if (invalidLoadouts.Any())
+            {
+                string errorMessage = "Some loadouts are invalid:\n" + string.Join("\n", invalidLoadouts);
+                MessageBox.Show(errorMessage, "Invalid Loadouts", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ApplyAllLoadouts();
+            GameLauncher.StartGame(GameInfo.Loadout.PlayerName, isHost: true);
+        }
+
+        private void ApplyAllLoadouts()
+        {
+            var loadouts = new List<MaskedTextBox>
+            {
+                maskedTextBoxHostGamePlayer1Loadout,
+                maskedTextBoxHostGamePlayer2Loadout,
+                maskedTextBoxHostGamePlayer3Loadout,
+                maskedTextBoxHostGamePlayer4Loadout,
+                maskedTextBoxHostGamePlayer5Loadout
+            };
+
+            foreach (var loadout in loadouts)
+            {
+                if (!string.IsNullOrWhiteSpace(loadout.Text))
+                {
+                    GameFiles.CharacterData.ApplyLoadout(Loadout.DecodeLoadout(loadout.Text));
+                }
+            }
+        }
+
+        private void btnJoinGame_Click(object sender, EventArgs e)
+        {
+            GameLauncher.ApplyChanges(isHost: false);
+            SaveSettings();
+
+            string hostIP = maskedTextBoxJoinGameHostIP.Text;
+            string loadoutCode = maskedTextBoxJoinGameLoadout.Text;
+            var (isIPValid, errorMessageIp) = InputValidator.ValidateIpAddress(hostIP);
+            var (isLoadoutValid, errorMessagePlayerName) = InputValidator.ValidateLoadoutCode(loadoutCode);
+
+            if (!isIPValid)
+            {
+                MessageBox.Show(errorMessageIp, "Invalid IP Address", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!isLoadoutValid)
+            {
+                MessageBox.Show(errorMessagePlayerName, "Invalid Player Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Loadout loadout = Loadout.DecodeLoadout(loadoutCode);
+            string playerName = loadout.PlayerName;
+            loadout.PlayerName  = "0";
+            GameFiles.CharacterData.ApplyLoadout(loadout);
+            loadout.PlayerName = playerName;
+            GameLauncher.StartGame(loadout.PlayerName, isHost: false, hostIP);
         }
 
         public void SaveSettings()
@@ -528,6 +592,7 @@ namespace SingleplayerLauncher
         private void UpdateLoadoutExportCode()
         {
             textBoxExportLoadout.Text = Loadout.EncodeLoadout(GameInfo.Loadout);
+            maskedTextBoxHostGamePlayer1Loadout.Text = Loadout.EncodeLoadout(GameInfo.Loadout);
         }
 
         private void comBoxLoadoutSlot1_SelectedIndexChanged(object sender, EventArgs e)
@@ -820,13 +885,37 @@ namespace SingleplayerLauncher
 
         private void btnCopyLoadoutToClipboard_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(textBoxExportLoadout.Text);
+            string loadoutCode = textBoxExportLoadout.Text;
+
+            var (isLoadoutCodeValid, errorMessageLoadout) = InputValidator.ValidateLoadoutCode(loadoutCode);
+
+            if (!isLoadoutCodeValid)
+            {
+                MessageBox.Show(errorMessageLoadout, "Invalid Loadout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Clipboard.SetText(loadoutCode);
+            maskedTextBoxJoinGameLoadout.Text = loadoutCode;
         }
 
         private void btnSaveLoadout_Click(object sender, EventArgs e)
         {
             string loadoutName = maskedTextBoxLoadoutName.Text;
             string loadoutCode = textBoxExportLoadout.Text;
+            var (isLoadoutValid, errorMessageLoadout) = InputValidator.ValidateLoadoutCode(loadoutCode);
+            var (isLoadoutNameValid, errorMessageLoadoutName) = InputValidator.ValidateLoadoutName(loadoutName);
+
+            if (!isLoadoutValid)
+            {
+                MessageBox.Show(errorMessageLoadout, "Invalid Loadout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!isLoadoutNameValid)
+            {
+                MessageBox.Show(errorMessageLoadoutName, "Invalid Loadout Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (Loadouts.Instance.Exists(loadoutName))
             {
@@ -844,65 +933,23 @@ namespace SingleplayerLauncher
 
         private void maskedTextBoxLoadoutName_TextChanged(object sender, EventArgs e)
         {
-            btnSaveLoadout.Enabled = IsLoadoutSaveable();
-            GameInfo.Loadout.Name = maskedTextBoxLoadoutName.Text;
+            string loadoutName = maskedTextBoxLoadoutName.Text;
+            var (isValid, errorMessage) = InputValidator.ValidateLoadoutName(loadoutName);
+
+            errorProvider.SetError(maskedTextBoxLoadoutName, isValid ? string.Empty : errorMessage);
+
+            GameInfo.Loadout.Name = loadoutName;
         }
 
         private void maskedTextBoxPlayerName_TextChanged(object sender, EventArgs e)
         {
-            btnSaveLoadout.Enabled = IsLoadoutSaveable();
-            btnCopyLoadoutToClipboard.Enabled = IsLoadoutExportable();
-            GameInfo.Loadout.PlayerName = maskedTextBoxPlayerName.Text;
+            string playerName = maskedTextBoxPlayerName.Text;
+            var (isValid, errorMessage) = InputValidator.ValidatePlayerName(playerName);
+
+            errorProvider.SetError(maskedTextBoxPlayerName, isValid ? string.Empty: errorMessage);
+
+            GameInfo.Loadout.PlayerName = playerName;
             UpdateLoadoutExportCode();
-        }
-
-        private bool IsLoadoutSaveable()
-        {
-            return IsLoadoutNameValid() && IsPlayerNameValid();
-        }
-
-        private bool IsLoadoutExportable()
-        {
-            return IsPlayerNameValid();
-        }
-
-        private bool IsLoadoutNameValid()
-        {
-            string currLoadoutName = maskedTextBoxLoadoutName.Text;
-            if (currLoadoutName.Length < 3)
-            {
-                errorProvider2.SetError(maskedTextBoxLoadoutName, "Loadout name must be at least 3 characters long.");
-                return false;
-            }
-
-            if (currLoadoutName.Length > 32)
-            {
-                errorProvider2.SetError(maskedTextBoxLoadoutName, "Loadout name must be at most 32 characters long.");
-                return false;
-            }
-
-            errorProvider2.SetError(maskedTextBoxLoadoutName, "");
-            return true;
-        }
-
-        private bool IsPlayerNameValid()
-        {
-            if (maskedTextBoxPlayerName.Text.Length < 3)
-            {
-                errorProvider1.SetError(maskedTextBoxPlayerName, "Player name must be at least 3 characters long.");
-                return false;
-            }
-
-            if (maskedTextBoxPlayerName.Text.Length > 12)
-            {
-                btnCopyLoadoutToClipboard.Enabled = false;
-                errorProvider1.SetError(maskedTextBoxPlayerName, "Player name must be at most 12 characters long.");
-                return false;
-            }
-
-            btnCopyLoadoutToClipboard.Enabled = true;
-            errorProvider1.SetError(maskedTextBoxPlayerName, "");
-            return true;
         }
 
         private void comBoxLoadouts_SelectedIndexChanged(object sender, EventArgs e)
@@ -930,6 +977,14 @@ namespace SingleplayerLauncher
 
         private void btnImportLoadout_Click(object sender, EventArgs e)
         {
+            var (isValid, errorMessage) = InputValidator.ValidateLoadoutCode(maskedTextBoxImportLoadout.Text);
+
+            if (!isValid)
+            {
+                MessageBox.Show(errorMessage, "Invalid Import Loadout Code", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string loadoutCode = maskedTextBoxImportLoadout.Text;
             Loadout decodedLoadout = Loadout.DecodeLoadout(loadoutCode);
             GameInfo.Loadout = decodedLoadout;
@@ -951,25 +1006,18 @@ namespace SingleplayerLauncher
 
         private void maskedTextBoxImportLoadout_TextChanged(object sender, EventArgs e)
         {
-            if (maskedTextBoxImportLoadout.Text.Length == 0)
+            btnImportLoadout.Enabled = true;
+            string loadoutCode = maskedTextBoxImportLoadout.Text;
+            if (loadoutCode.Length == 0)
             {
+                errorProvider.SetError(maskedTextBoxImportLoadout, string.Empty);
                 btnImportLoadout.Enabled = false;
-                errorProvider3.SetError(maskedTextBoxImportLoadout, "");
                 return;
             }
 
-            try
-            {
-                string loadoutCode = maskedTextBoxImportLoadout.Text;
-                Loadout decodedLoadout = Loadout.DecodeLoadout(loadoutCode);
-                btnImportLoadout.Enabled = true;
-                errorProvider3.SetError(maskedTextBoxImportLoadout, "");
-            }
-            catch
-            {
-                btnImportLoadout.Enabled = false;
-                errorProvider3.SetError(maskedTextBoxImportLoadout, "Invalid loadout code.");
-            }
+            var (isValid, errorMessage) = InputValidator.ValidateLoadoutCode(loadoutCode);
+
+            errorProvider.SetError(maskedTextBoxImportLoadout, isValid ? string.Empty : errorMessage);
         }
 
         private void btnDeleteLoadout_Click(object sender, EventArgs e)
@@ -992,6 +1040,95 @@ namespace SingleplayerLauncher
         private void btnDiscord_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(DISCORD_SERVER_INVITE_URL);
+        }
+
+        private void maskedTextBoxHostGamePlayer1Loadout_TextChanged(object sender, EventArgs e)
+        {
+            ValidateLoadoutCode(maskedTextBoxHostGamePlayer1Loadout);
+        }
+
+        private void maskedTextBoxHostGamePlayer2Loadout_TextChanged(object sender, EventArgs e)
+        {
+            ValidateLoadoutCode(maskedTextBoxHostGamePlayer2Loadout);
+        }
+
+        private void maskedTextBoxHostGamePlayer3Loadout_TextChanged(object sender, EventArgs e)
+        {
+            ValidateLoadoutCode(maskedTextBoxHostGamePlayer3Loadout);
+        }
+
+        private void maskedTextBoxHostGamePlayer4Loadout_TextChanged(object sender, EventArgs e)
+        {
+            ValidateLoadoutCode(maskedTextBoxHostGamePlayer4Loadout);
+        }
+
+        private void maskedTextBoxHostGamePlayer5Loadout_TextChanged(object sender, EventArgs e)
+        {
+            ValidateLoadoutCode(maskedTextBoxHostGamePlayer5Loadout);
+        }
+               
+        private void maskedTextBoxJoinGameHostIP_TextChanged(object sender, EventArgs e)
+        {
+            string hostIP = maskedTextBoxJoinGameHostIP.Text;
+            var (isValid, errorMessage) = InputValidator.ValidateIpAddress(hostIP);
+
+            errorProvider.SetError(maskedTextBoxJoinGameHostIP, isValid || hostIP.Length == 0 ? string.Empty : errorMessage);
+        }
+
+        private void maskedTextBoxJoinGamePlayerName_TextChanged(object sender, EventArgs e)
+        {
+            string loadoutCode = maskedTextBoxJoinGameLoadout.Text;
+            var (isValid, errorMessage) = InputValidator.ValidateLoadoutCode(loadoutCode);
+
+            errorProvider.SetError(maskedTextBoxJoinGameLoadout, isValid || loadoutCode.Length == 0 ? string.Empty : errorMessage);
+        }
+
+        private (bool isValid, string errorMessage) ValidateLoadoutCode(MaskedTextBox maskedTextBox)
+        {
+            string loadoutCode = maskedTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(loadoutCode))
+            {
+                return (true, string.Empty);
+            }
+
+            var (isValid, validationErrorMessage) = InputValidator.ValidateLoadoutCode(loadoutCode);
+
+            errorProvider.SetError(maskedTextBox, isValid ? string.Empty : validationErrorMessage);
+
+            return (isValid, isValid ? string.Empty : validationErrorMessage);
+        }
+
+        private List<string> ValidateAllLoadoutCodes()
+        {
+            var invalidLoadouts = new List<string>();
+
+            var loadouts = new Dictionary<string, MaskedTextBox>
+            {
+                { "Player 1", maskedTextBoxHostGamePlayer1Loadout },
+                { "Player 2", maskedTextBoxHostGamePlayer2Loadout },
+                { "Player 3", maskedTextBoxHostGamePlayer3Loadout },
+                { "Player 4", maskedTextBoxHostGamePlayer4Loadout },
+                { "Player 5", maskedTextBoxHostGamePlayer5Loadout }
+            };
+
+            foreach (var loadout in loadouts)
+            {
+                var (isValid, errorMessage) = ValidateLoadoutCode(loadout.Value);
+                if (!isValid && !string.IsNullOrEmpty(errorMessage))
+                {
+                    invalidLoadouts.Add($"{loadout.Key}: {errorMessage}");
+                }
+            }
+
+            return invalidLoadouts;
+        }
+
+        string MULTIPLAYER_KNOWN_ISSUES_URL = "https://github.com/TimeMaster18/Project-Rechained?tab=readme-ov-file#known-problems";
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(MULTIPLAYER_KNOWN_ISSUES_URL);        
         }
     }
 }

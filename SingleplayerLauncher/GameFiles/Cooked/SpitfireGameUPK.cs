@@ -46,32 +46,33 @@ namespace SingleplayerLauncher
             }
         }
 
-        public void ApplyHostPatches()
+        public void ApplyMultiplayerPatches(bool isHost)
         {
+            byte gameClientType = isHost ? (byte)2 : (byte)0;
             // Fix the weaver upgrade menu not closing when selecting
             byte[] uniqueBytesWeaverUpgrade = { 0x07, 0x79, 0x00, 0x9A, 0x38, 0x3A, 0x19, 0x01, 0x07, 0xFA, 0xFF, 0xFF, 0x09, 0x00, 0xE3, 0xFE, 0xFF, 0xFF, 0x00, 0x01, 0xE3, 0xFE, 0xFF, 0xFF, 0x38, 0x3A, 0x24 };
             int changeIndexWeaverUpgrade = 0xECCA73;
-            SpitfireGameUPKFile.ApplyModification(uniqueBytesWeaverUpgrade, changeIndexWeaverUpgrade, 0, (byte)2);
+            SpitfireGameUPKFile.ApplyModification(uniqueBytesWeaverUpgrade, changeIndexWeaverUpgrade, 0, gameClientType);
 
             // Fix the no aggro (also the map overriding the trap cap, initial coins, etc.)
             byte[] uniqueBytesNoAggro = { 0x18, 0x27, 0x00, 0x9A, 0x38, 0x3A, 0x19, 0x00, 0xAF, 0xA5, 0x00, 0x00, 0x09, 0x00, 0xE3, 0xFE, 0xFF, 0xFF, 0x00, 0x01, 0xE3, 0xFE, 0xFF, 0xFF, 0x38, 0x3A, 0x24 };
             int changeIndexNoAggro = 0x155A4D1;
-            SpitfireGameUPKFile.ApplyModification(uniqueBytesNoAggro, changeIndexNoAggro, 0, (byte)2);
+            SpitfireGameUPKFile.ApplyModification(uniqueBytesNoAggro, changeIndexNoAggro, 0, gameClientType);
 
             // Fix the par time at top for Host
             byte[] uniqueBytesParTime = { 0x07, 0x65, 0x00, 0x9A, 0x38, 0x3A, 0x19, 0x01, 0x07, 0xFA, 0xFF, 0xFF, 0x09, 0x00, 0xE3, 0xFE, 0xFF, 0xFF, 0x00, 0x01, 0xE3, 0xFE, 0xFF, 0xFF, 0x38, 0x3A, 0x24 };
             int changeIndexParTime = 0x1111436;
-            SpitfireGameUPKFile.ApplyModification(uniqueBytesParTime, changeIndexParTime, 0, (byte)2);
+            SpitfireGameUPKFile.ApplyModification(uniqueBytesParTime, changeIndexParTime, 0, gameClientType);
 
             // Fix the shown Rift Points for Host
             byte[] uniqueBytesRiftPoints = { 0x07, 0xAA, 0x00, 0x9A, 0x38, 0x3A, 0x19, 0x01, 0x07, 0xFA, 0xFF, 0xFF, 0x09, 0x00, 0xE3, 0xFE, 0xFF, 0xFF, 0x00, 0x01, 0xE3, 0xFE, 0xFF, 0xFF, 0x38, 0x3A, 0x24 };
             int changeIndexRiftPoints = 0x110C979;
-            SpitfireGameUPKFile.ApplyModification(uniqueBytesRiftPoints, changeIndexRiftPoints, 0, (byte)2);
+            SpitfireGameUPKFile.ApplyModification(uniqueBytesRiftPoints, changeIndexRiftPoints, 0, gameClientType);
 
             // Fix the score for Host
             byte[] uniqueBytesScore = { 0x07, 0x76, 0x01, 0x9A, 0x38, 0x3A, 0x19, 0x01, 0x07, 0xFA, 0xFF, 0xFF, 0x09, 0x00, 0xE3, 0xFE, 0xFF, 0xFF, 0x00, 0x01, 0xE3, 0xFE, 0xFF, 0xFF, 0x38, 0x3A, 0x24 };
             int changeIndexScore = 0x110A5EC;
-            SpitfireGameUPKFile.ApplyModification(uniqueBytesScore, changeIndexScore, 0, (byte)2);
+            SpitfireGameUPKFile.ApplyModification(uniqueBytesScore, changeIndexScore, 0, gameClientType);
         }
 
         public void SaveChanges()

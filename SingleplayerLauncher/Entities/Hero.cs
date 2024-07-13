@@ -29,6 +29,8 @@ namespace SingleplayerLauncher.Model
         // private constructor
         Hero() { }
 
+        // TODO remove unused properties
+
         // static members
         public static Hero Bionka = new Hero()
         {
@@ -170,7 +172,6 @@ namespace SingleplayerLauncher.Model
                 new UPKFile.Section("StrategicRole", 40, new byte[] { 0x44, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } ),
                 new UPKFile.Section("ActionManager", 28, new byte[] { 0x25, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDB, 0x03, } ),
                 new UPKFile.Section("NetRelComponent", 28, new byte[] { 0xCB, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } ),
-                //new UPKFile.Section("BeginStealthClientSegment", 28, new byte[] { 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDB, 0x03, } ),
                 new UPKFile.Section("EndStealthClientSegment", 28, new byte[] { 0x17, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } ),
                 new UPKFile.Section("TeamStealthSegment", 28, new byte[] { 0x75, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } ),
                 new UPKFile.Section("HeroDamageType", 40, new byte[] { 0xB8, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, } )

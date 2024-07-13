@@ -14,7 +14,7 @@ namespace SingleplayerLauncher.Model
 
         public GameMode GameMode { get; set; } = GameMode.Survival;
 
-        public Difficulty Difficulty { get; set; }
+        public Difficulty Difficulty { get; set; } = new Difficulty();
 
         public int StartingCoin { get; set; }
         public TimeSpan ParTime { get; private set; }

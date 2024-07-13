@@ -97,7 +97,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MendingRoot, RingOfStorms, TarTrap, FlipTrap, FloorSpikes, ArrowWall, DragonsLance },
                 Guardians = new Guardian[] { JailerGuardian, DeckhandGuardian },
             },
@@ -116,7 +116,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { IceAmulet, MagesClover, Barricade, IceVent, IceShard, IcicleImpaler, SawOfArctos, ManaWell },
                 Guardians = new Guardian[] { MoonGuardian },
             },
@@ -135,7 +135,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { GnomishRepairKit, FlipTrap, PushTrap, SpikeWall, Haymaker },
                 Guardians = new Guardian[] { MoonGuardian },
             },
@@ -154,7 +154,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { RingOfStorms, MendingRoot, TarTrap, FlipTrap, FloorSpikes, ArrowWall, DragonsLance },
             },
             StartingCoin = 9000,
@@ -172,7 +172,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { BoomBarrel, ViscousTar, GreatWallBarricade, PowerGenerator, CoinForge, HealingWell, ManaWell, Decoy },
             },
             StartingCoin = 6000,
@@ -190,7 +190,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MendingRoot, BGHArrowWall, BGHCeilingBallista, BGHShockZapper },
             },
             StartingCoin = 6000,
@@ -208,7 +208,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { RingOfLastStand, RingOfStorms, Barricade, SpikeWall, PushTrap, BoomBarrel, FlipTrap, PowerupDamage, ConcussivePounder },
             },
             StartingCoin = 9000,
@@ -226,7 +226,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { RingOfStorms, FireWallBracers, Barricade, TarTrap, Brimstone, SpitfireWall, Grinder, DragonsLance, ManaWell },
                 Guardians = new Guardian[] { MoonGuardian, QuartermasterGuardian },
             },
@@ -245,7 +245,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { RingOfStorms, FireWallBracers, Barricade, TarTrap },
             },
             StartingCoin = 9000,
@@ -263,7 +263,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { Brimstone, FloorSpikes },
             },
             StartingCoin = 6000,
@@ -281,7 +281,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MagesClover, FireWallBracers, Barricade, Decoy, SummonerTrap, ArcaneBowlingBall, OverloadTrap, SawOfArctos },
             },
             StartingCoin = 9000,
@@ -299,7 +299,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { IceAmulet, MendingRoot, Barricade, CeilingBallista, FloorSpikes, PushTrap, Grinder, SpikeWall, TarTrap },
                 Guardians = new Guardian[] { MoonGuardian, PriestGuardian },
             },
@@ -318,7 +318,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MendingRoot, ShieldPowerup, PowerupDamage, HealingWell, ManaWell, BGHCeilingBallista },
             },
             StartingCoin = 9000,
@@ -336,7 +336,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MagesClover, MendingRoot, Barricade, GreatWallBarricade, ViscousTar, CursedGround, Brimstone, WallCharger, ShockZapper },
                 Guardians = new Guardian[] { DragonGuardian, FriarGuardian },
             },
@@ -355,7 +355,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { RingOfStorms, ArrowWall, ViscousTar, CeilingBallista, FloorSpikes, FlipTrap },
             },
             StartingCoin = 9000,
@@ -373,7 +373,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MagesClover, MendingRoot, GreatWallBarricade, CeilingBallista, Brimstone, Haymaker, ShockZapper, SpikeWall, ViscousTar },
                 Guardians = new Guardian[] { MoonGuardian, SunGuardian },
             },
@@ -392,7 +392,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { FireWallBracers /* Should be Flame Bracers*/, RingOfLastStand, Barricade, BGHArrowWall, BGHCeilingBallista, BGHShockZapper },
                 Guardians = new Guardian[] { DeckhandGuardian },
             },
@@ -411,7 +411,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MendingRoot, ArcaneBubbleBlower, TarTrap, FlipTrap, FloorSpikes, SpitfireWall, DragonsLance },
             },
             StartingCoin = 9000,
@@ -429,7 +429,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
                 SlotItems = new SlotItem[] { MagesClover, MendingRoot, Barricade, ViscousTar, FlipTrap, WallBlades, ShockZapper },
                 Guardians = new Guardian[] { DeckhandGuardian, SunGuardian },
             },
@@ -448,7 +448,7 @@ namespace SingleplayerLauncher.Model
             Loadout = new Loadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
-                // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,  
+                Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)),  
                 SlotItems = new SlotItem[] { RingOfStorms, IceAmulet, GreatWallBarricade },
                 Guardians = new Guardian[] { MoonGuardian, SunGuardian },
             },

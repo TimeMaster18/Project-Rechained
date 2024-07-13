@@ -143,35 +143,58 @@ namespace SingleplayerLauncher
             this.chkRunAs32 = new System.Windows.Forms.CheckBox();
             this.comBoxLanguage = new System.Windows.Forms.ComboBox();
             this.labelLanguage = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.btnDiscord = new System.Windows.Forms.Button();
+            this.maskedTextBoxHostGamePlayer1Loadout = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxHostGamePlayer4Loadout = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxHostGamePlayer3Loadout = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxHostGamePlayer2Loadout = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxHostGamePlayer5Loadout = new System.Windows.Forms.MaskedTextBox();
+            this.labelHostGamePlayer1 = new System.Windows.Forms.Label();
+            this.labelHostGamePlayer2 = new System.Windows.Forms.Label();
+            this.labelHostGamePlayer4 = new System.Windows.Forms.Label();
+            this.labelHostGamePlayer3 = new System.Windows.Forms.Label();
+            this.labelHostGamePlayer5 = new System.Windows.Forms.Label();
+            this.maskedTextBoxJoinGameHostIP = new System.Windows.Forms.MaskedTextBox();
+            this.labelJoinGameHostIP = new System.Windows.Forms.Label();
+            this.btnJoinGame = new System.Windows.Forms.Button();
+            this.maskedTextBoxJoinGameLoadout = new System.Windows.Forms.MaskedTextBox();
+            this.labelJoinGameLoadout = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.linkLabelJoinGameKnownIssues = new System.Windows.Forms.LinkLabel();
+            this.labelJoinGameBriefInstructions = new System.Windows.Forms.Label();
+            this.labelJoinGameAdditionalInfo = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.labelHostGameAdditionalInfo = new System.Windows.Forms.Label();
+            this.labelHostGameBriefInstructions = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.mapSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
             this.modsGroupBox.SuspendLayout();
             this.groupBoxLoadout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLaunch
             // 
             this.btnLaunch.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnLaunch.Location = new System.Drawing.Point(586, 474);
+            this.btnLaunch.Location = new System.Drawing.Point(195, 137);
             this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(341, 75);
+            this.btnLaunch.Size = new System.Drawing.Size(123, 60);
             this.btnLaunch.TabIndex = 0;
-            this.btnLaunch.Text = "Launch";
+            this.btnLaunch.Text = "Launch Match";
             this.btnLaunch.UseVisualStyleBackColor = false;
             this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
             // 
             // chkDebug
             // 
             this.chkDebug.AutoSize = true;
-            this.chkDebug.Location = new System.Drawing.Point(783, 558);
+            this.chkDebug.Location = new System.Drawing.Point(775, 559);
             this.chkDebug.Name = "chkDebug";
             this.chkDebug.Size = new System.Drawing.Size(58, 17);
             this.chkDebug.TabIndex = 6;
@@ -248,7 +271,7 @@ namespace SingleplayerLauncher
             this.mapSettingsGroupBox.Controls.Add(this.labelMap);
             this.mapSettingsGroupBox.Location = new System.Drawing.Point(585, 29);
             this.mapSettingsGroupBox.Name = "mapSettingsGroupBox";
-            this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 108);
+            this.mapSettingsGroupBox.Size = new System.Drawing.Size(341, 76);
             this.mapSettingsGroupBox.TabIndex = 8;
             this.mapSettingsGroupBox.TabStop = false;
             this.mapSettingsGroupBox.Text = "Battleground";
@@ -257,16 +280,16 @@ namespace SingleplayerLauncher
             // 
             this.comBoxExtraDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxExtraDifficulty.FormattingEnabled = true;
-            this.comBoxExtraDifficulty.Location = new System.Drawing.Point(256, 75);
+            this.comBoxExtraDifficulty.Location = new System.Drawing.Point(242, 48);
             this.comBoxExtraDifficulty.Name = "comBoxExtraDifficulty";
-            this.comBoxExtraDifficulty.Size = new System.Drawing.Size(79, 21);
+            this.comBoxExtraDifficulty.Size = new System.Drawing.Size(93, 21);
             this.comBoxExtraDifficulty.TabIndex = 9;
             this.comBoxExtraDifficulty.SelectedIndexChanged += new System.EventHandler(this.comBoxExtraDifficulty_SelectedIndexChanged);
             // 
             // labelExtraDifficulty
             // 
             this.labelExtraDifficulty.AutoSize = true;
-            this.labelExtraDifficulty.Location = new System.Drawing.Point(181, 79);
+            this.labelExtraDifficulty.Location = new System.Drawing.Point(162, 51);
             this.labelExtraDifficulty.Name = "labelExtraDifficulty";
             this.labelExtraDifficulty.Size = new System.Drawing.Size(74, 13);
             this.labelExtraDifficulty.TabIndex = 8;
@@ -277,9 +300,9 @@ namespace SingleplayerLauncher
             this.comBoxDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxDifficulty.Enabled = false;
             this.comBoxDifficulty.FormattingEnabled = true;
-            this.comBoxDifficulty.Location = new System.Drawing.Point(210, 21);
+            this.comBoxDifficulty.Location = new System.Drawing.Point(215, 21);
             this.comBoxDifficulty.Name = "comBoxDifficulty";
-            this.comBoxDifficulty.Size = new System.Drawing.Size(125, 21);
+            this.comBoxDifficulty.Size = new System.Drawing.Size(120, 21);
             this.comBoxDifficulty.TabIndex = 7;
             this.comBoxDifficulty.SelectedIndexChanged += new System.EventHandler(this.comBoxDifficulty_SelectedIndexChanged);
             // 
@@ -317,7 +340,7 @@ namespace SingleplayerLauncher
             this.comBoxBattleground.FormattingEnabled = true;
             this.comBoxBattleground.Location = new System.Drawing.Point(40, 48);
             this.comBoxBattleground.Name = "comBoxBattleground";
-            this.comBoxBattleground.Size = new System.Drawing.Size(296, 21);
+            this.comBoxBattleground.Size = new System.Drawing.Size(116, 21);
             this.comBoxBattleground.TabIndex = 1;
             this.comBoxBattleground.SelectedIndexChanged += new System.EventHandler(this.comBoxBattleground_SelectedIndexChanged);
             // 
@@ -332,7 +355,7 @@ namespace SingleplayerLauncher
             // 
             // btnResetConfig
             // 
-            this.btnResetConfig.Location = new System.Drawing.Point(844, 555);
+            this.btnResetConfig.Location = new System.Drawing.Point(836, 556);
             this.btnResetConfig.Name = "btnResetConfig";
             this.btnResetConfig.Size = new System.Drawing.Size(83, 22);
             this.btnResetConfig.TabIndex = 9;
@@ -387,7 +410,7 @@ namespace SingleplayerLauncher
             // chkHardcore
             // 
             this.chkHardcore.AutoSize = true;
-            this.chkHardcore.Location = new System.Drawing.Point(7, 149);
+            this.chkHardcore.Location = new System.Drawing.Point(7, 136);
             this.chkHardcore.Name = "chkHardcore";
             this.chkHardcore.Size = new System.Drawing.Size(101, 17);
             this.chkHardcore.TabIndex = 17;
@@ -413,7 +436,7 @@ namespace SingleplayerLauncher
             0,
             0,
             0});
-            this.startingCoinInput.Location = new System.Drawing.Point(248, 146);
+            this.startingCoinInput.Location = new System.Drawing.Point(248, 133);
             this.startingCoinInput.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -454,7 +477,7 @@ namespace SingleplayerLauncher
             // chkGodMode
             // 
             this.chkGodMode.AutoSize = true;
-            this.chkGodMode.Location = new System.Drawing.Point(7, 172);
+            this.chkGodMode.Location = new System.Drawing.Point(7, 159);
             this.chkGodMode.Name = "chkGodMode";
             this.chkGodMode.Size = new System.Drawing.Size(76, 17);
             this.chkGodMode.TabIndex = 11;
@@ -478,9 +501,9 @@ namespace SingleplayerLauncher
             this.modsGroupBox.Controls.Add(this.chkInvincibleBarricades);
             this.modsGroupBox.Controls.Add(this.chkTrapsAnySurface);
             this.modsGroupBox.Controls.Add(this.chkTrapsInTraps);
-            this.modsGroupBox.Location = new System.Drawing.Point(588, 166);
+            this.modsGroupBox.Location = new System.Drawing.Point(587, 134);
             this.modsGroupBox.Name = "modsGroupBox";
-            this.modsGroupBox.Size = new System.Drawing.Size(339, 197);
+            this.modsGroupBox.Size = new System.Drawing.Size(339, 181);
             this.modsGroupBox.TabIndex = 22;
             this.modsGroupBox.TabStop = false;
             this.modsGroupBox.Text = "Mods";
@@ -499,7 +522,7 @@ namespace SingleplayerLauncher
             // chkCustomStartCoin
             // 
             this.chkCustomStartCoin.AutoSize = true;
-            this.chkCustomStartCoin.Location = new System.Drawing.Point(170, 149);
+            this.chkCustomStartCoin.Location = new System.Drawing.Point(170, 136);
             this.chkCustomStartCoin.Name = "chkCustomStartCoin";
             this.chkCustomStartCoin.Size = new System.Drawing.Size(72, 17);
             this.chkCustomStartCoin.TabIndex = 23;
@@ -687,7 +710,6 @@ namespace SingleplayerLauncher
             // btnSaveLoadout
             // 
             this.btnSaveLoadout.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btnSaveLoadout.Enabled = false;
             this.btnSaveLoadout.Location = new System.Drawing.Point(503, 469);
             this.btnSaveLoadout.Name = "btnSaveLoadout";
             this.btnSaveLoadout.Size = new System.Drawing.Size(59, 44);
@@ -706,7 +728,6 @@ namespace SingleplayerLauncher
             // 
             // btnCopyLoadoutToClipboard
             // 
-            this.btnCopyLoadoutToClipboard.Enabled = false;
             this.btnCopyLoadoutToClipboard.Location = new System.Drawing.Point(520, 523);
             this.btnCopyLoadoutToClipboard.Name = "btnCopyLoadoutToClipboard";
             this.btnCopyLoadoutToClipboard.Size = new System.Drawing.Size(42, 20);
@@ -718,7 +739,6 @@ namespace SingleplayerLauncher
             // 
             // btnImportLoadout
             // 
-            this.btnImportLoadout.Enabled = false;
             this.btnImportLoadout.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnImportLoadout.Location = new System.Drawing.Point(517, 19);
             this.btnImportLoadout.Name = "btnImportLoadout";
@@ -1325,7 +1345,7 @@ namespace SingleplayerLauncher
             // chk_modsEnabled
             // 
             this.chk_modsEnabled.AutoSize = true;
-            this.chk_modsEnabled.Location = new System.Drawing.Point(594, 143);
+            this.chk_modsEnabled.Location = new System.Drawing.Point(594, 111);
             this.chk_modsEnabled.Name = "chk_modsEnabled";
             this.chk_modsEnabled.Size = new System.Drawing.Size(93, 17);
             this.chk_modsEnabled.TabIndex = 25;
@@ -1336,7 +1356,7 @@ namespace SingleplayerLauncher
             // chkRunAs32
             // 
             this.chkRunAs32.AutoSize = true;
-            this.chkRunAs32.Location = new System.Drawing.Point(693, 558);
+            this.chkRunAs32.Location = new System.Drawing.Point(685, 559);
             this.chkRunAs32.Name = "chkRunAs32";
             this.chkRunAs32.Size = new System.Drawing.Size(84, 17);
             this.chkRunAs32.TabIndex = 26;
@@ -1347,7 +1367,7 @@ namespace SingleplayerLauncher
             // 
             this.comBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxLanguage.FormattingEnabled = true;
-            this.comBoxLanguage.Location = new System.Drawing.Point(846, 447);
+            this.comBoxLanguage.Location = new System.Drawing.Point(840, 107);
             this.comBoxLanguage.Name = "comBoxLanguage";
             this.comBoxLanguage.Size = new System.Drawing.Size(79, 21);
             this.comBoxLanguage.TabIndex = 11;
@@ -1356,23 +1376,15 @@ namespace SingleplayerLauncher
             // labelLanguage
             // 
             this.labelLanguage.AutoSize = true;
-            this.labelLanguage.Location = new System.Drawing.Point(786, 450);
+            this.labelLanguage.Location = new System.Drawing.Point(779, 110);
             this.labelLanguage.Name = "labelLanguage";
             this.labelLanguage.Size = new System.Drawing.Size(55, 13);
             this.labelLanguage.TabIndex = 10;
             this.labelLanguage.Text = "Language";
             // 
-            // errorProvider1
+            // errorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // errorProvider2
-            // 
-            this.errorProvider2.ContainerControl = this;
-            // 
-            // errorProvider3
-            // 
-            this.errorProvider3.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // label1
             // 
@@ -1397,11 +1409,251 @@ namespace SingleplayerLauncher
             this.btnDiscord.UseVisualStyleBackColor = false;
             this.btnDiscord.Click += new System.EventHandler(this.btnDiscord_Click);
             // 
+            // maskedTextBoxHostGamePlayer1Loadout
+            // 
+            this.maskedTextBoxHostGamePlayer1Loadout.Enabled = false;
+            this.maskedTextBoxHostGamePlayer1Loadout.Location = new System.Drawing.Point(71, 32);
+            this.maskedTextBoxHostGamePlayer1Loadout.Name = "maskedTextBoxHostGamePlayer1Loadout";
+            this.maskedTextBoxHostGamePlayer1Loadout.Size = new System.Drawing.Size(247, 20);
+            this.maskedTextBoxHostGamePlayer1Loadout.TabIndex = 73;
+            this.maskedTextBoxHostGamePlayer1Loadout.TextChanged += new System.EventHandler(this.maskedTextBoxHostGamePlayer1Loadout_TextChanged);
+            // 
+            // maskedTextBoxHostGamePlayer4Loadout
+            // 
+            this.maskedTextBoxHostGamePlayer4Loadout.Location = new System.Drawing.Point(71, 111);
+            this.maskedTextBoxHostGamePlayer4Loadout.Name = "maskedTextBoxHostGamePlayer4Loadout";
+            this.maskedTextBoxHostGamePlayer4Loadout.Size = new System.Drawing.Size(247, 20);
+            this.maskedTextBoxHostGamePlayer4Loadout.TabIndex = 75;
+            this.maskedTextBoxHostGamePlayer4Loadout.TextChanged += new System.EventHandler(this.maskedTextBoxHostGamePlayer4Loadout_TextChanged);
+            // 
+            // maskedTextBoxHostGamePlayer3Loadout
+            // 
+            this.maskedTextBoxHostGamePlayer3Loadout.Location = new System.Drawing.Point(71, 85);
+            this.maskedTextBoxHostGamePlayer3Loadout.Name = "maskedTextBoxHostGamePlayer3Loadout";
+            this.maskedTextBoxHostGamePlayer3Loadout.Size = new System.Drawing.Size(247, 20);
+            this.maskedTextBoxHostGamePlayer3Loadout.TabIndex = 76;
+            this.maskedTextBoxHostGamePlayer3Loadout.TextChanged += new System.EventHandler(this.maskedTextBoxHostGamePlayer3Loadout_TextChanged);
+            // 
+            // maskedTextBoxHostGamePlayer2Loadout
+            // 
+            this.maskedTextBoxHostGamePlayer2Loadout.Location = new System.Drawing.Point(71, 58);
+            this.maskedTextBoxHostGamePlayer2Loadout.Name = "maskedTextBoxHostGamePlayer2Loadout";
+            this.maskedTextBoxHostGamePlayer2Loadout.Size = new System.Drawing.Size(247, 20);
+            this.maskedTextBoxHostGamePlayer2Loadout.TabIndex = 77;
+            this.maskedTextBoxHostGamePlayer2Loadout.TextChanged += new System.EventHandler(this.maskedTextBoxHostGamePlayer2Loadout_TextChanged);
+            // 
+            // maskedTextBoxHostGamePlayer5Loadout
+            // 
+            this.maskedTextBoxHostGamePlayer5Loadout.Location = new System.Drawing.Point(71, 137);
+            this.maskedTextBoxHostGamePlayer5Loadout.Name = "maskedTextBoxHostGamePlayer5Loadout";
+            this.maskedTextBoxHostGamePlayer5Loadout.Size = new System.Drawing.Size(118, 20);
+            this.maskedTextBoxHostGamePlayer5Loadout.TabIndex = 78;
+            this.maskedTextBoxHostGamePlayer5Loadout.TextChanged += new System.EventHandler(this.maskedTextBoxHostGamePlayer5Loadout_TextChanged);
+            // 
+            // labelHostGamePlayer1
+            // 
+            this.labelHostGamePlayer1.AutoSize = true;
+            this.labelHostGamePlayer1.Location = new System.Drawing.Point(11, 35);
+            this.labelHostGamePlayer1.Name = "labelHostGamePlayer1";
+            this.labelHostGamePlayer1.Size = new System.Drawing.Size(57, 13);
+            this.labelHostGamePlayer1.TabIndex = 79;
+            this.labelHostGamePlayer1.Text = "Host (You)";
+            // 
+            // labelHostGamePlayer2
+            // 
+            this.labelHostGamePlayer2.AutoSize = true;
+            this.labelHostGamePlayer2.Location = new System.Drawing.Point(23, 61);
+            this.labelHostGamePlayer2.Name = "labelHostGamePlayer2";
+            this.labelHostGamePlayer2.Size = new System.Drawing.Size(45, 13);
+            this.labelHostGamePlayer2.TabIndex = 80;
+            this.labelHostGamePlayer2.Text = "Player 2";
+            // 
+            // labelHostGamePlayer4
+            // 
+            this.labelHostGamePlayer4.AutoSize = true;
+            this.labelHostGamePlayer4.Location = new System.Drawing.Point(23, 114);
+            this.labelHostGamePlayer4.Name = "labelHostGamePlayer4";
+            this.labelHostGamePlayer4.Size = new System.Drawing.Size(45, 13);
+            this.labelHostGamePlayer4.TabIndex = 81;
+            this.labelHostGamePlayer4.Text = "Player 4";
+            // 
+            // labelHostGamePlayer3
+            // 
+            this.labelHostGamePlayer3.AutoSize = true;
+            this.labelHostGamePlayer3.Location = new System.Drawing.Point(23, 88);
+            this.labelHostGamePlayer3.Name = "labelHostGamePlayer3";
+            this.labelHostGamePlayer3.Size = new System.Drawing.Size(45, 13);
+            this.labelHostGamePlayer3.TabIndex = 82;
+            this.labelHostGamePlayer3.Text = "Player 3";
+            // 
+            // labelHostGamePlayer5
+            // 
+            this.labelHostGamePlayer5.AutoSize = true;
+            this.labelHostGamePlayer5.Location = new System.Drawing.Point(23, 140);
+            this.labelHostGamePlayer5.Name = "labelHostGamePlayer5";
+            this.labelHostGamePlayer5.Size = new System.Drawing.Size(45, 13);
+            this.labelHostGamePlayer5.TabIndex = 83;
+            this.labelHostGamePlayer5.Text = "Player 5";
+            // 
+            // maskedTextBoxJoinGameHostIP
+            // 
+            this.maskedTextBoxJoinGameHostIP.Location = new System.Drawing.Point(71, 137);
+            this.maskedTextBoxJoinGameHostIP.Name = "maskedTextBoxJoinGameHostIP";
+            this.maskedTextBoxJoinGameHostIP.Size = new System.Drawing.Size(118, 20);
+            this.maskedTextBoxJoinGameHostIP.TabIndex = 73;
+            this.maskedTextBoxJoinGameHostIP.TextChanged += new System.EventHandler(this.maskedTextBoxJoinGameHostIP_TextChanged);
+            // 
+            // labelJoinGameHostIP
+            // 
+            this.labelJoinGameHostIP.AutoSize = true;
+            this.labelJoinGameHostIP.Location = new System.Drawing.Point(24, 141);
+            this.labelJoinGameHostIP.Name = "labelJoinGameHostIP";
+            this.labelJoinGameHostIP.Size = new System.Drawing.Size(42, 13);
+            this.labelJoinGameHostIP.TabIndex = 84;
+            this.labelJoinGameHostIP.Text = "Host IP";
+            // 
+            // btnJoinGame
+            // 
+            this.btnJoinGame.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnJoinGame.Location = new System.Drawing.Point(195, 137);
+            this.btnJoinGame.Name = "btnJoinGame";
+            this.btnJoinGame.Size = new System.Drawing.Size(122, 60);
+            this.btnJoinGame.TabIndex = 85;
+            this.btnJoinGame.Text = "Join Match";
+            this.btnJoinGame.UseVisualStyleBackColor = false;
+            this.btnJoinGame.Click += new System.EventHandler(this.btnJoinGame_Click);
+            // 
+            // maskedTextBoxJoinGameLoadout
+            // 
+            this.maskedTextBoxJoinGameLoadout.Location = new System.Drawing.Point(71, 111);
+            this.maskedTextBoxJoinGameLoadout.Name = "maskedTextBoxJoinGameLoadout";
+            this.maskedTextBoxJoinGameLoadout.Size = new System.Drawing.Size(246, 20);
+            this.maskedTextBoxJoinGameLoadout.TabIndex = 86;
+            this.maskedTextBoxJoinGameLoadout.TextChanged += new System.EventHandler(this.maskedTextBoxJoinGamePlayerName_TextChanged);
+            // 
+            // labelJoinGameLoadout
+            // 
+            this.labelJoinGameLoadout.AutoSize = true;
+            this.labelJoinGameLoadout.Location = new System.Drawing.Point(23, 115);
+            this.labelJoinGameLoadout.Name = "labelJoinGameLoadout";
+            this.labelJoinGameLoadout.Size = new System.Drawing.Size(46, 13);
+            this.labelJoinGameLoadout.TabIndex = 87;
+            this.labelJoinGameLoadout.Text = "Loadout";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.ItemSize = new System.Drawing.Size(167, 20);
+            this.tabControl1.Location = new System.Drawing.Point(587, 321);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(343, 232);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl1.TabIndex = 84;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.linkLabelJoinGameKnownIssues);
+            this.tabPage1.Controls.Add(this.labelJoinGameBriefInstructions);
+            this.tabPage1.Controls.Add(this.labelJoinGameAdditionalInfo);
+            this.tabPage1.Controls.Add(this.maskedTextBoxJoinGameLoadout);
+            this.tabPage1.Controls.Add(this.labelJoinGameLoadout);
+            this.tabPage1.Controls.Add(this.btnJoinGame);
+            this.tabPage1.Controls.Add(this.labelJoinGameHostIP);
+            this.tabPage1.Controls.Add(this.maskedTextBoxJoinGameHostIP);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(335, 204);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Join Game";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // linkLabelJoinGameKnownIssues
+            // 
+            this.linkLabelJoinGameKnownIssues.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.linkLabelJoinGameKnownIssues.LinkArea = new System.Windows.Forms.LinkArea(14, 9);
+            this.linkLabelJoinGameKnownIssues.LinkColor = System.Drawing.Color.Blue;
+            this.linkLabelJoinGameKnownIssues.Location = new System.Drawing.Point(13, 15);
+            this.linkLabelJoinGameKnownIssues.Name = "linkLabelJoinGameKnownIssues";
+            this.linkLabelJoinGameKnownIssues.Size = new System.Drawing.Size(304, 51);
+            this.linkLabelJoinGameKnownIssues.TabIndex = 90;
+            this.linkLabelJoinGameKnownIssues.TabStop = true;
+            this.linkLabelJoinGameKnownIssues.Text = "Known Issues (Full List): \r\n - (Host) No voices, movement skills, wave count (vis" +
+    "ual)\r\n - (Client) If no skills join match again, no starting coin\r\n - Some mods " +
+    "can cause issues";
+            this.linkLabelJoinGameKnownIssues.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabelJoinGameKnownIssues.UseCompatibleTextRendering = true;
+            this.linkLabelJoinGameKnownIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // labelJoinGameBriefInstructions
+            // 
+            this.labelJoinGameBriefInstructions.AutoSize = true;
+            this.labelJoinGameBriefInstructions.Location = new System.Drawing.Point(10, 88);
+            this.labelJoinGameBriefInstructions.Name = "labelJoinGameBriefInstructions";
+            this.labelJoinGameBriefInstructions.Size = new System.Drawing.Size(229, 13);
+            this.labelJoinGameBriefInstructions.TabIndex = 89;
+            this.labelJoinGameBriefInstructions.Text = "Enter the host IP and your loadout code below:";
+            // 
+            // labelJoinGameAdditionalInfo
+            // 
+            this.labelJoinGameAdditionalInfo.Location = new System.Drawing.Point(6, 160);
+            this.labelJoinGameAdditionalInfo.Name = "labelJoinGameAdditionalInfo";
+            this.labelJoinGameAdditionalInfo.Size = new System.Drawing.Size(183, 41);
+            this.labelJoinGameAdditionalInfo.TabIndex = 88;
+            this.labelJoinGameAdditionalInfo.Text = "Hover for more info about multiplayer";
+            this.labelJoinGameAdditionalInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.labelJoinGameAdditionalInfo, resources.GetString("labelJoinGameAdditionalInfo.ToolTip"));
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.labelHostGameAdditionalInfo);
+            this.tabPage2.Controls.Add(this.labelHostGameBriefInstructions);
+            this.tabPage2.Controls.Add(this.maskedTextBoxHostGamePlayer3Loadout);
+            this.tabPage2.Controls.Add(this.maskedTextBoxHostGamePlayer1Loadout);
+            this.tabPage2.Controls.Add(this.maskedTextBoxHostGamePlayer4Loadout);
+            this.tabPage2.Controls.Add(this.btnLaunch);
+            this.tabPage2.Controls.Add(this.maskedTextBoxHostGamePlayer2Loadout);
+            this.tabPage2.Controls.Add(this.labelHostGamePlayer2);
+            this.tabPage2.Controls.Add(this.labelHostGamePlayer5);
+            this.tabPage2.Controls.Add(this.labelHostGamePlayer4);
+            this.tabPage2.Controls.Add(this.maskedTextBoxHostGamePlayer5Loadout);
+            this.tabPage2.Controls.Add(this.labelHostGamePlayer1);
+            this.tabPage2.Controls.Add(this.labelHostGamePlayer3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(335, 204);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Host Game";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // labelHostGameAdditionalInfo
+            // 
+            this.labelHostGameAdditionalInfo.Location = new System.Drawing.Point(6, 160);
+            this.labelHostGameAdditionalInfo.Name = "labelHostGameAdditionalInfo";
+            this.labelHostGameAdditionalInfo.Size = new System.Drawing.Size(183, 41);
+            this.labelHostGameAdditionalInfo.TabIndex = 85;
+            this.labelHostGameAdditionalInfo.Text = "Hover for more info about multiplayer";
+            this.labelHostGameAdditionalInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.labelHostGameAdditionalInfo, resources.GetString("labelHostGameAdditionalInfo.ToolTip"));
+            // 
+            // labelHostGameBriefInstructions
+            // 
+            this.labelHostGameBriefInstructions.AutoSize = true;
+            this.labelHostGameBriefInstructions.Location = new System.Drawing.Point(11, 10);
+            this.labelHostGameBriefInstructions.Name = "labelHostGameBriefInstructions";
+            this.labelHostGameBriefInstructions.Size = new System.Drawing.Size(192, 13);
+            this.labelHostGameBriefInstructions.TabIndex = 84;
+            this.labelHostGameBriefInstructions.Text = "Enter the players\' loadout codes below:";
+            // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 583);
+            this.ClientSize = new System.Drawing.Size(937, 585);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnDiscord);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelLanguage);
@@ -1412,7 +1664,6 @@ namespace SingleplayerLauncher
             this.Controls.Add(this.modsGroupBox);
             this.Controls.Add(this.btnResetConfig);
             this.Controls.Add(this.mapSettingsGroupBox);
-            this.Controls.Add(this.btnLaunch);
             this.Controls.Add(this.chkDebug);
             this.Name = "LauncherMainForm";
             this.Text = "Project Rechained Launcher";
@@ -1424,9 +1675,12 @@ namespace SingleplayerLauncher
             this.modsGroupBox.PerformLayout();
             this.groupBoxLoadout.ResumeLayout(false);
             this.groupBoxLoadout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1545,12 +1799,34 @@ namespace SingleplayerLauncher
         private Label labelLoadoutName;
         private Button btnSaveLoadout;
         private MaskedTextBox maskedTextBoxLoadoutName;
-        private ErrorProvider errorProvider1;
-        private ErrorProvider errorProvider2;
-        private ErrorProvider errorProvider3;
+        private ErrorProvider errorProvider;
         private Button btnDeleteLoadout;
         private Label label1;
         private Button btnDiscord;
+        private Button btnJoinGame;
+        private Label labelJoinGameHostIP;
+        private MaskedTextBox maskedTextBoxJoinGameHostIP;
+        private Label labelHostGamePlayer5;
+        private Label labelHostGamePlayer3;
+        private Label labelHostGamePlayer4;
+        private Label labelHostGamePlayer2;
+        private Label labelHostGamePlayer1;
+        private MaskedTextBox maskedTextBoxHostGamePlayer5Loadout;
+        private MaskedTextBox maskedTextBoxHostGamePlayer2Loadout;
+        private MaskedTextBox maskedTextBoxHostGamePlayer3Loadout;
+        private MaskedTextBox maskedTextBoxHostGamePlayer4Loadout;
+        private MaskedTextBox maskedTextBoxHostGamePlayer1Loadout;
+        private MaskedTextBox maskedTextBoxJoinGameLoadout;
+        private Label labelJoinGameLoadout;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private Label labelJoinGameAdditionalInfo;
+        private Label labelHostGameAdditionalInfo;
+        private Label labelHostGameBriefInstructions;
+        private Label labelJoinGameBriefInstructions;
+        private LinkLabel linkLabelJoinGameKnownIssues;
+        private ToolTip toolTip1;
     }
 }
 

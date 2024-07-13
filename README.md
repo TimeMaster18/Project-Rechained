@@ -21,6 +21,7 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 
 ### Features:
 - Launch the game from **Steam**
+- **Peer to peer multiplayer**
 - Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes** and Custom **Loadouts**
   - Choose Traps (with trap parts) and Gear
@@ -40,17 +41,22 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 
 
 ### Coming Next
-- P2P (Peer-to-peer) Multiplayer
 - Campaign Mode
+- Loadout randomizer
+- Fix Coop issues
 
 ### Known Problems
-- UI of the launcher is simple
-- Host player hero mobility skills (Gabriella teleport, Mdnight dash, etc) partially work
+- (Coop) All starting coins go to Host
 - Host player has no enemy / guardian / hero voices
+- (Coop) Client sometimes needs to rejoin to get all skills 
+- (Coop) Client traits "stack up" when reconnecting
+- Host player hero mobility skills (Gabriella teleport, Mdnight dash, etc) partially work
+- (Coop) Some mods create issues for Client
 - (Visual only) Host player wave count at top of screen is wrong (press Tab to see actual wave limit)
 - (Visual only) Host player Unchained meter (right side of screen) stuck after first activation 
   - The **indicator over the hero icon at the bottom left of the screen works correctly**
 - (Visual only) Crogon Keep textures can be black
+- UI of the launcher is simple
 
 
 ## Acknowledgements
@@ -63,7 +69,8 @@ A big thank you to all the people who contributed to this project:
 
 This project makes use of the following open-source projects:
 
-- **[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)** - Used to handle the settings and save state
+- **[Unreal Package Decompressor by gildor](https://github.com/gildor2/UEViewer)** - Used to decompress upk files.
+- **[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)** - Used to handle the settings and save state.
 - **[OMDU Hook by trumank](https://github.com/trumank/omdu-hook)** - Unlocks the possibility of multiplayer and further loadout customisation.
 
 ## Contact
