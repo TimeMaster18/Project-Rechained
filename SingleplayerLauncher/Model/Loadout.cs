@@ -84,11 +84,8 @@ namespace SingleplayerLauncher.Model
 
         public TrapPart[] GetTrapPartsForLoadout(int loadoutSlotIdx)
         {
-            int row = (loadoutSlotIdx - 1) / TRAP_PART_SLOT_COUNT;  // Calculate row based on index and number of columns
-            int col = (loadoutSlotIdx - 1) % TRAP_PART_SLOT_COUNT;  // Calculate column based on index and number of columns
-
             return Enumerable.Range(0, TRAP_PART_SLOT_COUNT)
-                             .Select(c => GameInfo.Loadout.TrapParts[row, c])
+                             .Select(c => GameInfo.Loadout.TrapParts[loadoutSlotIdx, c])
                              .ToArray();
         }
 
