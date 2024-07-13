@@ -16,9 +16,9 @@ public static class InputValidator
             return (false, "Loadout name must be at most 32 characters long.");
         }
 
-        if (!Regex.IsMatch(loadoutName, "^[a-zA-Z0-9]+$"))
+        if (!Regex.IsMatch(loadoutName, "^[a-zA-Z0-9 _-]+$"))
         {
-            return (false, "Loadout name must be alphanumeric.");
+            return (false, "Loadout name must be alphanumeric and can include spaces, hyphens, and underscores.");
         }
 
         return (true, string.Empty);
