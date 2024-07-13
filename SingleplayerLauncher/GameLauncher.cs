@@ -82,22 +82,7 @@ namespace SingleplayerLauncher
                 MessageBox.Show("Error deleting obsolete UE Extractor folder: " + e.Message);
             }
 
-            // SpitfireDashboard Initialization
-            string dashboardFolderPath = Path.Combine(Settings.Instance.RootGamePath, FileUtils.DASHBOARD_FOLDER_PATH);
-            string dashboardExePath = Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
-            FileInfo spitfireGameUPKFileInfo = new FileInfo(dashboardExePath);
-            if (spitfireGameUPKFileInfo.Length >= FileUtils.SPITFIREDASHBOARD_EXE_ORG_SIZE)
-            {
-                FileUtils.CreateBackup(FileUtils.SPITFIREDASHBOARD_EXE_FILENAME, Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME));
-                FileUtils.CopyFileWithCheck(
-                    Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.PROJECT_RECHAINED_LAUNCHER_EXE_FILE_NAME),
-                    Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME),
-                    true);
-                FileUtils.CopyFileWithCheck(
-                    Path.Combine(Settings.Instance.LauncherInstallationPath, "Newtonsoft.Json.dll"),
-                    Path.Combine(dashboardFolderPath, "Newtonsoft.Json.dll"),
-                    true);
-            }
+
 
             Settings.Instance.FirstRun = false;
             Settings.Instance.Save();

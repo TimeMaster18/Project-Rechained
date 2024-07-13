@@ -23,7 +23,7 @@ namespace SingleplayerLauncher.GameFiles
         public const string SPITFIREGAME_UPK_FILENAME = "SpitfireGame.upk";
         public const int SPITFIREGAME_UPK_ORG_SIZE = 100225213;
 
-        public const string DASHBOARD_FOLDER_PATH = "./Dashboard/Bin/";
+        public const string DASHBOARD_FOLDER_PATH = "Dashboard\\Bin";
         public const string SPITFIREDASHBOARD_EXE_FILENAME = "SpitfireDashboard.exe";
         public const int SPITFIREDASHBOARD_EXE_ORG_SIZE = 16801792;
 

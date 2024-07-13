@@ -24,6 +24,10 @@ namespace SingleplayerLauncher
             {
                 GameLauncher.FirstLaunchInitialization();
             }
+            if (Settings.Instance.FirstRun)
+            {
+                GameLauncher.FirstLaunchInitialization();
+            }
             InitializeComponent();
 
             ComBoxLoadoutSlots = new List<ComboBox>()
