@@ -111,7 +111,10 @@ namespace SingleplayerLauncher.GameFiles
             for (int i = 0; i < loadout.SlotItems.Length; i++)
             {
                 var slotItem = loadout.SlotItems[i];
-                string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, slotItem is Trap ? loadout.GetTrapPartsForLoadout(i) : null);
+                bool isTrap = slotItem is Trap;
+                TrapPart[] parts = isTrap ? loadout.GetTrapPartsForLoadout(i) : null;
+
+                string itemString = slotItem != null ? GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, parts) : null;
                 data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: i + 1);
             }
         }

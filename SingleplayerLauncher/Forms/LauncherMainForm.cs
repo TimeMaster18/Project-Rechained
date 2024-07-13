@@ -74,23 +74,6 @@ namespace SingleplayerLauncher
             comBoxLanguage.SelectedItem = Settings.Instance.Language;
 
             // Game settings
-            foreach (string loadoutName in Loadouts.Instance.GetLoadoutNames())
-            {
-                comBoxLoadouts.Items.Add(loadoutName);
-            }
-            comBoxLoadouts.SelectedIndex = comBoxLoadouts.Items.Count == 0 ? -1 : 0;
-            btnDeleteLoadout.Enabled = comBoxLoadouts.Items.Count > 0;
-
-            foreach (string h in Model.Hero.Heroes.Keys)
-            {
-                comBoxHero.Items.Add(h);
-            }
-
-            foreach (string d in Model.Dye.Dyes.Keys)
-            {
-                comBoxDye.Items.Add(d);
-            }
-
             foreach (string gm in Model.GameMode.GameModes.Keys)
             {
                 comBoxGameMode.Items.Add(gm);
@@ -124,6 +107,16 @@ namespace SingleplayerLauncher
 
             // Loadout
             // TODO: check if loading from JSON is possible with embedded: https://github.com/Fody/Costura
+            foreach (string h in Model.Hero.Heroes.Keys)
+            {
+                comBoxHero.Items.Add(h);
+            }
+
+            foreach (string d in Model.Dye.Dyes.Keys)
+            {
+                comBoxDye.Items.Add(d);
+            }
+
             PopulateSlots(ComBoxLoadoutSlots, Model.Trap.Traps.Keys.ToList());
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
@@ -132,12 +125,12 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxTraitSlots, Model.Trait.PentagonSlotTraits.Keys.ToList());
             PopulateSlots(ComBoxTraitSlots, Model.Trait.DiamondSlotTraits.Keys.ToList());
 
-            SetCurrentHero();
-            SetCurrentSlotItems();
-            SetCurrentTrapParts();
-            SetCurrenGuardians();
-            SetCurrentConsumables();
-            SetCurrentTraits();
+            foreach (string loadoutName in Loadouts.Instance.GetLoadoutNames())
+            {
+                comBoxLoadouts.Items.Add(loadoutName);
+            }
+            comBoxLoadouts.SelectedIndex = comBoxLoadouts.Items.Count == 0 ? -1 : 0;
+            btnDeleteLoadout.Enabled = comBoxLoadouts.Items.Count > 0;
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -445,10 +438,10 @@ namespace SingleplayerLauncher
             }
         }
 
-        private void SetCurrenGuardians()
+        private void SetCurrenGuardians(Loadout loadout)
         {
             GuardianComboBoxHelper comboBoxHelper = new GuardianComboBoxHelper(Guardian.Guardians);
-            List<Guardian> guardians = GameInfo.Loadout.Guardians.ToList();
+            List<Guardian> guardians = loadout.Guardians.ToList();
             for (int i = 0; i < Loadout.GUARDIAN_SLOT_COUNT; i++)
             {
                 comboBoxHelper.InitializeComboBox(ComBoxGuardianSlots[i]);
@@ -457,10 +450,10 @@ namespace SingleplayerLauncher
             }
         }
 
-        private void SetCurrentConsumables()
+        private void SetCurrentConsumables(Loadout loadout)
         {
             ConsumableComboBoxHelper comboBoxHelper = new ConsumableComboBoxHelper(Consumable.Consumables);
-            List<Consumable> consumables = GameInfo.Loadout.Consumables.ToList();
+            List<Consumable> consumables = loadout.Consumables.ToList();
             for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
             {
                 comboBoxHelper.InitializeComboBox(ComBoxConsumableSlots[i]);
@@ -469,10 +462,10 @@ namespace SingleplayerLauncher
             }
         }
 
-        private void SetCurrentTraits()
+        private void SetCurrentTraits(Loadout loadout)
         {
             TraitComboBoxHelper comboBoxHelper = new TraitComboBoxHelper(Trait.Traits);
-            List<Trait> traits = GameInfo.Loadout.Traits.ToList();
+            List<Trait> traits = loadout.Traits.ToList();
             for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
             {
                 comboBoxHelper.InitializeComboBox(ComBoxTraitSlots[i]);
@@ -514,21 +507,21 @@ namespace SingleplayerLauncher
             UpdateLoadoutExportCode();
         }
 
-        private void SetCurrentHero()
+        private void SetCurrentHero(Loadout loadout)
         {
-            string heroName = GameInfo.Loadout.Hero.Name;
-            string skinName = GameInfo.Loadout.Skin.Name;
-            string dyeName = GameInfo.Loadout.Dye.Name;
+            string heroName = loadout.Hero.Name;
+            string skinName = loadout.Skin.Name;
+            string dyeName = loadout.Dye.Name;
 
             comBoxHero.SelectedItem = heroName;
             comBoxSkin.SelectedItem = skinName;
             comBoxDye.SelectedItem = dyeName;
         }
 
-        private void SetCurrentSlotItems()
+        private void SetCurrentSlotItems(Loadout loadout)
         {
             SlotItemComboBoxHelper comboBoxHelper = new SlotItemComboBoxHelper(SlotItems);
-            List<SlotItem> slotItems = GameInfo.Loadout.SlotItems.ToList();
+            List<SlotItem> slotItems = loadout.SlotItems.ToList();
 
             for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
             {
@@ -538,10 +531,10 @@ namespace SingleplayerLauncher
             }
         }
 
-        private void SetCurrentTrapParts()
+        private void SetCurrentTrapParts(Loadout loadout)
         {
             TrapPartComboBoxHelper comboBoxHelper = new TrapPartComboBoxHelper(TrapPart.TrapParts);
-            List<List<TrapPart>> trapParts = ConvertArrayToListOfLists(GameInfo.Loadout.TrapParts);
+            List<List<TrapPart>> trapParts = ConvertArrayToListOfLists(loadout.TrapParts);
 
             for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
             {
@@ -571,14 +564,10 @@ namespace SingleplayerLauncher
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 
-        private void SaveLoadout()
+        private void SaveLoadoutItem(int slotItemIdx)
         {
-            for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
-            {
-                string slotItemName = ComBoxLoadoutSlots[i].Text;
-                GameInfo.Loadout.SlotItems[i] = slotItemName.Length > 0 ? SlotItems[slotItemName] : null;
-            }
-
+            string slotItemName = ComBoxLoadoutSlots[slotItemIdx].Text;
+            GameInfo.Loadout.SlotItems[slotItemIdx] = slotItemName.Length > 0 ? SlotItems[slotItemName] : null;
             UpdateLoadoutExportCode();
         }
 
@@ -597,61 +586,70 @@ namespace SingleplayerLauncher
 
         private void comBoxLoadoutSlot1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 1 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(1 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 1 - 1);
         }
 
         private void comBoxLoadoutSlot2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 2 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(2 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 2 - 1);
         }
 
         private void comBoxLoadoutSlot3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 3 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(3 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 3 - 1);
         }
 
         private void comBoxLoadoutSlot4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 4 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(4 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 4 - 1);
         }
 
         private void comBoxLoadoutSlot5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 5 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(5 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 5 - 1);
         }
 
         private void comBoxLoadoutSlot6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 6 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(6 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 6 - 1);
         }
 
         private void comBoxLoadoutSlot7_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 7 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(7 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 7 - 1);
         }
 
         private void comBoxLoadoutSlot8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 8 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(8 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 8 - 1);
         }
 
         private void comBoxLoadoutSlot9_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveLoadout();
-            AdjustTrapPartsComBoxes(sender, 9 - 1);
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveLoadoutItem(9 - 1);
+            AdjustTrapPartsComBoxes(selectedItemSlot, 9 - 1);
         }
 
-        private void AdjustTrapPartsComBoxes(object sender, int slotIdx)
+        private void AdjustTrapPartsComBoxes(string slotItemSelectedName, int slotIdx)
         {
-            String selected = ((ComboBox)sender).SelectedItem?.ToString();
+            String selected = slotItemSelectedName;
             Trap trap = selected != null && selected != "" && Trap.Traps.ContainsKey(selected) ? (Trap)Trap.Traps[selected] : null;
             bool isTrap = trap != null;
 
@@ -667,10 +665,8 @@ namespace SingleplayerLauncher
                     trapPartComBox.Items.Clear();
                     PopulateSlots(new List<ComboBox> { trapPartComBox }, trapPartNames);
                 }
-                else
-                {
-                    trapPartComBox.SelectedItem = null;
-                }
+
+                trapPartComBox.SelectedItem = null;
             }
         }
 
@@ -959,12 +955,12 @@ namespace SingleplayerLauncher
             Loadout decodedLoadout = Loadout.DecodeLoadout(selectedLoadoutCode);
             GameInfo.Loadout = decodedLoadout;
 
-            SetCurrentHero();
-            SetCurrentSlotItems();
-            SetCurrentTrapParts();
-            SetCurrenGuardians();
-            SetCurrentConsumables();
-            SetCurrentTraits();
+            SetCurrentHero(decodedLoadout);
+            SetCurrentSlotItems(decodedLoadout);
+            SetCurrentTrapParts(decodedLoadout);
+            SetCurrenGuardians(decodedLoadout);
+            SetCurrentConsumables(decodedLoadout);
+            SetCurrentTraits(decodedLoadout);
 
             maskedTextBoxLoadoutName.Text = selectedLoadoutName;
             maskedTextBoxPlayerName.Text = decodedLoadout.PlayerName;

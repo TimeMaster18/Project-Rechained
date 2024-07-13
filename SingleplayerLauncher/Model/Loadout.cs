@@ -85,7 +85,7 @@ namespace SingleplayerLauncher.Model
         public TrapPart[] GetTrapPartsForLoadout(int loadoutSlotIdx)
         {
             return Enumerable.Range(0, TRAP_PART_SLOT_COUNT)
-                             .Select(c => GameInfo.Loadout.TrapParts[loadoutSlotIdx, c])
+                             .Select(c => GameInfo.Loadout.TrapParts[loadoutSlotIdx, c]) // TODO use this?
                              .ToArray();
         }
 
