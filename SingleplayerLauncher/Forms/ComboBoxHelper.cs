@@ -7,13 +7,22 @@ using System.Windows.Forms;
 public class ComboBoxHelper<T>
 {
     private ToolTip toolTip;
+    private Timer tooltipTimer;
     private Dictionary<string, T> items;
     private Func<T, string> getToolTipText;
     private Action<Graphics, Rectangle, T> drawItemShape;
+    private string currentTooltipText;
+    private ComboBox currentComboBox;
+    private Rectangle currentBounds;
+
+    private const int TOOLTIP_DELAY_INTERVAL_MS = 250;
 
     public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
         toolTip = new ToolTip();
+        tooltipTimer = new Timer();
+        tooltipTimer.Interval = TOOLTIP_DELAY_INTERVAL_MS;
+        tooltipTimer.Tick += TooltipTimer_Tick;
         this.items = items;
         this.getToolTipText = getToolTipText;
         this.drawItemShape = drawItemShape;
@@ -69,25 +78,39 @@ public class ComboBoxHelper<T>
 
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
         {
-            string toolTipText = getToolTipText(item);
-            toolTip.Show(toolTipText, comboBox, e.Bounds.Right, e.Bounds.Bottom);
+            currentTooltipText = getToolTipText(item);
+            currentComboBox = comboBox;
+            currentBounds = e.Bounds;
+            tooltipTimer.Start();
+        }
+    }
+
+    private void TooltipTimer_Tick(object sender, EventArgs e)
+    {
+        tooltipTimer.Stop();
+        if (currentComboBox != null && currentBounds != null)
+        {
+            toolTip.Show(currentTooltipText, currentComboBox, currentBounds.Right, currentBounds.Bottom);
         }
     }
 
     private void ComboBox_DropDownClosed(object sender, EventArgs e)
     {
         toolTip.Hide((Control)sender);
+        tooltipTimer.Stop();
         ((ComboBox)sender).Focus();
     }
 
     private void ComboBox_MouseLeave(object sender, EventArgs e)
     {
         toolTip.Hide((Control)sender);
+        tooltipTimer.Stop();
     }
 
     private void ComboBox_LostFocus(object sender, EventArgs e)
     {
         toolTip.Hide((Control)sender);
+        tooltipTimer.Stop();
     }
 }
 
