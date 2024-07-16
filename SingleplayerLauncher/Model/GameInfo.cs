@@ -14,5 +14,7 @@
 
         public static Loadout Loadout { get; set; } = new Loadout();
         public IBattleground Battleground { get; set; } = new Survival();
+
+        public int PlayerCount { get; set; } = 1;
     }
 }

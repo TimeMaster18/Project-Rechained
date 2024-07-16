@@ -32,7 +32,12 @@ namespace SingleplayerLauncher.Model
             }
             return new Trap { Id = 0, ItemTemplateName = "Unknown", Description = "Unknown" };
         }
-    }
+
+        public static readonly Dictionary<string, SlotItem> SlotItems =
+            new List<Dictionary<string, SlotItem>>() { Gear.Gears, Trap.Traps }
+                .SelectMany(dict => dict)
+                .ToDictionary(pair => pair.Key, pair => pair.Value);
+            }
 
     public class Loadout
     {

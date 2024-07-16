@@ -57,11 +57,8 @@ public class ComboBoxHelper<T>
             e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds);
         }
 
-        if (drawItemShape != null)
-        {
-            // Draw the shape with the appropriate item
-            drawItemShape(e.Graphics, e.Bounds, item);
-        }
+        // Draw the shape with the appropriate item
+        drawItemShape?.Invoke(e.Graphics, e.Bounds, item);
 
         // Draw the item text
         using (Brush brush = new SolidBrush((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : SystemColors.ControlText))

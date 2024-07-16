@@ -42,15 +42,14 @@ namespace SingleplayerLauncher.GameFiles
             defaultGame.Write();
         }
 
-        public static void ApplyMods(bool areEnabled)
+        public static void ApplySettings()
         {
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
             ConfigFile defaultGame = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
             IniFile data = defaultGame.data;
 
-            bool isShowFlyoffsForTrapDamageEnabled = areEnabled && Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled;
-            data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, isShowFlyoffsForTrapDamageEnabled.ToString());
+            data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
 
             defaultGame.Write();
         }

@@ -29,8 +29,9 @@ namespace SingleplayerLauncher
                 GameFiles.DefaultGame.Apply();
 
                 GameFiles.CharacterData.ApplyMods(GameConfig.Instance.ModsEnabled);
-                GameFiles.DefaultGame.ApplyMods(GameConfig.Instance.ModsEnabled);
             }
+
+            GameFiles.DefaultGame.ApplySettings();
 
             SpitfireGameUPK.SaveChanges();
         }
