@@ -114,7 +114,7 @@ namespace SingleplayerLauncher.GameFiles
                 bool isTrap = slotItem is Trap;
                 TrapPart[] parts = isTrap ? loadout.GetTrapPartsForLoadout(i) : null;
 
-                string itemString = slotItem != null ? GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, parts) : null;
+                string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, parts);
                 data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: i + 1);
             }
         }

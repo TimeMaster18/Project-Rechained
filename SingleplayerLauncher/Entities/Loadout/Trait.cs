@@ -650,13 +650,13 @@ namespace SingleplayerLauncher.Model
             { KILLER_BUZZ, KillerBuzz},
             { PAGING_DR_LOVE, PagingDrLove},
             { RIFT_AWAY, RiftAway},
-            { FEELING_FIERCE, FeelingFierce}
+            { FEELING_FIERCE, FeelingFierce},
+            { TRIES_TOO_HARD, TriesTooHard}
         };
 
         public static Dictionary<string, Trait> DiamondSlotTraits = new Dictionary<string, Trait>
         {
 
-            { TRIES_TOO_HARD, TriesTooHard},
             { ENJOYS_PAIN, EnjoysPain},
             { EXECUTION_ADVANTAGE, ExecutionAdvantage},
             { FEELS_SAFE_AT_HOME, FeelsSafeAtHome},
