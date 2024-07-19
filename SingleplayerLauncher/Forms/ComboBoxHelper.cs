@@ -7,7 +7,6 @@ using System.Windows.Forms;
 public class ComboBoxHelper<T>
 {
     private ToolTip toolTip;
-    private Timer tooltipTimer;
     private Dictionary<string, T> items;
     private Func<T, string> getToolTipText;
     private Action<Graphics, Rectangle, T> drawItemShape;
@@ -20,9 +19,6 @@ public class ComboBoxHelper<T>
     public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
         toolTip = new ToolTip();
-        tooltipTimer = new Timer();
-        tooltipTimer.Interval = TOOLTIP_DELAY_INTERVAL_MS;
-        tooltipTimer.Tick += TooltipTimer_Tick;
         this.items = items;
         this.getToolTipText = getToolTipText;
         this.drawItemShape = drawItemShape;
@@ -33,8 +29,6 @@ public class ComboBoxHelper<T>
         comboBox.DrawMode = DrawMode.OwnerDrawFixed;
         comboBox.DrawItem += ComboBox_DrawItem;
         comboBox.DropDownClosed += ComboBox_DropDownClosed;
-        comboBox.MouseLeave += ComboBox_MouseLeave;
-        comboBox.LostFocus += ComboBox_LostFocus;
     }
 
     private void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
@@ -67,47 +61,30 @@ public class ComboBoxHelper<T>
             e.Graphics.DrawString(itemName, e.Font, brush, e.Bounds.X + xPadding, e.Bounds.Y);
         }
 
-        // Draw the focus rectangle if needed
-        if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
-        {
-            e.DrawFocusRectangle();
-        }
-
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
         {
             currentTooltipText = getToolTipText(item);
             currentComboBox = comboBox;
             currentBounds = e.Bounds;
-            tooltipTimer.Start();
         }
-    }
 
-    private void TooltipTimer_Tick(object sender, EventArgs e)
-    {
-        tooltipTimer.Stop();
-        if (currentComboBox != null && currentBounds != null)
+        // Draw the focus rectangle if needed
+        if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
         {
-            toolTip.Show(currentTooltipText, currentComboBox, currentBounds.Right, currentBounds.Bottom);
+            // To show the tool tips only when the ComboBox is open
+            if ((e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
+            {
+                toolTip.Show(currentTooltipText, currentComboBox, e.Bounds.Right, e.Bounds.Bottom);
+            }
+
+            e.DrawFocusRectangle();
         }
     }
 
     private void ComboBox_DropDownClosed(object sender, EventArgs e)
     {
         toolTip.Hide((Control)sender);
-        tooltipTimer.Stop();
         ((ComboBox)sender).Focus();
-    }
-
-    private void ComboBox_MouseLeave(object sender, EventArgs e)
-    {
-        toolTip.Hide((Control)sender);
-        tooltipTimer.Stop();
-    }
-
-    private void ComboBox_LostFocus(object sender, EventArgs e)
-    {
-        toolTip.Hide((Control)sender);
-        tooltipTimer.Stop();
     }
 }
 
