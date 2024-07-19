@@ -12,9 +12,6 @@ public class ComboBoxHelper<T>
     private Action<Graphics, Rectangle, T> drawItemShape;
     private string currentTooltipText;
     private ComboBox currentComboBox;
-    private Rectangle currentBounds;
-
-    private const int TOOLTIP_DELAY_INTERVAL_MS = 250;
 
     public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
@@ -38,8 +35,7 @@ public class ComboBoxHelper<T>
         if (e.Index < 0) { return; }
 
         string itemName = comboBox.GetItemText(comboBox.Items[e.Index]);
-        if (!items.TryGetValue(itemName, out T item))
-            return;
+        if (!items.TryGetValue(itemName, out T item)) {  return; }
 
         // Draw the background
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
@@ -50,9 +46,6 @@ public class ComboBoxHelper<T>
         {
             e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds);
         }
-
-        // Draw the shape with the appropriate item
-        drawItemShape?.Invoke(e.Graphics, e.Bounds, item);
 
         // Draw the item text
         using (Brush brush = new SolidBrush((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : SystemColors.ControlText))
@@ -65,18 +58,18 @@ public class ComboBoxHelper<T>
         {
             currentTooltipText = getToolTipText(item);
             currentComboBox = comboBox;
-            currentBounds = e.Bounds;
-        }
 
-        // Draw the focus rectangle if needed
-        if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
-        {
             // To show the tool tips only when the ComboBox is open
             if ((e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
             {
                 toolTip.Show(currentTooltipText, currentComboBox, e.Bounds.Right, e.Bounds.Bottom);
             }
 
+            // Focus is a low-level method intended primarily for custom control
+            // authors. Instead, application programmers should use the Select
+            // method or the ActiveControl property for child controls, or the
+            // Activate method for forms.
+            // https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.focus?view=windowsdesktop-8.0&redirectedfrom=MSDN#System_Windows_Forms_Control_Focus
             e.DrawFocusRectangle();
         }
     }
@@ -84,7 +77,6 @@ public class ComboBoxHelper<T>
     private void ComboBox_DropDownClosed(object sender, EventArgs e)
     {
         toolTip.Hide((Control)sender);
-        ((ComboBox)sender).Focus();
     }
 }
 
