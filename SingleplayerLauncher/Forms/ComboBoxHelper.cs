@@ -10,12 +10,10 @@ public class ComboBoxHelper<T>
     private Dictionary<string, T> items;
     private Func<T, string> getToolTipText;
     private Action<Graphics, Rectangle, T> drawItemShape;
-    private string currentTooltipText;
-    private ComboBox currentComboBox;
 
     public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
-        toolTip = new ToolTip();
+        this.toolTip = new ToolTip();
         this.items = items;
         this.getToolTipText = getToolTipText;
         this.drawItemShape = drawItemShape;
@@ -56,13 +54,10 @@ public class ComboBoxHelper<T>
 
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
         {
-            currentTooltipText = getToolTipText(item);
-            currentComboBox = comboBox;
-
             // To show the tool tips only when the ComboBox is open
             if ((e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
             {
-                toolTip.Show(currentTooltipText, currentComboBox, e.Bounds.Right, e.Bounds.Bottom);
+                toolTip.Show(getToolTipText(item), comboBox, e.Bounds.Right, e.Bounds.Bottom);
             }
 
             // Focus is a low-level method intended primarily for custom control
