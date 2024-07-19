@@ -926,7 +926,7 @@ namespace SingleplayerLauncher
             // btnDeleteLoadout
             // 
             this.btnDeleteLoadout.BackColor = System.Drawing.Color.Tomato;
-            this.btnDeleteLoadout.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnDeleteLoadout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnDeleteLoadout.Location = new System.Drawing.Point(6, 521);
             this.btnDeleteLoadout.Name = "btnDeleteLoadout";
             this.btnDeleteLoadout.Size = new System.Drawing.Size(159, 22);

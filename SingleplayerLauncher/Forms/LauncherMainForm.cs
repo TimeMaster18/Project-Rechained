@@ -127,7 +127,7 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxTraitSlots, Model.Trait.PentagonSlotTraits.Keys.ToList());
             PopulateSlots(ComBoxTraitSlots, Model.Trait.DiamondSlotTraits.Keys.ToList());
 
-            InitializeSlots(ComBoxLoadoutSlots, new SlotItemComboBoxHelper(SlotItem.SlotItems));
+            InitializeSlots(ComBoxLoadoutSlots, new SlotItemComboBoxHelper(SlotItem.getAllSlotItems()));
             InitializeSlots(ComBoxGuardianSlots, new GuardianComboBoxHelper(Guardian.Guardians));
             InitializeSlots(ComBoxConsumableSlots, new ConsumableComboBoxHelper(Consumable.Consumables));
             InitializeSlots(ComBoxTraitSlots, new TraitComboBoxHelper(Trait.Traits));
@@ -578,7 +578,7 @@ namespace SingleplayerLauncher
         private void SaveLoadoutItem(int slotItemIdx)
         {
             string slotItemName = ComBoxLoadoutSlots[slotItemIdx].Text;
-            GameInfo.Loadout.SlotItems[slotItemIdx] = slotItemName.Length > 0 ? SlotItem.SlotItems[slotItemName] : null;
+            GameInfo.Loadout.SlotItems[slotItemIdx] = slotItemName.Length > 0 ? SlotItem.getAllSlotItems()[slotItemName] : null;
             UpdateLoadoutExportCode();
         }
 
