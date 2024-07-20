@@ -6,17 +6,17 @@ using System.Windows.Forms;
 
 public class ComboBoxHelper<T>
 {
-    private ToolTip toolTip;
-    private Dictionary<string, T> items;
-    private Func<T, string> getToolTipText;
-    private Action<Graphics, Rectangle, T> drawItemShape;
+    private ToolTip _toolTip;
+    private Dictionary<string, T> _items;
+    private Func<T, string> _getToolTipText;
+    private Action<Graphics, Rectangle, T> _drawItemShape;
 
     public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
-        this.toolTip = new ToolTip();
-        this.items = items;
-        this.getToolTipText = getToolTipText;
-        this.drawItemShape = drawItemShape;
+        this._toolTip = new ToolTip();
+        this._items = items;
+        this._getToolTipText = getToolTipText;
+        this._drawItemShape = drawItemShape;
     }
 
     public void InitializeComboBox(ComboBox comboBox)
@@ -26,38 +26,41 @@ public class ComboBoxHelper<T>
         comboBox.DropDownClosed += ComboBox_DropDownClosed;
     }
 
-    private void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
+    private void ComboBox_DrawItem(object sender, DrawItemEventArgs eventDrawItem)
     {
         ComboBox comboBox = (ComboBox)sender;
 
-        if (e.Index < 0) { return; }
+        if (eventDrawItem.Index < 0) { return; }
 
-        string itemName = comboBox.GetItemText(comboBox.Items[e.Index]);
-        if (!items.TryGetValue(itemName, out T item)) {  return; }
+        string itemName = comboBox.GetItemText(comboBox.Items[eventDrawItem.Index]);
+        if (!_items.TryGetValue(itemName, out T item)) {  return; }
 
         // Draw the background
-        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+        if ((eventDrawItem.State & DrawItemState.Selected) == DrawItemState.Selected)
         {
-            e.Graphics.FillRectangle(SystemBrushes.Highlight, e.Bounds);
+            eventDrawItem.Graphics.FillRectangle(SystemBrushes.Highlight, eventDrawItem.Bounds);
         }
         else
         {
-            e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds);
+            eventDrawItem.Graphics.FillRectangle(SystemBrushes.Window, eventDrawItem.Bounds);
         }
+
+        // Draw the shape with the appropriate item
+        _drawItemShape?.Invoke(eventDrawItem.Graphics, eventDrawItem.Bounds, item);
 
         // Draw the item text
-        using (Brush brush = new SolidBrush((e.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : SystemColors.ControlText))
+        using (Brush brush = new SolidBrush((eventDrawItem.State & DrawItemState.Selected) == DrawItemState.Selected ? SystemColors.HighlightText : SystemColors.ControlText))
         {
-            int xPadding = drawItemShape != null ? 25 : 0;
-            e.Graphics.DrawString(itemName, e.Font, brush, e.Bounds.X + xPadding, e.Bounds.Y);
+            int iXPadding = _drawItemShape != null ? 25 : 0;
+            eventDrawItem.Graphics.DrawString(itemName, eventDrawItem.Font, brush, eventDrawItem.Bounds.X + iXPadding, eventDrawItem.Bounds.Y);
         }
 
-        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+        if ((eventDrawItem.State & DrawItemState.Selected) == DrawItemState.Selected)
         {
             // To show the tool tips only when the ComboBox is open
-            if ((e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
+            if ((eventDrawItem.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
             {
-                toolTip.Show(getToolTipText(item), comboBox, e.Bounds.Right, e.Bounds.Bottom);
+                _toolTip.Show(_getToolTipText(item), comboBox, eventDrawItem.Bounds.Right, eventDrawItem.Bounds.Bottom);
             }
 
             // Focus is a low-level method intended primarily for custom control
@@ -65,13 +68,13 @@ public class ComboBoxHelper<T>
             // method or the ActiveControl property for child controls, or the
             // Activate method for forms.
             // https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.focus?view=windowsdesktop-8.0&redirectedfrom=MSDN#System_Windows_Forms_Control_Focus
-            e.DrawFocusRectangle();
+            eventDrawItem.DrawFocusRectangle();
         }
     }
 
-    private void ComboBox_DropDownClosed(object sender, EventArgs e)
+    private void ComboBox_DropDownClosed(object sender, EventArgs eventDropDown)
     {
-        toolTip.Hide((Control)sender);
+        _toolTip.Hide((Control)sender);
     }
 }
 
