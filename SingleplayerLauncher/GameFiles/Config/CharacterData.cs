@@ -106,16 +106,25 @@ namespace SingleplayerLauncher.GameFiles
 
         private static void UpdateLoadoutEntries(IniFile data, string section, Loadout loadout)
         {
-            data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(loadout.Hero.PawnWeaponTemplateName), index: 0);
+            int loadoutIdx = 0;
+            data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(loadout.Hero.PawnWeaponTemplateName), index: loadoutIdx);
+            loadoutIdx++;
 
-            for (int i = 0; i < loadout.SlotItems.Length; i++)
+            if (GameConfig.Instance.ModsEnabled && GameConfig.Instance.AdditionalHeroWeaponEnabled)
+            {
+                string pawnWeaponTemplateName = Model.Hero.Heroes[GameConfig.Instance.AdditionalHeroWeapon]?.PawnWeaponTemplateName;
+                data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(pawnWeaponTemplateName), index: loadoutIdx);
+                loadoutIdx++;
+            }
+
+            for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; loadoutIdx++, i++)
             {
                 var slotItem = loadout.SlotItems[i];
                 bool isTrap = slotItem is Trap;
                 TrapPart[] parts = isTrap ? loadout.GetTrapPartsForLoadout(i) : null;
 
                 string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, parts);
-                data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: i + 1);
+                data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: loadoutIdx);
             }
         }
 

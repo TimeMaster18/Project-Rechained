@@ -87,6 +87,7 @@
     <Compile Include="GameFiles\Cooked\UPKFile.cs" />
     <Compile Include="GameFiles\Cooked\UPKHeroObjectContent.cs" />
     <Compile Include="GameFiles\FileUtils.cs" />
+    <Compile Include="Mods\AdditionalheroWeapon.cs" />
     <Compile Include="Mods\StartingCoinOverride.cs" />
     <Compile Include="Utils\Base62Converter.cs" />
     <Compile Include="Utils\Comment.cs" />

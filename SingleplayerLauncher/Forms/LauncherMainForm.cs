@@ -106,18 +106,14 @@ namespace SingleplayerLauncher
             chkCustomStartCoin.Checked = GameConfig.Instance.CustomStartCoinEnabled;
             startingCoinInput.Enabled = GameConfig.Instance.CustomStartCoinEnabled;
             startingCoinInput.Value = GameConfig.Instance.StartingCoin;
+            PopulateSlots(new List<ComboBox> { comBoxAdditionalHeroWeapon }, Model.Hero.Heroes.Keys.ToList());
+            chkAdditionalHeroWeapon.Checked = GameConfig.Instance.AdditionalHeroWeaponEnabled;
+            comBoxAdditionalHeroWeapon.SelectedItem = GameConfig.Instance.AdditionalHeroWeapon;
 
             // Loadout
             // TODO: check if loading from JSON is possible with embedded: https://github.com/Fody/Costura
-            foreach (string h in Model.Hero.Heroes.Keys)
-            {
-                comBoxHero.Items.Add(h);
-            }
-
-            foreach (string d in Model.Dye.Dyes.Keys)
-            {
-                comBoxDye.Items.Add(d);
-            }
+            PopulateSlots(new List<ComboBox> { comBoxHero }, Model.Hero.Heroes.Keys.ToList(), addEmptyOption: false);
+            PopulateSlots(new List<ComboBox> { comBoxDye }, Model.Dye.Dyes.Keys.ToList(), addEmptyOption: false);
 
             PopulateSlots(ComBoxLoadoutSlots, Model.Trap.Traps.Keys.ToList());
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
@@ -135,7 +131,6 @@ namespace SingleplayerLauncher
             {
                 InitializeSlots(comBoxTrapPartsSlots, new TrapPartComboBoxHelper(TrapPart.TrapParts));
             }
-
 
             foreach (string loadoutName in Loadouts.Instance.GetLoadoutNames())
             {
@@ -334,11 +329,7 @@ namespace SingleplayerLauncher
 
             if (GameInfo.Loadout.Hero.Skins != null)
             {
-
-                foreach (string s in GameInfo.Loadout.Hero.Skins.Select(s => s.Name).ToArray())
-                {
-                    comBoxSkin.Items.Add(s);
-                }
+                PopulateSlots(new List<ComboBox> { comBoxSkin }, GameInfo.Loadout.Hero.Skins.Select(s => s.Name).ToList(), addEmptyOption: false);
 
                 comBoxSkin.SelectedItem = GameInfo.Loadout.Hero.Skins[0].Name;
                 GameInfo.Loadout.Hero = Model.Hero.Heroes[selectedHero];
@@ -443,10 +434,13 @@ namespace SingleplayerLauncher
             GameConfig.Instance.Save();
         }
 
-        private void PopulateSlots(List<ComboBox> comBoxSlotList, List<string> entryList)
+        private void PopulateSlots(List<ComboBox> comBoxSlotList, List<string> entryList, bool addEmptyOption = true)
         {
             entryList.Sort();
-            entryList.Insert(0, "");
+            if (addEmptyOption)
+            {
+                entryList.Insert(0, "");
+            }
             foreach (ComboBox comBoxSlot in comBoxSlotList)
             {
                 foreach (string entry in entryList)
@@ -1142,17 +1136,26 @@ namespace SingleplayerLauncher
             System.Diagnostics.Process.Start(MULTIPLAYER_KNOWN_ISSUES_URL);        
         }
 
-        private void labelLanguage_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonOpenLoadoutEditor_Click(object sender, EventArgs e)
         {
             this.SuspendLayout();
             panelLoadoutEditor.Visible = true;
             groupBoxLoadout.Visible = true;
             this.ResumeLayout();
+        }
+
+        private void comBoxAdditionalHeroWeapon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.AdditionalHeroWeapon.Value = comBoxAdditionalHeroWeapon.Text;
+            GameConfig.Instance.AdditionalHeroWeapon = comBoxAdditionalHeroWeapon.Text;
+            GameConfig.Instance.Save();
+        }
+
+        private void chkAdditionalHeroWeapon_CheckedChanged(object sender, EventArgs e)
+        {
+            comBoxAdditionalHeroWeapon.Enabled = chkAdditionalHeroWeapon.Checked;
+            GameConfig.Instance.AdditionalHeroWeaponEnabled = chkAdditionalHeroWeapon.Checked;
+            GameConfig.Instance.Save();
         }
     }
 }

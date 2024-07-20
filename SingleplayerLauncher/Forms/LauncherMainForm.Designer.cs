@@ -56,7 +56,9 @@ namespace SingleplayerLauncher
             this.chkNoTrapCap = new System.Windows.Forms.CheckBox();
             this.chkGodMode = new System.Windows.Forms.CheckBox();
             this.modsGroupBox = new System.Windows.Forms.GroupBox();
+            this.chkAdditionalHeroWeapon = new System.Windows.Forms.CheckBox();
             this.chkEnhancedTrapRotation = new System.Windows.Forms.CheckBox();
+            this.comBoxAdditionalHeroWeapon = new System.Windows.Forms.ComboBox();
             this.chkCustomStartCoin = new System.Windows.Forms.CheckBox();
             this.chkSellTrapsAnytime = new System.Windows.Forms.CheckBox();
             this.chk_modsEnabled = new System.Windows.Forms.CheckBox();
@@ -440,7 +442,9 @@ namespace SingleplayerLauncher
             // modsGroupBox
             // 
             this.modsGroupBox.BackColor = System.Drawing.Color.Bisque;
+            this.modsGroupBox.Controls.Add(this.chkAdditionalHeroWeapon);
             this.modsGroupBox.Controls.Add(this.chkEnhancedTrapRotation);
+            this.modsGroupBox.Controls.Add(this.comBoxAdditionalHeroWeapon);
             this.modsGroupBox.Controls.Add(this.chkCustomStartCoin);
             this.modsGroupBox.Controls.Add(this.chkSellTrapsAnytime);
             this.modsGroupBox.Controls.Add(this.chkNoLimitUniqueTraps);
@@ -454,10 +458,21 @@ namespace SingleplayerLauncher
             this.modsGroupBox.Controls.Add(this.chkTrapsInTraps);
             this.modsGroupBox.Location = new System.Drawing.Point(3, 132);
             this.modsGroupBox.Name = "modsGroupBox";
-            this.modsGroupBox.Size = new System.Drawing.Size(339, 181);
+            this.modsGroupBox.Size = new System.Drawing.Size(339, 218);
             this.modsGroupBox.TabIndex = 22;
             this.modsGroupBox.TabStop = false;
             this.modsGroupBox.Text = "Mods";
+            // 
+            // chkAdditionalHeroWeapon
+            // 
+            this.chkAdditionalHeroWeapon.AutoSize = true;
+            this.chkAdditionalHeroWeapon.Location = new System.Drawing.Point(7, 189);
+            this.chkAdditionalHeroWeapon.Name = "chkAdditionalHeroWeapon";
+            this.chkAdditionalHeroWeapon.Size = new System.Drawing.Size(139, 17);
+            this.chkAdditionalHeroWeapon.TabIndex = 75;
+            this.chkAdditionalHeroWeapon.Text = "Additional Hero weapon";
+            this.chkAdditionalHeroWeapon.UseVisualStyleBackColor = true;
+            this.chkAdditionalHeroWeapon.CheckedChanged += new System.EventHandler(this.chkAdditionalHeroWeapon_CheckedChanged);
             // 
             // chkEnhancedTrapRotation
             // 
@@ -469,6 +484,16 @@ namespace SingleplayerLauncher
             this.chkEnhancedTrapRotation.Text = "Enhanced Trap Rotation";
             this.chkEnhancedTrapRotation.UseVisualStyleBackColor = true;
             this.chkEnhancedTrapRotation.CheckedChanged += new System.EventHandler(this.chkEnhancedTrapRotation_CheckedChanged);
+            // 
+            // comBoxAdditionalHeroWeapon
+            // 
+            this.comBoxAdditionalHeroWeapon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxAdditionalHeroWeapon.FormattingEnabled = true;
+            this.comBoxAdditionalHeroWeapon.Location = new System.Drawing.Point(152, 187);
+            this.comBoxAdditionalHeroWeapon.Name = "comBoxAdditionalHeroWeapon";
+            this.comBoxAdditionalHeroWeapon.Size = new System.Drawing.Size(126, 21);
+            this.comBoxAdditionalHeroWeapon.TabIndex = 74;
+            this.comBoxAdditionalHeroWeapon.SelectedIndexChanged += new System.EventHandler(this.comBoxAdditionalHeroWeapon_SelectedIndexChanged);
             // 
             // chkCustomStartCoin
             // 
@@ -531,7 +556,6 @@ namespace SingleplayerLauncher
             this.labelLanguage.Size = new System.Drawing.Size(55, 13);
             this.labelLanguage.TabIndex = 10;
             this.labelLanguage.Text = "Language";
-            this.labelLanguage.Click += new System.EventHandler(this.labelLanguage_Click);
             // 
             // errorProvider
             // 
@@ -1908,6 +1932,8 @@ namespace SingleplayerLauncher
         private ComboBox comBoxLoadoutSlot6;
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
+        private CheckBox chkAdditionalHeroWeapon;
+        private ComboBox comBoxAdditionalHeroWeapon;
     }
 }
 

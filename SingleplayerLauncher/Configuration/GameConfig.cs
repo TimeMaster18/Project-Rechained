@@ -31,6 +31,8 @@ namespace SingleplayerLauncher
         public bool SellTrapsAnytime { get; set; }
         public bool CustomStartCoinEnabled { get; set; }
         public int StartingCoin { get; set; }
+        public string AdditionalHeroWeapon { get; set; } = "";
+        public bool AdditionalHeroWeaponEnabled { get; set; }
 
         private GameConfig() { }
 
