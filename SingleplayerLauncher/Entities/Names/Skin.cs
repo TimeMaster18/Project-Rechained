@@ -167,7 +167,7 @@
             BLUE_SCARF = "Blue Scarf (China Ad)",
 
             // YI_LIN
-            YI_LIN_DEFAULT = "Yi_lin Default",
+            YI_LIN_DEFAULT = "Yi-lin Default",
             SENTINEL_OF_THE_ORDER = "Sentinel of the Order",
             SLAYING_IN_THE_RAIN = "Slaying in the Rain",
             YULE_LIN = "Yule-Lin",
