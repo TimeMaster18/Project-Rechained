@@ -50,6 +50,32 @@
             WALL_BUILDING_PHD = "Wall Building PhD",
             ATTENTION_DEFICIT = "Attention Deficit",
             EXTRA_PADDING = "Extra Padding",
-            RESPECT_MY_AUTHORITY = "Respect My Authority";
+
+            // Siege Only
+            RESPECT_MY_AUTHORITY = "Respect My Authority",
+            CACHE_WHISPERER = "Cache Whisperer",
+            NEEDS_ALONE_TIME = "Needs Alone Time",
+            LARGE_AND_IN_CHARGE = "Large and in Charge",
+            RANSACKING_OBSESSION = "Ransacking Obsession",
+            BORN_LEADER = "Born Leader",
+            OH_WOW_BANDAGES = "Oh, Wow! Bandages!",
+            SELLS_MAGIC_TO_MAGES = "Sells Magic to Mages",
+            WORKS_SMARTER = "Works Smarter",
+            MOTIVATES_OTHERS = "Motivates Others",
+            OH_WOW_POTIONS = "Oh, Wow! Potions!",
+            LIKE_YOU_STOLE_IT = "Like You Stole It",
+            DOESNT_PLAY_WELL_WITH_OTHERS = "Doesn't Play Well with Others",
+            MOB_MENTALITY = "Mob Mentality",
+            SETTING_AN_EXAMPLE = "Setting an Example",
+            STRANGE_SENSE_OF_HUMOR = "Strange Sense of Humor",
+            NEVER_KNOCKS = "Never Knocks",
+            REALLY_COLD_HANDS = "Really Cold Hands",
+            HAS_FIERY_RAGE = "Has Fiery Rage",
+            RIP_THAT_SUCKER_OPEN = "Rip That Sucker Open",
+            ITS_MINE = "It's Mine!",
+            NOT_SCARED_OF_STATUES = "Not Scared of Statues",
+            IM_NOT_TOUCHING_YOU = "I'm Not Touching You",
+            GUARDIAN_VANDALISM = "Guardian Vandalism",
+            IS_A_WALKING_PINCUSHION = "Is a Walking Pincushion";
     }
 }

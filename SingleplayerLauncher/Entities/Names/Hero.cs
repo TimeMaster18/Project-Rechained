@@ -21,6 +21,8 @@
             TEMPER = "Temper",
             TUNDRA = "Tundra",
             YI_LIN = "Yi-Lin",
-            ZOEY = "Zoey";
+            ZOEY = "Zoey",
+            SIR_WINSTON = "Sir Winston",
+            KOBOLD_KING = "Kobold King";
     }
 }

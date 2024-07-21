@@ -73,6 +73,9 @@
     <Compile Include="Entities\Loadout\Trait.cs" />
     <Compile Include="Entities\Loadout\Consumable.cs" />
     <Compile Include="Entities\Loadout\TrapPart.cs" />
+    <Compile Include="Entities\Names\SiegeRole.cs" />
+    <Compile Include="Entities\Names\Wave.cs" />
+    <Compile Include="Entities\Names\Glyph.cs" />
     <Compile Include="Entities\Names\TrapPartSlot.cs" />
     <Compile Include="Entities\Names\TrapPart.cs" />
     <Compile Include="Entities\Names\Trait.cs" />

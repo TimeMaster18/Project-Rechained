@@ -41,7 +41,6 @@
             POUNDER = "Pounder",
             CONCUSSIVE_POUNDER = "Concussive Pounder",
             POWER_GENERATOR = "Power Generator",
-            PROJECTILE_SHIELD = "Projectile Shield",
             PUSH_TRAP = "Push Trap",
             SAW_OF_ARCTOS = "Saw Of Arctos",
             SHIELD_POWERUP = "Shield Powerup",
@@ -57,6 +56,13 @@
             TRIP_WIRE = "Trip Wire",
             WALL_BLADES = "Wall Blades",
             WALL_CHARGER = "Wall Charger",
-            WEB_SPINNER = "Web Spinner";
+            WEB_SPINNER = "Web Spinner",
+            
+            // Siege Only
+            ANTI_MAGIC_FIELD = "Anti-Magic Field",
+            PROJECTILE_SHIELD = "Projectile Shield",
+            HERO_SEEKER_ARROW_WALL = "Hero-Seeker Arrow Wall",
+            HERO_SEEKER_BALLISTA = "Hero-Seeker Ballista",
+            HERO_SEEKER_ZAPPER = "Hero-Seeker Zapper";
     }
 }

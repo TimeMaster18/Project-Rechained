@@ -6,7 +6,7 @@
             FREEDOM_TRINKET = "Freedom Trinket",
             GREATER_FREEDOM_TRINKET = "Greater Freedom Trinket",
             MENDING_ROOT = "Mending Root",
-            HOBGOBLIN_CHARM = "Hobgoblin Charm",
+            HOBGOBLIN_CHARM = "Hobgoblin's Charm",
             RING_OF_LAST_STAND = "Ring of Last Stand",
             MAGES_PICNIC = "Mage's Picnic",
             MAGES_CLOVER = "Mage's Clover",
