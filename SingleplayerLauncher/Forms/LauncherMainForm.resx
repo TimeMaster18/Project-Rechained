@@ -165,4 +165,28 @@ Looking for group? Join our discord community!
  - We have dedicated roles and channels for LFG and matchmaking
  </value>
   </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>
+How it works?
+ - Peer to peer, LAN supported
+ - Online multiplayer step by step guide to setup in our Discord
+ - Play online using VPN software such as Radmin
+
+
+Looking for group? Join our discord community!
+ - We have dedicated roles and channels for LFG and matchmaking
+ </value>
+  </data>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>
+How it works?
+ - Peer to peer, LAN supported
+ - Online multiplayer step by step guide to setup in our Discord
+ - Play online using VPN software such as Radmin
+
+
+Looking for group? Join our discord community!
+ - We have dedicated roles and channels for LFG and matchmaking
+ </value>
+  </data>
 </root>
