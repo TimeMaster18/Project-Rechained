@@ -116,7 +116,7 @@ namespace SingleplayerLauncher.Model
         {
             Id = 14,
             Name = RANCH_HAND_GUARDIAN,
-            ItemTemplateName = "pawn_guardianstablehand.Placeable_GuardianStablehand",
+            ItemTemplateName = "pawn_guardianstablehand.Placeable_GuardianStablehandMinotaur",
             AuraText = "Slowpoke: (In Combat) Primary attacks slow enemies.",
             Description = "The Ranch Hand Guardian defends his allies' rift with a crazed intensity. Rustlers should steer clear of this \"cow boy\" and his stable."
         };
