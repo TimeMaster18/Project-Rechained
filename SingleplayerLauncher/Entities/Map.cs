@@ -229,6 +229,20 @@ namespace SingleplayerLauncher.Model
         };
 
 
+        public static Map SiegeCliffsideClash = new Map()
+        {
+            Name = CLIFFSIDE_CLASH,
+            UmapCode = "2LaneMountain.umap",
+            TrapCap = 85,
+        };
+        public static Map SiegeUnchainedFortress = new Map()
+        {
+            Name = UNCHAINED_FORTRESS,
+            UmapCode = "OneWay.umap",
+            TrapCap = 85,
+        };
+
+
         // Maps { Name, umap }
         public static Dictionary<string, Map> Maps = new Dictionary<string, Map>
         {
@@ -264,6 +278,13 @@ namespace SingleplayerLauncher.Model
             { TRAINING_GROUNDS, TrainingGrounds},
             { UNCHAINED_FORTRESS, UnchainedFortress},
             { WATER_GARDEN, WaterGarden},
+        };
+
+        public static Dictionary<string, Map> SiegeMaps = new Dictionary<string, Map>
+        {
+            { CLIFFSIDE_CLASH, SiegeCliffsideClash},
+            // { HIGHLANDS, SiegeHighlands},
+            { UNCHAINED_FORTRESS, SiegeUnchainedFortress},
         };
     }
 

@@ -1,9 +1,7 @@
 ﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.GameFiles;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System;
 using System.Windows.Forms;
 
@@ -14,26 +12,31 @@ namespace SingleplayerLauncher
         private static readonly GameInfo GameInfo = GameInfo.Instance;
         private static readonly SpitfireGameUPK SpitfireGameUPK = new SpitfireGameUPK();
 
-        public static void ApplyChanges(bool isHost)
+        public static void ApplyChanges(bool isHost, bool isSiege = false)
         {
-            SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.UPKS_PATH, FileUtils.SPITFIREGAME_UPK_FILENAME));
-
-            SpitfireGameUPK.ApplyMultiplayerPatches(isHost);
-
-            if (isHost)
+            if (!isSiege)
             {
-                SpitfireGameUPK.ApplyMods(GameConfig.Instance.ModsEnabled);
-                SpitfireGameUPK.ApplyParTime();
+                SpitfireGameUPK.SpitfireGameUPKFile = new UPKFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.UPKS_PATH, FileUtils.SPITFIREGAME_UPK_FILENAME));
+                SpitfireGameUPK.ApplyMultiplayerPatches(isHost);
 
-                GameFiles.CharacterData.ApplyLoadout(GameInfo.Loadout);
-                GameFiles.DefaultGame.Apply();
+                if (isHost)
+                {
+                    SpitfireGameUPK.ApplyMods(GameConfig.Instance.ModsEnabled);
+                    SpitfireGameUPK.ApplyParTime();
 
-                GameFiles.CharacterData.ApplyMods(GameConfig.Instance.ModsEnabled);
+                    // Loadouts are applied as soon as input is received
+
+                    GameFiles.DefaultGame.Apply();
+
+                    GameFiles.CharacterData.ApplyMods(GameConfig.Instance.ModsEnabled);
+                }
+
+                SpitfireGameUPK.SaveChanges();
             }
 
-            GameFiles.DefaultGame.ApplySettings();
+            // TODO add multiplayer patches for Siege Host
 
-            SpitfireGameUPK.SaveChanges();
+            GameFiles.DefaultGame.ApplySettings();
         }
 
         public static void FirstLaunchInitialization()
@@ -48,12 +51,18 @@ namespace SingleplayerLauncher
             GameFiles.DefaultGame.Initialize();
 
             // SpitfireGame (decompress) Initialization
-            FileUtils.DecompressUPKFile(FileUtils.SPITFIREGAME_UPK_FILENAME, FileUtils.SPITFIREGAME_UPK_ORG_SIZE);
+            if (!Settings.Instance.IsSiegeInstallation)
+            {
+                // TODO extend to decompress Siege UPK
+                int spitfireGameUPKFileSize = Settings.Instance.IsSiegeInstallation ? FileUtils.SPITFIREGAME_SIEGE_UPK_ORG_SIZE : FileUtils.SPITFIREGAME_UPK_ORG_SIZE;
+                FileUtils.DecompressUPKFile(FileUtils.SPITFIREGAME_UPK_FILENAME, spitfireGameUPKFileSize);
+            }
 
             // Hook (for co-op and non-dedicated server) Initialization
-            FileUtils.ApplyHook(FileUtils.P2P_HOOK_FILENAME, FileUtils.P2P_HOOK_TARGET_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.SPITFIREGAME_BINARIES_WIN64_PATH));
-            FileUtils.ApplyHook(FileUtils.P2P_HOOK_FILENAME, FileUtils.P2P_HOOK_TARGET_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH));
-            FileUtils.CreateBackup(FileUtils.P2P_HOOK_FILENAME, Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.MOD_HOOKS_FOLDER_NAME, FileUtils.P2P_HOOK_FILENAME));
+            string p2pHookFileName = Settings.Instance.IsSiegeInstallation ? FileUtils.P2P_HOOK_SIEGE_FILENAME : FileUtils.P2P_HOOK_FILENAME;
+            FileUtils.ApplyHook(p2pHookFileName, FileUtils.P2P_HOOK_TARGET_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.SPITFIREGAME_BINARIES_WIN64_PATH));
+            FileUtils.ApplyHook(p2pHookFileName, FileUtils.P2P_HOOK_TARGET_FILENAME, Path.Combine(Settings.Instance.RootGamePath, FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH));
+            FileUtils.CreateBackup(p2pHookFileName, Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.MOD_HOOKS_FOLDER_NAME, p2pHookFileName));
 
             // Delete Hooks folder (not needed anymore)
             try
@@ -82,8 +91,6 @@ namespace SingleplayerLauncher
             {
                 MessageBox.Show("Error deleting obsolete UE Extractor folder: " + e.Message);
             }
-
-
 
             Settings.Instance.FirstRun = false;
             Settings.Instance.Save();

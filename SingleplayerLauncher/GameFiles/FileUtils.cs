@@ -22,6 +22,7 @@ namespace SingleplayerLauncher.GameFiles
         public const string UPKS_PATH = "./SpitfireGame/CookedPCConsole/";
         public const string SPITFIREGAME_UPK_FILENAME = "SpitfireGame.upk";
         public const int SPITFIREGAME_UPK_ORG_SIZE = 100225213;
+        public const int SPITFIREGAME_SIEGE_UPK_ORG_SIZE = 194276902;
 
         public const string DASHBOARD_FOLDER_PATH = "Dashboard\\Bin";
         public const string SPITFIREDASHBOARD_EXE_FILENAME = "SpitfireDashboard.exe";
@@ -33,6 +34,7 @@ namespace SingleplayerLauncher.GameFiles
         public const string SPITFIREGAME_BINARIES_WIN64_PATH = "./" + BINARIES_FOLDER_NAME + "/Win64/";
 
         public const string P2P_HOOK_FILENAME = "project_rechained_hook.dll";
+        public const string P2P_HOOK_SIEGE_FILENAME = "project_rechained_siege_hook.dll";
         public const string P2P_HOOK_TARGET_FILENAME = "x3daudio1_7.dll";
 
         public const string UE_EXTRACTOR_FOLDER_NAME = "UE Extractor";

@@ -12,7 +12,8 @@
         public static GameInfo Instance => instance;
 
 
-        public static Loadout Loadout { get; set; } = new Loadout();
+        public static SurvivalLoadout SurvivalLoadout { get; set; } = new SurvivalLoadout();
+        public static SiegeLoadout SiegeLoadout { get; set; } = new SiegeLoadout();
         public IBattleground Battleground { get; set; } = new Survival();
 
         public int PlayerCount { get; set; } = 1;

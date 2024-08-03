@@ -76,6 +76,7 @@
             NOT_SCARED_OF_STATUES = "Not Scared of Statues",
             IM_NOT_TOUCHING_YOU = "I'm Not Touching You",
             GUARDIAN_VANDALISM = "Guardian Vandalism",
-            IS_A_WALKING_PINCUSHION = "Is a Walking Pincushion";
+            IS_A_WALKING_PINCUSHION = "Is a Walking Pincushion",
+            SHOW_OFF = "Show off";
     }
 }

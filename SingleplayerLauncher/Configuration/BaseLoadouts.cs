@@ -1,36 +1,19 @@
 ﻿using Newtonsoft.Json;
 using SingleplayerLauncher.Configuration;
 using SingleplayerLauncher.GameFiles;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace SingleplayerLauncher
 {
-    public class Loadouts : IConfiguration
+    public abstract class BaseLoadouts : IConfiguration
     {
-        public static readonly string LOADOUTS_FILE_NAME = "loadouts.json";
-        private static Loadouts _instance;
-        private static readonly object _lock = new object();
+        public abstract string FileName { get; }
 
         public List<LoadoutDTO> LoadoutList { get; set; } = new List<LoadoutDTO>();
 
-        private Loadouts() { }
-
-        public static Loadouts Instance
-        {
-            get
-            {
-                lock (_lock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new Loadouts();
-                        _instance.Load();
-                    }
-                }
-                return _instance;
-            }
-        }
+        protected BaseLoadouts() { }
 
         public void AddLoadout(string name, string code)
         {
@@ -73,7 +56,7 @@ namespace SingleplayerLauncher
 
         public void Load()
         {
-            string loadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, LOADOUTS_FILE_NAME);
+            string loadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, FileName);
             if (File.Exists(loadoutsFile))
             {
                 var root = JsonConvert.DeserializeObject<LoadoutRootDTO>(File.ReadAllText(loadoutsFile));
@@ -87,7 +70,7 @@ namespace SingleplayerLauncher
 
         public void Save()
         {
-            string loadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, LOADOUTS_FILE_NAME);
+            string loadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, FileName);
             var root = new LoadoutRootDTO { Loadouts = LoadoutList };
             File.WriteAllText(loadoutsFile, JsonConvert.SerializeObject(root, Formatting.Indented));
         }

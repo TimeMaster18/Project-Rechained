@@ -26,6 +26,7 @@ namespace SingleplayerLauncher.GameFiles
         private const string CharacterDataKeyGuardian = "PlaceableGuardians";
         private const string CharacterDataKeyConsumable = "Consumables";
         private const string CharacterDataKeyTrait = "PassiveUpgrades";
+        private const string CharacterDataKeyWave = "Waves";
 
         private const string CharacterDataKeyGodMode = "GodMode";
         private const string CharacterDataKeyBonusStartingCoin = "BonusStartingCoin";
@@ -37,9 +38,26 @@ namespace SingleplayerLauncher.GameFiles
 
         private const int BASE_STARTING_COIN_SERVER_MODE = 6000;
 
-        public static void ApplyLoadout(Loadout loadout)
+        public static void ApplySiegeLoadout(SiegeLoadout loadout, int team = 1)
         {
-            ValidateLoadout(loadout);
+            ValidateSiegeLoadout(loadout);
+
+            string characterDataSection = $"RCharacterData_{loadout.PlayerName} RCharacterData";
+            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
+            IniFile data = characterData.data;
+
+            UpdateCharacterDataEntries(data, characterDataSection, loadout, team);
+            UpdateLoadoutEntries(data, characterDataSection, loadout);
+            UpdateTraitEntries(data, characterDataSection, loadout);
+            UpdateWaveEntries(data, characterDataSection, loadout);
+            UpdateRoleEntry(data, characterDataSection, loadout);
+
+            characterData.Write();
+        }
+
+        public static void ApplyLoadout(SurvivalLoadout loadout)
+        {
+            ValidateSurvivalLoadout(loadout);
 
             string characterDataSection = $"RCharacterData_{loadout.PlayerName} RCharacterData";
             ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
@@ -63,7 +81,7 @@ namespace SingleplayerLauncher.GameFiles
             ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
-            string RCharacterDataSection = $"RCharacterData_{GameInfo.Loadout.PlayerName} RCharacterData";
+            string RCharacterDataSection = $"RCharacterData_{GameInfo.SurvivalLoadout.PlayerName} RCharacterData";
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGodMode, areEnabled ? Mods.Mods.GodMode.IsEnabled.ToString() : false.ToString());
 
             string startingCoinMultiplier = CalculateMultiplierStartingCoin(areEnabled && Mods.Mods.StartingCoinOverride.IsEnabled, Mods.Mods.StartingCoinOverride.Value, GameInfo.Instance.Battleground.Map);
@@ -78,7 +96,7 @@ namespace SingleplayerLauncher.GameFiles
             characterData.Write();
         }
 
-        private static void ValidateLoadout(Loadout loadout)
+        private static void ValidateSurvivalLoadout(SurvivalLoadout loadout)
         {
             var _ = loadout ?? throw new ArgumentNullException(nameof(loadout), "Mandatory parameter");
 
@@ -93,42 +111,67 @@ namespace SingleplayerLauncher.GameFiles
             if (GameInfo.Battleground.Difficulty == null) throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
         }
 
-        private static void UpdateCharacterDataEntries(IniFile data, string section, Loadout loadout)
+        private static void ValidateSiegeLoadout(SiegeLoadout loadout)
         {
-            data.UpdateEntry(section, CharacterDataKeyHero, loadout.Hero.PawnTemplateName);
+            var _ = loadout ?? throw new ArgumentNullException(nameof(loadout), "Mandatory parameter");
+
+            if (loadout.Hero == null) throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
+            if (loadout.Dye == null) throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
+            if (loadout.SlotItems == null) throw new ArgumentNullException(nameof(loadout.SlotItems), "Mandatory parameter");
+            if (loadout.Role == null) throw new ArgumentNullException(nameof(loadout.Role), "Mandatory parameter");
+            if (loadout.Waves == null) throw new ArgumentNullException(nameof(loadout.Waves), "Mandatory parameter");
+            if (loadout.Traits == null) throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
+            if (loadout.PlayerName == null) throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
+        }
+
+        private static void UpdateCharacterDataEntries(IniFile data, string section, BaseLoadout loadout, int team=1)
+        {
+            bool isSiege = loadout.GetType() == typeof(SiegeLoadout);
+            data.UpdateEntry(section, CharacterDataKeyHero, isSiege ? loadout.Hero.SiegeTemplateName : loadout.Hero.PawnTemplateName);
             data.UpdateEntry(section, CharacterDataKeySkin, loadout.Skin.PlayerSkinName);
             data.UpdateEntry(section, CharacterDataKeyDye, loadout.Dye.CodeName.ToString());
             data.UpdateEntry(section, CharacterDataKeyPlayerName, loadout.PlayerName);
-            data.UpdateEntry(section, CharacterDataKeyGuildTag, DefaultGuildTag);
+            data.UpdateEntry(section, CharacterDataKeyGuildTag, DefaultGuildTag); // TODO add a different one for each team
             data.UpdateEntry(section, CharacterDataKeyGuildName, DefaultGuildName);
-            data.UpdateEntry(section, CharacterDataKeyTeam, DefaultTeam);
+            data.UpdateEntry(section, CharacterDataKeyTeam, team.ToString());
         }
 
-        private static void UpdateLoadoutEntries(IniFile data, string section, Loadout loadout)
+        private static void UpdateLoadoutEntries(IniFile data, string section, BaseLoadout loadout)
         {
+            bool isSiege = loadout.GetType() == typeof(SiegeLoadout);
             int loadoutIdx = 0;
-            data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(loadout.Hero.PawnWeaponTemplateName), index: loadoutIdx);
+            string pawnWeaponTemplateName = isSiege ? loadout.Hero.SiegePawnWeaponTemplateName : loadout.Hero.PawnWeaponTemplateName;
+            data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(pawnWeaponTemplateName), index: loadoutIdx);
             loadoutIdx++;
 
             if (GameConfig.Instance.ModsEnabled && GameConfig.Instance.AdditionalHeroWeaponEnabled)
             {
-                string pawnWeaponTemplateName = Model.Hero.Heroes[GameConfig.Instance.AdditionalHeroWeapon]?.PawnWeaponTemplateName;
-                data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(pawnWeaponTemplateName), index: loadoutIdx);
+                string additionalPawnWeaponTemplateName = Model.Hero.Heroes[GameConfig.Instance.AdditionalHeroWeapon]?.PawnWeaponTemplateName;
+                data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(additionalPawnWeaponTemplateName), index: loadoutIdx);
                 loadoutIdx++;
             }
 
-            for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; loadoutIdx++, i++)
+            for (int i = 0; i < SurvivalLoadout.SLOT_ITEMS_COUNT; loadoutIdx++, i++)
             {
                 var slotItem = loadout.SlotItems[i];
                 bool isTrap = slotItem is Trap;
-                TrapPart[] parts = isTrap ? loadout.GetTrapPartsForLoadout(i) : null;
 
-                string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, GameInfo.Battleground.Difficulty.TrapTier, parts);
+                TrapPart[] parts = isTrap && !isSiege ? ((SurvivalLoadout)loadout).GetTrapPartsForLoadout(i) : null;
+                int? trapTier = isTrap && !isSiege ? GameInfo.Battleground.Difficulty.TrapTier : (int?)null;
+
+                string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, trapTier, parts);
                 data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: loadoutIdx);
+            }
+
+            if (isSiege)
+            {
+                string uniqueLoadoutItemSlot = loadout.Hero.SiegeUniqueSlotItem.ItemTemplateName;
+                data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(uniqueLoadoutItemSlot), index: loadoutIdx);
+                loadoutIdx++;
             }
         }
 
-        private static void UpdateGuardianEntries(IniFile data, string section, Loadout loadout)
+        private static void UpdateGuardianEntries(IniFile data, string section, SurvivalLoadout loadout)
         {
             for (int i = 0; i < loadout.Guardians.Length; i++)
             {
@@ -138,7 +181,7 @@ namespace SingleplayerLauncher.GameFiles
             }
         }
 
-        private static void UpdateConsumableEntries(IniFile data, string section, Loadout loadout)
+        private static void UpdateConsumableEntries(IniFile data, string section, SurvivalLoadout loadout)
         {
             for (int i = 0; i < loadout.Consumables.Length; i++)
             {
@@ -148,16 +191,31 @@ namespace SingleplayerLauncher.GameFiles
             }
         }
 
-        private static void UpdateTraitEntries(IniFile data, string section, Loadout loadout)
+        private static void UpdateTraitEntries(IniFile data, string section, BaseLoadout loadout)
         {
             for (int i = 0; i < loadout.Traits.Length; i++)
             {
                 var trait = loadout.Traits[i];
                 string traitCodeName = trait?.CodeName ?? "";
-                string bonusTraitCodeName = trait != null && loadout.isTraitMatchingBonus(i) ? trait.MatchingBonusTrait.CodeName : "";
+                string bonusTraitCodeName = trait != null && loadout.IsTraitMatchingBonus(i) ? trait.MatchingBonusTrait.CodeName : "";
 
                 data.UpdateEntry(section, CharacterDataKeyTrait, traitCodeName, index: i);
                 data.UpdateEntry(section, CharacterDataKeyTrait, bonusTraitCodeName, index: i + 4);
+            }
+        }
+
+        private static void UpdateRoleEntry(IniFile data, string section, SiegeLoadout loadout)
+        {
+            data.UpdateEntry(section, CharacterDataKeyTrait, loadout.Role.CodeName, index: 7);
+        }
+
+        private static void UpdateWaveEntries(IniFile data, string section, SiegeLoadout loadout)
+        {
+            for (int i = 0; i < loadout.Waves.Length; i++)
+            {
+                var wave = loadout.Waves[i];
+                string itemString = wave == null ? "" : GenerateItemString(wave.CodeName);
+                data.UpdateEntry(section, CharacterDataKeyWave, itemString, index: i);
             }
         }
 

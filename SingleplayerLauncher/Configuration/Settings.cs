@@ -20,6 +20,7 @@ namespace SingleplayerLauncher
         public string Language { get; set; } = "English";
         public string RootGamePath { get; set; }
         public string LauncherInstallationPath { get; set; }
+        public bool IsSiegeInstallation { get; set; } = false;
 
         private Settings() { }
 

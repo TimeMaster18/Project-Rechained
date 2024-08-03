@@ -48,7 +48,22 @@ public static class InputValidator
     {
         try
         {
-            Loadout.DecodeLoadout(loadoutCode);
+            SurvivalLoadout loadout = new SurvivalLoadout();
+            loadout.Decode(loadoutCode);
+            return (true, string.Empty);
+        }
+        catch
+        {
+            return (false, "Invalid loadout code.");
+        }
+    }
+
+    public static (bool isValid, string errorMessage) ValidateSiegeLoadoutCode(string loadoutCode)
+    {
+        try
+        {
+            SiegeLoadout loadout = new SiegeLoadout();
+            loadout.Decode(loadoutCode);
             return (true, string.Empty);
         }
         catch

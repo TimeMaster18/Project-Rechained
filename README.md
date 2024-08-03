@@ -21,7 +21,7 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 
 ### Features:
 - Launch the game from **Steam**
-- **Peer to peer multiplayer**
+- **Peer to peer multiplayer up to 5 players**
 - Play **any map**, **Survival** or **Endless** modes
 - Play with **all Heroes** and Custom **Loadouts**
   - Choose Traps (with trap parts) and Gear

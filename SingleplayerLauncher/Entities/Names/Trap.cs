@@ -60,6 +60,7 @@
             
             // Siege Only
             ANTI_MAGIC_FIELD = "Anti-Magic Field",
+            BUFF_PYLON = "Buff Pylon",
             PROJECTILE_SHIELD = "Projectile Shield",
             HERO_SEEKER_ARROW_WALL = "Hero-Seeker Arrow Wall",
             HERO_SEEKER_BALLISTA = "Hero-Seeker Ballista",

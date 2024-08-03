@@ -179,8 +179,8 @@ namespace SingleplayerLauncher
             this.comBoxLoadoutSlot6 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gameModeTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.gameModeSurvivalTab = new System.Windows.Forms.TabPage();
+            this.gameModeSiegeTab = new System.Windows.Forms.TabPage();
             this.siegeGameTabControl = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -224,9 +224,11 @@ namespace SingleplayerLauncher
             this.labelSiegeLanguage = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.loadoutEditorTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.loadoutEditorSurvivalTab = new System.Windows.Forms.TabPage();
+            this.loadoutEditorSiegeTab = new System.Windows.Forms.TabPage();
             this.siegeLoadoutEditorGroupBox = new System.Windows.Forms.GroupBox();
+            this.comBoxRole = new System.Windows.Forms.ComboBox();
+            this.roleLabel = new System.Windows.Forms.Label();
             this.comBoxSiegeBossWaveSlot2 = new System.Windows.Forms.ComboBox();
             this.label45 = new System.Windows.Forms.Label();
             this.comBoxSiegeBossWaveSlot1 = new System.Windows.Forms.ComboBox();
@@ -298,8 +300,8 @@ namespace SingleplayerLauncher
             this.groupBoxLoadout.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gameModeTabControl.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.gameModeSurvivalTab.SuspendLayout();
+            this.gameModeSiegeTab.SuspendLayout();
             this.siegeGameTabControl.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -307,8 +309,8 @@ namespace SingleplayerLauncher
             this.siegeGameSettingsGroupBox.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.loadoutEditorTabControl.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.loadoutEditorSurvivalTab.SuspendLayout();
+            this.loadoutEditorSiegeTab.SuspendLayout();
             this.siegeLoadoutEditorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1875,8 +1877,8 @@ namespace SingleplayerLauncher
             // 
             // gameModeTabControl
             // 
-            this.gameModeTabControl.Controls.Add(this.tabPage3);
-            this.gameModeTabControl.Controls.Add(this.tabPage4);
+            this.gameModeTabControl.Controls.Add(this.gameModeSurvivalTab);
+            this.gameModeTabControl.Controls.Add(this.gameModeSiegeTab);
             this.gameModeTabControl.ItemSize = new System.Drawing.Size(175, 18);
             this.gameModeTabControl.Location = new System.Drawing.Point(0, 33);
             this.gameModeTabControl.Name = "gameModeTabControl";
@@ -1885,37 +1887,37 @@ namespace SingleplayerLauncher
             this.gameModeTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.gameModeTabControl.TabIndex = 95;
             // 
-            // tabPage3
+            // gameModeSurvivalTab
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.tabPage3.Controls.Add(this.battlegroundGroupBox);
-            this.tabPage3.Controls.Add(this.survivalGameTabControl);
-            this.tabPage3.Controls.Add(this.gameSettingsGroupBox);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(348, 494);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "Survival";
+            this.gameModeSurvivalTab.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.gameModeSurvivalTab.Controls.Add(this.battlegroundGroupBox);
+            this.gameModeSurvivalTab.Controls.Add(this.survivalGameTabControl);
+            this.gameModeSurvivalTab.Controls.Add(this.gameSettingsGroupBox);
+            this.gameModeSurvivalTab.Location = new System.Drawing.Point(4, 22);
+            this.gameModeSurvivalTab.Name = "gameModeSurvivalTab";
+            this.gameModeSurvivalTab.Padding = new System.Windows.Forms.Padding(3);
+            this.gameModeSurvivalTab.Size = new System.Drawing.Size(348, 494);
+            this.gameModeSurvivalTab.TabIndex = 0;
+            this.gameModeSurvivalTab.Text = "Survival";
             // 
-            // tabPage4
+            // gameModeSiegeTab
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(182)))), ((int)(((byte)(89)))));
-            this.tabPage4.Controls.Add(this.siegeGameTabControl);
-            this.tabPage4.Controls.Add(this.siegeGameSettingsGroupBox);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(348, 494);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "Siege";
+            this.gameModeSiegeTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(182)))), ((int)(((byte)(89)))));
+            this.gameModeSiegeTab.Controls.Add(this.siegeGameTabControl);
+            this.gameModeSiegeTab.Controls.Add(this.siegeGameSettingsGroupBox);
+            this.gameModeSiegeTab.Location = new System.Drawing.Point(4, 22);
+            this.gameModeSiegeTab.Name = "gameModeSiegeTab";
+            this.gameModeSiegeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.gameModeSiegeTab.Size = new System.Drawing.Size(348, 494);
+            this.gameModeSiegeTab.TabIndex = 1;
+            this.gameModeSiegeTab.Text = "Siege";
             // 
             // siegeGameTabControl
             // 
             this.siegeGameTabControl.Controls.Add(this.tabPage7);
             this.siegeGameTabControl.Controls.Add(this.tabPage8);
             this.siegeGameTabControl.ItemSize = new System.Drawing.Size(170, 20);
-            this.siegeGameTabControl.Location = new System.Drawing.Point(3, 56);
+            this.siegeGameTabControl.Location = new System.Drawing.Point(2, 56);
             this.siegeGameTabControl.Name = "siegeGameTabControl";
             this.siegeGameTabControl.SelectedIndex = 0;
             this.siegeGameTabControl.Size = new System.Drawing.Size(343, 435);
@@ -1950,8 +1952,8 @@ namespace SingleplayerLauncher
             this.linkLabel1.Size = new System.Drawing.Size(304, 51);
             this.linkLabel1.TabIndex = 90;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Known Issues (Full List): \r\n - (Host) No voices, wave count (visual)\r\n - (Client)" +
-    " If no skills join match again, no starting coin\r\n";
+            this.linkLabel1.Text = "Known Issues (Full List): \r\n - (Host) No voices, upgrades menu (close with U)\r\n -" +
+    " (Client) If no skills join match again\r\n";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLabel1.UseCompatibleTextRendering = true;
             // 
@@ -1989,6 +1991,7 @@ namespace SingleplayerLauncher
             this.btnJoinSiegeGame.TabIndex = 85;
             this.btnJoinSiegeGame.Text = "Join Match";
             this.btnJoinSiegeGame.UseVisualStyleBackColor = false;
+            this.btnJoinSiegeGame.Click += new System.EventHandler(this.btnJoinSiegeGame_Click);
             // 
             // label9
             // 
@@ -2005,6 +2008,7 @@ namespace SingleplayerLauncher
             this.maskedTextBoxJoinSiegeGameHostIP.Name = "maskedTextBoxJoinSiegeGameHostIP";
             this.maskedTextBoxJoinSiegeGameHostIP.Size = new System.Drawing.Size(118, 20);
             this.maskedTextBoxJoinSiegeGameHostIP.TabIndex = 73;
+            this.maskedTextBoxJoinSiegeGameHostIP.TextChanged += new System.EventHandler(this.maskedTextBoxJoinSiegeGameHostIP_TextChanged);
             // 
             // tabPage8
             // 
@@ -2082,6 +2086,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeBattleground.Name = "comBoxSiegeBattleground";
             this.comBoxSiegeBattleground.Size = new System.Drawing.Size(108, 21);
             this.comBoxSiegeBattleground.TabIndex = 1;
+            this.comBoxSiegeBattleground.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeBattleground_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -2221,6 +2226,7 @@ namespace SingleplayerLauncher
             this.btnSiegeLaunch.TabIndex = 0;
             this.btnSiegeLaunch.Text = "Launch Match";
             this.btnSiegeLaunch.UseVisualStyleBackColor = false;
+            this.btnSiegeLaunch.Click += new System.EventHandler(this.btnSiegeLaunch_Click);
             // 
             // maskedTextBoxSiegeHostGamePlayer2Loadout
             // 
@@ -2286,9 +2292,9 @@ namespace SingleplayerLauncher
             this.siegeGameSettingsGroupBox.BackColor = System.Drawing.SystemColors.Control;
             this.siegeGameSettingsGroupBox.Controls.Add(this.comBoxSiegeLanguage);
             this.siegeGameSettingsGroupBox.Controls.Add(this.labelSiegeLanguage);
-            this.siegeGameSettingsGroupBox.Location = new System.Drawing.Point(4, 3);
+            this.siegeGameSettingsGroupBox.Location = new System.Drawing.Point(3, 3);
             this.siegeGameSettingsGroupBox.Name = "siegeGameSettingsGroupBox";
-            this.siegeGameSettingsGroupBox.Size = new System.Drawing.Size(341, 51);
+            this.siegeGameSettingsGroupBox.Size = new System.Drawing.Size(342, 51);
             this.siegeGameSettingsGroupBox.TabIndex = 89;
             this.siegeGameSettingsGroupBox.TabStop = false;
             this.siegeGameSettingsGroupBox.Text = "Game Settings";
@@ -2301,6 +2307,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLanguage.Name = "comBoxSiegeLanguage";
             this.comBoxSiegeLanguage.Size = new System.Drawing.Size(79, 21);
             this.comBoxSiegeLanguage.TabIndex = 11;
+            this.comBoxSiegeLanguage.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLanguage_SelectedIndexChanged);
             // 
             // labelSiegeLanguage
             // 
@@ -2332,8 +2339,8 @@ namespace SingleplayerLauncher
             // 
             // loadoutEditorTabControl
             // 
-            this.loadoutEditorTabControl.Controls.Add(this.tabPage5);
-            this.loadoutEditorTabControl.Controls.Add(this.tabPage6);
+            this.loadoutEditorTabControl.Controls.Add(this.loadoutEditorSurvivalTab);
+            this.loadoutEditorTabControl.Controls.Add(this.loadoutEditorSiegeTab);
             this.loadoutEditorTabControl.ItemSize = new System.Drawing.Size(287, 20);
             this.loadoutEditorTabControl.Location = new System.Drawing.Point(3, 3);
             this.loadoutEditorTabControl.Name = "loadoutEditorTabControl";
@@ -2342,33 +2349,35 @@ namespace SingleplayerLauncher
             this.loadoutEditorTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.loadoutEditorTabControl.TabIndex = 23;
             // 
-            // tabPage5
+            // loadoutEditorSurvivalTab
             // 
-            this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage5.Controls.Add(this.groupBoxLoadout);
-            this.tabPage5.Location = new System.Drawing.Point(4, 24);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(570, 562);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "Survival";
+            this.loadoutEditorSurvivalTab.BackColor = System.Drawing.SystemColors.Control;
+            this.loadoutEditorSurvivalTab.Controls.Add(this.groupBoxLoadout);
+            this.loadoutEditorSurvivalTab.Location = new System.Drawing.Point(4, 24);
+            this.loadoutEditorSurvivalTab.Name = "loadoutEditorSurvivalTab";
+            this.loadoutEditorSurvivalTab.Padding = new System.Windows.Forms.Padding(3);
+            this.loadoutEditorSurvivalTab.Size = new System.Drawing.Size(570, 562);
+            this.loadoutEditorSurvivalTab.TabIndex = 0;
+            this.loadoutEditorSurvivalTab.Text = "Survival";
             // 
-            // tabPage6
+            // loadoutEditorSiegeTab
             // 
-            this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage6.Controls.Add(this.siegeLoadoutEditorGroupBox);
-            this.tabPage6.Location = new System.Drawing.Point(4, 24);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(570, 562);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "Siege";
+            this.loadoutEditorSiegeTab.BackColor = System.Drawing.SystemColors.Control;
+            this.loadoutEditorSiegeTab.Controls.Add(this.siegeLoadoutEditorGroupBox);
+            this.loadoutEditorSiegeTab.Location = new System.Drawing.Point(4, 24);
+            this.loadoutEditorSiegeTab.Name = "loadoutEditorSiegeTab";
+            this.loadoutEditorSiegeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.loadoutEditorSiegeTab.Size = new System.Drawing.Size(570, 562);
+            this.loadoutEditorSiegeTab.TabIndex = 1;
+            this.loadoutEditorSiegeTab.Text = "Siege";
             // 
             // siegeLoadoutEditorGroupBox
             // 
             this.siegeLoadoutEditorGroupBox.AutoSize = true;
             this.siegeLoadoutEditorGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.siegeLoadoutEditorGroupBox.BackColor = System.Drawing.SystemColors.Control;
+            this.siegeLoadoutEditorGroupBox.Controls.Add(this.comBoxRole);
+            this.siegeLoadoutEditorGroupBox.Controls.Add(this.roleLabel);
             this.siegeLoadoutEditorGroupBox.Controls.Add(this.comBoxSiegeBossWaveSlot2);
             this.siegeLoadoutEditorGroupBox.Controls.Add(this.label45);
             this.siegeLoadoutEditorGroupBox.Controls.Add(this.comBoxSiegeBossWaveSlot1);
@@ -2430,24 +2439,44 @@ namespace SingleplayerLauncher
             this.siegeLoadoutEditorGroupBox.Controls.Add(this.comBoxSiegeLoadoutSlot6);
             this.siegeLoadoutEditorGroupBox.Location = new System.Drawing.Point(0, 2);
             this.siegeLoadoutEditorGroupBox.Name = "siegeLoadoutEditorGroupBox";
-            this.siegeLoadoutEditorGroupBox.Size = new System.Drawing.Size(569, 451);
+            this.siegeLoadoutEditorGroupBox.Size = new System.Drawing.Size(568, 479);
             this.siegeLoadoutEditorGroupBox.TabIndex = 25;
             this.siegeLoadoutEditorGroupBox.TabStop = false;
             this.siegeLoadoutEditorGroupBox.Text = "Loadout Editor";
+            // 
+            // comBoxRole
+            // 
+            this.comBoxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBoxRole.FormattingEnabled = true;
+            this.comBoxRole.Location = new System.Drawing.Point(42, 359);
+            this.comBoxRole.Name = "comBoxRole";
+            this.comBoxRole.Size = new System.Drawing.Size(162, 21);
+            this.comBoxRole.TabIndex = 89;
+            this.comBoxRole.SelectedIndexChanged += new System.EventHandler(this.comBoxRole_SelectedIndexChanged);
+            // 
+            // roleLabel
+            // 
+            this.roleLabel.AutoSize = true;
+            this.roleLabel.Location = new System.Drawing.Point(8, 362);
+            this.roleLabel.Name = "roleLabel";
+            this.roleLabel.Size = new System.Drawing.Size(29, 13);
+            this.roleLabel.TabIndex = 88;
+            this.roleLabel.Text = "Role";
             // 
             // comBoxSiegeBossWaveSlot2
             // 
             this.comBoxSiegeBossWaveSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeBossWaveSlot2.FormattingEnabled = true;
-            this.comBoxSiegeBossWaveSlot2.Location = new System.Drawing.Point(433, 322);
+            this.comBoxSiegeBossWaveSlot2.Location = new System.Drawing.Point(432, 338);
             this.comBoxSiegeBossWaveSlot2.Name = "comBoxSiegeBossWaveSlot2";
             this.comBoxSiegeBossWaveSlot2.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeBossWaveSlot2.TabIndex = 87;
+            this.comBoxSiegeBossWaveSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeBossWaveSlot2_SelectedIndexChanged);
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(227, 326);
+            this.label45.Location = new System.Drawing.Point(226, 342);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(67, 13);
             this.label45.TabIndex = 86;
@@ -2457,24 +2486,26 @@ namespace SingleplayerLauncher
             // 
             this.comBoxSiegeBossWaveSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeBossWaveSlot1.FormattingEnabled = true;
-            this.comBoxSiegeBossWaveSlot1.Location = new System.Drawing.Point(296, 322);
+            this.comBoxSiegeBossWaveSlot1.Location = new System.Drawing.Point(295, 338);
             this.comBoxSiegeBossWaveSlot1.Name = "comBoxSiegeBossWaveSlot1";
             this.comBoxSiegeBossWaveSlot1.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeBossWaveSlot1.TabIndex = 85;
+            this.comBoxSiegeBossWaveSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeBossWaveSlot1_SelectedIndexChanged);
             // 
             // comBoxSiegeLv4WaveSlot2
             // 
             this.comBoxSiegeLv4WaveSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv4WaveSlot2.FormattingEnabled = true;
-            this.comBoxSiegeLv4WaveSlot2.Location = new System.Drawing.Point(433, 290);
+            this.comBoxSiegeLv4WaveSlot2.Location = new System.Drawing.Point(432, 306);
             this.comBoxSiegeLv4WaveSlot2.Name = "comBoxSiegeLv4WaveSlot2";
             this.comBoxSiegeLv4WaveSlot2.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv4WaveSlot2.TabIndex = 84;
+            this.comBoxSiegeLv4WaveSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv4WaveSlot2_SelectedIndexChanged);
             // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(229, 294);
+            this.label36.Location = new System.Drawing.Point(228, 310);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(65, 13);
             this.label36.TabIndex = 83;
@@ -2484,24 +2515,26 @@ namespace SingleplayerLauncher
             // 
             this.comBoxSiegeLv4WaveSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv4WaveSlot1.FormattingEnabled = true;
-            this.comBoxSiegeLv4WaveSlot1.Location = new System.Drawing.Point(296, 290);
+            this.comBoxSiegeLv4WaveSlot1.Location = new System.Drawing.Point(295, 306);
             this.comBoxSiegeLv4WaveSlot1.Name = "comBoxSiegeLv4WaveSlot1";
             this.comBoxSiegeLv4WaveSlot1.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv4WaveSlot1.TabIndex = 82;
+            this.comBoxSiegeLv4WaveSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv4WaveSlot1_SelectedIndexChanged);
             // 
             // comBoxSiegeLv3WaveSlot2
             // 
             this.comBoxSiegeLv3WaveSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv3WaveSlot2.FormattingEnabled = true;
-            this.comBoxSiegeLv3WaveSlot2.Location = new System.Drawing.Point(433, 263);
+            this.comBoxSiegeLv3WaveSlot2.Location = new System.Drawing.Point(432, 279);
             this.comBoxSiegeLv3WaveSlot2.Name = "comBoxSiegeLv3WaveSlot2";
             this.comBoxSiegeLv3WaveSlot2.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv3WaveSlot2.TabIndex = 81;
+            this.comBoxSiegeLv3WaveSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv3WaveSlot2_SelectedIndexChanged);
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(229, 267);
+            this.label34.Location = new System.Drawing.Point(228, 283);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(65, 13);
             this.label34.TabIndex = 80;
@@ -2511,24 +2544,26 @@ namespace SingleplayerLauncher
             // 
             this.comBoxSiegeLv3WaveSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv3WaveSlot1.FormattingEnabled = true;
-            this.comBoxSiegeLv3WaveSlot1.Location = new System.Drawing.Point(296, 263);
+            this.comBoxSiegeLv3WaveSlot1.Location = new System.Drawing.Point(295, 279);
             this.comBoxSiegeLv3WaveSlot1.Name = "comBoxSiegeLv3WaveSlot1";
             this.comBoxSiegeLv3WaveSlot1.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv3WaveSlot1.TabIndex = 79;
+            this.comBoxSiegeLv3WaveSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv3WaveSlot1_SelectedIndexChanged);
             // 
             // comBoxSiegeLv2WaveSlot2
             // 
             this.comBoxSiegeLv2WaveSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv2WaveSlot2.FormattingEnabled = true;
-            this.comBoxSiegeLv2WaveSlot2.Location = new System.Drawing.Point(433, 236);
+            this.comBoxSiegeLv2WaveSlot2.Location = new System.Drawing.Point(432, 252);
             this.comBoxSiegeLv2WaveSlot2.Name = "comBoxSiegeLv2WaveSlot2";
             this.comBoxSiegeLv2WaveSlot2.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv2WaveSlot2.TabIndex = 78;
+            this.comBoxSiegeLv2WaveSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv2WaveSlot2_SelectedIndexChanged);
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(229, 240);
+            this.label31.Location = new System.Drawing.Point(228, 256);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(65, 13);
             this.label31.TabIndex = 77;
@@ -2538,24 +2573,26 @@ namespace SingleplayerLauncher
             // 
             this.comBoxSiegeLv2WaveSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv2WaveSlot1.FormattingEnabled = true;
-            this.comBoxSiegeLv2WaveSlot1.Location = new System.Drawing.Point(296, 236);
+            this.comBoxSiegeLv2WaveSlot1.Location = new System.Drawing.Point(295, 252);
             this.comBoxSiegeLv2WaveSlot1.Name = "comBoxSiegeLv2WaveSlot1";
             this.comBoxSiegeLv2WaveSlot1.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv2WaveSlot1.TabIndex = 76;
+            this.comBoxSiegeLv2WaveSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv2WaveSlot1_SelectedIndexChanged);
             // 
             // comBoxSiegeLv1WaveSlot2
             // 
             this.comBoxSiegeLv1WaveSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv1WaveSlot2.FormattingEnabled = true;
-            this.comBoxSiegeLv1WaveSlot2.Location = new System.Drawing.Point(433, 209);
+            this.comBoxSiegeLv1WaveSlot2.Location = new System.Drawing.Point(432, 225);
             this.comBoxSiegeLv1WaveSlot2.Name = "comBoxSiegeLv1WaveSlot2";
             this.comBoxSiegeLv1WaveSlot2.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv1WaveSlot2.TabIndex = 75;
+            this.comBoxSiegeLv1WaveSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv1WaveSlot2_SelectedIndexChanged);
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(229, 213);
+            this.label30.Location = new System.Drawing.Point(228, 229);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(65, 13);
             this.label30.TabIndex = 74;
@@ -2565,27 +2602,29 @@ namespace SingleplayerLauncher
             // 
             this.comBoxSiegeLv1WaveSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBoxSiegeLv1WaveSlot1.FormattingEnabled = true;
-            this.comBoxSiegeLv1WaveSlot1.Location = new System.Drawing.Point(296, 209);
+            this.comBoxSiegeLv1WaveSlot1.Location = new System.Drawing.Point(295, 225);
             this.comBoxSiegeLv1WaveSlot1.Name = "comBoxSiegeLv1WaveSlot1";
             this.comBoxSiegeLv1WaveSlot1.Size = new System.Drawing.Size(130, 21);
             this.comBoxSiegeLv1WaveSlot1.TabIndex = 73;
+            this.comBoxSiegeLv1WaveSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLv1WaveSlot1_SelectedIndexChanged);
             // 
             // btnDeleteSiegeLoadout
             // 
             this.btnDeleteSiegeLoadout.BackColor = System.Drawing.Color.Tomato;
             this.btnDeleteSiegeLoadout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDeleteSiegeLoadout.Location = new System.Drawing.Point(6, 410);
+            this.btnDeleteSiegeLoadout.Location = new System.Drawing.Point(6, 438);
             this.btnDeleteSiegeLoadout.Name = "btnDeleteSiegeLoadout";
             this.btnDeleteSiegeLoadout.Size = new System.Drawing.Size(159, 22);
             this.btnDeleteSiegeLoadout.TabIndex = 72;
             this.btnDeleteSiegeLoadout.Text = "Delete selected Loadout";
             this.btnDeleteSiegeLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDeleteSiegeLoadout.UseVisualStyleBackColor = false;
+            this.btnDeleteSiegeLoadout.Click += new System.EventHandler(this.btnDeleteSiegeLoadout_Click);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 374);
+            this.label22.Location = new System.Drawing.Point(6, 402);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(67, 13);
             this.label22.TabIndex = 71;
@@ -2593,15 +2632,16 @@ namespace SingleplayerLauncher
             // 
             // maskedTextBoxSiegePlayerName
             // 
-            this.maskedTextBoxSiegePlayerName.Location = new System.Drawing.Point(79, 371);
+            this.maskedTextBoxSiegePlayerName.Location = new System.Drawing.Point(79, 399);
             this.maskedTextBoxSiegePlayerName.Name = "maskedTextBoxSiegePlayerName";
             this.maskedTextBoxSiegePlayerName.Size = new System.Drawing.Size(99, 20);
             this.maskedTextBoxSiegePlayerName.TabIndex = 70;
+            this.maskedTextBoxSiegePlayerName.TextChanged += new System.EventHandler(this.maskedTextBoxSiegePlayerName_TextChanged);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(184, 374);
+            this.label23.Location = new System.Drawing.Point(184, 402);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(77, 13);
             this.label23.TabIndex = 69;
@@ -2610,29 +2650,32 @@ namespace SingleplayerLauncher
             // btnSaveSiegeLoadout
             // 
             this.btnSaveSiegeLoadout.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btnSaveSiegeLoadout.Location = new System.Drawing.Point(503, 358);
+            this.btnSaveSiegeLoadout.Location = new System.Drawing.Point(503, 386);
             this.btnSaveSiegeLoadout.Name = "btnSaveSiegeLoadout";
             this.btnSaveSiegeLoadout.Size = new System.Drawing.Size(59, 44);
             this.btnSaveSiegeLoadout.TabIndex = 67;
             this.btnSaveSiegeLoadout.Text = "Save Loadout";
             this.btnSaveSiegeLoadout.UseVisualStyleBackColor = false;
+            this.btnSaveSiegeLoadout.Click += new System.EventHandler(this.btnSaveSiegeLoadout_Click);
             // 
             // maskedTextBoxSiegeLoadoutName
             // 
-            this.maskedTextBoxSiegeLoadoutName.Location = new System.Drawing.Point(267, 371);
+            this.maskedTextBoxSiegeLoadoutName.Location = new System.Drawing.Point(267, 399);
             this.maskedTextBoxSiegeLoadoutName.Name = "maskedTextBoxSiegeLoadoutName";
             this.maskedTextBoxSiegeLoadoutName.Size = new System.Drawing.Size(230, 20);
             this.maskedTextBoxSiegeLoadoutName.TabIndex = 68;
+            this.maskedTextBoxSiegeLoadoutName.TextChanged += new System.EventHandler(this.maskedTextBoxSiegeLoadoutName_TextChanged);
             // 
             // btnCopySiegeLoadoutToClipboard
             // 
-            this.btnCopySiegeLoadoutToClipboard.Location = new System.Drawing.Point(520, 412);
+            this.btnCopySiegeLoadoutToClipboard.Location = new System.Drawing.Point(520, 440);
             this.btnCopySiegeLoadoutToClipboard.Name = "btnCopySiegeLoadoutToClipboard";
             this.btnCopySiegeLoadoutToClipboard.Size = new System.Drawing.Size(42, 20);
             this.btnCopySiegeLoadoutToClipboard.TabIndex = 27;
             this.btnCopySiegeLoadoutToClipboard.Text = "Copy";
             this.btnCopySiegeLoadoutToClipboard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCopySiegeLoadoutToClipboard.UseVisualStyleBackColor = true;
+            this.btnCopySiegeLoadoutToClipboard.Click += new System.EventHandler(this.btnCopySiegeLoadoutToClipboard_Click);
             // 
             // btnImportSiegeLoadout
             // 
@@ -2644,11 +2687,12 @@ namespace SingleplayerLauncher
             this.btnImportSiegeLoadout.Text = "Import";
             this.btnImportSiegeLoadout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnImportSiegeLoadout.UseVisualStyleBackColor = true;
+            this.btnImportSiegeLoadout.Click += new System.EventHandler(this.btnImportSiegeLoadout_Click);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(191, 416);
+            this.label24.Location = new System.Drawing.Point(191, 444);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(37, 13);
             this.label24.TabIndex = 66;
@@ -2656,7 +2700,7 @@ namespace SingleplayerLauncher
             // 
             // textBoxExportSiegeLoadout
             // 
-            this.textBoxExportSiegeLoadout.Location = new System.Drawing.Point(234, 412);
+            this.textBoxExportSiegeLoadout.Location = new System.Drawing.Point(234, 440);
             this.textBoxExportSiegeLoadout.Name = "textBoxExportSiegeLoadout";
             this.textBoxExportSiegeLoadout.ReadOnly = true;
             this.textBoxExportSiegeLoadout.Size = new System.Drawing.Size(280, 20);
@@ -2668,6 +2712,7 @@ namespace SingleplayerLauncher
             this.maskedTextBoxImportSiegeLoadout.Name = "maskedTextBoxImportSiegeLoadout";
             this.maskedTextBoxImportSiegeLoadout.Size = new System.Drawing.Size(200, 20);
             this.maskedTextBoxImportSiegeLoadout.TabIndex = 64;
+            this.maskedTextBoxImportSiegeLoadout.TextChanged += new System.EventHandler(this.maskedTextBoxImportSiegeLoadout_TextChanged);
             // 
             // label25
             // 
@@ -2686,6 +2731,7 @@ namespace SingleplayerLauncher
             this.comboxSiegeTraitYellowSlot.Name = "comboxSiegeTraitYellowSlot";
             this.comboxSiegeTraitYellowSlot.Size = new System.Drawing.Size(200, 21);
             this.comboxSiegeTraitYellowSlot.TabIndex = 32;
+            this.comboxSiegeTraitYellowSlot.SelectedIndexChanged += new System.EventHandler(this.comboxSiegeTraitYellowSlot_SelectedIndexChanged);
             // 
             // label26
             // 
@@ -2705,6 +2751,7 @@ namespace SingleplayerLauncher
             this.comboxSiegeTraitNoBonusSlot.Name = "comboxSiegeTraitNoBonusSlot";
             this.comboxSiegeTraitNoBonusSlot.Size = new System.Drawing.Size(200, 21);
             this.comboxSiegeTraitNoBonusSlot.TabIndex = 33;
+            this.comboxSiegeTraitNoBonusSlot.SelectedIndexChanged += new System.EventHandler(this.comboxSiegeTraitNoBonusSlot_SelectedIndexChanged);
             // 
             // label27
             // 
@@ -2724,6 +2771,7 @@ namespace SingleplayerLauncher
             this.comboxSiegeTraitGreenSlot.Name = "comboxSiegeTraitGreenSlot";
             this.comboxSiegeTraitGreenSlot.Size = new System.Drawing.Size(200, 21);
             this.comboxSiegeTraitGreenSlot.TabIndex = 28;
+            this.comboxSiegeTraitGreenSlot.SelectedIndexChanged += new System.EventHandler(this.comboxSiegeTraitGreenSlot_SelectedIndexChanged);
             // 
             // label28
             // 
@@ -2743,6 +2791,7 @@ namespace SingleplayerLauncher
             this.comboxSiegeTraitBlueSlot.Name = "comboxSiegeTraitBlueSlot";
             this.comboxSiegeTraitBlueSlot.Size = new System.Drawing.Size(200, 21);
             this.comboxSiegeTraitBlueSlot.TabIndex = 29;
+            this.comboxSiegeTraitBlueSlot.SelectedIndexChanged += new System.EventHandler(this.comboxSiegeTraitBlueSlot_SelectedIndexChanged);
             // 
             // comBoxSiegeDye
             // 
@@ -2752,6 +2801,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeDye.Name = "comBoxSiegeDye";
             this.comBoxSiegeDye.Size = new System.Drawing.Size(111, 21);
             this.comBoxSiegeDye.TabIndex = 6;
+            this.comBoxSiegeDye.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeDye_SelectedIndexChanged);
             // 
             // label29
             // 
@@ -2770,6 +2820,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeHero.Name = "comBoxSiegeHero";
             this.comBoxSiegeHero.Size = new System.Drawing.Size(126, 21);
             this.comBoxSiegeHero.TabIndex = 2;
+            this.comBoxSiegeHero.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeHero_SelectedIndexChanged);
             // 
             // comBoxSiegeSkin
             // 
@@ -2779,6 +2830,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeSkin.Name = "comBoxSiegeSkin";
             this.comBoxSiegeSkin.Size = new System.Drawing.Size(190, 21);
             this.comBoxSiegeSkin.TabIndex = 4;
+            this.comBoxSiegeSkin.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeSkin_SelectedIndexChanged);
             // 
             // label32
             // 
@@ -2806,6 +2858,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadouts.Name = "comBoxSiegeLoadouts";
             this.comBoxSiegeLoadouts.Size = new System.Drawing.Size(252, 21);
             this.comBoxSiegeLoadouts.TabIndex = 23;
+            this.comBoxSiegeLoadouts.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadouts_SelectedIndexChanged);
             // 
             // label35
             // 
@@ -2896,6 +2949,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot1.Name = "comBoxSiegeLoadoutSlot1";
             this.comBoxSiegeLoadoutSlot1.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot1.TabIndex = 0;
+            this.comBoxSiegeLoadoutSlot1.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot1_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot2
             // 
@@ -2905,6 +2959,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot2.Name = "comBoxSiegeLoadoutSlot2";
             this.comBoxSiegeLoadoutSlot2.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot2.TabIndex = 1;
+            this.comBoxSiegeLoadoutSlot2.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot2_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot3
             // 
@@ -2914,6 +2969,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot3.Name = "comBoxSiegeLoadoutSlot3";
             this.comBoxSiegeLoadoutSlot3.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot3.TabIndex = 2;
+            this.comBoxSiegeLoadoutSlot3.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot3_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot9
             // 
@@ -2923,6 +2979,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot9.Name = "comBoxSiegeLoadoutSlot9";
             this.comBoxSiegeLoadoutSlot9.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot9.TabIndex = 8;
+            this.comBoxSiegeLoadoutSlot9.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot9_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot4
             // 
@@ -2932,6 +2989,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot4.Name = "comBoxSiegeLoadoutSlot4";
             this.comBoxSiegeLoadoutSlot4.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot4.TabIndex = 3;
+            this.comBoxSiegeLoadoutSlot4.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot4_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot8
             // 
@@ -2941,6 +2999,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot8.Name = "comBoxSiegeLoadoutSlot8";
             this.comBoxSiegeLoadoutSlot8.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot8.TabIndex = 7;
+            this.comBoxSiegeLoadoutSlot8.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot8_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot5
             // 
@@ -2950,6 +3009,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot5.Name = "comBoxSiegeLoadoutSlot5";
             this.comBoxSiegeLoadoutSlot5.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot5.TabIndex = 4;
+            this.comBoxSiegeLoadoutSlot5.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot5_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot7
             // 
@@ -2959,6 +3019,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot7.Name = "comBoxSiegeLoadoutSlot7";
             this.comBoxSiegeLoadoutSlot7.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot7.TabIndex = 6;
+            this.comBoxSiegeLoadoutSlot7.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot7_SelectedIndexChanged);
             // 
             // comBoxSiegeLoadoutSlot6
             // 
@@ -2968,6 +3029,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot6.Name = "comBoxSiegeLoadoutSlot6";
             this.comBoxSiegeLoadoutSlot6.Size = new System.Drawing.Size(159, 21);
             this.comBoxSiegeLoadoutSlot6.TabIndex = 5;
+            this.comBoxSiegeLoadoutSlot6.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot6_SelectedIndexChanged);
             // 
             // LauncherMainForm
             // 
@@ -3000,8 +3062,8 @@ namespace SingleplayerLauncher
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.gameModeTabControl.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
+            this.gameModeSurvivalTab.ResumeLayout(false);
+            this.gameModeSiegeTab.ResumeLayout(false);
             this.siegeGameTabControl.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
@@ -3014,10 +3076,10 @@ namespace SingleplayerLauncher
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.loadoutEditorTabControl.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
+            this.loadoutEditorSurvivalTab.ResumeLayout(false);
+            this.loadoutEditorSurvivalTab.PerformLayout();
+            this.loadoutEditorSiegeTab.ResumeLayout(false);
+            this.loadoutEditorSiegeTab.PerformLayout();
             this.siegeLoadoutEditorGroupBox.ResumeLayout(false);
             this.siegeLoadoutEditorGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -3173,11 +3235,11 @@ namespace SingleplayerLauncher
         private CheckBox chkAdditionalHeroWeapon;
         private ComboBox comBoxAdditionalHeroWeapon;
         private TabControl gameModeTabControl;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
+        private TabPage gameModeSurvivalTab;
+        private TabPage gameModeSiegeTab;
         private TabControl loadoutEditorTabControl;
-        private TabPage tabPage5;
-        private TabPage tabPage6;
+        private TabPage loadoutEditorSurvivalTab;
+        private TabPage loadoutEditorSiegeTab;
         private TabControl siegeGameTabControl;
         private TabPage tabPage7;
         private LinkLabel linkLabel1;
@@ -3282,6 +3344,8 @@ namespace SingleplayerLauncher
         private ComboBox comBoxSiegeLv1WaveSlot1;
         private ComboBox comBoxSiegeSkin;
         private Button btnSaveLoadout;
+        private ComboBox comBoxRole;
+        private Label roleLabel;
     }
 }
 

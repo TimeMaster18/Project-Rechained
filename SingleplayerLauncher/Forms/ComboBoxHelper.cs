@@ -78,19 +78,19 @@ public class ComboBoxHelper<T>
     }
 }
 
-public class TraitComboBoxHelper : ComboBoxHelper<Trait>
+public class TraitComboBoxHelper<T> : ComboBoxHelper<T> where T : Trait
 {
-    public TraitComboBoxHelper(Dictionary<string, Trait> traits)
+    public TraitComboBoxHelper(Dictionary<string, T> traits)
         : base(traits, GetToolTipText, DrawItemShape)
     {
     }
 
-    private static string GetToolTipText(Trait trait)
+    private static string GetToolTipText(T trait)
     {
         return $"{trait.Name}\n\n{trait.Description}\n\nMatching Bonus: {trait.MatchingBonusTrait.Description}";
     }
 
-    private static void DrawItemShape(Graphics g, Rectangle bounds, Trait trait)
+    private static void DrawItemShape(Graphics g, Rectangle bounds, T trait)
     {
         Color shapeColor;
         Action<Graphics, Rectangle> drawShape;
@@ -177,6 +177,19 @@ public class SlotItemComboBoxHelper : ComboBoxHelper<SlotItem>
     }
 }
 
+public class SiegeSlotItemComboBoxHelper : ComboBoxHelper<SlotItem>
+{
+    public SiegeSlotItemComboBoxHelper(Dictionary<string, SlotItem> slotitems)
+        : base(slotitems, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(SlotItem slotItem)
+    {
+        return $"{slotItem.Name}\n\n{slotItem.SiegeDescription}";
+    }
+}
+
 public class TrapPartComboBoxHelper : ComboBoxHelper<TrapPart>
 {
     public TrapPartComboBoxHelper(Dictionary<string, TrapPart> trapParts)
@@ -213,5 +226,30 @@ public class ConsumableComboBoxHelper : ComboBoxHelper<Consumable>
     private static string GetToolTipText(Consumable consumable)
     {
         return $"{consumable.Name}\n\n{consumable.Description}";
+    }
+}
+
+public class RoleComboBoxHelper : ComboBoxHelper<SiegeRole>
+{
+    public RoleComboBoxHelper(Dictionary<string, SiegeRole> role)
+        : base(role, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(SiegeRole role)
+    {
+        return $"{role.Name}\n\n{role.SiegeDescription}\n\n{role.Effect}";
+    }
+}
+public class WaveComboBoxHelper : ComboBoxHelper<Wave>
+{
+    public WaveComboBoxHelper(Dictionary<string, Wave> waves)
+        : base(waves, GetToolTipText, null)
+    {
+    }
+
+    private static string GetToolTipText(Wave wave)
+    {
+        return $"{wave.Name}\n\n{wave.Description}\n\n{wave.KeywordText}\n{wave.KeywordDescription}";
     }
 }

@@ -67,12 +67,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\BaseLoadouts.cs" />
     <Compile Include="Configuration\GameConfig.cs" />
     <Compile Include="Configuration\IConfiguration.cs" />
-    <Compile Include="Configuration\Loadouts.cs" />
+    <Compile Include="Configuration\SiegeLoadouts.cs" />
+    <Compile Include="Configuration\SurvivalLoadouts.cs" />
+    <Compile Include="Entities\Battlegrounds\Siege.cs" />
+    <Compile Include="Entities\Loadout\Glyph.cs" />
+    <Compile Include="Entities\Loadout\SiegeRole.cs" />
+    <Compile Include="Entities\Loadout\SiegeTrait.cs" />
+    <Compile Include="Entities\Loadout\SurvivalTrait.cs" />
     <Compile Include="Entities\Loadout\Trait.cs" />
     <Compile Include="Entities\Loadout\Consumable.cs" />
     <Compile Include="Entities\Loadout\TrapPart.cs" />
+    <Compile Include="Entities\Loadout\Wave.cs" />
     <Compile Include="Entities\Names\SiegeRole.cs" />
     <Compile Include="Entities\Names\Wave.cs" />
     <Compile Include="Entities\Names\Glyph.cs" />
@@ -81,6 +89,7 @@
     <Compile Include="Entities\Names\Trait.cs" />
     <Compile Include="Entities\Names\Consumable.cs" />
     <Compile Include="Forms\ComboBoxHelper.cs" />
+    <Compile Include="Forms\FolderPicker.cs" />
     <Compile Include="Forms\InputValidator.cs" />
     <Compile Include="GameFiles\Config\CharacterData.cs" />
     <Compile Include="GameFiles\Config\ConfigFile.cs" />
@@ -90,7 +99,11 @@
     <Compile Include="GameFiles\Cooked\UPKFile.cs" />
     <Compile Include="GameFiles\Cooked\UPKHeroObjectContent.cs" />
     <Compile Include="GameFiles\FileUtils.cs" />
-    <Compile Include="Mods\AdditionalheroWeapon.cs" />
+    <Compile Include="Model\LoadoutItem.cs" />
+    <Compile Include="Model\SiegeLoadout.cs" />
+    <Compile Include="Model\SlotItem.cs" />
+    <Compile Include="Model\SurvivalLoadout.cs" />
+    <Compile Include="Mods\AdditionalHeroWeapon.cs" />
     <Compile Include="Mods\StartingCoinOverride.cs" />
     <Compile Include="Utils\Base62Converter.cs" />
     <Compile Include="Utils\Comment.cs" />
@@ -112,7 +125,7 @@
     <Compile Include="Entities\Loadout\Guardian.cs" />
     <Compile Include="Entities\Hero.cs" />
     <Compile Include="Model\Language.cs" />
-    <Compile Include="Model\Loadout.cs" />
+    <Compile Include="Model\BaseLoadout.cs" />
     <Compile Include="Entities\Map.cs" />
     <Compile Include="Entities\Names\GameMode.cs" />
     <Compile Include="Entities\Battlegrounds\Prologue.cs" />

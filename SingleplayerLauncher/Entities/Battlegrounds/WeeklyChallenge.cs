@@ -15,7 +15,7 @@ namespace SingleplayerLauncher.Model
         public GameMode GameMode { get; set; } = GameMode.WeeklyChallenge;
         public string CodeName { get; private set; }
         public Hero[] AvailableHeroes { get; private set; }
-        public Loadout Loadout { get; private set; }
+        public SurvivalLoadout Loadout { get; private set; }
         public Difficulty Difficulty { get; set; } = new Difficulty()
         {
         };
@@ -38,7 +38,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.TempleGraveyard,
             AvailableHeroes = new Hero[] { Hero.Hogarth, Hero.Blackpaw, Hero.Smolder },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value,
@@ -56,7 +56,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.TempleGraveyard,
             AvailableHeroes = new Hero[] { Cygnus, Blackpaw, Tundra },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value, 
@@ -75,7 +75,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.GatesOfThuricvod,
             AvailableHeroes = new Hero[] { Gabriella, Zoey, Smolder },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 // Skin = Skins.ElementAt(Random.Next(Skins.Count)).Value, 
@@ -94,7 +94,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.Orcatraz,
             AvailableHeroes = new Hero[] { Temper, Tundra, Zoey },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -113,7 +113,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.Orcatraz,
             AvailableHeroes = new Hero[] { Tundra, Hogarth, Zoey },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -132,7 +132,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.ThuricvodVillage,
             AvailableHeroes = new Hero[] { Gabriella, Zoey, Ivy },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -151,7 +151,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.Orcatraz,
             AvailableHeroes = new Hero[] { Temper, Cygnus, Dobbin },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -169,7 +169,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.MidnightMarket,
             AvailableHeroes = new Hero[] { Zoey, Maximilian, Ivy },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -187,7 +187,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.TheBaths,
             AvailableHeroes = new Hero[] { Deadeye, Cygnus, Midnight },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -205,7 +205,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.TheFallingFolly,
             AvailableHeroes = new Hero[] { Hogarth, Bloodspike, Bionka },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -223,7 +223,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.TrainingGrounds,
             AvailableHeroes = new Hero[] { Deadeye, Maximilian, Ivy },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -242,7 +242,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.ArchmageLibrary,
             AvailableHeroes = new Hero[] { Cygnus, Smolder, Oziel },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -260,7 +260,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.WaterGarden,
             AvailableHeroes = new Hero[] { Maximilian, Zoey, Ivy },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -278,7 +278,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.MaximumSecurity,
             AvailableHeroes = new Hero[] { Oziel, Cygnus, Bloodspike },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -296,7 +296,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.RestrictedSection,
             AvailableHeroes = new Hero[] { Cygnus, Maximilian, Zoey },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -315,7 +315,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.BanquetHall,
             AvailableHeroes = new Hero[] { Hogarth, Ivy, Zoey },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -333,7 +333,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.EventideFortress,
             AvailableHeroes = new Hero[] { Gabriella, Oziel, Stinkeye },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -352,7 +352,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.StablesAtEventide,
             AvailableHeroes = new Hero[] { Bionka, Tundra, Blackpaw },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -370,7 +370,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.AcademySewers,
             AvailableHeroes = new Hero[] { Dobbin, Cygnus, Smolder },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -389,7 +389,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.Confluence,
             AvailableHeroes = new Hero[] { Maximilian, Hogarth, Ivy },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -408,7 +408,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.Frostbite,
             AvailableHeroes = new Hero[] { Gabriella, Ivy, Zoey },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -426,7 +426,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.DocksAtEventide,
             AvailableHeroes = new Hero[] { Stinkeye, Gabriella, Midnight },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)), 
@@ -445,7 +445,7 @@ namespace SingleplayerLauncher.Model
             CodeName = "WCMausoleum01",
             Map = Map.TheWall,
             AvailableHeroes = new Hero[] { Smolder, Midnight, Oziel },
-            Loadout = new Loadout()
+            Loadout = new SurvivalLoadout()
             {
                 Dye = Dye.Dyes.Values.ElementAt(Random.Next(Dye.Dyes.Count)),
                 Skin = Skin.Skins.Values.ElementAt(Random.Next(Skin.Skins.Count)),  

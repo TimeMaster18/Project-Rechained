@@ -1,12 +1,13 @@
 ﻿namespace SingleplayerLauncher.Names
 {
-    class Wave
+    public class Wave
     {
         public const string
 
              // Siege Only
              LVL1_2_DWARF_SHAMANS = "2 Dwarf Shamans",
              LVL1_2_GNOLL_HUNTERS = "2 Gnoll Hunters",
+             LVL1_2_GRIZZLY_SHIELDBEARERS = "2 Grizzly Shieldbearers",
              LVL1_2_GRIZZLY_BEARS = "2 Grizzly Bears",
              LVL1_4_CROSSBOW_ORCS = "4 Crossbow Orcs",
              LVL1_5_LIGHT_SOLDIERS = "5 Light Soldiers",
@@ -16,7 +17,6 @@
              LVL2_14_KOBOLDS = "14 Kobolds",
              LVL2_14_LIGHT_ORCS = "14 Light Orcs",
              LVL2_2_CYCLOPS_SHAMANS = "2 Cyclops Shamans",
-             LVL2_2_GRIZZLY_SHIELDBEARERS = "2 Grizzly Shieldbearers",
              LVL2_3_DWARF_SHAMANS = "3 Dwarf Shamans",
              LVL2_3_GNOLL_HUNTERS = "3 Gnoll Hunters",
              LVL2_3_GRIZZLY_BEARS = "3 Grizzly Bears",

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using static SingleplayerLauncher.Names.Hero;
 using static SingleplayerLauncher.Names.Skin;
 
 namespace SingleplayerLauncher.Model
@@ -932,27 +931,21 @@ namespace SingleplayerLauncher.Model
         public static Skin[] OtherSkins = new Skin[] { DarkPaladin, WinstonDefault, ChangEDefault, Chicken, ChickenWithTrainers, };
         public static Skin[] MercenarySkins = new Skin[] { PrideAssassin, BouncerBear, ImageHuman, ImageArcane, ImageLightning, ImageIce, ImageFire, ChaoticKobold, DwarfPriest, GnollBreeder, ScurvyRumrudder, };
 
-        public static Dictionary<string, Skin[]> SkinsByHeroName = new Dictionary<string, Skin[]>
-        {
-            { OZIEL , OzielSkins },
-            { ZOEY , ZoeySkins },
-            { BIONKA , BionkaSkins },
-            { BLACKPAW , BlackpawSkins },
-            { BLOODSPIKE , BloodspikeSkins },
-            { BRASS , BrassSkins },
-            { HOGARTH , HogarthSkins },
-            { DEADEYE , DeadeyeSkins },
-            { MIDNIGHT , MidnightSkins },
-            { DOBBIN , DobbinSkins },
-            { IVY , IvySkins },
-            { SMOLDER , SmolderSkins },
-            { GABRIELLA , GabriellaSkins },
-            { STINKEYE , StinkeyeSkins },
-            { TEMPER , TemperSkins },
-            { CYGNUS , CygnusSkins },
-            { TUNDRA , TundraSkins },
-            { MAXIMILIAN , MaximilianSkins },
-        };
+        public static Skin[] SiegeOzielSkins = new Skin[] { OzielDefault, BloodRune, StringTheory, KnightWalker };
+        public static Skin[] SiegeZoeySkins = new Skin[] { ZoeyDefault, SchoolDaze, PrettyLittleStitches, JurassicJourney };
+        public static Skin[] SiegeBionkaSkins = new Skin[] { BionkaDefault, LizardQueen };
+        public static Skin[] SiegeBlackpawSkins = new Skin[] { BlackpawDefault, BlackpawEnchantedArmor, PawOfTheDead, TutuDloo, PrideOfThePack, Runeclaw, Blackscale };
+        public static Skin[] SiegeBloodspikeSkins = new Skin[] { BloodpsikeDefault, GrizzlyKill, BreakerOfMolds, BloodAppetit, GreenGuillotine };
+        public static Skin[] SiegeHogarthSkins = new Skin[] { HogarthDefault, HogarthEnchantedArmor, GodOfPlunder, LumberingJack, HogarthDefaultGold, IceArmor, ImperialGoldenWarrior, BeachedBod };
+        public static Skin[] SiegeMidnightSkins = new Skin[] { MidnightDefault, HiddenTiger, MidnightDefaultGold, CatBurglar, ShiverMeWhiskers };
+        public static Skin[] SiegeDobbinSkins = new Skin[] { DobbinDefault, GoldRush, DobbinDefaultGold, ElCavador };
+        public static Skin[] SiegeIvySkins = new Skin[] { IvyEnchantedArmor, IvyDefault, Valkyrie, FlowerFriend, IvyDefaultGold, ImperialRubyArcher, WickedWarden };
+        public static Skin[] SiegeSmolderSkins = new Skin[] { SmolderDefault, HelterSwelter, SmolderDefaultWhiteHair, Elite, KillAuea, FireAlarmFemme, Firestarter, WuXingDragonMage, };
+        public static Skin[] SiegeGabriellaSkins = new Skin[] { GabriellaDefault, ViolentVintage, GabriellaEnchantedArmor, BloodQueen, FrightfullyDelightful, GabriellaDefaultRed, LifeInPlastic, ArchmageOfTheOrder, MistressOfIllusion, PromisingProdigy };
+        public static Skin[] SiegeStinkeyeSkins = new Skin[] { StinkeyeDefault, FirstEyeBlind, StinkeyeDefaultAlt, EnfantTerrible };
+        public static Skin[] SiegeCygnusSkins = new Skin[] { CygnusDefault, Adventurer, CygnusDefaultRed, OldCodger, RoadMaster, };
+        public static Skin[] SiegeTundraSkins = new Skin[] { TundraDefault, WarChief, BigLebearski };
+        public static Skin[] SiegeMaximilianSkins = new Skin[] { MaximillianDefault, LuckyTunic, MaximillianEnchantedArmor, KnightsWatch, OrcSlayer, CardboardSamurai, ScaredCrow, LionHeart, RobinHood, Paximillian, MaximillianLegendaryDefault, ChampionOfTheOrder };
 
         public static Dictionary<string, Skin> Skins = new Dictionary<string, Skin>
         {
@@ -1103,8 +1096,6 @@ namespace SingleplayerLauncher.Model
             { DWARF_PRIEST, DwarfPriest },
             { GNOLL_BREEDER, GnollBreeder },
         };
-
-
 
         public static Dictionary<int, Skin> SkinsById = new Dictionary<int, Skin>
         {

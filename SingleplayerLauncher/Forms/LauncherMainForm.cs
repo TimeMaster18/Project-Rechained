@@ -18,18 +18,28 @@ namespace SingleplayerLauncher
         private readonly List<ComboBox> ComBoxConsumableSlots;
         private readonly List<ComboBox> ComBoxTraitSlots;
 
+        private readonly List<ComboBox> ComBoxSiegeLoadoutSlots;
+        private readonly List<ComboBox> ComBoxSiegeLoadoutGearSlots;
+        private readonly List<ComboBox> ComBoxSiegeLoadoutTrapSlots;
+        private readonly List<ComboBox> ComBoxSiegeLv1WaveSlots;
+        private readonly List<ComboBox> ComBoxSiegeLv2WaveSlots;
+        private readonly List<ComboBox> ComBoxSiegeLv3WaveSlots;
+        private readonly List<ComboBox> ComBoxSiegeLv4WaveSlots;
+        private readonly List<ComboBox> ComBoxSiegeBossWaveSlots;
+        private readonly List<ComboBox> ComBoxSiegeWaveSlots;
+        private readonly List<ComboBox> ComBoxSiegeTraitSlots;
+
+        Random random = new Random();
+
         public LauncherMainForm()
         {
             if (Settings.Instance.FirstRun)
             {
                 GameLauncher.FirstLaunchInitialization();
             }
-            if (Settings.Instance.FirstRun)
-            {
-                GameLauncher.FirstLaunchInitialization();
-            }
             InitializeComponent();
 
+            // Survival Loadout
             ComBoxLoadoutSlots = new List<ComboBox>()
             {
                 comBoxLoadoutSlot1, comBoxLoadoutSlot2, comBoxLoadoutSlot3,
@@ -65,17 +75,63 @@ namespace SingleplayerLauncher
                 comboxTraitGreenSlot, comboxTraitBlueSlot, comboxTraitYellowSlot, comboxTraitNoBonusSlot // This order must match the order in Loadout.cs for simplicity
             };
 
+            // Siege Loadout
+            ComBoxSiegeLoadoutGearSlots = new List<ComboBox>()
+            {
+                comBoxSiegeLoadoutSlot1, comBoxSiegeLoadoutSlot2
+            };
+            ComBoxSiegeLoadoutTrapSlots = new List<ComboBox>()
+            {
+                comBoxSiegeLoadoutSlot3,
+                comBoxSiegeLoadoutSlot4, comBoxSiegeLoadoutSlot5, comBoxSiegeLoadoutSlot6,
+                comBoxSiegeLoadoutSlot7, comBoxSiegeLoadoutSlot8, comBoxSiegeLoadoutSlot9
+            };
+
+            ComBoxSiegeLoadoutSlots = ComBoxSiegeLoadoutGearSlots.Concat(ComBoxSiegeLoadoutTrapSlots).ToList();
+
+
+            ComBoxSiegeLv1WaveSlots = new List<ComboBox>()
+            {
+                comBoxSiegeLv1WaveSlot1, comBoxSiegeLv1WaveSlot2,
+            };
+            ComBoxSiegeLv2WaveSlots = new List<ComboBox>()
+            {
+                comBoxSiegeLv2WaveSlot1, comBoxSiegeLv2WaveSlot2
+            };
+            ComBoxSiegeLv3WaveSlots = new List<ComboBox>()
+            {
+                comBoxSiegeLv3WaveSlot1, comBoxSiegeLv3WaveSlot2
+            };
+            ComBoxSiegeLv4WaveSlots = new List<ComboBox>()
+            {
+                comBoxSiegeLv4WaveSlot1, comBoxSiegeLv4WaveSlot2
+            };
+            ComBoxSiegeBossWaveSlots = new List<ComboBox>()
+            {
+                comBoxSiegeBossWaveSlot1, comBoxSiegeBossWaveSlot2
+            };
+
+            ComBoxSiegeWaveSlots = ComBoxSiegeLv1WaveSlots.Concat(ComBoxSiegeLv2WaveSlots)
+                .Concat(ComBoxSiegeLv3WaveSlots).Concat(ComBoxSiegeLv4WaveSlots).Concat(ComBoxSiegeBossWaveSlots).ToList();
+
+            ComBoxSiegeTraitSlots = new List<ComboBox>()
+            {
+                comboxSiegeTraitGreenSlot, comboxSiegeTraitBlueSlot, comboxSiegeTraitYellowSlot, comboxSiegeTraitNoBonusSlot // This order must match the order in Loadout.cs for simplicity
+            };
+
 
             // Launcher settings
             foreach (string language in Language.GetLanguageMap().Values)
             {
                 comBoxLanguage.Items.Add(language);
+                comBoxSiegeLanguage.Items.Add(language);
             }
             chkDebug.Checked = Settings.Instance.Debug;
             chkRunAs32.Checked = Settings.Instance.RunAs32;
             comBoxLanguage.SelectedItem = Settings.Instance.Language;
+            comBoxSiegeLanguage.SelectedItem = Settings.Instance.Language;
 
-            // Game settings
+            // Survival Game settings
             foreach (string gm in Model.GameMode.GameModes.Keys)
             {
                 comBoxGameMode.Items.Add(gm);
@@ -90,6 +146,11 @@ namespace SingleplayerLauncher
             comBoxDifficulty.SelectedItem = GameConfig.Instance.Difficulty;
             comBoxBattleground.SelectedItem = GameConfig.Instance.Battleground;
             comBoxGameMode.SelectedItem = GameConfig.Instance.GameMode;
+
+            // Siege Game settings
+            PopulateSlots(new List<ComboBox> { comBoxSiegeBattleground }, Model.Siege.SiegeBattlegrounds.Keys.ToList(), addEmptyOption: false);
+            // select config or first index if no config
+            comBoxSiegeBattleground.SelectedItem = GameConfig.Instance.Battleground ?? comBoxSiegeBattleground.Items[0];
 
             // Mods
             chkGodMode.Checked = GameConfig.Instance.GodMode;
@@ -110,7 +171,7 @@ namespace SingleplayerLauncher
             chkAdditionalHeroWeapon.Checked = GameConfig.Instance.AdditionalHeroWeaponEnabled;
             comBoxAdditionalHeroWeapon.SelectedItem = GameConfig.Instance.AdditionalHeroWeapon;
 
-            // Loadout
+            // Survival Loadout initializations
             // TODO: check if loading from JSON is possible with embedded: https://github.com/Fody/Costura
             PopulateSlots(new List<ComboBox> { comBoxHero }, Model.Hero.Heroes.Keys.ToList(), addEmptyOption: false);
             PopulateSlots(new List<ComboBox> { comBoxDye }, Model.Dye.Dyes.Keys.ToList(), addEmptyOption: false);
@@ -119,25 +180,71 @@ namespace SingleplayerLauncher
             PopulateSlots(ComBoxLoadoutSlots, Model.Gear.Gears.Keys.ToList());
             PopulateSlots(ComBoxGuardianSlots, Model.Guardian.Guardians.Keys.ToList());
             PopulateSlots(ComBoxConsumableSlots, Model.Consumable.Consumables.Keys.ToList());
-            PopulateSlots(ComBoxTraitSlots, Model.Trait.TriangleSlotTraits.Keys.ToList());
-            PopulateSlots(ComBoxTraitSlots, Model.Trait.PentagonSlotTraits.Keys.ToList());
-            PopulateSlots(ComBoxTraitSlots, Model.Trait.DiamondSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.SurvivalTrait.TriangleSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.SurvivalTrait.PentagonSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxTraitSlots, Model.SurvivalTrait.DiamondSlotTraits.Keys.ToList());
 
-            InitializeSlots(ComBoxLoadoutSlots, new SlotItemComboBoxHelper(SlotItem.getAllSlotItems()));
+            InitializeSlots(ComBoxLoadoutSlots, new SlotItemComboBoxHelper(SlotItem.GetAllSlotItems()));
             InitializeSlots(ComBoxGuardianSlots, new GuardianComboBoxHelper(Guardian.Guardians));
             InitializeSlots(ComBoxConsumableSlots, new ConsumableComboBoxHelper(Consumable.Consumables));
-            InitializeSlots(ComBoxTraitSlots, new TraitComboBoxHelper(Trait.Traits));
+            InitializeSlots(ComBoxTraitSlots, new TraitComboBoxHelper<SurvivalTrait>(SurvivalTrait.Traits));
             foreach (List<ComboBox> comBoxTrapPartsSlots in ComBoxTrapPartsSlots)
             {
                 InitializeSlots(comBoxTrapPartsSlots, new TrapPartComboBoxHelper(TrapPart.TrapParts));
             }
 
-            foreach (string loadoutName in Loadouts.Instance.GetLoadoutNames())
+            foreach (string loadoutName in SurvivalLoadouts.Instance.GetLoadoutNames())
             {
                 comBoxLoadouts.Items.Add(loadoutName);
             }
             comBoxLoadouts.SelectedIndex = comBoxLoadouts.Items.Count == 0 ? -1 : 0;
             btnDeleteLoadout.Enabled = comBoxLoadouts.Items.Count > 0;
+
+
+            // Siege Loadout initializations
+            // TODO: check if loading from JSON is possible with embedded: https://github.com/Fody/Costura
+            PopulateSlots(new List<ComboBox> { comBoxSiegeHero }, Model.Hero.SiegeHeroes.Keys.ToList(), addEmptyOption: false);
+            PopulateSlots(new List<ComboBox> { comBoxSiegeDye }, Model.Dye.Dyes.Keys.ToList(), addEmptyOption: false);
+
+            PopulateSlots(ComBoxSiegeLoadoutGearSlots, Model.Gear.Gears.Keys.ToList());
+            PopulateSlots(ComBoxSiegeLoadoutTrapSlots, Model.Trap.SiegeTraps.Keys.ToList());
+            PopulateSlots(new List<ComboBox> { comBoxRole }, Model.SiegeRole.Roles.Keys.ToList(), addEmptyOption: false);
+            PopulateSlots(ComBoxSiegeLv1WaveSlots, Model.Wave.Lvl1Waves.Keys.ToList());
+            PopulateSlots(ComBoxSiegeLv2WaveSlots, Model.Wave.Lvl2Waves.Keys.ToList());
+            PopulateSlots(ComBoxSiegeLv3WaveSlots, Model.Wave.Lvl3Waves.Keys.ToList());
+            PopulateSlots(ComBoxSiegeLv4WaveSlots, Model.Wave.Lvl4Waves.Keys.ToList());
+            PopulateSlots(ComBoxSiegeBossWaveSlots, Model.Wave.BossWaves.Keys.ToList());
+            PopulateSlots(ComBoxSiegeTraitSlots, Model.SiegeTrait.TriangleSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxSiegeTraitSlots, Model.SiegeTrait.PentagonSlotTraits.Keys.ToList());
+            PopulateSlots(ComBoxSiegeTraitSlots, Model.SiegeTrait.DiamondSlotTraits.Keys.ToList());
+
+            InitializeSlots(ComBoxSiegeLoadoutGearSlots, new SiegeSlotItemComboBoxHelper(SlotItem.GetAllSiegeSlotItems()));
+            InitializeSlots(ComBoxSiegeLoadoutTrapSlots, new SiegeSlotItemComboBoxHelper(SlotItem.GetAllSiegeSlotItems()));
+            InitializeSlots(new List<ComboBox> { comBoxRole }, new RoleComboBoxHelper(SiegeRole.Roles));
+            InitializeSlots(ComBoxSiegeTraitSlots, new TraitComboBoxHelper<SiegeTrait>(SiegeTrait.Traits));
+            InitializeSlots(ComBoxSiegeLv1WaveSlots, new WaveComboBoxHelper(Wave.Waves));
+            InitializeSlots(ComBoxSiegeLv2WaveSlots, new WaveComboBoxHelper(Wave.Waves));
+            InitializeSlots(ComBoxSiegeLv3WaveSlots, new WaveComboBoxHelper(Wave.Waves));
+            InitializeSlots(ComBoxSiegeLv4WaveSlots, new WaveComboBoxHelper(Wave.Waves));
+            InitializeSlots(ComBoxSiegeBossWaveSlots, new WaveComboBoxHelper(Wave.Waves));
+
+            foreach (string loadoutName in SiegeLoadouts.Instance.GetLoadoutNames())
+            {
+                comBoxSiegeLoadouts.Items.Add(loadoutName);
+            }
+            comBoxSiegeLoadouts.SelectedIndex = comBoxSiegeLoadouts.Items.Count == 0 ? -1 : 0;
+            btnDeleteSiegeLoadout.Enabled = comBoxSiegeLoadouts.Items.Count > 0;
+
+            if (Settings.Instance.IsSiegeInstallation)
+            {
+                gameModeTabControl.TabPages.Remove(gameModeSurvivalTab);
+                loadoutEditorTabControl.TabPages.Remove(loadoutEditorSurvivalTab);
+            }
+            else
+            {
+                gameModeTabControl.TabPages.Remove(gameModeSiegeTab);
+                loadoutEditorTabControl.TabPages.Remove(loadoutEditorSiegeTab);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -167,7 +274,7 @@ namespace SingleplayerLauncher
             }
 
             ApplyAllLoadouts();
-            GameLauncher.StartGame(GameInfo.Loadout.PlayerName, isHost: true);
+            GameLauncher.StartGame(GameInfo.SurvivalLoadout.PlayerName, isHost: true);
         }
 
         private void ApplyAllLoadouts()
@@ -185,7 +292,8 @@ namespace SingleplayerLauncher
             {
                 if (!string.IsNullOrWhiteSpace(loadout.Text))
                 {
-                    GameFiles.CharacterData.ApplyLoadout(Loadout.DecodeLoadout(loadout.Text));
+                    SurvivalLoadout sLoadout = new SurvivalLoadout();
+                    GameFiles.CharacterData.ApplyLoadout((SurvivalLoadout)sLoadout.Decode(loadout.Text));
                 }
             }
         }
@@ -211,7 +319,8 @@ namespace SingleplayerLauncher
                 return;
             }
 
-            Loadout loadout = Loadout.DecodeLoadout(loadoutCode);
+            SurvivalLoadout loadout = new SurvivalLoadout();
+            loadout.Decode(loadoutCode);
             string playerName = loadout.PlayerName;
             loadout.PlayerName  = "0";
             GameFiles.CharacterData.ApplyLoadout(loadout);
@@ -325,14 +434,14 @@ namespace SingleplayerLauncher
             comBoxSkin.Items.Clear();
 
             string selectedHero = comBoxHero.SelectedItem.ToString();
-            GameInfo.Loadout.Hero = Model.Hero.Heroes[selectedHero];
+            GameInfo.SurvivalLoadout.Hero = Model.Hero.Heroes[selectedHero];
 
-            if (GameInfo.Loadout.Hero.Skins != null)
+            if (GameInfo.SurvivalLoadout.Hero.Skins != null)
             {
-                PopulateSlots(new List<ComboBox> { comBoxSkin }, GameInfo.Loadout.Hero.Skins.Select(s => s.Name).ToList(), addEmptyOption: false);
+                PopulateSlots(new List<ComboBox> { comBoxSkin }, GameInfo.SurvivalLoadout.Hero.Skins.Select(s => s.Name).ToList(), addEmptyOption: false);
 
-                comBoxSkin.SelectedItem = GameInfo.Loadout.Hero.Skins[0].Name;
-                GameInfo.Loadout.Hero = Model.Hero.Heroes[selectedHero];
+                comBoxSkin.SelectedItem = GameInfo.SurvivalLoadout.Hero.Skins[0].Name;
+                GameInfo.SurvivalLoadout.Hero = Model.Hero.Heroes[selectedHero];
                 UpdateLoadoutExportCode();
             }
         }
@@ -340,14 +449,14 @@ namespace SingleplayerLauncher
         private void comBoxSkin_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedSkin = comBoxSkin.SelectedItem.ToString();
-            GameInfo.Loadout.Skin = Model.Skin.Skins[selectedSkin];
+            GameInfo.SurvivalLoadout.Skin = Model.Skin.Skins[selectedSkin];
             UpdateLoadoutExportCode();
         }
 
         private void comBoxDye_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedDye = comBoxDye.SelectedItem.ToString();
-            GameInfo.Loadout.Dye = Model.Dye.Dyes[selectedDye];
+            GameInfo.SurvivalLoadout.Dye = Model.Dye.Dyes[selectedDye];
             UpdateLoadoutExportCode();
         }
 
@@ -458,42 +567,62 @@ namespace SingleplayerLauncher
             }
         }
 
-        private void SetCurrenGuardians(Loadout loadout)
+        private void SetCurrentGuardians(SurvivalLoadout loadout)
         {
             List<Guardian> guardians = loadout.Guardians.ToList();
-            for (int i = 0; i < Loadout.GUARDIAN_SLOT_COUNT; i++)
+            for (int i = 0; i < SurvivalLoadout.GUARDIAN_SLOT_COUNT; i++)
             {
                 Guardian current = guardians[i];
                 ComBoxGuardianSlots[i].SelectedItem = current?.Name;
             }
         }
 
-        private void SetCurrentConsumables(Loadout loadout)
+        private void SetCurrentConsumables(SurvivalLoadout loadout)
         {
             List<Consumable> consumables = loadout.Consumables.ToList();
-            for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
+            for (int i = 0; i < SurvivalLoadout.CONSUMABLE_SLOT_COUNT; i++)
             {
                 Consumable current = consumables[i];
                 ComBoxConsumableSlots[i].SelectedItem = current?.Name;
             }
         }
 
-        private void SetCurrentTraits(Loadout loadout)
+        private void SetCurrentTraits(BaseLoadout loadout)
         {
             List<Trait> traits = loadout.Traits.ToList();
-            for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
+            for (int i = 0; i < SurvivalLoadout.TRAIT_SLOT_COUNT; i++)
             {
                 Trait current = traits[i];
                 ComBoxTraitSlots[i].SelectedItem = current?.Name;
             }
         }
 
+        private void SetCurrentSiegeTraits(BaseLoadout loadout)
+        {
+            List<Trait> traits = loadout.Traits.ToList();
+            for (int i = 0; i < SurvivalLoadout.TRAIT_SLOT_COUNT; i++)
+            {
+                Trait current = traits[i];
+                ComBoxSiegeTraitSlots[i].SelectedItem = current?.Name;
+            }
+        }
+
+        private void SetCurrentWaves(SiegeLoadout loadout)
+        {
+            List<Wave> waves = loadout.Waves.ToList();
+            for (int i = 0; i < SiegeLoadout.WAVES_SLOT_COUNT; i++)
+            {
+                Wave current = waves[i];
+                ComBoxSiegeWaveSlots[i].SelectedItem = current?.Name;
+            }
+        }
+
         private void SaveGuardians()
         {
-            for (int i = 0; i < Loadout.GUARDIAN_SLOT_COUNT; i++)
+            for (int i = 0; i < SurvivalLoadout.GUARDIAN_SLOT_COUNT; i++)
             {
                 string guardianName = ComBoxGuardianSlots[i].Text;
-                GameInfo.Loadout.Guardians[i] = guardianName.Length > 0 ? Guardian.Guardians[guardianName] : null;
+                ((SurvivalLoadout)GameInfo.SurvivalLoadout).Guardians[i] = guardianName.Length > 0 ? Guardian.Guardians[guardianName] : null;
             }
 
             UpdateLoadoutExportCode();
@@ -501,10 +630,10 @@ namespace SingleplayerLauncher
 
         private void SaveConsumables()
         {
-            for (int i = 0; i < Loadout.CONSUMABLE_SLOT_COUNT; i++)
+            for (int i = 0; i < SurvivalLoadout.CONSUMABLE_SLOT_COUNT; i++)
             {
                 string consumableName = ComBoxConsumableSlots[i].Text;
-                GameInfo.Loadout.Consumables[i] = consumableName.Length > 0 ? Consumable.Consumables[consumableName] : null;
+                ((SurvivalLoadout)GameInfo.SurvivalLoadout).Consumables[i] = consumableName.Length > 0 ? Consumable.Consumables[consumableName] : null;
             }
 
             UpdateLoadoutExportCode();
@@ -512,16 +641,16 @@ namespace SingleplayerLauncher
 
         private void SaveTraits()
         {
-            for (int i = 0; i < Loadout.TRAIT_SLOT_COUNT; i++)
+            for (int i = 0; i < BaseLoadout.TRAIT_SLOT_COUNT; i++)
             {
                 string traitName = ComBoxTraitSlots[i].Text;
-                GameInfo.Loadout.Traits[i] = traitName.Length > 0 ? Trait.Traits[traitName] : null;
+                GameInfo.SurvivalLoadout.Traits[i] = traitName.Length > 0 ? SurvivalTrait.Traits[traitName] : null;
             }
 
             UpdateLoadoutExportCode();
         }
 
-        private void SetCurrentHero(Loadout loadout)
+        private void SetCurrentHero(BaseLoadout loadout)
         {
             string heroName = loadout.Hero.Name;
             string skinName = loadout.Skin.Name;
@@ -532,24 +661,51 @@ namespace SingleplayerLauncher
             comBoxDye.SelectedItem = dyeName;
         }
 
-        private void SetCurrentSlotItems(Loadout loadout)
+        private void SetCurrentSiegeHero(BaseLoadout loadout)
+        {
+            string heroName = loadout.Hero.Name;
+            string skinName = loadout.Skin.Name;
+            string dyeName = loadout.Dye.Name;
+
+            comBoxSiegeHero.SelectedItem = heroName;
+            comBoxSiegeSkin.SelectedItem = skinName;
+            comBoxSiegeDye.SelectedItem = dyeName;
+        }
+
+        private void SetCurrentRole(SiegeLoadout loadout)
+        {
+            comBoxRole.SelectedItem = loadout.Role.Name;
+        }
+
+        private void SetCurrentSlotItems(BaseLoadout loadout)
         {
             List<SlotItem> slotItems = loadout.SlotItems.ToList();
 
-            for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
+            for (int i = 0; i < BaseLoadout.SLOT_ITEMS_COUNT; i++)
             {
                 SlotItem current = slotItems[i];
                 ComBoxLoadoutSlots[i].SelectedItem = current?.Name;
             }
         }
 
-        private void SetCurrentTrapParts(Loadout loadout)
+        private void SetCurrentSiegeSlotItems(BaseLoadout loadout)
+        {
+            List<SlotItem> slotItems = loadout.SlotItems.ToList();
+
+            for (int i = 0; i < BaseLoadout.SLOT_ITEMS_COUNT; i++)
+            {
+                SlotItem current = slotItems[i];
+                ComBoxSiegeLoadoutSlots[i].SelectedItem = current?.SiegeName ?? current?.Name;
+            }
+        }
+
+        private void SetCurrentTrapParts(SurvivalLoadout loadout)
         {
             List<List<TrapPart>> trapParts = ConvertArrayToListOfLists(loadout.TrapParts);
 
-            for (int i = 0; i < Loadout.SLOT_ITEMS_COUNT; i++)
+            for (int i = 0; i < BaseLoadout.SLOT_ITEMS_COUNT; i++)
             {
-                for (int j = 0; j < Loadout.TRAP_PART_SLOT_COUNT; j++)
+                for (int j = 0; j < SurvivalLoadout.TRAP_PART_SLOT_COUNT; j++)
                 {
                     if (i < ComBoxTrapPartsSlots.Count && j < ComBoxTrapPartsSlots[i].Count)
                     {
@@ -572,21 +728,22 @@ namespace SingleplayerLauncher
         private void SaveLoadoutItem(int slotItemIdx)
         {
             string slotItemName = ComBoxLoadoutSlots[slotItemIdx].Text;
-            GameInfo.Loadout.SlotItems[slotItemIdx] = slotItemName.Length > 0 ? SlotItem.getAllSlotItems()[slotItemName] : null;
+            GameInfo.SurvivalLoadout.SlotItems[slotItemIdx] = slotItemName.Length > 0 ? SlotItem.GetAllSlotItems()[slotItemName] : null;
             UpdateLoadoutExportCode();
         }
 
         private void SaveTrapPart(int slotIdx, int partIdx)
         {
             string partName = ComBoxTrapPartsSlots[slotIdx][partIdx].Text;
-            GameInfo.Loadout.TrapParts[slotIdx, partIdx] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
+            ((SurvivalLoadout)GameInfo.SurvivalLoadout).TrapParts[slotIdx, partIdx] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
             UpdateLoadoutExportCode();
         }
 
         private void UpdateLoadoutExportCode()
         {
-            textBoxExportLoadout.Text = Loadout.EncodeLoadout(GameInfo.Loadout);
-            maskedTextBoxHostGamePlayer1Loadout.Text = Loadout.EncodeLoadout(GameInfo.Loadout);
+            string encodedLoadout = GameInfo.SurvivalLoadout.Encode();
+            textBoxExportLoadout.Text = encodedLoadout;
+            maskedTextBoxHostGamePlayer1Loadout.Text = encodedLoadout;
         }
 
         private void comBoxLoadoutSlot1_SelectedIndexChanged(object sender, EventArgs e)
@@ -918,17 +1075,17 @@ namespace SingleplayerLauncher
                 return;
             }
 
-            if (Loadouts.Instance.Exists(loadoutName))
+            if (SurvivalLoadouts.Instance.Exists(loadoutName))
             {
-                Loadouts.Instance.UpdateLoadout(loadoutName, loadoutCode);
+                SurvivalLoadouts.Instance.UpdateLoadout(loadoutName, loadoutCode);
             }
             else
             {
-                Loadouts.Instance.AddLoadout(loadoutName, loadoutCode);
+                SurvivalLoadouts.Instance.AddLoadout(loadoutName, loadoutCode);
                 comBoxLoadouts.Items.Add(loadoutName);
             }
 
-            Loadouts.Instance.Save();
+            SurvivalLoadouts.Instance.Save();
             comBoxLoadouts.SelectedItem = loadoutName;
         }
 
@@ -939,7 +1096,7 @@ namespace SingleplayerLauncher
 
             errorProvider.SetError(maskedTextBoxLoadoutName, isValid ? string.Empty : errorMessage);
 
-            GameInfo.Loadout.Name = loadoutName;
+            GameInfo.SurvivalLoadout.Name = loadoutName;
         }
 
         private void maskedTextBoxPlayerName_TextChanged(object sender, EventArgs e)
@@ -949,7 +1106,7 @@ namespace SingleplayerLauncher
 
             errorProvider.SetError(maskedTextBoxPlayerName, isValid ? string.Empty: errorMessage);
 
-            GameInfo.Loadout.PlayerName = playerName;
+            GameInfo.SurvivalLoadout.PlayerName = playerName;
             UpdateLoadoutExportCode();
         }
 
@@ -958,19 +1115,20 @@ namespace SingleplayerLauncher
             this.SuspendLayout();
 
             string selectedLoadoutName = comBoxLoadouts.SelectedItem.ToString();
-            string selectedLoadoutCode = Loadouts.Instance.GetLoadoutByName(selectedLoadoutName).Code;
-            Loadout decodedLoadout = Loadout.DecodeLoadout(selectedLoadoutCode);
-            GameInfo.Loadout = decodedLoadout;
+            string selectedLoadoutCode = SurvivalLoadouts.Instance.GetLoadoutByName(selectedLoadoutName).Code;
+            SurvivalLoadout survivalLoadout = new SurvivalLoadout();
+            survivalLoadout.Decode(selectedLoadoutCode);
+            GameInfo.SurvivalLoadout = survivalLoadout;
 
-            SetCurrentHero(decodedLoadout);
-            SetCurrenGuardians(decodedLoadout);
-            SetCurrentConsumables(decodedLoadout);
-            SetCurrentTraits(decodedLoadout);
-            SetCurrentSlotItems(decodedLoadout);
-            SetCurrentTrapParts(decodedLoadout);
+            SetCurrentHero(survivalLoadout);
+            SetCurrentGuardians(survivalLoadout);
+            SetCurrentConsumables(survivalLoadout);
+            SetCurrentTraits(survivalLoadout);
+            SetCurrentSlotItems(survivalLoadout);
+            SetCurrentTrapParts(survivalLoadout);
 
             maskedTextBoxLoadoutName.Text = selectedLoadoutName;
-            maskedTextBoxPlayerName.Text = decodedLoadout.PlayerName;
+            maskedTextBoxPlayerName.Text = survivalLoadout.PlayerName;
 
             if (comBoxLoadouts.Items.Count > 0)
             {
@@ -991,17 +1149,18 @@ namespace SingleplayerLauncher
             }
 
             string loadoutCode = maskedTextBoxImportLoadout.Text;
-            Loadout decodedLoadout = Loadout.DecodeLoadout(loadoutCode);
-            GameInfo.Loadout = decodedLoadout;
+            SurvivalLoadout survivalLoadout = new SurvivalLoadout();
+            survivalLoadout.Decode(loadoutCode);
+            GameInfo.SurvivalLoadout = survivalLoadout;
 
             string loadoutName = "";
-            while (loadoutName.Length == 0 || Loadouts.Instance.Exists(loadoutName))
+            while (loadoutName.Length == 0 || SurvivalLoadouts.Instance.Exists(loadoutName))
             {
-                loadoutName = decodedLoadout.PlayerName + "-Imported-" + Guid.NewGuid().ToString().Substring(0, 8);
+                loadoutName = survivalLoadout.PlayerName + "-Imported-" + Guid.NewGuid().ToString().Substring(0, 8);
             }
 
-            Loadouts.Instance.AddLoadout(loadoutName, loadoutCode);
-            Loadouts.Instance.Save();
+            SurvivalLoadouts.Instance.AddLoadout(loadoutName, loadoutCode);
+            SurvivalLoadouts.Instance.Save();
 
             comBoxLoadouts.Items.Add(loadoutName);
             comBoxLoadouts.SelectedItem = loadoutName;
@@ -1028,8 +1187,8 @@ namespace SingleplayerLauncher
         private void btnDeleteLoadout_Click(object sender, EventArgs e)
         {
             string selectedLoadoutName = comBoxLoadouts.SelectedItem.ToString();
-            Loadouts.Instance.RemoveLoadout(selectedLoadoutName);
-            Loadouts.Instance.Save();
+            SurvivalLoadouts.Instance.RemoveLoadout(selectedLoadoutName);
+            SurvivalLoadouts.Instance.Save();
             comBoxLoadouts.Items.Remove(selectedLoadoutName);
             comBoxLoadouts.SelectedIndex = comBoxLoadouts.Items.Count == 0 ? -1 : 0;
 
@@ -1156,6 +1315,522 @@ namespace SingleplayerLauncher
             comBoxAdditionalHeroWeapon.Enabled = chkAdditionalHeroWeapon.Checked;
             GameConfig.Instance.AdditionalHeroWeaponEnabled = chkAdditionalHeroWeapon.Checked;
             GameConfig.Instance.Save();
+        }
+
+        private void comBoxSiegeLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = comBoxLanguage.SelectedItem.ToString();
+            Settings.Instance.Language = selectedLanguage;
+            Settings.Instance.Save();
+        }
+
+        private void maskedTextBoxJoinSiegeGameHostIP_TextChanged(object sender, EventArgs e)
+        {
+            string hostIP = maskedTextBoxJoinSiegeGameHostIP.Text;
+            var (isValid, errorMessage) = InputValidator.ValidateIpAddress(hostIP);
+
+            errorProvider.SetError(maskedTextBoxJoinSiegeGameHostIP, isValid || hostIP.Length == 0 ? string.Empty : errorMessage);
+        }
+
+        private void btnJoinSiegeGame_Click(object sender, EventArgs e)
+        {
+            GameLauncher.ApplyChanges(isHost: false, isSiege: true);
+            SaveSettings();
+
+            string hostIP = maskedTextBoxJoinSiegeGameHostIP.Text;
+            string loadoutCode = maskedTextBoxJoinSiegeGameLoadout.Text;
+            var (isIPValid, errorMessageIp) = InputValidator.ValidateIpAddress(hostIP);
+            var (isLoadoutValid, errorMessagePlayerName) = InputValidator.ValidateSiegeLoadoutCode(loadoutCode);
+
+            if (!isIPValid)
+            {
+                MessageBox.Show(errorMessageIp, "Invalid IP Address", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!isLoadoutValid)
+            {
+                MessageBox.Show(errorMessagePlayerName, "Invalid Player Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SiegeLoadout loadout = new SiegeLoadout();
+            loadout.Decode(loadoutCode);
+            string playerName = loadout.PlayerName;
+            loadout.PlayerName = "0";
+            GameFiles.CharacterData.ApplySiegeLoadout(loadout);
+            loadout.PlayerName = playerName;
+            GameLauncher.StartGame(loadout.PlayerName, isHost: false, hostIP);
+        }
+
+        private void btnSiegeLaunch_Click(object sender, EventArgs e)
+        {
+            GameLauncher.ApplyChanges(isHost: true, isSiege: true);
+            SaveSettings();
+
+            string playerName = maskedTextBoxSiegePlayerName.Text;
+            var (isPlayerNameValid, errorMessagePlayerName) = InputValidator.ValidatePlayerName(playerName);
+
+            if (!isPlayerNameValid)
+            {
+                MessageBox.Show(errorMessagePlayerName, "Invalid Player Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var invalidLoadouts = ValidateAllSiegeLoadoutCodes();
+            if (invalidLoadouts.Any())
+            {
+                string errorMessage = "Some loadouts are invalid:\n" + string.Join("\n", invalidLoadouts);
+                MessageBox.Show(errorMessage, "Invalid Loadouts", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ApplyAllSiegeLoadouts();
+            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true);
+        }
+
+        private (bool isValid, string errorMessage) ValidateSiegeLoadoutCode(MaskedTextBox maskedTextBox)
+        {
+            string loadoutCode = maskedTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(loadoutCode))
+            {
+                return (true, string.Empty);
+            }
+
+            var (isValid, validationErrorMessage) = InputValidator.ValidateSiegeLoadoutCode(loadoutCode);
+
+            errorProvider.SetError(maskedTextBox, isValid ? string.Empty : validationErrorMessage);
+
+            return (isValid, isValid ? string.Empty : validationErrorMessage);
+        }
+
+        private List<string> ValidateAllSiegeLoadoutCodes()
+        {
+            var invalidLoadouts = new List<string>();
+
+            var loadouts = new Dictionary<string, MaskedTextBox>
+            {
+                { "Player 1", maskedTextBoxSiegeHostGamePlayer1Loadout },
+                { "Player 2", maskedTextBoxSiegeHostGamePlayer2Loadout },
+                { "Player 3", maskedTextBoxSiegeHostGamePlayer3Loadout },
+                { "Player 4", maskedTextBoxSiegeHostGamePlayer4Loadout },
+                { "Player 5", maskedTextBoxSiegeHostGamePlayer5Loadout },
+                { "Player 6", maskedTextBoxSiegeHostGamePlayer6Loadout },
+                { "Player 7", maskedTextBoxSiegeHostGamePlayer7Loadout },
+                { "Player 8", maskedTextBoxSiegeHostGamePlayer8Loadout },
+                { "Player 9", maskedTextBoxSiegeHostGamePlayer9Loadout },
+                { "Player 10", maskedTextBoxSiegeHostGamePlayer10Loadout },
+            };
+
+            foreach (var loadout in loadouts)
+            {
+                var (isValid, errorMessage) = ValidateSiegeLoadoutCode(loadout.Value);
+                if (!isValid && !string.IsNullOrEmpty(errorMessage))
+                {
+                    invalidLoadouts.Add($"{loadout.Key}: {errorMessage}");
+                }
+            }
+
+            return invalidLoadouts;
+        }
+
+        private void ApplyAllSiegeLoadouts()
+        {
+            var loadoutsTeam1 = new List<MaskedTextBox>
+            {
+                maskedTextBoxSiegeHostGamePlayer1Loadout,
+                maskedTextBoxSiegeHostGamePlayer2Loadout,
+                maskedTextBoxSiegeHostGamePlayer3Loadout,
+                maskedTextBoxSiegeHostGamePlayer4Loadout,
+                maskedTextBoxSiegeHostGamePlayer5Loadout,
+            };
+
+            var loadoutsTeam2 = new List<MaskedTextBox>
+            {
+                maskedTextBoxSiegeHostGamePlayer6Loadout,
+                maskedTextBoxSiegeHostGamePlayer7Loadout,
+                maskedTextBoxSiegeHostGamePlayer8Loadout,
+                maskedTextBoxSiegeHostGamePlayer9Loadout,
+                maskedTextBoxSiegeHostGamePlayer10Loadout
+            };
+
+            bool randomBool = random.Next(0, 2) == 0;
+
+            int team1 = randomBool ? 1 : 2;
+            int team2 = randomBool ? 2 : 1;
+
+            for (int i = 0; i < loadoutsTeam1.Count; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(loadoutsTeam1[i].Text))
+                {
+                    SiegeLoadout siegeLoadout = new SiegeLoadout();
+                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(loadoutsTeam1[i].Text), team1);
+                }
+                if (!string.IsNullOrWhiteSpace(loadoutsTeam2[i].Text))
+                {
+                    SiegeLoadout siegeLoadout = new SiegeLoadout();
+                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(loadoutsTeam2[i].Text), team2);
+                }
+            }
+        }
+
+        private void btnCopySiegeLoadoutToClipboard_Click(object sender, EventArgs e)
+        {
+            string loadoutCode = textBoxExportSiegeLoadout.Text;
+
+            var (isLoadoutCodeValid, errorMessageLoadout) = InputValidator.ValidateSiegeLoadoutCode(loadoutCode);
+
+            if (!isLoadoutCodeValid)
+            {
+                MessageBox.Show(errorMessageLoadout, "Invalid Loadout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Clipboard.SetText(loadoutCode);
+            maskedTextBoxJoinSiegeGameLoadout.Text = loadoutCode;
+        }
+
+        private void btnSaveSiegeLoadout_Click(object sender, EventArgs e)
+        {
+            string loadoutName = maskedTextBoxSiegeLoadoutName.Text;
+            string loadoutCode = textBoxExportSiegeLoadout.Text;
+            var (isLoadoutValid, errorMessageLoadout) = InputValidator.ValidateSiegeLoadoutCode(loadoutCode);
+            var (isLoadoutNameValid, errorMessageLoadoutName) = InputValidator.ValidateLoadoutName(loadoutName);
+
+            if (!isLoadoutValid)
+            {
+                MessageBox.Show(errorMessageLoadout, "Invalid Loadout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!isLoadoutNameValid)
+            {
+                MessageBox.Show(errorMessageLoadoutName, "Invalid Loadout Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (SiegeLoadouts.Instance.Exists(loadoutName))
+            {
+                SiegeLoadouts.Instance.UpdateLoadout(loadoutName, loadoutCode);
+            }
+            else
+            {
+                SiegeLoadouts.Instance.AddLoadout(loadoutName, loadoutCode);
+                comBoxSiegeLoadouts.Items.Add(loadoutName);
+            }
+
+            SiegeLoadouts.Instance.Save();
+            comBoxSiegeLoadouts.SelectedItem = loadoutName;
+        }
+
+        private void maskedTextBoxSiegeLoadoutName_TextChanged(object sender, EventArgs e)
+        {
+            string loadoutName = maskedTextBoxSiegeLoadoutName.Text;
+            var (isValid, errorMessage) = InputValidator.ValidateLoadoutName(loadoutName);
+
+            errorProvider.SetError(maskedTextBoxSiegeLoadoutName, isValid ? string.Empty : errorMessage);
+
+            GameInfo.SiegeLoadout.Name = loadoutName;
+        }
+
+        private void maskedTextBoxSiegePlayerName_TextChanged(object sender, EventArgs e)
+        {
+            string playerName = maskedTextBoxSiegePlayerName.Text;
+            var (isValid, errorMessage) = InputValidator.ValidatePlayerName(playerName);
+
+            errorProvider.SetError(maskedTextBoxSiegePlayerName, isValid ? string.Empty : errorMessage);
+
+            GameInfo.SiegeLoadout.PlayerName = playerName;
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void comBoxSiegeLoadouts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+
+            string selectedLoadoutName = comBoxSiegeLoadouts.SelectedItem.ToString();
+            string selectedLoadoutCode = SiegeLoadouts.Instance.GetLoadoutByName(selectedLoadoutName).Code;
+            SiegeLoadout siegeLoadout = new SiegeLoadout();
+            siegeLoadout.Decode(selectedLoadoutCode);
+            GameInfo.SiegeLoadout = siegeLoadout;
+
+            SetCurrentSiegeHero(siegeLoadout);
+            SetCurrentSiegeSlotItems(siegeLoadout);
+            SetCurrentRole(siegeLoadout);
+            SetCurrentSiegeTraits(siegeLoadout);
+            SetCurrentWaves(siegeLoadout);
+
+            maskedTextBoxSiegeLoadoutName.Text = selectedLoadoutName;
+            maskedTextBoxSiegePlayerName.Text = siegeLoadout.PlayerName;
+
+            if (comBoxSiegeLoadouts.Items.Count > 0)
+            {
+                btnDeleteSiegeLoadout.Enabled = true;
+            }
+
+            this.ResumeLayout();
+        }
+
+        private void btnImportSiegeLoadout_Click(object sender, EventArgs e)
+        {
+            var (isValid, errorMessage) = InputValidator.ValidateSiegeLoadoutCode(maskedTextBoxImportSiegeLoadout.Text);
+
+            if (!isValid)
+            {
+                MessageBox.Show(errorMessage, "Invalid Import Loadout Code", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string loadoutCode = maskedTextBoxImportSiegeLoadout.Text;
+            SiegeLoadout siegeLoadout = new SiegeLoadout();
+            siegeLoadout.Decode(loadoutCode);
+            GameInfo.SiegeLoadout = siegeLoadout;
+
+            string loadoutName = "";
+            while (loadoutName.Length == 0 || SiegeLoadouts.Instance.Exists(loadoutName))
+            {
+                loadoutName = siegeLoadout.PlayerName + "-Imported-" + Guid.NewGuid().ToString().Substring(0, 8);
+            }
+
+            SiegeLoadouts.Instance.AddLoadout(loadoutName, loadoutCode);
+            SiegeLoadouts.Instance.Save();
+
+            comBoxSiegeLoadouts.Items.Add(loadoutName);
+            comBoxSiegeLoadouts.SelectedItem = loadoutName;
+            btnImportSiegeLoadout.Enabled = false;
+            maskedTextBoxImportSiegeLoadout.Text = "";
+        }
+
+        private void maskedTextBoxImportSiegeLoadout_TextChanged(object sender, EventArgs e)
+        {
+            btnImportSiegeLoadout.Enabled = true;
+            string loadoutCode = maskedTextBoxImportSiegeLoadout.Text;
+            if (loadoutCode.Length == 0)
+            {
+                errorProvider.SetError(maskedTextBoxImportSiegeLoadout, string.Empty);
+                btnImportSiegeLoadout.Enabled = false;
+                return;
+            }
+
+            var (isValid, errorMessage) = InputValidator.ValidateSiegeLoadoutCode(loadoutCode);
+
+            errorProvider.SetError(maskedTextBoxImportSiegeLoadout, isValid ? string.Empty : errorMessage);
+        }
+
+        private void btnDeleteSiegeLoadout_Click(object sender, EventArgs e)
+        {
+            string selectedLoadoutName = comBoxSiegeLoadouts.SelectedItem.ToString();
+            SiegeLoadouts.Instance.RemoveLoadout(selectedLoadoutName);
+            SiegeLoadouts.Instance.Save();
+            comBoxSiegeLoadouts.Items.Remove(selectedLoadoutName);
+            comBoxSiegeLoadouts.SelectedIndex = comBoxSiegeLoadouts.Items.Count == 0 ? -1 : 0;
+
+            if (comBoxSiegeLoadouts.Items.Count == 0)
+            {
+                btnDeleteSiegeLoadout.Enabled = false;
+            }
+        }
+
+        private void UpdateSiegeLoadoutExportCode()
+        {
+            string encodedLoadout = GameInfo.SiegeLoadout.Encode();
+            textBoxExportSiegeLoadout.Text = encodedLoadout;
+            maskedTextBoxSiegeHostGamePlayer1Loadout.Text = encodedLoadout;
+        }
+
+        private void comBoxSiegeHero_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comBoxSiegeSkin.Items.Clear();
+
+            string selectedHero = comBoxSiegeHero.SelectedItem.ToString();
+            GameInfo.SiegeLoadout.Hero = Model.Hero.SiegeHeroes[selectedHero];
+
+            if (GameInfo.SiegeLoadout.Hero.Skins != null)
+            {
+                PopulateSlots(new List<ComboBox> { comBoxSiegeSkin }, GameInfo.SiegeLoadout.Hero.SiegeSkins.Select(s => s.Name).ToList(), addEmptyOption: false);
+
+                comBoxSiegeSkin.SelectedItem = GameInfo.SiegeLoadout.Hero.SiegeSkins[0].Name;
+                GameInfo.SiegeLoadout.Hero = Model.Hero.SiegeHeroes[selectedHero];
+                UpdateSiegeLoadoutExportCode();
+            }
+        }
+
+        private void comBoxSiegeSkin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedSkin = comBoxSiegeSkin.SelectedItem.ToString();
+            GameInfo.SiegeLoadout.Skin = Model.Skin.Skins[selectedSkin];
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void comBoxSiegeDye_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedDye = comBoxSiegeDye.SelectedItem.ToString();
+            GameInfo.SiegeLoadout.Dye = Model.Dye.Dyes[selectedDye];
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void SaveSiegeLoadoutItem(int slotItemIdx)
+        {
+            string slotItemName = ComBoxSiegeLoadoutSlots[slotItemIdx].Text;
+            GameInfo.SiegeLoadout.SlotItems[slotItemIdx] = slotItemName.Length > 0 ? SlotItem.GetAllSiegeSlotItems()[slotItemName] : null;
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void comBoxSiegeLoadoutSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(1 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(2 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(3 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(4 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(5 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(6 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(7 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(8 - 1);
+        }
+
+        private void comBoxSiegeLoadoutSlot9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItemSlot = ((ComboBox)sender).SelectedItem?.ToString();
+            SaveSiegeLoadoutItem(9 - 1);
+        }
+
+        private void comBoxRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedRole = comBoxRole.SelectedItem.ToString();
+            GameInfo.SiegeLoadout.Role = Model.SiegeRole.Roles[selectedRole];
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void SaveSiegeTraits()
+        {
+            for (int i = 0; i < BaseLoadout.TRAIT_SLOT_COUNT; i++)
+            {
+                string traitName = ComBoxSiegeTraitSlots[i].Text;
+                GameInfo.SiegeLoadout.Traits[i] = traitName.Length > 0 ? SiegeTrait.Traits[traitName] : null;
+            }
+
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void comboxSiegeTraitYellowSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeTraits();
+        }
+
+        private void comboxSiegeTraitGreenSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeTraits();
+        }
+
+        private void comboxSiegeTraitBlueSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeTraits();
+        }
+
+        private void comboxSiegeTraitNoBonusSlot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeTraits();
+        }
+
+        private void SaveSiegeWaveSlot(int waveSlotIdx)
+        {
+            string waveSlotName = ComBoxSiegeWaveSlots[waveSlotIdx].Text;
+            GameInfo.SiegeLoadout.Waves[waveSlotIdx] = waveSlotName.Length > 0 ? Wave.Waves[waveSlotName] : null;
+            UpdateSiegeLoadoutExportCode();
+        }
+
+        private void comBoxSiegeLv1WaveSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(1 - 1);
+        }
+
+        private void comBoxSiegeLv1WaveSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(2 - 1);
+        }
+
+        private void comBoxSiegeLv2WaveSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(3 - 1);
+        }
+
+        private void comBoxSiegeLv2WaveSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(4 - 1);
+        }
+
+        private void comBoxSiegeLv3WaveSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(5 - 1);
+        }
+
+        private void comBoxSiegeLv3WaveSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(6 - 1);
+        }
+
+        private void comBoxSiegeLv4WaveSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(7 - 1);
+        }
+
+        private void comBoxSiegeLv4WaveSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(8 - 1);
+        }
+
+        private void comBoxSiegeBossWaveSlot1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(9 - 1);
+        }
+
+        private void comBoxSiegeBossWaveSlot2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSiegeWaveSlot(10 - 1);
+        }
+
+        private void comBoxSiegeBattleground_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedBattleground = comBoxSiegeBattleground.SelectedItem.ToString();
+            GameConfig.Instance.Battleground = selectedBattleground;
+            GameConfig.Instance.Save();
+
+            GameInfo.Battleground = Model.Siege.SiegeBattlegrounds[selectedBattleground];
         }
     }
 }
