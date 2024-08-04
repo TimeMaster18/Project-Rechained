@@ -19,17 +19,28 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 Note: Once installed, it can be launched from Steam by Pressing play on the Orcs Must Die! Unchained Game in your library.
 
+#### How to install for Siege:
+1. Download Last Siege Game version using SteamDepot from [DepotDownloader GitHub releases](<https://github.com/SteamRE/DepotDownloader/releases>) [Tutorial on how to download using DepotDownloader] (https://www.youtube.com/watch?v=nTnmCj5v024)
+
+If you want to have both versions (Survival and Siege), don't delete or replace any folders/files and keep both installations. Parameters for the latest OMDU version with Siege are below:
+
+```shell
+depotdownloader.exe -app 427270 -depot 427271 -manifest 808827202674972462 -dir <DownloadDirectory> -username <YourSteamAccount>
+```
+2. Now that you have OMDU Siege version downloaded, download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
+3. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
+4. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder.
+
 ### Features:
 - Launch the game from **Steam**
-- **Peer to peer multiplayer up to 5 players**
-- Play **any map**, **Survival** or **Endless** modes
-- Play with **all Heroes** and Custom **Loadouts**
-  - Choose Traps (with trap parts) and Gear
-  - Choose Guardians, Traits and Consumables
-- **Save your loadouts and share them with other players**
-- Hero, Guardian and **Trap Tiers** are matched with enemy/map level
-- **New extra difficulties** for every map
-- **New Mods**:
+- **Peer to peer multiplayer**
+  - Survival **up to 5 players**, **Survival** or **Endless** modes
+  - Siege 5 vs 5 players
+- Fully customisable loadouts, including Trap Parts
+  - **Save your loadouts and share them with other players**
+- In Survival, Hero and **Trap Tiers** are matched with enemy/map level
+- **New Survival extra difficulties** for every map
+- **New Survival Mods**:
   - Remove Trap Cap
   - Invincible barricades
   - Custom intial Coin
@@ -39,14 +50,15 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
   - and more!
 - Settings and mods are saved between executions
 
-
 ### Coming Next
 - Campaign Mode
 - Loadout randomizer
 - Fix Coop issues
 
 ### Known Problems
-- (Coop) All starting coins go to Host
+- UI of the launcher is simple
+
+#### Survival
 - Host player has no enemy / guardian / hero voices
 - (Coop) Client sometimes needs to rejoin to get all skills 
 - (Coop) Client traits "stack up" when reconnecting
@@ -56,8 +68,10 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 - (Visual only) Host player Unchained meter (right side of screen) stuck after first activation 
   - The **indicator over the hero icon at the bottom left of the screen works correctly**
 - (Visual only) Crogon Keep textures can be black
-- UI of the launcher is simple
 
+#### Siege
+- Host player doesn't have all sounds (mostly hero and minion related)
+- Host Hero Upgrades popup doesn't close automatically (requires pressing U) after picking upgrade
 
 ## Acknowledgements
 

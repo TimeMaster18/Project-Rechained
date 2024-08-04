@@ -879,8 +879,8 @@ namespace SingleplayerLauncher
             this.linkLabelJoinGameKnownIssues.TabIndex = 90;
             this.linkLabelJoinGameKnownIssues.TabStop = true;
             this.linkLabelJoinGameKnownIssues.Text = "Known Issues (Full List): \r\n - (Host) No voices, movement skills, wave count (vis" +
-    "ual)\r\n - (Client) If no skills join match again, no starting coin\r\n - Some mods " +
-    "can cause issues";
+    "ual)\r\n - (Client) If incompolete loadout, join match again\r\n - Some mods can cau" +
+    "se issues";
             this.linkLabelJoinGameKnownIssues.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLabelJoinGameKnownIssues.UseCompatibleTextRendering = true;
             this.linkLabelJoinGameKnownIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -1953,7 +1953,7 @@ namespace SingleplayerLauncher
             this.linkLabel1.TabIndex = 90;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Known Issues (Full List): \r\n - (Host) No voices, upgrades menu (close with U)\r\n -" +
-    " (Client) If no skills join match again\r\n";
+    " (Client) If no skills or incomplete loadout join match again\r\n";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLabel1.UseCompatibleTextRendering = true;
             // 

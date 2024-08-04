@@ -45,13 +45,16 @@ namespace SingleplayerLauncher
             {
                 // Assuming that the file in the Siege version is never extracted
                 isSiegeInstallation = true;
-            } else
+            } 
+            /* TODO: Add proper checking for game versions
+            else
             {
                 if (new FileInfo(spitfireGameUPK).Length != FileUtils.SPITFIREGAME_UPK_ORG_SIZE)
                 {
                     MessageBox.Show("The SpitfireGame UPK file is not the expected size. Please verify the integrity of the game files.");
                 }
             }
+            */
 
             Settings.Instance.IsSiegeInstallation = isSiegeInstallation;
 

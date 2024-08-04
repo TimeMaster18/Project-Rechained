@@ -125,6 +125,7 @@ namespace SingleplayerLauncher
 
             arguments += isHost ? map : hostIP;
             arguments += isHost ? "?listen" : "";
+            arguments += isHost ? "?PlayerReadyCount=" + GameInfo.PlayerCount : "";
             arguments += "?PlayerGUID=" + playerGUID;
             arguments += defaultArgs;
             arguments += languageArg;

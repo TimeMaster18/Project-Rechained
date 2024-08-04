@@ -29,6 +29,14 @@ namespace SingleplayerLauncher
         private readonly List<ComboBox> ComBoxSiegeWaveSlots;
         private readonly List<ComboBox> ComBoxSiegeTraitSlots;
 
+        List<MaskedTextBox> survivalLoadouts;
+        Dictionary<string, MaskedTextBox> survivalLoadoutsByPlayer;
+
+        List<MaskedTextBox> siegeLoadoutsTeam1;
+        List<MaskedTextBox> siegeLoadoutsTeam2;
+        List<MaskedTextBox> siegeLoadouts;
+        Dictionary<string, MaskedTextBox> siegeLoadoutsByPlayer;
+
         Random random = new Random();
 
         public LauncherMainForm()
@@ -118,6 +126,38 @@ namespace SingleplayerLauncher
             {
                 comboxSiegeTraitGreenSlot, comboxSiegeTraitBlueSlot, comboxSiegeTraitYellowSlot, comboxSiegeTraitNoBonusSlot // This order must match the order in Loadout.cs for simplicity
             };
+
+            survivalLoadouts = new List<MaskedTextBox>
+            {
+                maskedTextBoxHostGamePlayer1Loadout,
+                maskedTextBoxHostGamePlayer2Loadout,
+                maskedTextBoxHostGamePlayer3Loadout,
+                maskedTextBoxHostGamePlayer4Loadout,
+                maskedTextBoxHostGamePlayer5Loadout
+            };
+
+            survivalLoadoutsByPlayer = CreateLoadoutsByPlayer(survivalLoadouts, 1);
+
+            siegeLoadoutsTeam1 = new List<MaskedTextBox>
+            {
+                maskedTextBoxSiegeHostGamePlayer1Loadout,
+                maskedTextBoxSiegeHostGamePlayer2Loadout,
+                maskedTextBoxSiegeHostGamePlayer3Loadout,
+                maskedTextBoxSiegeHostGamePlayer4Loadout,
+                maskedTextBoxSiegeHostGamePlayer5Loadout
+            };
+
+            siegeLoadoutsTeam2 = new List<MaskedTextBox>
+            {
+                maskedTextBoxSiegeHostGamePlayer6Loadout,
+                maskedTextBoxSiegeHostGamePlayer7Loadout,
+                maskedTextBoxSiegeHostGamePlayer8Loadout,
+                maskedTextBoxSiegeHostGamePlayer9Loadout,
+                maskedTextBoxSiegeHostGamePlayer10Loadout
+            };
+
+            siegeLoadouts = siegeLoadoutsTeam1.Concat(siegeLoadoutsTeam2).ToList();
+            siegeLoadoutsByPlayer = CreateLoadoutsByPlayer(siegeLoadoutsTeam1.Concat(siegeLoadoutsTeam2).ToList(), 1);
 
 
             // Launcher settings
@@ -274,21 +314,14 @@ namespace SingleplayerLauncher
             }
 
             ApplyAllLoadouts();
+            GameInfo.PlayerCount = survivalLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
+
             GameLauncher.StartGame(GameInfo.SurvivalLoadout.PlayerName, isHost: true);
         }
 
         private void ApplyAllLoadouts()
         {
-            var loadouts = new List<MaskedTextBox>
-            {
-                maskedTextBoxHostGamePlayer1Loadout,
-                maskedTextBoxHostGamePlayer2Loadout,
-                maskedTextBoxHostGamePlayer3Loadout,
-                maskedTextBoxHostGamePlayer4Loadout,
-                maskedTextBoxHostGamePlayer5Loadout
-            };
-
-            foreach (var loadout in loadouts)
+            foreach (var loadout in survivalLoadouts)
             {
                 if (!string.IsNullOrWhiteSpace(loadout.Text))
                 {
@@ -1266,17 +1299,7 @@ namespace SingleplayerLauncher
         private List<string> ValidateAllLoadoutCodes()
         {
             var invalidLoadouts = new List<string>();
-
-            var loadouts = new Dictionary<string, MaskedTextBox>
-            {
-                { "Player 1", maskedTextBoxHostGamePlayer1Loadout },
-                { "Player 2", maskedTextBoxHostGamePlayer2Loadout },
-                { "Player 3", maskedTextBoxHostGamePlayer3Loadout },
-                { "Player 4", maskedTextBoxHostGamePlayer4Loadout },
-                { "Player 5", maskedTextBoxHostGamePlayer5Loadout }
-            };
-
-            foreach (var loadout in loadouts)
+            foreach (var loadout in survivalLoadoutsByPlayer)
             {
                 var (isValid, errorMessage) = ValidateLoadoutCode(loadout.Value);
                 if (!isValid && !string.IsNullOrEmpty(errorMessage))
@@ -1385,6 +1408,7 @@ namespace SingleplayerLauncher
             }
 
             ApplyAllSiegeLoadouts();
+            GameInfo.PlayerCount = siegeLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
             GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true);
         }
 
@@ -1407,22 +1431,7 @@ namespace SingleplayerLauncher
         private List<string> ValidateAllSiegeLoadoutCodes()
         {
             var invalidLoadouts = new List<string>();
-
-            var loadouts = new Dictionary<string, MaskedTextBox>
-            {
-                { "Player 1", maskedTextBoxSiegeHostGamePlayer1Loadout },
-                { "Player 2", maskedTextBoxSiegeHostGamePlayer2Loadout },
-                { "Player 3", maskedTextBoxSiegeHostGamePlayer3Loadout },
-                { "Player 4", maskedTextBoxSiegeHostGamePlayer4Loadout },
-                { "Player 5", maskedTextBoxSiegeHostGamePlayer5Loadout },
-                { "Player 6", maskedTextBoxSiegeHostGamePlayer6Loadout },
-                { "Player 7", maskedTextBoxSiegeHostGamePlayer7Loadout },
-                { "Player 8", maskedTextBoxSiegeHostGamePlayer8Loadout },
-                { "Player 9", maskedTextBoxSiegeHostGamePlayer9Loadout },
-                { "Player 10", maskedTextBoxSiegeHostGamePlayer10Loadout },
-            };
-
-            foreach (var loadout in loadouts)
+            foreach (var loadout in siegeLoadoutsByPlayer)
             {
                 var (isValid, errorMessage) = ValidateSiegeLoadoutCode(loadout.Value);
                 if (!isValid && !string.IsNullOrEmpty(errorMessage))
@@ -1436,40 +1445,23 @@ namespace SingleplayerLauncher
 
         private void ApplyAllSiegeLoadouts()
         {
-            var loadoutsTeam1 = new List<MaskedTextBox>
-            {
-                maskedTextBoxSiegeHostGamePlayer1Loadout,
-                maskedTextBoxSiegeHostGamePlayer2Loadout,
-                maskedTextBoxSiegeHostGamePlayer3Loadout,
-                maskedTextBoxSiegeHostGamePlayer4Loadout,
-                maskedTextBoxSiegeHostGamePlayer5Loadout,
-            };
-
-            var loadoutsTeam2 = new List<MaskedTextBox>
-            {
-                maskedTextBoxSiegeHostGamePlayer6Loadout,
-                maskedTextBoxSiegeHostGamePlayer7Loadout,
-                maskedTextBoxSiegeHostGamePlayer8Loadout,
-                maskedTextBoxSiegeHostGamePlayer9Loadout,
-                maskedTextBoxSiegeHostGamePlayer10Loadout
-            };
 
             bool randomBool = random.Next(0, 2) == 0;
 
             int team1 = randomBool ? 1 : 2;
             int team2 = randomBool ? 2 : 1;
 
-            for (int i = 0; i < loadoutsTeam1.Count; i++)
+            for (int i = 0; i < siegeLoadoutsTeam1.Count; i++)
             {
-                if (!string.IsNullOrWhiteSpace(loadoutsTeam1[i].Text))
+                if (!string.IsNullOrWhiteSpace(siegeLoadoutsTeam1[i].Text))
                 {
                     SiegeLoadout siegeLoadout = new SiegeLoadout();
-                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(loadoutsTeam1[i].Text), team1);
+                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutsTeam1[i].Text), team1);
                 }
-                if (!string.IsNullOrWhiteSpace(loadoutsTeam2[i].Text))
+                if (!string.IsNullOrWhiteSpace(siegeLoadoutsTeam2[i].Text))
                 {
                     SiegeLoadout siegeLoadout = new SiegeLoadout();
-                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(loadoutsTeam2[i].Text), team2);
+                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutsTeam2[i].Text), team2);
                 }
             }
         }
@@ -1831,6 +1823,16 @@ namespace SingleplayerLauncher
             GameConfig.Instance.Save();
 
             GameInfo.Battleground = Model.Siege.SiegeBattlegrounds[selectedBattleground];
+        }
+
+        private Dictionary<string, MaskedTextBox> CreateLoadoutsByPlayer(List<MaskedTextBox> loadouts, int start)
+        {
+            Dictionary<string, MaskedTextBox> loadoutsByPlayer = new Dictionary<string, MaskedTextBox>();
+            for (int i = 0; i < loadouts.Count; i++)
+            {
+                loadoutsByPlayer[$"Player {start + i}"] = loadouts[i];
+            }
+            return loadoutsByPlayer;
         }
     }
 }
