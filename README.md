@@ -20,18 +20,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 Note: Once installed, it can be launched from Steam by Pressing play on the Orcs Must Die! Unchained Game in your library.
 
 #### How to install for Siege:
-1. Download Last Siege Game version using SteamDepot from [DepotDownloader GitHub releases](<https://github.com/SteamRE/DepotDownloader/releases>)
-
-If you want to have both versions (Survival and Siege), don't delete or replace any folders/files and keep both installations. [Tutorial on how to download using DepotDownloader](https://www.youtube.com/watch?v=nTnmCj5v024)
-
- Parameters for the latest OMDU version with Siege are below:
-
-```shell
-depotdownloader.exe -app 427270 -depot 427271 -manifest 808827202674972462 -dir <DownloadDirectory> -username <YourSteamAccount>
-```
-2. Now that you have OMDU Siege version downloaded, download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
-3. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
-4. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder.
+[Siege installation instructions](Siege_installation_instructions.md)
 
 ### Features:
 - Launch the game from **Steam**
