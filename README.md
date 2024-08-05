@@ -20,7 +20,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 Note: Once installed, it can be launched from Steam by Pressing play on the Orcs Must Die! Unchained Game in your library.
 
 #### How to install for Siege:
-1. Download Last Siege Game version using SteamDepot from [DepotDownloader GitHub releases](<https://github.com/SteamRE/DepotDownloader/releases>) [Tutorial on how to download using DepotDownloader] (https://www.youtube.com/watch?v=nTnmCj5v024)
+1. Download Last Siege Game version using SteamDepot from [DepotDownloader GitHub releases](<https://github.com/SteamRE/DepotDownloader/releases>) [Tutorial on how to download using DepotDownloader](https://www.youtube.com/watch?v=nTnmCj5v024)
 
 If you want to have both versions (Survival and Siege), don't delete or replace any folders/files and keep both installations. Parameters for the latest OMDU version with Siege are below:
 
