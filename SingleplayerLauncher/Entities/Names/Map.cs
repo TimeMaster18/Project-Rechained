@@ -34,6 +34,7 @@
             THURICVOD_VILLAGE = "Thuricvod Village",
             TRAINING_GROUNDS = "Training Grounds",
             UNCHAINED_FORTRESS = "Unchained Fortress",
-            WATER_GARDEN = "Water Garden";
+            WATER_GARDEN = "Water Garden",
+            SIEGE_TUTORIAL = "Siege Tutorial";
     }
 }

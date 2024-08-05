@@ -1834,6 +1834,22 @@ namespace SingleplayerLauncher
             }
             return loadoutsByPlayer;
         }
+
+        private void btnPlaySiegeTutorial_Click(object sender, EventArgs e)
+        {
+            GameInfo.PlayerCount = 1;
+            GameInfo.Battleground.Map = Map.SiegeTutorial;
+
+            SiegeLoadout siegeLoadout = new SiegeLoadout
+            {
+                PlayerName = "TimeMaster",
+                Hero = Hero.Ivy
+            };
+            GameFiles.CharacterData.ApplySiegeLoadout(siegeLoadout);
+            GameInfo.SiegeLoadout = siegeLoadout;
+
+            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: false, hostIP: Map.SiegeTutorial.UmapCode);
+        }
     }
 }
 

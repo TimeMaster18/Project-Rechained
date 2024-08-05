@@ -242,6 +242,12 @@ namespace SingleplayerLauncher.Model
             TrapCap = 85,
         };
 
+        public static Map SiegeTutorial = new Map()
+        {
+            Name = SIEGE_TUTORIAL,
+            UmapCode = "TutorialSiege.umap"
+        };
+
 
         // Maps { Name, umap }
         public static Dictionary<string, Map> Maps = new Dictionary<string, Map>

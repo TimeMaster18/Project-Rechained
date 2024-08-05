@@ -288,6 +288,7 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot5 = new System.Windows.Forms.ComboBox();
             this.comBoxSiegeLoadoutSlot7 = new System.Windows.Forms.ComboBox();
             this.comBoxSiegeLoadoutSlot6 = new System.Windows.Forms.ComboBox();
+            this.btnPlaySiegeTutorial = new System.Windows.Forms.Button();
             this.battlegroundGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startingCoinInput)).BeginInit();
             this.modsGroupBox.SuspendLayout();
@@ -1926,6 +1927,7 @@ namespace SingleplayerLauncher
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.btnPlaySiegeTutorial);
             this.tabPage7.Controls.Add(this.linkLabel1);
             this.tabPage7.Controls.Add(this.label6);
             this.tabPage7.Controls.Add(this.label7);
@@ -3031,6 +3033,17 @@ namespace SingleplayerLauncher
             this.comBoxSiegeLoadoutSlot6.TabIndex = 5;
             this.comBoxSiegeLoadoutSlot6.SelectedIndexChanged += new System.EventHandler(this.comBoxSiegeLoadoutSlot6_SelectedIndexChanged);
             // 
+            // btnPlaySiegeTutorial
+            // 
+            this.btnPlaySiegeTutorial.BackColor = System.Drawing.Color.Orange;
+            this.btnPlaySiegeTutorial.Location = new System.Drawing.Point(108, 360);
+            this.btnPlaySiegeTutorial.Name = "btnPlaySiegeTutorial";
+            this.btnPlaySiegeTutorial.Size = new System.Drawing.Size(123, 41);
+            this.btnPlaySiegeTutorial.TabIndex = 91;
+            this.btnPlaySiegeTutorial.Text = "Play Siege Tutorial";
+            this.btnPlaySiegeTutorial.UseVisualStyleBackColor = false;
+            this.btnPlaySiegeTutorial.Click += new System.EventHandler(this.btnPlaySiegeTutorial_Click);
+            // 
             // LauncherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3346,6 +3359,7 @@ namespace SingleplayerLauncher
         private Button btnSaveLoadout;
         private ComboBox comBoxRole;
         private Label roleLabel;
+        private Button btnPlaySiegeTutorial;
     }
 }
 
