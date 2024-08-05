@@ -161,7 +161,7 @@ namespace SingleplayerLauncher
 
 
             // Launcher settings
-            foreach (string language in Language.GetLanguageMap().Values)
+            foreach (string language in Language.languageMap.Keys)
             {
                 comBoxLanguage.Items.Add(language);
                 comBoxSiegeLanguage.Items.Add(language);
@@ -1342,7 +1342,7 @@ namespace SingleplayerLauncher
 
         private void comBoxSiegeLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedLanguage = comBoxLanguage.SelectedItem.ToString();
+            string selectedLanguage = comBoxSiegeLanguage.SelectedItem.ToString();
             Settings.Instance.Language = selectedLanguage;
             Settings.Instance.Save();
         }

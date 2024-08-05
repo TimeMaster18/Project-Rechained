@@ -121,7 +121,7 @@ namespace SingleplayerLauncher
             string map = GameInfo.Battleground.Map.UmapCode;
             string playerGUID = playerName;
             string defaultArgs = EXE_ARGUMENTS;
-            string languageArg = LANGUAGE_OPTION + Language.GetKeyFromValue(language);
+            string languageArg = LANGUAGE_OPTION + Language.languageMap[language];
 
             arguments += isHost ? map : hostIP;
             arguments += isHost ? "?listen" : "";

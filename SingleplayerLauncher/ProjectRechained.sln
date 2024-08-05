@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRechainedLauncher", 
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Siege|Any CPU = Debug Siege|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5902F0C2-713E-4BF0-8037-5094AF55CEEB}.Debug Siege|Any CPU.ActiveCfg = Debug Siege|Any CPU
+		{5902F0C2-713E-4BF0-8037-5094AF55CEEB}.Debug Siege|Any CPU.Build.0 = Debug Siege|Any CPU
 		{5902F0C2-713E-4BF0-8037-5094AF55CEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5902F0C2-713E-4BF0-8037-5094AF55CEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5902F0C2-713E-4BF0-8037-5094AF55CEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
