@@ -190,7 +190,7 @@ namespace SingleplayerLauncher
             // Siege Game settings
             PopulateSlots(new List<ComboBox> { comBoxSiegeBattleground }, Model.Siege.SiegeBattlegrounds.Keys.ToList(), addEmptyOption: false);
             // select config or first index if no config
-            comBoxSiegeBattleground.SelectedItem = GameConfig.Instance.Battleground ?? comBoxSiegeBattleground.Items[0];
+            comBoxSiegeBattleground.SelectedItem = comBoxSiegeBattleground.Items[0];
 
             // Mods
             chkGodMode.Checked = GameConfig.Instance.GodMode;

@@ -4,7 +4,7 @@
 
 1. **Steam Account**: Ensure you have a valid Steam account.
 2. **DepotDownloader**: Download the latest version of DepotDownloader from its [GitHub repository](https://github.com/SteamRE/DepotDownloader).
-  - [Direct download latest Windows version of DepotDownloader](https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-windows-x64.zip)
+  - [Direct download latest Windows version of DepotDownloader](https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-framework.zip)
 
 ### Steps to Install the Specific OMDU Siege version
 
@@ -29,14 +29,14 @@
 5. **Run DepotDownloader Command**:
     - Use the following command to download the specific version:
       ```sh
-      ./DepotDownloader.exe -app 427270 -depot 427271 -manifest 808827202674972462 -username YourSteamUsername -password YourSteamPassword
+      dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username YourSteamUsername -password YourSteamPassword
       ```
 
     Replace `YourSteamUsername` and `YourSteamPassword` with your actual Steam credentials.
 
     **Example**:
     ```sh
-    ./DepotDownloader.exe DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username yourusername -password yourpassword
+    dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username yourusername -password yourpassword
     ```
 
 6. **Enter Steam Guard Code (if needed)**:
