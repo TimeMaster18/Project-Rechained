@@ -75,8 +75,8 @@ namespace SingleplayerLauncher.GameFiles
         public static void ApplyMods(bool areEnabled)
         {
             _ = Mods.Mods.GodMode ?? throw new ArgumentNullException(nameof(Mods.Mods.GodMode), "Mandatory parameter");
-            _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
-            _ = GameInfo.Battleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.Battleground.Map), "Mandatory parameter");
+            _ = GameInfo.SurvivalBattleground ?? throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground), "Mandatory parameter");
+            _ = GameInfo.SurvivalBattleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground.Map), "Mandatory parameter");
 
             ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
@@ -84,7 +84,7 @@ namespace SingleplayerLauncher.GameFiles
             string RCharacterDataSection = $"RCharacterData_{GameInfo.SurvivalLoadout.PlayerName} RCharacterData";
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeyGodMode, areEnabled ? Mods.Mods.GodMode.IsEnabled.ToString() : false.ToString());
 
-            string startingCoinMultiplier = CalculateMultiplierStartingCoin(areEnabled && Mods.Mods.StartingCoinOverride.IsEnabled, Mods.Mods.StartingCoinOverride.Value, GameInfo.Instance.Battleground.Map);
+            string startingCoinMultiplier = CalculateMultiplierStartingCoin(areEnabled && Mods.Mods.StartingCoinOverride.IsEnabled, Mods.Mods.StartingCoinOverride.Value, GameInfo.Instance.SurvivalBattleground.Map);
             data.UpdateEntry(RCharacterDataSection, CharacterDataKeyBonusStartingCoin, startingCoinMultiplier);
 
             characterData.Write();
@@ -108,7 +108,7 @@ namespace SingleplayerLauncher.GameFiles
             if (loadout.Consumables == null) throw new ArgumentNullException(nameof(loadout.Consumables), "Mandatory parameter");
             if (loadout.Traits == null) throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
             if (loadout.PlayerName == null) throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
-            if (GameInfo.Battleground.Difficulty == null) throw new ArgumentNullException(nameof(GameInfo.Battleground.Difficulty.TrapTier), "Mandatory parameter");
+            if (GameInfo.SurvivalBattleground.Difficulty == null) throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground.Difficulty.TrapTier), "Mandatory parameter");
         }
 
         private static void ValidateSiegeLoadout(SiegeLoadout loadout)
@@ -157,7 +157,7 @@ namespace SingleplayerLauncher.GameFiles
                 bool isTrap = slotItem is Trap;
 
                 TrapPart[] parts = isTrap && !isSiege ? ((SurvivalLoadout)loadout).GetTrapPartsForLoadout(i) : null;
-                int? trapTier = isTrap && !isSiege ? GameInfo.Battleground.Difficulty.TrapTier : (int?)null;
+                int? trapTier = isTrap && !isSiege ? GameInfo.SurvivalBattleground.Difficulty.TrapTier : (int?)null;
 
                 string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, trapTier, parts);
                 data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: loadoutIdx);

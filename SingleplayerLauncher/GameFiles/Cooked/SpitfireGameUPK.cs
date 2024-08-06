@@ -19,15 +19,10 @@ namespace SingleplayerLauncher
         private const int PAR_TIME_CHANGE_INDEX = 0x155A3C2;
         private static readonly byte[] UNIQUE_BYTES_REFERENCE_PAR_TIME = { 0x1B, 0x8B, 0x8F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x1D };
 
-        public void ApplyParTime()
+        public void ApplyParTime(int parTimeSeconds)
         {
-            _ = GameInfo.Battleground ?? throw new ArgumentNullException(nameof(GameInfo.Battleground), "Mandatory parameter");
-
-            if (GameInfo.Battleground.ParTime != null)
-            {
-                byte[] parTimeSeconds = BitConverter.GetBytes((int)GameInfo.Battleground.ParTime.TotalSeconds);
-                SpitfireGameUPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_PAR_TIME, PAR_TIME_CHANGE_INDEX, 0, parTimeSeconds);
-            }
+            byte[] parTimeBytes = BitConverter.GetBytes(parTimeSeconds);
+            SpitfireGameUPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_PAR_TIME, PAR_TIME_CHANGE_INDEX, 0, parTimeBytes);
         }
 
         public void ApplyMods(bool areModsEnabled)

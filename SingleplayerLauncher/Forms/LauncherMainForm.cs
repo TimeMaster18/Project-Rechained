@@ -293,7 +293,7 @@ namespace SingleplayerLauncher
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            GameLauncher.ApplyChanges(isHost: true);
+            GameLauncher.ApplyChanges(isHost: true, parTimeSeconds: (int)GameInfo.SurvivalBattleground.ParTime.TotalSeconds);
             SaveSettings();
 
             string playerName = maskedTextBoxPlayerName.Text;
@@ -316,7 +316,7 @@ namespace SingleplayerLauncher
             ApplyAllLoadouts();
             GameInfo.PlayerCount = survivalLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
 
-            GameLauncher.StartGame(GameInfo.SurvivalLoadout.PlayerName, isHost: true);
+            GameLauncher.StartGame(GameInfo.SurvivalLoadout.PlayerName, isHost: true, mapCode: GameInfo.SurvivalBattleground.Map.UmapCode, playerCount: GameInfo.PlayerCount);
         }
 
         private void ApplyAllLoadouts()
@@ -377,13 +377,13 @@ namespace SingleplayerLauncher
             switch (comBoxGameMode.SelectedItem)
             {
                 case Names.GameMode.ENDLESS:
-                    GameInfo.Battleground = Model.Endless.EndlessBattlegrounds[selectedBattleground];
+                    GameInfo.SurvivalBattleground = Model.Endless.EndlessBattlegrounds[selectedBattleground];
                     break;
 
                 case Names.GameMode.SURVIVAL:
                     string selectedDifficulty = comBoxDifficulty.SelectedItem.ToString();
                     Dictionary<string, Survival> battlegrounds = Model.Survival.SurvivalBattlegroundsByDifficulty[selectedDifficulty];
-                    GameInfo.Battleground = battlegrounds[selectedBattleground];
+                    GameInfo.SurvivalBattleground = battlegrounds[selectedBattleground];
                     break;
 
                 default:
@@ -420,7 +420,7 @@ namespace SingleplayerLauncher
                     break;
             }
 
-            GameInfo.Battleground.GameMode = Model.GameMode.GameModes[comBoxGameMode.SelectedItem.ToString()];
+            GameInfo.SurvivalBattleground.GameMode = Model.GameMode.GameModes[comBoxGameMode.SelectedItem.ToString()];
             GameConfig.Instance.GameMode = comBoxGameMode.SelectedItem.ToString();
             GameConfig.Instance.Save();
         }
@@ -458,7 +458,7 @@ namespace SingleplayerLauncher
 
             if (!comBoxExtraDifficulty.SelectedItem.ToString().Equals(noExtraDifficulty))
             {
-                GameInfo.Battleground.Difficulty = Model.Difficulty.Difficulties[selectedExtraDifficulty];
+                GameInfo.SurvivalBattleground.Difficulty = Model.Difficulty.Difficulties[selectedExtraDifficulty];
             }
         }
 
@@ -909,7 +909,7 @@ namespace SingleplayerLauncher
         {
             if (!chkCustomStartCoin.Checked)
             {
-                GameInfo.Battleground.StartingCoin = 0;
+                GameInfo.SurvivalBattleground.StartingCoin = 0;
             }
             startingCoinInput.Enabled = chkCustomStartCoin.Checked;
             Mods.Mods.StartingCoinOverride.IsEnabled = chkCustomStartCoin.Checked;
@@ -1409,7 +1409,7 @@ namespace SingleplayerLauncher
 
             ApplyAllSiegeLoadouts();
             GameInfo.PlayerCount = siegeLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
-            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true);
+            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true, mapCode: GameInfo.SiegeBattleground.Map.UmapCode);
         }
 
         private (bool isValid, string errorMessage) ValidateSiegeLoadoutCode(MaskedTextBox maskedTextBox)
@@ -1822,7 +1822,7 @@ namespace SingleplayerLauncher
             GameConfig.Instance.Battleground = selectedBattleground;
             GameConfig.Instance.Save();
 
-            GameInfo.Battleground = Model.Siege.SiegeBattlegrounds[selectedBattleground];
+            GameInfo.SiegeBattleground = Model.Siege.SiegeBattlegrounds[selectedBattleground];
         }
 
         private Dictionary<string, MaskedTextBox> CreateLoadoutsByPlayer(List<MaskedTextBox> loadouts, int start)
@@ -1837,18 +1837,14 @@ namespace SingleplayerLauncher
 
         private void btnPlaySiegeTutorial_Click(object sender, EventArgs e)
         {
-            GameInfo.PlayerCount = 1;
-            GameInfo.Battleground.Map = Map.SiegeTutorial;
-
-            SiegeLoadout siegeLoadout = new SiegeLoadout
+            SiegeLoadout siegeTutorialLoadout = new SiegeLoadout
             {
-                PlayerName = "TimeMaster",
+                PlayerName = "TimeMasterTutorial",
                 Hero = Hero.Ivy
             };
-            GameFiles.CharacterData.ApplySiegeLoadout(siegeLoadout);
-            GameInfo.SiegeLoadout = siegeLoadout;
+            GameFiles.CharacterData.ApplySiegeLoadout(siegeTutorialLoadout);
 
-            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: false, hostIP: Map.SiegeTutorial.UmapCode);
+            GameLauncher.StartGame(siegeTutorialLoadout.PlayerName, isHost: false, hostIP: Map.SiegeTutorial.UmapCode);
         }
     }
 }

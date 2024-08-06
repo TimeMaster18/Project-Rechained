@@ -14,7 +14,8 @@
 
         public static SurvivalLoadout SurvivalLoadout { get; set; } = new SurvivalLoadout();
         public static SiegeLoadout SiegeLoadout { get; set; } = new SiegeLoadout();
-        public IBattleground Battleground { get; set; } = new Survival();
+        public IBattleground SurvivalBattleground { get; set; } = new Survival();
+        public IBattleground SiegeBattleground { get; set; } = new Siege();
 
         public int PlayerCount { get; set; } = 1;
     }

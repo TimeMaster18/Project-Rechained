@@ -17,6 +17,7 @@ namespace SingleplayerLauncher
         public string GameMode { get; set; } = "Survival";
         public string Difficulty { get; set; }
         public string Battleground { get; set; }
+        public string SiegeBattleground { get; set; }
         public string ExtraDifficulty { get; set; }
         public bool GodMode { get; set; }
         public bool ShowTrapDamage { get; set; }

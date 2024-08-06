@@ -9,7 +9,6 @@ namespace SingleplayerLauncher
     {
 
         public UPKFile HeroObjectContent { get; private set; }
-        private readonly GameInfo GameInfo = GameInfo.Instance;
 
         private const int LoadoutSlotByteSize = 4;
         private const int LoadoutSlotsNumber = 9;

@@ -9,10 +9,9 @@ namespace SingleplayerLauncher
 {
     class GameLauncher
     {
-        private static readonly GameInfo GameInfo = GameInfo.Instance;
         private static readonly SpitfireGameUPK SpitfireGameUPK = new SpitfireGameUPK();
 
-        public static void ApplyChanges(bool isHost, bool isSiege = false)
+        public static void ApplyChanges(bool isHost, bool isSiege = false, int parTimeSeconds = 0)
         {
             if (!isSiege)
             {
@@ -22,7 +21,7 @@ namespace SingleplayerLauncher
                 if (isHost)
                 {
                     SpitfireGameUPK.ApplyMods(GameConfig.Instance.ModsEnabled);
-                    SpitfireGameUPK.ApplyParTime();
+                    SpitfireGameUPK.ApplyParTime(parTimeSeconds);
 
                     // Loadouts are applied as soon as input is received
 
@@ -96,14 +95,14 @@ namespace SingleplayerLauncher
             Settings.Instance.Save();
         }
 
-        public static void StartGame(string playerName, bool isHost, string hostIP = "")
+        public static void StartGame(string playerName, bool isHost, string hostIP = "", string mapCode = "", int playerCount = 1)
         {
             Process p = new Process();
             p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
             string filePath = Path.Combine(Settings.Instance.RootGamePath, Settings.Instance.RunAs32 ? FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH : FileUtils.BINARIES_FOLDER_NAME);
             p.StartInfo.WorkingDirectory = filePath;
             
-            p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language, isHost, hostIP, playerName);
+            p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language, isHost, hostIP, playerName, mapCode, playerCount);
 
             p.Start();
 
@@ -114,18 +113,18 @@ namespace SingleplayerLauncher
         private const string DEBUG_ARGUMENTS = " -log -ABSLOG=log.txt";
         private const string LANGUAGE_OPTION = " -language=";
 
-        private static string CreateExeArguments(bool debug, string language, bool isHost, string hostIP, string playerName)
+        private static string CreateExeArguments(bool debug, string language, bool isHost, string hostIP, string playerName, string mapCode, int playerCount)
         {
             string arguments = "";
 
-            string map = GameInfo.Battleground.Map.UmapCode;
+            string map = mapCode;
             string playerGUID = playerName;
             string defaultArgs = EXE_ARGUMENTS;
             string languageArg = LANGUAGE_OPTION + Language.languageMap[language];
 
             arguments += isHost ? map : hostIP;
             arguments += isHost ? "?listen" : "";
-            arguments += isHost ? "?PlayerReadyCount=" + GameInfo.PlayerCount : "";
+            arguments += isHost ? "?PlayerReadyCount=" + playerCount : "";
             arguments += "?PlayerGUID=" + playerGUID;
             arguments += defaultArgs;
             arguments += languageArg;
