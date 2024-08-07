@@ -4,7 +4,7 @@
 
 1. **Steam Account**: Ensure you have a valid Steam account.
 2. **DepotDownloader**: Download the latest version of DepotDownloader from its [GitHub repository](https://github.com/SteamRE/DepotDownloader).
-  - [Direct download latest Windows version of DepotDownloader](https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-framework.zip)
+  - [Direct download latest version of DepotDownloader](https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-framework.zip)
 
 ### Steps to Install the Specific OMDU Siege version
 
@@ -14,13 +14,13 @@
 
 2. **Download DepotDownloader**:
     - If not done already, visit the [DepotDownloader releases page](https://github.com/SteamRE/DepotDownloader/releases).
-      - Download the latest release zip file for your operating system. For Windows, it should look similar to `DepotDownloader-windows-x64.zip`
+      - Download the latest release zip file for your operating system. For Windows, it should look similar to `DepotDownloader-framework.zip`
     - Extract the contents of the zip file to a convenient location on your computer.
       - Make sure to not be within a sync'd folder such as OneDrive or MEGA.
 
 3. **Open Command Prompt or Powershell**:
     - On Windows: Press `Win + R`, type `cmd`, and hit Enter.
-        - Or Hold `Shift + Right click` in an empty space of a folder, then `Open powershell here`.
+        - Or Hold `Shift + Right click` in an empty space of a folder, then `Open powershell window here`.
 
 4. **Navigate to DepotDownloader Folder**:
     - Use the `cd` command to navigate to the folder where you extracted DepotDownloader.
@@ -29,14 +29,14 @@
 5. **Run DepotDownloader Command**:
     - Use the following command to download the specific version:
       ```sh
-      dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username YourSteamUsername -password YourSteamPassword
+      dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username YourSteamUsername
       ```
 
     Replace `YourSteamUsername` and `YourSteamPassword` with your actual Steam credentials.
 
     **Example**:
     ```sh
-    dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username yourusername -password yourpassword
+    dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username yourusername
     ```
 
 6. **Enter Steam Guard Code (if needed)**:
@@ -44,10 +44,10 @@
 
 7. **Wait for the Download to Complete**:
     - DepotDownloader will now connect to Steam and download the specified version.
-    - The downloaded files will be saved in a folder named after the App ID (427270) within the DepotDownloader directory.
+    - The downloaded files will be saved in a folder named `depots` within the DepotDownloader directory.
 
 8. **Verify the Download**:
-    - Once the download is complete, navigate to the download folder to ensure all files are there.
+    - Once the download is complete, navigate to the download folder to ensure all files are there. Game root folder will be some folders deeper.
 
 9. Now that you have OMDU Siege version downloaded, download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
 
