@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
+using System.Text;
 
 namespace SingleplayerLauncher.Utils
 {
@@ -23,7 +23,11 @@ namespace SingleplayerLauncher.Utils
             foreach (var line in lines)
             {
                 var trimmedLine = line.Trim();
-                if (trimmedLine.Length == 0) continue;
+                if (trimmedLine.Length == 0)
+                {
+                    continue;
+                }
+
                 if (trimmedLine.StartsWith(";"))
                 {
                     // Comment line

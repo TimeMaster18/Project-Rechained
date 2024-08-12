@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 public class ComboBoxHelper<T>
 {
-    private ToolTip _toolTip;
-    private Dictionary<string, T> _items;
-    private Func<T, string> _getToolTipText;
-    private Action<Graphics, Rectangle, T> _drawItemShape;
+    private readonly ToolTip _toolTip;
+    private readonly Dictionary<string, T> _items;
+    private readonly Func<T, string> _getToolTipText;
+    private readonly Action<Graphics, Rectangle, T> _drawItemShape;
 
     public ComboBoxHelper(Dictionary<string, T> items, Func<T, string> getToolTipText, Action<Graphics, Rectangle, T> drawItemShape)
     {
@@ -33,7 +33,7 @@ public class ComboBoxHelper<T>
         if (eventDrawItem.Index < 0) { return; }
 
         string itemName = comboBox.GetItemText(comboBox.Items[eventDrawItem.Index]);
-        if (!_items.TryGetValue(itemName, out T item)) {  return; }
+        if (!_items.TryGetValue(itemName, out T item)) { return; }
 
         // Draw the background
         if ((eventDrawItem.State & DrawItemState.Selected) == DrawItemState.Selected)

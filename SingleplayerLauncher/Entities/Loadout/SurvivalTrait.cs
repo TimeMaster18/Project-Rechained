@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using static SingleplayerLauncher.Names.Trait;
-using static SingleplayerLauncher.Names.Difficulty;
 using System.Linq;
+using static SingleplayerLauncher.Names.Difficulty;
+using static SingleplayerLauncher.Names.Trait;
 
 namespace SingleplayerLauncher.Model
 {
     public class SurvivalTrait : Trait
     {
-        
+
         // Traits
         // Triangle Traits
         public static SurvivalTrait EasilyExcited = new SurvivalTrait

@@ -7,7 +7,7 @@ namespace SingleplayerLauncher.Model
     public class Trap : SlotItem
     {
 
-    public string[] TrapPartSlots { get; private set; }
+        public string[] TrapPartSlots { get; private set; }
 
         // static members
         public static Trap ArcaneBowlingBall = new Trap()

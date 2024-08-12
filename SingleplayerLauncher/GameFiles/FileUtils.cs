@@ -216,7 +216,9 @@ namespace SingleplayerLauncher.GameFiles
         {
             int result = n - 500;
             if (result <= 0)
+            {
                 return 0;
+            }
 
             return (result / 1000) * 1000;
         }
@@ -312,13 +314,23 @@ namespace SingleplayerLauncher.GameFiles
             /// <returns>The path to the launcher installation if found, otherwise null.</returns>
             string SearchDirectory(string path, int depth)
             {
-                if (depth > 5) return null;
-                if (ContainsRequiredFolders(path)) return path;
+                if (depth > 5)
+                {
+                    return null;
+                }
+
+                if (ContainsRequiredFolders(path))
+                {
+                    return path;
+                }
 
                 foreach (string subDir in Directory.GetDirectories(path))
                 {
                     string result = SearchDirectory(subDir, depth + 1);
-                    if (result != null) return result;
+                    if (result != null)
+                    {
+                        return result;
+                    }
                 }
 
                 return null;

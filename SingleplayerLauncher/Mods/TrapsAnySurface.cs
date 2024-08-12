@@ -1,6 +1,4 @@
-﻿using SingleplayerLauncher.GameFiles;
-
-namespace SingleplayerLauncher.Mods
+﻿namespace SingleplayerLauncher.Mods
 {
     public class TrapsAnySurface : Mod
     {

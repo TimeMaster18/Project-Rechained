@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SingleplayerLauncher.Configuration;
 using SingleplayerLauncher.GameFiles;
-using System;
 using System.Collections.Generic;
 using System.IO;
 

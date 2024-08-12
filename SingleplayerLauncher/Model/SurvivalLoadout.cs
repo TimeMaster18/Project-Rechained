@@ -18,7 +18,7 @@ namespace SingleplayerLauncher.Model
 
         public Guardian[] Guardians { get; set; } = new Guardian[GUARDIAN_SLOT_COUNT] { Guardian.DragonGuardian, Guardian.MoonGuardian };
 
-        public Consumable[] Consumables { get; set; } = new Consumable[CONSUMABLE_SLOT_COUNT] { Consumable.LuckPotion, Consumable.UnchainedScroll };        
+        public Consumable[] Consumables { get; set; } = new Consumable[CONSUMABLE_SLOT_COUNT] { Consumable.LuckPotion, Consumable.UnchainedScroll };
 
         public TrapPart[,] TrapParts { get; set; } = new TrapPart[SLOT_ITEMS_COUNT, TRAP_PART_SLOT_COUNT];
 

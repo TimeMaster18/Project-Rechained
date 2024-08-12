@@ -1,6 +1,5 @@
-﻿using System.Net;
+﻿using SingleplayerLauncher.Model;
 using System.Text.RegularExpressions;
-using SingleplayerLauncher.Model;
 
 public static class InputValidator
 {

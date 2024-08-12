@@ -1,6 +1,4 @@
-﻿using SingleplayerLauncher.GameFiles;
-
-namespace SingleplayerLauncher.Mods
+﻿namespace SingleplayerLauncher.Mods
 {
     public class SellTrapsAnytime : Mod
     {
@@ -10,13 +8,13 @@ namespace SingleplayerLauncher.Mods
         private const int CHANGE_INDEX = 0x0F172B8;
         public override bool InstallMod()
         {
-            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, (byte)39);
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, 39);
             return true;
         }
 
         public override bool UninstallMod()
         {
-            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, (byte)40);
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, 40);
             return true;
         }
     }

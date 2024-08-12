@@ -45,7 +45,7 @@ namespace SingleplayerLauncher
             {
                 // Assuming that the file in the Siege version is never extracted
                 isSiegeInstallation = true;
-            } 
+            }
             /* TODO: Add proper checking for game versions
             else
             {

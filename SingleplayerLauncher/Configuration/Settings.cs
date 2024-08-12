@@ -48,7 +48,9 @@ namespace SingleplayerLauncher
                 try
                 {
                     File.Delete(settingsFileLegacy);
-                } finally {
+                }
+                finally
+                {
                     // Do nothing - ignore legacy file
                 }
             }

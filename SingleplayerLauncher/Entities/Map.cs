@@ -12,7 +12,7 @@ namespace SingleplayerLauncher.Model
         public string UmapCode { get; private set; }
         public int StartingCoin { get; private set; } = _9000_COIN;
         public int TrapCap { get; private set; } = 85;
-        
+
         public bool HasEndlessAvailable { get; private set; } = false;
 
         // private constructor

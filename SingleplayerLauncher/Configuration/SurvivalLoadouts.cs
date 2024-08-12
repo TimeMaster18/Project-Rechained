@@ -41,5 +41,5 @@ namespace SingleplayerLauncher
             });
             _instance.Save();
         }
-    }    
+    }
 }

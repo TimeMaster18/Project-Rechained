@@ -1,8 +1,4 @@
-﻿using SingleplayerLauncher.Model;
-using System;
-using System.Linq;
-
-namespace SingleplayerLauncher
+﻿namespace SingleplayerLauncher
 {
 
     public sealed class UPKHeroObjectContent

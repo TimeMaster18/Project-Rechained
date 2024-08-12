@@ -1,6 +1,4 @@
-﻿using SingleplayerLauncher.GameFiles;
-
-namespace SingleplayerLauncher.Mods
+﻿namespace SingleplayerLauncher.Mods
 {
     public class NoLimitUniqueTraps : Mod
     {
@@ -11,13 +9,13 @@ namespace SingleplayerLauncher.Mods
 
         public override bool InstallMod()
         {
-            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, (byte)0);
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, 0);
             return true;
         }
 
         public override bool UninstallMod()
         {
-            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, (byte)1);
+            UPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE, CHANGE_INDEX, OFFSET_FROM_UNIQUE_BYTES, 1);
             return true;
         }
     }

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using static SingleplayerLauncher.Names.Trait;
 using System.Linq;
+using static SingleplayerLauncher.Names.Trait;
 
 namespace SingleplayerLauncher.Model
 {
     public class SiegeTrait : Trait
     {
-        
+
         // Triangle Traits
         public static SiegeTrait CacheWhisperer = new SiegeTrait
         {

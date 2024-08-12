@@ -12,7 +12,7 @@ namespace SingleplayerLauncher.Model
         public Dye Dye { get; set; } = Dye.Normal;
         public SlotItem[] SlotItems { get; set; } = new SlotItem[] { };
 
-        public Trait[] Traits { get; set; } = new Trait[] {};
+        public Trait[] Traits { get; set; } = new Trait[] { };
 
         public const int SLOT_ITEMS_COUNT = 9;
         public const int TRAIT_SLOT_COUNT = 4;
@@ -30,7 +30,11 @@ namespace SingleplayerLauncher.Model
 
         public bool IsTraitMatchingBonus(int traitIdx)
         {
-            if (traitIdx == TRAIT_NO_BONUS_SLOT_IDX) return false;
+            if (traitIdx == TRAIT_NO_BONUS_SLOT_IDX)
+            {
+                return false;
+            }
+
             Trait trait = Traits[traitIdx];
 
             if (traitIdx == TRAIT_BLUE_SLOT_IDX && trait.MatchingSlot == Trait.DIAMOND_BONUS_SLOT ||

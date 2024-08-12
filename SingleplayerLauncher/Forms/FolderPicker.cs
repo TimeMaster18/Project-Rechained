@@ -42,7 +42,9 @@ public class FolderPicker
         if (!string.IsNullOrEmpty(InputPath))
         {
             if (CheckHr(SHCreateItemFromParsingName(InputPath, null, typeof(IShellItem).GUID, out var item), throwOnError) != 0)
+            {
                 return null;
+            }
 
             dialog.SetFolder(item);
         }
@@ -77,13 +79,19 @@ public class FolderPicker
 
         var hr = dialog.Show(owner);
         if (hr == ERROR_CANCELLED)
+        {
             return null;
+        }
 
         if (CheckHr(hr, throwOnError) != 0)
+        {
             return null;
+        }
 
         if (CheckHr(dialog.GetResults(out var items), throwOnError) != 0)
+        {
             return null;
+        }
 
         items.GetCount(out var count);
         for (var i = 0; i < count; i++)
@@ -102,7 +110,11 @@ public class FolderPicker
 
     private static int CheckHr(int hr, bool throwOnError)
     {
-        if (hr != 0 && throwOnError) Marshal.ThrowExceptionForHR(hr);
+        if (hr != 0 && throwOnError)
+        {
+            Marshal.ThrowExceptionForHR(hr);
+        }
+
         return hr;
     }
 

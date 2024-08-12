@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using static SingleplayerLauncher.Names.Trait;
-using static SingleplayerLauncher.Names.Difficulty;
-using System.Linq;
-
-namespace SingleplayerLauncher.Model
+﻿namespace SingleplayerLauncher.Model
 {
     public class Trait : LoadoutItem
     {
@@ -84,5 +79,5 @@ namespace SingleplayerLauncher.Model
             Description = "+2.5% movement speed.",
             SiegeDescription = "+2.5% movement speed."
         };
-   }
+    }
 }

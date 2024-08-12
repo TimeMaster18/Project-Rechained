@@ -2,13 +2,12 @@
 namespace SingleplayerLauncher.Utils
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     public class Section : IniElement
     {
         public string Name { get; private set; }
         public List<IniElement> Elements { get; private set; }
-        private Dictionary<string, List<Entry>> entries;
+        private readonly Dictionary<string, List<Entry>> entries;
 
         public Section(string name, string rawText) : base(rawText)
         {

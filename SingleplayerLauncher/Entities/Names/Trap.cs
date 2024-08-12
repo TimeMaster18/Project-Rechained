@@ -57,7 +57,7 @@
             WALL_BLADES = "Wall Blades",
             WALL_CHARGER = "Wall Charger",
             WEB_SPINNER = "Web Spinner",
-            
+
             // Siege Only
             ANTI_MAGIC_FIELD = "Anti-Magic Field",
             BUFF_PYLON = "Buff Pylon",

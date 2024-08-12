@@ -2,9 +2,9 @@
 using SingleplayerLauncher.Utils;
 using System;
 using System.Globalization;
-using System.Text;
-using System.Linq;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace SingleplayerLauncher.GameFiles
 {
@@ -100,31 +100,93 @@ namespace SingleplayerLauncher.GameFiles
         {
             var _ = loadout ?? throw new ArgumentNullException(nameof(loadout), "Mandatory parameter");
 
-            if (loadout.Hero == null) throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
-            if (loadout.Dye == null) throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
-            if (loadout.SlotItems == null) throw new ArgumentNullException(nameof(loadout.SlotItems), "Mandatory parameter");
-            if (loadout.TrapParts == null) throw new ArgumentNullException(nameof(loadout.TrapParts), "Mandatory parameter");
-            if (loadout.Guardians == null) throw new ArgumentNullException(nameof(loadout.Guardians), "Mandatory parameter");
-            if (loadout.Consumables == null) throw new ArgumentNullException(nameof(loadout.Consumables), "Mandatory parameter");
-            if (loadout.Traits == null) throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
-            if (loadout.PlayerName == null) throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
-            if (GameInfo.SurvivalBattleground.Difficulty == null) throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground.Difficulty.TrapTier), "Mandatory parameter");
+            if (loadout.Hero == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
+            }
+
+            if (loadout.Dye == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
+            }
+
+            if (loadout.SlotItems == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.SlotItems), "Mandatory parameter");
+            }
+
+            if (loadout.TrapParts == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.TrapParts), "Mandatory parameter");
+            }
+
+            if (loadout.Guardians == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Guardians), "Mandatory parameter");
+            }
+
+            if (loadout.Consumables == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Consumables), "Mandatory parameter");
+            }
+
+            if (loadout.Traits == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
+            }
+
+            if (loadout.PlayerName == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
+            }
+
+            if (GameInfo.SurvivalBattleground.Difficulty == null)
+            {
+                throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground.Difficulty.TrapTier), "Mandatory parameter");
+            }
         }
 
         private static void ValidateSiegeLoadout(SiegeLoadout loadout)
         {
             var _ = loadout ?? throw new ArgumentNullException(nameof(loadout), "Mandatory parameter");
 
-            if (loadout.Hero == null) throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
-            if (loadout.Dye == null) throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
-            if (loadout.SlotItems == null) throw new ArgumentNullException(nameof(loadout.SlotItems), "Mandatory parameter");
-            if (loadout.Role == null) throw new ArgumentNullException(nameof(loadout.Role), "Mandatory parameter");
-            if (loadout.Waves == null) throw new ArgumentNullException(nameof(loadout.Waves), "Mandatory parameter");
-            if (loadout.Traits == null) throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
-            if (loadout.PlayerName == null) throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
+            if (loadout.Hero == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Hero), "Mandatory parameter");
+            }
+
+            if (loadout.Dye == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Dye), "Mandatory parameter");
+            }
+
+            if (loadout.SlotItems == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.SlotItems), "Mandatory parameter");
+            }
+
+            if (loadout.Role == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Role), "Mandatory parameter");
+            }
+
+            if (loadout.Waves == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Waves), "Mandatory parameter");
+            }
+
+            if (loadout.Traits == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.Traits), "Mandatory parameter");
+            }
+
+            if (loadout.PlayerName == null)
+            {
+                throw new ArgumentNullException(nameof(loadout.PlayerName), "Mandatory parameter");
+            }
         }
 
-        private static void UpdateCharacterDataEntries(IniFile data, string section, BaseLoadout loadout, int team=1)
+        private static void UpdateCharacterDataEntries(IniFile data, string section, BaseLoadout loadout, int team = 1)
         {
             bool isSiege = loadout.GetType() == typeof(SiegeLoadout);
             data.UpdateEntry(section, CharacterDataKeyHero, isSiege ? loadout.Hero.SiegeTemplateName : loadout.Hero.PawnTemplateName);
