@@ -1,8 +1,8 @@
-﻿using SingleplayerLauncher.Model;
-using SingleplayerLauncher.GameFiles;
+﻿using SingleplayerLauncher.GameFiles;
+using SingleplayerLauncher.Model;
+using System;
 using System.Diagnostics;
 using System.IO;
-using System;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
@@ -101,7 +101,7 @@ namespace SingleplayerLauncher
             p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
             string filePath = Path.Combine(Settings.Instance.RootGamePath, Settings.Instance.RunAs32 ? FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH : FileUtils.BINARIES_FOLDER_NAME);
             p.StartInfo.WorkingDirectory = filePath;
-            
+
             p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language, isHost, hostIP, playerName, mapCode, playerCount);
 
             p.Start();
@@ -138,5 +138,5 @@ namespace SingleplayerLauncher
 
             return arguments;
         }
-    }    
+    }
 }

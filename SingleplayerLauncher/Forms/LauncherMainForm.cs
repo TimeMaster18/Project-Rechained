@@ -29,15 +29,15 @@ namespace SingleplayerLauncher
         private readonly List<ComboBox> ComBoxSiegeWaveSlots;
         private readonly List<ComboBox> ComBoxSiegeTraitSlots;
 
-        List<MaskedTextBox> survivalLoadouts;
-        Dictionary<string, MaskedTextBox> survivalLoadoutsByPlayer;
+        readonly List<MaskedTextBox> survivalLoadouts;
+        readonly Dictionary<string, MaskedTextBox> survivalLoadoutsByPlayer;
 
-        List<MaskedTextBox> siegeLoadoutsTeam1;
-        List<MaskedTextBox> siegeLoadoutsTeam2;
-        List<MaskedTextBox> siegeLoadouts;
-        Dictionary<string, MaskedTextBox> siegeLoadoutsByPlayer;
+        readonly List<MaskedTextBox> siegeLoadoutsTeam1;
+        readonly List<MaskedTextBox> siegeLoadoutsTeam2;
+        readonly List<MaskedTextBox> siegeLoadouts;
+        readonly Dictionary<string, MaskedTextBox> siegeLoadoutsByPlayer;
 
-        Random random = new Random();
+        readonly Random random = new Random();
 
         public LauncherMainForm()
         {
@@ -355,7 +355,7 @@ namespace SingleplayerLauncher
             SurvivalLoadout loadout = new SurvivalLoadout();
             loadout.Decode(loadoutCode);
             string playerName = loadout.PlayerName;
-            loadout.PlayerName  = "0";
+            loadout.PlayerName = "0";
             GameFiles.CharacterData.ApplyLoadout(loadout);
             loadout.PlayerName = playerName;
             GameLauncher.StartGame(loadout.PlayerName, isHost: false, hostIP);
@@ -655,7 +655,7 @@ namespace SingleplayerLauncher
             for (int i = 0; i < SurvivalLoadout.GUARDIAN_SLOT_COUNT; i++)
             {
                 string guardianName = ComBoxGuardianSlots[i].Text;
-                ((SurvivalLoadout)GameInfo.SurvivalLoadout).Guardians[i] = guardianName.Length > 0 ? Guardian.Guardians[guardianName] : null;
+                GameInfo.SurvivalLoadout.Guardians[i] = guardianName.Length > 0 ? Guardian.Guardians[guardianName] : null;
             }
 
             UpdateLoadoutExportCode();
@@ -666,7 +666,7 @@ namespace SingleplayerLauncher
             for (int i = 0; i < SurvivalLoadout.CONSUMABLE_SLOT_COUNT; i++)
             {
                 string consumableName = ComBoxConsumableSlots[i].Text;
-                ((SurvivalLoadout)GameInfo.SurvivalLoadout).Consumables[i] = consumableName.Length > 0 ? Consumable.Consumables[consumableName] : null;
+                GameInfo.SurvivalLoadout.Consumables[i] = consumableName.Length > 0 ? Consumable.Consumables[consumableName] : null;
             }
 
             UpdateLoadoutExportCode();
@@ -768,7 +768,7 @@ namespace SingleplayerLauncher
         private void SaveTrapPart(int slotIdx, int partIdx)
         {
             string partName = ComBoxTrapPartsSlots[slotIdx][partIdx].Text;
-            ((SurvivalLoadout)GameInfo.SurvivalLoadout).TrapParts[slotIdx, partIdx] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
+            GameInfo.SurvivalLoadout.TrapParts[slotIdx, partIdx] = partName.Length > 0 ? TrapPart.TrapParts[partName] : null;
             UpdateLoadoutExportCode();
         }
 
@@ -1137,7 +1137,7 @@ namespace SingleplayerLauncher
             string playerName = maskedTextBoxPlayerName.Text;
             var (isValid, errorMessage) = InputValidator.ValidatePlayerName(playerName);
 
-            errorProvider.SetError(maskedTextBoxPlayerName, isValid ? string.Empty: errorMessage);
+            errorProvider.SetError(maskedTextBoxPlayerName, isValid ? string.Empty : errorMessage);
 
             GameInfo.SurvivalLoadout.PlayerName = playerName;
             UpdateLoadoutExportCode();
@@ -1263,7 +1263,7 @@ namespace SingleplayerLauncher
         {
             ValidateLoadoutCode(maskedTextBoxHostGamePlayer5Loadout);
         }
-               
+
         private void maskedTextBoxJoinGameHostIP_TextChanged(object sender, EventArgs e)
         {
             string hostIP = maskedTextBoxJoinGameHostIP.Text;
@@ -1311,11 +1311,11 @@ namespace SingleplayerLauncher
             return invalidLoadouts;
         }
 
-        string MULTIPLAYER_KNOWN_ISSUES_URL = "https://github.com/TimeMaster18/Project-Rechained?tab=readme-ov-file#known-problems";
+        readonly string MULTIPLAYER_KNOWN_ISSUES_URL = "https://github.com/TimeMaster18/Project-Rechained?tab=readme-ov-file#known-problems";
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(MULTIPLAYER_KNOWN_ISSUES_URL);        
+            System.Diagnostics.Process.Start(MULTIPLAYER_KNOWN_ISSUES_URL);
         }
 
         private void buttonOpenLoadoutEditor_Click(object sender, EventArgs e)

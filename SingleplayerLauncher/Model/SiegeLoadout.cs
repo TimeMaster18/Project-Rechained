@@ -84,7 +84,7 @@ namespace SingleplayerLauncher.Model
             {
                 var trait = traitParts.Substring(i, 1);
                 Traits[i] = trait != "0" ? SiegeTrait.GetById(Base62Converter.Decode(trait)) : null;
-            }            
+            }
 
             return this;
         }

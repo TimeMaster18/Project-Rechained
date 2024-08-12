@@ -1,7 +1,6 @@
 ﻿using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Mods;
 using System;
-using System.Text;
 
 namespace SingleplayerLauncher
 {
