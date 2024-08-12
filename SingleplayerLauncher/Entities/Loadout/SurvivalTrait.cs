@@ -10,7 +10,7 @@ namespace SingleplayerLauncher.Model
 
         // Traits
         // Triangle Traits
-        public static SurvivalTrait EasilyExcited = new SurvivalTrait
+        public static SurvivalTrait EasilyExcited = new()
         {
             Id = 1,
             CodeName = "SpitfireGame.RTraitEasilyExcited",
@@ -21,7 +21,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait MakingItRain = new SurvivalTrait
+        public static SurvivalTrait MakingItRain = new()
         {
             Id = 2,
             CodeName = "SpitfireGame.RTraitMakingItRain",
@@ -32,7 +32,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait NaturalBornSprinter = new SurvivalTrait
+        public static SurvivalTrait NaturalBornSprinter = new()
         {
             Id = 3,
             CodeName = "SpitfireGame.RTraitNaturalBornSprinter",
@@ -43,7 +43,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SurvivalTrait KidnappedALeprechaun = new SurvivalTrait
+        public static SurvivalTrait KidnappedALeprechaun = new()
         {
             Id = 4,
             CodeName = "SpitfireGame.RTraitStartingCoin3",
@@ -54,7 +54,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait OverReacting = new SurvivalTrait
+        public static SurvivalTrait OverReacting = new()
         {
             Id = 5,
             CodeName = "trait.Upgrades.Adult_Supervision",
@@ -65,7 +65,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SurvivalTrait AvoidsPain = new SurvivalTrait
+        public static SurvivalTrait AvoidsPain = new()
         {
             Id = 6,
             CodeName = "trait.Upgrades.Afraid_Leave_Home",
@@ -76,7 +76,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait FireSale = new SurvivalTrait
+        public static SurvivalTrait FireSale = new()
         {
             Id = 7,
             CodeName = "trait.Upgrades.Fire_Sale",
@@ -87,7 +87,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait IceColdDeals = new SurvivalTrait
+        public static SurvivalTrait IceColdDeals = new()
         {
             Id = 8,
             CodeName = "trait.Upgrades.Ice_Cold_Deals",
@@ -98,7 +98,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SurvivalTrait InsaneArcaneSale = new SurvivalTrait
+        public static SurvivalTrait InsaneArcaneSale = new()
         {
             Id = 9,
             CodeName = "trait.Upgrades.Insane_Arcane_Sale",
@@ -109,7 +109,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_MANA_REGEN
         };
-        public static SurvivalTrait LightningDeals = new SurvivalTrait
+        public static SurvivalTrait LightningDeals = new()
         {
             Id = 10,
             CodeName = "trait.Upgrades.Lightning_Deals",
@@ -120,7 +120,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SurvivalTrait BigSpender = new SurvivalTrait
+        public static SurvivalTrait BigSpender = new()
         {
             Id = 11,
             CodeName = "trait.Upgrades.MoneyBags",
@@ -131,7 +131,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait NeverPaysRetail = new SurvivalTrait
+        public static SurvivalTrait NeverPaysRetail = new()
         {
             Id = 12,
             CodeName = "trait.Upgrades.Never_Pays_Retail",
@@ -142,7 +142,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait OneWithTheTraps = new SurvivalTrait
+        public static SurvivalTrait OneWithTheTraps = new()
         {
             Id = 13,
             CodeName = "trait.Upgrades.One_With_Traps",
@@ -153,7 +153,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait Overachiever = new SurvivalTrait
+        public static SurvivalTrait Overachiever = new()
         {
             Id = 14,
             CodeName = "trait.Upgrades.Overachiever",
@@ -164,7 +164,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SurvivalTrait Overprotective = new SurvivalTrait
+        public static SurvivalTrait Overprotective = new()
         {
             Id = 15,
             CodeName = "trait.Upgrades.Overprotective",
@@ -175,7 +175,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SurvivalTrait RiftGift = new SurvivalTrait
+        public static SurvivalTrait RiftGift = new()
         {
             Id = 16,
             CodeName = "trait.Upgrades.Rift_Gift",
@@ -186,7 +186,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_MANA_REGEN
         };
-        public static SurvivalTrait RiftRocket = new SurvivalTrait
+        public static SurvivalTrait RiftRocket = new()
         {
             Id = 17,
             CodeName = "trait.Upgrades.Rift_Rocket",
@@ -197,7 +197,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SurvivalTrait SmashingDeals = new SurvivalTrait
+        public static SurvivalTrait SmashingDeals = new()
         {
             Id = 18,
             CodeName = "trait.Upgrades.Smashing_Deals",
@@ -208,7 +208,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SurvivalTrait HasATrapFetish = new SurvivalTrait
+        public static SurvivalTrait HasATrapFetish = new()
         {
             Id = 19,
             CodeName = "trait.Upgrades.Trap_Fetish",
@@ -221,7 +221,7 @@ namespace SingleplayerLauncher.Model
         };
 
         // Pentagon Traits
-        public static SurvivalTrait BelievesSizeMatters = new SurvivalTrait
+        public static SurvivalTrait BelievesSizeMatters = new()
         {
             Id = 20,
             CodeName = "SpitfireGame.RTraitBelieveSizeMatters",
@@ -232,7 +232,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait UncleKilledByGiant = new SurvivalTrait
+        public static SurvivalTrait UncleKilledByGiant = new()
         {
             Id = 21,
             CodeName = "SpitfireGame.RTraitDamageToGiants3",
@@ -243,7 +243,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SurvivalTrait CatEatenByGnolls = new SurvivalTrait
+        public static SurvivalTrait CatEatenByGnolls = new()
         {
             Id = 22,
             CodeName = "SpitfireGame.RTraitDamageToGnolls3",
@@ -254,7 +254,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait BrotherMauledByGrizzlies = new SurvivalTrait
+        public static SurvivalTrait BrotherMauledByGrizzlies = new()
         {
             Id = 23,
             CodeName = "SpitfireGame.RTraitDamageToGrizzlies3",
@@ -265,7 +265,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SurvivalTrait SisterEatenByAnOgre = new SurvivalTrait
+        public static SurvivalTrait SisterEatenByAnOgre = new()
         {
             Id = 24,
             CodeName = "SpitfireGame.RTraitDamageToOgres3",
@@ -276,7 +276,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait DogKilledByPrideHunters = new SurvivalTrait
+        public static SurvivalTrait DogKilledByPrideHunters = new()
         {
             Id = 25,
             CodeName = "SpitfireGame.RTraitDamageToPrideHunters3",
@@ -287,7 +287,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait GrandmotherEatenByATroll = new SurvivalTrait
+        public static SurvivalTrait GrandmotherEatenByATroll = new()
         {
             Id = 26,
             CodeName = "SpitfireGame.RTraitDamageToTrolls3",
@@ -298,7 +298,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait DifficultyCalmingDown = new SurvivalTrait
+        public static SurvivalTrait DifficultyCalmingDown = new()
         {
             Id = 27,
             CodeName = "SpitfireGame.RTraitDifficultyCalmingDown",
@@ -309,7 +309,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SurvivalTrait AmateurVeterinarian = new SurvivalTrait
+        public static SurvivalTrait AmateurVeterinarian = new()
         {
             Id = 28,
             CodeName = "SpitfireGame.RTraitImprovedHealing3",
@@ -320,7 +320,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SurvivalTrait SoldiersTookMyHorse = new SurvivalTrait
+        public static SurvivalTrait SoldiersTookMyHorse = new()
         {
             Id = 29,
             CodeName = "SpitfireGame.RTraitSoldiersTookMyHorse",
@@ -331,7 +331,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait HasUltimateSetOfTools = new SurvivalTrait
+        public static SurvivalTrait HasUltimateSetOfTools = new()
         {
             Id = 30,
             CodeName = "SpitfireGame.RTraitTrapDamageIncrease3",
@@ -342,7 +342,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait BearHugs = new SurvivalTrait
+        public static SurvivalTrait BearHugs = new()
         {
             Id = 31,
             CodeName = "trait.Upgrades.Bear_Hugs",
@@ -353,7 +353,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SurvivalTrait HasABigBrother = new SurvivalTrait
+        public static SurvivalTrait HasABigBrother = new()
         {
             Id = 32,
             CodeName = "trait.Upgrades.Big_Brother",
@@ -364,7 +364,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SurvivalTrait KillerBuzz = new SurvivalTrait
+        public static SurvivalTrait KillerBuzz = new()
         {
             Id = 33,
             CodeName = "trait.Upgrades.Killer_Buzz",
@@ -375,7 +375,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait PagingDrLove = new SurvivalTrait
+        public static SurvivalTrait PagingDrLove = new()
         {
             Id = 34,
             CodeName = "trait.Upgrades.Paging_Dr_Love",
@@ -386,7 +386,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SurvivalTrait RiftAway = new SurvivalTrait
+        public static SurvivalTrait RiftAway = new()
         {
             Id = 35,
             CodeName = "trait.Upgrades.Rift_Away",
@@ -397,7 +397,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SurvivalTrait FeelingFierce = new SurvivalTrait
+        public static SurvivalTrait FeelingFierce = new()
         {
             Id = 36,
             CodeName = "trait.Upgrades.Strange_Humor",
@@ -408,7 +408,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SurvivalTrait TriesTooHard = new SurvivalTrait
+        public static SurvivalTrait TriesTooHard = new()
         {
             Id = 37,
             CodeName = "trait.Upgrades.Tries_Too_Hard",
@@ -421,7 +421,7 @@ namespace SingleplayerLauncher.Model
         };
 
         // Diamond Traits
-        public static SurvivalTrait EnjoysPain = new SurvivalTrait
+        public static SurvivalTrait EnjoysPain = new()
         {
             Id = 38,
             CodeName = "SpitfireGame.RTraitEnjoysPain",
@@ -432,7 +432,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_ARMOR
         };
-        public static SurvivalTrait ExecutionAdvantage = new SurvivalTrait
+        public static SurvivalTrait ExecutionAdvantage = new()
         {
             Id = 39,
             CodeName = "SpitfireGame.RTraitExecutionAdvantage",
@@ -443,7 +443,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SurvivalTrait FeelsSafeAtHome = new SurvivalTrait
+        public static SurvivalTrait FeelsSafeAtHome = new()
         {
             Id = 40,
             CodeName = "SpitfireGame.RTraitFeelsSafeAtHome",
@@ -454,7 +454,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_HEALTH
         };
-        public static SurvivalTrait PracticesWitchcraft = new SurvivalTrait
+        public static SurvivalTrait PracticesWitchcraft = new()
         {
             Id = 41,
             CodeName = "SpitfireGame.RTraitPracticesWitchcraft",
@@ -465,7 +465,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_MAGIC_ARMOR
         };
-        public static SurvivalTrait HighPainTolerance = new SurvivalTrait
+        public static SurvivalTrait HighPainTolerance = new()
         {
             Id = 42,
             CodeName = "SpitfireGame.RTraitReduceDamageFromMinions3",
@@ -476,7 +476,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_ARMOR
         };
-        public static SurvivalTrait WalksItOff = new SurvivalTrait
+        public static SurvivalTrait WalksItOff = new()
         {
             Id = 43,
             CodeName = "SpitfireGame.RTraitRespawnTime3",
@@ -487,7 +487,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SurvivalTrait TakesLessonsFromCygnus = new SurvivalTrait
+        public static SurvivalTrait TakesLessonsFromCygnus = new()
         {
             Id = 44,
             CodeName = "SpitfireGame.RTraitTakesLessonsFromCygnus",
@@ -498,7 +498,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Uncommon",
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SurvivalTrait WallBuildingPhD = new SurvivalTrait
+        public static SurvivalTrait WallBuildingPhD = new()
         {
             Id = 45,
             CodeName = "SpitfireGame.RTraitWallBuildingPhD",
@@ -509,7 +509,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Epic",
             MatchingBonusTrait = BONUS_TRAIT_HEALTH
         };
-        public static SurvivalTrait AttentionDeficit = new SurvivalTrait
+        public static SurvivalTrait AttentionDeficit = new()
         {
             Id = 46,
             CodeName = "trait.Upgrades.Attention_Defecit",
@@ -520,7 +520,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_MAGIC_ARMOR
         };
-        public static SurvivalTrait ExtraPadding = new SurvivalTrait
+        public static SurvivalTrait ExtraPadding = new()
         {
             Id = 47,
             CodeName = "trait.Upgrades.Extra_Padding",
@@ -531,7 +531,7 @@ namespace SingleplayerLauncher.Model
             Rarity = "Rare",
             MatchingBonusTrait = BONUS_TRAIT_ARMOR
         };
-        public static SurvivalTrait RespectMyAuthority = new SurvivalTrait
+        public static SurvivalTrait RespectMyAuthority = new()
         {
             Id = 48,
             CodeName = "trait.Upgrades.Respect_My_Authority",
@@ -543,7 +543,8 @@ namespace SingleplayerLauncher.Model
             MatchingBonusTrait = BONUS_TRAIT_HEALTH
         };
 
-        public static Dictionary<string, SurvivalTrait> TriangleSlotTraits = new Dictionary<string, SurvivalTrait> {
+        public static Dictionary<string, SurvivalTrait> TriangleSlotTraits = new()
+        {
             { EASILY_EXCITED, EasilyExcited},
             { MAKING_IT_RAIN, MakingItRain},
             { NATURAL_BORN_SPRINTER, NaturalBornSprinter},
@@ -565,7 +566,7 @@ namespace SingleplayerLauncher.Model
             { HAS_A_TRAP_FETISH, HasATrapFetish}
         };
 
-        public static Dictionary<string, SurvivalTrait> PentagonSlotTraits = new Dictionary<string, SurvivalTrait>
+        public static Dictionary<string, SurvivalTrait> PentagonSlotTraits = new()
         {
             { BELIEVES_SIZE_MATTERS, BelievesSizeMatters},
             { UNCLE_KILLED_BY_GIANT, UncleKilledByGiant},
@@ -587,7 +588,7 @@ namespace SingleplayerLauncher.Model
             { TRIES_TOO_HARD, TriesTooHard}
         };
 
-        public static Dictionary<string, SurvivalTrait> DiamondSlotTraits = new Dictionary<string, SurvivalTrait>
+        public static Dictionary<string, SurvivalTrait> DiamondSlotTraits = new()
         {
 
             { ENJOYS_PAIN, EnjoysPain},
@@ -611,7 +612,7 @@ namespace SingleplayerLauncher.Model
             .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
 
-        public static Dictionary<int, SurvivalTrait> TraitsById = new Dictionary<int, SurvivalTrait>
+        public static Dictionary<int, SurvivalTrait> TraitsById = new()
         {
             { EasilyExcited.Id, EasilyExcited},
             { MakingItRain.Id, MakingItRain},

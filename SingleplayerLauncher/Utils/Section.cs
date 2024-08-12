@@ -12,8 +12,8 @@ namespace SingleplayerLauncher.Utils
         public Section(string name, string rawText) : base(rawText)
         {
             Name = name;
-            Elements = new List<IniElement>();
-            entries = new Dictionary<string, List<Entry>>();
+            Elements = [];
+            entries = [];
         }
 
         public void AddElement(IniElement element)
@@ -23,7 +23,7 @@ namespace SingleplayerLauncher.Utils
             {
                 if (!entries.TryGetValue(entry.Key, out var entryList))
                 {
-                    entryList = new List<Entry>();
+                    entryList = [];
                     entries[entry.Key] = entryList;
                 }
                 entryList.Add(entry);
@@ -36,7 +36,7 @@ namespace SingleplayerLauncher.Utils
             {
                 return entryList;
             }
-            return new List<Entry>();
+            return [];
         }
     }
 

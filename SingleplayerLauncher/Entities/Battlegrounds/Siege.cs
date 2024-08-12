@@ -15,19 +15,19 @@ namespace SingleplayerLauncher.Model
 
         public TimeSpan ParTime => throw new NotImplementedException();
 
-        public static Siege CliffsideClashSiege = new Siege()
+        public static Siege CliffsideClashSiege = new()
         {
             Name = "Cliffside Clash",
             Map = SiegeCliffsideClash
         };
 
-        public static Siege UnchainedFortressSiege = new Siege()
+        public static Siege UnchainedFortressSiege = new()
         {
             Name = "Unchained Fortress",
             Map = SiegeUnchainedFortress
         };
 
-        public static Dictionary<string, Siege> SiegeBattlegrounds = new Dictionary<string, Siege>
+        public static Dictionary<string, Siege> SiegeBattlegrounds = new()
         {
             { CliffsideClash.Name, CliffsideClashSiege },
             { UnchainedFortress.Name, UnchainedFortressSiege },

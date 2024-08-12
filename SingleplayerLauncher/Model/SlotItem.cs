@@ -7,7 +7,7 @@ namespace SingleplayerLauncher.Model
     {
         public string ItemTemplateName { get; protected set; }
 
-        public static Dictionary<int, SlotItem> SlotItemsById = new Dictionary<int, SlotItem>();
+        public static Dictionary<int, SlotItem> SlotItemsById = [];
 
         public static SlotItem GetById(int id)
         {

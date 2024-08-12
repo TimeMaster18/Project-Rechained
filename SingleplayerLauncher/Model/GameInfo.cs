@@ -2,7 +2,7 @@
 {
     public sealed class GameInfo
     {
-        private static readonly GameInfo instance = new GameInfo();
+        private static readonly GameInfo instance = new();
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit /Singleton

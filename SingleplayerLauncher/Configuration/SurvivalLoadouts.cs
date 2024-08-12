@@ -6,7 +6,7 @@ namespace SingleplayerLauncher
     public class SurvivalLoadouts : BaseLoadouts
     {
         private static SurvivalLoadouts _instance;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
 
         public override string FileName { get; } = "loadouts.json";
 
@@ -37,7 +37,7 @@ namespace SingleplayerLauncher
         {
             _instance.LoadoutList.AddRange(new List<LoadoutDTO>
             {
-                new LoadoutDTO { Name = "TimeMaster Recommendation", Code = "TimeMaster-B1s2-3G3R1j2M1v2R1x1w2B-5H-1E-UjAI-0000006DKIDJ2ScMSbISbRSW8Db" }
+                new() { Name = "TimeMaster Recommendation", Code = "TimeMaster-B1s2-3G3R1j2M1v2R1x1w2B-5H-1E-UjAI-0000006DKIDJ2ScMSbISbRSW8Db" }
             });
             _instance.Save();
         }

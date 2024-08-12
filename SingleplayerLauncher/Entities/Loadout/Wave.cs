@@ -12,7 +12,7 @@ namespace SingleplayerLauncher.Model
         public string KeywordText { get; private set; }
         public string KeywordDescription { get; private set; }
 
-        public static Wave KoboldWave = new Wave()
+        public static Wave KoboldWave = new()
         {
             Id = 1,
             CodeName = "SpitfireGame.RWaveMonoWaves000",
@@ -24,7 +24,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave LightSoldiersWave = new Wave()
+        public static Wave LightSoldiersWave = new()
         {
             Id = 2,
             CodeName = "SpitfireGame.RWaveMonoWaves001",
@@ -36,7 +36,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave GnollHuntersWave = new Wave()
+        public static Wave GnollHuntersWave = new()
         {
             Id = 3,
             CodeName = "SpitfireGame.RWaveMonoWaves002",
@@ -48,7 +48,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave LightSoldiersWave8 = new Wave()
+        public static Wave LightSoldiersWave8 = new()
         {
             Id = 4,
             CodeName = "SpitfireGame.RWaveMonoWaves003",
@@ -60,7 +60,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave OgresWave3 = new Wave()
+        public static Wave OgresWave3 = new()
         {
             Id = 5,
             CodeName = "SpitfireGame.RWaveMonoWaves004",
@@ -72,7 +72,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Stun",
             KeywordDescription = "Stuns enemies with attacks."
         };
-        public static Wave CrossbowOrcsWave4 = new Wave()
+        public static Wave CrossbowOrcsWave4 = new()
         {
             Id = 6,
             CodeName = "SpitfireGame.RWaveMonoWaves005",
@@ -84,7 +84,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave OgresWave5 = new Wave()
+        public static Wave OgresWave5 = new()
         {
             Id = 7,
             CodeName = "SpitfireGame.RWaveMonoWaves006",
@@ -96,7 +96,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Stun",
             KeywordDescription = "Stuns enemies with attacks."
         };
-        public static Wave GiantsWave3 = new Wave()
+        public static Wave GiantsWave3 = new()
         {
             Id = 8,
             CodeName = "SpitfireGame.RWaveMonoWaves007",
@@ -108,7 +108,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Enraging",
             KeywordDescription = "Doubles movement and attack speed when below 35% health."
         };
-        public static Wave SatyrsWave9 = new Wave()
+        public static Wave SatyrsWave9 = new()
         {
             Id = 9,
             CodeName = "SpitfireGame.RWaveMonoWaves008",
@@ -120,7 +120,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Phasing",
             KeywordDescription = "Gains a 2s damage shield when hit. Effect has 20s cooldown."
         };
-        public static Wave SatyrsWave14 = new Wave()
+        public static Wave SatyrsWave14 = new()
         {
             Id = 10,
             CodeName = "SpitfireGame.RWaveMonoWaves009",
@@ -132,7 +132,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Phasing",
             KeywordDescription = "Gains a 2s damage shield when hit. Effect has 20s cooldown."
         };
-        public static Wave KoboldWave14 = new Wave()
+        public static Wave KoboldWave14 = new()
         {
             Id = 11,
             CodeName = "SpitfireGame.RWaveMonoWaves010",
@@ -144,7 +144,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave GnollHuntersWave2 = new Wave()
+        public static Wave GnollHuntersWave2 = new()
         {
             Id = 12,
             CodeName = "SpitfireGame.RWaveMonoWaves011",
@@ -156,7 +156,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave MediumSoldiersWave5 = new Wave()
+        public static Wave MediumSoldiersWave5 = new()
         {
             Id = 13,
             CodeName = "SpitfireGame.RWaveMonoWaves012",
@@ -168,7 +168,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave MediumSoldiersWave8 = new Wave()
+        public static Wave MediumSoldiersWave8 = new()
         {
             Id = 14,
             CodeName = "SpitfireGame.RWaveMonoWaves013",
@@ -180,7 +180,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave HumanCrossbowmenWave4 = new Wave()
+        public static Wave HumanCrossbowmenWave4 = new()
         {
             Id = 15,
             CodeName = "SpitfireGame.RWaveMonoWaves014",
@@ -192,7 +192,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave HumanCrossbowmenWave6 = new Wave()
+        public static Wave HumanCrossbowmenWave6 = new()
         {
             Id = 16,
             CodeName = "SpitfireGame.RWaveMonoWaves015",
@@ -204,7 +204,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave TrollsWave2 = new Wave()
+        public static Wave TrollsWave2 = new()
         {
             Id = 17,
             CodeName = "SpitfireGame.RWaveMonoWaves016",
@@ -216,7 +216,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Regeneration",
             KeywordDescription = "Regenerates 2%/s health while not in combat."
         };
-        public static Wave GiantsWave2 = new Wave()
+        public static Wave GiantsWave2 = new()
         {
             Id = 18,
             CodeName = "SpitfireGame.RWaveMonoWaves017",
@@ -228,7 +228,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Enraging",
             KeywordDescription = "Doubles movement and attack speed when below 35% health."
         };
-        public static Wave CyclopsShamansWave2 = new Wave()
+        public static Wave CyclopsShamansWave2 = new()
         {
             Id = 19,
             CodeName = "SpitfireGame.RWaveMonoWaves018",
@@ -240,7 +240,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Growing",
             KeywordDescription = ""
         };
-        public static Wave CyclopsShamansWave3 = new Wave()
+        public static Wave CyclopsShamansWave3 = new()
         {
             Id = 20,
             CodeName = "SpitfireGame.RWaveMonoWaves019",
@@ -252,7 +252,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Growing",
             KeywordDescription = ""
         };
-        public static Wave GnomeTinkerersWave4 = new Wave()
+        public static Wave GnomeTinkerersWave4 = new()
         {
             Id = 21,
             CodeName = "SpitfireGame.RWaveMonoWaves020",
@@ -264,7 +264,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Trap Disable",
             KeywordDescription = ""
         };
-        public static Wave GnomeTinkerersWave9 = new Wave()
+        public static Wave GnomeTinkerersWave9 = new()
         {
             Id = 22,
             CodeName = "SpitfireGame.RWaveMonoWaves021",
@@ -276,7 +276,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Trap Disable",
             KeywordDescription = ""
         };
-        public static Wave GrizzlyBearsWave2 = new Wave()
+        public static Wave GrizzlyBearsWave2 = new()
         {
             Id = 23,
             CodeName = "SpitfireGame.RWaveMonoWaves022",
@@ -288,7 +288,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Vengeance",
             KeywordDescription = "Regains 25% of its HPs when a nearby ally dies."
         };
-        public static Wave GrizzlyBearsWave3 = new Wave()
+        public static Wave GrizzlyBearsWave3 = new()
         {
             Id = 24,
             CodeName = "SpitfireGame.RWaveMonoWaves023",
@@ -300,7 +300,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Vengeance",
             KeywordDescription = "Regains 25% of its HPs when a nearby ally dies."
         };
-        public static Wave HobgoblinShamansWave2 = new Wave()
+        public static Wave HobgoblinShamansWave2 = new()
         {
             Id = 25,
             CodeName = "SpitfireGame.RWaveMonoWaves024",
@@ -312,7 +312,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Healing",
             KeywordDescription = "Heals nearby minions."
         };
-        public static Wave HobgoblinShamansWave3 = new Wave()
+        public static Wave HobgoblinShamansWave3 = new()
         {
             Id = 26,
             CodeName = "SpitfireGame.RWaveMonoWaves025",
@@ -324,7 +324,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Healing",
             KeywordDescription = "Heals nearby minions."
         };
-        public static Wave DwarfShamansWave2 = new Wave()
+        public static Wave DwarfShamansWave2 = new()
         {
             Id = 27,
             CodeName = "SpitfireGame.RWaveMonoWaves026",
@@ -336,7 +336,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Shielding",
             KeywordDescription = "Casts a shield on nearby allied minions."
         };
-        public static Wave DwarfShamansWave3 = new Wave()
+        public static Wave DwarfShamansWave3 = new()
         {
             Id = 28,
             CodeName = "SpitfireGame.RWaveMonoWaves027",
@@ -348,7 +348,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Shielding",
             KeywordDescription = "Casts a shield on nearby allied minions."
         };
-        public static Wave LightOrcsWave9 = new Wave()
+        public static Wave LightOrcsWave9 = new()
         {
             Id = 29,
             CodeName = "SpitfireGame.RWaveMonoWaves028",
@@ -360,7 +360,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave FireMagesWave2 = new Wave()
+        public static Wave FireMagesWave2 = new()
         {
             Id = 30,
             CodeName = "SpitfireGame.RWaveMonoWaves029",
@@ -372,7 +372,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "High Damage",
             KeywordDescription = "Deals high damage."
         };
-        public static Wave CrossbowOrcsWave6 = new Wave()
+        public static Wave CrossbowOrcsWave6 = new()
         {
             Id = 31,
             CodeName = "SpitfireGame.RWaveMonoWaves031",
@@ -384,7 +384,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave PrideHuntersWave2 = new Wave()
+        public static Wave PrideHuntersWave2 = new()
         {
             Id = 32,
             CodeName = "SpitfireGame.RWaveMonoWaves032",
@@ -396,7 +396,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave PrideHuntersWave3 = new Wave()
+        public static Wave PrideHuntersWave3 = new()
         {
             Id = 33,
             CodeName = "SpitfireGame.RWaveMonoWaves033",
@@ -408,7 +408,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave GrizzlyShieldbearersWave2 = new Wave()
+        public static Wave GrizzlyShieldbearersWave2 = new()
         {
             Id = 34,
             CodeName = "SpitfireGame.RWaveMonoWaves034",
@@ -420,7 +420,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave GrizzlyShieldbearersWave3 = new Wave()
+        public static Wave GrizzlyShieldbearersWave3 = new()
         {
             Id = 35,
             CodeName = "SpitfireGame.RWaveMonoWaves035",
@@ -432,7 +432,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave TrollShieldbearersWave2 = new Wave()
+        public static Wave TrollShieldbearersWave2 = new()
         {
             Id = 36,
             CodeName = "SpitfireGame.RWaveMonoWaves036",
@@ -444,7 +444,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave TrollShieldbearersWave3 = new Wave()
+        public static Wave TrollShieldbearersWave3 = new()
         {
             Id = 37,
             CodeName = "SpitfireGame.RWaveMonoWaves037",
@@ -456,7 +456,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave LightOrcsWave14 = new Wave()
+        public static Wave LightOrcsWave14 = new()
         {
             Id = 38,
             CodeName = "SpitfireGame.RWaveMonoWaves038",
@@ -468,7 +468,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave MediumOrcsWave9 = new Wave()
+        public static Wave MediumOrcsWave9 = new()
         {
             Id = 39,
             CodeName = "SpitfireGame.RWaveMonoWaves039",
@@ -480,7 +480,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave MediumOrcsWave14 = new Wave()
+        public static Wave MediumOrcsWave14 = new()
         {
             Id = 40,
             CodeName = "SpitfireGame.RWaveMonoWaves040",
@@ -493,7 +493,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Waves spawn in large numbers."
         };
 
-        public static Wave OrfumMountainTroll = new Wave()
+        public static Wave OrfumMountainTroll = new()
         {
             Id = 41,
             CodeName = "SpitfireGame.RWaveMercWaves001",
@@ -506,7 +506,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Destroys wall and barricade traps."
         };
 
-        public static Wave OakentoesDwarfShaman = new Wave()
+        public static Wave OakentoesDwarfShaman = new()
         {
             Id = 42,
             CodeName = "SpitfireGame.RWaveMercWaves002",
@@ -519,7 +519,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = ""
         };
 
-        public static Wave SawbonesHobgoblinShaman = new Wave()
+        public static Wave SawbonesHobgoblinShaman = new()
         {
             Id = 43,
             CodeName = "SpitfireGame.RWaveMercWaves003",
@@ -532,7 +532,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = ""
         };
 
-        public static Wave BulgodArmoredOgre = new Wave()
+        public static Wave BulgodArmoredOgre = new()
         {
             Id = 44,
             CodeName = "SpitfireGame.RWaveMercWaves004",
@@ -545,7 +545,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Concussive waves disable nearby traps and throw enemy heroes."
         };
 
-        public static Wave UrzaFireLord = new Wave()
+        public static Wave UrzaFireLord = new()
         {
             Id = 45,
             CodeName = "SpitfireGame.RWaveMercWaves005",
@@ -558,7 +558,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Divides into smaller units upon death."
         };
 
-        public static Wave GaeadinEarthLord = new Wave()
+        public static Wave GaeadinEarthLord = new()
         {
             Id = 46,
             CodeName = "SpitfireGame.RWaveMercWaves006",
@@ -571,7 +571,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Divides into smaller units upon death."
         };
 
-        public static Wave Swiftyhooves = new Wave()
+        public static Wave Swiftyhooves = new()
         {
             Id = 47,
             CodeName = "SpitfireGame.RWaveMercWaves007",
@@ -584,7 +584,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Unusually quick and not easily distracted."
         };
 
-        public static Wave TikLikHobgoblinShaman = new Wave()
+        public static Wave TikLikHobgoblinShaman = new()
         {
             Id = 48,
             CodeName = "SpitfireGame.RWaveMercWaves008",
@@ -597,7 +597,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Heals nearby allied heroes."
         };
 
-        public static Wave Vitality = new Wave()
+        public static Wave Vitality = new()
         {
             Id = 49,
             CodeName = "SpitfireGame.RWaveMercWaves009",
@@ -610,7 +610,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Periodically resurrects nearby fallen minions."
         };
 
-        public static Wave Gatebreaker = new Wave()
+        public static Wave Gatebreaker = new()
         {
             Id = 50,
             CodeName = "SpitfireGame.RWaveMercWaves010",
@@ -623,7 +623,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = ""
         };
 
-        public static Wave LyzanderCultResurrector = new Wave()
+        public static Wave LyzanderCultResurrector = new()
         {
             Id = 51,
             CodeName = "SpitfireGame.RWaveMercWaves011",
@@ -636,7 +636,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Periodically resurrects nearby fallen minions."
         };
 
-        public static Wave GrenwaldeNatureLord = new Wave()
+        public static Wave GrenwaldeNatureLord = new()
         {
             Id = 52,
             CodeName = "SpitfireGame.RWaveMercWaves012",
@@ -649,7 +649,7 @@ namespace SingleplayerLauncher.Model
             KeywordDescription = "Heals nearby allied heroes."
         };
 
-        public static Wave Tubifore = new Wave()
+        public static Wave Tubifore = new()
         {
             Id = 53,
             CodeName = "SpitfireGame.RWaveMercWaves013",
@@ -663,7 +663,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<string, Wave> Waves = new Dictionary<string, Wave>
+        public static Dictionary<string, Wave> Waves = new()
         {
             { KoboldWave.Name, KoboldWave },
             { LightSoldiersWave.Name, LightSoldiersWave },
@@ -720,7 +720,7 @@ namespace SingleplayerLauncher.Model
             { Tubifore.Name, Tubifore }
         };
 
-        public static Dictionary<string, Wave> Lvl1Waves = new Dictionary<string, Wave>
+        public static Dictionary<string, Wave> Lvl1Waves = new()
         {
             { KoboldWave.Name, KoboldWave },
             { LightSoldiersWave.Name, LightSoldiersWave },
@@ -732,7 +732,7 @@ namespace SingleplayerLauncher.Model
             { LightOrcsWave9.Name, LightOrcsWave9 }
         };
 
-        public static Dictionary<string, Wave> Lvl2Waves = new Dictionary<string, Wave>
+        public static Dictionary<string, Wave> Lvl2Waves = new()
         {
             { GnollHuntersWave.Name, GnollHuntersWave },
             { LightSoldiersWave8.Name, LightSoldiersWave8 },
@@ -745,7 +745,7 @@ namespace SingleplayerLauncher.Model
             { CrossbowOrcsWave6.Name, CrossbowOrcsWave6 }
         };
 
-        public static Dictionary<string, Wave> Lvl3Waves = new Dictionary<string, Wave>
+        public static Dictionary<string, Wave> Lvl3Waves = new()
         {
             { OgresWave3.Name, OgresWave3 },
             { GiantsWave2.Name, GiantsWave2 },
@@ -759,7 +759,7 @@ namespace SingleplayerLauncher.Model
             { MediumOrcsWave9.Name, MediumOrcsWave9 }
         };
 
-        public static Dictionary<string, Wave> Lvl4Waves = new Dictionary<string, Wave>
+        public static Dictionary<string, Wave> Lvl4Waves = new()
         {
             { OgresWave5.Name, OgresWave5 },
             { GiantsWave3.Name, GiantsWave3 },
@@ -776,7 +776,7 @@ namespace SingleplayerLauncher.Model
             { GnomeTinkerersWave9.Name, GnomeTinkerersWave9 }
         };
 
-        public static Dictionary<string, Wave> BossWaves = new Dictionary<string, Wave>
+        public static Dictionary<string, Wave> BossWaves = new()
         {
             { OrfumMountainTroll.Name, OrfumMountainTroll },
             { OakentoesDwarfShaman.Name, OakentoesDwarfShaman },
@@ -794,7 +794,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<int, Wave> WavesById = new Dictionary<int, Wave>
+        public static Dictionary<int, Wave> WavesById = new()
         {
             { KoboldWave.Id, KoboldWave },
             { LightSoldiersWave.Id, LightSoldiersWave },

@@ -19,7 +19,7 @@ namespace SingleplayerLauncher.Model
 
         public TimeSpan ParTime { get; set; }
 
-        public static Endless TheBathsEndless = new Endless()
+        public static Endless TheBathsEndless = new()
         {
             Id = 1,
             Name = "The Baths",
@@ -27,7 +27,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless BanquetHallEndless = new Endless()
+        public static Endless BanquetHallEndless = new()
         {
             Id = 2,
             Name = "Banquet Hall",
@@ -35,7 +35,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless ThroneRoomEndless = new Endless()
+        public static Endless ThroneRoomEndless = new()
         {
             Id = 3,
             Name = "Throne Room",
@@ -43,7 +43,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless HighlandsEndless = new Endless()
+        public static Endless HighlandsEndless = new()
         {
             Id = 4,
             Name = "Highlands",
@@ -51,7 +51,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless TheWallEndless = new Endless()
+        public static Endless TheWallEndless = new()
         {
             Id = 5,
             Name = "The Wall",
@@ -59,7 +59,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless ThuricvodVillageEndless = new Endless()
+        public static Endless ThuricvodVillageEndless = new()
         {
             Id = 6,
             Name = "Thuricvod Village",
@@ -67,7 +67,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless CrogonKeepEndless = new Endless()
+        public static Endless CrogonKeepEndless = new()
         {
             Id = 7,
             Name = "Crogon Keep",
@@ -75,7 +75,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless SharkIslandEndless = new Endless()
+        public static Endless SharkIslandEndless = new()
         {
             Id = 8,
             Name = "Shark Island",
@@ -83,7 +83,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless FrostbiteEndless = new Endless()
+        public static Endless FrostbiteEndless = new()
         {
             Id = 9,
             Name = "Frostbite",
@@ -91,7 +91,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless AvalancheEndless = new Endless()
+        public static Endless AvalancheEndless = new()
         {
             Id = 10,
             Name = "Avalanche",
@@ -99,7 +99,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless CastleGatesEndless = new Endless()
+        public static Endless CastleGatesEndless = new()
         {
             Id = 11,
             Name = "Castle Gates",
@@ -107,7 +107,7 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Endless EventideFortressEndless = new Endless()
+        public static Endless EventideFortressEndless = new()
         {
             Id = 12,
             Name = "Eventide Fortress",
@@ -115,8 +115,8 @@ namespace SingleplayerLauncher.Model
             Difficulty = Difficulty.Endless,
         };
 
-        public static Dictionary<string, Endless> EndlessBattlegrounds = new Dictionary<string, Endless>
-            {
+        public static Dictionary<string, Endless> EndlessBattlegrounds = new()
+        {
                 { TheBaths.Name, TheBathsEndless },
                 { BanquetHall.Name, BanquetHallEndless },
                 { ThroneRoom.Name, ThroneRoomEndless },

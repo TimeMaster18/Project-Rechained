@@ -121,7 +121,7 @@ namespace SingleplayerLauncher.GameFiles
             {
                 string rootPath = Settings.Instance.RootGamePath;
                 string upkFilePath = Path.Combine(rootPath, UPKS_PATH, upkFileName);
-                FileInfo spitfireGameUPKFileInfo = new FileInfo(upkFilePath);
+                FileInfo spitfireGameUPKFileInfo = new(upkFilePath);
                 if (spitfireGameUPKFileInfo.Length > upkFileOriginalSize)
                 {
                     return; // Already decompressed (hopefully)
@@ -147,7 +147,7 @@ namespace SingleplayerLauncher.GameFiles
                 try
                 {
                     // Decompress
-                    ProcessStartInfo psi = new ProcessStartInfo
+                    ProcessStartInfo psi = new()
                     {
                         FileName = Path.GetFileName(decompressExePath),
                         WorkingDirectory = Path.GetDirectoryName(decompressExePath),

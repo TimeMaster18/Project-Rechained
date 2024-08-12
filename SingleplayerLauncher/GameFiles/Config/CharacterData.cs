@@ -43,7 +43,7 @@ namespace SingleplayerLauncher.GameFiles
             ValidateSiegeLoadout(loadout);
 
             string characterDataSection = $"RCharacterData_{loadout.PlayerName} RCharacterData";
-            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
+            ConfigFile characterData = new(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
             UpdateCharacterDataEntries(data, characterDataSection, loadout, team);
@@ -60,7 +60,7 @@ namespace SingleplayerLauncher.GameFiles
             ValidateSurvivalLoadout(loadout);
 
             string characterDataSection = $"RCharacterData_{loadout.PlayerName} RCharacterData";
-            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
+            ConfigFile characterData = new(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
             UpdateCharacterDataEntries(data, characterDataSection, loadout);
@@ -78,7 +78,7 @@ namespace SingleplayerLauncher.GameFiles
             _ = GameInfo.SurvivalBattleground ?? throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground), "Mandatory parameter");
             _ = GameInfo.SurvivalBattleground.Map ?? throw new ArgumentNullException(nameof(GameInfo.SurvivalBattleground.Map), "Mandatory parameter");
 
-            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
+            ConfigFile characterData = new(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME));
             IniFile data = characterData.data;
 
             string RCharacterDataSection = $"RCharacterData_{GameInfo.SurvivalLoadout.PlayerName} RCharacterData";
@@ -92,7 +92,7 @@ namespace SingleplayerLauncher.GameFiles
 
         public static void Initialize()
         {
-            ConfigFile characterData = new ConfigFile(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME), true);
+            ConfigFile characterData = new(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_CHARACTER_DATA_FILENAME), true);
             characterData.Write();
         }
 
@@ -219,7 +219,7 @@ namespace SingleplayerLauncher.GameFiles
                 bool isTrap = slotItem is Trap;
 
                 TrapPart[] parts = isTrap && !isSiege ? ((SurvivalLoadout)loadout).GetTrapPartsForLoadout(i) : null;
-                int? trapTier = isTrap && !isSiege ? GameInfo.SurvivalBattleground.Difficulty.TrapTier : (int?)null;
+                int? trapTier = isTrap && !isSiege ? GameInfo.SurvivalBattleground.Difficulty.TrapTier : null;
 
                 string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, trapTier, parts);
                 data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: loadoutIdx);

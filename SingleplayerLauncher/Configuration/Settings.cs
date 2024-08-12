@@ -12,7 +12,7 @@ namespace SingleplayerLauncher
         public static readonly string SETTINGS_FILE_NAME = "settings.json";
         private static readonly string SETTINGS_LEGACY_FILE_NAME = "settings.txt";
         private static Settings _instance;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
 
         public bool FirstRun { get; set; } = true;
         public bool Debug { get; set; }

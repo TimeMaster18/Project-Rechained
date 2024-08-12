@@ -9,7 +9,7 @@ namespace SingleplayerLauncher.Model
         public int UsageLimit { get; private set; }
         public string FlavourText { get; private set; }
 
-        public static Consumable BargainScroll = new Consumable
+        public static Consumable BargainScroll = new()
         {
             Id = 1,
             Name = BARGAIN_SCROLL,
@@ -18,7 +18,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "Just in time for Riftmas! Get your favorite hero something shiny... and pointy!"
         };
-        public static Consumable CooldownPotion = new Consumable
+        public static Consumable CooldownPotion = new()
         {
             Id = 2,
             Name = COOLDOWN_POTION,
@@ -27,7 +27,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 3,
             FlavourText = "For when your get up and go has gotten up and went."
         };
-        public static Consumable EmptyRiftScroll = new Consumable
+        public static Consumable EmptyRiftScroll = new()
         {
             Id = 3,
             Name = EMPTY_RIFT_SCROLL,
@@ -36,7 +36,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "\"Guys, guys, it's okay. I got this.\" - Maximilian, the War Mage"
         };
-        public static Consumable GuardianPotion = new Consumable
+        public static Consumable GuardianPotion = new()
         {
             Id = 4,
             Name = GUARDIAN_POTION,
@@ -45,7 +45,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "INSTRUCTIONS: Drink. Yes, YOU drink it. Don't try to force-feed it to a guardian. It won't like it."
         };
-        public static Consumable HealthPotion = new Consumable
+        public static Consumable HealthPotion = new()
         {
             Id = 5,
             Name = HEALTH_POTION,
@@ -54,7 +54,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 10,
             FlavourText = "A bottle of good, clean living."
         };
-        public static Consumable InvulnerabilityScroll = new Consumable
+        public static Consumable InvulnerabilityScroll = new()
         {
             Id = 6,
             Name = INVULNERABILITY_SCROLL,
@@ -63,7 +63,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "\"All right now, team! Teamwork makes the dead orcs! Let's do it!\" - Maximilian, the War Mage"
         };
-        public static Consumable LuckPotion = new Consumable
+        public static Consumable LuckPotion = new()
         {
             Id = 7,
             Name = LUCK_POTION,
@@ -72,7 +72,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 5,
             FlavourText = "\"If you see a coin, then pick it up / If you don't, drink potion of luck!\" - Old childhood rhyme."
         };
-        public static Consumable ManaPotion = new Consumable
+        public static Consumable ManaPotion = new()
         {
             Id = 8,
             Name = MANA_POTION,
@@ -81,7 +81,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 5,
             FlavourText = "Not legal in all territories."
         };
-        public static Consumable RagePotion = new Consumable
+        public static Consumable RagePotion = new()
         {
             Id = 9,
             Name = RAGE_POTION,
@@ -90,7 +90,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 5,
             FlavourText = "Ready to get your rage on?"
         };
-        public static Consumable RepairScroll = new Consumable
+        public static Consumable RepairScroll = new()
         {
             Id = 10,
             Name = REPAIR_SCROLL,
@@ -99,7 +99,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "We can rebuild them; we have the technology."
         };
-        public static Consumable ResurrectionScroll = new Consumable
+        public static Consumable ResurrectionScroll = new()
         {
             Id = 11,
             Name = RESURRECTION_SCROLL,
@@ -108,7 +108,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "It isn't a towel, but better take one just to be safe."
         };
-        public static Consumable SlowScroll = new Consumable
+        public static Consumable SlowScroll = new()
         {
             Id = 12,
             Name = SLOW_SCROLL,
@@ -117,7 +117,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "For when you want to slow down and enjoy the carnage."
         };
-        public static Consumable SpeedPotion = new Consumable
+        public static Consumable SpeedPotion = new()
         {
             Id = 13,
             Name = SPEED_POTION,
@@ -126,7 +126,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 5,
             FlavourText = "WARNING: Use as directed. Increases movement speed ONLY. Will not increase reading, studying, or thinking speed. Sorry, students. If you experience shortness of breath, dizziness, or chest pains, it's because you're running really fast. Take a break."
         };
-        public static Consumable UnchainedScroll = new Consumable
+        public static Consumable UnchainedScroll = new()
         {
             Id = 14,
             Name = UNCHAINED_SCROLL,
@@ -135,7 +135,7 @@ namespace SingleplayerLauncher.Model
             UsageLimit = 1,
             FlavourText = "This Unchained meter goes to ELEVEN!"
         };
-        public static Consumable ExperiencePotion = new Consumable
+        public static Consumable ExperiencePotion = new()
         {
             Id = 15,
             Name = EXPERIENCE_POTION,
@@ -145,7 +145,7 @@ namespace SingleplayerLauncher.Model
             FlavourText = "For those too cool for school."
         };
 
-        public static Dictionary<string, Consumable> Consumables = new Dictionary<string, Consumable>
+        public static Dictionary<string, Consumable> Consumables = new()
         {
             { BARGAIN_SCROLL, BargainScroll},
             { COOLDOWN_POTION, CooldownPotion},
@@ -164,7 +164,7 @@ namespace SingleplayerLauncher.Model
             { EXPERIENCE_POTION, ExperiencePotion},
         };
 
-        public static Dictionary<int, Consumable> ConsumablesById = new Dictionary<int, Consumable>
+        public static Dictionary<int, Consumable> ConsumablesById = new()
         {
             { BargainScroll.Id, BargainScroll},
             { CooldownPotion.Id, CooldownPotion},

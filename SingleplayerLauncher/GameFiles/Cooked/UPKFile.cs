@@ -53,10 +53,10 @@ namespace SingleplayerLauncher
             FileLength = bytes.Length;
         }
 
-        private byte[] ReadAllBytes(string fileName)
+        private static byte[] ReadAllBytes(string fileName)
         {
             byte[] buffer = null;
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new(fileName, FileMode.Open, FileAccess.Read))
             {
                 buffer = new byte[fs.Length];
                 fs.Read(buffer, 0, (int)fs.Length);
@@ -68,7 +68,7 @@ namespace SingleplayerLauncher
         /// <summary>Creates a zeroed byte array. (0x00 value)</summary>
         /// <param name="length">The length of the array to create.</param>
         /// <returns>Created Array with bytes of value 0x00.</returns>
-        public byte[] CreateZeroedByteArray(int length)
+        public static byte[] CreateZeroedByteArray(int length)
         {
             byte[] arr = new byte[length];
             for (int i = 0; i < arr.Length; i++)
@@ -145,9 +145,9 @@ namespace SingleplayerLauncher
         /// <param name="numberBytes"> Number of bytes to remove.</param>
         public void RemoveBytes(int index, int numberBytes)
         {
-            List<byte> tmpBytes = new List<byte>(Bytes);
+            List<byte> tmpBytes = new(Bytes);
             tmpBytes.RemoveRange(index, numberBytes);
-            Bytes = tmpBytes.ToArray();
+            Bytes = [.. tmpBytes];
 
             RemovedBytesCount += numberBytes;
         }
@@ -187,9 +187,9 @@ namespace SingleplayerLauncher
         /// </summary>
         public void InsertBytes(byte[] bytesToInsert, int position)
         {
-            List<byte> tmpBytes = new List<byte>(Bytes);
+            List<byte> tmpBytes = new(Bytes);
             tmpBytes.InsertRange(position, bytesToInsert);
-            Bytes = tmpBytes.ToArray();
+            Bytes = [.. tmpBytes];
 
             RemovedBytesCount -= bytesToInsert.Length;
         }
@@ -295,7 +295,7 @@ namespace SingleplayerLauncher
             return -1;
         }
 
-        private void ComputeLPSArray(byte[] pat, int M, int[] lps)
+        private static void ComputeLPSArray(byte[] pat, int M, int[] lps)
         {
             // length of the previous longest prefix suffix 
             int len = 0;

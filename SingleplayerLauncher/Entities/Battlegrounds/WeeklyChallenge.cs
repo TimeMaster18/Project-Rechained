@@ -27,12 +27,12 @@ namespace SingleplayerLauncher.Model
         // private constructor
         WeeklyChallenge() { }
 
-        static readonly Random Random = new Random();
+        static readonly Random Random = new();
 
         // We don't know how to get all the challenge special effects to work...
 
         // static members
-        public static WeeklyChallenge AlmsForThePoor = new WeeklyChallenge()
+        public static WeeklyChallenge AlmsForThePoor = new()
         {
             Name = ALMS_FOR_THE_POOR,
             CodeName = "WCMausoleum01",
@@ -50,7 +50,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Only coin from starting coin and pickups.",
         };
 
-        public static WeeklyChallenge DoTheTrapShuffle = new WeeklyChallenge()
+        public static WeeklyChallenge DoTheTrapShuffle = new()
         {
             Name = DO_THE_TRAP_SHUFFLE,
             CodeName = "WCMausoleum01",
@@ -69,7 +69,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Only coin from starting coin. Hero Primary Attacks deal no damage.",
         };
 
-        public static WeeklyChallenge DodgeCity = new WeeklyChallenge()
+        public static WeeklyChallenge DodgeCity = new()
         {
             Name = DODGE_CITY,
             CodeName = "WCMausoleum01",
@@ -88,7 +88,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Having fun dodging all the projectiles.",
         };
 
-        public static WeeklyChallenge Doublets = new WeeklyChallenge()
+        public static WeeklyChallenge Doublets = new()
         {
             Name = DOUBLETS,
             CodeName = "WCMausoleum01",
@@ -107,7 +107,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Amount of minions double with each wave.",
         };
 
-        public static WeeklyChallenge FreezedToMeetYou = new WeeklyChallenge()
+        public static WeeklyChallenge FreezedToMeetYou = new()
         {
             Name = FREEZED_TO_MEET_YOU,
             CodeName = "WCMausoleum01",
@@ -126,7 +126,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Fighting Ice minions with Ice Heroes and Ice Traps.",
         };
 
-        public static WeeklyChallenge FunWithPsysics = new WeeklyChallenge()
+        public static WeeklyChallenge FunWithPsysics = new()
         {
             Name = FUN_WITH_PHYSICS,
             CodeName = "WCMausoleum01",
@@ -145,7 +145,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Only physics traps.",
         };
 
-        public static WeeklyChallenge GottaGoFast = new WeeklyChallenge()
+        public static WeeklyChallenge GottaGoFast = new()
         {
             Name = GOTTA_GO_FAST,
             CodeName = "WCMausoleum01",
@@ -163,7 +163,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Faster Heroes and Minions. No Go-Breaks.",
         };
 
-        public static WeeklyChallenge GrandFinale = new WeeklyChallenge()
+        public static WeeklyChallenge GrandFinale = new()
         {
             Name = GRAND_FINALE,
             CodeName = "WCMausoleum01",
@@ -181,7 +181,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Only Boom Barrel as damage trap and support traps.",
         };
 
-        public static WeeklyChallenge ImTheBossNow = new WeeklyChallenge()
+        public static WeeklyChallenge ImTheBossNow = new()
         {
             Name = IM_THE_BOSS_NOW,
             CodeName = "WCMausoleum01",
@@ -199,7 +199,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Big Game Hunting traps only, only Bosses spawn.",
         };
 
-        public static WeeklyChallenge InferiorityComplex = new WeeklyChallenge()
+        public static WeeklyChallenge InferiorityComplex = new()
         {
             Name = INFERIORITY_COMPLEX,
             CodeName = "WCMausoleum01",
@@ -217,7 +217,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Players have 1 HP.",
         };
 
-        public static WeeklyChallenge KeepYourDistance = new WeeklyChallenge()
+        public static WeeklyChallenge KeepYourDistance = new()
         {
             Name = KEEP_YOUR_DISTANCE,
             CodeName = "WCMausoleum01",
@@ -236,7 +236,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Healing aura around the Hero.",
         };
 
-        public static WeeklyChallenge LibraryRinth = new WeeklyChallenge()
+        public static WeeklyChallenge LibraryRinth = new()
         {
             Name = LIBRARY_RINTH,
             CodeName = "WCMausoleum01",
@@ -254,7 +254,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "No damage traps, only Barricade and Tar.",
         };
 
-        public static WeeklyChallenge MemoryLanes = new WeeklyChallenge()
+        public static WeeklyChallenge MemoryLanes = new()
         {
             Name = MEMORY_LANES,
             CodeName = "WCMausoleum01",
@@ -272,7 +272,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "1 wave, no minimap.",
         };
 
-        public static WeeklyChallenge OffTheChain = new WeeklyChallenge()
+        public static WeeklyChallenge OffTheChain = new()
         {
             Name = OFF_THE_CHAIN,
             CodeName = "WCMausoleum01",
@@ -290,7 +290,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Extra drops of unchained pickups.",
         };
 
-        public static WeeklyChallenge OneAndDone = new WeeklyChallenge()
+        public static WeeklyChallenge OneAndDone = new()
         {
             Name = ONE_AND_DONE,
             CodeName = "WCMausoleum01",
@@ -309,7 +309,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "1 Rift Point.",
         };
 
-        public static WeeklyChallenge PlayingWithFire = new WeeklyChallenge()
+        public static WeeklyChallenge PlayingWithFire = new()
         {
             Name = PLAYING_WITH_FIRE,
             CodeName = "WCMausoleum01",
@@ -327,7 +327,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Start at lvl 3. High Damage minions and support traps only.",
         };
 
-        public static WeeklyChallenge PurpleMaze = new WeeklyChallenge()
+        public static WeeklyChallenge PurpleMaze = new()
         {
             Name = PURPLE_MAZE,
             CodeName = "WCMausoleum01",
@@ -346,7 +346,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Free Traps, arcane heroes and huge waves.",
         };
 
-        public static WeeklyChallenge RiftInstability = new WeeklyChallenge()
+        public static WeeklyChallenge RiftInstability = new()
         {
             Name = RIFT_INSTABILITY,
             CodeName = "WCMausoleum01",
@@ -364,7 +364,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Unstable rifts spawning all over, nothing spawns from regular portals.",
         };
 
-        public static WeeklyChallenge RollingInIt = new WeeklyChallenge()
+        public static WeeklyChallenge RollingInIt = new()
         {
             Name = ROLLING_IN_IT,
             CodeName = "WCMausoleum01",
@@ -383,7 +383,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Coin only from starting coin and coin pickups.",
         };
 
-        public static WeeklyChallenge TheMercsLitter = new WeeklyChallenge()
+        public static WeeklyChallenge TheMercsLitter = new()
         {
             Name = THE_MERCS_LITTER,
             CodeName = "WCMausoleum01",
@@ -402,7 +402,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Kobolds and Mercenaries only. No damage traps other than Big Game Hunting Traps...",
         };
 
-        public static WeeklyChallenge VanishingAct = new WeeklyChallenge()
+        public static WeeklyChallenge VanishingAct = new()
         {
             Name = VANISHING_ACT,
             CodeName = "WCMausoleum01",
@@ -420,7 +420,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "Invisible minions. Traps still target them, they are revealed on hit.",
         };
 
-        public static WeeklyChallenge WeCanRebuildIt = new WeeklyChallenge()
+        public static WeeklyChallenge WeCanRebuildIt = new()
         {
             Name = WE_CAN_REBUILD_IT,
             CodeName = "WCMausoleum01",
@@ -439,7 +439,7 @@ namespace SingleplayerLauncher.Model
             SpecialConditions = "None",
         };
 
-        public static WeeklyChallenge YourOwnDevices = new WeeklyChallenge()
+        public static WeeklyChallenge YourOwnDevices = new()
         {
             Name = YOUR_OWN_DEVICES,
             CodeName = "WCMausoleum01",

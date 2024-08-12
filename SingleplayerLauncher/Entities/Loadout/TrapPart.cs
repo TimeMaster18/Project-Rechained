@@ -10,7 +10,7 @@ namespace SingleplayerLauncher.Model
         public string PartSlot { get; private set; }
         public string FlavourText { get; private set; }
 
-        public static TrapPart DoubleTankAccumulator = new TrapPart
+        public static TrapPart DoubleTankAccumulator = new()
         {
             Id = 1,
             Name = DOUBLE_TANK_ACCUMULATOR,
@@ -19,7 +19,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = ACCUMULATOR,
             FlavourText = "This part really knocks them out of the park."
         };
-        public static TrapPart StunningAccumulator = new TrapPart
+        public static TrapPart StunningAccumulator = new()
         {
             Id = 2,
             Name = STUNNING_ACCUMULATOR,
@@ -28,7 +28,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = ACCUMULATOR,
             FlavourText = "Stunningly, minions hate this part."
         };
-        public static TrapPart CapacitanceAttuner = new TrapPart
+        public static TrapPart CapacitanceAttuner = new()
         {
             Id = 3,
             Name = CAPACITANCE_ATTUNER,
@@ -37,7 +37,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = ATTUNER,
             FlavourText = "Now with easy, plug-and-play installation."
         };
-        public static TrapPart DeepCellAttuner = new TrapPart
+        public static TrapPart DeepCellAttuner = new()
         {
             Id = 4,
             Name = DEEP_CELL_ATTUNER,
@@ -46,7 +46,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = ATTUNER,
             FlavourText = "Keeps heroes in the buff."
         };
-        public static TrapPart ReflectiveArmor = new TrapPart
+        public static TrapPart ReflectiveArmor = new()
         {
             Id = 5,
             Name = REFLECTIVE_ARMOR,
@@ -55,7 +55,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = CLADDING,
             FlavourText = "\"Hey, I know THAT trick!\" - Maximilian, the War Mage"
         };
-        public static TrapPart ReusableShielding = new TrapPart
+        public static TrapPart ReusableShielding = new()
         {
             Id = 6,
             Name = REUSABLE_SHIELDING,
@@ -64,7 +64,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = CLADDING,
             FlavourText = "\"One dwarf's trash is another dwarf's treasure!\" - Dobbin, Claim Jumper"
         };
-        public static TrapPart RevengeRune = new TrapPart
+        public static TrapPart RevengeRune = new()
         {
             Id = 7,
             Name = REVENGE_RUNE,
@@ -73,7 +73,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = CLADDING,
             FlavourText = "\"This rune understands me.\" - Smolder, the Fireborn"
         };
-        public static TrapPart BraidedCoil = new TrapPart
+        public static TrapPart BraidedCoil = new()
         {
             Id = 8,
             Name = BRAIDED_COIL,
@@ -82,7 +82,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COIL,
             FlavourText = "For (almost) instant gibletization."
         };
-        public static TrapPart DiscountCoil = new TrapPart
+        public static TrapPart DiscountCoil = new()
         {
             Id = 9,
             Name = DISCOUNT_COIL,
@@ -91,7 +91,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COIL,
             FlavourText = "\"Oo! I LOVE a good sale!\" - Gabriella, the Redeemed Sorceress"
         };
-        public static TrapPart SelfImprovingCoil = new TrapPart
+        public static TrapPart SelfImprovingCoil = new()
         {
             Id = 10,
             Name = SELF_IMPROVING_COIL,
@@ -100,7 +100,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COIL,
             FlavourText = "\"Sadly, I know a few people who could use some 'self-improvement,' coils.\" - Gabriella, the Redeemed Sorceress"
         };
-        public static TrapPart QuickTrapComponents = new TrapPart
+        public static TrapPart QuickTrapComponents = new()
         {
             Id = 11,
             Name = QUICK_TRAP_COMPONENTS,
@@ -109,7 +109,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COMPONENTS,
             FlavourText = ""
         };
-        public static TrapPart RentalParts = new TrapPart
+        public static TrapPart RentalParts = new()
         {
             Id = 12,
             Name = RENTAL_PARTS,
@@ -118,7 +118,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COMPONENTS,
             FlavourText = "\"Professor Stipends are so LOW these days. I had to do SOMEthing.\" - Gabriella, the Redeemed Sorceress"
         };
-        public static TrapPart StampedParts = new TrapPart
+        public static TrapPart StampedParts = new()
         {
             Id = 13,
             Name = STAMPED_PARTS,
@@ -127,7 +127,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COMPONENTS,
             FlavourText = "No, you can't use them in lieu of postage."
         };
-        public static TrapPart SubsidizedParts = new TrapPart
+        public static TrapPart SubsidizedParts = new()
         {
             Id = 14,
             Name = SUBSIDIZED_PARTS,
@@ -136,7 +136,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COMPONENTS,
             FlavourText = "\"Subsidized? Don't go thinkin' I need any handouts, now!\" - Dobbin, Claim Jumper"
         };
-        public static TrapPart VanityPlating = new TrapPart
+        public static TrapPart VanityPlating = new()
         {
             Id = 15,
             Name = VANITY_PLATING,
@@ -145,7 +145,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = COMPONENTS,
             FlavourText = "\"My vanity plates say '2DMAXX!' Yeah!\" - Maximilian, the War Mage"
         };
-        public static TrapPart BountyGenerator = new TrapPart
+        public static TrapPart BountyGenerator = new()
         {
             Id = 16,
             Name = BOUNTY_GENERATOR,
@@ -154,7 +154,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = FIELD,
             FlavourText = "\"All those bounties. All for me... ow.\" - Midnight, Twilight's Razor"
         };
-        public static TrapPart HealthSiphon = new TrapPart
+        public static TrapPart HealthSiphon = new()
         {
             Id = 17,
             Name = HEALTH_SIPHON,
@@ -163,7 +163,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = FIELD,
             FlavourText = "\"I will add their lifeforce to my own. And they will like it.\" - Oziel, the Soul Thief"
         };
-        public static TrapPart ManaSiphon = new TrapPart
+        public static TrapPart ManaSiphon = new()
         {
             Id = 18,
             Name = MANA_SIPHON,
@@ -172,7 +172,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = FIELD,
             FlavourText = "\"At my age, I need all the mana I can get!\" - Cygnus, Master of the Order"
         };
-        public static TrapPart XPSiphon = new TrapPart
+        public static TrapPart XPSiphon = new()
         {
             Id = 19,
             Name = XP_SIPHON,
@@ -181,7 +181,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = FIELD,
             FlavourText = "\"Oh. My. Goodness. Where was this when I was taking that alchemy test?\" Zoey, the Chaotic Apprentice"
         };
-        public static TrapPart DoubleStruts = new TrapPart
+        public static TrapPart DoubleStruts = new()
         {
             Id = 20,
             Name = DOUBLE_STRUTS,
@@ -190,7 +190,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = FRAME,
             FlavourText = "\"She's a sturdy one, ain't she?\" - Dobbin, Claim Jumper"
         };
-        public static TrapPart HeroRunedFrame = new TrapPart
+        public static TrapPart HeroRunedFrame = new()
         {
             Id = 21,
             Name = HERO_RUNED_FRAME,
@@ -199,7 +199,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = FRAME,
             FlavourText = "\"Aw, you mean I can't put my picture in it?\" - Maximilian, the War Mage"
         };
-        public static TrapPart ControlledResonator = new TrapPart
+        public static TrapPart ControlledResonator = new()
         {
             Id = 22,
             Name = CONTROLLED_RESONATOR,
@@ -208,7 +208,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = RESONATOR,
             FlavourText = "For when you really want to kick them when they're down."
         };
-        public static TrapPart FireResonator = new TrapPart
+        public static TrapPart FireResonator = new()
         {
             Id = 23,
             Name = FIRE_RESONATOR,
@@ -217,7 +217,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = RESONATOR,
             FlavourText = "\"I just want the world to burn.\" - Smolder, the Fireborn"
         };
-        public static TrapPart IceResonator = new TrapPart
+        public static TrapPart IceResonator = new()
         {
             Id = 24,
             Name = ICE_RESONATOR,
@@ -226,7 +226,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = RESONATOR,
             FlavourText = "\"STAY FROZEN LONGER? NEED THAT!\" - Hogarth, the Frozen Shield of Deg Itan"
         };
-        public static TrapPart KineticResonator = new TrapPart
+        public static TrapPart KineticResonator = new()
         {
             Id = 25,
             Name = KINETIC_RESONATOR,
@@ -235,7 +235,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = RESONATOR,
             FlavourText = "\"Egad! They're slow enough even I can catch them!\" - Cygnus, Master of the Order"
         };
-        public static TrapPart UnchainedResonator = new TrapPart
+        public static TrapPart UnchainedResonator = new()
         {
             Id = 26,
             Name = UNCHAINED_RESONATOR,
@@ -244,7 +244,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = RESONATOR,
             FlavourText = "Unchain your unchained."
         };
-        public static TrapPart WeaknessResonator = new TrapPart
+        public static TrapPart WeaknessResonator = new()
         {
             Id = 27,
             Name = WEAKNESS_RESONATOR,
@@ -253,7 +253,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = RESONATOR,
             FlavourText = "\"The flesh is weak... But the spirit is strong!\" - Oziel, the Soul Thief"
         };
-        public static TrapPart ChargingSpring = new TrapPart
+        public static TrapPart ChargingSpring = new()
         {
             Id = 28,
             Name = CHARGING_SPRING,
@@ -262,7 +262,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = SPRING,
             FlavourText = "For a happier, snappier trap."
         };
-        public static TrapPart DoubleSpring = new TrapPart
+        public static TrapPart DoubleSpring = new()
         {
             Id = 29,
             Name = DOUBLE_SPRING,
@@ -271,7 +271,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = SPRING,
             FlavourText = "Puts a spring in their deaths."
         };
-        public static TrapPart ShortSpring = new TrapPart
+        public static TrapPart ShortSpring = new()
         {
             Id = 30,
             Name = SHORT_SPRING,
@@ -280,7 +280,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = SPRING,
             FlavourText = "\"I've always used short fuses, so what the heck, eh?\" - Dobbin, Claim Jumper"
         };
-        public static TrapPart AmbushTrigger = new TrapPart
+        public static TrapPart AmbushTrigger = new()
         {
             Id = 31,
             Name = AMBUSH_TRIGGER,
@@ -289,7 +289,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"You must always wait for the purrrfect time to pounce.\" - Midnight, Twilight's Razor"
         };
-        public static TrapPart ComboGenerator = new TrapPart
+        public static TrapPart ComboGenerator = new()
         {
             Id = 32,
             Name = COMBO_GENERATOR,
@@ -298,7 +298,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"Momma loves combos. You know another good combo? Peanut butter and donkey fat!\" - Bionka, Queen Momma"
         };
-        public static TrapPart CrowdControlTrigger = new TrapPart
+        public static TrapPart CrowdControlTrigger = new()
         {
             Id = 33,
             Name = CROWD_CONTROL_TRIGGER,
@@ -307,7 +307,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"Orcs that stay together, pay together!\" - Maximilian, the War Mage"
         };
-        public static TrapPart ExecutionTrigger = new TrapPart
+        public static TrapPart ExecutionTrigger = new()
         {
             Id = 34,
             Name = EXECUTION_TRIGGER,
@@ -316,7 +316,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"How... Efficient.\" - Bloodspike, the Brutal"
         };
-        public static TrapPart HeatActivatedTrigger = new TrapPart
+        public static TrapPart HeatActivatedTrigger = new()
         {
             Id = 35,
             Name = HEAT_ACTIVATED_TRIGGER,
@@ -325,7 +325,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"Let THEM feel the heat!\" - Smolder, the Fireborn"
         };
-        public static TrapPart HeavyPressurePlate = new TrapPart
+        public static TrapPart HeavyPressurePlate = new()
         {
             Id = 36,
             Name = HEAVY_PRESSURE_PLATE,
@@ -334,7 +334,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"HEY! That ain't FAIR!\" - Bionka, Queen Momma"
         };
-        public static TrapPart KineticReclaimer = new TrapPart
+        public static TrapPart KineticReclaimer = new()
         {
             Id = 37,
             Name = KINETIC_RECLAIMER,
@@ -343,7 +343,7 @@ namespace SingleplayerLauncher.Model
             PartSlot = TRIGGER,
             FlavourText = "\"It's impolite to play with your food--but it's SO fun.\" - Midnight, Twilight's Razor"
         };
-        public static TrapPart LightPressurePlate = new TrapPart
+        public static TrapPart LightPressurePlate = new()
         {
             Id = 38,
             Name = LIGHT_PRESSURE_PLATE,
@@ -353,7 +353,7 @@ namespace SingleplayerLauncher.Model
             FlavourText = "Kobolds beware."
         };
 
-        public static Dictionary<string, TrapPart> TrapParts = new Dictionary<string, TrapPart>
+        public static Dictionary<string, TrapPart> TrapParts = new()
         {
             { DOUBLE_TANK_ACCUMULATOR, DoubleTankAccumulator },
             { STUNNING_ACCUMULATOR, StunningAccumulator },
@@ -397,7 +397,7 @@ namespace SingleplayerLauncher.Model
 
         public static List<TrapPart> GetTrapPartsBySlotType(string slotType)
         {
-            List<TrapPart> partsBySlotType = new List<TrapPart>();
+            List<TrapPart> partsBySlotType = [];
 
             foreach (var part in TrapParts.Values)
             {
@@ -410,7 +410,7 @@ namespace SingleplayerLauncher.Model
             return partsBySlotType;
         }
 
-        public static Dictionary<int, TrapPart> TrapPartsById = new Dictionary<int, TrapPart>
+        public static Dictionary<int, TrapPart> TrapPartsById = new()
         {
             { DoubleTankAccumulator.Id, DoubleTankAccumulator },
             { StunningAccumulator.Id, StunningAccumulator },

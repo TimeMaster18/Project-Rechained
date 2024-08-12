@@ -11,595 +11,595 @@ namespace SingleplayerLauncher.Model
         Skin() { }
 
         // static members
-        public static Skin OzielDefault = new Skin()
+        public static Skin OzielDefault = new()
         {
             Id = 1,
             Name = OZIEL_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinAncestor000",
         };
-        public static Skin BloodRune = new Skin()
+        public static Skin BloodRune = new()
         {
             Id = 2,
             Name = BLOOD_RUNE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinAncestor001",
         };
-        public static Skin StringTheory = new Skin()
+        public static Skin StringTheory = new()
         {
             Id = 3,
             Name = STRING_THEORY,
             PlayerSkinName = "SpitfireGame.RPlayerSkinAncestor003",
         };
-        public static Skin KnightWalker = new Skin()
+        public static Skin KnightWalker = new()
         {
             Id = 4,
             Name = KNIGHT_WALKER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinAncestor005",
         };
-        public static Skin ZoeyDefault = new Skin()
+        public static Skin ZoeyDefault = new()
         {
             Id = 5,
             Name = ZOEY_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinApprentice000",
         };
-        public static Skin SchoolDaze = new Skin()
+        public static Skin SchoolDaze = new()
         {
             Id = 6,
             Name = SCHOOL_DAZE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinApprentice001",
         };
-        public static Skin PrettyLittleStitches = new Skin()
+        public static Skin PrettyLittleStitches = new()
         {
             Id = 7,
             Name = PRETTY_LITTLE_STITCHES,
             PlayerSkinName = "SpitfireGame.RPlayerSkinApprentice003",
         };
-        public static Skin JurassicJourney = new Skin()
+        public static Skin JurassicJourney = new()
         {
             Id = 8,
             Name = JURASSIC_JOURNEY,
             PlayerSkinName = "SpitfireGame.RPlayerSkinApprentice005",
         };
-        public static Skin BionkaDefault = new Skin()
+        public static Skin BionkaDefault = new()
         {
             Id = 9,
             Name = BIONKA_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBallAndChain000",
         };
-        public static Skin LizardQueen = new Skin()
+        public static Skin LizardQueen = new()
         {
             Id = 10,
             Name = LIZARD_QUEEN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBallAndChain001",
         };
-        public static Skin Fluffalump = new Skin()
+        public static Skin Fluffalump = new()
         {
             Id = 11,
             Name = FLUFFALUMP,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBallAndChain003",
         };
-        public static Skin BionkaBunny = new Skin()
+        public static Skin BionkaBunny = new()
         {
             Id = 12,
             Name = BIONKA_BUNNY,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBallAndChain008",
         };
-        public static Skin BlackpawEnchantedArmor = new Skin()
+        public static Skin BlackpawEnchantedArmor = new()
         {
             Id = 13,
             Name = BLACKPAW_ENCHANTED_ARMOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw000",
         };
-        public static Skin PawOfTheDead = new Skin()
+        public static Skin PawOfTheDead = new()
         {
             Id = 14,
             Name = PAW_OF_THE_DEAD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw001",
         };
-        public static Skin BlackpawDefault = new Skin()
+        public static Skin BlackpawDefault = new()
         {
             Id = 15,
             Name = BLACKPAW_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw002",
         };
-        public static Skin TutuDloo = new Skin()
+        public static Skin TutuDloo = new()
         {
             Id = 16,
             Name = TUTU_DLOO,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw005",
         };
-        public static Skin PrideOfThePack = new Skin()
+        public static Skin PrideOfThePack = new()
         {
             Id = 17,
             Name = PRIDE_OF_THE_PACK,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw007",
         };
-        public static Skin Runeclaw = new Skin()
+        public static Skin Runeclaw = new()
         {
             Id = 18,
             Name = RUNECLAW,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw009",
         };
-        public static Skin Blackscale = new Skin()
+        public static Skin Blackscale = new()
         {
             Id = 19,
             Name = BLACKSCALE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw012",
         };
-        public static Skin DragonThrall = new Skin()
+        public static Skin DragonThrall = new()
         {
             Id = 20,
             Name = DRAGON_THRALL,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBlackpaw014",
         };
-        public static Skin BloodpsikeDefault = new Skin()
+        public static Skin BloodpsikeDefault = new()
         {
             Id = 21,
             Name = BLOODPSIKE_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBloodspike000",
         };
-        public static Skin GrizzlyKill = new Skin()
+        public static Skin GrizzlyKill = new()
         {
             Id = 22,
             Name = GRIZZLY_KILL,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBloodspike001",
         };
-        public static Skin BreakerOfMolds = new Skin()
+        public static Skin BreakerOfMolds = new()
         {
             Id = 23,
             Name = BREAKER_OF_MOLDS,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBloodspike003",
         };
-        public static Skin BloodAppetit = new Skin()
+        public static Skin BloodAppetit = new()
         {
             Id = 24,
             Name = BLOOD_APPETIT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBloodspike005",
         };
-        public static Skin GreenGuillotine = new Skin()
+        public static Skin GreenGuillotine = new()
         {
             Id = 25,
             Name = GREEN_GUILLOTINE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBloodspike007",
         };
-        public static Skin LaughingToDeath = new Skin()
+        public static Skin LaughingToDeath = new()
         {
             Id = 26,
             Name = LAUGHING_TO_DEATH,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBloodspike011",
         };
-        public static Skin BrassDefault = new Skin()
+        public static Skin BrassDefault = new()
         {
             Id = 27,
             Name = BRASS_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBrass000",
         };
-        public static Skin GunsGearsNLace = new Skin()
+        public static Skin GunsGearsNLace = new()
         {
             Id = 28,
             Name = GUNS_GEARS_N_LACE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBrass001",
         };
-        public static Skin BombshellBattalion = new Skin()
+        public static Skin BombshellBattalion = new()
         {
             Id = 29,
             Name = BOMBSHELL_BATTALION,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBrass004",
         };
-        public static Skin HogarthEnchantedArmor = new Skin()
+        public static Skin HogarthEnchantedArmor = new()
         {
             Id = 30,
             Name = HOGARTH_ENCHANTED_ARMOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth000",
         };
-        public static Skin GodOfPlunder = new Skin()
+        public static Skin GodOfPlunder = new()
         {
             Id = 31,
             Name = GOD_OF_PLUNDER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth001",
         };
-        public static Skin HogarthDefault = new Skin()
+        public static Skin HogarthDefault = new()
         {
             Id = 32,
             Name = HOGARTH_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth002",
         };
-        public static Skin LumberingJack = new Skin()
+        public static Skin LumberingJack = new()
         {
             Id = 33,
             Name = LUMBERING_JACK,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth005",
         };
-        public static Skin HogarthDefaultGold = new Skin()
+        public static Skin HogarthDefaultGold = new()
         {
             Id = 34,
             Name = HOGARTH_DEFAULT_GOLD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth007",
         };
-        public static Skin IceArmor = new Skin()
+        public static Skin IceArmor = new()
         {
             Id = 35,
             Name = ICE_ARMOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth009",
         };
-        public static Skin ImperialGoldenWarrior = new Skin()
+        public static Skin ImperialGoldenWarrior = new()
         {
             Id = 36,
             Name = IMPERIAL_GOLDEN_WARRIOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth011",
         };
-        public static Skin BeachedBod = new Skin()
+        public static Skin BeachedBod = new()
         {
             Id = 37,
             Name = BEACHED_BOD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth013",
         };
-        public static Skin BlackThane = new Skin()
+        public static Skin BlackThane = new()
         {
             Id = 38,
             Name = BLACK_THANE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth018",
         };
-        public static Skin TheSchling = new Skin()
+        public static Skin TheSchling = new()
         {
             Id = 39,
             Name = THE_SCHLING,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth022",
         };
-        public static Skin DragonWard = new Skin()
+        public static Skin DragonWard = new()
         {
             Id = 40,
             Name = DRAGON_WARD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinHogarth024",
         };
-        public static Skin DeadeyeDefault = new Skin()
+        public static Skin DeadeyeDefault = new()
         {
             Id = 41,
             Name = DEADEYE_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinLadyDeadEye000",
         };
-        public static Skin PrettyPunk = new Skin()
+        public static Skin PrettyPunk = new()
         {
             Id = 42,
             Name = PRETTY_PUNK,
             PlayerSkinName = "SpitfireGame.RPlayerSkinLadyDeadEye001",
         };
-        public static Skin TheGoodTheBadAndTheDeadeye = new Skin()
+        public static Skin TheGoodTheBadAndTheDeadeye = new()
         {
             Id = 43,
             Name = THE_GOOD_THE_BAD_AND_THE_DEADEYE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinLadyDeadEye003",
         };
-        public static Skin MidnightDefault = new Skin()
+        public static Skin MidnightDefault = new()
         {
             Id = 44,
             Name = MIDNIGHT_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinMidnight001",
         };
-        public static Skin HiddenTiger = new Skin()
+        public static Skin HiddenTiger = new()
         {
             Id = 45,
             Name = HIDDEN_TIGER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinMidnight000",
         };
-        public static Skin MidnightDefaultGold = new Skin()
+        public static Skin MidnightDefaultGold = new()
         {
             Id = 46,
             Name = MIDNIGHT_DEFAULT_GOLD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinMidnight003",
         };
-        public static Skin CatBurglar = new Skin()
+        public static Skin CatBurglar = new()
         {
             Id = 47,
             Name = CAT_BURGLAR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinMidnight007",
         };
-        public static Skin ShiverMeWhiskers = new Skin()
+        public static Skin ShiverMeWhiskers = new()
         {
             Id = 48,
             Name = SHIVER_ME_WHISKERS,
             PlayerSkinName = "SpitfireGame.RPlayerSkinMidnight009",
         };
-        public static Skin WuXingAzureAssassin = new Skin()
+        public static Skin WuXingAzureAssassin = new()
         {
             Id = 49,
             Name = WU_XING_AZURE_ASSASSIN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinMidnight011",
         };
-        public static Skin DobbinDefault = new Skin()
+        public static Skin DobbinDefault = new()
         {
             Id = 50,
             Name = DOBBIN_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinProspector000",
         };
-        public static Skin GoldRush = new Skin()
+        public static Skin GoldRush = new()
         {
             Id = 51,
             Name = GOLD_RUSH,
             PlayerSkinName = "SpitfireGame.RPlayerSkinProspector001",
         };
-        public static Skin DobbinDefaultGold = new Skin()
+        public static Skin DobbinDefaultGold = new()
         {
             Id = 52,
             Name = DOBBIN_DEFAULT_GOLD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinProspector003",
         };
-        public static Skin ElCavador = new Skin()
+        public static Skin ElCavador = new()
         {
             Id = 53,
             Name = EL_CAVADOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinProspector005",
         };
-        public static Skin SantasLittleHelper = new Skin()
+        public static Skin SantasLittleHelper = new()
         {
             Id = 54,
             Name = SANTAS_LITTLE_HELPER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinProspector007",
         };
-        public static Skin ScurvyRumrudder = new Skin()
+        public static Skin ScurvyRumrudder = new()
         {
             Id = 55,
             Name = SCURVY_RUMRUDDER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinScurvy000",
         };
-        public static Skin IvyEnchantedArmor = new Skin()
+        public static Skin IvyEnchantedArmor = new()
         {
             Id = 56,
             Name = IVY_ENCHANTED_ARMOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf000",
         };
-        public static Skin Valkyrie = new Skin()
+        public static Skin Valkyrie = new()
         {
             Id = 57,
             Name = VALKYRIE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf001",
         };
-        public static Skin IvyDefault = new Skin()
+        public static Skin IvyDefault = new()
         {
             Id = 58,
             Name = IVY_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf002",
         };
-        public static Skin FlowerFriend = new Skin()
+        public static Skin FlowerFriend = new()
         {
             Id = 59,
             Name = FLOWER_FRIEND,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf005",
         };
-        public static Skin IvyDefaultGold = new Skin()
+        public static Skin IvyDefaultGold = new()
         {
             Id = 60,
             Name = IVY_DEFAULT_GOLD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf007",
         };
-        public static Skin ImperialRubyArcher = new Skin()
+        public static Skin ImperialRubyArcher = new()
         {
             Id = 61,
             Name = IMPERIAL_RUBY_ARCHER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf009",
         };
-        public static Skin WickedWarden = new Skin()
+        public static Skin WickedWarden = new()
         {
             Id = 62,
             Name = WICKED_WARDEN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf014",
         };
-        public static Skin Grovewatch = new Skin()
+        public static Skin Grovewatch = new()
         {
             Id = 63,
             Name = GROVEWATCH,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf016",
         };
-        public static Skin DragonTamer = new Skin()
+        public static Skin DragonTamer = new()
         {
             Id = 64,
             Name = DRAGON_TAMER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSheElf018",
         };
-        public static Skin SmolderDefault = new Skin()
+        public static Skin SmolderDefault = new()
         {
             Id = 65,
             Name = SMOLDER_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder000",
         };
-        public static Skin HelterSwelter = new Skin()
+        public static Skin HelterSwelter = new()
         {
             Id = 66,
             Name = HELTER_SWELTER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder001",
         };
-        public static Skin SmolderDefaultWhiteHair = new Skin()
+        public static Skin SmolderDefaultWhiteHair = new()
         {
             Id = 67,
             Name = SMOLDER_DEFAULT_WHITE_HAIR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder003",
         };
-        public static Skin Elite = new Skin()
+        public static Skin Elite = new()
         {
             Id = 68,
             Name = ELITE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder005",
         };
-        public static Skin KillAuea = new Skin()
+        public static Skin KillAuea = new()
         {
             Id = 69,
             Name = KILL_AUEA,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder006",
         };
-        public static Skin FireAlarmFemme = new Skin()
+        public static Skin FireAlarmFemme = new()
         {
             Id = 70,
             Name = FIRE_ALARM_FEMME,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder008",
         };
-        public static Skin Firestarter = new Skin()
+        public static Skin Firestarter = new()
         {
             Id = 71,
             Name = FIRESTARTER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder0010",
         };
-        public static Skin WuXingDragonMage = new Skin()
+        public static Skin WuXingDragonMage = new()
         {
             Id = 72,
             Name = WU_XING_DRAGON_MAGE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSmolder0012",
         };
-        public static Skin ViolentVintage = new Skin()
+        public static Skin ViolentVintage = new()
         {
             Id = 73,
             Name = VIOLENT_VINTAGE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress000",
         };
-        public static Skin GabriellaEnchantedArmor = new Skin()
+        public static Skin GabriellaEnchantedArmor = new()
         {
             Id = 74,
             Name = GABRIELLA_ENCHANTED_ARMOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress002",
         };
-        public static Skin BloodQueen = new Skin()
+        public static Skin BloodQueen = new()
         {
             Id = 75,
             Name = BLOOD_QUEEN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress003",
         };
-        public static Skin GabriellaDefault = new Skin()
+        public static Skin GabriellaDefault = new()
         {
             Id = 76,
             Name = GABRIELLA_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress004",
         };
-        public static Skin FrightfullyDelightful = new Skin()
+        public static Skin FrightfullyDelightful = new()
         {
             Id = 77,
             Name = FRIGHTFULLY_DELIGHTFUL,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress007",
         };
-        public static Skin GabriellaDefaultRed = new Skin()
+        public static Skin GabriellaDefaultRed = new()
         {
             Id = 78,
             Name = GABRIELLA_DEFAULT_RED,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress009",
         };
-        public static Skin LifeInPlastic = new Skin()
+        public static Skin LifeInPlastic = new()
         {
             Id = 79,
             Name = LIFE_IN_PLASTIC,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress011",
         };
-        public static Skin ArchmageOfTheOrder = new Skin()
+        public static Skin ArchmageOfTheOrder = new()
         {
             Id = 80,
             Name = ARCHMAGE_OF_THE_ORDER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress013",
         };
-        public static Skin MistressOfIllusion = new Skin()
+        public static Skin MistressOfIllusion = new()
         {
             Id = 81,
             Name = MISTRESS_OF_ILLUSION,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress015",
         };
-        public static Skin PromisingProdigy = new Skin()
+        public static Skin PromisingProdigy = new()
         {
             Id = 82,
             Name = PROMISING_PRODIGY,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress017",
         };
-        public static Skin IDreamOfGabby = new Skin()
+        public static Skin IDreamOfGabby = new()
         {
             Id = 83,
             Name = I_DREAM_OF_GABBY,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress019",
         };
-        public static Skin MiracleWorker = new Skin()
+        public static Skin MiracleWorker = new()
         {
             Id = 84,
             Name = MIRACLE_WORKER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress021",
         };
-        public static Skin WinterWitch = new Skin()
+        public static Skin WinterWitch = new()
         {
             Id = 85,
             Name = WINTER_WITCH,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress023",
         };
-        public static Skin SkullNinja = new Skin()
+        public static Skin SkullNinja = new()
         {
             Id = 86,
             Name = SKULL_NINJA,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress024",
         };
-        public static Skin EvilWays = new Skin()
+        public static Skin EvilWays = new()
         {
             Id = 87,
             Name = EVIL_WAYS,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress026",
         };
-        public static Skin DragonCharmer = new Skin()
+        public static Skin DragonCharmer = new()
         {
             Id = 88,
             Name = DRAGON_CHARMER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSorceress028",
         };
-        public static Skin FirstEyeBlind = new Skin()
+        public static Skin FirstEyeBlind = new()
         {
             Id = 89,
             Name = FIRST_EYE_BLIND,
             PlayerSkinName = "SpitfireGame.RPlayerSkinStinkeye000",
         };
-        public static Skin StinkeyeDefault = new Skin()
+        public static Skin StinkeyeDefault = new()
         {
             Id = 90,
             Name = STINKEYE_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinStinkeye002",
         };
-        public static Skin StinkeyeDefaultAlt = new Skin()
+        public static Skin StinkeyeDefaultAlt = new()
         {
             Id = 91,
             Name = STINKEYE_DEFAULT_ALT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinStinkeye003",
         };
-        public static Skin EnfantTerrible = new Skin()
+        public static Skin EnfantTerrible = new()
         {
             Id = 92,
             Name = ENFANT_TERRIBLE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinStinkeye008",
         };
-        public static Skin FloatyFun = new Skin()
+        public static Skin FloatyFun = new()
         {
             Id = 93,
             Name = FLOATY_FUN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinStinkeye010",
         };
-        public static Skin TemperDefault = new Skin()
+        public static Skin TemperDefault = new()
         {
             Id = 94,
             Name = TEMPER_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTemper000",
         };
-        public static Skin ForgedFury = new Skin()
+        public static Skin ForgedFury = new()
         {
             Id = 95,
             Name = FORGED_FURY,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTemper001",
         };
-        public static Skin PrizedCow = new Skin()
+        public static Skin PrizedCow = new()
         {
             Id = 96,
             Name = PRIZED_COW,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTemper003",
         };
-        public static Skin CygnusDefault = new Skin()
+        public static Skin CygnusDefault = new()
         {
             Id = 97,
             Name = CYGNUS_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTheMaster000",
         };
-        public static Skin Adventurer = new Skin()
+        public static Skin Adventurer = new()
         {
             Id = 98,
             Name = ADVENTURER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTheMaster001",
         };
-        public static Skin CygnusDefaultRed = new Skin()
+        public static Skin CygnusDefaultRed = new()
         {
             Id = 99,
             Name = CYGNUS_DEFAULT_RED,
@@ -614,193 +614,193 @@ namespace SingleplayerLauncher.Model
             Id = new byte[] { 0x21, 0xFD, 0xFF, 0xFF },
         };
         */
-        public static Skin OldCodger = new Skin()
+        public static Skin OldCodger = new()
         {
             Id = 101,
             Name = OLD_CODGER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTheMaster007",
         };
-        public static Skin RoadMaster = new Skin()
+        public static Skin RoadMaster = new()
         {
             Id = 102,
             Name = ROAD_MASTER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTheMaster010",
         };
-        public static Skin TundraDefault = new Skin()
+        public static Skin TundraDefault = new()
         {
             Id = 103,
             Name = TUNDRA_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTundra000",
         };
-        public static Skin WarChief = new Skin()
+        public static Skin WarChief = new()
         {
             Id = 104,
             Name = WAR_CHIEF,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTundra001",
         };
-        public static Skin BigLebearski = new Skin()
+        public static Skin BigLebearski = new()
         {
             Id = 105,
             Name = BIG_LEBEARSKI,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTundra004",
         };
-        public static Skin KingOfArctos = new Skin()
+        public static Skin KingOfArctos = new()
         {
             Id = 106,
             Name = KING_OF_ARCTOS,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTundra006",
         };
-        public static Skin ImperialGoldenMage = new Skin()
+        public static Skin ImperialGoldenMage = new()
         {
             Id = 107,
             Name = IMPERIAL_GOLDEN_MAGE,
             PlayerSkinName = "SpitfireGame.RPlayerSkinTundra008",
         };
-        public static Skin LuckyTunic = new Skin()
+        public static Skin LuckyTunic = new()
         {
             Id = 108,
             Name = LUCKY_TUNIC,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage000",
         };
-        public static Skin MaximillianEnchantedArmor = new Skin()
+        public static Skin MaximillianEnchantedArmor = new()
         {
             Id = 109,
             Name = MAXIMILLIAN_ENCHANTED_ARMOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage003",
         };
-        public static Skin KnightsWatch = new Skin()
+        public static Skin KnightsWatch = new()
         {
             Id = 110,
             Name = KNIGHTS_WATCH,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage004",
         };
-        public static Skin MaximillianDefault = new Skin()
+        public static Skin MaximillianDefault = new()
         {
             Id = 111,
             Name = MAXIMILLIAN_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage005",
         };
-        public static Skin OrcSlayer = new Skin()
+        public static Skin OrcSlayer = new()
         {
             Id = 112,
             Name = ORC_SLAYER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage006",
         };
-        public static Skin CardboardSamurai = new Skin()
+        public static Skin CardboardSamurai = new()
         {
             Id = 113,
             Name = CARDBOARD_SAMURAI,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage007",
         };
-        public static Skin ScaredCrow = new Skin()
+        public static Skin ScaredCrow = new()
         {
             Id = 114,
             Name = SCARED_CROW,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage012",
         };
-        public static Skin LionHeart = new Skin()
+        public static Skin LionHeart = new()
         {
             Id = 115,
             Name = LION_HEART,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage014",
         };
-        public static Skin RobinHood = new Skin()
+        public static Skin RobinHood = new()
         {
             Id = 116,
             Name = ROBIN_HOOD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage016",
         };
-        public static Skin Paximillian = new Skin()
+        public static Skin Paximillian = new()
         {
             Id = 117,
             Name = PAXIMILLIAN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage018",
         };
-        public static Skin MaximillianLegendaryDefault = new Skin()
+        public static Skin MaximillianLegendaryDefault = new()
         {
             Id = 118,
             Name = MAXIMILLIAN_LEGENDARY_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage020",
         };
-        public static Skin ChampionOfTheOrder = new Skin()
+        public static Skin ChampionOfTheOrder = new()
         {
             Id = 119,
             Name = CHAMPION_OF_THE_ORDER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage022",
         };
-        public static Skin JamezRipher = new Skin()
+        public static Skin JamezRipher = new()
         {
             Id = 120,
             Name = JAMEZ_RIPHER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage025",
         };
-        public static Skin WinterWarrior = new Skin()
+        public static Skin WinterWarrior = new()
         {
             Id = 121,
             Name = WINTER_WARRIOR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage027",
         };
-        public static Skin Boomstick = new Skin()
+        public static Skin Boomstick = new()
         {
             Id = 122,
             Name = BOOMSTICK,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage029",
         };
-        public static Skin Backdraft = new Skin()
+        public static Skin Backdraft = new()
         {
             Id = 123,
             Name = BACKDRAFT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage030",
         };
-        public static Skin DragonSlayer = new Skin()
+        public static Skin DragonSlayer = new()
         {
             Id = 124,
             Name = DRAGON_SLAYER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage032",
         };
-        public static Skin SummerOfStunning = new Skin()
+        public static Skin SummerOfStunning = new()
         {
             Id = 125,
             Name = SUMMER_OF_STUNNING,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage034",
         };
-        public static Skin RedScarf = new Skin()
+        public static Skin RedScarf = new()
         {
             Id = 126,
             Name = RED_SCARF,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage036",
         };
-        public static Skin YellowScarf = new Skin()
+        public static Skin YellowScarf = new()
         {
             Id = 127,
             Name = YELLOW_SCARF,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage038",
         };
-        public static Skin BlueScarf = new Skin()
+        public static Skin BlueScarf = new()
         {
             Id = 128,
             Name = BLUE_SCARF,
             PlayerSkinName = "SpitfireGame.RPlayerSkinWarmage040",
         };
-        public static Skin YiLinDefault = new Skin()
+        public static Skin YiLinDefault = new()
         {
             Id = 129,
             Name = YI_LIN_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinYiLin000",
         };
-        public static Skin SentinelOfTheOrder = new Skin()
+        public static Skin SentinelOfTheOrder = new()
         {
             Id = 130,
             Name = SENTINEL_OF_THE_ORDER,
             PlayerSkinName = "SpitfireGame.RPlayerSkinYiLin001",
         };
-        public static Skin SlayingInTheRain = new Skin()
+        public static Skin SlayingInTheRain = new()
         {
             Id = 131,
             Name = SLAYING_IN_THE_RAIN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinYiLin004",
         };
-        public static Skin YuleLin = new Skin()
+        public static Skin YuleLin = new()
         {
             Id = 132,
             Name = YULE_LIN,
@@ -809,13 +809,13 @@ namespace SingleplayerLauncher.Model
 
 
         // SIR WINSTON
-        public static Skin DarkPaladin = new Skin()
+        public static Skin DarkPaladin = new()
         {
             Id = 133,
             Name = DARK_PALADIN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSirWinston000",
         };
-        public static Skin WinstonDefault = new Skin()
+        public static Skin WinstonDefault = new()
         {
             Id = 134,
             Name = WINSTON_DEFAULT,
@@ -824,7 +824,7 @@ namespace SingleplayerLauncher.Model
 
 
         // CHANG'E
-        public static Skin ChangEDefault = new Skin()
+        public static Skin ChangEDefault = new()
         {
             Id = 135,
             Name = CHANG_E_DEFAULT,
@@ -833,13 +833,13 @@ namespace SingleplayerLauncher.Model
 
 
         // CHICKEN
-        public static Skin Chicken = new Skin()
+        public static Skin Chicken = new()
         {
             Id = 136,
             Name = CHICKEN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinPolymorph000",
         };
-        public static Skin ChickenWithTrainers = new Skin()
+        public static Skin ChickenWithTrainers = new()
         {
             Id = 137,
             Name = CHICKEN_WITH_TRAINERS,
@@ -848,61 +848,61 @@ namespace SingleplayerLauncher.Model
 
 
         // MERCENARIES
-        public static Skin PrideAssassin = new Skin()
+        public static Skin PrideAssassin = new()
         {
             Id = 138,
             Name = PRIDE_ASSASSIN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinPrideAssassin000",
         };
-        public static Skin BouncerBear = new Skin()
+        public static Skin BouncerBear = new()
         {
             Id = 139,
             Name = BOUNCER_BEAR,
             PlayerSkinName = "SpitfireGame.RPlayerSkinBouncerBear000",
         };
-        public static Skin ImageHuman = new Skin()
+        public static Skin ImageHuman = new()
         {
             Id = 140,
             Name = IMAGE_HUMAN,
             PlayerSkinName = "SpitfireGame.RPlayerSkiniMage000",
         };
-        public static Skin ImageArcane = new Skin()
+        public static Skin ImageArcane = new()
         {
             Id = 141,
             Name = IMAGE_ARCANE,
             PlayerSkinName = "SpitfireGame.RPlayerSkiniMage001",
         };
-        public static Skin ImageLightning = new Skin()
+        public static Skin ImageLightning = new()
         {
             Id = 142,
             Name = IMAGE_LIGHTNING,
             PlayerSkinName = "SpitfireGame.RPlayerSkiniMage002",
         };
-        public static Skin ImageIce = new Skin()
+        public static Skin ImageIce = new()
         {
             Id = 143,
             Name = IMAGE_ICE,
             PlayerSkinName = "SpitfireGame.RPlayerSkiniMage003",
         };
-        public static Skin ImageFire = new Skin()
+        public static Skin ImageFire = new()
         {
             Id = 144,
             Name = IMAGE_FIRE,
             PlayerSkinName = "SpitfireGame.RPlayerSkiniMage004",
         };
-        public static Skin ChaoticKobold = new Skin()
+        public static Skin ChaoticKobold = new()
         {
             Id = 145,
             Name = CHAOTIC_KOBOLD,
             PlayerSkinName = "SpitfireGame.RPlayerSkinChaoticKobold000",
         };
-        public static Skin DwarfPriest = new Skin()
+        public static Skin DwarfPriest = new()
         {
             Id = 146,
             Name = DWARF_PRIEST,
             PlayerSkinName = "SpitfireGame.RPlayerSkinDwarfPriest000",
         };
-        public static Skin GnollBreeder = new Skin()
+        public static Skin GnollBreeder = new()
         {
             Id = 147,
             Name = GNOLL_BREEDER,
@@ -947,7 +947,7 @@ namespace SingleplayerLauncher.Model
         public static Skin[] SiegeTundraSkins = new Skin[] { TundraDefault, WarChief, BigLebearski };
         public static Skin[] SiegeMaximilianSkins = new Skin[] { MaximillianDefault, LuckyTunic, MaximillianEnchantedArmor, KnightsWatch, OrcSlayer, CardboardSamurai, ScaredCrow, LionHeart, RobinHood, Paximillian, MaximillianLegendaryDefault, ChampionOfTheOrder };
 
-        public static Dictionary<string, Skin> Skins = new Dictionary<string, Skin>
+        public static Dictionary<string, Skin> Skins = new()
         {
             { OZIEL_DEFAULT, OzielDefault },
             { BLOOD_RUNE, BloodRune },
@@ -1097,7 +1097,7 @@ namespace SingleplayerLauncher.Model
             { GNOLL_BREEDER, GnollBreeder },
         };
 
-        public static Dictionary<int, Skin> SkinsById = new Dictionary<int, Skin>
+        public static Dictionary<int, Skin> SkinsById = new()
         {
             { OzielDefault.Id, OzielDefault },
             { BloodRune.Id, BloodRune },

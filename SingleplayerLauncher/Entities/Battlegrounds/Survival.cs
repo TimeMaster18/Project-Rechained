@@ -20,7 +20,7 @@ namespace SingleplayerLauncher.Model
         public TimeSpan ParTime { get; private set; }
         public int WaveCount { get; private set; }
 
-        public static Survival TheBathsApprentice = new Survival()
+        public static Survival TheBathsApprentice = new()
         {
             Id = 1,
             Name = "The Baths",
@@ -35,7 +35,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 8, 00),
         };
 
-        public static Survival EventideRampartsApprentice = new Survival()
+        public static Survival EventideRampartsApprentice = new()
         {
             Id = 2,
             Name = "Eventide Ramparts",
@@ -50,7 +50,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 10, 00),
         };
 
-        public static Survival BanquetHallApprentice = new Survival()
+        public static Survival BanquetHallApprentice = new()
         {
             Id = 3,
             Name = "Banquet Hall",
@@ -65,7 +65,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 7, 30),
         };
 
-        public static Survival CliffsideClashApprentice = new Survival()
+        public static Survival CliffsideClashApprentice = new()
         {
             Id = 4,
             Name = "Cliffside Clash",
@@ -80,7 +80,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 10, 50),
         };
 
-        public static Survival ThroneRoomApprentice = new Survival()
+        public static Survival ThroneRoomApprentice = new()
         {
             Id = 5,
             Name = "Throne Room",
@@ -95,7 +95,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 9, 35),
         };
 
-        public static Survival WaterGardenApprentice = new Survival()
+        public static Survival WaterGardenApprentice = new()
         {
             Id = 6,
             Name = "Water Garden",
@@ -110,7 +110,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 7, 00),
         };
 
-        public static Survival UnchainedFortressApprentice = new Survival()
+        public static Survival UnchainedFortressApprentice = new()
         {
             Id = 7,
             Name = "Unchained Fortress",
@@ -125,7 +125,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 8, 50),
         };
 
-        public static Survival HighlandsApprentice = new Survival()
+        public static Survival HighlandsApprentice = new()
         {
             Id = 8,
             Name = "Highlands",
@@ -140,7 +140,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 9, 15),
         };
 
-        public static Survival TrainingGroundsApprentice = new Survival()
+        public static Survival TrainingGroundsApprentice = new()
         {
             Id = 9,
             Name = "Training Grounds",
@@ -155,7 +155,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 9, 50),
         };
 
-        public static Survival EventideRampartsWarMage = new Survival()
+        public static Survival EventideRampartsWarMage = new()
         {
             Id = 10,
             Name = "Eventide Ramparts",
@@ -170,7 +170,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 30),
         };
 
-        public static Survival TempleGraveyardWarMage = new Survival()
+        public static Survival TempleGraveyardWarMage = new()
         {
             Id = 11,
             Name = "Temple Graveyard",
@@ -185,7 +185,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 11, 30),
         };
 
-        public static Survival BanquetHallWarMage = new Survival()
+        public static Survival BanquetHallWarMage = new()
         {
             Id = 12,
             Name = "Banquet Hall",
@@ -200,7 +200,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 45),
         };
 
-        public static Survival GatesOfThuricvodWarMage = new Survival()
+        public static Survival GatesOfThuricvodWarMage = new()
         {
             Id = 13,
             Name = "Gates of Thuricvod",
@@ -215,7 +215,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 7, 05),
         };
 
-        public static Survival TheWallWarMage = new Survival()
+        public static Survival TheWallWarMage = new()
         {
             Id = 14,
             Name = "The Wall",
@@ -230,7 +230,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 00),
         };
 
-        public static Survival MidnightMarketWarMage = new Survival()
+        public static Survival MidnightMarketWarMage = new()
         {
             Id = 15,
             Name = "Midnight Market",
@@ -245,7 +245,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 8, 30),
         };
 
-        public static Survival TrainingGroundsWarMage = new Survival()
+        public static Survival TrainingGroundsWarMage = new()
         {
             Id = 16,
             Name = "Training Grounds",
@@ -260,7 +260,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 11, 45),
         };
 
-        public static Survival ThuricvodVillageWarMage = new Survival()
+        public static Survival ThuricvodVillageWarMage = new()
         {
             Id = 17,
             Name = "Thuricvod Village",
@@ -275,7 +275,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 9, 15),
         };
 
-        public static Survival ThroneRoomWarMage = new Survival()
+        public static Survival ThroneRoomWarMage = new()
         {
             Id = 18,
             Name = "Throne Room",
@@ -290,7 +290,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 14, 30),
         };
 
-        public static Survival CrogonKeepWarMage = new Survival()
+        public static Survival CrogonKeepWarMage = new()
         {
             Id = 19,
             Name = "Crogon Keep",
@@ -305,7 +305,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 14, 00),
         };
 
-        public static Survival SharkIslandWarMage = new Survival()
+        public static Survival SharkIslandWarMage = new()
         {
             Id = 20,
             Name = "Shark Island",
@@ -320,7 +320,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 30),
         };
 
-        public static Survival StablesAtEventideWarMage = new Survival()
+        public static Survival StablesAtEventideWarMage = new()
         {
             Id = 21,
             Name = "Stables at Eventide",
@@ -335,7 +335,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 10, 30),
         };
 
-        public static Survival HighlandsWarMage = new Survival()
+        public static Survival HighlandsWarMage = new()
         {
             Id = 22,
             Name = "Highlands",
@@ -350,7 +350,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 45),
         };
 
-        public static Survival RestrictedSectionWarMage = new Survival()
+        public static Survival RestrictedSectionWarMage = new()
         {
             Id = 23,
             Name = "Restricted Section",
@@ -365,7 +365,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 10, 30),
         };
 
-        public static Survival CliffsideClashMaster = new Survival()
+        public static Survival CliffsideClashMaster = new()
         {
             Id = 24,
             Name = "Cliffside Clash",
@@ -380,7 +380,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 14, 35),
         };
 
-        public static Survival TheFallingFollyMaster = new Survival()
+        public static Survival TheFallingFollyMaster = new()
         {
             Id = 25,
             Name = "The Falling Folly",
@@ -395,7 +395,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 40),
         };
 
-        public static Survival FrostbiteMaster = new Survival()
+        public static Survival FrostbiteMaster = new()
         {
             Id = 26,
             Name = "Frostbite",
@@ -410,7 +410,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 15),
         };
 
-        public static Survival OrcatrazMaster = new Survival()
+        public static Survival OrcatrazMaster = new()
         {
             Id = 27,
             Name = "Orcatraz",
@@ -425,7 +425,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 15),
         };
 
-        public static Survival UnchainedFortressMaster = new Survival()
+        public static Survival UnchainedFortressMaster = new()
         {
             Id = 28,
             Name = "Unchained Fortress",
@@ -440,7 +440,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 30),
         };
 
-        public static Survival WaterGardenMaster = new Survival()
+        public static Survival WaterGardenMaster = new()
         {
             Id = 29,
             Name = "Water Garden",
@@ -455,7 +455,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 15),
         };
 
-        public static Survival TrainingGroundsMaster = new Survival()
+        public static Survival TrainingGroundsMaster = new()
         {
             Id = 30,
             Name = "Training Grounds",
@@ -470,7 +470,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 00),
         };
 
-        public static Survival StormDrainMaster = new Survival()
+        public static Survival StormDrainMaster = new()
         {
             Id = 31,
             Name = "Storm Drain",
@@ -485,7 +485,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 14, 30),
         };
 
-        public static Survival StablesAtEventideMaster = new Survival()
+        public static Survival StablesAtEventideMaster = new()
         {
             Id = 32,
             Name = "Stables at Eventide",
@@ -500,7 +500,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 00),
         };
 
-        public static Survival TheWallMaster = new Survival()
+        public static Survival TheWallMaster = new()
         {
             Id = 33,
             Name = "The Wall",
@@ -515,7 +515,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 00),
         };
 
-        public static Survival AvalancheMaster = new Survival()
+        public static Survival AvalancheMaster = new()
         {
             Id = 34,
             Name = "Avalanche",
@@ -530,7 +530,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 30),
         };
 
-        public static Survival CastleGatesMaster = new Survival()
+        public static Survival CastleGatesMaster = new()
         {
             Id = 35,
             Name = "Castle Gates",
@@ -545,7 +545,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 11, 00),
         };
 
-        public static Survival DocksAtEventideMaster = new Survival()
+        public static Survival DocksAtEventideMaster = new()
         {
             Id = 36,
             Name = "Docks at Eventide",
@@ -560,7 +560,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 45),
         };
 
-        public static Survival CrogonKeepMaster = new Survival()
+        public static Survival CrogonKeepMaster = new()
         {
             Id = 37,
             Name = "Crogon Keep",
@@ -575,7 +575,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 18, 00),
         };
 
-        public static Survival OrcriLaMASTER = new Survival()
+        public static Survival OrcriLaMASTER = new()
         {
             Id = 38,
             Name = "Orcri-La",
@@ -590,7 +590,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 00),
         };
 
-        public static Survival SharkIslandMaster = new Survival()
+        public static Survival SharkIslandMaster = new()
         {
             Id = 39,
             Name = "Shark Island",
@@ -605,7 +605,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 18, 00),
         };
 
-        public static Survival TheBathsRiftLord = new Survival()
+        public static Survival TheBathsRiftLord = new()
         {
             Id = 40,
             Name = "The Baths",
@@ -620,7 +620,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 00),
         };
 
-        public static Survival MaximumSecurityRiftLord = new Survival()
+        public static Survival MaximumSecurityRiftLord = new()
         {
             Id = 41,
             Name = "Maximum Security",
@@ -635,7 +635,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 16, 45),
         };
 
-        public static Survival ThroneRoomRiftLord = new Survival()
+        public static Survival ThroneRoomRiftLord = new()
         {
             Id = 42,
             Name = "Throne Room",
@@ -650,7 +650,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 45),
         };
 
-        public static Survival RestrictedSectionRiftLord = new Survival()
+        public static Survival RestrictedSectionRiftLord = new()
         {
             Id = 43,
             Name = "Restricted Section",
@@ -665,7 +665,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 00),
         };
 
-        public static Survival MidnightMarketRiftLord = new Survival()
+        public static Survival MidnightMarketRiftLord = new()
         {
             Id = 44,
             Name = "Midnight Market",
@@ -680,7 +680,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 12, 00),
         };
 
-        public static Survival BanquetHallRiftLord = new Survival()
+        public static Survival BanquetHallRiftLord = new()
         {
             Id = 45,
             Name = "Banquet Hall",
@@ -695,7 +695,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 45),
         };
 
-        public static Survival ConfluenceRiftLord = new Survival()
+        public static Survival ConfluenceRiftLord = new()
         {
             Id = 46,
             Name = "Confluence",
@@ -710,7 +710,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 15, 30),
         };
 
-        public static Survival FrostbiteRiftLord = new Survival()
+        public static Survival FrostbiteRiftLord = new()
         {
             Id = 47,
             Name = "Frostbite",
@@ -725,7 +725,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 45),
         };
 
-        public static Survival GatesOfThuricvodRiftLord = new Survival()
+        public static Survival GatesOfThuricvodRiftLord = new()
         {
             Id = 48,
             Name = "Gates of Thuricvod",
@@ -740,7 +740,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 15),
         };
 
-        public static Survival TempleGraveyardRiftLord = new Survival()
+        public static Survival TempleGraveyardRiftLord = new()
         {
             Id = 49,
             Name = "Temple Graveyard",
@@ -755,7 +755,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 14, 00),
         };
 
-        public static Survival HighlandsRiftLord = new Survival()
+        public static Survival HighlandsRiftLord = new()
         {
             Id = 50,
             Name = "Highlands",
@@ -770,7 +770,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 19, 45),
         };
 
-        public static Survival AvalancheRiftLord = new Survival()
+        public static Survival AvalancheRiftLord = new()
         {
             Id = 51,
             Name = "Avalanche",
@@ -785,7 +785,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 17, 45),
         };
 
-        public static Survival CastleGatesRiftLord = new Survival()
+        public static Survival CastleGatesRiftLord = new()
         {
             Id = 52,
             Name = "Castle Gates",
@@ -800,7 +800,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 14, 00),
         };
 
-        public static Survival AcademySewersRiftLord = new Survival()
+        public static Survival AcademySewersRiftLord = new()
         {
             Id = 53,
             Name = "Academy Sewers",
@@ -815,7 +815,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 13, 30),
         };
 
-        public static Survival CrogonKeepRiftLord = new Survival()
+        public static Survival CrogonKeepRiftLord = new()
         {
             Id = 54,
             Name = "Crogon Keep",
@@ -830,7 +830,7 @@ namespace SingleplayerLauncher.Model
             ParTime = new TimeSpan(0, 22, 45),
         };
 
-        public static Survival EventideFortressRiftLord = new Survival()
+        public static Survival EventideFortressRiftLord = new()
         {
             Id = 55,
             Name = "Eventide Fortress",
@@ -846,7 +846,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<string, Survival> SurvivalApprenticeBattlegrounds = new Dictionary<string, Survival>
+        public static Dictionary<string, Survival> SurvivalApprenticeBattlegrounds = new()
         {
             { TheBaths.Name, TheBathsApprentice },
             { EventideRamparts.Name, EventideRampartsApprentice },
@@ -859,7 +859,7 @@ namespace SingleplayerLauncher.Model
             { TrainingGrounds.Name, TrainingGroundsApprentice },
         };
 
-        public static Dictionary<string, Survival> SurvivalWarMageBattlegrounds = new Dictionary<string, Survival>
+        public static Dictionary<string, Survival> SurvivalWarMageBattlegrounds = new()
         {
             { EventideRamparts.Name, EventideRampartsWarMage },
             { TempleGraveyard.Name, TempleGraveyardWarMage },
@@ -877,7 +877,7 @@ namespace SingleplayerLauncher.Model
             { RestrictedSection.Name, RestrictedSectionWarMage },
         };
 
-        public static Dictionary<string, Survival> SurvivalMasterBattlegrounds = new Dictionary<string, Survival>
+        public static Dictionary<string, Survival> SurvivalMasterBattlegrounds = new()
         {
             { CliffsideClash.Name, CliffsideClashMaster },
             { TheFallingFolly.Name, TheFallingFollyMaster },
@@ -897,7 +897,7 @@ namespace SingleplayerLauncher.Model
             { SharkIsland.Name, SharkIslandMaster },
         };
 
-        public static Dictionary<string, Survival> SurvivalRiftLordBattlegrounds = new Dictionary<string, Survival>
+        public static Dictionary<string, Survival> SurvivalRiftLordBattlegrounds = new()
         {
             { TheBaths.Name, TheBathsRiftLord },
             { MaximumSecurity.Name, MaximumSecurityRiftLord },
@@ -917,7 +917,7 @@ namespace SingleplayerLauncher.Model
             { EventideFortress.Name, EventideFortressRiftLord },
         };
 
-        public static Dictionary<string, Dictionary<string, Survival>> SurvivalBattlegroundsByDifficulty = new Dictionary<string, Dictionary<string, Survival>>
+        public static Dictionary<string, Dictionary<string, Survival>> SurvivalBattlegroundsByDifficulty = new()
         {
             { APPRENTICE, SurvivalApprenticeBattlegrounds },
             { WAR_MAGE, SurvivalWarMageBattlegrounds },

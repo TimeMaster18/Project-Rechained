@@ -10,7 +10,7 @@ namespace SingleplayerLauncher
     {
         public abstract string FileName { get; }
 
-        public List<LoadoutDTO> LoadoutList { get; set; } = new List<LoadoutDTO>();
+        public List<LoadoutDTO> LoadoutList { get; set; } = [];
 
         protected BaseLoadouts() { }
 
@@ -83,6 +83,6 @@ namespace SingleplayerLauncher
 
     public class LoadoutRootDTO
     {
-        public List<LoadoutDTO> Loadouts { get; set; } = new List<LoadoutDTO>();
+        public List<LoadoutDTO> Loadouts { get; set; } = [];
     }
 }

@@ -8,7 +8,7 @@ namespace SingleplayerLauncher.Model
     {
 
         // Triangle Traits
-        public static SiegeTrait CacheWhisperer = new SiegeTrait
+        public static SiegeTrait CacheWhisperer = new()
         {
             Id = 1,
             CodeName = "SpitfireGame.RTraitCacheWhisperer",
@@ -17,7 +17,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SiegeTrait NeedsAloneTime = new SiegeTrait
+        public static SiegeTrait NeedsAloneTime = new()
         {
             Id = 2,
             CodeName = "SpitfireGame.RTraitHealNearGuardians3",
@@ -26,7 +26,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SiegeTrait MakingItRain = new SiegeTrait
+        public static SiegeTrait MakingItRain = new()
         {
             Id = 3,
             CodeName = "SpitfireGame.RTraitMakingItRain",
@@ -35,7 +35,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SiegeTrait OneWithTheTraps = new SiegeTrait
+        public static SiegeTrait OneWithTheTraps = new()
         {
             Id = 4,
             CodeName = "SpitfireGame.RTraitManaNearTraps3",
@@ -44,7 +44,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SiegeTrait KidnappedALeprechaun = new SiegeTrait
+        public static SiegeTrait KidnappedALeprechaun = new()
         {
             Id = 5,
             CodeName = "SpitfireGame.RTraitStartingCoin3",
@@ -53,7 +53,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COIN_TRICKLE
         };
-        public static SiegeTrait LargeAndInCharge = new SiegeTrait
+        public static SiegeTrait LargeAndInCharge = new()
         {
             Id = 6,
             CodeName = "SpitfireGame.RTraitLargeAndInCharge",
@@ -62,7 +62,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SiegeTrait RansackingObsession = new SiegeTrait
+        public static SiegeTrait RansackingObsession = new()
         {
             Id = 7,
             CodeName = "SpitfireGame.RTraitRansackingObsession",
@@ -71,7 +71,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SiegeTrait BornLeader = new SiegeTrait
+        public static SiegeTrait BornLeader = new()
         {
             Id = 8,
             CodeName = "SpitfireGame.RTraitStartingLeadership3",
@@ -80,7 +80,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SiegeTrait OhWowBandages = new SiegeTrait
+        public static SiegeTrait OhWowBandages = new()
         {
             Id = 9,
             CodeName = "SpitfireGame.RTraitThereWereBandaids",
@@ -89,7 +89,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SiegeTrait SellsMagicToMages = new SiegeTrait
+        public static SiegeTrait SellsMagicToMages = new()
         {
             Id = 10,
             CodeName = "SpitfireGame.RTraitTrapSellCost3",
@@ -98,7 +98,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH_REGEN
         };
-        public static SiegeTrait WorksSmarter = new SiegeTrait
+        public static SiegeTrait WorksSmarter = new()
         {
             Id = 11,
             CodeName = "SpitfireGame.RTraitEscortAuraNoEnemyPlayers3",
@@ -107,7 +107,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_REGEN
         };
-        public static SiegeTrait MotivatesOthers = new SiegeTrait
+        public static SiegeTrait MotivatesOthers = new()
         {
             Id = 12,
             CodeName = "SpitfireGame.RTraitMotivatesOthers",
@@ -116,7 +116,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_REGEN
         };
-        public static SiegeTrait OhWowPotions = new SiegeTrait
+        public static SiegeTrait OhWowPotions = new()
         {
             Id = 13,
             CodeName = "SpitfireGame.RTraitThereWerePotions",
@@ -125,7 +125,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_REGEN
         };
-        public static SiegeTrait LikeYouStoleIt = new SiegeTrait
+        public static SiegeTrait LikeYouStoleIt = new()
         {
             Id = 14,
             CodeName = "SpitfireGame.RTraitLikeYouStoleIt",
@@ -134,7 +134,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SiegeTrait DoesntPlayWellWithOthers = new SiegeTrait
+        public static SiegeTrait DoesntPlayWellWithOthers = new()
         {
             Id = 15,
             CodeName = "SpitfireGame.RTraitManaNearGuardians3",
@@ -143,7 +143,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SiegeTrait MobMentality = new SiegeTrait
+        public static SiegeTrait MobMentality = new()
         {
             Id = 16,
             CodeName = "SpitfireGame.RTraitMobMentality",
@@ -152,7 +152,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SiegeTrait SettingAnExample = new SiegeTrait
+        public static SiegeTrait SettingAnExample = new()
         {
             Id = 17,
             CodeName = "SpitfireGame.RTraitSettingAnExample",
@@ -161,7 +161,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = TRIANGLE_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_SPEED
         };
-        public static SiegeTrait HasATrapFetish = new SiegeTrait
+        public static SiegeTrait HasATrapFetish = new()
         {
             Id = 18,
             CodeName = "trait.Upgrades.Trap_Fetish", // TODO: Check if it is the real one
@@ -172,7 +172,7 @@ namespace SingleplayerLauncher.Model
         };
 
         // Pentagon Traits
-        public static SiegeTrait UncleKilledByGiant = new SiegeTrait
+        public static SiegeTrait UncleKilledByGiant = new()
         {
             Id = 19,
             CodeName = "SpitfireGame.RTraitDamageToGiants3",
@@ -181,7 +181,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SiegeTrait BrotherMauledByGrizzlies = new SiegeTrait
+        public static SiegeTrait BrotherMauledByGrizzlies = new()
         {
             Id = 20,
             CodeName = "SpitfireGame.RTraitDamageToGrizzlies3",
@@ -190,7 +190,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SiegeTrait StrangeSenseOfHumor = new SiegeTrait
+        public static SiegeTrait StrangeSenseOfHumor = new()
         {
             Id = 21,
             CodeName = "SpitfireGame.RTraitDmgBonusNoEnemyPlayers3",
@@ -199,7 +199,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SiegeTrait NeverKnocks = new SiegeTrait
+        public static SiegeTrait NeverKnocks = new()
         {
             Id = 22,
             CodeName = "SpitfireGame.RTraitNeverKnocks",
@@ -208,7 +208,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_COOLDOWN_REDUCTION
         };
-        public static SiegeTrait HasABigBrother = new SiegeTrait
+        public static SiegeTrait HasABigBrother = new()
         {
             Id = 23,
             CodeName = "SpitfireGame.RTraitDmgBonusNearGuardians1_3",
@@ -217,7 +217,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SiegeTrait TriesTooHard = new SiegeTrait
+        public static SiegeTrait TriesTooHard = new()
         {
             Id = 24,
             CodeName = "SpitfireGame.RTraitDmgBonusNearGuardians2_3",
@@ -226,7 +226,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SiegeTrait AmateurVeterinarian = new SiegeTrait
+        public static SiegeTrait AmateurVeterinarian = new()
         {
             Id = 25,
             CodeName = "SpitfireGame.RTraitImprovedHealing3",
@@ -235,7 +235,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SiegeTrait RipThatSuckerOpen = new SiegeTrait
+        public static SiegeTrait RipThatSuckerOpen = new()
         {
             Id = 26,
             CodeName = "SpitfireGame.RTraitRipThatSuckerOpen",
@@ -244,7 +244,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MANA_MAX
         };
-        public static SiegeTrait CatEatenByAGnoll = new SiegeTrait
+        public static SiegeTrait CatEatenByAGnoll = new()
         {
             Id = 27,
             CodeName = "SpitfireGame.RTraitDamageToGnolls3",
@@ -253,7 +253,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait SisterEatenByAnOgre = new SiegeTrait
+        public static SiegeTrait SisterEatenByAnOgre = new()
         {
             Id = 28,
             CodeName = "SpitfireGame.RTraitDamageToOgres3",
@@ -262,7 +262,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait DogKilledByPrideHunters = new SiegeTrait
+        public static SiegeTrait DogKilledByPrideHunters = new()
         {
             Id = 29,
             CodeName = "SpitfireGame.RTraitDamageToPrideHunters3",
@@ -271,7 +271,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait GrandmotherEatenByATroll = new SiegeTrait
+        public static SiegeTrait GrandmotherEatenByATroll = new()
         {
             Id = 30,
             CodeName = "SpitfireGame.RTraitDamageToTrolls3",
@@ -280,7 +280,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait ItsMine = new SiegeTrait
+        public static SiegeTrait ItsMine = new()
         {
             Id = 31,
             CodeName = "SpitfireGame.RTraitItsMine",
@@ -289,7 +289,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait NotScaredOfStatues = new SiegeTrait
+        public static SiegeTrait NotScaredOfStatues = new()
         {
             Id = 32,
             CodeName = "SpitfireGame.RTraitNotScaredOfStatues",
@@ -298,7 +298,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait SoldiersTookMyHorse = new SiegeTrait
+        public static SiegeTrait SoldiersTookMyHorse = new()
         {
             Id = 33,
             CodeName = "SpitfireGame.RTraitSoldiersTookMyHorse",
@@ -307,7 +307,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = PENTAGON_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_PRIMARY_DAMAGE
         };
-        public static SiegeTrait HasUltimateSetOfTools = new SiegeTrait
+        public static SiegeTrait HasUltimateSetOfTools = new()
         {
             Id = 34,
             CodeName = "SpitfireGame.RTraitTrapDamageIncrease3",
@@ -318,7 +318,7 @@ namespace SingleplayerLauncher.Model
         };
 
         // Diamond Traits
-        public static SiegeTrait EnjoysPain = new SiegeTrait
+        public static SiegeTrait EnjoysPain = new()
         {
             Id = 35,
             CodeName = "SpitfireGame.RTraitEnjoysPain",
@@ -327,7 +327,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_ARMOR
         };
-        public static SiegeTrait HighPainTolerance = new SiegeTrait
+        public static SiegeTrait HighPainTolerance = new()
         {
             Id = 36,
             CodeName = "SpitfireGame.RTraitReduceDamageFromMinions3",
@@ -336,7 +336,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_ARMOR
         };
-        public static SiegeTrait ExecutionAdvantage = new SiegeTrait
+        public static SiegeTrait ExecutionAdvantage = new()
         {
             Id = 37,
             CodeName = "SpitfireGame.RTraitExecutionAdvantage",
@@ -345,7 +345,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SiegeTrait ImNotTouchingYou = new SiegeTrait
+        public static SiegeTrait ImNotTouchingYou = new()
         {
             Id = 38,
             CodeName = "SpitfireGame.RTraitHandsOff",
@@ -354,7 +354,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SiegeTrait WalksItOff = new SiegeTrait
+        public static SiegeTrait WalksItOff = new()
         {
             Id = 39,
             CodeName = "SpitfireGame.RTraitRespawnTime3",
@@ -363,7 +363,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SiegeTrait TakesLessonsFromCygnus = new SiegeTrait
+        public static SiegeTrait TakesLessonsFromCygnus = new()
         {
             Id = 40,
             CodeName = "SpitfireGame.RTraitTakesLessonsFromCygnus",
@@ -372,7 +372,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_CC_RESIST
         };
-        public static SiegeTrait FeelsSafeAtHome = new SiegeTrait
+        public static SiegeTrait FeelsSafeAtHome = new()
         {
             Id = 41,
             CodeName = "SpitfireGame.RTraitFeelsSafeAtHome",
@@ -381,7 +381,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH
         };
-        public static SiegeTrait GuardianVandalism = new SiegeTrait
+        public static SiegeTrait GuardianVandalism = new()
         {
             Id = 42,
             CodeName = "SpitfireGame.RTraitGuardianVandalism",
@@ -390,7 +390,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_HEALTH
         };
-        public static SiegeTrait PracticesWitchcraft = new SiegeTrait
+        public static SiegeTrait PracticesWitchcraft = new()
         {
             Id = 43,
             CodeName = "SpitfireGame.RTraitPracticesWitchcraft",
@@ -399,7 +399,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MAGIC_ARMOR
         };
-        public static SiegeTrait IsAWalkingPincushion = new SiegeTrait
+        public static SiegeTrait IsAWalkingPincushion = new()
         {
             Id = 44,
             CodeName = "SpitfireGame.RTraitReduceDamageFromTraps3",
@@ -408,7 +408,7 @@ namespace SingleplayerLauncher.Model
             MatchingSlot = DIAMOND_BONUS_SLOT,
             MatchingBonusTrait = BONUS_TRAIT_MAGIC_ARMOR
         };
-        public static SiegeTrait ShowOff = new SiegeTrait
+        public static SiegeTrait ShowOff = new()
         {
             Id = 45,
             CodeName = "trait.Upgrades.Show_Off",
@@ -418,7 +418,8 @@ namespace SingleplayerLauncher.Model
             MatchingBonusTrait = BONUS_TRAIT_HEALTH // TODO: Check the real bonus
         };
 
-        public static Dictionary<string, SiegeTrait> TriangleSlotTraits = new Dictionary<string, SiegeTrait> {
+        public static Dictionary<string, SiegeTrait> TriangleSlotTraits = new()
+        {
             { CACHE_WHISPERER, CacheWhisperer},
             { NEEDS_ALONE_TIME, NeedsAloneTime},
             { MAKING_IT_RAIN, MakingItRain},
@@ -439,7 +440,7 @@ namespace SingleplayerLauncher.Model
             { HAS_A_TRAP_FETISH, HasATrapFetish }
         };
 
-        public static Dictionary<string, SiegeTrait> PentagonSlotTraits = new Dictionary<string, SiegeTrait>
+        public static Dictionary<string, SiegeTrait> PentagonSlotTraits = new()
         {
             { UNCLE_KILLED_BY_GIANT, UncleKilledByGiant},
             { BROTHER_MAULED_BY_GRIZZLIES, BrotherMauledByGrizzlies},
@@ -459,7 +460,7 @@ namespace SingleplayerLauncher.Model
             { HAS_ULTIMATE_SET_OF_TOOLS, HasUltimateSetOfTools}
         };
 
-        public static Dictionary<string, SiegeTrait> DiamondSlotTraits = new Dictionary<string, SiegeTrait>
+        public static Dictionary<string, SiegeTrait> DiamondSlotTraits = new()
         {
             { ENJOYS_PAIN, EnjoysPain},
             { HIGH_PAIN_TOLERANCE, HighPainTolerance},
@@ -480,7 +481,7 @@ namespace SingleplayerLauncher.Model
             .Concat(DiamondSlotTraits)
             .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-        public static Dictionary<int, SiegeTrait> TraitsById = new Dictionary<int, SiegeTrait>
+        public static Dictionary<int, SiegeTrait> TraitsById = new()
         {
             { CacheWhisperer.Id, CacheWhisperer},
             { NeedsAloneTime.Id, NeedsAloneTime},

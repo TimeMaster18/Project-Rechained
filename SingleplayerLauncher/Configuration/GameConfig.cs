@@ -11,7 +11,7 @@ namespace SingleplayerLauncher
     {
         public static readonly string GAME_CONFIG_FILE_NAME = "gameconfig.json";
         private static GameConfig _instance;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
 
         public bool ModsEnabled { get; set; }
         public string GameMode { get; set; } = "Survival";

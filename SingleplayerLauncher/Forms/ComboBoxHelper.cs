@@ -125,9 +125,9 @@ public class TraitComboBoxHelper<T> : ComboBoxHelper<T> where T : Trait
     {
         Point[] points = new Point[]
         {
-            new Point(bounds.X + 10, bounds.Y + bounds.Height - 5),
-            new Point(bounds.X + 20, bounds.Y + bounds.Height - 5),
-            new Point(bounds.X + 15, bounds.Y + bounds.Height - 15)
+            new(bounds.X + 10, bounds.Y + bounds.Height - 5),
+            new(bounds.X + 20, bounds.Y + bounds.Height - 5),
+            new(bounds.X + 15, bounds.Y + bounds.Height - 15)
         };
         g.FillPolygon(Brushes.Gold, points);
     }
@@ -136,10 +136,10 @@ public class TraitComboBoxHelper<T> : ComboBoxHelper<T> where T : Trait
     {
         Point[] points = new Point[]
         {
-            new Point(bounds.X + 15, bounds.Y + bounds.Height - 15),
-            new Point(bounds.X + 20, bounds.Y + bounds.Height - 10),
-            new Point(bounds.X + 15, bounds.Y + bounds.Height - 5),
-            new Point(bounds.X + 10, bounds.Y + bounds.Height - 10)
+            new(bounds.X + 15, bounds.Y + bounds.Height - 15),
+            new(bounds.X + 20, bounds.Y + bounds.Height - 10),
+            new(bounds.X + 15, bounds.Y + bounds.Height - 5),
+            new(bounds.X + 10, bounds.Y + bounds.Height - 10)
         };
         g.FillPolygon(Brushes.LightSkyBlue, points);
     }
@@ -148,11 +148,11 @@ public class TraitComboBoxHelper<T> : ComboBoxHelper<T> where T : Trait
     {
         Point[] points = new Point[]
         {
-            new Point(bounds.X + 15, bounds.Y + bounds.Height - 15),
-            new Point(bounds.X + 20, bounds.Y + bounds.Height - 10),
-            new Point(bounds.X + 18, bounds.Y + bounds.Height - 5),
-            new Point(bounds.X + 12, bounds.Y + bounds.Height - 5),
-            new Point(bounds.X + 10, bounds.Y + bounds.Height - 10)
+            new(bounds.X + 15, bounds.Y + bounds.Height - 15),
+            new(bounds.X + 20, bounds.Y + bounds.Height - 10),
+            new(bounds.X + 18, bounds.Y + bounds.Height - 5),
+            new(bounds.X + 12, bounds.Y + bounds.Height - 5),
+            new(bounds.X + 10, bounds.Y + bounds.Height - 10)
         };
         g.FillPolygon(Brushes.LightGreen, points);
     }

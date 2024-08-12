@@ -20,7 +20,7 @@ namespace SingleplayerLauncher.Model
         Hero() { }
 
         // static members
-        public static Hero Bionka = new Hero()
+        public static Hero Bionka = new()
         {
             Id = 1,
             Name = BIONKA,
@@ -32,7 +32,7 @@ namespace SingleplayerLauncher.Model
             SiegeUniqueSlotItem = Glyph.OrcishFieldPromotionGlyph,
             SiegeSkins = Skin.SiegeBionkaSkins
         };
-        public static Hero Blackpaw = new Hero()
+        public static Hero Blackpaw = new()
         {
             Id = 2,
             Name = BLACKPAW,
@@ -44,7 +44,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerBlackPaw",
             SiegeSkins = Skin.SiegeBlackpawSkins
         };
-        public static Hero Bloodspike = new Hero()
+        public static Hero Bloodspike = new()
         {
             Id = 3,
             Name = BLOODSPIKE,
@@ -56,7 +56,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerBloodspike",
             SiegeSkins = Skin.SiegeBloodspikeSkins
         };
-        public static Hero Brass = new Hero()
+        public static Hero Brass = new()
         {
             Id = 4,
             Name = BRASS,
@@ -64,7 +64,7 @@ namespace SingleplayerLauncher.Model
             PawnTemplateName = "PawnWeapon_Brass.Pawn_Brass",
             PawnWeaponTemplateName = "PawnWeapon_Brass.Weapon_Brass",
         };
-        public static Hero Cygnus = new Hero()
+        public static Hero Cygnus = new()
         {
             Id = 5,
             Name = CYGNUS,
@@ -76,7 +76,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerTheMaster",
             SiegeSkins = Skin.SiegeCygnusSkins
         };
-        public static Hero Deadeye = new Hero()
+        public static Hero Deadeye = new()
         {
             Id = 6,
             Name = DEADEYE,
@@ -84,7 +84,7 @@ namespace SingleplayerLauncher.Model
             PawnTemplateName = "PawnWeapon_Deadeye.Pawn_Deadeye",
             PawnWeaponTemplateName = "PawnWeapon_Deadeye.Weapon_Deadeye",
         };
-        public static Hero Dobbin = new Hero()
+        public static Hero Dobbin = new()
         {
             Id = 7,
             Name = DOBBIN,
@@ -96,7 +96,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerProspector",
             SiegeSkins = Skin.SiegeDobbinSkins
         };
-        public static Hero Gabriella = new Hero()
+        public static Hero Gabriella = new()
         {
             Id = 8,
             Name = GABRIELLA,
@@ -108,7 +108,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerSorceress",
             SiegeSkins = Skin.SiegeGabriellaSkins
         };
-        public static Hero Hogarth = new Hero()
+        public static Hero Hogarth = new()
         {
             Id = 9,
             Name = HOGARTH,
@@ -120,7 +120,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerHogarth",
             SiegeSkins = Skin.SiegeHogarthSkins
         };
-        public static Hero Ivy = new Hero()
+        public static Hero Ivy = new()
         {
             Id = 10,
             Name = IVY,
@@ -132,7 +132,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerSheElf",
             SiegeSkins = Skin.SiegeIvySkins
         };
-        public static Hero Maximilian = new Hero()
+        public static Hero Maximilian = new()
         {
             Id = 11,
             Name = MAXIMILIAN,
@@ -144,7 +144,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerWarmage",
             SiegeSkins = Skin.SiegeMaximilianSkins
         };
-        public static Hero Midnight = new Hero()
+        public static Hero Midnight = new()
         {
             Id = 12,
             Name = MIDNIGHT,
@@ -156,7 +156,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerPantherQueen",
             SiegeSkins = Skin.SiegeMidnightSkins
         };
-        public static Hero Oziel = new Hero()
+        public static Hero Oziel = new()
         {
             Id = 13,
             Name = OZIEL,
@@ -168,7 +168,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerAncestor",
             SiegeSkins = Skin.SiegeOzielSkins
         };
-        public static Hero Smolder = new Hero()
+        public static Hero Smolder = new()
         {
             Id = 14,
             Name = SMOLDER,
@@ -180,7 +180,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerEvilMage",
             SiegeSkins = Skin.SiegeSmolderSkins
         };
-        public static Hero Stinkeye = new Hero()
+        public static Hero Stinkeye = new()
         {
             Id = 15,
             Name = STINKEYE,
@@ -192,7 +192,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerCyclopsMaster",
             SiegeSkins = Skin.SiegeStinkeyeSkins
         };
-        public static Hero Temper = new Hero()
+        public static Hero Temper = new()
         {
             Id = 16,
             Name = TEMPER,
@@ -200,7 +200,7 @@ namespace SingleplayerLauncher.Model
             PawnTemplateName = "PawnWeapon_Temper.Pawn_Temper",
             PawnWeaponTemplateName = "PawnWeapon_Temper.Weapon_Temper",
         };
-        public static Hero Tundra = new Hero()
+        public static Hero Tundra = new()
         {
             Id = 17,
             Name = TUNDRA,
@@ -212,7 +212,7 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerDaBear",
             SiegeSkins = Skin.SiegeTundraSkins
         };
-        public static Hero YiLin = new Hero()
+        public static Hero YiLin = new()
         {
             Id = 18,
             Name = YI_LIN,
@@ -220,7 +220,7 @@ namespace SingleplayerLauncher.Model
             PawnTemplateName = "PawnWeapon_hooksword.Pawn_hooksword",
             PawnWeaponTemplateName = "PawnWeapon_hooksword.Weapon_hooksword",
         };
-        public static Hero Zoey = new Hero()
+        public static Hero Zoey = new()
         {
             Id = 19,
             Name = ZOEY,
@@ -234,7 +234,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<string, Hero> Heroes = new Dictionary<string, Hero>
+        public static Dictionary<string, Hero> Heroes = new()
         {
             { BIONKA, Bionka },
             { BLACKPAW, Blackpaw },
@@ -258,7 +258,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<string, Hero> SiegeHeroes = new Dictionary<string, Hero>
+        public static Dictionary<string, Hero> SiegeHeroes = new()
         {
             { BIONKA, Bionka },
             { BLACKPAW, Blackpaw },
@@ -277,7 +277,7 @@ namespace SingleplayerLauncher.Model
             { ZOEY, Zoey },
         };
 
-        public static Dictionary<int, Hero> HeroesById = new Dictionary<int, Hero>
+        public static Dictionary<int, Hero> HeroesById = new()
         {
             { Bionka.Id, Bionka },
             { Blackpaw.Id, Blackpaw },

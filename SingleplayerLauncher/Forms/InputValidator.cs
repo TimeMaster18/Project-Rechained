@@ -47,7 +47,7 @@ public static class InputValidator
     {
         try
         {
-            SurvivalLoadout loadout = new SurvivalLoadout();
+            SurvivalLoadout loadout = new();
             loadout.Decode(loadoutCode);
             return (true, string.Empty);
         }
@@ -61,7 +61,7 @@ public static class InputValidator
     {
         try
         {
-            SiegeLoadout loadout = new SiegeLoadout();
+            SiegeLoadout loadout = new();
             loadout.Decode(loadoutCode);
             return (true, string.Empty);
         }

@@ -96,8 +96,8 @@ namespace SingleplayerLauncher
                 string launcherExePath = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.PROJECT_RECHAINED_LAUNCHER_EXE_FILE_NAME);
                 string dashboardExePath = Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
 
-                FileInfo spitfireDashboardExeFileInfo = new FileInfo(dashboardExePath);
-                FileInfo launcherExeFileInfo = new FileInfo(launcherExePath);
+                FileInfo spitfireDashboardExeFileInfo = new(dashboardExePath);
+                FileInfo launcherExeFileInfo = new(launcherExePath);
 
                 bool isUpdateRequired = spitfireDashboardExeFileInfo.LastWriteTime != launcherExeFileInfo.LastWriteTime;
                 bool isExecutingFromDashboardFolder = Directory.GetCurrentDirectory().Equals(dashboardFolderPath, StringComparison.OrdinalIgnoreCase);

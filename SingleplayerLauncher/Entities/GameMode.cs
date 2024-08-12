@@ -13,23 +13,23 @@ namespace SingleplayerLauncher.Model
         GameMode() { }
 
         // static members
-        public static GameMode Survival = new GameMode()
+        public static GameMode Survival = new()
         {
             Name = SURVIVAL,
             Id = 1
         };
-        public static GameMode Endless = new GameMode()
+        public static GameMode Endless = new()
         {
             Name = ENDLESS,
             Id = 5
         };
-        public static GameMode WeeklyChallenge = new GameMode()
+        public static GameMode WeeklyChallenge = new()
         {
             Name = WEEKLY_CHALLENGE,
             Id = 1
         };
 
-        public static Dictionary<string, GameMode> GameModes = new Dictionary<string, GameMode>
+        public static Dictionary<string, GameMode> GameModes = new()
         {
             { SURVIVAL, Survival },
             { ENDLESS, Endless },

@@ -11,6 +11,14 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 ### How to install:
 
+#### Prerequisites:
+
+1. **Download and Install .NET SDK**:
+    - Go to the [.NET download page](https://dotnet.microsoft.com/download/dotnet).
+    - Download and install the latest .NET SDK suitable for your operating system.
+
+#### How to install for Survival:
+
 1. Download Game from: [Steam](https://intradeus.github.io/http-protocol-redirector?r=steam://rungameid/427270) (If link doesn't work, ask for help at the Discord server)
 2. Download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
 3. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
@@ -59,10 +67,12 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 - (Visual only) Host player Unchained meter (right side of screen) stuck after first activation 
   - The **indicator over the hero icon at the bottom left of the screen works correctly**
 - (Visual only) Crogon Keep textures can be black
+- (Visual only) Host player own Midnight "invisibility" not showing properly
 
 #### Siege
 - Host player doesn't have all sounds (mostly hero and minion related)
 - Host Hero Upgrades popup doesn't close automatically (requires pressing U) after picking upgrade
+- (Visual only) Host player own Midnight "invisibility" not showing properly
 
 ## Acknowledgements
 
@@ -82,5 +92,5 @@ This project makes use of the following open-source projects:
 
 If you have any questions, suggestions, or feedback, feel free to reach out:
 
-- **Project Maintainer:** [TimeMaster](https://github.com/TimeMaster18) - timemaster96@gmail.com
+- **Project Maintainer:** [TimeMaster](https://github.com/TimeMaster18) - Discord: timemaster
 - **Discord Server:** [OMD Modding Server](https://discord.gg/xkZskPXtwm)

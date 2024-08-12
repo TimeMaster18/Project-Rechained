@@ -7,8 +7,8 @@ using System.Runtime.InteropServices.ComTypes;
 
 public class FolderPicker
 {
-    private readonly List<string> _resultPaths = new List<string>();
-    private readonly List<string> _resultNames = new List<string>();
+    private readonly List<string> _resultPaths = [];
+    private readonly List<string> _resultNames = [];
 
     public IReadOnlyList<string> ResultPaths => _resultPaths;
     public IReadOnlyList<string> ResultNames => _resultNames;

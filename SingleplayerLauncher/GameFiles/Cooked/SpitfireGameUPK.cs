@@ -18,13 +18,13 @@ namespace SingleplayerLauncher
         private const int PAR_TIME_CHANGE_INDEX = 0x155A3C2;
         private static readonly byte[] UNIQUE_BYTES_REFERENCE_PAR_TIME = { 0x1B, 0x8B, 0x8F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x1D };
 
-        public void ApplyParTime(int parTimeSeconds)
+        public static void ApplyParTime(int parTimeSeconds)
         {
             byte[] parTimeBytes = BitConverter.GetBytes(parTimeSeconds);
             SpitfireGameUPKFile.ApplyModification(UNIQUE_BYTES_REFERENCE_PAR_TIME, PAR_TIME_CHANGE_INDEX, 0, parTimeBytes);
         }
 
-        public void ApplyMods(bool areModsEnabled)
+        public static void ApplyMods(bool areModsEnabled)
         {
             Mod.UPKFile = SpitfireGameUPKFile;
             foreach (Mod mod in Mods.Mods.ModList)
@@ -40,7 +40,7 @@ namespace SingleplayerLauncher
             }
         }
 
-        public void ApplyMultiplayerPatches(bool isHost)
+        public static void ApplyMultiplayerPatches(bool isHost)
         {
             byte gameClientType = isHost ? (byte)2 : (byte)0;
             // Fix the weaver upgrade menu not closing when selecting
@@ -69,7 +69,7 @@ namespace SingleplayerLauncher
             SpitfireGameUPKFile.ApplyModification(uniqueBytesScore, changeIndexScore, 0, gameClientType);
         }
 
-        public void SaveChanges()
+        public static void SaveChanges()
         {
             SpitfireGameUPKFile.Save();
         }

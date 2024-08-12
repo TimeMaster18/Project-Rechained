@@ -12,7 +12,7 @@ namespace SingleplayerLauncher.Utils
 
         public IniFile()
         {
-            Sections = new Dictionary<string, Section>();
+            Sections = [];
         }
 
         public void Load(string filePath)

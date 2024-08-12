@@ -9,7 +9,7 @@ namespace SingleplayerLauncher
 {
     class GameLauncher
     {
-        private static readonly SpitfireGameUPK SpitfireGameUPK = new SpitfireGameUPK();
+        private static readonly SpitfireGameUPK SpitfireGameUPK = new();
 
         public static void ApplyChanges(bool isHost, bool isSiege = false, int parTimeSeconds = 0)
         {
@@ -97,15 +97,18 @@ namespace SingleplayerLauncher
 
         public static void StartGame(string playerName, bool isHost, string hostIP = "", string mapCode = "", int playerCount = 1)
         {
-            Process p = new Process();
-            p.StartInfo.FileName = FileUtils.SPITFIREGAME_EXE_FILENAME;
-            string filePath = Path.Combine(Settings.Instance.RootGamePath, Settings.Instance.RunAs32 ? FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH : FileUtils.BINARIES_FOLDER_NAME);
-            p.StartInfo.WorkingDirectory = filePath;
+            Process p = new();
+            string filePath = Path.Combine(Settings.Instance.RootGamePath,
+                                           Settings.Instance.RunAs32 ? FileUtils.SPITFIREGAME_BINARIES_WIN32_PATH : FileUtils.BINARIES_FOLDER_NAME);
 
+            string exeFullPath = Path.Combine(filePath, FileUtils.SPITFIREGAME_EXE_FILENAME);
+
+            p.StartInfo.FileName = exeFullPath;
+            p.StartInfo.WorkingDirectory = filePath;
             p.StartInfo.Arguments = CreateExeArguments(Settings.Instance.Debug, Settings.Instance.Language, isHost, hostIP, playerName, mapCode, playerCount);
+            p.StartInfo.UseShellExecute = false;
 
             p.Start();
-
             p.WaitForExit();
         }
 

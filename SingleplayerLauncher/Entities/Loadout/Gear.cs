@@ -10,7 +10,7 @@ namespace SingleplayerLauncher.Model
         Gear() { }
 
         // static members
-        public static Gear AntitrapVambrace = new Gear()
+        public static Gear AntitrapVambrace = new()
         {
             Id = 200,
             Name = ANTITRAP_VAMBRACE,
@@ -18,7 +18,7 @@ namespace SingleplayerLauncher.Model
             Description = "Negates control effects for a short time after use.",
             SiegeDescription = "Zaps traps with a ranged attack that disables them."
         };
-        public static Gear ArcaneBubbleBlower = new Gear()
+        public static Gear ArcaneBubbleBlower = new()
         {
             Id = 201,
             Name = ARCANE_BUBBLE_BLOWER,
@@ -26,7 +26,7 @@ namespace SingleplayerLauncher.Model
             Description = "Creates a bomb that explodes after a time, dealing Arcane damage in that area. It's targets are susceptible to Arcane damage.",
             SiegeDescription = "Blows a bomb that explodes after a time, dealing arcane AoE damage and casting an arcane-damage increasing debuff to its targets."
         };
-        public static Gear FireWallBracers = new Gear()
+        public static Gear FireWallBracers = new()
         {
             Id = 202,
             Name = FIRE_WALL_BRACERS,
@@ -34,7 +34,7 @@ namespace SingleplayerLauncher.Model
             Description = "Creates a wall of Fire igniting enemies who walk through it. Fire damage from the same Hero or Trap-type does not stack.",
             SiegeDescription = "Creates a wall of fire that ignites enemies who walk through it. Fire damage from the same hero or trap-type does not stack."
         };
-        public static Gear FreedomTrinket = new Gear()
+        public static Gear FreedomTrinket = new()
         {
             Id = 203,
             Name = FREEDOM_TRINKET,
@@ -42,7 +42,7 @@ namespace SingleplayerLauncher.Model
             Description = "Negates control effects for a short time after use.",
             SiegeDescription = "Negates control effects for a short time after use."
         };
-        public static Gear GnomishRepairKit = new Gear()
+        public static Gear GnomishRepairKit = new()
         {
             Id = 204,
             Name = GNOMISH_REPAIR_KIT,
@@ -50,7 +50,7 @@ namespace SingleplayerLauncher.Model
             Description = "Activates a targeted Trap even if it is on cooldown.",
             SiegeDescription = "Activates a targeted trap--even if it is on cooldown or disabled."
         };
-        public static Gear GreaterFreedomTrinket = new Gear()
+        public static Gear GreaterFreedomTrinket = new()
         {
             Id = 205,
             Name = GREATER_FREEDOM_TRINKET,
@@ -58,7 +58,7 @@ namespace SingleplayerLauncher.Model
             Description = "Negates control effects for you and nearby allies/minions for a short time after use.",
             SiegeDescription = "Negates control effects for a short time after use."
         };
-        public static Gear HobgoblinCharm = new Gear()
+        public static Gear HobgoblinCharm = new()
         {
             Id = 206,
             Name = HOBGOBLIN_CHARM,
@@ -66,7 +66,7 @@ namespace SingleplayerLauncher.Model
             Description = "Heals an allied minion. Siege gear but can work on summoned allied minions.",
             SiegeDescription = "Rapidly heals a targeted minion for a significant amount of health."
         };
-        public static Gear IceAmulet = new Gear()
+        public static Gear IceAmulet = new()
         {
             Id = 207,
             Name = ICE_AMULET,
@@ -74,7 +74,7 @@ namespace SingleplayerLauncher.Model
             Description = "Fires three projectiles at once. Frost damage applies chilled to enemies, which can cause them to become frozen.",
             SiegeDescription = "Fires three frost projectiles at once. Frost damage applies Chilled to enemies, which can cause them to become frozen."
         };
-        public static Gear LightningRing = new Gear()
+        public static Gear LightningRing = new()
         {
             Id = 208,
             Name = LIGHTNING_RING,
@@ -82,7 +82,7 @@ namespace SingleplayerLauncher.Model
             Description = "Fires a short burst of Lightning damage to enemies in range.",
             SiegeDescription = "Fires a chain of lightning. Lightning chains from target to target within a short range. Enemies killed by lightning damage explode for AoE damage."
         };
-        public static Gear MagesClover = new Gear()
+        public static Gear MagesClover = new()
         {
             Id = 209,
             Name = MAGES_CLOVER,
@@ -90,7 +90,7 @@ namespace SingleplayerLauncher.Model
             Description = "Grants a short period of increased mana regeneration. Effect is canceled upon taking damage.",
             SiegeDescription = "Grants a short period of increased mana regeneration. Effect is canceled upon taking damage."
         };
-        public static Gear MagesPicnic = new Gear()
+        public static Gear MagesPicnic = new()
         {
             Id = 210,
             Name = MAGES_PICNIC,
@@ -98,7 +98,7 @@ namespace SingleplayerLauncher.Model
             Description = "Creates a totem that increases mana regeneration for nearby allied players.",
             SiegeDescription = "Creates a totem that increases mana regeneration for nearby allied players."
         };
-        public static Gear MendingRoot = new Gear()
+        public static Gear MendingRoot = new()
         {
             Id = 211,
             Name = MENDING_ROOT,
@@ -106,7 +106,7 @@ namespace SingleplayerLauncher.Model
             Description = "Grants a short duration of increased health regeneration. Being attacked cancels the regeneration.",
             SiegeDescription = "Grants a short period of increased health regeneration. Effect is canceled upon taking damage."
         };
-        public static Gear RingOfLastStand = new Gear()
+        public static Gear RingOfLastStand = new()
         {
             Id = 212,
             Name = RING_OF_LAST_STAND,
@@ -114,7 +114,7 @@ namespace SingleplayerLauncher.Model
             Description = "Grants the Hero damage immunity for a short duration.",
             SiegeDescription = "Makes hero briefly immune to damage. The hero suffers a debuff that reduces all armor types after use."
         };
-        public static Gear RingOfStorms = new Gear()
+        public static Gear RingOfStorms = new()
         {
             Id = 213,
             Name = RING_OF_STORMS,
@@ -122,7 +122,7 @@ namespace SingleplayerLauncher.Model
             Description = "Creates a storm that deals Lightning damage to enemies in range. Enemies killed by Lightning explode, dealing damage in an area around them.",
             SiegeDescription = "Creates a storm cloud that deals lightning damage to enemies in range. Enemies killed by lightning damage explode for AoE damage."
         };
-        public static Gear TeleportationRing = new Gear()
+        public static Gear TeleportationRing = new()
         {
             Id = 214,
             Name = TELEPORTATION_RING,
@@ -130,7 +130,7 @@ namespace SingleplayerLauncher.Model
             Description = "Teleports the Hero back to its allied rift. Ring takes 1s to cast. Taking damage interrupts cast.",
             SiegeDescription = "Teleports the hero back to its allied rift. Trinket takes 4s to cast. Taking damage interrupts casting."
         };
-        public static Gear FlameBracers = new Gear()
+        public static Gear FlameBracers = new()
         {
             Id = 215,
             Name = FLAME_BRACERS,
@@ -140,7 +140,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<string, SlotItem> Gears = new Dictionary<string, SlotItem>
+        public static Dictionary<string, SlotItem> Gears = new()
         {
             { ANTITRAP_VAMBRACE, AntitrapVambrace },
             { ARCANE_BUBBLE_BLOWER, ArcaneBubbleBlower },
@@ -161,7 +161,7 @@ namespace SingleplayerLauncher.Model
         };
 
 
-        public static Dictionary<int, SlotItem> GearsById = new Dictionary<int, SlotItem>
+        public static Dictionary<int, SlotItem> GearsById = new()
         {
             {  AntitrapVambrace.Id, AntitrapVambrace },
             {  ArcaneBubbleBlower.Id, ArcaneBubbleBlower },

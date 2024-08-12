@@ -14,7 +14,7 @@ namespace SingleplayerLauncher.Model
 
         // static members
         // SURVIVAL 
-        public static Difficulty Apprentice = new Difficulty()
+        public static Difficulty Apprentice = new()
         {
             Name = APPRENTICE,
             AccountLevel = 1,
@@ -22,7 +22,7 @@ namespace SingleplayerLauncher.Model
             TrapTier = 1,
         };
 
-        public static Difficulty WarMage = new Difficulty()
+        public static Difficulty WarMage = new()
         {
             Name = WAR_MAGE,
             AccountLevel = 11,
@@ -30,7 +30,7 @@ namespace SingleplayerLauncher.Model
             TrapTier = 2,
         };
 
-        public static Difficulty Master = new Difficulty()
+        public static Difficulty Master = new()
         {
             Name = MASTER,
             AccountLevel = 26,
@@ -38,7 +38,7 @@ namespace SingleplayerLauncher.Model
             TrapTier = 4,
         };
 
-        public static Difficulty RiftLord = new Difficulty()
+        public static Difficulty RiftLord = new()
         {
             Name = RIFT_LORD,
             AccountLevel = 46,
@@ -46,7 +46,7 @@ namespace SingleplayerLauncher.Model
             TrapTier = 6,
         };
 
-        public static Dictionary<string, Difficulty> SurvivalDifficulties = new Dictionary<string, Difficulty>
+        public static Dictionary<string, Difficulty> SurvivalDifficulties = new()
         {
             { APPRENTICE, Difficulty.Apprentice },
             { WAR_MAGE, Difficulty.WarMage },
@@ -55,7 +55,7 @@ namespace SingleplayerLauncher.Model
         };
 
         // EXTRA SURVIVAL
-        public static Difficulty ApprenticePlus = new Difficulty()
+        public static Difficulty ApprenticePlus = new()
         {
             Name = APPRENTICE_PLUS,
             AccountLevel = 1,
@@ -64,7 +64,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty WarMagePlus = new Difficulty()
+        public static Difficulty WarMagePlus = new()
         {
             Name = WAR_MAGE_PLUS,
             AccountLevel = 1,
@@ -73,7 +73,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty MasterPlus = new Difficulty()
+        public static Difficulty MasterPlus = new()
         {
             Name = MASTER_PLUS,
             AccountLevel = 15,
@@ -82,7 +82,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty MasterPlus2 = new Difficulty()
+        public static Difficulty MasterPlus2 = new()
         {
             Name = MASTER_PLUS_2,
             AccountLevel = 1,
@@ -91,7 +91,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty RiftLordPlus = new Difficulty()
+        public static Difficulty RiftLordPlus = new()
         {
             Name = RIFT_LORD_PLUS,
             AccountLevel = 35,
@@ -100,7 +100,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty RiftLordPlus2 = new Difficulty()
+        public static Difficulty RiftLordPlus2 = new()
         {
             Name = RIFT_LORD_PLUS_2,
             AccountLevel = 25,
@@ -109,7 +109,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty RiftLordPlus3 = new Difficulty()
+        public static Difficulty RiftLordPlus3 = new()
         {
             Name = RIFT_LORD_PLUS_3,
             AccountLevel = 15,
@@ -118,7 +118,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty RiftLordPlus4 = new Difficulty()
+        public static Difficulty RiftLordPlus4 = new()
         {
             Name = RIFT_LORD_PLUS_4,
             AccountLevel = 5,
@@ -127,7 +127,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty RiftLordPlus5 = new Difficulty()
+        public static Difficulty RiftLordPlus5 = new()
         {
             Name = RIFT_LORD_PLUS_5,
             AccountLevel = 1,
@@ -136,23 +136,23 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Dictionary<string, Difficulty> ApprenticeExtraDifficulties = new Dictionary<string, Difficulty>
+        public static Dictionary<string, Difficulty> ApprenticeExtraDifficulties = new()
         {
             { APPRENTICE_PLUS, ApprenticePlus },
         };
 
-        public static Dictionary<string, Difficulty> WarMageExtraDifficulties = new Dictionary<string, Difficulty>
+        public static Dictionary<string, Difficulty> WarMageExtraDifficulties = new()
         {
             { WAR_MAGE_PLUS, Difficulty.WarMagePlus },
         };
 
-        public static Dictionary<string, Difficulty> MasterExtraDifficulties = new Dictionary<string, Difficulty>
+        public static Dictionary<string, Difficulty> MasterExtraDifficulties = new()
         {
             { MASTER_PLUS, Difficulty.MasterPlus },
             { MASTER_PLUS_2, Difficulty.MasterPlus2 },
         };
 
-        public static Dictionary<string, Difficulty> RiftLordExtraDifficulties = new Dictionary<string, Difficulty>
+        public static Dictionary<string, Difficulty> RiftLordExtraDifficulties = new()
         {
             { RIFT_LORD_PLUS, Difficulty.RiftLordPlus },
             { RIFT_LORD_PLUS_2, Difficulty.RiftLordPlus2 },
@@ -172,7 +172,7 @@ namespace SingleplayerLauncher.Model
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 
         // ENDLESS
-        public static Difficulty Endless = new Difficulty()
+        public static Difficulty Endless = new()
         {
             Name = ENDLESS,
             AccountLevel = 75,
@@ -182,7 +182,7 @@ namespace SingleplayerLauncher.Model
         };
 
         // EXTRA ENDLESS 
-        public static Difficulty EndlessPlus = new Difficulty()
+        public static Difficulty EndlessPlus = new()
         {
             Name = ENDLESS_PLUS,
             AccountLevel = 75,
@@ -191,7 +191,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus2 = new Difficulty()
+        public static Difficulty EndlessPlus2 = new()
         {
             Name = ENDLESS_PLUS_2,
             AccountLevel = 75,
@@ -200,7 +200,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus3 = new Difficulty()
+        public static Difficulty EndlessPlus3 = new()
         {
             Name = ENDLESS_PLUS_3,
             AccountLevel = 75,
@@ -209,7 +209,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus4 = new Difficulty()
+        public static Difficulty EndlessPlus4 = new()
         {
             Name = ENDLESS_PLUS_4,
             AccountLevel = 75,
@@ -218,7 +218,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus5 = new Difficulty()
+        public static Difficulty EndlessPlus5 = new()
         {
             Name = ENDLESS_PLUS_5,
             AccountLevel = 75,
@@ -227,7 +227,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus6 = new Difficulty()
+        public static Difficulty EndlessPlus6 = new()
         {
             Name = ENDLESS_PLUS_6,
             AccountLevel = 75,
@@ -236,7 +236,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus7 = new Difficulty()
+        public static Difficulty EndlessPlus7 = new()
         {
             Name = ENDLESS_PLUS_7,
             AccountLevel = 75,
@@ -245,7 +245,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus8 = new Difficulty()
+        public static Difficulty EndlessPlus8 = new()
         {
             Name = ENDLESS_PLUS_8,
             AccountLevel = 75,
@@ -254,7 +254,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus9 = new Difficulty()
+        public static Difficulty EndlessPlus9 = new()
         {
             Name = ENDLESS_PLUS_9,
             AccountLevel = 75,
@@ -263,7 +263,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Difficulty EndlessPlus10 = new Difficulty()
+        public static Difficulty EndlessPlus10 = new()
         {
             Name = ENDLESS_PLUS_10,
             AccountLevel = 75,
@@ -272,7 +272,7 @@ namespace SingleplayerLauncher.Model
             PlayerCount = 3,
         };
 
-        public static Dictionary<string, Difficulty> EndlessExtraDifficulties = new Dictionary<string, Difficulty>
+        public static Dictionary<string, Difficulty> EndlessExtraDifficulties = new()
         {
             { ENDLESS_PLUS, Difficulty.EndlessPlus },
             { ENDLESS_PLUS_2, Difficulty.EndlessPlus2 },
@@ -287,7 +287,7 @@ namespace SingleplayerLauncher.Model
         };
 
         public static Dictionary<string, Difficulty> EndlessAllDifficulties =
-            new List<Dictionary<string, Difficulty>>() { new Dictionary<string, Difficulty> { { ENDLESS, Difficulty.Endless } }, EndlessExtraDifficulties }
+            new List<Dictionary<string, Difficulty>>() { new() { { ENDLESS, Difficulty.Endless } }, EndlessExtraDifficulties }
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -298,7 +298,7 @@ namespace SingleplayerLauncher.Model
                 .SelectMany(dict => dict)
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 
-        public static Dictionary<string, Dictionary<string, Difficulty>> ExtraDifficultiesByDifficulty = new Dictionary<string, Dictionary<string, Difficulty>>
+        public static Dictionary<string, Dictionary<string, Difficulty>> ExtraDifficultiesByDifficulty = new()
         {
             { ENDLESS, EndlessExtraDifficulties },
             { APPRENTICE, ApprenticeExtraDifficulties },

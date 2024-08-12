@@ -11,33 +11,33 @@ namespace SingleplayerLauncher.Model
         Dye() { }
 
         // static members
-        public static Dye Normal = new Dye()
+        public static Dye Normal = new()
         {
             Id = 1,
             Name = NORMAL,
             CodeName = 0
         };
-        public static Dye Heroic = new Dye()
+        public static Dye Heroic = new()
         {
             Id = 2,
             Name = HEROIC,
             CodeName = 1
         };
-        public static Dye Legendary = new Dye()
+        public static Dye Legendary = new()
         {
             Id = 3,
             Name = LEGENDARY,
             CodeName = 2
         };
 
-        public static Dictionary<string, Dye> Dyes = new Dictionary<string, Dye>
+        public static Dictionary<string, Dye> Dyes = new()
         {
             { NORMAL, Normal },
             { HEROIC, Heroic },
             { LEGENDARY, Legendary },
         };
 
-        public static Dictionary<int, Dye> DyesById = new Dictionary<int, Dye>
+        public static Dictionary<int, Dye> DyesById = new()
         {
             { Normal.Id, Normal },
             { Heroic.Id, Heroic },

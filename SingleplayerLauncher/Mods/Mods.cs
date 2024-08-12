@@ -17,10 +17,10 @@ namespace SingleplayerLauncher.Mods
         public static Mod EnhancedTrapRotation = new EnhancedTrapRotation();
         public static Mod SellTrapsAnytime = new SellTrapsAnytime();
         public static Mod StartingCoinOverride = new StartingCoinOverride();
-        public static AdditionalHeroWeapon AdditionalHeroWeapon = new AdditionalHeroWeapon();
+        public static AdditionalHeroWeapon AdditionalHeroWeapon = new();
 
-        public readonly static List<Mod> ModList = new List<Mod>
-        {
+        public readonly static List<Mod> ModList =
+        [
             NoTrapCap,
             NoLimitUniqueTraps,
             InvincibleBarricades,
@@ -34,6 +34,6 @@ namespace SingleplayerLauncher.Mods
             SellTrapsAnytime,
             StartingCoinOverride,
             AdditionalHeroWeapon
-        };
+        ];
     }
 }
