@@ -1409,7 +1409,7 @@ namespace SingleplayerLauncher
 
             ApplyAllSiegeLoadouts();
             GameInfo.PlayerCount = siegeLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
-            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true, mapCode: GameInfo.SiegeBattleground.Map.UmapCode);
+            GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true, mapCode: GameInfo.SiegeBattleground.Map.UmapCode, playerCount: GameInfo.PlayerCount);
         }
 
         private (bool isValid, string errorMessage) ValidateSiegeLoadoutCode(MaskedTextBox maskedTextBox)
