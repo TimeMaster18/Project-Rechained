@@ -149,9 +149,10 @@ namespace SingleplayerLauncher.GameFiles
                     // Decompress
                     ProcessStartInfo psi = new()
                     {
-                        FileName = Path.GetFileName(decompressExePath),
+                        FileName = decompressExePath,
                         WorkingDirectory = Path.GetDirectoryName(decompressExePath),
-                        Arguments = $"\"{Path.GetFileName(fileToDecompressPath)}\""
+                        Arguments = $"\"{Path.GetFileName(fileToDecompressPath)}\"",
+                        UseShellExecute = false
                     };
                     Process process = Process.Start(psi);
                     process.WaitForExit();
