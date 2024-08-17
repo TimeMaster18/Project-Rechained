@@ -771,7 +771,7 @@ namespace SingleplayerLauncher.Model
             { FireMagesWave2.Name, FireMagesWave2 },
             { HobgoblinShamansWave3.Name, HobgoblinShamansWave3 },
             { PrideHuntersWave3.Name, PrideHuntersWave3 },
-            { TrollShieldbearersWave3.Name, TrollShieldbearersWave3 }
+            { TrollShieldbearersWave3.Name, TrollShieldbearersWave3 },
             { MediumOrcsWave14.Name, MediumOrcsWave14 },
             { GnomeTinkerersWave9.Name, GnomeTinkerersWave9 }
         };
