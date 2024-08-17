@@ -742,7 +742,8 @@ namespace SingleplayerLauncher.Model
             { GrizzlyBearsWave3.Name, GrizzlyBearsWave3 },
             { GrizzlyShieldbearersWave2.Name, GrizzlyShieldbearersWave2 },
             { DwarfShamansWave3.Name, DwarfShamansWave3 },
-            { CrossbowOrcsWave6.Name, CrossbowOrcsWave6 }
+            { CrossbowOrcsWave6.Name, CrossbowOrcsWave6 },
+            { LightOrcsWave14.Name, LightOrcsWave14 },
         };
 
         public static Dictionary<string, Wave> Lvl3Waves = new()
@@ -770,8 +771,7 @@ namespace SingleplayerLauncher.Model
             { FireMagesWave2.Name, FireMagesWave2 },
             { HobgoblinShamansWave3.Name, HobgoblinShamansWave3 },
             { PrideHuntersWave3.Name, PrideHuntersWave3 },
-            { TrollShieldbearersWave3.Name, TrollShieldbearersWave3 },
-            { LightOrcsWave14.Name, LightOrcsWave14 },
+            { TrollShieldbearersWave3.Name, TrollShieldbearersWave3 }
             { MediumOrcsWave14.Name, MediumOrcsWave14 },
             { GnomeTinkerersWave9.Name, GnomeTinkerersWave9 }
         };
