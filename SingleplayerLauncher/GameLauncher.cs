@@ -123,7 +123,7 @@ namespace SingleplayerLauncher
             string map = mapCode;
             string playerGUID = playerName;
             string defaultArgs = EXE_ARGUMENTS;
-            string languageArg = LANGUAGE_OPTION + Language.languageMap[language];
+            string languageArg = LANGUAGE_OPTION + Language.survivalLanguageMap[language];
 
             arguments += isHost ? map : hostIP;
             arguments += isHost ? "?listen" : "";

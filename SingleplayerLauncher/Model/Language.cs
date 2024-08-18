@@ -4,7 +4,7 @@ namespace SingleplayerLauncher.Model
 {
     public class Language
     {
-        public static readonly Dictionary<string, string> languageMap = new()
+        public static readonly Dictionary<string, string> survivalLanguageMap = new()
         {
             { "Chinese" , "CHN" },
             { "Deutsch" , "DEU" },

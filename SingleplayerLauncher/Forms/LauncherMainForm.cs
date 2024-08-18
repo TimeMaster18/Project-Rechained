@@ -164,11 +164,14 @@ namespace SingleplayerLauncher
 
 
             // Launcher settings
-            foreach (string language in Language.languageMap.Keys)
+            foreach (string language in Language.survivalLanguageMap.Keys)
             {
                 comBoxLanguage.Items.Add(language);
-                comBoxSiegeLanguage.Items.Add(language);
             }
+            foreach (string language in Language.siegeLanguageMap.Keys)
+            {
+                comBoxSiegeLanguage.Items.Add(language);
+            }            
             chkDebug.Checked = Settings.Instance.Debug;
             chkRunAs32.Checked = Settings.Instance.RunAs32;
             comBoxLanguage.SelectedItem = Settings.Instance.Language;
