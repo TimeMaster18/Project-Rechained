@@ -147,7 +147,7 @@ namespace SingleplayerLauncher.Model
             { FIRE_WALL_BRACERS, FireWallBracers },
             { FREEDOM_TRINKET, FreedomTrinket },
             { GNOMISH_REPAIR_KIT, GnomishRepairKit },
-            { GREATER_FREEDOM_TRINKET, GreaterFreedomTrinket },
+            // { GREATER_FREEDOM_TRINKET, GreaterFreedomTrinket },
             { HOBGOBLIN_CHARM, HobgoblinCharm },
             { ICE_AMULET, IceAmulet },
             { LIGHTNING_RING, LightningRing },

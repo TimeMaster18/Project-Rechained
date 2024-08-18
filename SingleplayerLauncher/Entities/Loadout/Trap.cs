@@ -611,7 +611,7 @@ namespace SingleplayerLauncher.Model
             { SHIELD_POWERUP, ShieldPowerup },
             { SPEED_PAD, SpeedPad },
             { FLOOR_SPIKES, FloorSpikes },
-            { SPIKE_WALL, SpikeWall },
+            // { SPIKE_WALL, SpikeWall },
             { STEAM_VENT, SteamVent },
             { SWINGING_MACE, SwingingMace },
             { TAR_TRAP, TarTrap },
