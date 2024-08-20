@@ -17,5 +17,17 @@ namespace SingleplayerLauncher.Model
             { "Русский" , "RUS" },
             { "Türkçe" , "TUR" }
         };
+
+        public static readonly Dictionary<string, string> siegeLanguageMap = new()
+        {
+            { "Chinese" , "CHN" },
+            { "Deutsch" , "DEU" },
+            { "Español" , "ESN" },
+            { "Français" , "FRA" },
+            { "English" , "INT" },
+            { "Italiano" , "ITA" },
+            { "Polski" , "POL" },
+            { "Türkçe" , "TUR" }
+        };
     }
 }
