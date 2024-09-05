@@ -352,9 +352,12 @@ namespace SingleplayerLauncher.GameFiles
 
         public static void ApplyHook(string hookFileName, string hookTargetFileName, string hookTargetFolder)
         {
-            string hookSourceFilePath = Path.Combine(Settings.Instance.LauncherInstallationPath, MOD_HOOKS_FOLDER_NAME, hookFileName);
-            string hookTargetFilePath = Path.Combine(hookTargetFolder, hookTargetFileName);
-            FileUtils.CopyFileWithCheck(hookSourceFilePath, hookTargetFilePath, overwrite: true);
+            if (Directory.Exists(hookTargetFolder))
+            {
+                string hookSourceFilePath = Path.Combine(Settings.Instance.LauncherInstallationPath, MOD_HOOKS_FOLDER_NAME, hookFileName);
+                string hookTargetFilePath = Path.Combine(hookTargetFolder, hookTargetFileName);
+                FileUtils.CopyFileWithCheck(hookSourceFilePath, hookTargetFilePath, overwrite: true);
+            }
         }
     }
 }

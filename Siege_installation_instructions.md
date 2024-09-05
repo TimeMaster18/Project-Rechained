@@ -32,7 +32,7 @@
       dotnet DepotDownloader.dll -app 427270 -depot 427271 -manifest 808827202674972462 -username YourSteamUsername
       ```
 
-    Replace `YourSteamUsername` and `YourSteamPassword` with your actual Steam credentials.
+    Replace `YourSteamUsername` with your actual Steam credentials. It will ask for your password once entered.
 
     **Example**:
     ```sh
