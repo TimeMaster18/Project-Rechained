@@ -778,7 +778,7 @@ namespace SingleplayerLauncher.Model
         {
             { OrfumMountainTroll.Name, OrfumMountainTroll },
             { OakentoesDwarfShaman.Name, OakentoesDwarfShaman },
-            { SawbonesHobgoblinShaman.Name, SawbonesHobgoblinShaman },
+            // { SawbonesHobgoblinShaman.Name, SawbonesHobgoblinShaman },
             { BulgodArmoredOgre.Name, BulgodArmoredOgre },
             { UrzaFireLord.Name, UrzaFireLord },
             { GaeadinEarthLord.Name, GaeadinEarthLord },
