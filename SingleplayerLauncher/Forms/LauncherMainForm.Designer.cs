@@ -296,6 +296,7 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot7 = new ComboBox();
             comBoxSiegeLoadoutSlot6 = new ComboBox();
             labelOverrideLevels = new Label();
+            label3 = new Label();
             battlegroundGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)startingCoinInput).BeginInit();
             modsGroupBox.SuspendLayout();
@@ -478,7 +479,7 @@ namespace SingleplayerLauncher
             // chkInvincibleBarricades
             // 
             chkInvincibleBarricades.AutoSize = true;
-            chkInvincibleBarricades.Location = new System.Drawing.Point(7, 48);
+            chkInvincibleBarricades.Location = new System.Drawing.Point(8, 95);
             chkInvincibleBarricades.Margin = new Padding(4, 3, 4, 3);
             chkInvincibleBarricades.Name = "chkInvincibleBarricades";
             chkInvincibleBarricades.Size = new System.Drawing.Size(134, 19);
@@ -490,7 +491,7 @@ namespace SingleplayerLauncher
             // chkNoTrapGrid
             // 
             chkNoTrapGrid.AutoSize = true;
-            chkNoTrapGrid.Location = new System.Drawing.Point(198, 68);
+            chkNoTrapGrid.Location = new System.Drawing.Point(199, 115);
             chkNoTrapGrid.Margin = new Padding(4, 3, 4, 3);
             chkNoTrapGrid.Name = "chkNoTrapGrid";
             chkNoTrapGrid.Size = new System.Drawing.Size(91, 19);
@@ -502,7 +503,7 @@ namespace SingleplayerLauncher
             // chkTrapsAnySurface
             // 
             chkTrapsAnySurface.AutoSize = true;
-            chkTrapsAnySurface.Location = new System.Drawing.Point(198, 15);
+            chkTrapsAnySurface.Location = new System.Drawing.Point(199, 62);
             chkTrapsAnySurface.Margin = new Padding(4, 3, 4, 3);
             chkTrapsAnySurface.Name = "chkTrapsAnySurface";
             chkTrapsAnySurface.Size = new System.Drawing.Size(134, 19);
@@ -514,7 +515,7 @@ namespace SingleplayerLauncher
             // chkHardcore
             // 
             chkHardcore.AutoSize = true;
-            chkHardcore.Location = new System.Drawing.Point(8, 157);
+            chkHardcore.Location = new System.Drawing.Point(9, 204);
             chkHardcore.Margin = new Padding(4, 3, 4, 3);
             chkHardcore.Name = "chkHardcore";
             chkHardcore.Size = new System.Drawing.Size(111, 19);
@@ -526,7 +527,7 @@ namespace SingleplayerLauncher
             // chkNoLimitUniqueTraps
             // 
             chkNoLimitUniqueTraps.AutoSize = true;
-            chkNoLimitUniqueTraps.Location = new System.Drawing.Point(7, 75);
+            chkNoLimitUniqueTraps.Location = new System.Drawing.Point(8, 122);
             chkNoLimitUniqueTraps.Margin = new Padding(4, 3, 4, 3);
             chkNoLimitUniqueTraps.Name = "chkNoLimitUniqueTraps";
             chkNoLimitUniqueTraps.Size = new System.Drawing.Size(143, 19);
@@ -538,7 +539,7 @@ namespace SingleplayerLauncher
             // startingCoinInput
             // 
             startingCoinInput.Increment = new decimal(new int[] { 50, 0, 0, 0 });
-            startingCoinInput.Location = new System.Drawing.Point(289, 179);
+            startingCoinInput.Location = new System.Drawing.Point(290, 226);
             startingCoinInput.Margin = new Padding(4, 3, 4, 3);
             startingCoinInput.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             startingCoinInput.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
@@ -550,7 +551,7 @@ namespace SingleplayerLauncher
             // chkTrapsInTraps
             // 
             chkTrapsInTraps.AutoSize = true;
-            chkTrapsInTraps.Location = new System.Drawing.Point(198, 42);
+            chkTrapsInTraps.Location = new System.Drawing.Point(199, 89);
             chkTrapsInTraps.Margin = new Padding(4, 3, 4, 3);
             chkTrapsInTraps.Name = "chkTrapsInTraps";
             chkTrapsInTraps.Size = new System.Drawing.Size(117, 19);
@@ -562,7 +563,7 @@ namespace SingleplayerLauncher
             // chkNoTrapCap
             // 
             chkNoTrapCap.AutoSize = true;
-            chkNoTrapCap.Location = new System.Drawing.Point(7, 22);
+            chkNoTrapCap.Location = new System.Drawing.Point(8, 69);
             chkNoTrapCap.Margin = new Padding(4, 3, 4, 3);
             chkNoTrapCap.Name = "chkNoTrapCap";
             chkNoTrapCap.Size = new System.Drawing.Size(91, 19);
@@ -574,7 +575,7 @@ namespace SingleplayerLauncher
             // chkGodMode
             // 
             chkGodMode.AutoSize = true;
-            chkGodMode.Location = new System.Drawing.Point(8, 183);
+            chkGodMode.Location = new System.Drawing.Point(9, 230);
             chkGodMode.Margin = new Padding(4, 3, 4, 3);
             chkGodMode.Name = "chkGodMode";
             chkGodMode.Size = new System.Drawing.Size(82, 19);
@@ -586,6 +587,7 @@ namespace SingleplayerLauncher
             // modsGroupBox
             // 
             modsGroupBox.BackColor = System.Drawing.Color.Thistle;
+            modsGroupBox.Controls.Add(label3);
             modsGroupBox.Controls.Add(labelOverrideLevels);
             modsGroupBox.Controls.Add(chkOverrideTrapTier);
             modsGroupBox.Controls.Add(inputOverrideTrapTier);
@@ -605,11 +607,11 @@ namespace SingleplayerLauncher
             modsGroupBox.Controls.Add(chkInvincibleBarricades);
             modsGroupBox.Controls.Add(chkTrapsAnySurface);
             modsGroupBox.Controls.Add(chkTrapsInTraps);
-            modsGroupBox.Location = new System.Drawing.Point(7, 147);
+            modsGroupBox.Location = new System.Drawing.Point(7, 99);
             modsGroupBox.Margin = new Padding(4, 3, 4, 3);
             modsGroupBox.Name = "modsGroupBox";
             modsGroupBox.Padding = new Padding(4, 3, 4, 3);
-            modsGroupBox.Size = new System.Drawing.Size(396, 335);
+            modsGroupBox.Size = new System.Drawing.Size(396, 383);
             modsGroupBox.TabIndex = 22;
             modsGroupBox.TabStop = false;
             modsGroupBox.Text = "Mods";
@@ -617,7 +619,7 @@ namespace SingleplayerLauncher
             // chkOverrideTrapTier
             // 
             chkOverrideTrapTier.AutoSize = true;
-            chkOverrideTrapTier.Location = new System.Drawing.Point(7, 258);
+            chkOverrideTrapTier.Location = new System.Drawing.Point(8, 305);
             chkOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
             chkOverrideTrapTier.Name = "chkOverrideTrapTier";
             chkOverrideTrapTier.Size = new System.Drawing.Size(118, 19);
@@ -628,7 +630,7 @@ namespace SingleplayerLauncher
             // 
             // inputOverrideTrapTier
             // 
-            inputOverrideTrapTier.Location = new System.Drawing.Point(161, 254);
+            inputOverrideTrapTier.Location = new System.Drawing.Point(162, 301);
             inputOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
             inputOverrideTrapTier.Maximum = new decimal(new int[] { 7, 0, 0, 0 });
             inputOverrideTrapTier.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -641,7 +643,7 @@ namespace SingleplayerLauncher
             // chkOverrideAccountLevel
             // 
             chkOverrideAccountLevel.AutoSize = true;
-            chkOverrideAccountLevel.Location = new System.Drawing.Point(8, 233);
+            chkOverrideAccountLevel.Location = new System.Drawing.Point(9, 280);
             chkOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
             chkOverrideAccountLevel.Name = "chkOverrideAccountLevel";
             chkOverrideAccountLevel.Size = new System.Drawing.Size(149, 19);
@@ -653,7 +655,7 @@ namespace SingleplayerLauncher
             // inputOverrideAccountLevel
             // 
             inputOverrideAccountLevel.Increment = new decimal(new int[] { 50, 0, 0, 0 });
-            inputOverrideAccountLevel.Location = new System.Drawing.Point(161, 229);
+            inputOverrideAccountLevel.Location = new System.Drawing.Point(162, 276);
             inputOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
             inputOverrideAccountLevel.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             inputOverrideAccountLevel.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -666,7 +668,7 @@ namespace SingleplayerLauncher
             // chkAdditionalHeroWeapon
             // 
             chkAdditionalHeroWeapon.AutoSize = true;
-            chkAdditionalHeroWeapon.Location = new System.Drawing.Point(9, 308);
+            chkAdditionalHeroWeapon.Location = new System.Drawing.Point(10, 355);
             chkAdditionalHeroWeapon.Margin = new Padding(4, 3, 4, 3);
             chkAdditionalHeroWeapon.Name = "chkAdditionalHeroWeapon";
             chkAdditionalHeroWeapon.Size = new System.Drawing.Size(155, 19);
@@ -678,7 +680,7 @@ namespace SingleplayerLauncher
             // chkEnhancedTrapRotation
             // 
             chkEnhancedTrapRotation.AutoSize = true;
-            chkEnhancedTrapRotation.Location = new System.Drawing.Point(198, 120);
+            chkEnhancedTrapRotation.Location = new System.Drawing.Point(199, 167);
             chkEnhancedTrapRotation.Margin = new Padding(4, 3, 4, 3);
             chkEnhancedTrapRotation.Name = "chkEnhancedTrapRotation";
             chkEnhancedTrapRotation.Size = new System.Drawing.Size(151, 19);
@@ -691,7 +693,7 @@ namespace SingleplayerLauncher
             // 
             comBoxAdditionalHeroWeapon.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxAdditionalHeroWeapon.FormattingEnabled = true;
-            comBoxAdditionalHeroWeapon.Location = new System.Drawing.Point(178, 306);
+            comBoxAdditionalHeroWeapon.Location = new System.Drawing.Point(179, 353);
             comBoxAdditionalHeroWeapon.Margin = new Padding(4, 3, 4, 3);
             comBoxAdditionalHeroWeapon.Name = "comBoxAdditionalHeroWeapon";
             comBoxAdditionalHeroWeapon.Size = new System.Drawing.Size(146, 23);
@@ -701,7 +703,7 @@ namespace SingleplayerLauncher
             // chkCustomStartCoin
             // 
             chkCustomStartCoin.AutoSize = true;
-            chkCustomStartCoin.Location = new System.Drawing.Point(198, 180);
+            chkCustomStartCoin.Location = new System.Drawing.Point(199, 227);
             chkCustomStartCoin.Margin = new Padding(4, 3, 4, 3);
             chkCustomStartCoin.Name = "chkCustomStartCoin";
             chkCustomStartCoin.Size = new System.Drawing.Size(78, 19);
@@ -713,7 +715,7 @@ namespace SingleplayerLauncher
             // chkSellTrapsAnytime
             // 
             chkSellTrapsAnytime.AutoSize = true;
-            chkSellTrapsAnytime.Location = new System.Drawing.Point(198, 95);
+            chkSellTrapsAnytime.Location = new System.Drawing.Point(199, 142);
             chkSellTrapsAnytime.Margin = new Padding(4, 3, 4, 3);
             chkSellTrapsAnytime.Name = "chkSellTrapsAnytime";
             chkSellTrapsAnytime.Size = new System.Drawing.Size(122, 19);
@@ -3387,11 +3389,22 @@ namespace SingleplayerLauncher
             labelOverrideLevels.AutoSize = true;
             labelOverrideLevels.BackColor = System.Drawing.Color.Thistle;
             labelOverrideLevels.Font = new System.Drawing.Font("Segoe UI", 7F);
-            labelOverrideLevels.Location = new System.Drawing.Point(264, 229);
+            labelOverrideLevels.Location = new System.Drawing.Point(265, 276);
             labelOverrideLevels.Name = "labelOverrideLevels";
             labelOverrideLevels.Size = new System.Drawing.Size(130, 48);
             labelOverrideLevels.TabIndex = 80;
             labelOverrideLevels.Text = "Account Level and Trap Tiers\r\nare auto adjusted to match \r\nthe enemy and map level. \r\nBut can be overriden here.\r\n";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = System.Drawing.Color.Pink;
+            label3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            label3.Location = new System.Drawing.Point(31, 19);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(319, 30);
+            label3.TabIndex = 81;
+            label3.Text = "Disclaimer: Using mods can lead to unexpected outcomes. \r\n                     Some of the mods won't work in multiplayer.";
             // 
             // LauncherMainForm
             // 
@@ -3718,6 +3731,7 @@ namespace SingleplayerLauncher
         private CheckBox chkOverrideAccountLevel;
         private NumericUpDown inputOverrideAccountLevel;
         private Label labelOverrideLevels;
+        private Label label3;
     }
 }
 
