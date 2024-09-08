@@ -56,6 +56,10 @@ namespace SingleplayerLauncher
             chkNoTrapCap = new CheckBox();
             chkGodMode = new CheckBox();
             modsGroupBox = new GroupBox();
+            chkOverrideTrapTier = new CheckBox();
+            inputOverrideTrapTier = new NumericUpDown();
+            chkOverrideAccountLevel = new CheckBox();
+            inputOverrideAccountLevel = new NumericUpDown();
             chkAdditionalHeroWeapon = new CheckBox();
             chkEnhancedTrapRotation = new CheckBox();
             comBoxAdditionalHeroWeapon = new ComboBox();
@@ -291,13 +295,12 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot5 = new ComboBox();
             comBoxSiegeLoadoutSlot7 = new ComboBox();
             comBoxSiegeLoadoutSlot6 = new ComboBox();
-            chkOverrideAccountLevel = new CheckBox();
-            inputOverrideAccountLevel = new NumericUpDown();
-            chkOverrideTrapTier = new CheckBox();
-            inputOverrideTrapTier = new NumericUpDown();
+            labelOverrideLevels = new Label();
             battlegroundGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)startingCoinInput).BeginInit();
             modsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideTrapTier).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideAccountLevel).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             survivalGameTabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -319,8 +322,6 @@ namespace SingleplayerLauncher
             loadoutEditorSurvivalTab.SuspendLayout();
             loadoutEditorSiegeTab.SuspendLayout();
             siegeLoadoutEditorGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)inputOverrideAccountLevel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)inputOverrideTrapTier).BeginInit();
             SuspendLayout();
             // 
             // btnLaunch
@@ -585,6 +586,7 @@ namespace SingleplayerLauncher
             // modsGroupBox
             // 
             modsGroupBox.BackColor = System.Drawing.Color.Thistle;
+            modsGroupBox.Controls.Add(labelOverrideLevels);
             modsGroupBox.Controls.Add(chkOverrideTrapTier);
             modsGroupBox.Controls.Add(inputOverrideTrapTier);
             modsGroupBox.Controls.Add(chkOverrideAccountLevel);
@@ -611,6 +613,55 @@ namespace SingleplayerLauncher
             modsGroupBox.TabIndex = 22;
             modsGroupBox.TabStop = false;
             modsGroupBox.Text = "Mods";
+            // 
+            // chkOverrideTrapTier
+            // 
+            chkOverrideTrapTier.AutoSize = true;
+            chkOverrideTrapTier.Location = new System.Drawing.Point(7, 258);
+            chkOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
+            chkOverrideTrapTier.Name = "chkOverrideTrapTier";
+            chkOverrideTrapTier.Size = new System.Drawing.Size(118, 19);
+            chkOverrideTrapTier.TabIndex = 79;
+            chkOverrideTrapTier.Text = "Override Trap Tier";
+            chkOverrideTrapTier.UseVisualStyleBackColor = true;
+            chkOverrideTrapTier.CheckedChanged += chkOverrideTrapTier_CheckedChanged;
+            // 
+            // inputOverrideTrapTier
+            // 
+            inputOverrideTrapTier.Location = new System.Drawing.Point(161, 254);
+            inputOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
+            inputOverrideTrapTier.Maximum = new decimal(new int[] { 7, 0, 0, 0 });
+            inputOverrideTrapTier.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideTrapTier.Name = "inputOverrideTrapTier";
+            inputOverrideTrapTier.Size = new System.Drawing.Size(99, 23);
+            inputOverrideTrapTier.TabIndex = 78;
+            inputOverrideTrapTier.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideTrapTier.ValueChanged += inputOverrideTrapTier_ValueChanged;
+            // 
+            // chkOverrideAccountLevel
+            // 
+            chkOverrideAccountLevel.AutoSize = true;
+            chkOverrideAccountLevel.Location = new System.Drawing.Point(8, 233);
+            chkOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
+            chkOverrideAccountLevel.Name = "chkOverrideAccountLevel";
+            chkOverrideAccountLevel.Size = new System.Drawing.Size(149, 19);
+            chkOverrideAccountLevel.TabIndex = 77;
+            chkOverrideAccountLevel.Text = "Override Account Level";
+            chkOverrideAccountLevel.UseVisualStyleBackColor = true;
+            chkOverrideAccountLevel.CheckedChanged += chkOverrideAccountLevel_CheckedChanged;
+            // 
+            // inputOverrideAccountLevel
+            // 
+            inputOverrideAccountLevel.Increment = new decimal(new int[] { 50, 0, 0, 0 });
+            inputOverrideAccountLevel.Location = new System.Drawing.Point(161, 229);
+            inputOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
+            inputOverrideAccountLevel.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
+            inputOverrideAccountLevel.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideAccountLevel.Name = "inputOverrideAccountLevel";
+            inputOverrideAccountLevel.Size = new System.Drawing.Size(99, 23);
+            inputOverrideAccountLevel.TabIndex = 76;
+            inputOverrideAccountLevel.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideAccountLevel.ValueChanged += inputOverrideAccountLevel_ValueChanged;
             // 
             // chkAdditionalHeroWeapon
             // 
@@ -3331,54 +3382,16 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot6.TabIndex = 5;
             comBoxSiegeLoadoutSlot6.SelectedIndexChanged += comBoxSiegeLoadoutSlot6_SelectedIndexChanged;
             // 
-            // chkOverrideAccountLevel
+            // labelOverrideLevels
             // 
-            chkOverrideAccountLevel.AutoSize = true;
-            chkOverrideAccountLevel.Location = new System.Drawing.Point(8, 233);
-            chkOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
-            chkOverrideAccountLevel.Name = "chkOverrideAccountLevel";
-            chkOverrideAccountLevel.Size = new System.Drawing.Size(149, 19);
-            chkOverrideAccountLevel.TabIndex = 77;
-            chkOverrideAccountLevel.Text = "Override Account Level";
-            chkOverrideAccountLevel.UseVisualStyleBackColor = true;
-            chkOverrideAccountLevel.CheckedChanged += chkOverrideAccountLevel_CheckedChanged;
-            // 
-            // inputOverrideAccountLevel
-            // 
-            inputOverrideAccountLevel.Increment = new decimal(new int[] { 50, 0, 0, 0 });
-            inputOverrideAccountLevel.Location = new System.Drawing.Point(165, 229);
-            inputOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
-            inputOverrideAccountLevel.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
-            inputOverrideAccountLevel.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            inputOverrideAccountLevel.Name = "inputOverrideAccountLevel";
-            inputOverrideAccountLevel.Size = new System.Drawing.Size(99, 23);
-            inputOverrideAccountLevel.TabIndex = 76;
-            inputOverrideAccountLevel.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            inputOverrideAccountLevel.ValueChanged += inputOverrideAccountLevel_ValueChanged;
-            // 
-            // chkOverrideTrapTier
-            // 
-            chkOverrideTrapTier.AutoSize = true;
-            chkOverrideTrapTier.Location = new System.Drawing.Point(8, 264);
-            chkOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
-            chkOverrideTrapTier.Name = "chkOverrideTrapTier";
-            chkOverrideTrapTier.Size = new System.Drawing.Size(118, 19);
-            chkOverrideTrapTier.TabIndex = 79;
-            chkOverrideTrapTier.Text = "Override Trap Tier";
-            chkOverrideTrapTier.UseVisualStyleBackColor = true;
-            chkOverrideTrapTier.CheckedChanged += chkOverrideTrapTier_CheckedChanged;
-            // 
-            // inputOverrideTrapTier
-            // 
-            inputOverrideTrapTier.Location = new System.Drawing.Point(165, 260);
-            inputOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
-            inputOverrideTrapTier.Maximum = new decimal(new int[] { 7, 0, 0, 0 });
-            inputOverrideTrapTier.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            inputOverrideTrapTier.Name = "inputOverrideTrapTier";
-            inputOverrideTrapTier.Size = new System.Drawing.Size(99, 23);
-            inputOverrideTrapTier.TabIndex = 78;
-            inputOverrideTrapTier.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            inputOverrideTrapTier.ValueChanged += inputOverrideTrapTier_ValueChanged;
+            labelOverrideLevels.AutoSize = true;
+            labelOverrideLevels.BackColor = System.Drawing.Color.Thistle;
+            labelOverrideLevels.Font = new System.Drawing.Font("Segoe UI", 7F);
+            labelOverrideLevels.Location = new System.Drawing.Point(264, 229);
+            labelOverrideLevels.Name = "labelOverrideLevels";
+            labelOverrideLevels.Size = new System.Drawing.Size(130, 48);
+            labelOverrideLevels.TabIndex = 80;
+            labelOverrideLevels.Text = "Account Level and Trap Tiers\r\nare auto adjusted to match \r\nthe enemy and map level. \r\nBut can be overriden here.\r\n";
             // 
             // LauncherMainForm
             // 
@@ -3398,6 +3411,8 @@ namespace SingleplayerLauncher
             ((System.ComponentModel.ISupportInitialize)startingCoinInput).EndInit();
             modsGroupBox.ResumeLayout(false);
             modsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideTrapTier).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideAccountLevel).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             survivalGameTabControl.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -3432,8 +3447,6 @@ namespace SingleplayerLauncher
             loadoutEditorSiegeTab.PerformLayout();
             siegeLoadoutEditorGroupBox.ResumeLayout(false);
             siegeLoadoutEditorGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)inputOverrideAccountLevel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)inputOverrideTrapTier).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -3704,6 +3717,7 @@ namespace SingleplayerLauncher
         private NumericUpDown inputOverrideTrapTier;
         private CheckBox chkOverrideAccountLevel;
         private NumericUpDown inputOverrideAccountLevel;
+        private Label labelOverrideLevels;
     }
 }
 
