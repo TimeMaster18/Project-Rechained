@@ -89,6 +89,7 @@ namespace SingleplayerLauncher
             labelJoinGameBriefInstructions = new Label();
             labelJoinGameAdditionalInfo = new Label();
             tabPage2 = new TabPage();
+            linkLabel2 = new LinkLabel();
             labelHostGameAdditionalInfo = new Label();
             labelHostGameBriefInstructions = new Label();
             toolTip1 = new ToolTip(components);
@@ -193,10 +194,11 @@ namespace SingleplayerLauncher
             maskedTextBoxJoinSiegeGameHostIP = new MaskedTextBox();
             tabPage8 = new TabPage();
             groupBox1 = new GroupBox();
+            chkSiegeEnemyTeamAsBots = new CheckBox();
             comBoxSiegeDifficulty = new ComboBox();
-            label3 = new Label();
+            labelSiegeDifficulty = new Label();
             comBoxSiegeBattleground = new ComboBox();
-            label5 = new Label();
+            labelSiegeMap = new Label();
             label21 = new Label();
             maskedTextBoxSiegeHostGamePlayer8Loadout = new MaskedTextBox();
             maskedTextBoxSiegeHostGamePlayer6Loadout = new MaskedTextBox();
@@ -289,7 +291,10 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot5 = new ComboBox();
             comBoxSiegeLoadoutSlot7 = new ComboBox();
             comBoxSiegeLoadoutSlot6 = new ComboBox();
-            linkLabel2 = new LinkLabel();
+            chkOverrideAccountLevel = new CheckBox();
+            inputOverrideAccountLevel = new NumericUpDown();
+            chkOverrideTrapTier = new CheckBox();
+            inputOverrideTrapTier = new NumericUpDown();
             battlegroundGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)startingCoinInput).BeginInit();
             modsGroupBox.SuspendLayout();
@@ -314,6 +319,8 @@ namespace SingleplayerLauncher
             loadoutEditorSurvivalTab.SuspendLayout();
             loadoutEditorSiegeTab.SuspendLayout();
             siegeLoadoutEditorGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideAccountLevel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideTrapTier).BeginInit();
             SuspendLayout();
             // 
             // btnLaunch
@@ -578,6 +585,10 @@ namespace SingleplayerLauncher
             // modsGroupBox
             // 
             modsGroupBox.BackColor = System.Drawing.Color.Thistle;
+            modsGroupBox.Controls.Add(chkOverrideTrapTier);
+            modsGroupBox.Controls.Add(inputOverrideTrapTier);
+            modsGroupBox.Controls.Add(chkOverrideAccountLevel);
+            modsGroupBox.Controls.Add(inputOverrideAccountLevel);
             modsGroupBox.Controls.Add(chkAdditionalHeroWeapon);
             modsGroupBox.Controls.Add(chkEnhancedTrapRotation);
             modsGroupBox.Controls.Add(comBoxAdditionalHeroWeapon);
@@ -596,7 +607,7 @@ namespace SingleplayerLauncher
             modsGroupBox.Margin = new Padding(4, 3, 4, 3);
             modsGroupBox.Name = "modsGroupBox";
             modsGroupBox.Padding = new Padding(4, 3, 4, 3);
-            modsGroupBox.Size = new System.Drawing.Size(396, 252);
+            modsGroupBox.Size = new System.Drawing.Size(396, 335);
             modsGroupBox.TabIndex = 22;
             modsGroupBox.TabStop = false;
             modsGroupBox.Text = "Mods";
@@ -604,7 +615,7 @@ namespace SingleplayerLauncher
             // chkAdditionalHeroWeapon
             // 
             chkAdditionalHeroWeapon.AutoSize = true;
-            chkAdditionalHeroWeapon.Location = new System.Drawing.Point(8, 218);
+            chkAdditionalHeroWeapon.Location = new System.Drawing.Point(9, 308);
             chkAdditionalHeroWeapon.Margin = new Padding(4, 3, 4, 3);
             chkAdditionalHeroWeapon.Name = "chkAdditionalHeroWeapon";
             chkAdditionalHeroWeapon.Size = new System.Drawing.Size(155, 19);
@@ -629,7 +640,7 @@ namespace SingleplayerLauncher
             // 
             comBoxAdditionalHeroWeapon.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxAdditionalHeroWeapon.FormattingEnabled = true;
-            comBoxAdditionalHeroWeapon.Location = new System.Drawing.Point(177, 216);
+            comBoxAdditionalHeroWeapon.Location = new System.Drawing.Point(178, 306);
             comBoxAdditionalHeroWeapon.Margin = new Padding(4, 3, 4, 3);
             comBoxAdditionalHeroWeapon.Name = "comBoxAdditionalHeroWeapon";
             comBoxAdditionalHeroWeapon.Size = new System.Drawing.Size(146, 23);
@@ -973,6 +984,21 @@ namespace SingleplayerLauncher
             tabPage2.Text = "Host Game";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.ForeColor = System.Drawing.SystemColors.GrayText;
+            linkLabel2.LinkArea = new LinkArea(14, 9);
+            linkLabel2.LinkColor = System.Drawing.Color.Blue;
+            linkLabel2.Location = new System.Drawing.Point(17, 126);
+            linkLabel2.Margin = new Padding(4, 0, 4, 0);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new System.Drawing.Size(355, 59);
+            linkLabel2.TabIndex = 91;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Known Issues (Full List): \r\n - (Host) No voices, movement skills, wave count (visual)\r\n - (Client) If incompolete loadout, join match again\r\n - Some mods can cause issues";
+            linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            linkLabel2.UseCompatibleTextRendering = true;
+            // 
             // labelHostGameAdditionalInfo
             // 
             labelHostGameAdditionalInfo.Location = new System.Drawing.Point(8, 392);
@@ -1024,7 +1050,7 @@ namespace SingleplayerLauncher
             modsPanel.Location = new System.Drawing.Point(1108, 3);
             modsPanel.Margin = new Padding(4, 3, 4, 3);
             modsPanel.Name = "modsPanel";
-            modsPanel.Size = new System.Drawing.Size(407, 402);
+            modsPanel.Size = new System.Drawing.Size(407, 485);
             modsPanel.TabIndex = 85;
             modsPanel.Visible = false;
             // 
@@ -2208,10 +2234,11 @@ namespace SingleplayerLauncher
             // groupBox1
             // 
             groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            groupBox1.Controls.Add(chkSiegeEnemyTeamAsBots);
             groupBox1.Controls.Add(comBoxSiegeDifficulty);
-            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(labelSiegeDifficulty);
             groupBox1.Controls.Add(comBoxSiegeBattleground);
-            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(labelSiegeMap);
             groupBox1.Location = new System.Drawing.Point(4, 6);
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
@@ -2221,26 +2248,39 @@ namespace SingleplayerLauncher
             groupBox1.TabStop = false;
             groupBox1.Text = "Battleground";
             // 
+            // chkSiegeEnemyTeamAsBots
+            // 
+            chkSiegeEnemyTeamAsBots.AutoSize = true;
+            chkSiegeEnemyTeamAsBots.Location = new System.Drawing.Point(186, 15);
+            chkSiegeEnemyTeamAsBots.Margin = new Padding(4, 3, 4, 3);
+            chkSiegeEnemyTeamAsBots.Name = "chkSiegeEnemyTeamAsBots";
+            chkSiegeEnemyTeamAsBots.Size = new System.Drawing.Size(133, 19);
+            chkSiegeEnemyTeamAsBots.TabIndex = 97;
+            chkSiegeEnemyTeamAsBots.Text = "Enemy Team as Bots";
+            chkSiegeEnemyTeamAsBots.UseVisualStyleBackColor = true;
+            chkSiegeEnemyTeamAsBots.CheckedChanged += chkSiegeEnemyTeamAsBots_CheckedChanged;
+            // 
             // comBoxSiegeDifficulty
             // 
             comBoxSiegeDifficulty.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxSiegeDifficulty.Enabled = false;
             comBoxSiegeDifficulty.FormattingEnabled = true;
-            comBoxSiegeDifficulty.Location = new System.Drawing.Point(239, 24);
+            comBoxSiegeDifficulty.Location = new System.Drawing.Point(240, 36);
             comBoxSiegeDifficulty.Margin = new Padding(4, 3, 4, 3);
             comBoxSiegeDifficulty.Name = "comBoxSiegeDifficulty";
-            comBoxSiegeDifficulty.Size = new System.Drawing.Size(140, 23);
+            comBoxSiegeDifficulty.Size = new System.Drawing.Size(128, 23);
             comBoxSiegeDifficulty.TabIndex = 7;
+            comBoxSiegeDifficulty.SelectedIndexChanged += comBoxSiegeDifficulty_SelectedIndexChanged;
             // 
-            // label3
+            // labelSiegeDifficulty
             // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(182, 28);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(55, 15);
-            label3.TabIndex = 6;
-            label3.Text = "Difficulty";
+            labelSiegeDifficulty.AutoSize = true;
+            labelSiegeDifficulty.Location = new System.Drawing.Point(183, 40);
+            labelSiegeDifficulty.Margin = new Padding(4, 0, 4, 0);
+            labelSiegeDifficulty.Name = "labelSiegeDifficulty";
+            labelSiegeDifficulty.Size = new System.Drawing.Size(55, 15);
+            labelSiegeDifficulty.TabIndex = 6;
+            labelSiegeDifficulty.Text = "Difficulty";
             // 
             // comBoxSiegeBattleground
             // 
@@ -2253,15 +2293,15 @@ namespace SingleplayerLauncher
             comBoxSiegeBattleground.TabIndex = 1;
             comBoxSiegeBattleground.SelectedIndexChanged += comBoxSiegeBattleground_SelectedIndexChanged;
             // 
-            // label5
+            // labelSiegeMap
             // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(2, 28);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(31, 15);
-            label5.TabIndex = 0;
-            label5.Text = "Map";
+            labelSiegeMap.AutoSize = true;
+            labelSiegeMap.Location = new System.Drawing.Point(2, 28);
+            labelSiegeMap.Margin = new Padding(4, 0, 4, 0);
+            labelSiegeMap.Name = "labelSiegeMap";
+            labelSiegeMap.Size = new System.Drawing.Size(31, 15);
+            labelSiegeMap.TabIndex = 0;
+            labelSiegeMap.Text = "Map";
             // 
             // label21
             // 
@@ -3291,20 +3331,54 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot6.TabIndex = 5;
             comBoxSiegeLoadoutSlot6.SelectedIndexChanged += comBoxSiegeLoadoutSlot6_SelectedIndexChanged;
             // 
-            // linkLabel2
+            // chkOverrideAccountLevel
             // 
-            linkLabel2.ForeColor = System.Drawing.SystemColors.GrayText;
-            linkLabel2.LinkArea = new LinkArea(14, 9);
-            linkLabel2.LinkColor = System.Drawing.Color.Blue;
-            linkLabel2.Location = new System.Drawing.Point(17, 126);
-            linkLabel2.Margin = new Padding(4, 0, 4, 0);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new System.Drawing.Size(355, 59);
-            linkLabel2.TabIndex = 91;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "Known Issues (Full List): \r\n - (Host) No voices, movement skills, wave count (visual)\r\n - (Client) If incompolete loadout, join match again\r\n - Some mods can cause issues";
-            linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            linkLabel2.UseCompatibleTextRendering = true;
+            chkOverrideAccountLevel.AutoSize = true;
+            chkOverrideAccountLevel.Location = new System.Drawing.Point(8, 233);
+            chkOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
+            chkOverrideAccountLevel.Name = "chkOverrideAccountLevel";
+            chkOverrideAccountLevel.Size = new System.Drawing.Size(149, 19);
+            chkOverrideAccountLevel.TabIndex = 77;
+            chkOverrideAccountLevel.Text = "Override Account Level";
+            chkOverrideAccountLevel.UseVisualStyleBackColor = true;
+            chkOverrideAccountLevel.CheckedChanged += chkOverrideAccountLevel_CheckedChanged;
+            // 
+            // inputOverrideAccountLevel
+            // 
+            inputOverrideAccountLevel.Increment = new decimal(new int[] { 50, 0, 0, 0 });
+            inputOverrideAccountLevel.Location = new System.Drawing.Point(165, 229);
+            inputOverrideAccountLevel.Margin = new Padding(4, 3, 4, 3);
+            inputOverrideAccountLevel.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
+            inputOverrideAccountLevel.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideAccountLevel.Name = "inputOverrideAccountLevel";
+            inputOverrideAccountLevel.Size = new System.Drawing.Size(99, 23);
+            inputOverrideAccountLevel.TabIndex = 76;
+            inputOverrideAccountLevel.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideAccountLevel.ValueChanged += inputOverrideAccountLevel_ValueChanged;
+            // 
+            // chkOverrideTrapTier
+            // 
+            chkOverrideTrapTier.AutoSize = true;
+            chkOverrideTrapTier.Location = new System.Drawing.Point(8, 264);
+            chkOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
+            chkOverrideTrapTier.Name = "chkOverrideTrapTier";
+            chkOverrideTrapTier.Size = new System.Drawing.Size(118, 19);
+            chkOverrideTrapTier.TabIndex = 79;
+            chkOverrideTrapTier.Text = "Override Trap Tier";
+            chkOverrideTrapTier.UseVisualStyleBackColor = true;
+            chkOverrideTrapTier.CheckedChanged += chkOverrideTrapTier_CheckedChanged;
+            // 
+            // inputOverrideTrapTier
+            // 
+            inputOverrideTrapTier.Location = new System.Drawing.Point(165, 260);
+            inputOverrideTrapTier.Margin = new Padding(4, 3, 4, 3);
+            inputOverrideTrapTier.Maximum = new decimal(new int[] { 7, 0, 0, 0 });
+            inputOverrideTrapTier.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideTrapTier.Name = "inputOverrideTrapTier";
+            inputOverrideTrapTier.Size = new System.Drawing.Size(99, 23);
+            inputOverrideTrapTier.TabIndex = 78;
+            inputOverrideTrapTier.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            inputOverrideTrapTier.ValueChanged += inputOverrideTrapTier_ValueChanged;
             // 
             // LauncherMainForm
             // 
@@ -3358,6 +3432,8 @@ namespace SingleplayerLauncher
             loadoutEditorSiegeTab.PerformLayout();
             siegeLoadoutEditorGroupBox.ResumeLayout(false);
             siegeLoadoutEditorGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideAccountLevel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inputOverrideTrapTier).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -3555,9 +3631,9 @@ namespace SingleplayerLauncher
         private Label labelSiegeLanguage;
         private GroupBox groupBox1;
         private ComboBox comBoxSiegeDifficulty;
-        private Label label3;
+        private Label labelSiegeDifficulty;
         private ComboBox comBoxSiegeBattleground;
-        private Label label5;
+        private Label labelSiegeMap;
         private GroupBox siegeLoadoutEditorGroupBox;
         private Button btnDeleteSiegeLoadout;
         private Label label22;
@@ -3623,6 +3699,11 @@ namespace SingleplayerLauncher
         private Label roleLabel;
         private Button btnPlaySiegeTutorial;
         private LinkLabel linkLabel2;
+        private CheckBox chkSiegeEnemyTeamAsBots;
+        private CheckBox chkOverrideTrapTier;
+        private NumericUpDown inputOverrideTrapTier;
+        private CheckBox chkOverrideAccountLevel;
+        private NumericUpDown inputOverrideAccountLevel;
     }
 }
 

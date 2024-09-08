@@ -219,7 +219,15 @@ namespace SingleplayerLauncher.GameFiles
                 bool isTrap = slotItem is Trap;
 
                 TrapPart[] parts = isTrap && !isSiege ? ((SurvivalLoadout)loadout).GetTrapPartsForLoadout(i) : null;
-                int? trapTier = isTrap && !isSiege ? GameInfo.SurvivalBattleground.Difficulty.TrapTier : null;
+
+                int? trapTier = null;
+                if (Mods.Mods.TrapTierOverride.IsEnabled)
+                {
+                    trapTier = Mods.Mods.TrapTierOverride.Value;
+                } else if (isTrap && !isSiege)
+                {
+                    trapTier = GameInfo.SurvivalBattleground.Difficulty.TrapTier;
+                }
 
                 string itemString = slotItem == null ? "" : GenerateItemString(slotItem.ItemTemplateName, trapTier, parts);
                 data.UpdateEntry(section, CharacterDataKeyLoadout, itemString, index: loadoutIdx);

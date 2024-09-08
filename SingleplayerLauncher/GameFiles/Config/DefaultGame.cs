@@ -29,6 +29,7 @@ namespace SingleplayerLauncher.GameFiles
             _ = GameInfo.SurvivalBattleground ?? throw new ArgumentNullException(nameof(Battleground), "Mandatory parameter");
             _ = GameInfo.SurvivalBattleground.Difficulty ?? throw new ArgumentNullException(nameof(Battleground.Difficulty), "Mandatory parameter");
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
+            _ = Mods.Mods.AccountLevelOverride ?? throw new ArgumentNullException(nameof(Mods.Mods.AccountLevelOverride), "Mandatory parameter");
 
             ConfigFile defaultGame = new(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
             IniFile data = defaultGame.data;
@@ -36,7 +37,8 @@ namespace SingleplayerLauncher.GameFiles
             data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
             data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyGameMode, GameInfo.SurvivalBattleground.GameMode.Id.ToString());
             data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyMapLevel, GameInfo.SurvivalBattleground.Difficulty.EnemyLevel.ToString());
-            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerLevel, GameInfo.SurvivalBattleground.Difficulty.AccountLevel.ToString());
+            int accountLevel = Mods.Mods.AccountLevelOverride.IsEnabled ? Mods.Mods.AccountLevelOverride.Value : GameInfo.SurvivalBattleground.Difficulty.AccountLevel;
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerLevel, accountLevel.ToString());
             data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerCount, GameInfo.SurvivalBattleground.Difficulty.PlayerCount.ToString());
 
             defaultGame.Write();

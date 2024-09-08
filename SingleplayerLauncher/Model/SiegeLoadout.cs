@@ -11,8 +11,7 @@ namespace SingleplayerLauncher.Model
 
         public SiegeLoadout()
         {
-            SlotItems = new SlotItem[SLOT_ITEMS_COUNT] { Gear.MendingRoot, Gear.MagesClover, Trap.Barricade, Trap.ViscousTar, Trap.FlipTrap, Trap.WallBlades, Trap.ArrowWall, Trap.ConcussivePounder, Trap.CeilingBallista
-};
+            SlotItems = [Gear.MendingRoot, Gear.MagesClover, Trap.Barricade, Trap.ViscousTar, Trap.FlipTrap, Trap.WallBlades, Trap.ArrowWall, Trap.ConcussivePounder, Trap.CeilingBallista];
             Traits = new SiegeTrait[TRAIT_SLOT_COUNT];
         }
 
@@ -23,14 +22,14 @@ namespace SingleplayerLauncher.Model
 
             // Encode Role
             encodedString.Append(Role != null ? Base62Converter.Encode(Role.Id) : "0");
-            encodedString.Append("-");
+            encodedString.Append('-');
 
             // Encode SlotItems
             foreach (var slotItem in SlotItems)
             {
                 encodedString.Append(slotItem != null ? Base62Converter.Encode(slotItem.Id, FORCE_LENGTH_TWO) : "00");
             }
-            encodedString.Append("-");
+            encodedString.Append('-');
 
             // Encode Waves
             for (int i = 0; i < WAVES_SLOT_COUNT; i++)
@@ -38,7 +37,7 @@ namespace SingleplayerLauncher.Model
                 Wave wave = Waves[i];
                 encodedString.Append(wave != null ? Base62Converter.Encode(wave.Id) : "0");
             }
-            encodedString.Append("-");
+            encodedString.Append('-');
 
             // Encode Traits
             foreach (var trait in Traits)

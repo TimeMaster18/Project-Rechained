@@ -34,6 +34,7 @@ namespace SingleplayerLauncher
 
         readonly List<MaskedTextBox> siegeLoadoutsTeam1;
         readonly List<MaskedTextBox> siegeLoadoutsTeam2;
+        readonly List<String> siegeLoadoutsTeamAux;
         readonly List<MaskedTextBox> siegeLoadouts;
         readonly Dictionary<string, MaskedTextBox> siegeLoadoutsByPlayer;
 
@@ -171,7 +172,7 @@ namespace SingleplayerLauncher
             foreach (string language in Language.siegeLanguageMap.Keys)
             {
                 comBoxSiegeLanguage.Items.Add(language);
-            }            
+            }
             chkDebug.Checked = Settings.Instance.Debug;
             chkRunAs32.Checked = Settings.Instance.RunAs32;
             comBoxLanguage.SelectedItem = Settings.Instance.Language;
@@ -195,8 +196,13 @@ namespace SingleplayerLauncher
 
             // Siege Game settings
             PopulateSlots([comBoxSiegeBattleground], [.. Model.Siege.SiegeBattlegrounds.Keys], addEmptyOption: false);
-            // select config or first index if no config
             comBoxSiegeBattleground.SelectedItem = comBoxSiegeBattleground.Items[0];
+            // TODO: Add Siege Difficulties
+            // PopulateSlots([comBoxSiegeDifficulty], [.. Model.Siege.SiegeBattlegrounds.Keys], addEmptyOption: false);
+            // comBoxSiegeDifficulty.SelectedItem = comBoxSiegeDifficulty.Items[0];
+            comBoxSiegeDifficulty.Visible = false;
+            chkSiegeEnemyTeamAsBots.Visible = false;
+            labelSiegeDifficulty.Visible = false;
 
             // Mods
             chkGodMode.Checked = GameConfig.Instance.GodMode;
@@ -213,6 +219,13 @@ namespace SingleplayerLauncher
             chkCustomStartCoin.Checked = GameConfig.Instance.CustomStartCoinEnabled;
             startingCoinInput.Enabled = GameConfig.Instance.CustomStartCoinEnabled;
             startingCoinInput.Value = GameConfig.Instance.StartingCoin;
+            chkOverrideAccountLevel.Checked = GameConfig.Instance.OverrideAccountLevel;
+            chkOverrideTrapTier.Checked = GameConfig.Instance.OverrideTrapTier;
+            inputOverrideAccountLevel.Enabled = GameConfig.Instance.OverrideAccountLevel;
+            inputOverrideAccountLevel.Value = GameConfig.Instance.AccountLevel;
+            inputOverrideTrapTier.Enabled = GameConfig.Instance.OverrideTrapTier;
+            inputOverrideTrapTier.Value = GameConfig.Instance.TrapTier;
+
             PopulateSlots([comBoxAdditionalHeroWeapon], [.. Model.Hero.Heroes.Keys]);
             chkAdditionalHeroWeapon.Checked = GameConfig.Instance.AdditionalHeroWeaponEnabled;
             comBoxAdditionalHeroWeapon.SelectedItem = GameConfig.Instance.AdditionalHeroWeapon;
@@ -1418,6 +1431,16 @@ namespace SingleplayerLauncher
             GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true, mapCode: GameInfo.SiegeBattleground.Map.UmapCode, playerCount: GameInfo.PlayerCount);
         }
 
+        private void chkSiegeEnemyTeamAsBots_CheckedChanged(object sender, EventArgs e)
+        {
+            comBoxSiegeDifficulty.Enabled = chkSiegeEnemyTeamAsBots.Checked;
+        }
+
+        private void comBoxSiegeDifficulty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private (bool isValid, string errorMessage) ValidateSiegeLoadoutCode(MaskedTextBox maskedTextBox)
         {
             string loadoutCode = maskedTextBox.Text;
@@ -1842,6 +1865,41 @@ namespace SingleplayerLauncher
             GameFiles.CharacterData.ApplySiegeLoadout(siegeTutorialLoadout);
 
             GameLauncher.StartGame(siegeTutorialLoadout.PlayerName, isHost: false, hostIP: Map.SiegeTutorial.UmapCode);
+        }
+
+        private void chkOverrideAccountLevel_CheckedChanged(object sender, EventArgs e)
+        {
+            inputOverrideAccountLevel.Enabled = chkOverrideAccountLevel.Checked;
+
+            Mods.Mods.AccountLevelOverride.IsEnabled = chkOverrideAccountLevel.Checked;
+
+            GameConfig.Instance.OverrideAccountLevel = chkCustomStartCoin.Checked;
+            GameConfig.Instance.Save();
+
+        }
+
+        private void chkOverrideTrapTier_CheckedChanged(object sender, EventArgs e)
+        {
+            inputOverrideTrapTier.Enabled = chkOverrideTrapTier.Checked;
+
+            Mods.Mods.TrapTierOverride.IsEnabled = chkOverrideTrapTier.Checked;
+
+            GameConfig.Instance.OverrideTrapTier = chkOverrideTrapTier.Checked;
+            GameConfig.Instance.Save();
+        }
+
+        private void inputOverrideAccountLevel_ValueChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.AccountLevelOverride.Value = (int)inputOverrideAccountLevel.Value;
+            GameConfig.Instance.AccountLevel = (int)inputOverrideAccountLevel.Value;
+            GameConfig.Instance.Save();
+        }
+
+        private void inputOverrideTrapTier_ValueChanged(object sender, EventArgs e)
+        {
+            Mods.Mods.TrapTierOverride.Value = (int)inputOverrideTrapTier.Value;
+            GameConfig.Instance.TrapTier = (int)inputOverrideTrapTier.Value;
+            GameConfig.Instance.Save();
         }
     }
 }

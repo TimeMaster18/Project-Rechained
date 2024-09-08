@@ -18,7 +18,9 @@ namespace SingleplayerLauncher
         public string Difficulty { get; set; }
         public string Battleground { get; set; }
         public string SiegeBattleground { get; set; }
+        public bool SiegeEnemyTeamAsBots { get; set; }
         public string ExtraDifficulty { get; set; }
+        public string SiegeBotDifficulty { get; set; }
         public bool GodMode { get; set; }
         public bool ShowTrapDamage { get; set; }
         public bool NoTrapCap { get; set; }
@@ -32,6 +34,10 @@ namespace SingleplayerLauncher
         public bool SellTrapsAnytime { get; set; }
         public bool CustomStartCoinEnabled { get; set; }
         public int StartingCoin { get; set; }
+        public bool OverrideAccountLevel { get; set; }
+        public int AccountLevel { get; set; } = 1;
+        public bool OverrideTrapTier { get; set; }
+        public int TrapTier { get; set; } = 1;
         public string AdditionalHeroWeapon { get; set; } = "";
         public bool AdditionalHeroWeaponEnabled { get; set; }
 

@@ -17,6 +17,8 @@ namespace SingleplayerLauncher.Mods
         public static Mod EnhancedTrapRotation = new EnhancedTrapRotation();
         public static Mod SellTrapsAnytime = new SellTrapsAnytime();
         public static Mod StartingCoinOverride = new StartingCoinOverride();
+        public static Mod AccountLevelOverride = new AccountLevelOverride();
+        public static Mod TrapTierOverride = new TrapTierOverride();
         public static AdditionalHeroWeapon AdditionalHeroWeapon = new();
 
         public readonly static List<Mod> ModList =
@@ -33,6 +35,8 @@ namespace SingleplayerLauncher.Mods
             EnhancedTrapRotation,
             SellTrapsAnytime,
             StartingCoinOverride,
+            AccountLevelOverride, 
+            TrapTierOverride,
             AdditionalHeroWeapon
         ];
     }
