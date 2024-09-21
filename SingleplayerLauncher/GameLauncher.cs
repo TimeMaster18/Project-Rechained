@@ -11,7 +11,7 @@ namespace SingleplayerLauncher
     {
         private static readonly SpitfireGameUPK SpitfireGameUPK = new();
 
-        public static void ApplyChanges(bool isHost, bool isSiege = false, int parTimeSeconds = 0)
+        public static void ApplyChanges(bool isHost, bool isSiege = false, int parTimeSeconds = 0, bool isSiegeCoop = false)
         {
             if (!isSiege)
             {
@@ -25,17 +25,24 @@ namespace SingleplayerLauncher
 
                     // Loadouts are applied as soon as input is received
 
-                    GameFiles.DefaultGame.Apply();
+                    GameFiles.DefaultGame.ApplySurvival();
 
                     GameFiles.CharacterData.ApplyMods(GameConfig.Instance.ModsEnabled);
                 }
 
                 SpitfireGameUPK.SaveChanges();
+            } 
+            else
+            {
+                if (isSiegeCoop)
+                {
+                    GameFiles.DefaultGame.ApplySiegeBots();
+                }
             }
 
             // TODO add multiplayer patches for Siege Host
 
-            GameFiles.DefaultGame.ApplySettings();
+            GameFiles.DefaultGame.ApplySurvivalSettings();
         }
 
         public static void FirstLaunchInitialization()

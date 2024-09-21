@@ -1,4 +1,5 @@
-﻿using SingleplayerLauncher.Model;
+﻿using ProjectRechained.Entities;
+using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Utils;
 using System;
 using System.IO;
@@ -14,6 +15,7 @@ namespace SingleplayerLauncher.GameFiles
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         private const string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";
         private const string RHUDBaseSection = "SpitfireGame.RHUDBase";
+        private const string RGameStateSection = "SpitfireGame.RGameState";
 
         private const string GameReplicationInfoKeyGameMode = "DefaultOfflineDifficulty";
         private const string GameReplicationInfoKeyMapLevel = "DefaultOfflineSuggestedLevel";
@@ -21,10 +23,12 @@ namespace SingleplayerLauncher.GameFiles
         private const string GameReplicationInfoKeyPlayerCount = "PlayerCountOverride";
         private const string GameReplicationInfoKeyPauseTimerInSeconds = "DefaultOfflinePauseTimerDurationInSeconds";
         private const string RHUDBaseKeyShowFlyoffsForTrapDamage = "ShowFlyoffsForTrapDamage";
+        private const string DebugBotPlayerIDs = ".DebugBotPlayerIDs";
 
         private const string DefaultPauseTimerInSeconds = "999999";
+        private const int MAX_BOT_COUNT = 10;
 
-        public static void Apply()
+        public static void ApplySurvival()
         {
             _ = GameInfo.SurvivalBattleground ?? throw new ArgumentNullException(nameof(Battleground), "Mandatory parameter");
             _ = GameInfo.SurvivalBattleground.Difficulty ?? throw new ArgumentNullException(nameof(Battleground.Difficulty), "Mandatory parameter");
@@ -44,7 +48,7 @@ namespace SingleplayerLauncher.GameFiles
             defaultGame.Write();
         }
 
-        public static void ApplySettings()
+        public static void ApplySurvivalSettings()
         {
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
 
@@ -54,6 +58,39 @@ namespace SingleplayerLauncher.GameFiles
             data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
 
             defaultGame.Write();
+        }
+
+        public static void ApplySiegeBots()
+        {
+            _ = GameConfig.Instance.SiegeEnemyTeamAsBots ? true : throw new ArgumentNullException(nameof(GameConfig.Instance.SiegeEnemyTeamAsBots), "Mandatory parameter");
+            _ = GameConfig.Instance.SiegeBotDifficulty ?? throw new ArgumentNullException(nameof(GameConfig.Instance.SiegeBotDifficulty), "Mandatory parameter");
+
+            ConfigFile defaultGame = new(Path.Combine(Settings.Instance.RootGamePath, FileUtils.INI_CONFIGS_FOLDER_RELATIVE_PATH, FileUtils.INI_DEFAULT_GAME_FILENAME));
+            IniFile data = defaultGame.data;
+
+            String botDifficultyName = GameConfig.Instance.SiegeBotDifficulty;
+            BotDifficulty botDifficulty = BotDifficulty.BotDifficultiesByName[botDifficultyName];
+
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyGameMode, botDifficulty.BotLevel.ToString());
+
+            data.RemoveSection(RGameStateSection);
+
+            int botCount = 0;
+            foreach (SiegeLoadout botLoadout in botDifficulty.botLoadouts)
+            {
+                data.UpdateEntry(RGameStateSection, DebugBotPlayerIDs, botLoadout.PlayerName, botCount);
+                botCount++;
+            }
+
+            defaultGame.Write();
+        }
+
+        private static void ClearBotsConfiguration(IniFile data)
+        {
+            for (int i = 0; i < MAX_BOT_COUNT; i++)
+            {
+                data.UpdateEntry(RGameStateSection, DebugBotPlayerIDs, "", i);
+            }
         }
 
         public static void Initialize()

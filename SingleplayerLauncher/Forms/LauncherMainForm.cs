@@ -1,4 +1,5 @@
-﻿using SingleplayerLauncher.Model;
+﻿using ProjectRechained.Entities;
+using SingleplayerLauncher.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace SingleplayerLauncher
 
         readonly List<MaskedTextBox> siegeLoadoutsTeam1;
         readonly List<MaskedTextBox> siegeLoadoutsTeam2;
-        readonly List<String> siegeLoadoutsTeamAux;
+        readonly List<String> siegeLoadoutsTeamAux = [];
         readonly List<MaskedTextBox> siegeLoadouts;
         readonly Dictionary<string, MaskedTextBox> siegeLoadoutsByPlayer;
 
@@ -197,12 +198,8 @@ namespace SingleplayerLauncher
             // Siege Game settings
             PopulateSlots([comBoxSiegeBattleground], [.. Model.Siege.SiegeBattlegrounds.Keys], addEmptyOption: false);
             comBoxSiegeBattleground.SelectedItem = comBoxSiegeBattleground.Items[0];
-            // TODO: Add Siege Difficulties
-            // PopulateSlots([comBoxSiegeDifficulty], [.. Model.Siege.SiegeBattlegrounds.Keys], addEmptyOption: false);
-            // comBoxSiegeDifficulty.SelectedItem = comBoxSiegeDifficulty.Items[0];
-            comBoxSiegeDifficulty.Visible = false;
-            chkSiegeEnemyTeamAsBots.Visible = false;
-            labelSiegeDifficulty.Visible = false;
+            PopulateSlots([comBoxSiegeDifficulty], [.. BotDifficulty.BotDifficultiesByName.Keys], addEmptyOption: false, sort: false);
+            comBoxSiegeDifficulty.SelectedItem = comBoxSiegeDifficulty.Items[0];
 
             // Mods
             chkGodMode.Checked = GameConfig.Instance.GodMode;
@@ -595,13 +592,18 @@ namespace SingleplayerLauncher
             GameConfig.Instance.Save();
         }
 
-        private static void PopulateSlots(List<ComboBox> comBoxSlotList, List<string> entryList, bool addEmptyOption = true)
+        private static void PopulateSlots(List<ComboBox> comBoxSlotList, List<string> entryList, bool addEmptyOption = true, bool sort = true)
         {
-            entryList.Sort();
+            if (sort)
+            {
+                entryList.Sort();
+            }
+
             if (addEmptyOption)
             {
                 entryList.Insert(0, "");
             }
+
             foreach (ComboBox comBoxSlot in comBoxSlotList)
             {
                 foreach (string entry in entryList)
@@ -1406,7 +1408,9 @@ namespace SingleplayerLauncher
 
         private void btnSiegeLaunch_Click(object sender, EventArgs e)
         {
-            GameLauncher.ApplyChanges(isHost: true, isSiege: true);
+            bool isSiegeCoop = GameConfig.Instance.SiegeEnemyTeamAsBots;
+
+            GameLauncher.ApplyChanges(isHost: true, isSiege: true, isSiegeCoop: isSiegeCoop);
             SaveSettings();
 
             string playerName = maskedTextBoxSiegePlayerName.Text;
@@ -1426,7 +1430,7 @@ namespace SingleplayerLauncher
                 return;
             }
 
-            ApplyAllSiegeLoadouts();
+            ApplyAllSiegeLoadouts(isSiegeCoop);
             GameInfo.PlayerCount = siegeLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
             GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true, mapCode: GameInfo.SiegeBattleground.Map.UmapCode, playerCount: GameInfo.PlayerCount);
         }
@@ -1434,11 +1438,39 @@ namespace SingleplayerLauncher
         private void chkSiegeEnemyTeamAsBots_CheckedChanged(object sender, EventArgs e)
         {
             comBoxSiegeDifficulty.Enabled = chkSiegeEnemyTeamAsBots.Checked;
+
+            if (comBoxSiegeDifficulty.Enabled)
+            {
+                siegeLoadoutsTeamAux.Clear();
+                foreach (MaskedTextBox siegeLoadoutMaskedBox in siegeLoadoutsTeam2) 
+                {
+                    siegeLoadoutsTeamAux.Add(siegeLoadoutMaskedBox.Text);
+                    siegeLoadoutMaskedBox.Clear();
+                    siegeLoadoutMaskedBox.Enabled = false;
+                }
+            } 
+            else
+            {
+                foreach (MaskedTextBox siegeLoadoutMaskedBox in siegeLoadoutsTeam2)
+                {
+                    if (siegeLoadoutsTeamAux.Count > 0)
+                    {
+                        siegeLoadoutMaskedBox.Text = siegeLoadoutsTeamAux.FirstOrDefault("");
+                        siegeLoadoutsTeamAux.RemoveAt(0);
+
+                    }
+                    siegeLoadoutMaskedBox.Enabled = true;
+                }
+            }
+
+            GameConfig.Instance.SiegeEnemyTeamAsBots = chkSiegeEnemyTeamAsBots.Checked;
+            GameConfig.Instance.Save();
         }
 
         private void comBoxSiegeDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            GameConfig.Instance.SiegeBotDifficulty = comBoxSiegeDifficulty.Text;
+            GameConfig.Instance.Save();
         }
 
         private (bool isValid, string errorMessage) ValidateSiegeLoadoutCode(MaskedTextBox maskedTextBox)
@@ -1472,27 +1504,42 @@ namespace SingleplayerLauncher
             return invalidLoadouts;
         }
 
-        private void ApplyAllSiegeLoadouts()
+        private void ApplyAllSiegeLoadouts(bool isSiegeCoop = false)
         {
-
             bool randomBool = random.Next(0, 2) == 0;
 
             int team1 = randomBool ? 1 : 2;
             int team2 = randomBool ? 2 : 1;
 
-            for (int i = 0; i < siegeLoadoutsTeam1.Count; i++)
+            foreach (var siegeLoadoutTextBox in siegeLoadoutsTeam1) 
             {
-                if (!string.IsNullOrWhiteSpace(siegeLoadoutsTeam1[i].Text))
+                if (!string.IsNullOrWhiteSpace(siegeLoadoutTextBox.Text))
                 {
                     SiegeLoadout siegeLoadout = new();
-                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutsTeam1[i].Text), team1);
-                }
-                if (!string.IsNullOrWhiteSpace(siegeLoadoutsTeam2[i].Text))
-                {
-                    SiegeLoadout siegeLoadout = new();
-                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutsTeam2[i].Text), team2);
+                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutTextBox.Text), team1);
                 }
             }
+
+            if (!isSiegeCoop)
+            {
+                foreach (var siegeLoadoutTextBox in siegeLoadoutsTeam2)
+                {
+                    if (!string.IsNullOrWhiteSpace(siegeLoadoutTextBox.Text))
+                    {
+                        SiegeLoadout siegeLoadout = new();
+                        GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutTextBox.Text), team2);
+                    }
+                }
+            } 
+            else
+            {
+                string difficultyName = comBoxSiegeDifficulty.Text;
+                BotDifficulty botDifficulty = BotDifficulty.BotDifficultiesByName[difficultyName];
+                foreach (SiegeLoadout loadout in botDifficulty.botLoadouts) {
+                    GameFiles.CharacterData.ApplySiegeLoadout(loadout, team2, overrideTrapLevel: botDifficulty.TrapTier);
+                }
+            }
+
         }
 
         private void btnCopySiegeLoadoutToClipboard_Click(object sender, EventArgs e)

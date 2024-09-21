@@ -232,6 +232,17 @@ namespace SingleplayerLauncher.Model
             SiegeTemplateName = "SpitfireGame.RPawnPlayerApprentice",
             SiegeSkins = Skin.SiegeZoeySkins
         };
+        public static Hero SirWinston = new()
+        {
+            Id = 20,
+            Name = SIR_WINSTON,
+            PawnTemplateName = "PawnWeapon_SirWinston.Pawn_SirWinston",
+            PawnWeaponTemplateName = "PawnWeapon_SirWinston.Weapon_SirWinston",
+            SiegePawnWeaponTemplateName = "SpitfireGame.RItemWeaponCursedSword",
+            SiegeUniqueSlotItem = Glyph.GlyphOfMagicArmor,
+            SiegeTemplateName = "SpitfireGame.RPawnPlayerSirWinston",
+            SiegeSkins = Skin.SiegeSirWinstonSkins
+        };
 
 
         public static Dictionary<string, Hero> Heroes = new()

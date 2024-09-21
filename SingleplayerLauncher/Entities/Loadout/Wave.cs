@@ -12,7 +12,7 @@ namespace SingleplayerLauncher.Model
         public string KeywordText { get; private set; }
         public string KeywordDescription { get; private set; }
 
-        public static Wave KoboldWave = new()
+        public static Wave KoboldLvl1Wave = new()
         {
             Id = 1,
             CodeName = "SpitfireGame.RWaveMonoWaves000",
@@ -24,7 +24,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave LightSoldiersWave = new()
+        public static Wave LightSoldiersLvl1Wave = new()
         {
             Id = 2,
             CodeName = "SpitfireGame.RWaveMonoWaves001",
@@ -36,7 +36,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave GnollHuntersWave = new()
+        public static Wave GnollHuntersLvl2Wave = new()
         {
             Id = 3,
             CodeName = "SpitfireGame.RWaveMonoWaves002",
@@ -48,7 +48,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave LightSoldiersWave8 = new()
+        public static Wave LightSoldiersLvl2Wave = new()
         {
             Id = 4,
             CodeName = "SpitfireGame.RWaveMonoWaves003",
@@ -60,7 +60,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave OgresWave3 = new()
+        public static Wave OgresLvl3Wave = new()
         {
             Id = 5,
             CodeName = "SpitfireGame.RWaveMonoWaves004",
@@ -72,7 +72,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Stun",
             KeywordDescription = "Stuns enemies with attacks."
         };
-        public static Wave CrossbowOrcsWave4 = new()
+        public static Wave CrossbowOrcsLvl1Wave = new()
         {
             Id = 6,
             CodeName = "SpitfireGame.RWaveMonoWaves005",
@@ -84,7 +84,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave OgresWave5 = new()
+        public static Wave OgresLvl4Wave = new()
         {
             Id = 7,
             CodeName = "SpitfireGame.RWaveMonoWaves006",
@@ -96,7 +96,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Stun",
             KeywordDescription = "Stuns enemies with attacks."
         };
-        public static Wave GiantsWave3 = new()
+        public static Wave GiantsLvl4Wave = new()
         {
             Id = 8,
             CodeName = "SpitfireGame.RWaveMonoWaves007",
@@ -108,7 +108,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Enraging",
             KeywordDescription = "Doubles movement and attack speed when below 35% health."
         };
-        public static Wave SatyrsWave9 = new()
+        public static Wave SatyrsLvl3Wave = new()
         {
             Id = 9,
             CodeName = "SpitfireGame.RWaveMonoWaves008",
@@ -120,7 +120,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Phasing",
             KeywordDescription = "Gains a 2s damage shield when hit. Effect has 20s cooldown."
         };
-        public static Wave SatyrsWave14 = new()
+        public static Wave SatyrsLvl4Wave = new()
         {
             Id = 10,
             CodeName = "SpitfireGame.RWaveMonoWaves009",
@@ -132,7 +132,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Phasing",
             KeywordDescription = "Gains a 2s damage shield when hit. Effect has 20s cooldown."
         };
-        public static Wave KoboldWave14 = new()
+        public static Wave KoboldLvl2Wave = new()
         {
             Id = 11,
             CodeName = "SpitfireGame.RWaveMonoWaves010",
@@ -144,7 +144,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave GnollHuntersWave2 = new()
+        public static Wave GnollHuntersLvl1Wave = new()
         {
             Id = 12,
             CodeName = "SpitfireGame.RWaveMonoWaves011",
@@ -156,7 +156,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave MediumSoldiersWave5 = new()
+        public static Wave MediumSoldiersLvl3Wave = new()
         {
             Id = 13,
             CodeName = "SpitfireGame.RWaveMonoWaves012",
@@ -168,7 +168,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave MediumSoldiersWave8 = new()
+        public static Wave MediumSoldiersLvl4Wave = new()
         {
             Id = 14,
             CodeName = "SpitfireGame.RWaveMonoWaves013",
@@ -180,7 +180,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Steady",
             KeywordDescription = "Acquires moderate damage resistance while at low health."
         };
-        public static Wave HumanCrossbowmenWave4 = new()
+        public static Wave HumanCrossbowmenLvl3Wave = new()
         {
             Id = 15,
             CodeName = "SpitfireGame.RWaveMonoWaves014",
@@ -192,7 +192,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave HumanCrossbowmenWave6 = new()
+        public static Wave HumanCrossbowmenLvl4Wave = new()
         {
             Id = 16,
             CodeName = "SpitfireGame.RWaveMonoWaves015",
@@ -204,7 +204,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave TrollsWave2 = new()
+        public static Wave TrollsLvl4Wave = new()
         {
             Id = 17,
             CodeName = "SpitfireGame.RWaveMonoWaves016",
@@ -216,7 +216,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Regeneration",
             KeywordDescription = "Regenerates 2%/s health while not in combat."
         };
-        public static Wave GiantsWave2 = new()
+        public static Wave GiantsLvl3Wave = new()
         {
             Id = 18,
             CodeName = "SpitfireGame.RWaveMonoWaves017",
@@ -252,7 +252,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Growing",
             KeywordDescription = ""
         };
-        public static Wave GnomeTinkerersWave4 = new()
+        public static Wave GnomeTinkerersLvl2Wave = new()
         {
             Id = 21,
             CodeName = "SpitfireGame.RWaveMonoWaves020",
@@ -264,7 +264,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Trap Disable",
             KeywordDescription = ""
         };
-        public static Wave GnomeTinkerersWave9 = new()
+        public static Wave GnomeTinkerersLvl4Wave = new()
         {
             Id = 22,
             CodeName = "SpitfireGame.RWaveMonoWaves021",
@@ -276,7 +276,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Trap Disable",
             KeywordDescription = ""
         };
-        public static Wave GrizzlyBearsWave2 = new()
+        public static Wave GrizzlyBearsLvl1Wave = new()
         {
             Id = 23,
             CodeName = "SpitfireGame.RWaveMonoWaves022",
@@ -288,7 +288,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Vengeance",
             KeywordDescription = "Regains 25% of its HPs when a nearby ally dies."
         };
-        public static Wave GrizzlyBearsWave3 = new()
+        public static Wave GrizzlyBearsLvl2Wave = new()
         {
             Id = 24,
             CodeName = "SpitfireGame.RWaveMonoWaves023",
@@ -300,7 +300,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Vengeance",
             KeywordDescription = "Regains 25% of its HPs when a nearby ally dies."
         };
-        public static Wave HobgoblinShamansWave2 = new()
+        public static Wave HobgoblinShamansLvl3Wave = new()
         {
             Id = 25,
             CodeName = "SpitfireGame.RWaveMonoWaves024",
@@ -312,7 +312,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Healing",
             KeywordDescription = "Heals nearby minions."
         };
-        public static Wave HobgoblinShamansWave3 = new()
+        public static Wave HobgoblinShamansLvl4Wave = new()
         {
             Id = 26,
             CodeName = "SpitfireGame.RWaveMonoWaves025",
@@ -324,7 +324,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Healing",
             KeywordDescription = "Heals nearby minions."
         };
-        public static Wave DwarfShamansWave2 = new()
+        public static Wave DwarfShamansLvl1Wave = new()
         {
             Id = 27,
             CodeName = "SpitfireGame.RWaveMonoWaves026",
@@ -336,7 +336,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Shielding",
             KeywordDescription = "Casts a shield on nearby allied minions."
         };
-        public static Wave DwarfShamansWave3 = new()
+        public static Wave DwarfShamansLvl2Wave = new()
         {
             Id = 28,
             CodeName = "SpitfireGame.RWaveMonoWaves027",
@@ -348,7 +348,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Shielding",
             KeywordDescription = "Casts a shield on nearby allied minions."
         };
-        public static Wave LightOrcsWave9 = new()
+        public static Wave LightOrcsLvl1Wave = new()
         {
             Id = 29,
             CodeName = "SpitfireGame.RWaveMonoWaves028",
@@ -360,7 +360,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave FireMagesWave2 = new()
+        public static Wave FireMagesLvl4Wave = new()
         {
             Id = 30,
             CodeName = "SpitfireGame.RWaveMonoWaves029",
@@ -372,7 +372,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "High Damage",
             KeywordDescription = "Deals high damage."
         };
-        public static Wave CrossbowOrcsWave6 = new()
+        public static Wave CrossbowOrcsLvl2Wave = new()
         {
             Id = 31,
             CodeName = "SpitfireGame.RWaveMonoWaves031",
@@ -384,7 +384,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Ranged",
             KeywordDescription = "Attacks at range."
         };
-        public static Wave PrideHuntersWave2 = new()
+        public static Wave PrideHuntersLvl3Wave = new()
         {
             Id = 32,
             CodeName = "SpitfireGame.RWaveMonoWaves032",
@@ -396,7 +396,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave PrideHuntersWave3 = new()
+        public static Wave PrideHuntersLvl4Wave = new()
         {
             Id = 33,
             CodeName = "SpitfireGame.RWaveMonoWaves033",
@@ -408,7 +408,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Leaping",
             KeywordDescription = "Jumps over barricade and wall traps."
         };
-        public static Wave GrizzlyShieldbearersWave2 = new()
+        public static Wave GrizzlyShieldbearersLvl1Wave = new()
         {
             Id = 34,
             CodeName = "SpitfireGame.RWaveMonoWaves034",
@@ -420,7 +420,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave GrizzlyShieldbearersWave3 = new()
+        public static Wave GrizzlyShieldbearersLvl2Wave = new()
         {
             Id = 35,
             CodeName = "SpitfireGame.RWaveMonoWaves035",
@@ -432,7 +432,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave TrollShieldbearersWave2 = new()
+        public static Wave TrollShieldbearersLvl3Wave = new()
         {
             Id = 36,
             CodeName = "SpitfireGame.RWaveMonoWaves036",
@@ -444,7 +444,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave TrollShieldbearersWave3 = new()
+        public static Wave TrollShieldbearersLvl4Wave = new()
         {
             Id = 37,
             CodeName = "SpitfireGame.RWaveMonoWaves037",
@@ -456,7 +456,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Block",
             KeywordDescription = "Blocks frontal assaults."
         };
-        public static Wave LightOrcsWave14 = new()
+        public static Wave LightOrcsLvl2Wave = new()
         {
             Id = 38,
             CodeName = "SpitfireGame.RWaveMonoWaves038",
@@ -468,7 +468,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave MediumOrcsWave9 = new()
+        public static Wave MediumOrcsLvl3Wave = new()
         {
             Id = 39,
             CodeName = "SpitfireGame.RWaveMonoWaves039",
@@ -480,7 +480,7 @@ namespace SingleplayerLauncher.Model
             KeywordText = "Swarm",
             KeywordDescription = "Waves spawn in large numbers."
         };
-        public static Wave MediumOrcsWave14 = new()
+        public static Wave MediumOrcsLvl4Wave = new()
         {
             Id = 40,
             CodeName = "SpitfireGame.RWaveMonoWaves040",
@@ -665,46 +665,46 @@ namespace SingleplayerLauncher.Model
 
         public static Dictionary<string, Wave> Waves = new()
         {
-            { KoboldWave.Name, KoboldWave },
-            { LightSoldiersWave.Name, LightSoldiersWave },
-            { GnollHuntersWave.Name, GnollHuntersWave },
-            { LightSoldiersWave8.Name, LightSoldiersWave8 },
-            { OgresWave3.Name, OgresWave3 },
-            { CrossbowOrcsWave4.Name, CrossbowOrcsWave4 },
-            { OgresWave5.Name, OgresWave5 },
-            { GiantsWave3.Name, GiantsWave3 },
-            { SatyrsWave9.Name, SatyrsWave9 },
-            { SatyrsWave14.Name, SatyrsWave14 },
-            { KoboldWave14.Name, KoboldWave14 },
-            { GnollHuntersWave2.Name, GnollHuntersWave2 },
-            { MediumSoldiersWave5.Name, MediumSoldiersWave5 },
-            { MediumSoldiersWave8.Name, MediumSoldiersWave8 },
-            { HumanCrossbowmenWave4.Name, HumanCrossbowmenWave4 },
-            { HumanCrossbowmenWave6.Name, HumanCrossbowmenWave6 },
-            { TrollsWave2.Name, TrollsWave2 },
-            { GiantsWave2.Name, GiantsWave2 },
+            { KoboldLvl1Wave.Name, KoboldLvl1Wave },
+            { LightSoldiersLvl1Wave.Name, LightSoldiersLvl1Wave },
+            { GnollHuntersLvl2Wave.Name, GnollHuntersLvl2Wave },
+            { LightSoldiersLvl2Wave.Name, LightSoldiersLvl2Wave },
+            { OgresLvl3Wave.Name, OgresLvl3Wave },
+            { CrossbowOrcsLvl1Wave.Name, CrossbowOrcsLvl1Wave },
+            { OgresLvl4Wave.Name, OgresLvl4Wave },
+            { GiantsLvl4Wave.Name, GiantsLvl4Wave },
+            { SatyrsLvl3Wave.Name, SatyrsLvl3Wave },
+            { SatyrsLvl4Wave.Name, SatyrsLvl4Wave },
+            { KoboldLvl2Wave.Name, KoboldLvl2Wave },
+            { GnollHuntersLvl1Wave.Name, GnollHuntersLvl1Wave },
+            { MediumSoldiersLvl3Wave.Name, MediumSoldiersLvl3Wave },
+            { MediumSoldiersLvl4Wave.Name, MediumSoldiersLvl4Wave },
+            { HumanCrossbowmenLvl3Wave.Name, HumanCrossbowmenLvl3Wave },
+            { HumanCrossbowmenLvl4Wave.Name, HumanCrossbowmenLvl4Wave },
+            { TrollsLvl4Wave.Name, TrollsLvl4Wave },
+            { GiantsLvl3Wave.Name, GiantsLvl3Wave },
             { CyclopsShamansWave2.Name, CyclopsShamansWave2 },
             { CyclopsShamansWave3.Name, CyclopsShamansWave3 },
-            { GnomeTinkerersWave4.Name, GnomeTinkerersWave4 },
-            { GnomeTinkerersWave9.Name, GnomeTinkerersWave9 },
-            { GrizzlyBearsWave2.Name, GrizzlyBearsWave2 },
-            { GrizzlyBearsWave3.Name, GrizzlyBearsWave3 },
-            { HobgoblinShamansWave2.Name, HobgoblinShamansWave2 },
-            { HobgoblinShamansWave3.Name, HobgoblinShamansWave3 },
-            { DwarfShamansWave2.Name, DwarfShamansWave2 },
-            { DwarfShamansWave3.Name, DwarfShamansWave3 },
-            { LightOrcsWave9.Name, LightOrcsWave9 },
-            { FireMagesWave2.Name, FireMagesWave2 },
-            { CrossbowOrcsWave6.Name, CrossbowOrcsWave6 },
-            { PrideHuntersWave2.Name, PrideHuntersWave2 },
-            { PrideHuntersWave3.Name, PrideHuntersWave3 },
-            { GrizzlyShieldbearersWave2.Name, GrizzlyShieldbearersWave2 },
-            { GrizzlyShieldbearersWave3.Name, GrizzlyShieldbearersWave3 },
-            { TrollShieldbearersWave2.Name, TrollShieldbearersWave2 },
-            { TrollShieldbearersWave3.Name, TrollShieldbearersWave3 },
-            { LightOrcsWave14.Name, LightOrcsWave14 },
-            { MediumOrcsWave9.Name, MediumOrcsWave9 },
-            { MediumOrcsWave14.Name, MediumOrcsWave14 },
+            { GnomeTinkerersLvl2Wave.Name, GnomeTinkerersLvl2Wave },
+            { GnomeTinkerersLvl4Wave.Name, GnomeTinkerersLvl4Wave },
+            { GrizzlyBearsLvl1Wave.Name, GrizzlyBearsLvl1Wave },
+            { GrizzlyBearsLvl2Wave.Name, GrizzlyBearsLvl2Wave },
+            { HobgoblinShamansLvl3Wave.Name, HobgoblinShamansLvl3Wave },
+            { HobgoblinShamansLvl4Wave.Name, HobgoblinShamansLvl4Wave },
+            { DwarfShamansLvl1Wave.Name, DwarfShamansLvl1Wave },
+            { DwarfShamansLvl2Wave.Name, DwarfShamansLvl2Wave },
+            { LightOrcsLvl1Wave.Name, LightOrcsLvl1Wave },
+            { FireMagesLvl4Wave.Name, FireMagesLvl4Wave },
+            { CrossbowOrcsLvl2Wave.Name, CrossbowOrcsLvl2Wave },
+            { PrideHuntersLvl3Wave.Name, PrideHuntersLvl3Wave },
+            { PrideHuntersLvl4Wave.Name, PrideHuntersLvl4Wave },
+            { GrizzlyShieldbearersLvl1Wave.Name, GrizzlyShieldbearersLvl1Wave },
+            { GrizzlyShieldbearersLvl2Wave.Name, GrizzlyShieldbearersLvl2Wave },
+            { TrollShieldbearersLvl3Wave.Name, TrollShieldbearersLvl3Wave },
+            { TrollShieldbearersLvl4Wave.Name, TrollShieldbearersLvl4Wave },
+            { LightOrcsLvl2Wave.Name, LightOrcsLvl2Wave },
+            { MediumOrcsLvl3Wave.Name, MediumOrcsLvl3Wave },
+            { MediumOrcsLvl4Wave.Name, MediumOrcsLvl4Wave },
             { OrfumMountainTroll.Name, OrfumMountainTroll },
             { OakentoesDwarfShaman.Name, OakentoesDwarfShaman },
             { SawbonesHobgoblinShaman.Name, SawbonesHobgoblinShaman },
@@ -722,56 +722,56 @@ namespace SingleplayerLauncher.Model
 
         public static Dictionary<string, Wave> Lvl1Waves = new()
         {
-            { KoboldWave.Name, KoboldWave },
-            { LightSoldiersWave.Name, LightSoldiersWave },
-            { CrossbowOrcsWave4.Name, CrossbowOrcsWave4 },
-            { GnollHuntersWave2.Name, GnollHuntersWave2 },
-            { GrizzlyShieldbearersWave2.Name, GrizzlyShieldbearersWave2 },
-            { GrizzlyBearsWave2.Name, GrizzlyBearsWave2 },
-            { DwarfShamansWave2.Name, DwarfShamansWave2 },
-            { LightOrcsWave9.Name, LightOrcsWave9 }
+            { KoboldLvl1Wave.Name, KoboldLvl1Wave },
+            { LightSoldiersLvl1Wave.Name, LightSoldiersLvl1Wave },
+            { CrossbowOrcsLvl1Wave.Name, CrossbowOrcsLvl1Wave },
+            { GnollHuntersLvl1Wave.Name, GnollHuntersLvl1Wave },
+            { GrizzlyShieldbearersLvl1Wave.Name, GrizzlyShieldbearersLvl1Wave },
+            { GrizzlyBearsLvl1Wave.Name, GrizzlyBearsLvl1Wave },
+            { DwarfShamansLvl1Wave.Name, DwarfShamansLvl1Wave },
+            { LightOrcsLvl1Wave.Name, LightOrcsLvl1Wave }
         };
 
         public static Dictionary<string, Wave> Lvl2Waves = new()
         {
-            { GnollHuntersWave.Name, GnollHuntersWave },
-            { LightSoldiersWave8.Name, LightSoldiersWave8 },
-            { KoboldWave14.Name, KoboldWave14 },
-            { GnomeTinkerersWave4.Name, GnomeTinkerersWave4 },
-            { GrizzlyBearsWave3.Name, GrizzlyBearsWave3 },
-            { GrizzlyShieldbearersWave2.Name, GrizzlyShieldbearersWave2 },
-            { DwarfShamansWave3.Name, DwarfShamansWave3 },
-            { CrossbowOrcsWave6.Name, CrossbowOrcsWave6 },
-            { LightOrcsWave14.Name, LightOrcsWave14 },
+            { GnollHuntersLvl2Wave.Name, GnollHuntersLvl2Wave },
+            { LightSoldiersLvl2Wave.Name, LightSoldiersLvl2Wave },
+            { KoboldLvl2Wave.Name, KoboldLvl2Wave },
+            { GnomeTinkerersLvl2Wave.Name, GnomeTinkerersLvl2Wave },
+            { GrizzlyBearsLvl2Wave.Name, GrizzlyBearsLvl2Wave },
+            { GrizzlyShieldbearersLvl2Wave.Name, GrizzlyShieldbearersLvl2Wave },
+            { DwarfShamansLvl2Wave.Name, DwarfShamansLvl2Wave },
+            { CrossbowOrcsLvl2Wave.Name, CrossbowOrcsLvl2Wave },
+            { LightOrcsLvl2Wave.Name, LightOrcsLvl2Wave },
         };
 
         public static Dictionary<string, Wave> Lvl3Waves = new()
         {
-            { OgresWave3.Name, OgresWave3 },
-            { GiantsWave2.Name, GiantsWave2 },
-            { SatyrsWave9.Name, SatyrsWave9 },
-            { MediumSoldiersWave5.Name, MediumSoldiersWave5 },
-            { HumanCrossbowmenWave4.Name, HumanCrossbowmenWave4 },
-            { HobgoblinShamansWave2.Name, HobgoblinShamansWave2 },
-            { PrideHuntersWave2.Name, PrideHuntersWave2 },
-            { TrollShieldbearersWave2.Name, TrollShieldbearersWave2 },
-            { MediumOrcsWave9.Name, MediumOrcsWave9 }
+            { OgresLvl3Wave.Name, OgresLvl3Wave },
+            { GiantsLvl3Wave.Name, GiantsLvl3Wave },
+            { SatyrsLvl3Wave.Name, SatyrsLvl3Wave },
+            { MediumSoldiersLvl3Wave.Name, MediumSoldiersLvl3Wave },
+            { HumanCrossbowmenLvl3Wave.Name, HumanCrossbowmenLvl3Wave },
+            { HobgoblinShamansLvl3Wave.Name, HobgoblinShamansLvl3Wave },
+            { PrideHuntersLvl3Wave.Name, PrideHuntersLvl3Wave },
+            { TrollShieldbearersLvl3Wave.Name, TrollShieldbearersLvl3Wave },
+            { MediumOrcsLvl3Wave.Name, MediumOrcsLvl3Wave }
         };
 
         public static Dictionary<string, Wave> Lvl4Waves = new()
         {
-            { OgresWave5.Name, OgresWave5 },
-            { GiantsWave3.Name, GiantsWave3 },
-            { SatyrsWave14.Name, SatyrsWave14 },
-            { MediumSoldiersWave8.Name, MediumSoldiersWave8 },
-            { HumanCrossbowmenWave6.Name, HumanCrossbowmenWave6 },
-            { TrollsWave2.Name, TrollsWave2 },
-            { FireMagesWave2.Name, FireMagesWave2 },
-            { HobgoblinShamansWave3.Name, HobgoblinShamansWave3 },
-            { PrideHuntersWave3.Name, PrideHuntersWave3 },
-            { TrollShieldbearersWave3.Name, TrollShieldbearersWave3 },
-            { MediumOrcsWave14.Name, MediumOrcsWave14 },
-            { GnomeTinkerersWave9.Name, GnomeTinkerersWave9 }
+            { OgresLvl4Wave.Name, OgresLvl4Wave },
+            { GiantsLvl4Wave.Name, GiantsLvl4Wave },
+            { SatyrsLvl4Wave.Name, SatyrsLvl4Wave },
+            { MediumSoldiersLvl4Wave.Name, MediumSoldiersLvl4Wave },
+            { HumanCrossbowmenLvl4Wave.Name, HumanCrossbowmenLvl4Wave },
+            { TrollsLvl4Wave.Name, TrollsLvl4Wave },
+            { FireMagesLvl4Wave.Name, FireMagesLvl4Wave },
+            { HobgoblinShamansLvl4Wave.Name, HobgoblinShamansLvl4Wave },
+            { PrideHuntersLvl4Wave.Name, PrideHuntersLvl4Wave },
+            { TrollShieldbearersLvl4Wave.Name, TrollShieldbearersLvl4Wave },
+            { MediumOrcsLvl4Wave.Name, MediumOrcsLvl4Wave },
+            { GnomeTinkerersLvl4Wave.Name, GnomeTinkerersLvl4Wave }
         };
 
         public static Dictionary<string, Wave> BossWaves = new()
@@ -794,46 +794,46 @@ namespace SingleplayerLauncher.Model
 
         public static Dictionary<int, Wave> WavesById = new()
         {
-            { KoboldWave.Id, KoboldWave },
-            { LightSoldiersWave.Id, LightSoldiersWave },
-            { GnollHuntersWave.Id, GnollHuntersWave },
-            { LightSoldiersWave8.Id, LightSoldiersWave8 },
-            { OgresWave3.Id, OgresWave3 },
-            { CrossbowOrcsWave4.Id, CrossbowOrcsWave4 },
-            { OgresWave5.Id, OgresWave5 },
-            { GiantsWave3.Id, GiantsWave3 },
-            { SatyrsWave9.Id, SatyrsWave9 },
-            { SatyrsWave14.Id, SatyrsWave14 },
-            { KoboldWave14.Id, KoboldWave14 },
-            { GnollHuntersWave2.Id, GnollHuntersWave2 },
-            { MediumSoldiersWave5.Id, MediumSoldiersWave5 },
-            { MediumSoldiersWave8.Id, MediumSoldiersWave8 },
-            { HumanCrossbowmenWave4.Id, HumanCrossbowmenWave4 },
-            { HumanCrossbowmenWave6.Id, HumanCrossbowmenWave6 },
-            { TrollsWave2.Id, TrollsWave2 },
-            { GiantsWave2.Id, GiantsWave2 },
+            { KoboldLvl1Wave.Id, KoboldLvl1Wave },
+            { LightSoldiersLvl1Wave.Id, LightSoldiersLvl1Wave },
+            { GnollHuntersLvl2Wave.Id, GnollHuntersLvl2Wave },
+            { LightSoldiersLvl2Wave.Id, LightSoldiersLvl2Wave },
+            { OgresLvl3Wave.Id, OgresLvl3Wave },
+            { CrossbowOrcsLvl1Wave.Id, CrossbowOrcsLvl1Wave },
+            { OgresLvl4Wave.Id, OgresLvl4Wave },
+            { GiantsLvl4Wave.Id, GiantsLvl4Wave },
+            { SatyrsLvl3Wave.Id, SatyrsLvl3Wave },
+            { SatyrsLvl4Wave.Id, SatyrsLvl4Wave },
+            { KoboldLvl2Wave.Id, KoboldLvl2Wave },
+            { GnollHuntersLvl1Wave.Id, GnollHuntersLvl1Wave },
+            { MediumSoldiersLvl3Wave.Id, MediumSoldiersLvl3Wave },
+            { MediumSoldiersLvl4Wave.Id, MediumSoldiersLvl4Wave },
+            { HumanCrossbowmenLvl3Wave.Id, HumanCrossbowmenLvl3Wave },
+            { HumanCrossbowmenLvl4Wave.Id, HumanCrossbowmenLvl4Wave },
+            { TrollsLvl4Wave.Id, TrollsLvl4Wave },
+            { GiantsLvl3Wave.Id, GiantsLvl3Wave },
             { CyclopsShamansWave2.Id, CyclopsShamansWave2 },
             { CyclopsShamansWave3.Id, CyclopsShamansWave3 },
-            { GnomeTinkerersWave4.Id, GnomeTinkerersWave4 },
-            { GnomeTinkerersWave9.Id, GnomeTinkerersWave9 },
-            { GrizzlyBearsWave2.Id, GrizzlyBearsWave2 },
-            { GrizzlyBearsWave3.Id, GrizzlyBearsWave3 },
-            { HobgoblinShamansWave2.Id, HobgoblinShamansWave2 },
-            { HobgoblinShamansWave3.Id, HobgoblinShamansWave3 },
-            { DwarfShamansWave2.Id, DwarfShamansWave2 },
-            { DwarfShamansWave3.Id, DwarfShamansWave3 },
-            { LightOrcsWave9.Id, LightOrcsWave9 },
-            { FireMagesWave2.Id, FireMagesWave2 },
-            { CrossbowOrcsWave6.Id, CrossbowOrcsWave6 },
-            { PrideHuntersWave2.Id, PrideHuntersWave2 },
-            { PrideHuntersWave3.Id, PrideHuntersWave3 },
-            { GrizzlyShieldbearersWave2.Id, GrizzlyShieldbearersWave2 },
-            { GrizzlyShieldbearersWave3.Id, GrizzlyShieldbearersWave3 },
-            { TrollShieldbearersWave2.Id, TrollShieldbearersWave2 },
-            { TrollShieldbearersWave3.Id, TrollShieldbearersWave3 },
-            { LightOrcsWave14.Id, LightOrcsWave14 },
-            { MediumOrcsWave9.Id, MediumOrcsWave9 },
-            { MediumOrcsWave14.Id, MediumOrcsWave14 },
+            { GnomeTinkerersLvl2Wave.Id, GnomeTinkerersLvl2Wave },
+            { GnomeTinkerersLvl4Wave.Id, GnomeTinkerersLvl4Wave },
+            { GrizzlyBearsLvl1Wave.Id, GrizzlyBearsLvl1Wave },
+            { GrizzlyBearsLvl2Wave.Id, GrizzlyBearsLvl2Wave },
+            { HobgoblinShamansLvl3Wave.Id, HobgoblinShamansLvl3Wave },
+            { HobgoblinShamansLvl4Wave.Id, HobgoblinShamansLvl4Wave },
+            { DwarfShamansLvl1Wave.Id, DwarfShamansLvl1Wave },
+            { DwarfShamansLvl2Wave.Id, DwarfShamansLvl2Wave },
+            { LightOrcsLvl1Wave.Id, LightOrcsLvl1Wave },
+            { FireMagesLvl4Wave.Id, FireMagesLvl4Wave },
+            { CrossbowOrcsLvl2Wave.Id, CrossbowOrcsLvl2Wave },
+            { PrideHuntersLvl3Wave.Id, PrideHuntersLvl3Wave },
+            { PrideHuntersLvl4Wave.Id, PrideHuntersLvl4Wave },
+            { GrizzlyShieldbearersLvl1Wave.Id, GrizzlyShieldbearersLvl1Wave },
+            { GrizzlyShieldbearersLvl2Wave.Id, GrizzlyShieldbearersLvl2Wave },
+            { TrollShieldbearersLvl3Wave.Id, TrollShieldbearersLvl3Wave },
+            { TrollShieldbearersLvl4Wave.Id, TrollShieldbearersLvl4Wave },
+            { LightOrcsLvl2Wave.Id, LightOrcsLvl2Wave },
+            { MediumOrcsLvl3Wave.Id, MediumOrcsLvl3Wave },
+            { MediumOrcsLvl4Wave.Id, MediumOrcsLvl4Wave },
             { OrfumMountainTroll.Id, OrfumMountainTroll },
             { OakentoesDwarfShaman.Id, OakentoesDwarfShaman },
             { SawbonesHobgoblinShaman.Id, SawbonesHobgoblinShaman },

@@ -120,6 +120,17 @@ namespace SingleplayerLauncher.Utils
                 section.AddElement(newEntry);
             }
         }
+
+        public void RemoveSection(string sectionName)
+        {
+            if (!Sections.TryGetValue(sectionName, out var section))
+            {
+                // Section not found; nothing to remove
+                return;
+            }
+
+            Sections.Remove(sectionName);
+        }
     }
 
 }

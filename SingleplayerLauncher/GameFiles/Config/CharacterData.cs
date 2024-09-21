@@ -38,7 +38,7 @@ namespace SingleplayerLauncher.GameFiles
 
         private const int BASE_STARTING_COIN_SERVER_MODE = 6000;
 
-        public static void ApplySiegeLoadout(SiegeLoadout loadout, int team = 1)
+        public static void ApplySiegeLoadout(SiegeLoadout loadout, int team = 1, int overrideTrapLevel = 0)
         {
             ValidateSiegeLoadout(loadout);
 
@@ -47,7 +47,7 @@ namespace SingleplayerLauncher.GameFiles
             IniFile data = characterData.data;
 
             UpdateCharacterDataEntries(data, characterDataSection, loadout, team);
-            UpdateLoadoutEntries(data, characterDataSection, loadout);
+            UpdateLoadoutEntries(data, characterDataSection, loadout, overrideTrapLevel);
             UpdateTraitEntries(data, characterDataSection, loadout);
             UpdateWaveEntries(data, characterDataSection, loadout);
             UpdateRoleEntry(data, characterDataSection, loadout);
@@ -198,7 +198,7 @@ namespace SingleplayerLauncher.GameFiles
             data.UpdateEntry(section, CharacterDataKeyTeam, team.ToString());
         }
 
-        private static void UpdateLoadoutEntries(IniFile data, string section, BaseLoadout loadout)
+        private static void UpdateLoadoutEntries(IniFile data, string section, BaseLoadout loadout, int overrideTrapLevel = 0)
         {
             bool isSiege = loadout.GetType() == typeof(SiegeLoadout);
             int loadoutIdx = 0;
@@ -213,6 +213,12 @@ namespace SingleplayerLauncher.GameFiles
                 loadoutIdx++;
             }
 
+            int? trapTier = null; 
+            if (overrideTrapLevel > 0)
+            {
+                trapTier = overrideTrapLevel;
+            }
+
             for (int i = 0; i < SurvivalLoadout.SLOT_ITEMS_COUNT; loadoutIdx++, i++)
             {
                 var slotItem = loadout.SlotItems[i];
@@ -220,8 +226,7 @@ namespace SingleplayerLauncher.GameFiles
 
                 TrapPart[] parts = isTrap && !isSiege ? ((SurvivalLoadout)loadout).GetTrapPartsForLoadout(i) : null;
 
-                int? trapTier = null;
-                if (Mods.Mods.TrapTierOverride.IsEnabled)
+                if (overrideTrapLevel <= 0  && Mods.Mods.TrapTierOverride.IsEnabled)
                 {
                     trapTier = Mods.Mods.TrapTierOverride.Value;
                 } else if (isTrap && !isSiege)
@@ -236,7 +241,7 @@ namespace SingleplayerLauncher.GameFiles
             if (isSiege)
             {
                 string uniqueLoadoutItemSlot = loadout.Hero.SiegeUniqueSlotItem.ItemTemplateName;
-                data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(uniqueLoadoutItemSlot), index: loadoutIdx);
+                data.UpdateEntry(section, CharacterDataKeyLoadout, GenerateItemString(uniqueLoadoutItemSlot, trapLevel: trapTier), index: loadoutIdx);
                 loadoutIdx++;
             }
         }

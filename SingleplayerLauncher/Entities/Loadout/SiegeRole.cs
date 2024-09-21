@@ -10,7 +10,7 @@ namespace SingleplayerLauncher.Model
         public string Effect { get; private set; }
 
         // static members
-        public static SiegeRole RoleDefender = new()
+        public static SiegeRole Defender = new()
         {
             Id = 1,
             Name = DEFENDER,
@@ -18,7 +18,7 @@ namespace SingleplayerLauncher.Model
             SiegeDescription = "Defends the rift by building traps and killing minions.",
             CodeName = "SpitfireGame.RWeaverRoleDefense"
         };
-        public static SiegeRole RoleAttacker = new()
+        public static SiegeRole Attacker = new()
         {
             Id = 2,
             Name = ATTACKER,
@@ -26,7 +26,7 @@ namespace SingleplayerLauncher.Model
             SiegeDescription = "Leads minions through enemy defenses to attack enemy rifts.",
             CodeName = "SpitfireGame.RWeaverRoleOffense"
         };
-        public static SiegeRole RolePillager = new()
+        public static SiegeRole Pillager = new()
         {
             Id = 3,
             Name = PILLAGER,
@@ -37,16 +37,16 @@ namespace SingleplayerLauncher.Model
 
         public static Dictionary<string, SiegeRole> Roles = new()
         {
-            { DEFENDER, RoleDefender },
-            { ATTACKER, RoleAttacker },
-            { PILLAGER, RolePillager }
+            { DEFENDER, Defender },
+            { ATTACKER, Attacker },
+            { PILLAGER, Pillager }
         };
 
         public static Dictionary<int, SiegeRole> RolesById = new()
         {
-            { RoleDefender.Id, RoleDefender },
-            { RoleAttacker.Id, RoleAttacker },
-            { RolePillager.Id, RolePillager }
+            { Defender.Id, Defender },
+            { Attacker.Id, Attacker },
+            { Pillager.Id, Pillager }
         };
 
         public static SiegeRole GetById(int id)

@@ -7,7 +7,8 @@ namespace SingleplayerLauncher.Model
     {
         public const int WAVES_SLOT_COUNT = 10;
         public Wave[] Waves { get; set; } = new Wave[WAVES_SLOT_COUNT];
-        public SiegeRole Role { get; set; } = SiegeRole.RoleDefender;
+        public SiegeRole Role { get; set; } = SiegeRole.Defender;
+        public int BotTrapLevel { get; set; }
 
         public SiegeLoadout()
         {

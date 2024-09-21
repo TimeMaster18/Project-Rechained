@@ -815,10 +815,10 @@ namespace SingleplayerLauncher.Model
             Name = DARK_PALADIN,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSirWinston000",
         };
-        public static Skin WinstonDefault = new()
+        public static Skin SirWinstonDefault = new()
         {
             Id = 134,
-            Name = WINSTON_DEFAULT,
+            Name = SIR_WINSTON_DEFAULT,
             PlayerSkinName = "SpitfireGame.RPlayerSkinSirWinston002",
         };
 
@@ -928,7 +928,7 @@ namespace SingleplayerLauncher.Model
         public static Skin[] TundraSkins = new Skin[] { TundraDefault, WarChief, BigLebearski, KingOfArctos, ImperialGoldenMage, };
         public static Skin[] MaximilianSkins = new Skin[] { MaximillianDefault, LuckyTunic, MaximillianEnchantedArmor, KnightsWatch, OrcSlayer, CardboardSamurai, ScaredCrow, LionHeart, RobinHood, Paximillian, MaximillianLegendaryDefault, ChampionOfTheOrder, JamezRipher, WinterWarrior, Boomstick, Backdraft, DragonSlayer, SummerOfStunning, RedScarf, YellowScarf, BlueScarf, };
         public static Skin[] YiLinSkins = new Skin[] { YiLinDefault, SentinelOfTheOrder, SlayingInTheRain, YuleLin, };
-        public static Skin[] OtherSkins = new Skin[] { DarkPaladin, WinstonDefault, ChangEDefault, Chicken, ChickenWithTrainers, };
+        public static Skin[] OtherSkins = new Skin[] { DarkPaladin, SirWinstonDefault, ChangEDefault, Chicken, ChickenWithTrainers, };
         public static Skin[] MercenarySkins = new Skin[] { PrideAssassin, BouncerBear, ImageHuman, ImageArcane, ImageLightning, ImageIce, ImageFire, ChaoticKobold, DwarfPriest, GnollBreeder, ScurvyRumrudder, };
 
         public static Skin[] SiegeOzielSkins = new Skin[] { OzielDefault, BloodRune, StringTheory, KnightWalker };
@@ -946,6 +946,7 @@ namespace SingleplayerLauncher.Model
         public static Skin[] SiegeCygnusSkins = new Skin[] { CygnusDefault, Adventurer, CygnusDefaultRed, OldCodger, RoadMaster, };
         public static Skin[] SiegeTundraSkins = new Skin[] { TundraDefault, WarChief, BigLebearski };
         public static Skin[] SiegeMaximilianSkins = new Skin[] { MaximillianDefault, LuckyTunic, MaximillianEnchantedArmor, KnightsWatch, OrcSlayer, CardboardSamurai, ScaredCrow, LionHeart, RobinHood, Paximillian, MaximillianLegendaryDefault, ChampionOfTheOrder };
+        public static Skin[] SiegeSirWinstonSkins = [DarkPaladin, SirWinstonDefault];
 
         public static Dictionary<string, Skin> Skins = new()
         {
@@ -1081,7 +1082,7 @@ namespace SingleplayerLauncher.Model
             { SLAYING_IN_THE_RAIN, SlayingInTheRain },
             { YULE_LIN, YuleLin },
             { DARK_PALADIN, DarkPaladin },
-            { WINSTON_DEFAULT, WinstonDefault },
+            { SIR_WINSTON_DEFAULT, SirWinstonDefault },
             { CHANG_E_DEFAULT, ChangEDefault },
             { CHICKEN, Chicken },
             { CHICKEN_WITH_TRAINERS, ChickenWithTrainers },
@@ -1231,7 +1232,7 @@ namespace SingleplayerLauncher.Model
             { SlayingInTheRain.Id, SlayingInTheRain },
             { YuleLin.Id, YuleLin },
             { DarkPaladin.Id, DarkPaladin },
-            { WinstonDefault.Id, WinstonDefault },
+            { SirWinstonDefault.Id, SirWinstonDefault },
             { ChangEDefault.Id, ChangEDefault },
             { Chicken.Id, Chicken },
             { ChickenWithTrainers.Id, ChickenWithTrainers },

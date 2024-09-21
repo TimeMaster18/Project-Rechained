@@ -174,7 +174,7 @@
 
             // SIR WINSTON
             DARK_PALADIN = "Dark Paladin",
-            WINSTON_DEFAULT = "Winston Default",
+            SIR_WINSTON_DEFAULT = "SirWinston Default",
 
             // CHANG'E
             CHANG_E_DEFAULT = "Chang_e Default",
