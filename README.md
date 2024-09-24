@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/813d7459-3b98-41a0-9ed7-10ab71884319)# Project Rechained
+# Project Rechained
 
 The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way to be played again. This is achieved by applying modifications to the game.
 
