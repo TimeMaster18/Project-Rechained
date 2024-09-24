@@ -1,4 +1,4 @@
-# Project Rechained
+![image](https://github.com/user-attachments/assets/813d7459-3b98-41a0-9ed7-10ab71884319)# Project Rechained
 
 The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way to be played again. This is achieved by applying modifications to the game.
 
@@ -15,7 +15,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 1. **Download and Install .NET SDK**:
     - Go to the [.NET download page](https://dotnet.microsoft.com/download/dotnet).
-    - Download and install the latest .NET SDK suitable for your operating system.
+    - Download and install the latest **.NET SDK 8** suitable for your operating system. [Windows x64 Direct Link](https://download.visualstudio.microsoft.com/download/pr/f5f1c28d-7bc9-431e-98da-3e2c1bbd1228/864e152e374b5c9ca6d58ee953c5a6ed/dotnet-sdk-8.0.401-win-x64.exe)
 
 #### How to install for Survival:
 
