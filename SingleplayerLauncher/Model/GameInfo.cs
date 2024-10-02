@@ -1,4 +1,6 @@
-﻿namespace SingleplayerLauncher.Model
+﻿using System.Collections.Generic;
+
+namespace SingleplayerLauncher.Model
 {
     public sealed class GameInfo
     {
@@ -18,5 +20,6 @@
         public IBattleground SiegeBattleground { get; set; } = new Siege();
 
         public int PlayerCount { get; set; } = 1;
+        public List<SiegeLoadout> AllyBotsLoadouts { get; set; } = [];
     }
 }

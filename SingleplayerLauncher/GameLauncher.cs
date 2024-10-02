@@ -11,7 +11,7 @@ namespace SingleplayerLauncher
     {
         private static readonly SpitfireGameUPK SpitfireGameUPK = new();
 
-        public static void ApplyChanges(bool isHost, bool isSiege = false, int parTimeSeconds = 0, bool isSiegeCoop = false)
+        public static void ApplyChanges(bool isHost, bool isSiege = false, int parTimeSeconds = 0, bool isSiegeCoop = false, bool isSiegeAllyBots = false)
         {
             if (!isSiege)
             {
@@ -36,7 +36,7 @@ namespace SingleplayerLauncher
             {
                 if (isSiegeCoop)
                 {
-                    GameFiles.DefaultGame.ApplySiegeBots();
+                    GameFiles.DefaultGame.ApplySiegeBots(isSiegeAllyBots);
                 }
             }
 

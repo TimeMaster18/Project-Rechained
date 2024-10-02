@@ -3,14 +3,13 @@ using SingleplayerLauncher.Model;
 using SingleplayerLauncher.Utils;
 using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SingleplayerLauncher.GameFiles
 {
     public static class DefaultGame
     {
         // TODO: make singleton
-
-        private static readonly GameInfo GameInfo = GameInfo.Instance;
 
         private const string RDisplayColorInfoSection = "SpitfireGame.RDisplayColorInfo";
         private const string RGameReplicationInfoSection = "SpitfireGame.RGameReplicationInfo";
@@ -30,8 +29,8 @@ namespace SingleplayerLauncher.GameFiles
 
         public static void ApplySurvival()
         {
-            _ = GameInfo.SurvivalBattleground ?? throw new ArgumentNullException(nameof(Battleground), "Mandatory parameter");
-            _ = GameInfo.SurvivalBattleground.Difficulty ?? throw new ArgumentNullException(nameof(Battleground.Difficulty), "Mandatory parameter");
+            _ = GameInfo.Instance.SurvivalBattleground ?? throw new ArgumentNullException(nameof(Battleground), "Mandatory parameter");
+            _ = GameInfo.Instance.SurvivalBattleground.Difficulty ?? throw new ArgumentNullException(nameof(Battleground.Difficulty), "Mandatory parameter");
             _ = Mods.Mods.ShowTrapDamageFlyoffs ?? throw new ArgumentNullException(nameof(Mods.Mods.ShowTrapDamageFlyoffs), "Mandatory parameter");
             _ = Mods.Mods.AccountLevelOverride ?? throw new ArgumentNullException(nameof(Mods.Mods.AccountLevelOverride), "Mandatory parameter");
 
@@ -39,11 +38,11 @@ namespace SingleplayerLauncher.GameFiles
             IniFile data = defaultGame.data;
 
             data.UpdateEntry(RHUDBaseSection, RHUDBaseKeyShowFlyoffsForTrapDamage, Mods.Mods.ShowTrapDamageFlyoffs.IsEnabled.ToString());
-            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyGameMode, GameInfo.SurvivalBattleground.GameMode.Id.ToString());
-            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyMapLevel, GameInfo.SurvivalBattleground.Difficulty.EnemyLevel.ToString());
-            int accountLevel = Mods.Mods.AccountLevelOverride.IsEnabled ? Mods.Mods.AccountLevelOverride.Value : GameInfo.SurvivalBattleground.Difficulty.AccountLevel;
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyGameMode, GameInfo.Instance.SurvivalBattleground.GameMode.Id.ToString());
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyMapLevel, GameInfo.Instance.SurvivalBattleground.Difficulty.EnemyLevel.ToString());
+            int accountLevel = Mods.Mods.AccountLevelOverride.IsEnabled ? Mods.Mods.AccountLevelOverride.Value : GameInfo.Instance.SurvivalBattleground.Difficulty.AccountLevel;
             data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerLevel, accountLevel.ToString());
-            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerCount, GameInfo.SurvivalBattleground.Difficulty.PlayerCount.ToString());
+            data.UpdateEntry(RGameReplicationInfoSection, GameReplicationInfoKeyPlayerCount, GameInfo.Instance.SurvivalBattleground.Difficulty.PlayerCount.ToString());
 
             defaultGame.Write();
         }
@@ -60,7 +59,7 @@ namespace SingleplayerLauncher.GameFiles
             defaultGame.Write();
         }
 
-        public static void ApplySiegeBots()
+        public static void ApplySiegeBots(bool isSiegeAllyBots = false)
         {
             _ = GameConfig.Instance.SiegeEnemyTeamAsBots ? true : throw new ArgumentNullException(nameof(GameConfig.Instance.SiegeEnemyTeamAsBots), "Mandatory parameter");
             _ = GameConfig.Instance.SiegeBotDifficulty ?? throw new ArgumentNullException(nameof(GameConfig.Instance.SiegeBotDifficulty), "Mandatory parameter");
@@ -80,6 +79,15 @@ namespace SingleplayerLauncher.GameFiles
             {
                 data.UpdateEntry(RGameStateSection, DebugBotPlayerIDs, botLoadout.PlayerName, botCount);
                 botCount++;
+            }
+
+            if (isSiegeAllyBots)
+            {
+                foreach (SiegeLoadout allyBotLoadout in GameInfo.Instance.AllyBotsLoadouts)
+                {
+                    data.UpdateEntry(RGameStateSection, DebugBotPlayerIDs, allyBotLoadout.PlayerName, botCount);
+                    botCount++;
+                }
             }
 
             defaultGame.Write();

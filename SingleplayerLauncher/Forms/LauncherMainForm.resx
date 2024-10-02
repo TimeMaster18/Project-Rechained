@@ -123,6 +123,18 @@
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>
+How it works?
+ - Peer to peer, LAN supported
+ - Online multiplayer step by step guide to setup in our Discord
+ - Play online using VPN software such as Radmin
+
+
+Looking for group? Join our discord community!
+ - We have dedicated roles and channels for LFG and matchmaking
+ </value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnDiscord.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -166,18 +178,6 @@ Looking for group? Join our discord community!
  </value>
   </data>
   <data name="label7.ToolTip" xml:space="preserve">
-    <value>
-How it works?
- - Peer to peer, LAN supported
- - Online multiplayer step by step guide to setup in our Discord
- - Play online using VPN software such as Radmin
-
-
-Looking for group? Join our discord community!
- - We have dedicated roles and channels for LFG and matchmaking
- </value>
-  </data>
-  <data name="label10.ToolTip" xml:space="preserve">
     <value>
 How it works?
  - Peer to peer, LAN supported

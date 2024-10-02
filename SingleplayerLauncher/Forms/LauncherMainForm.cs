@@ -196,6 +196,7 @@ namespace SingleplayerLauncher
             comBoxGameMode.SelectedItem = GameConfig.Instance.GameMode;
 
             // Siege Game settings
+            chkSiegeAllyBots.Visible = false;
             PopulateSlots([comBoxSiegeBattleground], [.. Model.Siege.SiegeBattlegrounds.Keys], addEmptyOption: false);
             comBoxSiegeBattleground.SelectedItem = comBoxSiegeBattleground.Items[0];
             PopulateSlots([comBoxSiegeDifficulty], [.. BotDifficulty.BotDifficultiesByName.Keys], addEmptyOption: false, sort: false);
@@ -1409,8 +1410,8 @@ namespace SingleplayerLauncher
         private void btnSiegeLaunch_Click(object sender, EventArgs e)
         {
             bool isSiegeCoop = GameConfig.Instance.SiegeEnemyTeamAsBots;
+            bool isSiegeAllyBots = GameConfig.Instance.SiegeAllyBots;
 
-            GameLauncher.ApplyChanges(isHost: true, isSiege: true, isSiegeCoop: isSiegeCoop);
             SaveSettings();
 
             string playerName = maskedTextBoxSiegePlayerName.Text;
@@ -1430,8 +1431,10 @@ namespace SingleplayerLauncher
                 return;
             }
 
-            ApplyAllSiegeLoadouts(isSiegeCoop);
+            ApplyAllSiegeLoadouts(isSiegeCoop, isSiegeAllyBots);
             GameInfo.PlayerCount = siegeLoadouts.Count(loadout => !string.IsNullOrWhiteSpace(loadout.Text));
+
+            GameLauncher.ApplyChanges(isHost: true, isSiege: true, isSiegeCoop: isSiegeCoop, isSiegeAllyBots: isSiegeAllyBots); // Must be run after ApplyAllSiegeLoadouts due to counting and preparing the ally bots loadouts
             GameLauncher.StartGame(GameInfo.SiegeLoadout.PlayerName, isHost: true, mapCode: GameInfo.SiegeBattleground.Map.UmapCode, playerCount: GameInfo.PlayerCount);
         }
 
@@ -1441,16 +1444,20 @@ namespace SingleplayerLauncher
 
             if (comBoxSiegeDifficulty.Enabled)
             {
+                chkSiegeAllyBots.Visible = true;
+
                 siegeLoadoutsTeamAux.Clear();
-                foreach (MaskedTextBox siegeLoadoutMaskedBox in siegeLoadoutsTeam2) 
+                foreach (MaskedTextBox siegeLoadoutMaskedBox in siegeLoadoutsTeam2)
                 {
                     siegeLoadoutsTeamAux.Add(siegeLoadoutMaskedBox.Text);
                     siegeLoadoutMaskedBox.Clear();
                     siegeLoadoutMaskedBox.Enabled = false;
                 }
-            } 
+            }
             else
             {
+                chkSiegeAllyBots.Visible = false;
+
                 foreach (MaskedTextBox siegeLoadoutMaskedBox in siegeLoadoutsTeam2)
                 {
                     if (siegeLoadoutsTeamAux.Count > 0)
@@ -1464,6 +1471,14 @@ namespace SingleplayerLauncher
             }
 
             GameConfig.Instance.SiegeEnemyTeamAsBots = chkSiegeEnemyTeamAsBots.Checked;
+            GameConfig.Instance.Save();
+        }
+
+
+
+        private void chkSiegeAllyBots_CheckedChanged(object sender, EventArgs e)
+        {
+            GameConfig.Instance.SiegeAllyBots = chkSiegeAllyBots.Checked;
             GameConfig.Instance.Save();
         }
 
@@ -1504,19 +1519,28 @@ namespace SingleplayerLauncher
             return invalidLoadouts;
         }
 
-        private void ApplyAllSiegeLoadouts(bool isSiegeCoop = false)
+        private void ApplyAllSiegeLoadouts(bool isSiegeCoop = false, bool isSiegeAllyBots = false)
         {
             bool randomBool = random.Next(0, 2) == 0;
 
             int team1 = randomBool ? 1 : 2;
             int team2 = randomBool ? 2 : 1;
 
-            foreach (var siegeLoadoutTextBox in siegeLoadoutsTeam1) 
+            int team1Defenders = 0;
+            int team1PlayerCount = 0;
+
+            foreach (var siegeLoadoutTextBox in siegeLoadoutsTeam1)
             {
                 if (!string.IsNullOrWhiteSpace(siegeLoadoutTextBox.Text))
                 {
+                    team1PlayerCount++;
                     SiegeLoadout siegeLoadout = new();
-                    GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutTextBox.Text), team1);
+                    siegeLoadout = (SiegeLoadout)siegeLoadout.Decode(siegeLoadoutTextBox.Text);
+                    if (siegeLoadout.Role == SiegeRole.Defender)
+                    {
+                        team1Defenders++;
+                    }
+                    GameFiles.CharacterData.ApplySiegeLoadout(siegeLoadout, team1);
                 }
             }
 
@@ -1530,16 +1554,50 @@ namespace SingleplayerLauncher
                         GameFiles.CharacterData.ApplySiegeLoadout((SiegeLoadout)siegeLoadout.Decode(siegeLoadoutTextBox.Text), team2);
                     }
                 }
-            } 
+            }
             else
             {
                 string difficultyName = comBoxSiegeDifficulty.Text;
                 BotDifficulty botDifficulty = BotDifficulty.BotDifficultiesByName[difficultyName];
-                foreach (SiegeLoadout loadout in botDifficulty.botLoadouts) {
+                foreach (SiegeLoadout loadout in botDifficulty.botLoadouts)
+                {
                     GameFiles.CharacterData.ApplySiegeLoadout(loadout, team2, overrideTrapLevel: botDifficulty.TrapTier);
                 }
-            }
 
+                if (isSiegeAllyBots)
+                {
+                    GameInfo.AllyBotsLoadouts.Clear();
+                    int allyBotCount = 0;
+                    foreach (SiegeLoadout loadout in botDifficulty.botLoadouts)
+                    {
+                        if (allyBotCount + team1PlayerCount < 5)
+                        {
+                            if (loadout.Role == SiegeRole.Defender && team1Defenders >= 2)
+                            {
+                                continue;
+                            }
+
+                            int team1Attackers = allyBotCount + team1PlayerCount - team1Defenders;
+                            if (loadout.Role == SiegeRole.Attacker && team1Attackers >= 3)
+                            {
+                                continue;
+                            }
+
+                            allyBotCount++;
+                            if (loadout.Role == SiegeRole.Defender)
+                            {
+                                team1Defenders++;
+                            }
+
+                            SiegeLoadout allyBotLoadout = new();
+                            allyBotLoadout = (SiegeLoadout)allyBotLoadout.Decode(loadout.Encode());
+                            allyBotLoadout.PlayerName = allyBotLoadout.PlayerName + "_ALLY";
+                            GameFiles.CharacterData.ApplySiegeLoadout(allyBotLoadout, team1, overrideTrapLevel: botDifficulty.TrapTier);
+                            GameInfo.AllyBotsLoadouts.Add(allyBotLoadout);
+                        }
+                    }
+                }
+            }
         }
 
         private void btnCopySiegeLoadoutToClipboard_Click(object sender, EventArgs e)

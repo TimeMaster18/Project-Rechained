@@ -56,6 +56,8 @@ namespace SingleplayerLauncher
             chkNoTrapCap = new CheckBox();
             chkGodMode = new CheckBox();
             modsGroupBox = new GroupBox();
+            label3 = new Label();
+            labelOverrideLevels = new Label();
             chkOverrideTrapTier = new CheckBox();
             inputOverrideTrapTier = new NumericUpDown();
             chkOverrideAccountLevel = new CheckBox();
@@ -295,8 +297,7 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot5 = new ComboBox();
             comBoxSiegeLoadoutSlot7 = new ComboBox();
             comBoxSiegeLoadoutSlot6 = new ComboBox();
-            labelOverrideLevels = new Label();
-            label3 = new Label();
+            chkSiegeAllyBots = new CheckBox();
             battlegroundGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)startingCoinInput).BeginInit();
             modsGroupBox.SuspendLayout();
@@ -615,6 +616,28 @@ namespace SingleplayerLauncher
             modsGroupBox.TabIndex = 22;
             modsGroupBox.TabStop = false;
             modsGroupBox.Text = "Mods";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = System.Drawing.Color.Pink;
+            label3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            label3.Location = new System.Drawing.Point(31, 19);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(319, 30);
+            label3.TabIndex = 81;
+            label3.Text = "Disclaimer: Using mods can lead to unexpected outcomes. \r\n                     Some of the mods won't work in multiplayer.";
+            // 
+            // labelOverrideLevels
+            // 
+            labelOverrideLevels.AutoSize = true;
+            labelOverrideLevels.BackColor = System.Drawing.Color.Thistle;
+            labelOverrideLevels.Font = new System.Drawing.Font("Segoe UI", 7F);
+            labelOverrideLevels.Location = new System.Drawing.Point(265, 276);
+            labelOverrideLevels.Name = "labelOverrideLevels";
+            labelOverrideLevels.Size = new System.Drawing.Size(130, 48);
+            labelOverrideLevels.TabIndex = 80;
+            labelOverrideLevels.Text = "Account Level and Trap Tiers\r\nare auto adjusted to match \r\nthe enemy and map level. \r\nBut can be overriden here.\r\n";
             // 
             // chkOverrideTrapTier
             // 
@@ -2250,6 +2273,7 @@ namespace SingleplayerLauncher
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(chkSiegeAllyBots);
             tabPage8.Controls.Add(groupBox1);
             tabPage8.Controls.Add(label21);
             tabPage8.Controls.Add(maskedTextBoxSiegeHostGamePlayer8Loadout);
@@ -3384,27 +3408,17 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot6.TabIndex = 5;
             comBoxSiegeLoadoutSlot6.SelectedIndexChanged += comBoxSiegeLoadoutSlot6_SelectedIndexChanged;
             // 
-            // labelOverrideLevels
+            // chkSiegeAllyBots
             // 
-            labelOverrideLevels.AutoSize = true;
-            labelOverrideLevels.BackColor = System.Drawing.Color.Thistle;
-            labelOverrideLevels.Font = new System.Drawing.Font("Segoe UI", 7F);
-            labelOverrideLevels.Location = new System.Drawing.Point(265, 276);
-            labelOverrideLevels.Name = "labelOverrideLevels";
-            labelOverrideLevels.Size = new System.Drawing.Size(130, 48);
-            labelOverrideLevels.TabIndex = 80;
-            labelOverrideLevels.Text = "Account Level and Trap Tiers\r\nare auto adjusted to match \r\nthe enemy and map level. \r\nBut can be overriden here.\r\n";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = System.Drawing.Color.Pink;
-            label3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            label3.Location = new System.Drawing.Point(31, 19);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(319, 30);
-            label3.TabIndex = 81;
-            label3.Text = "Disclaimer: Using mods can lead to unexpected outcomes. \r\n                     Some of the mods won't work in multiplayer.";
+            chkSiegeAllyBots.AutoSize = true;
+            chkSiegeAllyBots.Location = new System.Drawing.Point(190, 82);
+            chkSiegeAllyBots.Margin = new Padding(4, 3, 4, 3);
+            chkSiegeAllyBots.Name = "chkSiegeAllyBots";
+            chkSiegeAllyBots.Size = new System.Drawing.Size(147, 19);
+            chkSiegeAllyBots.TabIndex = 98;
+            chkSiegeAllyBots.Text = "Fill Team with Ally Bots";
+            chkSiegeAllyBots.UseVisualStyleBackColor = true;
+            chkSiegeAllyBots.CheckedChanged += chkSiegeAllyBots_CheckedChanged;
             // 
             // LauncherMainForm
             // 
@@ -3732,6 +3746,7 @@ namespace SingleplayerLauncher
         private NumericUpDown inputOverrideAccountLevel;
         private Label labelOverrideLevels;
         private Label label3;
+        private CheckBox chkSiegeAllyBots;
     }
 }
 

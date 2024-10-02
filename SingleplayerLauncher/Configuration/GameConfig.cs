@@ -19,6 +19,7 @@ namespace SingleplayerLauncher
         public string Battleground { get; set; }
         public string SiegeBattleground { get; set; }
         public bool SiegeEnemyTeamAsBots { get; set; }
+        public bool SiegeAllyBots { get; set; }
         public string ExtraDifficulty { get; set; }
         public string SiegeBotDifficulty { get; set; }
         public bool GodMode { get; set; }
