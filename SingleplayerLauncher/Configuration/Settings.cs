@@ -15,6 +15,7 @@ namespace SingleplayerLauncher
         private static readonly object _lock = new();
 
         public bool FirstRun { get; set; } = true;
+        public bool ShowOldUI { get; set; }
         public bool Debug { get; set; }
         public bool RunAs32 { get; set; }
         public string Language { get; set; } = "English";

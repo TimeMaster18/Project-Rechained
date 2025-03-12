@@ -185,6 +185,7 @@ namespace SingleplayerLauncher
             comBoxLoadoutSlot7 = new ComboBox();
             comBoxLoadoutSlot6 = new ComboBox();
             panel1 = new Panel();
+            chkShowOldUI = new CheckBox();
             gameModeTabControl = new TabControl();
             gameModeSurvivalTab = new TabPage();
             gameModeSiegeTab = new TabPage();
@@ -199,6 +200,7 @@ namespace SingleplayerLauncher
             label9 = new Label();
             maskedTextBoxJoinSiegeGameHostIP = new MaskedTextBox();
             tabPage8 = new TabPage();
+            chkSiegeAllyBots = new CheckBox();
             groupBox1 = new GroupBox();
             chkSiegeEnemyTeamAsBots = new CheckBox();
             comBoxSiegeDifficulty = new ComboBox();
@@ -231,6 +233,10 @@ namespace SingleplayerLauncher
             siegeGameSettingsGroupBox = new GroupBox();
             comBoxSiegeLanguage = new ComboBox();
             labelSiegeLanguage = new Label();
+            gameModeSurvivalNewUITab = new TabPage();
+            btnOpenNewUI = new Button();
+            label17 = new Label();
+            label5 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             loadoutEditorTabControl = new TabControl();
             loadoutEditorSurvivalTab = new TabPage();
@@ -297,7 +303,6 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot5 = new ComboBox();
             comBoxSiegeLoadoutSlot7 = new ComboBox();
             comBoxSiegeLoadoutSlot6 = new ComboBox();
-            chkSiegeAllyBots = new CheckBox();
             battlegroundGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)startingCoinInput).BeginInit();
             modsGroupBox.SuspendLayout();
@@ -319,6 +324,7 @@ namespace SingleplayerLauncher
             tabPage8.SuspendLayout();
             groupBox1.SuspendLayout();
             siegeGameSettingsGroupBox.SuspendLayout();
+            gameModeSurvivalNewUITab.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             loadoutEditorTabControl.SuspendLayout();
             loadoutEditorSurvivalTab.SuspendLayout();
@@ -348,6 +354,7 @@ namespace SingleplayerLauncher
             chkDebug.TabIndex = 6;
             chkDebug.Text = "Debug";
             chkDebug.UseVisualStyleBackColor = true;
+            chkDebug.CheckedChanged += chkDebug_CheckedChanged;
             // 
             // battlegroundGroupBox
             // 
@@ -762,13 +769,14 @@ namespace SingleplayerLauncher
             // chkRunAs32
             // 
             chkRunAs32.AutoSize = true;
-            chkRunAs32.Location = new System.Drawing.Point(114, 650);
+            chkRunAs32.Location = new System.Drawing.Point(122, 650);
             chkRunAs32.Margin = new Padding(4, 3, 4, 3);
             chkRunAs32.Name = "chkRunAs32";
             chkRunAs32.Size = new System.Drawing.Size(89, 19);
             chkRunAs32.TabIndex = 26;
             chkRunAs32.Text = "Force 32bits";
             chkRunAs32.UseVisualStyleBackColor = true;
+            chkRunAs32.CheckedChanged += chkRunAs32_CheckedChanged;
             // 
             // comBoxLanguage
             // 
@@ -2101,6 +2109,7 @@ namespace SingleplayerLauncher
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.Controls.Add(chkShowOldUI);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(gameModeTabControl);
             panel1.Controls.Add(btnDiscord);
@@ -2113,10 +2122,23 @@ namespace SingleplayerLauncher
             panel1.Size = new System.Drawing.Size(414, 678);
             panel1.TabIndex = 93;
             // 
+            // chkShowOldUI
+            // 
+            chkShowOldUI.AutoSize = true;
+            chkShowOldUI.Location = new System.Drawing.Point(15, 650);
+            chkShowOldUI.Margin = new Padding(4, 3, 4, 3);
+            chkShowOldUI.Name = "chkShowOldUI";
+            chkShowOldUI.Size = new System.Drawing.Size(89, 19);
+            chkShowOldUI.TabIndex = 96;
+            chkShowOldUI.Text = "Show old UI";
+            chkShowOldUI.UseVisualStyleBackColor = true;
+            chkShowOldUI.CheckedChanged += chkShowOldUI_CheckedChanged;
+            // 
             // gameModeTabControl
             // 
             gameModeTabControl.Controls.Add(gameModeSurvivalTab);
             gameModeTabControl.Controls.Add(gameModeSiegeTab);
+            gameModeTabControl.Controls.Add(gameModeSurvivalNewUITab);
             gameModeTabControl.ItemSize = new System.Drawing.Size(175, 18);
             gameModeTabControl.Location = new System.Drawing.Point(0, 38);
             gameModeTabControl.Margin = new Padding(4, 3, 4, 3);
@@ -2307,6 +2329,18 @@ namespace SingleplayerLauncher
             tabPage8.TabIndex = 1;
             tabPage8.Text = "Host Game";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // chkSiegeAllyBots
+            // 
+            chkSiegeAllyBots.AutoSize = true;
+            chkSiegeAllyBots.Location = new System.Drawing.Point(190, 82);
+            chkSiegeAllyBots.Margin = new Padding(4, 3, 4, 3);
+            chkSiegeAllyBots.Name = "chkSiegeAllyBots";
+            chkSiegeAllyBots.Size = new System.Drawing.Size(147, 19);
+            chkSiegeAllyBots.TabIndex = 98;
+            chkSiegeAllyBots.Text = "Fill Team with Ally Bots";
+            chkSiegeAllyBots.UseVisualStyleBackColor = true;
+            chkSiegeAllyBots.CheckedChanged += chkSiegeAllyBots_CheckedChanged;
             // 
             // groupBox1
             // 
@@ -2627,6 +2661,55 @@ namespace SingleplayerLauncher
             labelSiegeLanguage.Size = new System.Drawing.Size(59, 15);
             labelSiegeLanguage.TabIndex = 10;
             labelSiegeLanguage.Text = "Language";
+            // 
+            // gameModeSurvivalNewUITab
+            // 
+            gameModeSurvivalNewUITab.Controls.Add(btnOpenNewUI);
+            gameModeSurvivalNewUITab.Controls.Add(label17);
+            gameModeSurvivalNewUITab.Controls.Add(label5);
+            gameModeSurvivalNewUITab.Location = new System.Drawing.Point(4, 22);
+            gameModeSurvivalNewUITab.Name = "gameModeSurvivalNewUITab";
+            gameModeSurvivalNewUITab.Padding = new Padding(3);
+            gameModeSurvivalNewUITab.Size = new System.Drawing.Size(407, 574);
+            gameModeSurvivalNewUITab.TabIndex = 2;
+            gameModeSurvivalNewUITab.Text = "Survival New UI";
+            gameModeSurvivalNewUITab.UseVisualStyleBackColor = true;
+            // 
+            // btnOpenNewUI
+            // 
+            btnOpenNewUI.BackColor = System.Drawing.Color.SpringGreen;
+            btnOpenNewUI.Cursor = Cursors.Hand;
+            btnOpenNewUI.Location = new System.Drawing.Point(52, 210);
+            btnOpenNewUI.Margin = new Padding(0);
+            btnOpenNewUI.Name = "btnOpenNewUI";
+            btnOpenNewUI.Size = new System.Drawing.Size(298, 52);
+            btnOpenNewUI.TabIndex = 97;
+            btnOpenNewUI.Text = "Open Loadout creator and Battleground selector";
+            btnOpenNewUI.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnOpenNewUI.UseVisualStyleBackColor = false;
+            btnOpenNewUI.Click += btnOpenNewUI_Click;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = System.Drawing.Color.Pink;
+            label17.Font = new System.Drawing.Font("Segoe UI", 9F);
+            label17.Location = new System.Drawing.Point(29, 274);
+            label17.Name = "label17";
+            label17.Size = new System.Drawing.Size(348, 15);
+            label17.TabIndex = 83;
+            label17.Text = "Don't close this application while using new UI and while playing";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = System.Drawing.Color.NavajoWhite;
+            label5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            label5.Location = new System.Drawing.Point(92, 528);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(236, 30);
+            label5.TabIndex = 82;
+            label5.Text = "If Loadout creator is not working, the old UI\r\ncan be used with the checkbox below";
             // 
             // tableLayoutPanel1
             // 
@@ -3408,18 +3491,6 @@ namespace SingleplayerLauncher
             comBoxSiegeLoadoutSlot6.TabIndex = 5;
             comBoxSiegeLoadoutSlot6.SelectedIndexChanged += comBoxSiegeLoadoutSlot6_SelectedIndexChanged;
             // 
-            // chkSiegeAllyBots
-            // 
-            chkSiegeAllyBots.AutoSize = true;
-            chkSiegeAllyBots.Location = new System.Drawing.Point(190, 82);
-            chkSiegeAllyBots.Margin = new Padding(4, 3, 4, 3);
-            chkSiegeAllyBots.Name = "chkSiegeAllyBots";
-            chkSiegeAllyBots.Size = new System.Drawing.Size(147, 19);
-            chkSiegeAllyBots.TabIndex = 98;
-            chkSiegeAllyBots.Text = "Fill Team with Ally Bots";
-            chkSiegeAllyBots.UseVisualStyleBackColor = true;
-            chkSiegeAllyBots.CheckedChanged += chkSiegeAllyBots_CheckedChanged;
-            // 
             // LauncherMainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -3465,6 +3536,8 @@ namespace SingleplayerLauncher
             groupBox1.PerformLayout();
             siegeGameSettingsGroupBox.ResumeLayout(false);
             siegeGameSettingsGroupBox.PerformLayout();
+            gameModeSurvivalNewUITab.ResumeLayout(false);
+            gameModeSurvivalNewUITab.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             loadoutEditorTabControl.ResumeLayout(false);
@@ -3747,6 +3820,11 @@ namespace SingleplayerLauncher
         private Label labelOverrideLevels;
         private Label label3;
         private CheckBox chkSiegeAllyBots;
+        private TabPage gameModeSurvivalNewUITab;
+        private Label label5;
+        private CheckBox chkShowOldUI;
+        private Label label17;
+        private Button btnOpenNewUI;
     }
 }
 

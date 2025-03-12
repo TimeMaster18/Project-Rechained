@@ -2,7 +2,10 @@
 using SingleplayerLauncher.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SingleplayerLauncher
@@ -174,6 +177,7 @@ namespace SingleplayerLauncher
             {
                 comBoxSiegeLanguage.Items.Add(language);
             }
+            chkShowOldUI.Checked = Settings.Instance.ShowOldUI;
             chkDebug.Checked = Settings.Instance.Debug;
             chkRunAs32.Checked = Settings.Instance.RunAs32;
             comBoxLanguage.SelectedItem = Settings.Instance.Language;
@@ -299,6 +303,21 @@ namespace SingleplayerLauncher
             }
             else
             {
+                if (!Settings.Instance.ShowOldUI)
+                {
+                    gameModeTabControl.TabPages.Remove(gameModeSurvivalTab);
+                    loadoutEditorTabControl.TabPages.Remove(loadoutEditorSurvivalTab);
+
+                    chk_modsEnabled.Enabled = false;
+                    modsPanel.Visible = false;
+                    panelLoadoutEditor.Visible = false;
+                    loadoutEditorTabControl.Visible = false;
+                }
+                else
+                {
+                    gameModeTabControl.TabPages.Remove(gameModeSurvivalNewUITab);
+                }
+
                 gameModeTabControl.TabPages.Remove(gameModeSiegeTab);
                 loadoutEditorTabControl.TabPages.Remove(loadoutEditorSiegeTab);
             }
@@ -311,7 +330,6 @@ namespace SingleplayerLauncher
         private void btnLaunch_Click(object sender, EventArgs e)
         {
             GameLauncher.ApplyChanges(isHost: true, parTimeSeconds: (int)GameInfo.SurvivalBattleground.ParTime.TotalSeconds);
-            SaveSettings();
 
             string playerName = maskedTextBoxPlayerName.Text;
             var (isPlayerNameValid, errorMessagePlayerName) = InputValidator.ValidatePlayerName(playerName);
@@ -351,7 +369,6 @@ namespace SingleplayerLauncher
         private void btnJoinGame_Click(object sender, EventArgs e)
         {
             GameLauncher.ApplyChanges(isHost: false);
-            SaveSettings();
 
             string hostIP = maskedTextBoxJoinGameHostIP.Text;
             string loadoutCode = maskedTextBoxJoinGameLoadout.Text;
@@ -376,13 +393,6 @@ namespace SingleplayerLauncher
             GameFiles.CharacterData.ApplyLoadout(loadout);
             loadout.PlayerName = playerName;
             GameLauncher.StartGame(loadout.PlayerName, isHost: false, hostIP);
-        }
-
-        public void SaveSettings()
-        {
-            Settings.Instance.Debug = chkDebug.Checked;
-            Settings.Instance.RunAs32 = chkRunAs32.Checked;
-            Settings.Instance.Save();
         }
 
         private void comBoxBattleground_SelectedIndexChanged(object sender, EventArgs e)
@@ -1258,7 +1268,7 @@ namespace SingleplayerLauncher
 
         private void btnDiscord_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(DISCORD_SERVER_INVITE_URL);
+            Process.Start(new ProcessStartInfo(DISCORD_SERVER_INVITE_URL) { UseShellExecute = true });
         }
 
         private void maskedTextBoxHostGamePlayer1Loadout_TextChanged(object sender, EventArgs e)
@@ -1380,7 +1390,6 @@ namespace SingleplayerLauncher
         private void btnJoinSiegeGame_Click(object sender, EventArgs e)
         {
             GameLauncher.ApplyChanges(isHost: false, isSiege: true);
-            SaveSettings();
 
             string hostIP = maskedTextBoxJoinSiegeGameHostIP.Text;
             string loadoutCode = maskedTextBoxJoinSiegeGameLoadout.Text;
@@ -1411,8 +1420,6 @@ namespace SingleplayerLauncher
         {
             bool isSiegeCoop = GameConfig.Instance.SiegeEnemyTeamAsBots;
             bool isSiegeAllyBots = GameConfig.Instance.SiegeAllyBots;
-
-            SaveSettings();
 
             string playerName = maskedTextBoxSiegePlayerName.Text;
             var (isPlayerNameValid, errorMessagePlayerName) = InputValidator.ValidatePlayerName(playerName);
@@ -2005,6 +2012,89 @@ namespace SingleplayerLauncher
             Mods.Mods.TrapTierOverride.Value = (int)inputOverrideTrapTier.Value;
             GameConfig.Instance.TrapTier = (int)inputOverrideTrapTier.Value;
             GameConfig.Instance.Save();
+        }
+
+        private void chkShowOldUI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowOldUI.Checked)
+            {
+                gameModeTabControl.TabPages.Add(gameModeSurvivalTab);
+                loadoutEditorTabControl.TabPages.Add(loadoutEditorSurvivalTab);
+                gameModeTabControl.TabPages.Add(gameModeSiegeTab);
+                loadoutEditorTabControl.TabPages.Add(loadoutEditorSiegeTab);
+
+                gameModeTabControl.TabPages.Remove(gameModeSurvivalNewUITab);
+            }
+            else
+            {
+                gameModeTabControl.TabPages.Remove(gameModeSurvivalTab);
+                loadoutEditorTabControl.TabPages.Remove(loadoutEditorSurvivalTab);
+                gameModeTabControl.TabPages.Remove(gameModeSiegeTab);
+                loadoutEditorTabControl.TabPages.Remove(loadoutEditorSiegeTab);
+
+                gameModeTabControl.TabPages.Add(gameModeSurvivalNewUITab);
+            }
+
+            modsPanel.Visible = chkShowOldUI.Checked;
+            panelLoadoutEditor.Visible = chkShowOldUI.Checked;
+            loadoutEditorTabControl.Visible = chkShowOldUI.Checked;
+        }
+
+
+        private static readonly List<string> NEW_UI_URLS = new List<string>
+        {
+            "https://danmander.github.io/omdu/",
+            "https://omdu.danmander.com/"
+        };
+
+        private async void btnOpenNewUI_Click(object sender, EventArgs e)
+        {
+            string validUrl = await GetFirstValidUrlAsync(NEW_UI_URLS);
+
+            if (!string.IsNullOrEmpty(validUrl))
+            {
+                Process.Start(new ProcessStartInfo(validUrl) { UseShellExecute = true });
+            }
+            else
+            {
+                MessageBox.Show("No valid URL found.", "No valid URL found.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private static async Task<string> GetFirstValidUrlAsync(IEnumerable<string> urls)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                foreach (string url in urls)
+                {
+                    try
+                    {
+                        HttpResponseMessage response = await client.GetAsync(url);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return url;
+                        }
+                    }
+                    catch (HttpRequestException)
+                    {
+                        // Log or handle exceptions if needed
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private void chkRunAs32_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Instance.RunAs32 = chkRunAs32.Checked;
+            Settings.Instance.Save();
+        }
+
+        private void chkDebug_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Instance.Debug = chkDebug.Checked;
+            Settings.Instance.Save();
         }
     }
 }

@@ -117,18 +117,18 @@ namespace SingleplayerLauncher.Model
 
         public static Dictionary<string, Endless> EndlessBattlegrounds = new()
         {
-                { TheBaths.Name, TheBathsEndless },
-                { BanquetHall.Name, BanquetHallEndless },
-                { ThroneRoom.Name, ThroneRoomEndless },
-                { Highlands.Name, HighlandsEndless },
-                { TheWall.Name, TheWallEndless },
-                { ThuricvodVillage.Name, ThuricvodVillageEndless },
-                { CrogonKeep.Name, CrogonKeepEndless },
-                { SharkIsland.Name, SharkIslandEndless },
-                { Frostbite.Name, FrostbiteEndless },
-                { Avalanche.Name, AvalancheEndless },
-                { CastleGates.Name, CastleGatesEndless },
-                { EventideFortress.Name, EventideFortressEndless },
-            };
+            { TheBaths.Name, TheBathsEndless },
+            { BanquetHall.Name, BanquetHallEndless },
+            { ThroneRoom.Name, ThroneRoomEndless },
+            { Highlands.Name, HighlandsEndless },
+            { TheWall.Name, TheWallEndless },
+            { ThuricvodVillage.Name, ThuricvodVillageEndless },
+            { CrogonKeep.Name, CrogonKeepEndless },
+            { SharkIsland.Name, SharkIslandEndless },
+            { Frostbite.Name, FrostbiteEndless },
+            { Avalanche.Name, AvalancheEndless },
+            { CastleGates.Name, CastleGatesEndless },
+            { EventideFortress.Name, EventideFortressEndless },
+        };
     }
 }

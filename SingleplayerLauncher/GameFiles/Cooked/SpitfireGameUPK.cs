@@ -10,8 +10,6 @@ namespace SingleplayerLauncher
 
         public static UPKFile SpitfireGameUPKFile;
 
-        private readonly GameInfo GameInfo = GameInfo.Instance;
-
         private const int MAX_TRAP_TIER = 7;
         private const string TRAP_TIER_STRING = "src.TrapStrength";
 
