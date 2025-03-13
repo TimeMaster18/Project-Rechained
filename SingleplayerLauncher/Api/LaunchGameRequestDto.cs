@@ -22,14 +22,14 @@ namespace ProjectRechained.Api
         public string GameMode { get; set; }
 
         /// <summary>
-        /// For Survival, this would be "APPRENTICE", "WAR_MAGE", "MASTER", or "RIFT_LORD".
+        /// For Survival, this would be "Apprentice", "War Mage", "Master", or "Rift lord".
         /// For Endless, can be ignored.
         /// </summary>
         public string Difficulty { get; set; }
 
         /// <summary>
         /// Additional difficulty settings, if applicable.
-        /// This may include modifiers or custom challenge settings.
+        /// Examples: "Apprentice+", "Master++", "Rift Lord+3"
         /// </summary>
         public string ExtraDifficulty { get; set; }
 

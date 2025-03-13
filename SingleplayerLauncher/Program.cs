@@ -123,14 +123,6 @@ namespace SingleplayerLauncher
                 }
                 Application.Exit();
             }
-            else
-            {
-                Settings.Instance.Load();
-                GameConfig.Instance.Load();
-                SurvivalLoadouts.Instance.Load();
-
-                Application.Run(new LauncherMainForm());
-            }
         }
 
         /// <summary>
@@ -205,28 +197,27 @@ namespace SingleplayerLauncher
                 {
                     webBuilder.UseKestrel()
                               .UseUrls("http://localhost:5001") // Set desired API port
-                              .ConfigureServices(services => services.AddControllers())
+                              .ConfigureServices(services =>
+                              {
+                                  services.AddControllers();
+                                  services.AddCors(options =>
+                                  {
+                                      options.AddPolicy("AllowAllOrigins",
+                                          builder => builder.AllowAnyOrigin()
+                                                            .AllowAnyMethod()
+                                                            .AllowAnyHeader());
+                                  });
+                              })
                               .Configure(app =>
                               {
                                   app.UseRouting();
+                                  app.UseCors("AllowAllOrigins"); // Apply CORS globally
                                   app.UseEndpoints(endpoints => endpoints.MapControllers());
                               });
                 })
                 .Build();
 
             await _apiHost.StartAsync();
-        }
-
-        /// <summary>
-        /// Gracefully stops the API server when the application exits.
-        /// </summary>
-        private static async Task StopApiServer()
-        {
-            if (_apiHost != null)
-            {
-                await _apiHost.StopAsync();
-                _apiHost.Dispose();
-            }
         }
     }
 }
