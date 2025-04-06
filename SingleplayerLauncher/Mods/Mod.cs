@@ -2,6 +2,8 @@
 {
     public abstract class Mod
     {
+        public string Name { get; private set; }
+
         internal static UPKFile UPKFile { get; set; }
 
         public bool IsEnabled { get; set; } = false;

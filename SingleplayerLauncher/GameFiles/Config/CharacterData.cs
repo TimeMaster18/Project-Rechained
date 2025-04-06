@@ -226,7 +226,7 @@ namespace SingleplayerLauncher.GameFiles
 
                 TrapPart[] parts = isTrap && !isSiege ? ((SurvivalLoadout)loadout).GetTrapPartsForLoadout(i) : null;
 
-                if (overrideTrapLevel <= 0  && Mods.Mods.TrapTierOverride.IsEnabled)
+                if (overrideTrapLevel <= 0 && Mods.Mods.TrapTierOverride.IsEnabled)
                 {
                     trapTier = Mods.Mods.TrapTierOverride.Value;
                 } else if (isTrap && !isSiege)

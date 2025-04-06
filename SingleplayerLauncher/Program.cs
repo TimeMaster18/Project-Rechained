@@ -1,17 +1,19 @@
-﻿using SingleplayerLauncher.GameFiles;
+﻿using Microsoft.Extensions.Hosting;
+using SingleplayerLauncher.GameFiles;
 using System;
 using System.IO;
 using System.Windows.Forms;
-//using CefSharp;
-//using CefSharp.WinForms;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace SingleplayerLauncher
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        private static IHost _apiHost;
+
         [STAThread]
         private static void Main()
         {
@@ -23,29 +25,127 @@ namespace SingleplayerLauncher
                 MessageBox.Show(dlg.ResultPath);
             }
             */
-            //var settings = new CefSettings() { CachePath = System.IO.Path.GetFullPath() + "Cache" };
-            //Cef.Initialize(settings);
-
-            ////Cef.Initialize(new CefSettings());
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            InitializeGameSettings();
 
+            StartApiServer(); // Start the embedded REST API
+
+            if (Settings.Instance.IsSiegeInstallation)
+            {
+                LoadSiegeMode();
+            }
+            else
+            {
+                LoadSurvivalMode();
+            }
+        }
+
+        /// <summary>
+        /// Loads and runs the game in Survival mode.
+        /// </summary>
+        private static void LoadSurvivalMode()
+        {
+            UpdateSpitfireDashboardFiles();
+            Settings.Instance.Load();
+            GameConfig.Instance.Load();
+            SurvivalLoadouts.Instance.Load();
+
+            Application.Run(new LauncherMainForm());
+        }
+
+        /// <summary>
+        /// Loads and runs the game in Siege mode.
+        /// </summary>
+        private static void LoadSiegeMode()
+        {
+            Settings.Instance.Load();
+            GameConfig.Instance.Load();
+            SiegeLoadouts.Instance.Load();
+
+            Application.Run(new LauncherMainForm());
+        }
+
+        /// <summary>
+        /// Updates the Spitfire Dashboard if necessary.
+        /// </summary>
+        private static void UpdateSpitfireDashboardFiles()
+        {
+            // SpitfireDashboard Initialization
+            string dashboardFolderPath = Path.Combine(Settings.Instance.RootGamePath, FileUtils.DASHBOARD_FOLDER_PATH);
+            string dllPath = Path.Combine(Settings.Instance.LauncherInstallationPath, "Newtonsoft.Json.dll");
+            string targetDllPath = Path.Combine(dashboardFolderPath, "Newtonsoft.Json.dll");
+
+            // Check and copy DLL if it doesn't exist or the size has changed
+            if (!File.Exists(targetDllPath) || new FileInfo(dllPath).Length != new FileInfo(targetDllPath).Length)
+            {
+                FileUtils.CopyFileWithCheck(dllPath, targetDllPath, true);
+            }
+
+            string launcherExePath = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.PROJECT_RECHAINED_LAUNCHER_EXE_FILE_NAME);
+            string dashboardExePath = Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
+
+            FileInfo spitfireDashboardExeFileInfo = new(dashboardExePath);
+            FileInfo launcherExeFileInfo = new(launcherExePath);
+
+            bool isUpdateRequired = spitfireDashboardExeFileInfo.LastWriteTime != launcherExeFileInfo.LastWriteTime;
+            bool isExecutingFromDashboardFolder = Directory.GetCurrentDirectory().Equals(dashboardFolderPath, StringComparison.OrdinalIgnoreCase);
+
+            if (!File.Exists(dashboardExePath) || (!isExecutingFromDashboardFolder && isUpdateRequired))
+            {
+                FileUtils.CopyFileWithCheck(launcherExePath, dashboardExePath, File.Exists(dashboardExePath));
+            }
+
+            string tempExePath = Path.Combine(dashboardFolderPath, "temp_" + FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
+
+            if (File.Exists(tempExePath))
+            {
+                File.Delete(tempExePath);
+            }
+
+            if (isExecutingFromDashboardFolder && isUpdateRequired)
+            {
+                MessageBox.Show("The application will now apply the new update.");
+                try
+                {
+                    // Rename the current executable to a temporary name
+                    File.Move(dashboardExePath, tempExePath);
+
+                    // Copy the new executable to the original target name
+                    FileUtils.CopyFileWithCheck(launcherExePath, dashboardExePath);
+
+                    MessageBox.Show("The application has been updated. Please restart the application.");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error updating Launcher when running from Steam. Try running it from the Project Rechained Folder. Error: " + e.Message);
+                }
+                Application.Exit();
+            }
+        }
+
+        /// <summary>
+        /// Initializes game settings and configurations.
+        /// </summary>
+        private static void InitializeGameSettings()
+        {
             string rootFolder = FileUtils.FindRootFolder();
             Settings.Instance.RootGamePath = rootFolder;
 
             string launcherInstallationPath = FileUtils.GetLauncherInstallationPath(rootFolder);
             Settings.Instance.LauncherInstallationPath = launcherInstallationPath;
 
-            bool isSiegeInstallation = false;
-            string UPKsFolderPath = Path.Combine(Settings.Instance.RootGamePath, FileUtils.UPKS_PATH);
-            string spitfireGameUPK = Path.Combine(UPKsFolderPath, FileUtils.SPITFIREGAME_UPK_FILENAME);
-            if (new FileInfo(spitfireGameUPK).Length == FileUtils.SPITFIREGAME_SIEGE_UPK_ORG_SIZE)
-            {
-                // Assuming that the file in the Siege version is never extracted
-                isSiegeInstallation = true;
-            }
+            Settings.Instance.IsSiegeInstallation = DetectSiegeInstallation();
+
+            MoveLegacyConfigFiles(rootFolder);
+        }
+
+        /// <summary>
+        /// Detects if the game is a Siege installation based on UPK file size.
+        /// </summary>
+        private static bool DetectSiegeInstallation()
+        {
             /* TODO: Add proper checking for game versions
             else
             {
@@ -55,109 +155,69 @@ namespace SingleplayerLauncher
                 }
             }
             */
+            string upksFolderPath = Path.Combine(Settings.Instance.RootGamePath, FileUtils.UPKS_PATH);
+            string spitfireGameUPK = Path.Combine(upksFolderPath, FileUtils.SPITFIREGAME_UPK_FILENAME);
 
-            Settings.Instance.IsSiegeInstallation = isSiegeInstallation;
+            return File.Exists(spitfireGameUPK) &&
+                   new FileInfo(spitfireGameUPK).Length == FileUtils.SPITFIREGAME_SIEGE_UPK_ORG_SIZE;
+        }
 
-
-            // TODO: remove at later release
-            var survivalLoadouts = SurvivalLoadouts.Instance;
-            string settingsFile = Path.Combine(rootFolder, FileUtils.BINARIES_FOLDER_NAME, Settings.SETTINGS_FILE_NAME);
-            string gameConfigFile = Path.Combine(rootFolder, FileUtils.BINARIES_FOLDER_NAME, GameConfig.GAME_CONFIG_FILE_NAME);
-            string loadoutsFile = Path.Combine(rootFolder, FileUtils.BINARIES_FOLDER_NAME, survivalLoadouts.FileName);
-            if (File.Exists(settingsFile))
+        /// <summary>
+        /// Moves legacy config files to the appropriate launcher installation path.
+        /// </summary>
+        private static void MoveLegacyConfigFiles(string rootFolder)
+        {
+            string[] filesToMove =
             {
-                string newSettingsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, Settings.SETTINGS_FILE_NAME);
-                File.Move(settingsFile, newSettingsFile);
-            }
-            if (File.Exists(gameConfigFile))
+                Settings.SETTINGS_FILE_NAME,
+                GameConfig.GAME_CONFIG_FILE_NAME,
+                SurvivalLoadouts.Instance.FileName
+            };
+
+            string configPath = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME);
+            foreach (string file in filesToMove)
             {
-                string newGameConfigFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, GameConfig.GAME_CONFIG_FILE_NAME);
-                File.Move(gameConfigFile, newGameConfigFile);
-            }
-            if (File.Exists(loadoutsFile))
-            {
-                string newLoadoutsFile = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.CONFIG_FOLDER_NAME, survivalLoadouts.FileName);
-                File.Move(loadoutsFile, newLoadoutsFile);
-            }
+                string oldPath = Path.Combine(rootFolder, FileUtils.BINARIES_FOLDER_NAME, file);
+                string newPath = Path.Combine(configPath, file);
 
-            if (!isSiegeInstallation)
-            {
-                // SpitfireDashboard Initialization
-                string dashboardFolderPath = Path.Combine(Settings.Instance.RootGamePath, FileUtils.DASHBOARD_FOLDER_PATH);
-                string dllPath = Path.Combine(Settings.Instance.LauncherInstallationPath, "Newtonsoft.Json.dll");
-                string targetDllPath = Path.Combine(dashboardFolderPath, "Newtonsoft.Json.dll");
-
-                // Check and copy DLL if it doesn't exist or the size has changed
-                if (!File.Exists(targetDllPath) || new FileInfo(dllPath).Length != new FileInfo(targetDllPath).Length)
+                if (File.Exists(oldPath))
                 {
-                    FileUtils.CopyFileWithCheck(dllPath, targetDllPath, true);
-                }
-
-                string launcherExePath = Path.Combine(Settings.Instance.LauncherInstallationPath, FileUtils.PROJECT_RECHAINED_LAUNCHER_EXE_FILE_NAME);
-                string dashboardExePath = Path.Combine(dashboardFolderPath, FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
-
-                FileInfo spitfireDashboardExeFileInfo = new(dashboardExePath);
-                FileInfo launcherExeFileInfo = new(launcherExePath);
-
-                bool isUpdateRequired = spitfireDashboardExeFileInfo.LastWriteTime != launcherExeFileInfo.LastWriteTime;
-                bool isExecutingFromDashboardFolder = Directory.GetCurrentDirectory().Equals(dashboardFolderPath, StringComparison.OrdinalIgnoreCase);
-
-                if (!File.Exists(dashboardExePath) || (!isExecutingFromDashboardFolder && isUpdateRequired))
-                {
-                    FileUtils.CopyFileWithCheck(launcherExePath, dashboardExePath, File.Exists(dashboardExePath));
-                }
-
-                string tempExePath = Path.Combine(dashboardFolderPath, "temp_" + FileUtils.SPITFIREDASHBOARD_EXE_FILENAME);
-
-                if (File.Exists(tempExePath))
-                {
-                    File.Delete(tempExePath);
-                }
-
-                if (isExecutingFromDashboardFolder && isUpdateRequired)
-                {
-                    MessageBox.Show("The application will now apply the new update.");
-                    try
-                    {
-                        // Rename the current executable to a temporary name
-                        File.Move(dashboardExePath, tempExePath);
-
-                        // Copy the new executable to the original target name
-                        FileUtils.CopyFileWithCheck(launcherExePath, dashboardExePath);
-
-                        MessageBox.Show("The application has been updated. Please restart the application.");
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("Error updating Launcher when running from Steam. Try running it from the Project Rechained Folder. Error: " + e.Message);
-                    }
-                    Application.Exit();
-                }
-                else
-                {
-
-                    Settings.Instance.Load();
-                    GameConfig.Instance.Load();
-                    SurvivalLoadouts.Instance.Load();
-
-                    Application.Run(new LauncherMainForm());
+                    File.Move(oldPath, newPath, true);
                 }
             }
-            else
-            {
-                Settings.Instance.Load();
-                GameConfig.Instance.Load();
-                SiegeLoadouts.Instance.Load();
+        }
 
-                Application.Run(new LauncherMainForm());
-            }
+        /// <summary>
+        /// Starts an embedded ASP.NET Core Web API server.
+        /// </summary>
+        private static async void StartApiServer()
+        {
+            _apiHost = Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseKestrel()
+                              .UseUrls("http://localhost:5001") // Set desired API port
+                              .ConfigureServices(services =>
+                              {
+                                  services.AddControllers();
+                                  services.AddCors(options =>
+                                  {
+                                      options.AddPolicy("AllowAllOrigins",
+                                          builder => builder.AllowAnyOrigin()
+                                                            .AllowAnyMethod()
+                                                            .AllowAnyHeader());
+                                  });
+                              })
+                              .Configure(app =>
+                              {
+                                  app.UseRouting();
+                                  app.UseCors("AllowAllOrigins"); // Apply CORS globally
+                                  app.UseEndpoints(endpoints => endpoints.MapControllers());
+                              });
+                })
+                .Build();
 
-
-            ////Application.Run(new MainForm());
-            ///
-
-            // Cleanup
-            ////Cef.Shutdown();
+            await _apiHost.StartAsync();
         }
     }
 }

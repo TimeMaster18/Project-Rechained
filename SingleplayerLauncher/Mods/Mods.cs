@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SingleplayerLauncher.Names;
 
 namespace SingleplayerLauncher.Mods
 {
@@ -39,5 +40,24 @@ namespace SingleplayerLauncher.Mods
             TrapTierOverride,
             AdditionalHeroWeapon
         ];
+
+        public readonly static Dictionary<string, Mod> ModsByName = new()
+        {
+            { Names.Mod.NO_TRAP_CAP, NoTrapCap },
+            { Names.Mod.NO_LIMIT_UNIQUE_TRAPS, NoLimitUniqueTraps },
+            { Names.Mod.INVINCIBLE_BARRICADES, InvincibleBarricades },
+            { Names.Mod.TRAPS_ANY_SURFACE, TrapsAnySurface },
+            { Names.Mod.TRAPS_IN_TRAPS, TrapsInTraps },
+            { Names.Mod.NO_TRAP_GRID, NoTrapGrid },
+            { Names.Mod.GOD_MODE, GodMode },
+            { Names.Mod.SHOW_TRAP_DAMAGE_FLYOFFS, ShowTrapDamageFlyoffs },
+            { Names.Mod.HARDCORE, Hardcore },
+            { Names.Mod.ENHANCED_TRAP_ROTATION, EnhancedTrapRotation },
+            { Names.Mod.SELL_TRAPS_ANYTIME, SellTrapsAnytime },
+            { Names.Mod.STARTING_COIN_OVERRIDE, StartingCoinOverride },
+            { Names.Mod.ACCOUNT_LEVEL_OVERRIDE, AccountLevelOverride },
+            { Names.Mod.TRAP_TIER_OVERRIDE, TrapTierOverride },
+            { Names.Mod.ADDITIONAL_HERO_WEAPON, AdditionalHeroWeapon }
+        };
     }
 }
