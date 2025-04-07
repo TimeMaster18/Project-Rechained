@@ -53,11 +53,9 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 ### Coming Next
 - Campaign Mode
 - Loadout randomizer
-- Fix Coop issues
+- Fix (some) Coop issues
 
 ### Known Problems
-- UI of the launcher is simple
-
 #### Survival
 - Host player has no enemy / guardian / hero voices
 - (Coop) Client sometimes needs to rejoin to get all skills 
@@ -82,6 +80,7 @@ This project would not have been possible without the help and support of severa
 A big thank you to all the people who contributed to this project:
 
 - **DaTeddy** - Contributed with reverse-engineering, testing, documenting and much more.
+- **DanMander** - Contributed with a more visual and extended browser-based UI.
 
 This project makes use of the following open-source projects:
 
