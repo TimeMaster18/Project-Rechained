@@ -13,17 +13,18 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 #### Prerequisites (only for portable version, if unsure skip):
 
-1. **Download and Install .NET SDK**:
+1. **Download and Install .NET SDK 8.0**:
     - Go to the [.NET download page](https://dotnet.microsoft.com/download/dotnet).
     - Download and install the latest **.NET SDK 8** suitable for your operating system. [Windows x64 Direct Link](https://download.visualstudio.microsoft.com/download/pr/f5f1c28d-7bc9-431e-98da-3e2c1bbd1228/864e152e374b5c9ca6d58ee953c5a6ed/dotnet-sdk-8.0.401-win-x64.exe)
 
 #### How to install for Survival:
 
-1. Download Game from: [Steam](https://intradeus.github.io/http-protocol-redirector?r=steam://rungameid/427270) (If link doesn't work, ask for help at the Discord server)
-2. Download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
-3. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
-4. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder.
-5. (Optional) Close the Launcher and launch from Steam
+1. Download and Install .NET 8.0 from: [Microsoft .NET](https://dotnet.microsoft.com/en-us/download)
+2. Download Game from: [Steam](https://intradeus.github.io/http-protocol-redirector?r=steam://rungameid/427270) (If link doesn't work, ask for help at the Discord server)
+3. Download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
+4. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your game installation. (Same folder that contains "Binaries", "Engine", etc)
+5. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder.
+6. (Optional) Close the Launcher and launch from Steam
 
 Note: Once installed, it can be launched from Steam by Pressing play on the Orcs Must Die! Unchained Game in your library.
 
