@@ -11,7 +11,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 ### How to install:
 
-#### Prerequisites:
+#### Prerequisites (only for portable version, if unsure skip):
 
 1. **Download and Install .NET SDK**:
     - Go to the [.NET download page](https://dotnet.microsoft.com/download/dotnet).
@@ -27,7 +27,7 @@ If you want to give feedback, contribute, participate in testing or just hang ar
 
 Note: Once installed, it can be launched from Steam by Pressing play on the Orcs Must Die! Unchained Game in your library.
 
-#### How to install for Siege:
+#### How to install for Siege (Not required for survival, requires a second game installation):
 [Siege installation instructions](Siege_installation_instructions.md)
 
 ### Features:
