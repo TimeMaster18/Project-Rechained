@@ -300,6 +300,8 @@ namespace SingleplayerLauncher
             {
                 gameModeTabControl.TabPages.Remove(gameModeSurvivalTab);
                 loadoutEditorTabControl.TabPages.Remove(loadoutEditorSurvivalTab);
+                gameModeTabControl.TabPages.Remove(gameModeSurvivalNewUITab);
+                chkShowOldUI.Visible = false;
             }
             else
             {
@@ -2020,8 +2022,6 @@ namespace SingleplayerLauncher
             {
                 gameModeTabControl.TabPages.Add(gameModeSurvivalTab);
                 loadoutEditorTabControl.TabPages.Add(loadoutEditorSurvivalTab);
-                gameModeTabControl.TabPages.Add(gameModeSiegeTab);
-                loadoutEditorTabControl.TabPages.Add(loadoutEditorSiegeTab);
 
                 gameModeTabControl.TabPages.Remove(gameModeSurvivalNewUITab);
             }
@@ -2029,8 +2029,6 @@ namespace SingleplayerLauncher
             {
                 gameModeTabControl.TabPages.Remove(gameModeSurvivalTab);
                 loadoutEditorTabControl.TabPages.Remove(loadoutEditorSurvivalTab);
-                gameModeTabControl.TabPages.Remove(gameModeSiegeTab);
-                loadoutEditorTabControl.TabPages.Remove(loadoutEditorSiegeTab);
 
                 gameModeTabControl.TabPages.Add(gameModeSurvivalNewUITab);
             }
