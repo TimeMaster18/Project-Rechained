@@ -148,3 +148,10 @@ Both players must:
 
 These issues are known.
 They are unlikely to be fixed, and the cause is not clearly understood.
+
+## Contact
+
+If you have any further questions, suggestions, or feedback, feel free to reach out:
+
+- **Project Maintainer:** [TimeMaster](https://github.com/TimeMaster18) - Discord: timemaster
+- **Discord Server:** [OMD Modding Server](https://discord.gg/xkZskPXtwm)
