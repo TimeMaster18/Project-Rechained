@@ -1,6 +1,6 @@
 # Project Rechained
 
-The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way to be played again. This is achieved by applying modifications to the game.
+The aim of this project is to provide the game of **Orcs Must Die! Unchained** a way to be played again. This is achieved by applying modifications to the game. (See [Frequently Asked Questions (FAQ)](./FAQ.md) for more info)
 
 **This mod will modify your game files**. But it will also create backups for the original files automatically.
 
@@ -66,6 +66,10 @@ Note: Once installed, it can be launched from Steam by Pressing play on the Orcs
 - Host player doesn't have all sounds (mostly hero and minion related)
 - Host Hero Upgrades popup doesn't close automatically (requires pressing U) after picking upgrade
 - (Visual only) Host player own Midnight "invisibility" not showing properly
+
+## Issues and Troubleshooting
+
+See [Frequently Asked Questions (FAQ)](./FAQ.md) for more info.
 
 ## Acknowledgements
 
