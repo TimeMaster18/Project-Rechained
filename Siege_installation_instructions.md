@@ -54,11 +54,12 @@
     - Once the download is complete, navigate to the download folder to ensure all files are there. Game root folder will be some folders deeper.
 
 9. Now that you have OMDU Siege version downloaded, download the Project Rechained Launcher latest release from: [Latest release .zip](https://github.com/TimeMaster18/Project-Rechained/releases/latest/download/Project_Rechained_Launcher.zip)
+    - !! IMPORTANT !! Don't reuse the ProjectRechained folder from Survival installation or someone else's installation. Download it fresh.
 
 10. Extract the downloaded Project_Rechained_Launcher.zip contents inside the root folder of your Siege game installation. (Same folder that contains "Binaries", "Engine", etc)
+    - DepotDownloader will now connect to Steam and download the specified version.
 
 11. Run the "ProjectRechainedLauncher.exe" inside the ProjectRechained folder. 
-    - Siege game installation is independent of Survival (for the time being) and can't be launcher from Steam.
 
 ### Additional Tips
 
