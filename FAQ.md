@@ -139,6 +139,15 @@ Both players must:
 
 ---
 
+### (Siege) The map specifieed "..." could not be found
+
+* Make sure that:
+  * Launching the game from the Siege installation ProjectRechained Launcher
+  * Have installed the ProjectRechained folder from scratch / fresh download
+    * Copying the ProjectRechained folder from a previous installation (or from a friend) won't work
+
+---
+
 ### Known Issues (Won’t Be Fixed)
 
 * No sound / missing sounds
